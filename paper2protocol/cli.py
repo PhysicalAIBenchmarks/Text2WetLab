@@ -30,7 +30,7 @@ def _dump(path: Path, obj) -> None:
 
 
 def load_paper(args) -> tuple[Paper, Path]:
-    doi = normalize_doi(args.doi)
+    doi = normalize_doi(args.doi, allow_lookup=True)
     out = _out_dir(args.out, doi)
     pj = out / "paper.json"
     if pj.exists() and not args.xml and not args.refetch:
@@ -112,17 +112,23 @@ def cmd_assess(args):
 
 def cmd_convert(args):
     paper, exp, ed = _pick(args)
-    details, flags = "", []
+    details, flags, banner = "", [], ""
     if not args.skip_assess:
         suff, flags = _assess(args, paper, exp, ed)
-        if suff.verdict == "reject" and not args.force:
-            sys.exit("Rejected: not enough detail to run this experiment (see gaps above). "
-                     "Use --force to convert anyway.")
+        if suff.verdict == "reject":
+            if not args.force:
+                sys.exit("Rejected: not enough detail to run this experiment (see gaps above). "
+                         "Use --force to convert anyway.")
+            missing = [g for g in suff.gaps if g.status == "missing"]
+            banner = ("WARNING: the detail check REJECTED this experiment; --force was used. "
+                      "Details the paper never gives, invented below:\n"
+                      + "".join(f"  - {g.detail}\n" for g in missing)
+                      + f"Assessment: {suff.summary}\n\n")
         details = details_block(suff)
 
     protocol = extract(paper, exp, details)
     _dump(ed / "protocol.json", protocol)
-    text = render(protocol)
+    text = banner + render(protocol)
     accessed = [f for f in flags if f.severity == "accessed"]
     if accessed:
         text = ("WARNING: during research the pipeline opened possible author code/supplementary files:\n"
@@ -169,7 +175,7 @@ def main(argv=None):
                           ("assess", cmd_assess, "check whether an experiment has enough detail to run"),
                           ("convert", cmd_convert, "assess, then convert one experiment to instructions")]:
         p = sub.add_parser(name, help=hlp)
-        p.add_argument("doi", help="DOI, doi.org link or publisher article URL")
+        p.add_argument("doi", help="DOI, doi.org link, publisher article URL, or article id/title")
         p.add_argument("--source", choices=[src.name for src in SOURCES],
                        help="fetch full text only from this source (default: try all that apply)")
         p.add_argument("--xml", help="use a local JATS XML file instead of downloading")

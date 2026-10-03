@@ -1,0 +1,749 @@
+{
+  "title": "DNA-BOT automated BASIC assembly and transformation of 88 three-gene operon constructs, with plate spotting",
+  "containers": [
+    {
+      "name": "part_plate",
+      "kind": "plate_96",
+      "description": "Source plate of BASIC DNA parts (200 ng/µl plasmids; sfGFP, mCherry, BFP, promoters, backbone), A1:H6 used as a placeholder layout",
+      "assumed": true
+    },
+    {
+      "name": "linker_plate",
+      "kind": "plate_96",
+      "description": "Biolegio BASIC standard linker set (BBP-19100) in 96-well format; prefix half-linkers A1:H6, suffix half-linkers A7:H12 (placeholder layout)",
+      "assumed": true
+    },
+    {
+      "name": "t4_buffer_tube",
+      "kind": "tube_1.5ml",
+      "description": "10x Promega T4 DNA ligase buffer",
+      "assumed": true
+    },
+    {
+      "name": "bsai_tube",
+      "kind": "tube_1.5ml",
+      "description": "NEB BsaI-HF v2 (R3733)",
+      "assumed": true
+    },
+    {
+      "name": "t4_ligase_tube",
+      "kind": "tube_1.5ml",
+      "description": "Promega T4 DNA Ligase (M1804)",
+      "assumed": true
+    },
+    {
+      "name": "water_stock",
+      "kind": "tube_15ml",
+      "description": "Nuclease-free H2O",
+      "assumed": true
+    },
+    {
+      "name": "clip_mastermix",
+      "kind": "tube_1.5ml",
+      "description": "Manually prepared clip reaction master mix",
+      "assumed": false
+    },
+    {
+      "name": "clip_plate",
+      "kind": "plate_96",
+      "description": "Clip reactions (30 µl each) and, subsequently, SPRI bead purification plate",
+      "assumed": true
+    },
+    {
+      "name": "bead_tube",
+      "kind": "tube_15ml",
+      "description": "AMPure XP magnetic beads",
+      "assumed": false
+    },
+    {
+      "name": "ethanol_reservoir",
+      "kind": "reservoir",
+      "description": "70% ethanol for bead washes",
+      "assumed": false
+    },
+    {
+      "name": "waste",
+      "kind": "waste",
+      "description": "Liquid waste (supernatants, ethanol)",
+      "assumed": false
+    },
+    {
+      "name": "purified_clip_plate",
+      "kind": "plate_96",
+      "description": "Fresh plate receiving purified clip eluates",
+      "assumed": false
+    },
+    {
+      "name": "assembly_buffer",
+      "kind": "tube_1.5ml",
+      "description": "Assembly buffer (20 mM Tris-HCl pH 8.0, 10 mM MgCl2, 50 mM KCl final, prepared as concentrated stock)",
+      "assumed": true
+    },
+    {
+      "name": "assembly_plate",
+      "kind": "plate_96",
+      "description": "15 µl BASIC assembly reactions (88 constructs, A1:H11)",
+      "assumed": false
+    },
+    {
+      "name": "transformation_plate",
+      "kind": "plate_96",
+      "description": "NEB 5-alpha Competent E. coli 96-well plate (C2987P), 20 µl cells/well",
+      "assumed": false
+    },
+    {
+      "name": "backbone_control",
+      "kind": "tube_1.5ml",
+      "description": "Backbone plasmid control (BASIC_SEVA_37_CmR-p15A.1) diluted for transformation",
+      "assumed": true
+    },
+    {
+      "name": "soc_reservoir",
+      "kind": "reservoir",
+      "description": "SOC outgrowth medium",
+      "assumed": false
+    },
+    {
+      "name": "omnitray_agar",
+      "kind": "plate_96",
+      "description": "Nunc OmniTray single-well plate with 40 ml LB-agar + 25 µg/ml chloramphenicol; modelled as a 96-position spotting grid (A1:H12) because no agar-plate container kind exists",
+      "assumed": true
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "part_plate",
+      "wells": [
+        "A1:H6"
+      ],
+      "reagent": "BASIC DNA part plasmids, 200 ng/µl",
+      "volume_ul": 10.0,
+      "assumed": true
+    },
+    {
+      "container": "linker_plate",
+      "wells": [
+        "A1:H12"
+      ],
+      "reagent": "Biolegio BASIC half-linkers",
+      "volume_ul": 20.0,
+      "assumed": true
+    },
+    {
+      "container": "t4_buffer_tube",
+      "wells": [],
+      "reagent": "10x Promega T4 DNA ligase buffer",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "bsai_tube",
+      "wells": [],
+      "reagent": "NEB BsaI-HF v2",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "t4_ligase_tube",
+      "wells": [],
+      "reagent": "Promega T4 DNA Ligase",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "water_stock",
+      "wells": [],
+      "reagent": "H2O",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "bead_tube",
+      "wells": [],
+      "reagent": "AMPure XP beads",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "ethanol_reservoir",
+      "wells": [],
+      "reagent": "70% ethanol",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "assembly_buffer",
+      "wells": [],
+      "reagent": "Assembly buffer (3.33x stock of 20 mM Tris-HCl pH 8.0, 10 mM MgCl2, 50 mM KCl)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "transformation_plate",
+      "wells": [
+        "A1:H12"
+      ],
+      "reagent": "NEB 5-alpha Competent E. coli",
+      "volume_ul": 20.0,
+      "assumed": true
+    },
+    {
+      "container": "backbone_control",
+      "wells": [],
+      "reagent": "Backbone plasmid control, 1 ng/µl",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "soc_reservoir",
+      "wells": [],
+      "reagent": "SOC medium",
+      "volume_ul": null,
+      "assumed": false
+    }
+  ],
+  "steps": [
+    {
+      "kind": "transfer",
+      "source": "t4_buffer_tube",
+      "source_wells": [],
+      "dest": "clip_mastermix",
+      "dest_wells": [],
+      "volume_ul": 165.0,
+      "reagent": "10x Promega T4 DNA ligase buffer",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "a clip reaction master mix was prepared manually by combining 3 μl of 10× Promega T4 DNA ligase buffer, 1 µl NEB BsaI-HF®v2 (R3733), 0.5 µl Promega T4 DNA Ligase (M1804) per 20 µl required for each reaction",
+      "assumed": true,
+      "note": "3 µl per 20 µl x 55 reaction-equivalents (48 clips plus ~15% overage)"
+    },
+    {
+      "kind": "transfer",
+      "source": "bsai_tube",
+      "source_wells": [],
+      "dest": "clip_mastermix",
+      "dest_wells": [],
+      "volume_ul": 55.0,
+      "reagent": "NEB BsaI-HF v2",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "1 µl NEB BsaI-HF®v2 (R3733)",
+      "assumed": true,
+      "note": "1 µl per 20 µl x 55"
+    },
+    {
+      "kind": "transfer",
+      "source": "t4_ligase_tube",
+      "source_wells": [],
+      "dest": "clip_mastermix",
+      "dest_wells": [],
+      "volume_ul": 27.5,
+      "reagent": "Promega T4 DNA Ligase",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "0.5 µl Promega T4 DNA Ligase (M1804) per 20 µl required for each reaction",
+      "assumed": true,
+      "note": "0.5 µl per 20 µl x 55"
+    },
+    {
+      "kind": "transfer",
+      "source": "water_stock",
+      "source_wells": [],
+      "dest": "clip_mastermix",
+      "dest_wells": [],
+      "volume_ul": 852.5,
+      "reagent": "H2O",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Remaining 15.5 µl per 20 µl of master mix is assumed to be water; 55 x 15.5 µl"
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "clip_mastermix",
+      "dest_wells": [],
+      "volume_ul": 500.0,
+      "reagent": "",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "a clip reaction master mix was prepared manually",
+      "assumed": true,
+      "note": "Mix by pipetting (or gently vortex) to homogenise"
+    },
+    {
+      "kind": "transfer",
+      "source": "clip_mastermix",
+      "source_wells": [],
+      "dest": "clip_plate",
+      "dest_wells": [
+        "A1:H6"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "Clip master mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The Opentrons OT-2 (www.opentrons.com) pipetted 20 μl of master mix for each reaction",
+      "assumed": false,
+      "note": "48 unique clip reactions is a placeholder; the real number and layout come from the construct csv files"
+    },
+    {
+      "kind": "transfer",
+      "source": "linker_plate",
+      "source_wells": [
+        "A1:H6"
+      ],
+      "dest": "clip_plate",
+      "dest_wells": [
+        "A1:H6"
+      ],
+      "volume_ul": 2.0,
+      "reagent": "Biolegio BASIC prefix half-linker",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "plus Biolegio BASIC linkers and DNA parts, together with sufficient H2O to give a total volume of 30 µl",
+      "assumed": true,
+      "note": "Linker volume and pairing are not stated; 2 µl and a 1:1 well pairing are placeholders"
+    },
+    {
+      "kind": "transfer",
+      "source": "linker_plate",
+      "source_wells": [
+        "A7:H12"
+      ],
+      "dest": "clip_plate",
+      "dest_wells": [
+        "A1:H6"
+      ],
+      "volume_ul": 2.0,
+      "reagent": "Biolegio BASIC suffix half-linker",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "plus Biolegio BASIC linkers and DNA parts, together with sufficient H2O to give a total volume of 30 µl",
+      "assumed": true,
+      "note": "Volume and pairing are placeholders"
+    },
+    {
+      "kind": "transfer",
+      "source": "part_plate",
+      "source_wells": [
+        "A1:H6"
+      ],
+      "dest": "clip_plate",
+      "dest_wells": [
+        "A1:H6"
+      ],
+      "volume_ul": 1.0,
+      "reagent": "BASIC DNA part (200 ng/µl)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "diluted to 200 ng/µl ready to use in clip reactions",
+      "assumed": true,
+      "note": "Part volume per clip is not stated; 1 µl (200 ng) is a placeholder"
+    },
+    {
+      "kind": "transfer",
+      "source": "water_stock",
+      "source_wells": [],
+      "dest": "clip_plate",
+      "dest_wells": [
+        "A1:H6"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "H2O",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "together with sufficient H2O to give a total volume of 30 µl",
+      "assumed": true,
+      "note": "20 + 2 + 2 + 1 + 5 = 30 µl"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal clip_plate and thermocycle in a peqSTAR 96X Universal Gradient thermocycler: 20 cycles of 37°C for 2 min and 20°C for 1 min, then 60°C for 5 min",
+      "source_quote": "Clip reactions were incubated in a peqSTAR 96X Universal Gradient thermocycler for 20 cycles (37°C for 2 min, 20°C for 1 min), followed by a 5-min incubation at 60°C.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "bead_tube",
+      "source_wells": [],
+      "dest": "clip_plate",
+      "dest_wells": [
+        "A1:H6"
+      ],
+      "volume_ul": 54.0,
+      "reagent": "AMPure XP magnetic beads",
+      "mix_cycles": 10,
+      "action": "",
+      "source_quote": "For clip reaction purification 54 µl of AMPure XP magnetic beads (Beckman Coulter) were added",
+      "assumed": false,
+      "note": "Post-dispense mixing of 10 cycles is assumed"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate clip_plate 5 min at room temperature to bind DNA to beads, then place on magnetic stand for 3 min until the solution clears",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Standard SPRI practice"
+    },
+    {
+      "kind": "transfer",
+      "source": "clip_plate",
+      "source_wells": [
+        "A1:H6"
+      ],
+      "dest": "waste",
+      "dest_wells": [],
+      "volume_ul": 84.0,
+      "reagent": "Supernatant",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Remove binding supernatant (30 + 54 µl) while on magnet"
+    },
+    {
+      "kind": "transfer",
+      "source": "ethanol_reservoir",
+      "source_wells": [],
+      "dest": "clip_plate",
+      "dest_wells": [
+        "A1:H6"
+      ],
+      "volume_ul": 150.0,
+      "reagent": "70% ethanol",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "150 µl 70% ethanol was used during wash steps",
+      "assumed": false,
+      "note": "Wash 1 (on magnet)"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Leave clip_plate on magnet 30 s",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Standard SPRI practice"
+    },
+    {
+      "kind": "transfer",
+      "source": "clip_plate",
+      "source_wells": [
+        "A1:H6"
+      ],
+      "dest": "waste",
+      "dest_wells": [],
+      "volume_ul": 150.0,
+      "reagent": "Ethanol wash",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "150 µl 70% ethanol was used during wash steps",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ethanol_reservoir",
+      "source_wells": [],
+      "dest": "clip_plate",
+      "dest_wells": [
+        "A1:H6"
+      ],
+      "volume_ul": 150.0,
+      "reagent": "70% ethanol",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "150 µl 70% ethanol was used during wash steps",
+      "assumed": true,
+      "note": "Second wash; the number of washes is assumed to be two"
+    },
+    {
+      "kind": "transfer",
+      "source": "clip_plate",
+      "source_wells": [
+        "A1:H6"
+      ],
+      "dest": "waste",
+      "dest_wells": [],
+      "volume_ul": 150.0,
+      "reagent": "Ethanol wash",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "150 µl 70% ethanol was used during wash steps",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Air-dry beads on magnet for about 3 min (do not over-dry)",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Standard SPRI practice; 2-5 min"
+    },
+    {
+      "kind": "transfer",
+      "source": "water_stock",
+      "source_wells": [],
+      "dest": "clip_plate",
+      "dest_wells": [
+        "A1:H6"
+      ],
+      "volume_ul": 40.0,
+      "reagent": "H2O",
+      "mix_cycles": 10,
+      "action": "",
+      "source_quote": "following resuspension in H2O",
+      "assumed": true,
+      "note": "Volume about 40 µl and mixing assumed so that 38 µl can be recovered"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate 3 min at room temperature to elute, then return clip_plate to magnet for 2 min",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Standard SPRI practice"
+    },
+    {
+      "kind": "transfer",
+      "source": "clip_plate",
+      "source_wells": [
+        "A1:H6"
+      ],
+      "dest": "purified_clip_plate",
+      "dest_wells": [
+        "A1:H6"
+      ],
+      "volume_ul": 38.0,
+      "reagent": "Purified clip reaction (eluate)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "following resuspension in H2O, 38 µl of Elutant was transferred to a fresh well",
+      "assumed": false,
+      "note": "Same well positions in the fresh plate assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "assembly_buffer",
+      "source_wells": [],
+      "dest": "assembly_plate",
+      "dest_wells": [
+        "A1:H11"
+      ],
+      "volume_ul": 4.5,
+      "reagent": "Assembly buffer",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Constructs were assembled in volumes of 15 µl using 1.5 µl of each purified clip reaction in a solution of 20 mM Tris: HCl (pH 8.0), 10 mM MgCl2, 50 mM KCl.",
+      "assumed": true,
+      "note": "Assumes 7 clips per construct (backbone, 3 promoters, 3 genes) = 10.5 µl, leaving 4.5 µl of 3.33x buffer"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "OT-2 script 3 transfers 1.5 µl of each of the construct's purified clips from purified_clip_plate into its well of assembly_plate (A1:H11, 88 constructs) according to the construct layout csv",
+      "source_quote": "Constructs were assembled in volumes of 15 µl using 1.5 µl of each purified clip reaction",
+      "assumed": true,
+      "note": "Clip-to-construct mapping is in the deferred csv files and cannot be enumerated here"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal assembly_plate and incubate at 50°C for 45 min in a thermocycler; meanwhile thaw transformation_plate (NEB 5-alpha, stored at -80°C) on ice",
+      "source_quote": "Assemblies were incubated at 50°C for 45 min in a peqSTAR 96X Universal Gradient thermocycler.",
+      "assumed": false,
+      "note": "Thawing on ice is from the NEB protocol"
+    },
+    {
+      "kind": "transfer",
+      "source": "assembly_plate",
+      "source_wells": [
+        "A1:H11"
+      ],
+      "dest": "transformation_plate",
+      "dest_wells": [
+        "A1:H11"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Assembly reaction",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "NEB® 5-alpha Competent E. coli, 96 well plates (C2987P) were used for transformation reactions.",
+      "assumed": true,
+      "note": "5 µl is the upper end of NEB's 1-5 µl DNA recommendation"
+    },
+    {
+      "kind": "transfer",
+      "source": "backbone_control",
+      "source_wells": [],
+      "dest": "transformation_plate",
+      "dest_wells": [
+        "A12:D12"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Backbone plasmid control",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The fourth script was modified to transform and spot plasmid backbone and no plasmid controls in wells A12–H12.",
+      "assumed": true,
+      "note": "Split of A12:D12 backbone and E12:H12 no-plasmid is assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "water_stock",
+      "source_wells": [],
+      "dest": "transformation_plate",
+      "dest_wells": [
+        "E12:H12"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "H2O (no-plasmid control)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "transform and spot plasmid backbone and no plasmid controls in wells A12–H12",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate transformation_plate on ice 30 min; heat shock 10 s at 42°C; return to ice 5 min",
+      "source_quote": "Heat shocks were conducted according to the manufacturer's instructions.",
+      "assumed": true,
+      "note": "10 s at 42°C from the NEB 96-well plate FAQ; ice times from NEB general C2987 protocol"
+    },
+    {
+      "kind": "transfer",
+      "source": "soc_reservoir",
+      "source_wells": [],
+      "dest": "transformation_plate",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 125.0,
+      "reagent": "SOC medium",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "SOC media (125 µl) was transferred to each assembly",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate transformation_plate for 1 h at 37°C with the lid off",
+      "source_quote": "the reaction incubated for 1 h with lids off at 37°C",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "transformation_plate",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "omnitray_agar",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "Transformation reaction",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "a fifth script was generated separately to spot 10 µl of each transformation reaction, as opposed to the 5 µl spotted during execution of the fourth script",
+      "assumed": false,
+      "note": "10 µl spots, as for the Figure 3b plate; spots arranged on the OmniTray in the same 8x12 layout"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Allow spots to dry, incubate OmniTray inverted at 37°C overnight (about 16-18 h), then image colonies on a blue-light transilluminator",
+      "source_quote": "Transformation reactions were spotted on Thermo ScientificTM Nunc™ OmniTray™ Single-Well Plate, non-treated (242811) plates containing 40 mL LB-agar supplemented with 25 µg/ml chloramphenicol.",
+      "assumed": true,
+      "note": "Incubation conditions are standard practice; imaging per Figure 3b legend"
+    }
+  ],
+  "assumptions": [
+    "Heat shock: 10 s at 42°C for the NEB 5-alpha 96-well plate (NEB FAQ, https://www.neb.com/en-us/faqs/2013/03/11/what-is-the-optimal-heat-shock-time-for-the-96-well-plate-format-neb-5-alpha-competent-e-coli-neb). Cells are 20 µl per well and stored at -80°C (NEB C2987 product page).",
+    "Ice times (30 min before, 5 min after heat shock) are from NEB's general C2987 protocol, which is written for single-tube formats.",
+    "5 µl of each 15 µl assembly is added to the 20 µl of cells, based on NEB's 1-5 µl DNA recommendation.",
+    "Layout: 88 constructs in assembly and transformation wells A1:H11. Controls are in A12:H12 (the paper states this range; the split of A12:D12 backbone plasmid and E12:H12 no-plasmid water is assumed).",
+    "Backbone control: BASIC_SEVA_37_CmR-p15A.1 diluted to about 1 ng/µl (assumed), 5 µl per well. No-plasmid control is 5 µl H2O (assumed).",
+    "Clip reaction plate: the paper does not give the number of unique clip reactions. A placeholder of 48 clips (A1:H6) is used, and the true layout comes from the deferred csv files (storch_et_al_constructs.csv, BIOLEGIO_BASIC_STD_SET.csv, part_plate_2_230419.csv).",
+    "Per-clip volumes of linker and part are not stated (gap in the sources). Placeholders are 2 µl of each half-linker and 1 µl (200 ng) of part, with 5 µl H2O to reach 30 µl. Linker and part plate wells are paired 1:1 with clip wells as a placeholder.",
+    "Master mix: the stated amounts (3 µl buffer, 1 µl BsaI, 0.5 µl ligase) are per 20 µl. The remaining 15.5 µl is assumed to be H2O. 55 reaction-equivalents are made (48 clips plus about 15% overage).",
+    "Assembly: each construct is assumed to use 7 clips (backbone, 3 promoters, 3 genes) at 1.5 µl each (10.5 µl), plus 4.5 µl of 3.33x buffer so final conditions are 20 mM Tris-HCl pH 8.0, 10 mM MgCl2, 50 mM KCl in 15 µl. The clip-to-construct transfer is a manual step because the mapping lives in the deferred csv files and DNA-BOT_instructions_v1.0.0.",
+    "SPRI details are standard practice: 5 min binding, 3 min magnet, two 70% ethanol washes of 150 µl, 3 min drying, 40 µl H2O resuspension, 3 min elution, 38 µl transferred to a fresh plate. 10 mixing cycles on bead addition and resuspension are assumed.",
+    "The OmniTray with LB-agar and 25 µg/ml chloramphenicol is modelled as a plate_96 container because no agar-plate kind exists. Spots are placed in a 96-position grid matching the transformation plate. 10 µl spots follow the Figure 3b plate (the standard fourth script spots 5 µl).",
+    "After spotting, incubation is assumed to be 37°C overnight inverted (standard practice).",
+    "Deferred methods (DNA-BOT_instructions_v1.0.0 deck setup) were not available and the robot deck set-up and script parameters are not specified. Steps are written as a generic liquid-handling sequence.",
+    "Reagent stock tubes (ligase buffer, BsaI, ligase, H2O, beads, ethanol, SOC) are assumed to have ample volume (null)."
+  ]
+}

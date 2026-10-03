@@ -96,6 +96,21 @@ def fetch_jats(doi: str, only: str | None = None) -> tuple[bytes, str]:
     )
 
 
+# Publisher article ids in URLs, e.g. .../synbio/article/5/1/ysaa010/5869449 → "ysaa010"
+ARTICLE_ID = re.compile(r"/([a-z]{2,8}\d{3,7})(?=[/?#]|$)", re.I)
+
+
+def lookup_doi(ref: str) -> tuple[str, str]:
+    """Resolve a non-DOI reference (publisher URL without a DOI, article id, or title) to a
+    DOI via Europe PMC. Returns (doi, matched title) for the best hit."""
+    m = ARTICLE_ID.search(ref)
+    query = m.group(1) if m else ref.strip()
+    hits = [h for h in search(query, limit=5) if h["doi"]]
+    if not hits:
+        raise RuntimeError(f"Could not find a DOI for {ref!r} (searched Europe PMC for {query!r})")
+    return hits[0]["doi"], hits[0]["title"]
+
+
 def search(query: str, limit: int = 10, preprints_only: bool = False) -> list[dict]:
     """Title/keyword search via Europe PMC (journals + preprints)."""
     q = f"({query})" + (' AND SRC:PPR AND PUBLISHER:"bioRxiv"' if preprints_only else "")

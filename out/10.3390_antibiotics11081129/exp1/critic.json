@@ -1,0 +1,60 @@
+{
+  "verdict": "major_issues",
+  "summary": "The protocol follows the paper's overall flow (overnight culture, 1:1 glycerol mix, 3 µL droplet plates stored frozen, 297 µL LB, Growth Profiler at 37 °C/225 rpm/20 min), but the overnight/glycerol volumes overfill the deep wells, which the automated check confirms. The 480 wells assumed for 447 strains is also not handled correctly, and there are some other assumption and omission problems.",
+  "issues": [
+    {
+      "step": 12,
+      "severity": "major",
+      "issue": "Overnight wells hold 1000 µL LB + 5 µL inoculum = 1005 µL; adding 1000 µL of 50% glycerol gives 2005 µL, over the 2000 µL deep-well capacity. The overflow is caused by the unstated inoculum volume being added on top of 1 mL LB, and the paper's '1 mL LB + 1 mL 50% glycerol' implies a total of about 2 mL. The same error occurs in steps 13-16, all of them flagged by the automated check.",
+      "suggestion": "Add a volume that keeps the total ≤2000 µL (e.g. 995 µL glycerol, or reduce the LB to 995 µL), or use a smaller inoculum, and note that the paper gives 1 mL + 1 mL. Check that the mix is ~1:1. Alternatively declare the plate as a larger-capacity deep-well or note the minor overfill risk. Mixing at ~500 µL in a nearly full 2 mL well is also risky, so lower the mix volume and add an aspirate/dispense height at the well bottom."
+    },
+    {
+      "step": 13,
+      "severity": "major",
+      "issue": "Same overfill (2005 µL > 2000 µL) as step 12 for overnight2.",
+      "suggestion": "Apply the same volume correction as in step 12."
+    },
+    {
+      "step": 14,
+      "severity": "major",
+      "issue": "Same overfill (2005 µL > 2000 µL) as step 12 for overnight3.",
+      "suggestion": "Apply the same volume correction as in step 12."
+    },
+    {
+      "step": 15,
+      "severity": "major",
+      "issue": "Same overfill (2005 µL > 2000 µL) as step 12 for overnight4.",
+      "suggestion": "Apply the same volume correction as in step 12."
+    },
+    {
+      "step": 16,
+      "severity": "major",
+      "issue": "Same overfill (2005 µL > 2000 µL) as step 12 for overnight5.",
+      "suggestion": "Apply the same volume correction as in step 12."
+    },
+    {
+      "step": 1,
+      "severity": "minor",
+      "issue": "1000 µL of LB per well is dispensed with a 300 µL multichannel in multiple aliquots (noted only in step 1), which is wasteful for 5 plates, and the pipette use is not stated for steps 2-5. Also, no OT-2 step handles the tip loss or reservoir volume for ~480 mL LB.",
+      "suggestion": "State the aliquoting for all fill steps (e.g. 4 x 250 µL) and consider a larger-volume dispensing approach; make clear the reservoir will be refilled."
+    },
+    {
+      "step": 6,
+      "severity": "minor",
+      "issue": "The 5 µL inoculum from the glycerol stock is assumed, and the stock layout (A1:H12 for 5 plates = 480 wells for 447 strains) is invented, with no WT or blank wells actually specified in the layout. The paper's baseline analysis (Fig. 2A) marks the WT strain, and G_Blank requires blank wells.",
+      "suggestion": "Explicitly designate WT and uninoculated LB blank wells in the layout (or flag that the unused 33 wells are used for WT/blank), and state that the glycerol stock is thawed/handled on ice before transfer."
+    },
+    {
+      "step": 27,
+      "severity": "minor",
+      "issue": "The protocol stores plates at -20 °C but gives no sealing of the 3 µL droplet plates during storage, and for this experiment (baseline growth) there is no need to say that the droplet plates are prepared and the LB added later in the same run; the order and 'remove from storage before the assay' wording is vague and does not say whether the plates are used immediately after loading.",
+      "suggestion": "Clarify that the plates are frozen at least once (as in the paper) before use, cover them during storage (assumption), and note the plate is brought to the OT-2 and LB added directly without thawing."
+    },
+    {
+      "step": 39,
+      "severity": "minor",
+      "issue": "The ~24 h run duration is assumed, which sets the AUC window; the paper does not state it. This is flagged as an assumption, but the downstream analysis (Growthcurver AUC/growth rate, exclusion of replicates with no growth) is omitted from the protocol, despite being part of the paper's methods used for Fig. 1.",
+      "suggestion": "Add a note on the data-analysis step (G to OD600 conversion with blank subtraction, Growthcurver fit, removal of a no-growth replicate when the other replicate grows) or state clearly it is outside the liquid-handling scope."
+    }
+  ]
+}
