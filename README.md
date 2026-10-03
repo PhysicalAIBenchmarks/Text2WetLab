@@ -15,6 +15,7 @@ tasks/        Benchmark tasks — one folder per task: input.nl.txt, assumptions
   L2/         Layer 2: fine-grained (volumes, concentrations, scheduling)
 eval/         Evaluation harness (PyLabRobot simulation + assertions)
 paper/        arXiv write-up (placeholder)
+paper2protocol/  bioRxiv paper -> liquid-handling instructions (front-end tool, with tests/)
 scripts/      deploy_hf.py (HF upload; run by CI on push to main)
 assets/
   urdf/       Robot URDFs for 3D simulation
@@ -64,7 +65,7 @@ Sources and licenses documented in [`assets/SOURCES.md`](assets/SOURCES.md).
 ## Setup
 
 ```bash
-git clone https://github.com/Tyronita/Text2WetLab
+git clone https://github.com/PhysicalAIBenchmarks/Text2WetLab
 cd Text2WetLab
 uv pip install pylabrobot>=0.2.2
 uv run python eval/run_eval.py tasks/L1/
