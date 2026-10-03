@@ -1,0 +1,11 @@
+{
+  "task": "L1-serial-dilution-200ul",
+  "steps": [
+    {"op": "pick_up_tip", "from": "tiprack:A1"},
+    {"op": "aspirate", "volume_uL": 200, "from": "trough:A1"},
+    {"op": "dispense", "volume_uL": 100, "to": "plate:A1"},
+    {"op": "dispense", "volume_uL": 100, "to": "plate:B1"},
+    {"op": "drop_tip"}
+  ],
+  "assumed": ["per_well_volume=100", "wells=A1,B1", "single_aspirate_for_both"]
+}

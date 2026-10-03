@@ -4,7 +4,7 @@ language:
 license: apache-2.0
 task_categories:
 - text-generation
-- text2text-generation
+- translation
 tags:
 - biology
 - lab-automation
@@ -58,6 +58,6 @@ explicit volume assertions for T2–T6, and optionally `opentrons_simulate` for 
   title  = {Text2WetLab: A Benchmark for Natural Language to Wet Lab Protocol Translation},
   author = {O'Leary, Evan},
   year   = {2026},
-  url    = {https://github.com/Tyronita/Text2WetLab}
+  url    = {https://github.com/PhysicalAIBenchmarks/Text2WetLab}
 }
 ```
