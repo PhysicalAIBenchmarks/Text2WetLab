@@ -10,24 +10,24 @@ Take a bioRxiv paper, identify the experiments it describes, let the user pick o
 emit a simple numbered list of natural-language liquid-handling instructions (plates,
 tubes, transfers). A separate downstream LLM (not built here) parses those instructions.
 
-Also included: a restricted-research screen that gates the pipeline, a deterministic sanity
-check, and an LLM critic that reviews the output against the source.
+Also included: a deterministic sanity check and an LLM critic that reviews the output
+against the source. A restricted-research screen is planned but **deferred (TODO)**.
 
 ## Non-goals (v1)
 
 PDF parsing, non-bioRxiv sources, deck/labware mapping, the downstream parser LLM,
-automatic revise loops, a UI, a gold-standard eval set.
+automatic revise loops, a UI, a gold-standard eval set, the restricted-research screen
+(TODO, see below).
 
 ## Pipeline
 
 ```
-ingest → screen → identify → (user picks) → extract → check → critic → render
+ingest → [screen: TODO] → identify → (user picks) → extract → check → critic → render
 ```
 
 | Module | In → Out | LLM? |
 |---|---|---|
 | `ingest.py` | DOI → `Paper` | no |
-| `screen.py` | `Paper` → `ScreenResult` | yes |
 | `identify.py` | `Paper` → `list[Experiment]` | yes |
 | `extract.py` | `Paper`, `Experiment` → `Protocol` | yes |
 | `check.py` | `Protocol` → `list[CheckIssue]` | no |
@@ -52,13 +52,12 @@ with a `paper2protocol` console script.
 - **Stretch:** `search "<title words>"` via the Europe PMC REST search API (preprints,
   `SRC:PPR`, publisher bioRxiv) → list of (title, DOI) to choose from.
 
-### screen
-- Runs first, on title + abstract + Methods text.
-- Policy lives in `paper2protocol/screen_policy.md`, owned by the team; code does not
-  hard-code categories.
-- Output `ScreenResult(verdict: "allow" | "block" | "review", reason: str)`.
-- `block` or `review` stops the pipeline; no experiments are listed or converted. No CLI
-  bypass flag. Result written to `out/<doi>/screen.json`.
+### screen — TODO (not implemented in v1)
+Not built now. Leave a `# TODO: restricted-research screen` at the point in `cli.py`
+between ingest and identify where it will gate the pipeline. Intended future design:
+runs first on title + abstract + Methods; team-owned policy file; verdict
+`allow | block | review`; anything but `allow` stops before experiments are listed;
+no CLI bypass.
 
 ### identify — experiments, not sections
 Methods subsections are not 1:1 with experiments; one workflow often chains several
@@ -69,7 +68,12 @@ a reagents section), and one subsection can serve several experiments.
   actually combined).
 - `Experiment`: `id`, `title`, `goal`, `section_refs: list[str]` (ordered), `shared_refs`
   (recipes/reagent sections), `unresolved_refs: list[str]` ("as described previously"),
-  `liquid_handling_fraction` hint (`mostly | partly | little`) to help users choose.
+  `liquid_handling_fraction` hint (`mostly | partly | little`) to help users choose,
+  `figure_refs: list[str]` — the figures/panels whose data this experiment produces
+  (e.g. `["Fig 2A-C", "Supp Fig S3"]`), taken from Results citations and figure legends.
+- Ingest keeps each legend's label (`Figure 2`, `Figure S3`) so `figure_refs` can be
+  matched to real figures; refs the model gives that don't match a known legend label are
+  kept but marked unverified.
 
 ### extract
 - Input: paper text restricted to the experiment's `section_refs` + `shared_refs`, plus
@@ -124,7 +128,6 @@ Assumptions: ...
 
   | Stage | Model | Effort |
   |---|---|---|
-  | screen | `claude-sonnet-5-5` | low |
   | identify | `claude-sonnet-5-5` | medium |
   | extract | `claude-sonnet-5-5` | high |
   | critic | `claude-sonnet-5-5` | high |
@@ -148,20 +151,29 @@ Assumptions: ...
 ## CLI
 
 ```
-paper2protocol list <DOI>                    # ingest → screen → identify; prints numbered experiments
+paper2protocol list <DOI>                    # ingest → identify; prints numbered experiments with their figure refs
 paper2protocol convert <DOI> --experiment N  # extract → check → critic → render
 paper2protocol search "<title words>"        # stretch
+```
+
+Example `list` output:
+
+```
+1. Luciferase reporter assay in HEK293T        [Fig 2A-C]       liquid handling: mostly
+   sections: Cell culture → Transfection → Luciferase assay
+2. qPCR of target genes after knockdown         [Fig 3B, S4]     liquid handling: mostly
+3. Confocal imaging of fixed cells              [Fig 1D]         liquid handling: little
 ```
 
 `list` caches its result, so `convert` reuses it without re-calling the LLM.
 
 Output dir `out/<doi-slug>/`:
-`paper.json`, `screen.json`, `experiments.json`, and per experiment `exp<N>/`:
+`paper.json`, `experiments.json`, and per experiment `exp<N>/`:
 `protocol.json`, `protocol.txt`, `check.json`, `critic.json`.
 
 ## Error handling (hackathon level)
 
-- Fail fast with a readable message for: unknown DOI, missing JATS, screen block/review,
+- Fail fast with a readable message for: unknown DOI, missing JATS,
   LLM refusal.
 - One retry on structured-output validation failure, then raise.
 - Everything else: let exceptions propagate.
