@@ -83,6 +83,17 @@ SARS-CoV-2 RNA extraction (91 steps, 44 containers):
 The pipeline is text -> IR -> 3D. For the L1 tasks there is also Python and an Opentrons log
 (see above); the paper protocols have no robot code yet, so they go from IR straight to 3D.
 
+## L2 tasks (3D, side by side with 2D)
+
+| Task | Source | 3D (MP4) | Frames |
+|---|---|---|---|
+| Golden Gate assembly (33 steps) | AssemblyTron paper, `paper2protocol` output | [mp4](../assets/examples3d/L2-golden-gate-assembly.mp4) | [png](../assets/examples3d/L2-golden-gate-assembly_frames.png) |
+| E. coli heat-shock transformation | handwritten (APEX), to be replaced | [mp4](../assets/examples3d/L2-ecoli-heat-shock-transformation.mp4) | [png](../assets/examples3d/L2-ecoli-heat-shock-transformation_frames.png) |
+| Colony PCR screening | handwritten (Slowpoke), to be replaced | [mp4](../assets/examples3d/L2-colony-pcr-screening.mp4) | [png](../assets/examples3d/L2-colony-pcr-screening_frames.png) |
+| AMPure bead cleanup | handwritten, to be replaced | [mp4](../assets/examples3d/L2-ampure-bead-cleanup.mp4) | [png](../assets/examples3d/L2-ampure-bead-cleanup_frames.png) |
+
+![Golden Gate 3D](../assets/examples3d/L2-golden-gate-assembly.gif)
+
 ## What the IR view does not show
 Tips, pipette capacity, deck slots and heights. Those need the robot layer (Python or an
 Opentrons log), so use `trace_replay.py` for them.
