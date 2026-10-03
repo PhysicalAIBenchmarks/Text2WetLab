@@ -15,6 +15,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pytest>=9.1.1",
+    "opentrons-mujoco-viz @ git+https://github.com/PhysicalAIBenchmarks/opentrons-mujoco-viz",
 ]
 
 [project.scripts]
