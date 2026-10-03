@@ -61,7 +61,11 @@ class LLMRefusal(RuntimeError):
 def _get_client() -> anthropic.Anthropic:
     global _client
     if _client is None:
-        _client = anthropic.Anthropic()
+        kwargs: dict = {}
+        ws_id = os.environ.get("ANTHROPIC_WORKSPACE_ID")
+        if ws_id:
+            kwargs["default_headers"] = {"anthropic-workspace-id": ws_id}
+        _client = anthropic.Anthropic(**kwargs)
     return _client
 
 
