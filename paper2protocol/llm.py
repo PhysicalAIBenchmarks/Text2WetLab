@@ -34,10 +34,13 @@ STAGES: dict[str, dict] = {
 }
 
 # Server-side web tools (run on Anthropic's side; no client loop needed). Code hosts are
-# blocked so the model can't copy the authors' scripts (see guard.py).
+# blocked so the model can't copy the authors' scripts (see guard.py). Per-call caps can be
+# raised with P2P_WEB_SEARCH_MAX / P2P_WEB_FETCH_MAX when resolve runs out of quota.
 WEB_TOOLS = [
-    {"type": "web_search_20260209", "name": "web_search", "max_uses": 8, "blocked_domains": guard.BLOCKED_DOMAINS},
-    {"type": "web_fetch_20260209", "name": "web_fetch", "max_uses": 10, "blocked_domains": guard.BLOCKED_DOMAINS},
+    {"type": "web_search_20260209", "name": "web_search",
+     "max_uses": int(os.environ.get("P2P_WEB_SEARCH_MAX", 8)), "blocked_domains": guard.BLOCKED_DOMAINS},
+    {"type": "web_fetch_20260209", "name": "web_fetch",
+     "max_uses": int(os.environ.get("P2P_WEB_FETCH_MAX", 10)), "blocked_domains": guard.BLOCKED_DOMAINS},
 ]
 # Every web search/fetch/result seen by tool-using calls, for guard.audit(). Callers clear it.
 WEB_EVENTS: list = []

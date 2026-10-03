@@ -1,0 +1,61 @@
+Automated E. coli transformation (BOTany4-Shock&Go) of Golden Gate assemblies with blue/white screening
+
+Containers:
+- parts_plate: 96-well plate — MoClo part DNA: col 1 backbone, col 2 promoter, col 3 CDS, col 4 terminator; rows A-H = assemblies 1-8 [assumed]
+- atp_tube: 1.5 mL tube — 10 mM ATP stock [assumed]
+- buffer_tube: 1.5 mL tube — 10x FastDigest buffer [assumed]
+- enzyme_tube: 1.5 mL tube — FastDigest Eco31I (BsaI) [assumed]
+- ligase_tube: 1.5 mL tube — T4 DNA ligase, Thermo EL0012 5 U/uL [assumed]
+- water_tube: 1.5 mL tube — Nuclease-free water [assumed]
+- gg_mm_tube: 1.5 mL tube — Golden Gate master mix [assumed]
+- gg_plate: 96-well plate — Golden Gate reactions on the on-deck thermocycler, A1:H1 [assumed]
+- cells_tube: 1.5 mL tube — Thawed TOP10F' competent cells in 85 mM CaCl2/15% glycerol, kept cold [assumed]
+- soc_tube: 15 mL tube — SOC recovery medium [assumed]
+- transform_plate: 96-well plate — Transformation reactions on the on-deck thermocycler, A1:H1 [assumed]
+
+Starting contents:
+- parts_plate wells A1:H4: 10 µL MoClo part plasmids (backbone, promoter, CDS, terminator), approx. 20-40 fmol/uL [assumed]
+- atp_tube: stock 10 mM ATP
+- buffer_tube: stock 10x FastDigest Buffer
+- enzyme_tube: stock FastDigest Eco31I (BsaI)
+- ligase_tube: stock T4 DNA ligase (Thermo EL0012, 5 U/uL)
+- water_tube: stock Water
+- cells_tube: 500 µL TOP10F' chemically competent E. coli (OD600 200-250) [assumed]
+- soc_tube: stock SOC recovery medium [assumed]
+
+Steps:
+1. Transfer 10 µL of 10 mM ATP from atp_tube to gg_mm_tube. Note: 1 uL per reaction scaled to 10 reactions (8 + overage) [assumed]
+2. Transfer 10 µL of 10x FastDigest Buffer from buffer_tube to gg_mm_tube. Note: Scaled to 10 reactions [assumed]
+3. Transfer 5 µL of FastDigest Eco31I (BsaI) from enzyme_tube to gg_mm_tube. Note: Eco31I chosen for L1 assemblies; scaled to 10 reactions [assumed]
+4. Transfer 5 µL of T4 DNA ligase from ligase_tube to gg_mm_tube. Note: Scaled to 10 reactions [assumed]
+5. Transfer 30 µL of Water from water_tube to gg_mm_tube. Note: Scaled to 10 reactions [assumed]
+6. Mix gg_mm_tube by pipetting 30 µL up and down 5 times. Note: Mix master mix (60 uL total) [assumed]
+7. Transfer 6 µL of Golden Gate master mix from gg_mm_tube to gg_plate wells A1:H1 (each well). Note: Master mix dispensed first
+8. Transfer 1 µL of Backbone plasmid from parts_plate wells A1:H1 to gg_plate wells A1:H1 (each well). Note: Rows paired in order
+9. Transfer 1 µL of Promoter plasmid from parts_plate wells A2:H2 to gg_plate wells A1:H1 (each well).
+10. Transfer 1 µL of CDS plasmid from parts_plate wells A3:H3 to gg_plate wells A1:H1 (each well).
+11. Transfer 1 µL of Terminator plasmid from parts_plate wells A4:H4 to gg_plate wells A1:H1 (each well).
+12. Mix gg_plate wells A1:H1 by pipetting 5 µL up and down 3 times. Note: Gentle mix of 10 uL reactions [assumed]
+13. MANUAL: Seal gg_plate and run on thermocycler: 30 cycles of 37 °C 3 min / 22 °C 4 min (Thermo T4 ligase); then 37 °C 5 min and 65 °C 5 min; hold at 4 °C. Note: Cycling program from Thermo FastDigest Eco31I manual (37 °C digestion, 65 °C 5 min inactivation) and standard Golden Gate practice; not given in paper [assumed]
+14. MANUAL: Thaw competent cell aliquots on ice and pool into cells_tube (about 400+ uL); chill transform_plate on the on-deck thermocycler at 4 °C. [assumed]
+15. Transfer 50 µL of Competent E. coli from cells_tube to transform_plate wells A1:H1 (each well). Note: 50 uL cells per transformation (assumed); PCR-plate format on thermocycler [assumed]
+16. Transfer 3 µL of Golden Gate reaction from gg_plate wells A1:H1 to transform_plate wells A1:H1 (each well), then mix 3 times. Note: 3 uL of unpurified reaction (assumed within 2-5 uL); gentle post-dispense mix [assumed]
+17. MANUAL: Seal transform_plate; on-deck thermocycler: 4 °C 20 min, 42 °C 45 s heat shock, 4 °C 2 min. Note: Heat-shock parameters not stated in paper; SM4 deferred. Based on Zymo FAQ (ice 5-10 min, 42 °C 45 s) and standard practice [assumed]
+18. Transfer 200 µL of SOC recovery medium from soc_tube to transform_plate wells A1:H1 (each well). Note: 200 uL used to stay within plate well capacity (Zymo FAQ suggests 450 uL for 50 uL cells) [assumed]
+19. MANUAL: Incubate transform_plate 60 min at 37 °C on the on-deck thermocycler (outgrowth). Note: 1 h on-deck outgrowth per paper Results text/recovered details; shaking not available [assumed]
+20. MANUAL: For each of the 8 transformations, spread 10 µL X-gal (20 mg/mL in DMSO) and 30 µL IPTG (100 mM in water) onto a pre-warmed 60 mm low-salt LB agar plate with 50 µg/mL carbenicillin, then pipette 50 µL of the recovered culture from transform_plate (A1:H1) and spread it on the plate. Note: Carbenicillin used for L1 constructs; plates pre-warmed (assumed)
+21. MANUAL: Incubate plates overnight at 37 °C, then count blue and white colonies per plate.
+
+Assumptions:
+- Layout: 8 assemblies in rows A-H; parts_plate col 1 backbone, col 2 promoter, col 3 CDS, col 4 terminator; gg_plate and transform_plate wells A1:H1.
+- Identity of the 8 assemblies is not specified; any 8 Plant MoClo L1 constructs; Eco31I (BsaI) and Thermo T4 ligase at 22 °C chosen.
+- Part DNA concentration about 20-40 fmol/uL (about 50-100 ng) assumed (standard practice); parts plate volume 10 uL per well assumed.
+- Master mix prepared for 10 reactions (8 + overage); ATP, buffer, enzyme, ligase and water stocks assumed in separate 1.5 mL tubes.
+- Golden Gate cycling (30 x 37 °C 3 min/22 °C 4 min, then 37 °C 5 min, 65 °C 5 min) assumed from the Thermo FastDigest Eco31I manual (37 °C, 65 °C 5 min inactivation) and standard practice (Engler et al.).
+- Competent cells: 50 uL per transformation, thawed on ice/cold block; cells_tube volume 500 uL assumed.
+- 3 uL of unpurified Golden Gate reaction added to cells (assumed; paper does not state).
+- Heat shock 4 °C 20 min, 42 °C 45 s, 4 °C 2 min assumed (Supplementary Method S4 not available; Zymo Mix&Go FAQ and standard practice).
+- Recovery in 200 uL SOC at 37 °C for 60 min on-deck without shaking; 200 uL used instead of 450 uL (Zymo FAQ) to fit the 360 uL plate well limit. The 1 h outgrowth comes from the recovered paper details.
+- Plating, X-gal/IPTG spreading and colony counting are manual; plates pre-warmed to 37 °C (assumed). Plate pipetting is shown as manual since agar plates are not an allowed container kind.
+- The Mix&Go! (Zymo) comparison arm is not described in the paper and is not included.
+- Competent cell preparation (s4.4) is treated as already done; cells are assumed ready as frozen aliquots.

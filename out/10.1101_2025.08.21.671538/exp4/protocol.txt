@@ -1,0 +1,111 @@
+Pichia electroporation with MagBead-extracted Level 1 plasmids and colony genotyping
+
+Containers:
+- culture_plate: 96-deep-well plate (2 mL) — E. coli overnight cultures; stands in for the 24 deep-well plate; wells A1:C1 used [assumed]
+- LB_carb_reservoir: reservoir — Low-salt LB with 50 µg/mL carbenicillin
+- glycerol75_tube: 15 mL tube — 75% glycerol
+- glycerol_stock_plate: 96-deep-well plate (2 mL) — Glycerol stocks of the cultures; stands in for 1.6 mL CryoPure tubes [assumed]
+- lysis_reservoir: reservoir — Zyppy-96 MagBead Deep Blue Lysis Buffer
+- neutralization_reservoir: reservoir — Zyppy-96 Neutralization Buffer
+- clearing_beads_tube: 1.5 mL tube — MagClearing Beads (kept suspended)
+- binding_beads_tube: 1.5 mL tube — MagBinding Beads (kept suspended)
+- endowash_reservoir: reservoir — Zyppy Endo-Wash Buffer
+- zyppywash_reservoir: reservoir — Zyppy Wash Buffer (concentrate diluted with 95% ethanol per kit)
+- elution_tube: 15 mL tube — Zyppy Elution Buffer (10 mM Tris-HCl pH 8.5, 0.1 mM EDTA)
+- binding_plate: 96-deep-well plate (2 mL) — Cleared lysate, bead binding, washes and elution
+- eluate_plate: 96-well plate — Plasmid eluates
+- waste: waste container — Supernatant and wash waste
+- competent_cells_tube: 1.5 mL tube — Electrocompetent Pichia X-33 cells in BEDS, kept on ice [assumed]
+- cuvette_plate: 96-deep-well plate (2 mL) — Electroporation reactions, A1:C1 with DNA and D1 no-DNA control. Wells stand in for 0.2 cm cuvettes, which are used for the pulse [assumed]
+- sorbitol_tube: 15 mL tube — Ice-cold 1 M sorbitol
+- YPD_tube: 15 mL tube — YPD medium [assumed]
+- water_tube: 1.5 mL tube — Nuclease-free water [assumed]
+- lysis_plate: 96-well plate — Yeast colony lysates in water [assumed]
+- redtaq_tube: 1.5 mL tube — Red Taq 2X Master Mix
+- fwd_primer_tube: 1.5 mL tube — Forward genotyping primer, 10 µM [assumed]
+- rev_primer_tube: 1.5 mL tube — Reverse genotyping primer, 10 µM [assumed]
+- master_mix_tube: 1.5 mL tube — Colony PCR master mix with primers [assumed]
+- pcr_plate: 96-well plate — Colony PCR reactions
+
+Starting contents:
+- LB_carb_reservoir: stock low-salt LB + 50 µg/mL carbenicillin
+- glycerol75_tube: 1000 µL 75% glycerol
+- lysis_reservoir: stock Deep Blue Lysis Buffer
+- neutralization_reservoir: stock Neutralization Buffer
+- clearing_beads_tube: 300 µL MagClearing Beads [assumed]
+- binding_beads_tube: 200 µL MagBinding Beads [assumed]
+- endowash_reservoir: stock Endo-Wash Buffer
+- zyppywash_reservoir: stock Zyppy Wash Buffer (with ethanol)
+- elution_tube: stock Zyppy Elution Buffer
+- competent_cells_tube: 1000 µL Electrocompetent Pichia X-33 in BEDS [assumed]
+- sorbitol_tube: stock ice-cold 1 M sorbitol
+- YPD_tube: stock YPD [assumed]
+- water_tube: stock nuclease-free water [assumed]
+- redtaq_tube: stock Red Taq 2X Master Mix
+- fwd_primer_tube: stock forward primer 10 µM [assumed]
+- rev_primer_tube: stock reverse primer 10 µM [assumed]
+
+Steps:
+1. MANUAL: Kit preparation: add 208 mL 95% ethanol to 48 mL Zyppy Wash Buffer concentrate; warm Lysis Buffer at 30–37 °C if precipitated; chill sorbitol on ice. Note: From Zymo D4102 manual [assumed]
+2. Transfer 1600 µL of low-salt LB + 50 µg/mL carbenicillin from LB_carb_reservoir to culture_plate wells A1:C1 (each well). Note: Carbenicillin 50 µg/mL for Level 1 (s4.4)
+3. MANUAL: Inoculate each of culture_plate A1:C1 with one positively genotyped E. coli colony carrying an episomal Level 1 construct; seal with air-permeable cover; incubate overnight at 37 °C, 250 rpm. Note: Overnight taken as about 16–24 h
+4. Transfer 200 µL of 75% glycerol from glycerol75_tube to glycerol_stock_plate wells A1:C1 (each well).
+5. Transfer 800 µL of E. coli overnight culture from culture_plate wells A1:C1 to glycerol_stock_plate wells A1:C1 (each well), then mix 3 times. Note: Remaining ~800 µL stays in culture_plate for the miniprep
+6. MANUAL: Seal glycerol_stock_plate and store at −80 °C. Note: Storage temperature assumed [assumed]
+7. Transfer 100 µL of Deep Blue Lysis Buffer from lysis_reservoir to culture_plate wells A1:C1 (each well). Note: Kit volumes from Zymo D4102 manual [assumed]
+8. MANUAL: Seal and vortex culture_plate 10 s, then wait 5 min at room temperature. Note: Zymo manual [assumed]
+9. Transfer 450 µL of Neutralization Buffer from neutralization_reservoir to culture_plate wells A1:C1 (each well). Note: Zymo manual [assumed]
+10. MANUAL: Seal and vortex culture_plate 45 s. Note: Zymo manual [assumed]
+11. Transfer 50 µL of MagClearing Beads from clearing_beads_tube to culture_plate wells A1:C1 (each well). Note: Resuspend beads before use. Zymo manual [assumed]
+12. MANUAL: Vortex culture_plate 10 s, then place on magnetic stand for 5 min until the lysate clears. Note: Zymo manual [assumed]
+13. Transfer 750 µL of cleared lysate from culture_plate wells A1:C1 to binding_plate wells A1:C1 (each well). Note: Transfer about 750 µL, leaving the clearing beads behind. Zymo manual [assumed]
+14. Transfer 30 µL of MagBinding Beads from binding_beads_tube to binding_plate wells A1:C1 (each well). Note: Resuspend beads before use. Zymo manual [assumed]
+15. MANUAL: Incubate binding_plate 10 min at room temperature with 5 s vortex every 30 s; then place on magnet for 5 min. Note: Zymo manual [assumed]
+16. Transfer 780 µL of supernatant from binding_plate wells A1:C1 to waste. Note: Discard supernatant, keep beads on magnet [assumed]
+17. Transfer 200 µL of Endo-Wash Buffer from endowash_reservoir to binding_plate wells A1:C1 (each well). Note: Zymo manual [assumed]
+18. MANUAL: Vortex binding_plate 30 s, then place on magnet 2 min. Note: Zymo manual [assumed]
+19. Transfer 200 µL of Endo-Wash supernatant from binding_plate wells A1:C1 to waste. Note: Removal volume assumed equal to wash volume [assumed]
+20. Transfer 400 µL of Zyppy Wash Buffer from zyppywash_reservoir to binding_plate wells A1:C1 (each well). Note: Wash 1 of 2. Zymo manual [assumed]
+21. MANUAL: Vortex binding_plate 30 s, then place on magnet 2 min. Note: Zymo manual [assumed]
+22. Transfer 400 µL of Zyppy Wash supernatant from binding_plate wells A1:C1 to waste. [assumed]
+23. Transfer 400 µL of Zyppy Wash Buffer from zyppywash_reservoir to binding_plate wells A1:C1 (each well). Note: Wash 2 of 2. Zymo manual [assumed]
+24. MANUAL: Vortex binding_plate 30 s, then place on magnet 2 min. Note: Zymo manual [assumed]
+25. Transfer 400 µL of Zyppy Wash supernatant from binding_plate wells A1:C1 to waste. [assumed]
+26. MANUAL: Dry beads in binding_plate at 65 °C for 30 min. Note: Zymo manual [assumed]
+27. Transfer 40 µL of Zyppy Elution Buffer from elution_tube to binding_plate wells A1:C1 (each well). Note: Zymo manual [assumed]
+28. MANUAL: Incubate binding_plate 5 min at 65 °C with 5 s vortex each minute, then place on magnet for 1 min. Note: Zymo manual [assumed]
+29. Transfer 30 µL of plasmid eluate from binding_plate wells A1:C1 to eluate_plate wells A1:C1 (each well). Note: About 30 µL collected. Use fresh or store at −20 °C [assumed]
+30. MANUAL: Prepare electrocompetent Pichia X-33 (done beforehand): grow in YPD to OD600 0.8–1.0, pellet 500 g 15 min, resuspend in 9 mL BEDS plus 1 mL 1 M DTT, 5 min at 30 °C and 100 rpm, pellet, resuspend in 1 mL ice-cold BEDS; keep on ice. Note: BEDS: 10 mM bicine-NaOH pH 8.3, 3% ethylene glycol, 5% DMSO, 1 M sorbitol. From ATUM protocol reproducing Lin-Cereghino 2005 [assumed]
+31. Transfer 50 µL of competent Pichia X-33 from competent_cells_tube to cuvette_plate wells A1:D1 (each well). Note: D1 is the no-DNA control. 50 µL cells per 0.2 cm cuvette (ATUM) [assumed]
+32. Transfer 2 µL of MagBead plasmid eluate from eluate_plate wells A1:C1 to cuvette_plate wells A1:C1 (each well). Note: DNA volume assumed 2 µL (1–5 µL range, ≤10 µL) [assumed]
+33. MANUAL: Move each cell/DNA mixture to a pre-chilled 0.2 cm electroporation cuvette, keep on ice 2 min, then pulse at 1500 V, 200 Ω, 25 µF (Bio-Rad) or 50 µF (BTX). Note: ATUM protocol (Lin-Cereghino 2005) [assumed]
+34. Transfer 500 µL of ice-cold 1 M sorbitol from sorbitol_tube to cuvette_plate wells A1:D1 (each well). Note: Added immediately after pulsing [assumed]
+35. Transfer 500 µL of YPD from YPD_tube to cuvette_plate wells A1:D1 (each well), then mix 3 times. Note: ATUM transfers cells into 0.5 mL YPD; here YPD is added to the same wells [assumed]
+36. MANUAL: Recover cells 2 h at 30 °C, 200 rpm. Note: 1–2 h in ATUM, 2 h with sorbitol in Sci Rep 2022 [assumed]
+37. MANUAL: Plate 100 µL of each recovery (A1:D1) on YPD agar with 150 µg/mL hygromycin; incubate at 30 °C for 3 days. Note: Plate medium, volume and hygromycin concentration assumed. Expect no colonies on the no-DNA plate [assumed]
+38. Transfer 30 µL of water from water_tube to lysis_plate wells A1:E3, F1 (each well). Note: Yeast colony lysis in water; method not in the paper [assumed]
+39. MANUAL: Pick 5 colonies per construct into lysis_plate: construct 1 into A1:E1, construct 2 into A2:E2, construct 3 into A3:E3; pick untransformed X-33 into F1. Heat plate at 99 °C for 10 min. Note: Lysis method assumed [assumed]
+40. Transfer 95 µL of Red Taq 2X Master Mix from redtaq_tube to master_mix_tube. Note: For 19 reactions (17 plus overage)
+41. Transfer 38 µL of water from water_tube to master_mix_tube.
+42. Transfer 19 µL of forward primer 10 µM from fwd_primer_tube to master_mix_tube. Note: Primers pre-mixed (option in s4.2) [assumed]
+43. Transfer 19 µL of reverse primer 10 µM from rev_primer_tube to master_mix_tube. Note: Concentration taken as 10 µM per recovered details (paper text says 10 mM) [assumed]
+44. Mix master_mix_tube by pipetting 100 µL up and down 5 times. [assumed]
+45. Transfer 9 µL of colony PCR master mix with primers from master_mix_tube to pcr_plate wells A1:E3, F1, G1 (each well). Note: G1 is the no-template control
+46. Transfer 1 µL of colony lysate from lysis_plate wells A1:E3 to pcr_plate wells A1:E3 (each well). Note: Paired in order
+47. Transfer 1 µL of untransformed X-33 lysate from lysis_plate well F1 to pcr_plate well F1. Note: Negative control [assumed]
+48. Transfer 1 µL of water from water_tube to pcr_plate well G1. Note: No-template control [assumed]
+49. MANUAL: Seal pcr_plate and thermocycle: 95 °C 3 min; 30 cycles of 95 °C 30 s, 55 °C 30 s, 72 °C 1 min/kb; 72 °C 5 min. Run products on an agarose gel with a DNA marker. Note: Cycling program not given; standard Taq conditions assumed [assumed]
+
+Assumptions:
+- Experiment scaled to 3 Level 1 episomal constructs, one E. coli colony each, in culture_plate A1:C1; the paper does not state the construct number. Cultures are in a 96 deep-well plate instead of the 24 deep-well plate, with the same 1.6 mL volume.
+- Glycerol stocks are made in a deep-well plate (glycerol_stock_plate A1:C1) instead of 1.6 mL CryoPure tubes, and stored at −80 °C (temperature assumed).
+- Zyppy-96 MagBead volumes, vortex/magnet times, 65 °C drying and elution come from the Zymo D4102 manual (https://files.zymoresearch.com/protocols/_d4100_d4101_d4102_zyppy-96_magbead_miniprep.pdf); the paper only says 'Supplementary Method S5'. Supernatant removal volumes are assumed to match the added volumes (780 µL after binding). The 'automated' vortexing is modeled as manual steps.
+- Overnight culture is taken as about 16–24 h at 37 °C and 250 rpm. Carbenicillin 50 µg/mL is from paper s4.4 for Level 1 constructs.
+- Pichia competent-cell preparation and electroporation (BEDS/DTT, 50 µL cells per 0.2 cm cuvette, 2 min on ice, 1500 V/200 Ω/25 µF, 0.5 mL sorbitol then 0.5 mL YPD, 2 h recovery at 30 °C and 200 rpm) follow the ATUM protocol reproducing Lin-Cereghino 2005 (https://www.atum.bio/assets/pdf/Pichia_Culture_and_Induction_Protocol6.pdf), consistent with https://www.nature.com/articles/s41598-022-15086-w. The Grieß-Osowski 2025 paper (https://pmc.ncbi.nlm.nih.gov/articles/PMC12281619/) gives X-33 host, episomal circular plasmids and 150 µg/mL hygromycin.
+- Electroporation wells (cuvette_plate A1:D1) stand in for 0.2 cm cuvettes; the pulse is done manually in real cuvettes. Sorbitol and YPD are added to the same wells rather than transferring cells into YPD. A no-DNA control is in D1.
+- DNA amount per electroporation assumed to be 2 µL of undiluted eluate (about 100–500 ng, ≤10 µL); optional NanoDrop quantification before use.
+- Selection plates assumed to be YPD agar with 150 µg/mL hygromycin, 100 µL plated, 30 °C for 3 days; plating is manual because plates are not listed container kinds.
+- Colony PCR layout: lysis_plate and pcr_plate A1:E1 = construct 1, A2:E2 = construct 2, A3:E3 = construct 3 (5 colonies each); F1 = untransformed X-33 negative control; G1 = no-template water control. Colony lysis in 30 µL water at 99 °C for 10 min is assumed.
+- PCR set-up follows s4.2 (10 µL: 5 µL Red Taq 2X, 2 µL water, 1 µL each primer, 1 µL template). The master mix with primers is pre-mixed for 17 reactions plus about 10% overage (19). Primer concentration is taken as 10 µM (paper text says 10 mM). Primers are unspecified, so Level 1 insert-specific primers are assumed. The cycling program is standard Taq and assumed.
+- Competent Pichia cells (1 mL in BEDS) and the YPD, sorbitol, water and primer stocks are assumed prepared before the run.
+- Pichia liquid growth in 96-well plates for 72 h (s4.6) and plate-reader readouts are outside Figure 3D and are not included. E. coli competent-cell preparation and transformation (s4.4) happened earlier, producing the genotyped colonies.

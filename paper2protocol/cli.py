@@ -46,9 +46,14 @@ def load_paper(args) -> tuple[Paper, Path]:
     return paper, out
 
 
-def get_experiments(paper: Paper, out: Path) -> list[Experiment]:
-    exps = identify(paper)  # cached by llm.py, so repeat calls are free
-    _dump(out / "experiments.json", exps)
+def get_experiments(paper: Paper, out: Path, refetch: bool = False) -> list[Experiment]:
+    # identify isn't deterministic, so reuse the saved list: experiment numbers (and the
+    # expN/ dirs) must stay stable even under --cache refresh.
+    ej = out / "experiments.json"
+    if ej.exists() and not refetch:
+        return [Experiment.model_validate(e) for e in json.loads(ej.read_text())]
+    exps = identify(paper)
+    _dump(ej, exps)
     return exps
 
 
@@ -60,7 +65,7 @@ def cmd_search(args):
 
 def cmd_list(args):
     paper, out = load_paper(args)
-    exps = get_experiments(paper, out)
+    exps = get_experiments(paper, out, args.refetch)
     for i, e in enumerate(exps, 1):
         figs = ", ".join(r if ok else f"{r}?" for r, ok in verify_figure_refs(paper, e)) or "no figure"
         heads = [paper.section(r).heading.split(" > ")[-1] if paper.section(r) else r for r in e.section_refs]
@@ -74,7 +79,7 @@ def cmd_list(args):
 
 def _pick(args) -> tuple[Paper, Experiment, Path]:
     paper, out = load_paper(args)
-    exps = get_experiments(paper, out)
+    exps = get_experiments(paper, out, args.refetch)
     if not 1 <= args.experiment <= len(exps):
         sys.exit(f"--experiment must be 1..{len(exps)}; run `list` to see them")
     exp = exps[args.experiment - 1]
@@ -179,7 +184,7 @@ def main(argv=None):
         p.add_argument("--source", choices=[src.name for src in SOURCES],
                        help="fetch full text only from this source (default: try all that apply)")
         p.add_argument("--xml", help="use a local JATS XML file instead of downloading")
-        p.add_argument("--refetch", action="store_true", help="ignore saved paper.json")
+        p.add_argument("--refetch", action="store_true", help="ignore saved paper.json and experiments.json")
         if name in ("assess", "convert"):
             p.add_argument("--experiment", "-e", type=int, required=True, help="number from `list`")
             p.add_argument("--no-web", action="store_true", help="assess without web research")
