@@ -1,3 +1,6 @@
+.env
+.cache/
+out/
 .venv/
 __pycache__/
 *.pyc

@@ -31,6 +31,7 @@ docs/
   agent-spec.md       Pipeline spec, acceptance criteria AC1–AC7, risk register R1–R15
   leaderboard.html    Self-contained leaderboard — runs eval entirely in-browser
 paper/        arXiv write-up (placeholder)
+paper2protocol/  bioRxiv paper -> liquid-handling instructions (front-end tool, with tests/)
 scripts/      deploy_hf.py (HF upload; run by CI on push to main)
 assets/
   episode_mujoco.mp4  Reference L1 episode (3D MuJoCo)
@@ -82,7 +83,7 @@ Sources and licenses documented in [`assets/SOURCES.md`](assets/SOURCES.md).
 ## Setup
 
 ```bash
-git clone https://github.com/Tyronita/Text2WetLab
+git clone https://github.com/PhysicalAIBenchmarks/Text2WetLab
 cd Text2WetLab
 uv pip install pylabrobot>=0.2.2
 uv run python eval/run_eval.py tasks/L1/
