@@ -4,6 +4,14 @@
 
 Given a plain-English instruction, can a language model generate a correct, safe, executable liquid-handling protocol?
 
+## Visualisation
+
+L1 reference protocol — OT-2 Cartesian gantry sim (MuJoCo 3.x, headless, recordable):
+
+![L1 serial dilution — MuJoCo 3D sim](assets/episode_mujoco.gif)
+
+*[Download MP4](assets/episode_mujoco.mp4)* · Tiprack (amber) → aspirate from trough (green) → dispense 2×100µL into plate (purple) → drop tip. T1–T6 criteria strip bottom-left.
+
 ---
 
 ## Structure
