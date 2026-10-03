@@ -22,7 +22,7 @@ automatic revise loops, a UI, a gold-standard eval set, the restricted-research 
 ## Pipeline
 
 ```
-ingest → [screen: TODO] → identify → (user picks) → extract → check → critic → render
+ingest → [screen: TODO] → identify → (user picks) → resolve → extract → check → critic → render
 ```
 
 | Module | In → Out | LLM? |
@@ -74,6 +74,17 @@ a reagents section), and one subsection can serve several experiments.
 - Ingest keeps each legend's label (`Figure 2`, `Figure S3`) so `figure_refs` can be
   matched to real figures; refs the model gives that don't match a known legend label are
   kept but marked unverified.
+
+### resolve — is there enough detail? (added after v1)
+- Input: experiment sections + all Methods sections + figure legends + reference list
+  (with DOI links).
+- Lists execution-critical details, checks the paper, and researches gaps with Anthropic
+  server tools `web_search_20260209` / `web_fetch_20260209` (cited papers, kit manuals).
+- `Sufficiency(verdict: proceed | proceed_with_assumptions | reject, summary, gaps[], retrieved_details)`;
+  each `Gap` is `resolved` (with source URL), `assumable` (standard practice) or `missing`.
+- `reject` (any missing gap that would undermine the measured outcome) stops `convert`
+  unless `--force`. `retrieved_details` + gaps are appended to extract/critic context.
+- Needed effort `high`: at `medium` the model skipped the web tools and answered from memory.
 
 ### extract
 - Input: paper text restricted to the experiment's `section_refs` + `shared_refs`, plus

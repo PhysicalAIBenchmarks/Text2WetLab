@@ -14,6 +14,7 @@ from .identify import identify, verify_figure_refs
 from .ingest import fetch_paper, normalize_doi, search
 from .models import Experiment, Paper
 from .render import render
+from .resolve import details_block, resolve
 
 
 def _out_dir(base: str, doi: str) -> Path:
@@ -70,17 +71,45 @@ def cmd_list(args):
     print(f"\n(? = figure ref not found among the paper's figure labels)\nSaved to {out}/", file=sys.stderr)
 
 
-def cmd_convert(args):
+def _pick(args) -> tuple[Paper, Experiment, Path]:
     paper, out = load_paper(args)
     exps = get_experiments(paper, out)
     if not 1 <= args.experiment <= len(exps):
         sys.exit(f"--experiment must be 1..{len(exps)}; run `list` to see them")
     exp = exps[args.experiment - 1]
-    print(f"Converting experiment {args.experiment}: {exp.title}", file=sys.stderr)
+    print(f"Experiment {args.experiment}: {exp.title}", file=sys.stderr)
     ed = out / f"exp{args.experiment}"
     ed.mkdir(exist_ok=True)
+    return paper, exp, ed
 
-    protocol = extract(paper, exp)
+
+def _assess(args, paper, exp, ed):
+    suff = resolve(paper, exp, web=not args.no_web)
+    _dump(ed / "sufficiency.json", suff)
+    print(f"Detail check: {suff.verdict} — {suff.summary}")
+    for g in suff.gaps:
+        print(f"  [{g.status}] {g.detail}")
+        if g.resolution:
+            print(f"      → {g.resolution}" + (f"  ({g.source})" if g.source else ""))
+    print()
+    return suff
+
+
+def cmd_assess(args):
+    _assess(args, *_pick(args))
+
+
+def cmd_convert(args):
+    paper, exp, ed = _pick(args)
+    details = ""
+    if not args.skip_assess:
+        suff = _assess(args, paper, exp, ed)
+        if suff.verdict == "reject" and not args.force:
+            sys.exit("Rejected: not enough detail to run this experiment (see gaps above). "
+                     "Use --force to convert anyway.")
+        details = details_block(suff)
+
+    protocol = extract(paper, exp, details)
     _dump(ed / "protocol.json", protocol)
     text = render(protocol)
     (ed / "protocol.txt").write_text(text)
@@ -90,7 +119,7 @@ def cmd_convert(args):
 
     report = None
     if not args.no_critic:
-        report = critique(paper, exp, text, issues)
+        report = critique(paper, exp, text, issues, details)
         _dump(ed / "critic.json", report)
 
     print(text)
@@ -118,14 +147,19 @@ def main(argv=None):
     s.set_defaults(func=cmd_search)
 
     for name, fn, hlp in [("list", cmd_list, "list experiments in a paper"),
-                          ("convert", cmd_convert, "convert one experiment to instructions")]:
+                          ("assess", cmd_assess, "check whether an experiment has enough detail to run"),
+                          ("convert", cmd_convert, "assess, then convert one experiment to instructions")]:
         p = sub.add_parser(name, help=hlp)
         p.add_argument("doi", help="bioRxiv DOI or URL")
         p.add_argument("--xml", help="use a local JATS XML file instead of downloading")
         p.add_argument("--refetch", action="store_true", help="ignore saved paper.json")
-        if name == "convert":
+        if name in ("assess", "convert"):
             p.add_argument("--experiment", "-e", type=int, required=True, help="number from `list`")
+            p.add_argument("--no-web", action="store_true", help="assess without web research")
+        if name == "convert":
             p.add_argument("--no-critic", action="store_true")
+            p.add_argument("--skip-assess", action="store_true", help="skip the detail/sufficiency check")
+            p.add_argument("--force", action="store_true", help="convert even if the assessment rejects")
         p.set_defaults(func=fn)
 
     args = ap.parse_args(argv)

@@ -1,208 +1,546 @@
 {
   "doi": "10.64898/2026.03.26.714448",
   "title": "KDM2B controls HIF levels and activity through its JmjC and CxxC domains",
-  "abstract": "AbstractHypoxia-inducible factors (HIFs) are key regulators of cellular responses to low oxygen (hypoxia), controlling the expression of genes required for survival and adaptation. KDM2B, a chromatin-modifying enzyme, is a direct target of HIF-1α, but its precise role in regulating HIF and the hypoxia response remains unclear. Here, we investigated the role of KDM2B in the response to hypoxia in a variety of cell lines. Our analysis reveals that KDM2B depletion regulates HIF activity in a cell type-dependent manner, with KDM2B depletion decreasing HIF activity in U2OS and MDA-MB-231 cells and increasing HIF activity in HeLa cells. We show that KDM2B depletion also reduces HIF-1α protein and RNA expression and reduces HIF-1α binding at hypoxia-response elements of its target genes in U2OS and MDA-MB-231 cells. Conversely, overexpression of KDM2B enhances HIF activity and HIF-1α levels in both U2OS and HEK293 cells. Mechanistically, we find that KDM2B requires its JmjC demethylase and CxxC DNA-binding domains for HIF regulation. Furthermore, we demonstrate that KDM2B is required for RNA Pol II recruitment to the promoter of HIF1A. At the cellular level, KDM2B supports cell proliferation, with its depletion impairing proliferation and reducing cell numbers under hypoxic conditions. Our work highlights a new function of KDM2B as a key regulator of HIF-1α expression, acting through its demethylase and DNA-binding functions. Our data indicate that KDM2B is essential for cellular adaptation to hypoxia, impacting both HIF-dependent gene expression and cell survival, and has important implications for our understanding of HIF regulation.",
-  "source": "biorxiv",
+  "abstract": "Hypoxia-inducible factors (HIFs) are key regulators of cellular responses to low oxygen (hypoxia), controlling the expression of genes required for survival and adaptation. KDM2B, a chromatin-modifying enzyme, is a direct target of HIF-1α, but its precise role in regulating HIF and the hypoxia response remains unclear. Here, we investigated the role of KDM2B in the response to hypoxia in a variety of cell lines. Our analysis reveals that KDM2B depletion regulates HIF activity in a cell type dependent manner, with KDM2B depletion decreasing HIF activity in U2OS and MDA-MB-231 cells and increasing HIF activity in HeLa cells. We show that KDM2B depletion also reduces HIF-1α protein and RNA expression and reduces HIF-1α binding at hypoxia-response elements of its target genes in U2OS and MDA-MB-231 cells. Conversely, overexpression of KDM2B enhances HIF activity and HIF-1α levels in both U2OS and HEK293 cells. Mechanistically, we find that KDM2B requires its JmjC demethylase and CxxC DNA-binding domains for HIF regulation. Furthermore, we demonstrate that KDM2B is required for RNA Pol II recruitment to the promoter of HIF-1α. At the cellular level, KDM2B supports cell proliferation, with its depletion impairing proliferation and reducing cell numbers under hypoxic conditions. Our work highlights a new function of KDM2B, as a key regulator of HIF-1α expression, acting through its demethylase and DNA-binding functions. Our data indicate that KDM2B is essential for cellular adaptation to hypoxia, impacting both HIF-dependent gene expression and cell survival, and has important implications for our understanding of HIF regulation.",
+  "source": "europepmc:PPR1217548",
   "sections": [
     {
       "id": "s1",
       "heading": "Introduction",
-      "kind": "",
-      "text": "The ability to sense, respond, and adapt to changes in molecular oxygen availability is fundamental to all metazoans [1]. Reduced oxygen availability (hypoxia) induces a variety of adaptive cellular responses, which are orchestrated in part by coordinated changes in transcriptional programmes [2]. Hypoxia Inducible Factors (HIFs) are critical regulators of transcriptional response to hypoxia. The HIF family contains oxygen-sensitive α subunits (HIF-1α, HIF-2α, HIF-3α) and a constitutively expressed β subunit (HIF-1β), and they typically function as HIF-1β containing heterodimers [3]. HIFs are directly regulated by oxygen through the class of 2-OG dependent dioxygenases (2-OGDDs) called Prolyl Hydroxylases (PHD1-3) [4]. Under normal oxygen tensions, PHDs hydroxylate key proline residues within the oxygen-dependent degradation domain of HIF-1α subunits, leading to enhanced affinity for the Von Hippel Lindau (VHL) containing RBX/Cullin2 E3 ligase, which catalyses Lysine-48 ubiquitination and proteasomal degradation of HIF-1α subunits [5]. PHDs are cellular oxygen sensors, and their activity is impaired in hypoxia, due to their dependence and sensitivity to molecular oxygen; this results in HIF-α stabilisation and activation of the HIF pathway [5, 6]. HIFs bind hypoxia response elements (HREs) and control the expression of genes involved in a range of cellular processes, including metabolism, angiogenesis, autophagy, and cell cycle control [2, 3, 7]. In addition to protein stability, HIFs have also been shown to be modulated by various mechanisms at the transcriptional and translational level [8–10]. For example, HIF transcription is controlled by the NF-κB family of transcription factors. This occurs in response to cytokines [11–14], infection [13], and reactive oxygen species [15].\nJumonji-C (JmjC) domain containing proteins are a large subfamily of 2-OGDDs that require oxygen for their enzymatic activity [16, 17]. JmjC domain containing proteins are functionally important in mediating the hypoxia response. Inactivation of KDM5A and KDM6A in hypoxia is critical for hypoxia-stimulated processes, including cell proliferation and differentiation of stem cells, respectively [18, 19]. Furthermore, several JmjC domain containing proteins are hypoxia-inducible HIF target genes, displaying increased expression in hypoxia [5, 20, 21]. Interestingly, some of these hypoxia-induced JmjC domain containing proteins, namely KDM3A and KDM4C, remain active at low oxygen concentrations and function in hypoxia as HIF coactivators through their histone demethylase activity [22–24].\nWe have previously demonstrated that the KDM2 subfamily of JmjC domain containing proteins (KDM2A and KDM2B) are HIF-1 target genes in different human cancer cells [25]. However, whether the KDM2 family members contribute to the cellular response to hypoxia is currently unknown.\nKDM2B is a multi-functional chromatin-binding protein with critical roles in stem cell biology and development and is highly dysregulated across various cancer types [16, 26–28]. Here, we investigated the role of KDM2B in modulating HIF and the hypoxia response in several human cell lines. Utilising HIF activity luciferase reporter assays, qPCR, and Western blotting, we find that KDM2B can function as a positive regulator of HIF-1α and is required for full activation of HIF-1α levels and activity in response to hypoxia, in some of the cell lines studied. Furthermore, we show that overexpression of KDM2B can increase HIF-1α levels and HIF activity. Mechanistically, we demonstrate that KDM2B regulates HIF-1α through its JmjC and CxxC domains and controls HIF-1α RNA expression and RNA Pol II recruitment to the HIF1A promoter. Interestingly, we also observe that KDM2B positively regulates NF-κB-dependent reporter activity in response to TNF-α. Finally, we find that KDM2B is required for the proliferation of cells in normoxia and hypoxia."
+      "kind": "intro",
+      "text": "The ability to sense, respond, and adapt to changes in molecular oxygen availability is fundamental to all metazoans [1]. Reduced oxygen availability (hypoxia) induces a variety of adaptive cellular responses, which are orchestrated in part by coordinated changes in transcriptional programmes [2]. Hypoxia Inducible Factors (HIFs) are critical regulators of transcriptional response to hypoxia. The HIF family contains oxygen-sensitive α subunits (HIF-1α, HIF-2α, HIF-3α) and a constitutively expressed β subunit (HIF-1β), and they typically function as HIF-1β containing heterodimers [3]. HIFs are directly regulated by oxygen through the class of 2-OG dependent dioxygenases (2-OGDDs) called Prolyl Hydroxylases (PHD1-3) [4]. Under normal oxygen tensions, PHDs hydroxylate key proline residues within the oxygen-dependent degradation domain of HIF-1α subunits, leading to enhanced affinity for the Von Hippel Lindau (VHL) containing RBX/Cullin2 E3 ligase, which catalyses Lysine-48 ubiquitination and proteasomal degradation of HIF-1α subunits [5]. PHDs are cellular oxygen sensors, and their activity is impaired in hypoxia, due to their dependence and sensitivity to molecular oxygen; this results in HIF-α stabilisation and activation of the HIF pathway [5, 6]. HIFs bind hypoxia response elements (HREs) and control the expression of genes involved in a range of cellular processes, including metabolism, angiogenesis, autophagy, and cell cycle control [2, 3, 7]. In addition to protein stability, HIFs have also been shown to be modulated by various mechanisms at the transcriptional and translational level [8–10]. For example, HIF transcription is controlled by the NF-κB family of transcription factors. This occurs in response to cytokines [11–14], infection [13], and reactive oxygen species [15].\nJumonji-C (JmjC) domain containing proteins are a large subfamily of 2-OGDDs that require oxygen for their enzymatic activity [16, 17]. JmjC domain containing proteins are functionally important in mediating the hypoxia response. Inactivation of KDM5A and KDM6A in hypoxia is critical for hypoxia-stimulated process, including cell proliferation and differentiation of stem cells, respectively [18, 19]. Furthermore, several JmjC domain containing proteins are hypoxia-inducible HIF target genes, displaying increased expression in hypoxia [5, 20, 21]. Interestingly, some of these hypoxia-induced JmjC domain containing proteins, namely KDM3A and KDM4C, remain active at low oxygen concentrations and function in hypoxia as HIF coactivators through their histone demethylase activity [22–24].\nWe have previously demonstrated that the KDM2 subfamily of JmjC domain containing proteins (KDM2A and KDM2B) are hypoxia-inducible HIF-1 target genes in different human cancer cells [25]. However, whether the KDM2 family members contribute to the cellular response to hypoxia is currently unknown.\nKDMB is a multi-functional chromatin-binding protein with critical roles in stem cell biology and development and is highly dysregulated across various cancer types [16, 26–28]. Here, we investigated the role of KDM2B in modulation of HIF and the hypoxia response in several human cell lines. Utilising HIF activity luciferase reporter assays, qPCR, and immunoblotting, we find that KDM2B can function as a positive regulator of HIF-1α and is required for full activation of HIF-1α levels and activity in response to hypoxia, in some of the cell lines studied. Furthermore, we show that overexpression of KDM2B can increase HIF-1α levels and HIF activity. Mechanistically, we demonstrate that KDM2B regulates HIF-1α through its JmjC and CxxC domains and controls HIF-1α RNA expression and RNA Pol II recruitment to the HIF-1α promoter. Interestingly, we also observe that KDM2B positively regulates NF-κB-dependent reporter activity in response to TNF-α. Finally, we find that KDM2B is required for the proliferation of cells in normoxia and hypoxia."
     },
     {
       "id": "s2",
       "heading": "Results",
-      "kind": "",
+      "kind": "results",
       "text": ""
     },
     {
       "id": "s2.1",
       "heading": "Results > KDM2B regulates HIF activity in a cell type dependent manner",
-      "kind": "",
-      "text": "HIFs are central regulators of the hypoxia response [3]. We previously identified the KDM2 family (KDM2A and KDM2B) of JmjC domain containing proteins as hypoxia-upregulated HIF-1 target genes [25]. Other hypoxia-upregulated JmjC domain containing proteins can function as HIF coactivators [22–24]. However, the regulation of HIF and the hypoxia response by KDM2s has not yet been determined. To initially investigate potential HIF regulation by KDM2B, we depleted KDM2B using 2 different siRNAs in three human cancer cell lines (U2OS, MDA-MB-231, and HeLa) stably expressing a HIF-dependent luciferase reporter (HRE-luciferase) (Figure 1A), exposed the cells or not to 24 hours of 1% oxygen as a hypoxia treatment, and measured HIF activity by luciferase assays (Figure 1B). We chose these specific cell lines as they have well-characterised responses to hypoxia [29] and we have previously demonstrated that hypoxia induces KDM2B expression in U2OS and HeLa cells [25]. Control oxygen conditions were normal cell culture levels of 21%, as these cells have been acclimatised to sea level oxygen since being established. As expected, HIF-dependent luciferase activity increased in control siRNA-treated cells from all cell lines in response to hypoxia (Figure 1B). Depletion of KDM2B reduced HIF-dependent luciferase activity in response to hypoxia in U2OS and MDA-MB-231 HRE-luciferase cells (Figure 1B). Interestingly, in HeLa HRE-luciferase cells, depletion of KDM2B resulted in increased HIF-dependent luciferase activity (Figure 1B), demonstrating that regulation of HIF by KDM2B is to some extent cell type dependent. Due to difficulties in detecting endogenous protein levels of KDM2B in these cell lines using Western blotting [25], we validated siRNA-mediated depletion of KDM2B in each of the cell lines by qPCR (Figure 1C). To understand if this reporter activity regulation is dynamic, we performed gain-of-function experiments in U2OS and HeLa HRE-luciferase cells. In both cell lines, overexpression of KDM2B led to an increase in HIF-dependent luciferase activity under normal oxygen levels (21% oxygen) (Figure 1D). Taken together, these results indicate that KDM2B can modulate HIF activity in a cell type dependent manner.\nGiven that luciferase reporter analysis, although useful, is artificial in nature, we next investigated the effect of KDM2B depletion on the protein expression of HIF target genes by Western blotting (Figure 2A, Supplementary Figure S1-S2). As HeLa cells have the same response to depletion and overexpression of KDM2B, we performed the majority of our subsequent analyses on the other cell types. As expected, protein levels of the core HIF target genes, CAIX (gene name CA9), BNIP3L, and BNIP3, were upregulated in control siRNA-treated U2OS and MDA-MB-231 cells exposed to hypoxia (24 hours 1% oxygen) (Figure 2A, Supplementary Figure S1). In both MDA-MB-231 and U2OS cells, loss of KDM2B reduced the protein levels of CAIX, BNIP3L, and BNIP3 in hypoxia (Figure 2A, Supplementary Figure S1), supporting the HIF-dependent luciferase activity assay results (Figure 1B). We also observed a decrease in the protein levels of BNIP3L and BNIP3 in both cell lines and CAIX in U2OS cells when KDM2B was depleted under normal oxygen conditions (21% oxygen), indicating that loss of KDM2B reduces HIF activity in both normal oxygen conditions and in hypoxia, although these changes were not statistically significant (P>0.05) (Figure 2A, Supplementary Figure S1). In HeLa HRE-luciferase cells, KDM2B depletion in hypoxia induced an increase in BNIP3 and BNIP3L protein levels (Supplementary Figure S2), in agreement with the HIF-dependent luciferase activity assay results (Figure 1B); however, these changes were not statistically significant (P>0.05) (Supplementary Figure S2). qPCR analysis confirmed successful siRNA-mediated depletion of KDM2B in U2OS and MDA-MB-231 cells (Figure 2B). HIFs regulate transcription by binding to HREs at the promoters and enhancers of their target genes [3]. We next determined if KDM2B depletion affects HIF-1α binding to its target genes. To this end, U2OS cells were depleted of KDM2B and exposed to hypoxia prior to ChIP-qPCR analysis (Figure 2C). In the absence of KDM2B, HIF-1α occupancy at the HREs of the HIF target genes BNIP3, CA9, and PHD3 (EGLN3) was reduced compared to control siRNA-treated cells, returning to the levels of control siRNA-treated cells kept at normal oxygen (Figure 2C). Taken together, these results demonstrate that KDM2B can function as a positive regulator of HIF activity and recruitment of HIF-1α to its target gene HREs in certain cell types."
+      "kind": "results",
+      "text": "HIFs are central regulators of the hypoxia response [3]. We previously identified the KDM2 family (KDM2A and KDM2B) of JmjC domain containing proteins as hypoxia upregulated HIF-1 target genes [25]. Other hypoxia upregulated JmjC domain containing proteins can function as HIF coactivators [22–24]. However, the regulation of HIF and the hypoxia response by KDM2 have not yet been determined. To initially investigate potential HIF regulation by KDM2B, we depleted KDM2B using 2 different siRNAs in three human cancer cell lines stably expressing a HIF-dependent luciferase reporter (HRE-luciferase) (Figure 1A), exposed the cells or not to 24 hours of 1% oxygen as a hypoxia treatment, and measured HIF activity by luciferase assays (Figure 1B). As expected, HIF-dependent luciferase activity increased in control siRNA-treated cells from all cell lines in response to hypoxia (Figure 1B). Depletion of KDM2B reduced HIF-dependent luciferase activity in response to hypoxia in U2OS and MDA-MB-231 HRE-luciferase cells (Figure 1B). Interestingly, in HeLa HRE-luciferase cells, depletion of KDM2B resulted in increased HIF-dependent luciferase activity (Figure 1B), demonstrating that regulation of HIF by KDM2B is to some extent cell type dependent. Due to difficulties in detecting endogenous protein levels of KDM2B in these cell lines using immunoblotting [25], we validated siRNA-mediated depletion of KDM2B in each of the cell lines by qPCR (Supplementary Figure S1A-C). To understand if this reporter activity regulation is dynamic, we performed gain-of-function experiments in U2OS and HeLa cells. In both cells, overexpression of KDM2B lead to significant increase in HIF-dependent luciferase activity under standard conditions, i.e. in the presence of oxygen (Figure 1C). Taken together, these results indicate that KDM2B can modulate HIF activity in a cell type dependent manner.\nGiven that luciferase reporter analysis, although useful, is artificial in nature, we next investigated the effect of KDM2B depletion on the protein expression of HIF target genes by immunoblotting (Figure 2A). As HeLa cells have the same response to depletion and overexpression of KDM2B, we performed the subsequent analyses on the other cell types. As expected, protein levels of the core HIF target genes, CA9, BNIP3L, and BNIP3, were upregulated in control siRNA-treated cells exposed to hypoxia. In both MDA-MB-231 and U2OS cells, loss of KDM2B reduced the protein levels of CA9, BNIP3L, and BNIP3 in hypoxia, supporting the luciferase assay results (Figure 2A). Furthermore, BNIP3L and BNIP3 levels in both cell lines and CA9 levels in U2OS cells were also reduced under normal oxygen conditions (Figure 2A). qPCR analysis confirmed successful siRNA-mediated depletion of KDM2B in U2OS and MDA-MB-231 cells (Supplementary Figure S2A-B). We next determined if KDM2B depletion affects HIF-1α binding to its target genes. To this end, U2OS cells were depleted of KDM2B and exposed to hypoxia, prior to ChIP-qPCR analysis (Figure 2B). In the absence of KDM2B, HIF-1α occupancy at the HREs of the HIF target genes BNIP3, CA9, and PHD3 (gene name EGLN3) was significantly reduced compared to control siRNA-treated cells, returning to the levels of control siRNA-treated cells kept at normal oxygen (Figure 2B). Taken together, these results demonstrate that KDM2B can function as a positive regulator of HIF activity and recruitment to its target gene promoters in certain cell types."
     },
     {
       "id": "s2.2",
       "heading": "Results > KDM2B is required for full HIF-1α expression",
-      "kind": "",
-      "text": "As we observed reduced HIF activity and recruitment to target genes upon KDM2B loss, we next assessed the consequences of KDM2B loss on HIF levels (Figure 3, Supplementary Figure S3). As expected, HIF-1α and HIF-2α protein levels were elevated in response to hypoxia exposure (24 hours 1% oxygen) in control siRNA-treated cells (Figure 3A, Supplementary Figure S3). KDM2B depletion decreased HIF-1α protein levels in both control oxygen (21% oxygen) and hypoxia-exposed U2OS and MDA-MB-231 cells (Figure 3A, Supplementary Figure S3). No consistent change in HIF-1β or HIF-2α protein levels was observed when KDM2B was depleted in U2OS or MDA-MB-231 cells (Figure 3A, Supplementary Figure S3), although HIF-2α protein levels did increase in hypoxia (P>0.05) with one of two KDM2B siRNAs. Our previous work has highlighted that HIFs can be regulated at the transcriptional level, resulting in changes in protein and activity [11, 14, 30]. As such, and since KDM2B is a chromatin-modifying protein, we next investigated if KDM2B could be controlling the mRNA levels of HIF-1α. From qPCR analysis, KDM2B depletion led to a reduction in HIF1A mRNA levels in U2OS and MDA-MB-231 cells, independent of hypoxia exposure (Figure 3B). No significant changes were observed in HIF2A (EPAS1) RNA upon KDM2B depletion in either cell line, although there was an upward trend in U2OS cells (Supplementary Figure S4). These data show that KDM2B is important for maintaining HIF-1α levels both in hypoxia and under control oxygen tensions. Furthermore, the reduction in HIF-dependent luciferase activity, HIF target gene expression, and HIF-1α occupancy at its target gene promoters when KDM2B is depleted is likely through reduced HIF-1α gene expression. We also assessed the effect of KDM2B depletion on HIF protein levels in HeLa cells and found that HIF-1α protein levels in hypoxia are elevated with one KDM2B siRNA and HIF-2α protein levels in hypoxia are elevated with both KDM2B siRNAs (Supplementary Figure S5). The increase in HIF-dependent reporter activity (Figure 1B) and increase in HIF target gene expression (Supplementary Figure S2), when KDM2B is depleted in HeLa cells, is likely explained by the increase in HIF-α protein levels. The contrasting results in HeLa cells compared to U2OS and MDA-MB-231 cells again highlight the context-dependent nature of HIF regulation by KDM2B."
+      "kind": "results",
+      "text": "As we observed reduced HIF activity and recruitment to target genes upon KDM2B loss, we next assessed the consequences of KDM2B loss on HIF levels (Figure 3). As expected, HIF-1α and HIF-2α protein levels were elevated in response to hypoxia exposure in control siRNA-treated cells (Figure 3A). KDM2B depletion decreased HIF-1α protein levels in both normal oxygen and hypoxia-exposed cells in U2OS and MDA-MB-231 (Figure 3A). HIF-2α protein slightly increased when KDM2B was depleted; possibly by a compensation mechanism for the loss of HIF-1α. No change in HIF-1β levels was observed when KDM2B was deleted. Our previous work has highlighted that HIFs can be regulated at the transcriptional level, resulting in changes in protein and activity [11, 14, 29]. As such, and since KDM2B is a chromatin-modifying protein, we next investigated if KDM2B could be controlling the mRNA levels of HIF-1α. From qPCR analysis, KDM2B depletion led to a reduction in HIF-1α mRNA levels in U2OS and MDA-MB-231 cells, independent of hypoxia exposure (Figure 3B). No significant changes were observed in HIF-2α mRNA upon KDM2B depletion (Supplementary Figure S3A-B). These data show that KDM2B is important for maintaining HIF-1α levels in hypoxia and under control oxygen tensions."
     },
     {
       "id": "s2.3",
       "heading": "Results > KDM2B requires its JmjC and CxxC domains for positive regulation of HIF",
-      "kind": "",
-      "text": "KDM2B is a complex protein, with several functional domains [26, 28]. This includes a JmjC domain for catalytic demethylase activity, a CxxC domain important for DNA binding, a Plant Homo Domain (PHD), which is a chromatin reader, an F-box domain, which is a component of the SCF ubiquitin ligase complex, and leucine rich repeats (LRRs) (FBOX associated domain). Thus, to gain mechanistic insight, we elucidated the contribution of these domains to the control of HIF activity and expression by KDM2B (Figure 4). To this end, we generated and utilised loss-of-function mutant plasmids for KDM2B’s JmjC, CxxC, PHD, and F-Box domains (Figure 4A). We assessed the importance of each of these domains for the control of HIF-dependent reporter activity by KDM2B by comparing KDM2B wildtype and mutant overexpression in U2OS HRE-luciferase cells under control oxygen tensions (21% oxygen) (Figure 3B). Here, we could observe, as also seen in Figure 1D, that transient overexpression of KDM2B wildtype increased HIF-dependent luciferase activity, further supporting KDM2B’s function as a positive regulator of HIF activity (Figure 3B). With loss of the JmjC demethylase and CxxC DNA binding domain functions, KDM2B overexpression no longer resulted in increased HIF-dependent luciferase activity (Figure 4B). On the other hand, loss of PHD or F-box domain function had no effect on HIF-dependent luciferase activity when compared to wildtype KDM2B. Due to difficulties in overexpressing KDM2B in MDA-MB-231 cells, we repeated these experiments in HEK293 HRE-luciferase cells, and similar results were found in this cell line (Figure 4B). We also performed Western blot analysis in U2OS and HEK293 HRE-luciferase cells overexpressing KDM2B wildtype and mutant plasmids (Figure 4C, Supplementary Figure S6-S7). KDM2B was robustly overexpressed to similar levels in cells transfected with KDM2B wildtype and KDM2B domain mutant plasmids, demonstrating successful transfection and showing that these domain mutants do not affect KDM2B protein expression compared to the wildtype (Figure 4C, Supplementary Figure S6-S7). Protein levels of HIF-1α and the HIF target genes, CAIX (gene name CA9) and BNIP3, increased in KDM2B wildtype, KDM2B PHD, and KDM2B F-Box loss-of-function overexpressing U2OS HRE-luciferase cells, but not in KDM2B JmjC and CxxC loss-of-function overexpressing U2OS HRE-luciferase cells (Figure 4C, Supplementary Figure S6). Similar results were observed in HEK293 HRE-luciferase cells (Figure 4C, Supplementary Figure S7); however, in this cell line, the changes in HIF-1α protein levels were not statistically significant (P>0.05) (Figure 4C, Supplementary Figure S7), and we could not detect CAIX by Western blotting under control oxygen conditions in this cell line. Lastly, to complement the protein analysis, we also measured HIF1A RNA levels in response to overexpression of KDM2B wild type and domain loss-of-function plasmids in U2OS HRE-luciferase cells (Figure 4D). Similar to HIF-1α protein levels, HIF1A was increased in cells overexpressing KDM2B wild type and PHD and F-Box loss-of-function mutants, and this response was lost in cells overexpressing KDM2B JmjC and CxxC loss-of-function mutants (Figure 4D). These results provide further evidence for KDM2B’s function as a positive regulator of HIF activity and indicate that mechanistically, regulation of HIF activity and HIF-1α expression is dependent on KDM2B’s demethylase activity and DNA binding ability."
+      "kind": "results",
+      "text": "KDM2B is a complex protein, with several functional domains [26, 28]. This includes a JmjC domain for catalytic demethylase activity, a CxxC domain important for DNA binding, a Plant Homo Domain (PHD), which is a chromatin reader, an F-box domain, which is a component of SCF ubiquitin ligase complex, and leucine rich repeats (LRRs) (FBOX associated domain). Thus, to gain mechanistic insight, we elucidated the contribution of these domains to the control of HIF activity and expression by KDM2B (Figure 4). To this end, we generated and utilised loss-of-function mutant plasmids for KDM2Bs JmjC, CxxC, PHD, and F-Box domains (Figure 4A). We assessed the importance of each of these domains for the control of HIF-dependent reporter activity by KDM2B, by comparing KDM2B wildtype and mutant overexpression in U2OS HRE-luciferase cells under control oxygen tensions (Figure 3B). Here, we could observe as seen in Figure 1C that transient overexpression of KDM2B wildtype increased HIF-dependent luciferase activity, further supporting KDM2B’s function as a positive regulator of HIF activity. Loss of the JmjC demethylase and CxxC DNA binding domain functions, KDM2B overexpression no longer resulted in increased HIF-dependent luciferase activity (Figure 4B). On the other hand, loss of PHD or F-box domain function had no effect on HIF-dependent luciferase activity when compared to wildtype KDM2B. Due to difficulties in overexpressing KDM2B in MDA-MB-231 cells, we repeated these experiments in HEK293 HRE-luciferase cells, and similar results were found in this cell line (Figure 4B). We also performed immunoblot analysis in U2OS and HEK293 HRE-luciferase cells overexpressing KDM2B wildtype and mutant plasmids (Figure 4C). KDM2B was robustly overexpressed to similar levels in cells transfected with KDM2B wildtype and KDM2B domain mutant plasmids, demonstrating successful transfection, and showing that these domain mutants do not affect KDM2B protein expression compared to the wildtype. Lastly, protein levels of HIF-1α and the HIF target genes, CA9, BNIP3, and BNIP3L, increased in KDM2B wildtype, KDM2B PHD and KDM2B F-Box loss-of-function overexpressing U2OS HRE-luciferase cells (Figure 4C). The same results were observed in HEK293 HRE-luciferase cells, except for CA9, which we could not detect by immunoblotting under control oxygen conditions in this cell line. This response was less evident in cells overexpressing KDM2B JmjC and CxxC loss-of-function plasmids. These results provide further evidence for KDM2B as positive regulator of HIF activity and indicate that mechanistically, regulation of HIF activity and HIF-1α expression is dependent on KDM2B’s demethylase activity and DNA binding ability."
     },
     {
       "id": "s2.4",
       "heading": "Results > KDM2B mediates RNA Pol II recruitment at the HIF1A promoter",
-      "kind": "",
-      "text": "Although KDM2B predominantly functions as a transcriptional repressor, via Polycomb repressive dependent and independent mechanisms [31], it can also activate transcription [32–34], including, in the case of IL6, through RNA Pol II recruitment [33]. To begin to elucidate the molecular mechanisms by which KDM2B controls HIF-1α RNA expression, we performed ChIP-qPCR analysis to measure RNA Pol II recruitment to the HIF1A promoter (Figure 5A). Loss of KDM2B through siRNA depletion in U2OS cells reduced RNA Pol II binding to the HIF1A promoter, both in control oxygen levels (21% oxygen) and in response to hypoxia (24 hours 1% oxygen) (Figure 5B). Conversely, overexpression of wild type KDM2B in U2OS cells increased HIF1A promoter RNA Pol II occupancy (Figure 5C). Upregulated RNA Pol II recruitment remained in cells overexpressing KDM2B with PHD or F-Box loss-of-function mutants, but overexpression of KDM2B with JmjC or CxxC domain mutants had no effect on RNA Pol II recruitment (Figure 5C). Western blot analysis confirmed KDM2B wild type and mutant overexpression in U2OS cells (Figure 5 D-E). These data indicate that KDM2B’s regulation of HIF-1α expression occurs, at least in part, through controlling RNA Pol II occupancy at the HIF1A promoter, via its JmjC and CxxC domains.\nWe have previously shown that NF-κB controls HIF1A mRNA levels and HIF activity [11]. To initially investigate a potential link between NF-κB and the regulation of HIF by KDM2B, we depleted KDM2B in U2OS κB-luciferase cells and activated the NF-κB response with TNF-α stimulation (10 ng/µL TNF-α for 8 hours) (Supplementary Figure S8A). siRNA-mediated depletion of KDM2B resulted in lower NF-κB-dependent luciferase activity in U2OS κB-luciferase cells following TNF-α stimulation (Supplementary Figure S5A). Conversely, overexpression of KDM2B resulted in higher NF-κB-dependent luciferase activity following TNF-α stimulation (Supplementary Figure S5B). In a similar manner to HIF regulation, KDM2B regulation of NF-κB required functional JmjC and CxxC domains (Supplementary Figure S5B). This preliminary finding demonstrates that KDM2B can control NF-κB activity through its demethylase activity and DNA binding ability and provides a potential link to KDM2B-mediated control of HIF-1α expression."
+      "kind": "results",
+      "text": "Although KDM2B predominantly functions as a transcriptional repressor, via Polycomb repressive dependent and independent mechanisms [30], it can also activate transcription [31–33], including, in the case of IL6, through RNA Pol II recruitment [32]. To begin to elucidate the molecular mechanisms by which KDM2B controls HIF-1α RNA expression, we performed ChIP-qPCR analysis to measure RNA Pol II recruitment to the HIF1A promoter (Figure 5A). Loss of KDM2B through siRNA depletion in U2OS cells reduced RNA Pol II binding to the HIF1A promoter, both in control oxygen levels and in response to hypoxia (Figure 5B). Conversely, overexpression of wild type KDM2B in U2OS cells increased HIF1A promoter RNA Pol II occupancy (Figure 5C). Upregulated RNA Pol II recruitment remained in cells overexpressing KDM2B with PHD or F-Box loss of function, but overexpression of KDM2B with JmjC or CxxC domain mutants had no effect on RNA Pol II recruitment. Immunoblotting analysis confirmed KDM2B wild type and mutant overexpression in U2OS cells (Supplementary Figure S4). These data indicate that KDM2Bs regulation of HIF-1α expression occurs, at least in part, through controlling RNA Pol II occupancy at the HIF1A promoter, via its JmjC and CxxC domains."
     },
     {
       "id": "s2.5",
       "heading": "Results > KDM2B depletion results in reduced proliferation in control and hypoxic conditions",
-      "kind": "",
-      "text": "A range of cellular responses are triggered in hypoxia, one of which is cell proliferation. To determine the biological significance of KDM2B depletion in cells in hypoxia, we measured cell proliferation over several days (Figure 6). As we have previously shown [30, 35], 1% oxygen treatment reduced proliferation in U2OS but also in MDA-MB-231 cells (Figure 6A-B). Under normal oxygen levels (21% oxygen), cells depleted of KDM2B proliferated significantly less compared to control siRNA-treated cells (Figure 6A-B). Interestingly, even in hypoxia, depletion of KDM2B resulted in a significantly reduced cell number compared to control siRNA-treated cells, suggestive of cell death (Figure 6A-B), particularly in U2OS cells, where numbers went below the initial number seeded. These findings show that KDM2B, further to its control of HIF-1α expression and HIF activity, is required for cellular responses in hypoxia.\nGiven the importance of KDM2B and HIF in cancer, and our evidence for the role of KDM2B as a positive regulator of HIF-1α expression and activity, we assessed the correlation of HIF1A and KDM2B mRNA levels in patient samples across different cancers from The Cancer Genome Atlas (TCGA) (Supplementary Figure S9). This analysis revealed that several human cancer types have a moderate positive (0.3-0.5) correlation that is highly statistically significant between levels of KDM2B and HIF1A mRNA (Supplementary Figure S9A), further supporting our mechanistic findings, whereby in most of the cell lines tested, KDM2B acts as a positive regulator of HIF-1α expression. We also show the correlation plots for BRCA (Breast Invasive Carcinoma) and CESC (Cervical Squamous Cell Carcinoma and Endocervical Adenocarcinoma), the most relevant to the cancer cell lines used in this study (Supplementary Figure S9B). Lastly, we also assessed the correlation between KDM2B RNA levels and the RNA levels of hypoxia gene signatures (Buffa [36], Ragnum [37], and Winter [38]) in breast and cervical cancer samples from The Cancer Genome Atlas (TCGA) (Supplementary Figure S10). Positive correlations between KDM2B and all three hypoxia gene signatures were present in the Breast Invasive Carcinoma data (Supplementary Figure S10A), complementing our findings in MB-MDA-231 cells."
+      "kind": "results",
+      "text": "A range of cellular responses are triggered in hypoxia, one of which is cell proliferation. To determine the biological significance of KDM2B depletion in cells exposed to hypoxia, we measured cell proliferation over several days (Figure 6). As we have previously shown [29, 34], 1% oxygen treatment reduced proliferation in U2OS but also in MDA-MB-231 cells (Figure 6A-B). Under control oxygen levels, cells depleted of KDM2B proliferated significantly less compared to control siRNA-treated cells (Figure 6A-B). Interestingly, even in hypoxia, depletion of KDM2B resulted in a significantly reduced cell number compared to control siRNA-treated cells, suggestive of cell death (Figure 6A-B), particularly in U2OS cells, where numbers went below the initial number seeded. These findings show that KDM2B, further to its control of HIF-1α expression and HIF activity, is required for cellular responses in hypoxia."
     },
     {
       "id": "s3",
       "heading": "Discussion",
-      "kind": "",
-      "text": "Here, we show that in several cell types, KDM2B is required for full HIF-1α levels and activity. We find that depletion of KDM2B results in lower levels of HIF-1α mRNA and hence protein levels. This is accompanied by reduced occupancy of HIF-1α at HREs of its target genes and decreased expression of HIF target genes. Control of HIF-1α and HIF target gene expression, although more pronounced under hypoxia, was also present in normal oxygen conditions, indicating a mechanism independent of oxygen sensing. Mechanistically, we determined that KDM2B’s regulation of HIF-1α expression and HIF activity is dependent on its DNA binding capability (CxxC domain) and demethylase activity (JmjC domain). We also demonstrate that KDM2B mediates RNA Pol II to the HIF1A promoter. Finally, we show that KDM2B is required for maintaining cell proliferation under normal oxygen tensions and in hypoxia. Interestingly, in HeLa cells, we find that loss of KDM2B increases HIF activity and HIF-2α expression in hypoxia. This demonstrates that KDM2B-mediated HIF regulation is context dependent; however, presently we do not have a mechanistic insight into this cell-context dependence.\nAlthough HIF-1α regulation is canonically regulated post-translationally via the activity of PHDs [39], we and others have demonstrated important mechanisms controlling HIF-1α gene expression [11, 12, 30], mRNA stability [40], and translation [41, 42]. All these mechanisms precede the ability of PHDs to target HIF-1α or HIF-1α stabilisation, and as such are as important in controlling HIF levels and activity. These findings add a new layer to the regulation of HIF-1α gene expression.\nKDM2B has several functional domains. KDM2B can control transcription through its CxxC domain, independent of its demethylase activity, through recruitment of PRC1 to CpG islands [43–46], and through constraining RNA Pol II binding at CpG island promoters [31]. KDM2B can also act directly as an epigenetic silencer through its demethylase activity [28] and can target c-Fos for polyubiquitylation and proteasomal degradation through its F-Box domain [47]. In this study, we find that KDM2B controls HIF-1α expression and HIF activity through its CxxC domain and JmjC domain, and independent of its PHD domain and F-Box domain.\nHere we find that KDM2B positively regulates HIF1A expression and recruitment of RNA Pol II to the HIF1A promoter. KDM2B has previously been shown to function as a transcriptional activator [32–34] and directly recruit BRG1 and RNA Pol II to the IL6 gene promoter [33]. However, it is not clear from our work if KDM2B is acting directly on the HIF1A gene as a transcriptional activator or indirectly through other chromatin-binding proteins or transcription factors. Our own previous work has highlighted the important roles of NF-κB and SWI/SNF in controlling HIF1A mRNA levels in cells from several organisms [11, 12, 30]. Our preliminary work here demonstrates that KDM2B can also positively regulate NF-κB activity in TNF-α stimulated cells, and this regulation is dependent on the demethylase (JmjC) and DNA binding (CxxC) domains of KDM2B. KDM2B has been shown to regulate NF-κB in certain systems, such as HK2 cells [48]. However, a previous study in myocardial ischemia-reperfusion injury revealed that KDM2B depletion resulted in increased levels of NF-κB p65 and some of its genes [49]. Two separate studies demonstrated that KDM2B can bind BRG1 (core component of SWI/SNF) at some of the genes studied [33, 50]. These findings support a hypothesis that KDM2B is required for NF-κB-dependent control of HIF-1α gene expression, a process we have shown to be BRG1-dependent [11, 30]. Therefore, our data demonstrating that KDM2B is required for HIF1A mRNA levels agree with these previous links to NF-κB and SWI/SNF. However, additional investigation is needed to fully delineate this possibility. Interestingly, KDM2B KO embryos were shown to lack vasculature [51], an aspect also controlled by HIF-1α during development [52–54], further supporting our observations from this study.\nKDM2B has recognised roles in promoting proliferation across a variety of cancer types. However, the mechanisms vary significantly, regulating Wnt [55], Myc [34], and PI3K [56, 57] pathways. Our results support all previous studies, demonstrating that KDM2B depletion leads to reduced proliferation. In addition, we have shown that KDM2B is required to maintain cell numbers in hypoxia. It is probable that, given the reduction in cell survival pathways such as PI3K, Myc, and HIF, when KDM2B is depleted, cells under such stress as hypoxia will not be able to survive. Furthermore, KDM2B has been shown to control autophagy [56, 58], a process that hypoxic cells induce via BNIP3 and BNIP3L [35, 59], used for survival. Our results show that BNIP3 levels are reduced when KDM2B is depleted, suggesting autophagy induction in hypoxia is impaired. This would result in reduced survival, much like the reduction in cell numbers we observed in cells depleted of KDM2B and exposed to hypoxia. In lung [56] and gastric cancer [58], depletion of KDM2B induced autophagy, a process dependent on the inhibition of mTOR. Interestingly, Xie et al [56] also reported a reduction of several HIF-1α genes involved in glycolysis in lung cancer cells when KDM2B is depleted. These included Glut1 and LDHA; however, this study did not investigate HIF-1α levels, focusing on mTOR, a known regulator of HIF-1α [60, 61] and NF-κB [62]. We also find that KDM2B and HIF1A RNA expression positively correlate across a variety of cancer types from The Cancer Genome Atlas (TCGA), and that KDM2B and hypoxia gene signature RNA expression positively correlate in breast invasive carcinoma samples from The Cancer Genome Atlas (TCGA), further supporting our mechanistic findings that KDM2B promotes HIF-1α expression and HIF activity, including in breast cancer cells.\nWe have previously shown that the KDM2 subfamily (KDM2A and KDM2B) of JmjC domain containing proteins are HIF-1 target genes [25]. This upregulation of KDM2B in hypoxia may act as a positive feedback mechanism to maintain HIF activity in certain contexts. Future work should assess the potential role of KDM2A in controlling HIF activity and the hypoxia response. KDM2B demethylates H3K36me1/2 and H3K4me3 through its JmjC domain, and we find that KDM2B requires its histone demethylase activity for modulation of HIF. However, we did not examine the effects of KDM2B on the histone methylation status genome-wide, or at the HIF-1α gene. JmjC domain containing proteins require oxygen for their enzymatic activity, and oxygen-sensitive impairment of JmjC protein histone demethylase activity in hypoxia has been reported for KDM5A [18], KDM6A [19], and KDM4A [63]. Here we report that loss of KDM2B under control oxygen conditions (21% oxygen) and hypoxia (24 hours of 1% oxygen), reduces HIF activity and HIF-1α expression. This suggests that the histone demethylase activity of KDM2B is retained at 1% oxygen in cells, as is seen with KDM3A and KDM4C, which are both HIF target genes that remain active at low oxygen concentrations and function in hypoxia as HIF coactivators through their histone demethylase activity [22–24]. Further investigation is required to determine the role of KDM2B-mediated histone demethylation in the context of HIF regulation and the hypoxia response.\nTaken together, our results indicate that KDM2B is a positive regulator of HIF-1α expression and HIF activity in several cell types, and this is important for maintaining cell numbers in hypoxia. Further mechanistic investigation on how KDM2B controls the HIF1A gene will be necessary to fully understand this phenomenon. Furthermore, using KDM2B inhibitors might result in reduced HIF signalling, as an advantage for certain pathologies such as cancer, but be detrimental for others such as neurodegeneration, where HIF-mediated survival pathways might be needed."
+      "kind": "discussion",
+      "text": "Here, we show that in several cell types, KDM2B is required for full HIF-1α levels and activity. We find that depletion of KDM2B results in lower levels of HIF-1α mRNA and hence protein levels. This is accompanied by reduced occupancy of HIF-1α at HREs of its target genes and decreased expression of HIF target genes. Control of HIF-1α and HIF target gene expression, although more pronounced under hypoxia, was also present in normal oxygen conditions, indicating a mechanism independent of oxygen sensing. Mechanistically, we determined that KDM2B’s regulation of HIF-1α expression and HIF activity is dependent on its DNA binding capability (CxxC domain) and demethylase activity (JmjC domain). We also demonstrate that KDM2B mediates RNA Pol II to the HIF1A promoter. Finally, we show that KDM2B is required for maintaining cell proliferation under normal oxygen tensions and in hypoxia.\nAlthough HIF-1α regulation is canonically regulated post-translationally via the activity of PHDs [35], we and others have demonstrated important mechanisms controlling HIF-1α gene expression [11, 12, 29], mRNA stability [36], and translation [37, 38]. All these mechanisms precede the ability of PHDs to target HIF-1α or HIF-1α stabilisation, and as such are as important in controlling HIF levels and activity. These findings add a new layer to the regulation of HIF-1α gene expression.\nKDM2B has several functional domains. KDM2B can control transcription through its CxxC domain, independent of its demethylase activity, through recruitment of PRC1 to CpG islands [39–42], and through constraining RNA Pol II binding at CpG island promoters [30]. KDM2B can also act directly as an epigenetic silencer through its demethylase activity [28], and can target c-Fos for polyubiquitylation and proteasomal degradation through its F-Box domain [43]. In this study, we find that KDM2Bs controls HIF-1α expression and HIF activity is through its CxxC domain and JmjC domain, and independent of its PHD domain and F-Box domain.\nHere we find that KDM2B positively regulates HIF1A expression and recruitment of RNA Pol II to the HIF1A. KDM2B has previously been shown to function as a transcriptional activator [31–33] and directly recruit the BRG1 and RNA Pol II to the IL6 gene promoter [32]. However, it is not clear from our work if KDM2B is acting directly on the HIF1A gene as a transcriptional activator or indirectly through other chromatin binding proteins or transcription factors. Our own previous work has highlighted the important roles of NF-κB and SWI/SNF in controlling HIF-1α mRNA levels in cells from several organisms [11, 12, 29]. Our preliminary work here demonstrates that KDM2B can also regulate NF-κB activity (Supplementary Figure S5). siRNA-mediated depletion of KDM2B resulted in lower NF-κB-dependent luciferase activity in U2OS κB-luciferase cells following TNF-α stimulation (Supplementary Figure S5A). Conversely, overexpression of KDM2B resulted in higher NF-κB-dependent luciferase activity following TNF-α stimulation (Supplementary Figure S5A). In a similar manner to HIF regulation, KDM2B regulation of NF-κB required functional JmjC and CxxC domains (Supplementary Figure S5B). KDM2B has been shown to regulate NF-κB in certain systems, such as HK2 cells [44]. However, a previous study in myocardial ischemia-reperfusion injury revealed that KDM2B depletion resulted in increased levels of NF-κB p65 and some of its genes [45]. Two separate studies demonstrated that KDM2B can bind BRG1 (core component of SWI/SNF) at some of the genes studied [32, 46]. These findings support a hypothesis that KDM2B is required for NF-κB-dependent control of HIF-1α gene expression, a process we have shown to be BRG1-dependent [11, 29]. Therefore, our data demonstrating that KDM2B is required for HIF-1α mRNA levels agree with these previous links to NF-κB and SWI/SNF. However, additional investigation is needed to fully delineate this possibility. Interestingly, KDM2B KO embryos were shown to lack vasculature [47], an aspect also controlled by HIF-1α during development [48–50], further supporting our observations from this study.\nKDM2B has recognised roles in promoting proliferation across a variety of cancer types. However, the mechanisms vary significantly, regulating Wnt [51], Myc [33], and PI3K [52, 53] pathways. Our results support all previous studies, demonstrating that KDM2B depletion leads to reduced proliferation. In addition, we have shown that KDM2B is required to maintain cell numbers in hypoxia. It is probable that, given the reduction in cell survival pathways such as PI3K, Myc, and HIF, when KDM2B is depleted, cells under such stress as hypoxia will not be able to survive. Furthermore, KDM2B has been shown to control autophagy [52, 54], a process that hypoxic cells induce via BNIP3 and BNIP3L [34, 55], used for survival. Our results show that BNIP3 levels are reduced when KDM2B is depleted, suggesting autophagy induction in hypoxia is impaired. This would result in reduced survival, much like the reduction in cell numbers we observed in cells depleted of KDM2B and exposed to hypoxia. In lung [52] and gastric cancer [54], depletion of KDM2B induced autophagy, a process dependent on the inhibition of mTOR. Interestingly, Xie et al [52] also reported a reduction of several HIF-1α genes involved in glycolysis in lung cancer cells, when KDM2B is depleted. These included Glut1 and LDHA; however, this study did not investigate HIF-1α levels, focusing on mTOR, a known regulator of HIF-1α [56, 57] and NF-κB [58].\nGiven the importance of KDMB and HIF in cancer, and our evidence for the role of KDM2B as a positive regulator of HIF-1α expression, we assessed the correlation of HIF-1α and KDM2B mRNA levels across different cancers from the TGCA database (Supplementary Table S1). This analysis revealed that several human cancer types have a moderate positive (0.3-0.5) correlation that is highly statistically significant between levels of KDM2B and HIF-1α mRNA (Supplementary Table 1), further supporting our mechanistic findings.\nTaken together, our results indicate that KDM2B is a positive regulator of HIF-1α expression and HIF activity in several cell types, and this is important for maintaining cell numbers in hypoxia. Further mechanistic investigation on how KDM2B controls the HIF1A gene will be necessary to fully understand this phenomenon. Furthermore, using KDM2B inhibitors might result in reduced HIF signalling, as an advantage for certain pathologies such as cancer, but be detrimental for others such as neurodegeneration, where HIF-mediated survival pathways might be needed."
     },
     {
       "id": "s4",
       "heading": "Methods",
-      "kind": "",
+      "kind": "methods",
       "text": ""
     },
     {
       "id": "s4.1",
       "heading": "Methods > Reagents and tools table",
-      "kind": "",
-      "text": ""
+      "kind": "methods",
+      "text": "Reagent resource | Reference/source | Identifier/catalogue number\nExperimental models\nHeLa | ATCC | CRM-CCL-2\nU2OS | ATCC | HTB-96\nMDA-MB-231 | ATCC | CRM-HTB-26\nHEK293 | ATCC | CRL-1573\nHeLa HRE-luciferase | Generated by Sonia Rocha lab | \nU2OS HRE-luciferase | Generated by Sonia Rocha lab | \nMDA-MB-231 HRE-luciferase | Generated by Sonia Rocha lab | \nHEK293 HRE-luciferase | Generated by Sonia Rocha lab | \nAntibodies for immunoblotting\nβ-Actin | Proteintech | 66009-1-lg\nHIF-1α | BD Biosciences | 610958\nHIF-1β | Cell Signaling | 5537\nHIF-2α | Cell Signaling | 7096\nFLAG | Cell Signaling | 14793\nCA9 | Bio-Techne | NB100-417\nBNIP3 | Cell Signaling | 44060\nBNIP3L | Cell Signaling | 12396\nKDM2B | Merck | 09-864\nAnti-mouse IgG, HRP-Linked | Cell Signaling | 7076\nAnti-mouse IgG, HRP-Linked | Cell Signaling | 7074\nAntibodies for chromatin immunoprecipitation\nHIF-1α | Santa Cruz Biotechnology | sc-53546\nRNA Pol II | Santa Cruz Biotechnology | sc-47701\nMouse IgG | Merck | I5381\nsiRNAs\nControl | IDT | CAGUCGCGUUUGCGACUGG\nKDM2B_1 | IDT | CCACUGCAAGUCUAUCACA\nKDM2B_2 | IDT | GGGAGUGUCCGAAGUGUAA\nPlasmids\npGL4.32[luc2P/NF-kappa-B-RE/Hvgro] Vector | Promega | E8491\npCAG-IRES-puro KDM2B (KDM2B WT) | Kindly gifted by Rob Klose (Medical Sciences Division, University of Oxford, UK) | \nKDM2B JmjC (H242A,I243A,D244A) | Generated in this publication | \nKDM2B CXXC (C613A,C616A,C619A) | Generated in this publication | \nKDM2B PHD (C662A,C665A) | Generated in this publication | \nKDM2B FBOX (Δ1069-1105) | Generated in this publication | \nHRE luciferase plasmid | Kindly gifted by Giovanni Melillo (Medicine Branch, National Cancer Institute, National Institute of Health, US) | \nPrimers for site directed mutagenesis\nKDM2B JmjC (H242A,I243A,D244A) | F-GAAAGGTTGTTTCACCGACTTCGCCGCCGCCTTTGGAGGCACTTCCGTTTGR-CAAACGGAAGTGCCTCCAAAGGCGGCGGCGAAGTCGGTGAAACAACCTTTC\nKDM2B CXXC (C613A,C616A,C619A) | F-CCGGACGCGAGCCCGCAAGGCCGAGGCCGCCCTGCGGACCR-GTCCGCAGGGCGGCCTCGGCCTTGCGGGCTCGCGTCCGG\nKDM2B PHD (C662A,C665A) | F-CACCGCCGTGGCCCTTGTGGCTGGCGAGGCGR-CGCCTCGCCAGCCACAAGGGCCACGGCGGTG\nKDM2B FBOX (Δ1069-1105) | F-GTCATGCACAGGGAGGACCTGAACCACTGCR-GCAGTGGTTCAGGTCCTCCCTGTGCATGAC\nPrimers for qPCR\nβ-actin (ACTB) | F-CTGGGAGTGGGTGGAGGCR-TCAACTGGTCTCAAGTCAGTG\nKDM2B | QT00087640 (Qiagen)\nHIF-1α (HIF1A) | F-CATAAAGTCTGCAACATGGAAGGTR-ATTTGATGGGTGAGGAATGGGTT\nHIF-2α (EPAS1) | F-TTTGATGTGGAAACGGATGAR-GGAACCTGCTCTTGCTGTTC\nPrimers for chromatin immunoprecipitation qPCR\nPHD3 (EGLN3) HRE | F-TCCTTGTTGGTCTCCTTCTR-CTGTTTGAGACGCCATATCC\nCA9 HRE | F-CAGACAAACCTGTGAGACTTTR-TACGTGCATTGGAAACGAG\nBNIP3 HRE | F-CTCTCCTCCTGCATCCCR-TCCGTTCTGCGACATGG\nHIF-1α (HIF1A) promoter | F-GACTTGCCTTTCCTTCTCTTCTR-CGCCCTCCATGGTGAATC\nChemicals, enzymes, and other reagents\nDMEM | Thermo Fisher Scientific | 41966029\nFBS | Merck | F7524\nL-glutamine | Thermo Fisher Scientific | 25030024\nPenicillin and streptomycin | Thermo Fisher Scientific | 15140122\nPuromycin | Merck | P8833\nMycoAlert MycoplasmaDetection Kit | Lonza | LT07-318\nInterferin | Polyplus | 101000016\nTurbofect | Thermo Fisher Scientific | \nKOD hot start DNA polymerase | Merck | 71086\nBio-Rad Protein Assay Dye Reagent | Bio-Rad | 5000006\nRNeasy Mini Kit | Qiagen | 74104\niScript cDNA Synthesis Kit | Bio-Rad | 1708891\nPowerUp SYBR Green Master Mix for qPCR | Thermo Fisher Scientific | A25742\nPassive lysis buffer | Promega | E1941\nLuciferase Assay System | Promega | E1500\nProtease Inhibitor MiniTablets, EDTA free | Thermo Fisher Scientific | A32955\nSheared salmon sperm DNA | Thermo Fisher Scientific | AM9680\nProtein G Sepharose | ProteinArk | Fastback-PG-5\nProteinase K | Merck | P6556\nBrij-35 | Thermo Fisher Scientific | 85117\nQIAquick PCRPurification Kit | Qiagen | 28106\nTrypan blue stain | Thermo Fisher Scientific | T10282\nTNF-α | Thermo Fisher Scientific | 300-01A-50UG"
     },
     {
       "id": "s4.2",
       "heading": "Methods > Cell lines",
-      "kind": "",
-      "text": "HeLa, U2OS, and MDA-MB-231 cell lines were maintained in DMEM supplemented with 10% v/v FBS, 2 mM L-glutamine, 100 units/mL penicillin, and 100 µg/mL streptomycin. U2OS-HRE (hypoxia response element), MDA-MB-231-HRE, HeLa-HRE, and HEK293-HRE luciferase lines were generated in the lab by co-transfection with a HRE luciferase plasmid containing 3 copies of 21 bps of the iNOS 21bp HRE (5’-AGTGACTACGTGCTGCCTAGG-‘3) subcloned into KpnI and MluI restriction sites of the pGL3 promoter vector (Promega), which was kindly gifted by G. Melillo (National Cancer Institute, National Institutes of Health, Bethesda, MD), together with a puromycin-resistance gene containing vector. U2OS-κB luciferase cells were generated in the lab by transfection with the pGL4.32(luc2P/NF-κB-RE/Hygro) vector. Additionally, 0.5μg/mL puromycin was added to cell culture media for U2OS-HRE, MDA-MB-231-HRE, and HEK293-HRE luciferase cell lines, and 150 μg/mL hygromycin for U2OS-κB luciferase cells. Cell lines were cultured for no more than 30 passages and routinely tested for mycoplasma contamination using a MycoAlert Mycoplasma Detection Kit."
+      "kind": "methods",
+      "text": "HeLa, U2OS, and MDA-MB-231 cell lines were maintained in DMEM supplemented with 10% v/v FBS, 2 mM L-glutamine, 100 units/mL penicillin, and 100 μg/mL streptomycin. U2OS-HRE (hypoxia response element), MDA-MB-231-HRE, HeLa-HRE, and HEK293-HRE luciferase lines were generated in the lab by co-transfection with a HRE luciferase plasmid containing 3 copies of 21 bps of the iNOS 21bp HRE (5’-AGTGACTACGTGCTGCCTAGG-’3) subcloned into KpnI and MluI restriction sites of the pGL3 promoter vector (Promega), which was kindly gifted by G. Melillo (National Cancer Institute, National Institutes of Health, Bethesda, MD), together with a puromycin-resistance gene containing vector. U2OS-κB luciferase cells were generated in the lab by transfection with the pGL4.32(luc2P/NF-κB-RE/Hygro) vector. Additionally, 0.5μg/mL puromycin was added to cell culture media for U2OS-HRE, MDA-MB-231-HRE, and HEK293-HRE luciferase cell lines, and 150 μg/mL hygromycin for U2OS-κB luciferase cells. Cell lines were cultured not more than 30 passages and routinely tested for mycoplasma contamination using a MycoAlert Mycoplasma Detection Kit."
     },
     {
       "id": "s4.3",
       "heading": "Methods > Cell treatments",
-      "kind": "",
+      "kind": "methods",
       "text": "Hypoxia treatments were performed by incubating cells in an Invivo2 300 hypoxia workstation (Baker Ruskin) at 1% O2, 5% CO2, and 37 °C. To avoid reoxygenation, cells were lysed in the workstation. TNF-α (Peprotech) was dissolved in PBS and used at a final concentration of 10 ng/mL."
     },
     {
       "id": "s4.4",
       "heading": "Methods > siRNA transfections",
-      "kind": "",
-      "text": "HEK293 cells were transfected in 35mm plates with a final concentration of 27 nM of siRNA by mixing siRNA, 0.12 M CaCl2, HEPES buffered saline (0.156 M NaCl, 0.375 M Na2HPO4, and 10mM HEPES), and water at a final volume of 400 µL and adding to cells. All other cell lines were transfected in 35mm plates with a final concentration of 27 nM of siRNA using Interferin (Poluplus, VWR) transfection reagent. For reverse transfections, the transfection mixture was added to the media immediately before cell seeding."
+      "kind": "methods",
+      "text": "HEK293 cells were transfected in 35mm plates with a final concentration of 27 nM of siRNA by mixing siRNA, 0.12M CaCl2, HEPES buffered saline (0.156M NaCl, 0.375M Na2HPO4, and 10mM HEPES), and water at a final volume of 400 μL and adding to cells. All other cell lines were transfected in 35mm plates with a final concentration of 27 nM of siRNA using Interferin (Poluplus, VWR) transfection reagent. For reverse transfections, the transfection mixture was added to the media immediately before cell seeding."
     },
     {
       "id": "s4.5",
       "heading": "Methods > DNA transfections",
-      "kind": "",
-      "text": "HEK293 cells were transfected in 35mm plates with 1 µg of DNA for 48 hours by mixing DNA, 0.12 M CaCl2, HEPES buffered saline (0.156 M NaCl, 0.375 M Na2HPO4, and 10mM HEPES), and water at a final volume of 400µL and adding to cells. All other cell lines were transfected in 35 mm plates with 1 µg of DNA for 48 hours using Turbofect transfection reagent. pCAGIpuro_hKDM2B CDS (a gift from R. Klose, Medical Sciences Division, University of Oxford, Oxford, UK) was used to generate KDM2B JmjC (H242A,I243A,D244A), CXXC (C613A,C616A,C619A), PHD (C662A,C665A), and FBOX (Δ1069-1105) domain mutants. HA-HIF1alpha-pcDNA3 was a gift from William Kaelin (Addgene plasmid # 18949)."
+      "kind": "methods",
+      "text": "HEK293 cells were transfected in 35mm plates with 1 μg of DNA for 48 hours by mixing DNA, 0.12M CaCl2, HEPES buffered saline (0.156M NaCl, 0.375M Na2HPO4, and 10mM HEPES), and water at a final volume of 400μL and adding to cells. All other cell lines were transfected in 35 mm plates with 1 μg of DNA for 48 hours using Turbofect transfection reagent. pCAGIpuro_hKDM2B CDS (a gift from R. Klose, Medical Sciences Division, University of Oxford Oxford, UK) was used to generate KDM2B JmjC (H242A,I243A,D244A), CXXC (C613A,C616A,C619A), PHD (C662A,C665A), and FBOX (Δ1069-1105) domain mutants. HA-HIF1alpha-pcDNA3 was a gift from William Kaelin (Addgene plasmid # 18949)."
     },
     {
       "id": "s4.6",
       "heading": "Methods > Site-directed mutagenesis",
-      "kind": "",
-      "text": "Site-directed mutagenesis was performed using a SureCycler 8800 thermocycler (Agilent) with the KOD hot start DNA polymerase kit. DNA sequencing was performed to confirm successful site-directed mutagenesis."
+      "kind": "methods",
+      "text": "Site-directed mutagenesis was performed using a SureCylcer 8800 thermocycler (Agilent) with the KOD hot start DNA polymerase kit. DNA sequencing was performed to confirm successful site-directed mutagenesis."
     },
     {
       "id": "s4.7",
-      "heading": "Methods > Western blots",
-      "kind": "",
-      "text": "Cells were lysed in RIPA buffer (50 mM Tris-HCl pH 8.0, 150 mM NaCl, 1% v/v NP40, 0.25% w/v Na-deoxycholate, 0.1% w/v SDS, 10 mM NaF, 2 mM Na3VO4, and 1 protease inhibitor tablet per 10 mL of lysis buffer), incubated on ice for 10 minutes, and centrifuged for 15 minutes at 13,000 rpm and 4 °C. The supernatants (RIPA-soluble protein samples) were collected, and protein concentrations were determined by Bradford assay using Bio-Rad Protein Assay Dye Reagent. 20 µg of protein was prepared in 2 × SDS loading buffer (100 mM Tris-HCl pH 6.8, 20% v/v glycerol, 4% w/v SDS, 200 mM DTT and Bromophenol Blue). SDS-PAGE and Western blots were carried out using standard protocols. Images were obtained by enhanced chemiluminescence using a ChemiDoc (Bio-Rad)."
+      "heading": "Methods > Immunoblots",
+      "kind": "methods",
+      "text": "Cells were lysed in RIPA buffer (50 mM Tris-HCl pH 8.0, 150 mM NaCl, 1% v/v NP40, 0.25% w/v Na-deoxycholate, 0.1% w/v SDS, 10mM NaF, 2mM Na3VO4, and 1 protease inhibitor tablet per 10 mL of lysis buffer), incubated on ice for 10 minutes, and centrifuged for 15 minutes at 13,000 rpm and 4 °C. The supernatants (RIPA soluble protein samples) were collected, and protein concentrations were determined by Bradford assay using Bio-Rad Protein Assay Dye Reagent. 20 μg of protein was prepared in 2 × SDS loading buffer (100 mM Tris-HCl pH 6.8, 20% v/v glycerol, 4% w/v SDS, 200 mM DTT and Bromophenol Blue). SDS-PAGE and immunoblots were carried out using standard protocols. Images were obtained by enhanced chemiluminescence using a ChemiDoc (Bio-Rad)."
     },
     {
       "id": "s4.8",
       "heading": "Methods > RNA expression analysis by qPCR",
-      "kind": "",
-      "text": "RNA was extracted using the RNeasy Mini Kit, and 300 ng of RNA was converted to cDNA using an iScript cDNA Synthesis Kit. qPCR was performed on a QuantStudio 1 qPCR platform (Applied Biosystems) with PowerUp SYBR Green Master Mix. The quantity of RNA was determined using the ΔΔCT method [64] and normalised to the reference gene ACTB."
+      "kind": "methods",
+      "text": "RNA was extracted using the RNeasy Mini Kit and 300 ng of RNA was converted to cDNA using an iScript cDNA Synthesis Kit. qPCR was performed on a QuantStudio 1 qPCR platform (Applied Biosystems) with PowerUp SYBR Green Master Mix. The quantity of RNA was determined using the ΔΔCT method and normalised to the reference gene ACTB."
     },
     {
       "id": "s4.9",
       "heading": "Methods > Luciferase assay",
-      "kind": "",
+      "kind": "methods",
       "text": "Cells were lysed in Passive lysis buffer. Luciferase activity was measured using a Luciferase Assay System kit and normalised to protein concentration determined by Bradford assay using Bio-Rad Protein Assay Dye Reagent."
     },
     {
       "id": "s4.10",
-      "heading": "Methods > Chromatin immunoprecipitation (ChIP)-qPCR",
-      "kind": "",
-      "text": "Cells on 100 mm cell culture plates were crosslinked by adding formaldehyde at a final concentration of 1% v/v for 10 minutes. Crosslinking was performed inside the hypoxia chamber for hypoxia-exposed samples, or inside the cell culture incubator for control oxygen samples. Cells were quenched by adding glycine at a final concentration of 0.125 M for 10 minutes at room temperature. Cells were washed two times with cold PBS and lysed with 450 μL ChIP lysis buffer (1% w/v SDS, 10 mM EDTA pH 8, 50 mM Tris-HCl pH 8.1, and 1 protease inhibitor tablet) and incubated on ice for 10 minutes. Cell lysates were sonicated at 4 °C, 25 times for 15 seconds with 30 seconds gap between each sonication cycle at 50% amplitude using a Sonics Vibra Cell #VCX130 sonicator. Cell lysates were centrifuged for 15 minutes at 13,000 rpm and 4 °C. The supernatants (chromatin samples) were collected; 10 μL chromatin samples were collected as input samples (10% of immunoprecipitation input) and made up to 100 μL with water; 100 μL chromatin samples were diluted 10-fold with dilution buffer (1% v/v Triton X-100, 2 mM EDTA pH 8, 150 mM NaCl, and 20 mM Tris-HCl pH 8.1) and pre-cleared with 2 μg sheared salmon sperm DNA and 20 μL Protein G Sepharose (50% slurry with PBS) on a rotating wheel for 1 hour at 40 rpm and 4 °C. The diluted and pre-cleared chromatin samples were centrifuged for 1 minute at 1000 rpm and 4 °C. The supernatants were collected. Immunoprecipitations were performed by incubating the diluted and pre-cleared chromatin samples with protein target or control antibodies and 0.1% v/v Brij-35 rotating wheel overnight at 40 rpm and 4 °C. To capture immune complexes, 30 μL Protein G Sepharose (50% slurry with PBS) slurry and 2 μg sheared salmon sperm DNA were added to each immunoprecipitation sample, followed by incubation on a rotating wheel for 2 hours at 40 rpm and 4 °C, samples were centrifuged for 1 minute at 1000 rpm and 4 °C, and supernatants were discarded. The immune complexes (pellets) were resuspended in 1 mL of wash buffer 1 (0.1% w/v SDS, 1% v/v Triton X-100, 2 mM EDTA pH 8, 150 mM NaCl, and 20 mM Tris-HCl pH 8.1), incubated on a rotating wheel for 5 minutes at 40 rpm and 4 °C, centrifuged for 1 minute at 1000 rpm and 4 °C, and supernatants were discarded. The immune complexes (pellets) were resuspended in 1 mL of wash buffer 2 (0.1% w/v SDS, 1% v/v Triton X-100, 2 mM EDTA, 500 mM NaCl, and 20 mM Tris-HCl pH 8.1), incubated on a rotating wheel for 5 minutes at 40 rpm and 4 °C, centrifuged for 1 minute at 1000 rpm and 4 °C, and supernatants were discarded. The immune complexes (pellets) were resuspended in 1 mL of TE buffer (1 mM EDTA and 10 mM Tris-HCl pH 8.1), incubated on a rotating wheel for 5 minutes at 40 rpm, centrifuged for 1 minute at 1000 rpm, and supernatants were discarded. To elute the immune complexes, pellets were resuspended in 100 μL elution buffer (1% w/v SDS and 0.1 M NaHCO4), incubated on a rotating wheel for 1 hour at 40 rpm, centrifuged for 1 minute at 1000 rpm, and pellets were discarded. To reverse crosslinks, NaCl was added at a final concentration of 0.2 M to the input chromatin samples and eluted immunoprecipitated samples, which were incubated on a thermomixer for 4 hours at 500 rpm and 65 °C. To digest proteins, Proteinase K (20 μg), EDTA pH 8 (final concentration 10 mM), and Tris-HCl pH 6.5 (final concentration 40 mM) were added to each sample, and samples were incubated on a thermomixer for 1 hour at 500 rpm and 45 °C. DNA was purified using a QIAquick PCR Purification Kit. ChIP DNA was analysed using qPCR, performed on a QuantStudio 1 qPCR platform (Applied Biosystems) with PowerUp SYBR Green Master Mix."
+      "heading": "Methods > Chromatin immunoprecipitation (ChlP)-qPCR",
+      "kind": "methods",
+      "text": "Cells on 100 mm cell culture plates were crosslinked by adding formaldehyde at a final concentration of 1% v/v for 10 minutes. Crosslinking was performed inside the hypoxia chamber for hypoxia exposed samples, or inside the cell culture incubator for control oxygen samples. Cells were quenched with by adding glycine at a final concentration of 0.125 M for 10 minutes at room temperature. Cells washed two times with cold PBS and lysed with 450 μL ChIP lysis buffer (1% w/v SDS, 10 mM EDTA pH 8, 50 mM Tris-HCl pH 8.1, and 1 protease inhibitor tablet) and incubated on ice for 10 minutes. Cell lysates were sonicated at 4 °C, 25 times for 15 seconds with 30 seconds gap between each sonication cycle at 50% amplitude using a Sonics Vibra Cell #VCX130 sonicator. Cell lysates were centrifuged at for 15 minutes at 13,000 rpm and 4 °C. The supernatants (chromatin samples) were collected; 10 μL chromatin samples were collected as input samples (10% of immunoprecipitation input) and made up to 100 μL with water; 100 μL chromatin samples were diluted 10-fold with dilution buffer (1% v/v Triton X-100, 2 mM EDTA pH 8, 150 mM NaCl, and 20 mM Tris-HCl pH 8.1) and pre-cleared with 2 μg sheared salmon sperm DNA and 20 μL Protein G Sepharose (50% slurry with PBS) on a rotating wheel for 1 hour at 40 rpm and 4 °C. The diluted and precleared chromatin samples were centrifuged for 1 minute at 1000 rpm and 4 °C. The supernatants were collected. Immunoprecipitations were performed incubating the diluted and pre-cleared chromatin samples with protein target or control antibodies and 0.1% v/v Brij-35 rotating wheel overnight at 40 rpm and 4 °C. To capture immune complexes, 30 μL Protein G Sepharose (50% slurry with PBS) slurry and 2 μg sheared salmon sperm DNA were added to each immunoprecipitation sample followed by incubation on a rotating wheel for 2 hours at 40 rpm and 4 °C, samples were centrifuged for 1 minute at 1000 rpm and 4 °C, and supernatants were discarded. The immune complexes (pellets) were resuspended in 1 mL of wash buffer 1 (0.1% w/v SDS, 1% v/v Triton X-100, 2 mM EDTA pH 8, 150 mM NaCl, and 20 mM Tris-HCl pH 8.1), incubated on a rotating wheel for 5 minutes at 40 rpm and 4 °C, centrifuged for 1 minute at 1000 rpm and 4 °C, and supernatants were discarded. The immune complexes (pellets) were resuspended in 1 mL of wash buffer 2 (0.1% w/v SDS, 1% v/v Triton X-100, 2 mM EDTA, 500 mM NaCl, and 20 mM Tris-HCl pH 8.1), incubated on a rotating wheel for 5 minutes at 40 rpm and 4 °C, centrifuged for 1 minute at 1000 rpm and 4 °C, and supernatants were discarded. The immune complexes (pellets) were resuspended in 1 mL of TE buffer (1 mM EDTA and 10 mM Tris-HCl pH 8.1), incubated on a rotating wheel for 5 minutes at 40 rpm, centrifuged for 1 minute at 1000 rpm, and supernatants were discarded. To elute the immune complexes, pellets were resuspended in 100 μL elution buffer (1% w/v SDS and 0.1M NaHCO4), incubated on a rotating wheel for 1 hour at 40 rpm, centrifuged for 1 minute at 1000 rpm, and pellets were discarded. To reverse crosslinks, NaCl was added at a final concentration of 0.2 M to the input chromatin samples and eluted immunoprecipitated samples, which were incubated on a thermomixer for 4 hours at 500 rpm and 65 °C. To digest proteins, Proteinase K (20 μg) EDTA pH 8 (final concentration 10 mM), and Tris-HCl pH 6.5 (final concentration 40 mM) were added to each sample and samples were incubated on a thermomixer for 1 hour at 500 rpm and 45 °C. DNA was purified using a QIAquick PCR Purification Kit. ChIP DNA was analysed using qPCR, performed on a QuantStudio 1 qPCR platform (Applied Biosystems) with PowerUp SYBR Green Master Mix."
     },
     {
       "id": "s4.11",
       "heading": "Methods > Cell proliferation assays",
-      "kind": "",
-      "text": "Cells were reverse transfected (see above section), and live cells were counted 24, 48, 72, and 96 hours post-transfection using a Countess 3 automated cell counter (Invitrogen) and trypan blue. Hypoxia exposure was started 24 hours after reverse transfection."
+      "kind": "methods",
+      "text": "Cells were reverse transfected (see above section) and live cells were counted 24, 48, 72, and 96 hours post transfection using a Countess 3 automated cell counter (Invitrogen) and trypan blue. Hypoxia exposure was started 24 hours after reverse transfection."
     },
     {
       "id": "s4.12",
-      "heading": "Methods > KDM2B and HIF1A correlation analysis",
-      "kind": "",
-      "text": "Correlation analysis between KDM2B and HIF1A RNA expression in patient samples across different cancer types from The Cancer Genome Atlas (TCGA) was performed using GEPIA2 [65]."
+      "heading": "Methods > HIF-1α and KDM2B correlation analysis",
+      "kind": "methods",
+      "text": "HIF-1α and KDM2B mRNA expression correlation analysis from The Cancer Genome Atlas (TCGA) datasets was performed using GEPIA2 [59]."
     },
     {
       "id": "s4.13",
-      "heading": "Methods > KDM2B and hypoxia signature correlation analysis",
-      "kind": "",
-      "text": "Correlation analysis between KDM2B and hypoxia signature (Buffa [36], Ragnum [37], and Winter [38]) RNA expression in patient samples across different cancer types from The Cancer Genome Atlas (TCGA) PanCancer Atlas was performed using the clinical attribute feature of cBioPortal [66]."
-    },
-    {
-      "id": "s4.14",
       "heading": "Methods > Statistical Analysis",
-      "kind": "",
-      "text": "For qPCR, luciferase assays, and cell proliferation assays, a minimum of three biological replicates were analysed, and P values were calculated by one-way ANOVA with Tukey’s test for multiple pairwise group comparisons or one-way ANOVA with Dunnetts’s test for multiple pairwise group comparisons to one control group using GraphPad v10.4.0. For KDM2B and HIF1A RNA expression correlation analysis, P values and R values were calculated by Pearson’s correlation coefficient using GEPIA2 [65]. For KDM2B and hypoxia signature RNA expression correlation analysis, P values and R values were calculated by Pearson’s correlation coefficient using cBioPortal [66]."
+      "kind": "methods",
+      "text": "P values for group differences were calculated one-way ANOVA with Tukey’s test or one-way ANOVA with Dunnetts’s test using GraphPad v10.4.0."
     },
     {
       "id": "s5",
-      "heading": "Supporting information",
+      "heading": "Supplementary Material",
       "kind": "supplementary-material",
-      "text": "DC1Supplementary data"
+      "text": "Supplementary information"
     },
     {
       "id": "b1",
       "heading": "Data availability",
-      "kind": "",
-      "text": "Source data is available at Figshare: https://doi.org/10.6084/m9.figshare.33154961 [67]."
-    },
-    {
-      "id": "b2",
-      "heading": "Funding",
-      "kind": "",
-      "text": "Work in the SR laboratory was supported by a Wellcome Trust collaborative award in science (206293/Z/17/Z). GB is funded by a BBSRC-DTP scholarship."
-    },
-    {
-      "id": "b3",
-      "heading": "Author contributions",
-      "kind": "",
-      "text": "CRediT Author Contribution = Sonia Rocha: Conceptualization, Supervision, Funding acquisition, Writing - Review & Editing. Michael Batie: Conceptualization, Formal analysis, Validation, Investigation, Visualization, Methodology, Writing - Original Draft, Writing - Review & Editing. Dilem Shakir: Investigation, Visualization, Chun-Sui Kwok: Investigation, Gemma Bell: Investigation, Jiahua Kou: Investigation, Ali Bakhsh: Investigation."
+      "kind": "data-availability",
+      "text": "Source data will be made available at Figshare."
     }
   ],
   "legends": [
     {
-      "id": "fig1",
-      "label": "Figure 1.",
+      "id": "F1",
+      "label": "Figure 1",
       "title": "KDM2B is a positive regulator of HIF reporter activity.",
-      "text": "KDM2B is a positive regulator of HIF reporter activity.A) Schematic of the hypoxia response element (HRE)-luciferase plasmid stably expressed in cells to measure HIF activity. B) Luciferase assay analysis in U2OS, MDA-MB-231, and HeLa HRE-luciferase cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Tukey’s test. C) qPCR analysis of KDM2B RNA levels in U2OS, MDA-MB-231, and HeLa HRE-luciferase cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. ACTB was used as a normalising gene. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Tukey’s test. D) Luciferase assay analysis in U2OS and HeLa HRE-luciferase cells cultured at 21% oxygen and transfected with control, KDM2B (0.1 µg), or KDM2B (1 µg) plasmids for 48 hours. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test."
+      "text": "KDM2B is a positive regulator of HIF reporter activity.A) Schematic of the hypoxia response element (HRE)-luciferase plasmid stably expressed in cells to measure HIF activity. B) Luciferase assay analysis in U2OS, MDA-MB-231, and HeLa HRE-luciferase cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. Data represent mean (n=3 biological replicates) ± SEM. P values for group differences were calculated by one-way ANOVA with Tukey’s test. C) Luciferase assay analysis in U2OS and HeLa HRE-luciferase cells cultured at 21% oxygen and transfected with control, KDM2B (0.1 μg), or KDM2B (1 μg) plasmids for 48 hours. Data represent mean (n=3 biological replicates) ± SEM. P values for group differences were calculated by two-way ANOVA with Dunnett’s test."
     },
     {
-      "id": "fig2",
-      "label": "Figure 2.",
+      "id": "F2",
+      "label": "Figure 2",
       "title": "KDM2B regulates HIF activity.",
-      "text": "KDM2B regulates HIF activity.A) Western blot analysis for the indicated proteins in U2OS and MDA-MB-231 cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. A representative Western blot of three biological replicates is shown. B) qPCR analysis of KDM2B RNA levels in U2OS and MDA-MB-231 cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. ACTB was used as a normalising gene. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Tukey’s test. C) ChIP-qPCR analysis in U2OS cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. ChIP was performed with HIF-1α and non-specific antibody (IgG) immunoprecipitations (IPs), followed by DNA extraction and qPCR analysis at hypoxia response elements (HREs) located on the promoters of BNIP3, CA9, and PHD3 (EGLN3). Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test."
+      "text": "KDM2B regulates HIF activity.A) Immunoblot analysis for the indicated proteins in U2OS and MDA-MB-231 cells cultured at 21% oxygen, transfected with control, KDM2B_l, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. A representative immunoblot of three biological replicates is shown. B) ChIP-qPCR analysis in U2OS cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. ChIP was performed with HIF-1α and non-specific antibody (IgG) immunoprecipitations (IPs), followed by DNA extraction and qPCR analysis at hypoxia response elements (HREs) located on the promoters of BNIP3, CA9, and PHD3 (gene name EGLN3). Data represent mean (n=3 biological replicates) ± SEM. P values for group differences were calculated by one-way ANOVA with Dunnett’s test."
     },
     {
-      "id": "fig3",
-      "label": "Figure 3.",
+      "id": "F3",
+      "label": "Figure 3",
       "title": "KDM2B regulates HIF-1α mRNA and protein expression.",
-      "text": "KDM2B regulates HIF-1α mRNA and protein expression.A) Western blot analysis for the indicated proteins in U2OS and MDA-MB-231 cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. A representative Western blot of three biological replicates is shown. B) qPCR analysis of HIF1A RNA levels in U2OS and MDA-MB-231cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. ACTB was used as a normalising gene. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Tukey’s test."
+      "text": "KDM2B regulates HIF-1α mRNA and protein expression.A) Immunoblot analysis for the indicated proteins in U2OS and MDA-MB-231 cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. A representative immunoblot of three biological replicates is shown. B) qPCR analysis of HIF-1α RNA levels in U2OS, MDA-MB-231, and HeLa cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. ACTB was used as a normalising gene. Data represent mean (n=3 biological replicates) ± SEM. P values for group differences were calculated by one-way ANOVA with Tukey’s test."
     },
     {
-      "id": "fig4",
-      "label": "Figure 4.",
+      "id": "F4",
+      "label": "Figure 4",
       "title": "KDM2B controls HIF activity through its JmjC and CxxC domains.",
-      "text": "KDM2B controls HIF activity through its JmjC and CxxC domains.A) Schematic of KDM2B protein domains and loss-of-functions mutations used in this study. B) Luciferase assay analysis in U2OS and HEK293 HRE-luciferase cells cultured at 21% oxygen and transfected with control, KDM2B WT, KDM2B JmjC, KDM2B CxxC, KDM2B PHD, or KDM2B F-box plasmids for 48 hours. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test. C) Western blot analysis for the indicated proteins in U2OS and HEK293 HRE-luciferase cells cultured at 21% oxygen and transfected with control, KDM2B WT, KDM2B JmjC, KDM2B CxxC, KDM2B PHD, or KDM2B F-box plasmids for 48 hours. A representative Western blot of three biological replicates is shown. * Lower band is non-specific. D) qPCR analysis of HIF1A RNA levels in U2OS HRE-luciferase cells cultured at 21% oxygen and transfected with control, KDM2B WT, KDM2B JmjC, KDM2B CxxC, KDM2B PHD, or KDM2B F-box plasmids for 48 hours. ACTB was used as a normalising gene. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test."
+      "text": "KDM2B controls HIF activity through its JmjC and CxxC domains.A) Schematic of KDM2B protein domains and loss-of-functions mutations used in this study. B) Luciferase assay analysis in U2OS and HEK293 HRE-luciferase cells cultured at 21% oxygen and transfected with control, KDM2B WT, KDM2B JmjC, KDM2B CxxC, KDM2B PHD, or KDM2B F-box plasmids for 48 hours. Data represent mean (n=3 biological replicates) ± SEM. P values for group differences were calculated by two-way ANOVA with Tukey’s test. C) Immunoblot analysis for the indicated proteins in U2OS and HEK293 HRE-luciferase cells cultured at 21% oxygen and transfected with control, KDM2B WT, KDM2B JmjC, KDM2B CxxC, KDM2B PHD, or KDM2B F-box plasmids for 48 hours. A representative immunoblot of three biological replicates is shown."
     },
     {
-      "id": "fig5",
-      "label": "Figure 5.",
+      "id": "F5",
+      "label": "Figure 5",
       "title": "Recruitment of RNA Pol II to the HIF1A promoter is modulated by KDM2B.",
-      "text": "Recruitment of RNA Pol II to the HIF1A promoter is modulated by KDM2B.A) Schematic of ChIP-qPCR analysis to measure binding of RNAP2 to the HIF1A promoter. B) ChIP-qPCR analysis U2OS cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. ChIP was performed with RNA Pol II and non-specific antibody (IgG) immunoprecipitations (IPs), followed by DNA extraction and qPCR analysis at the HIF1A promoter. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Tukey’s test. C) ChIP-qPCR analysis in U2OS cells cultured at 21% oxygen and transfected with control, KDM2B WT, KDM2B JmjC, KDM2B CxxC, KDM2B PHD, or KDM2B F-box plasmids for 48 hours. ChIP was performed with RNA Pol II and non-specific antibody (IgG) immunoprecipitations (IPs), followed by DNA extraction and qPCR analysis at the HIF1A promoter. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test. D) Western blot and E) Western blot quantification analysis for KDM2B protein levels in U2OS cells cultured at 21% oxygen and transfected with control, KDM2B WT, KDM2B JmjC, KDM2B CxxC, KDM2B PHD, or KDM2B F-box plasmids for 48 hours. β-actin was used as a normalising protein. A representative Western blot of three biological replicates is shown. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test. * Lower band is non-specific."
+      "text": "Recruitment of RNA Pol II to the HIF1A promoter is modulated by KDM2B.A) Schematic of ChIP-qPCR analysis to measure binding of RNAP2 to the HIF1A promoter. B) ChIP-qPCR analysis U2OS cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. ChIP was performed with RNA Pol II and non-specific antibody (IgG) immunoprecipitations (IPs), followed by DNA extraction and qPCR analysis at the HIF1A promoter. Data represent mean (n=3 biological replicates) ± SEM. P values for group differences were calculated by one-way ANOVA with Tukey’s test. C) ChIP-qPCR analysis in U2OS cells cultured at 21% oxygen cells cultured at 21% oxygen and transfected with control, KDM2B WT, KDM2B JmjC, KDM2B CxxC, KDM2B PHD, or KDM2B F-box plasmids for 48 hours. ChIP was performed with RNA Pol II and non-specific antibody (IgG) immunoprecipitations (IPs), followed by DNA extraction and qPCR analysis at the HIF1A promoter. Data represent mean (n=3 biological replicates) ± SEM. P values for group differences were calculated by one-way ANOVA with Tukey’s test."
     },
     {
-      "id": "fig6",
-      "label": "Figure 6.",
-      "title": "Cell proliferation is impaired in response to KDM2B depletion in normal oxygen conditions and hypoxia.",
-      "text": "Cell proliferation is impaired in response to KDM2B depletion in normal oxygen conditions and hypoxia.Cell proliferation assay in A) U2OS and B) MDA-MB-231 cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 96 hours, and exposed or not to 1% oxygen for 72 hours. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test."
+      "id": "F6",
+      "label": "Figure 6",
+      "title": "Cell proliferation is impaired in response to KDM2B depletion in normal oxygen and hypoxia.",
+      "text": "Cell proliferation is impaired in response to KDM2B depletion in normal oxygen and hypoxia.Cell proliferation assay in A) U2OS and B) MDA-MB-231 cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 96 hours, and exposed or not to 1% oxygen for 72 hours. Data represent mean (n=3 biological replicates) ± SEM. P values for group differences were calculated by one-way ANOVA with Dunnett’s test."
+    }
+  ],
+  "references": [
+    {
+      "id": "R1",
+      "label": "1",
+      "citation": "Hammarlund EU Flashman E Mohlin S Licausi F Oxygen-sensing mechanisms across eukaryotic kingdoms and their roles in complex multicellularity Science 2020 370 33093080",
+      "doi": ""
+    },
+    {
+      "id": "R2",
+      "label": "2",
+      "citation": "Lee P Chandel NS Simon MC Cellular adaptation to hypoxia through hypoxia inducible factors and beyond Nat Rev Mol Cell Biol 2020 21 268 283 10.1038/s41580-020-0227-y PMC7222024 32144406",
+      "doi": "10.1038/s41580-020-0227-y"
+    },
+    {
+      "id": "R3",
+      "label": "3",
+      "citation": "Ortmann BM Hypoxia-inducible factor in cancer: from pathway regulation to therapeutic opportunity BMJ Oncol 2024 3 e000154 10.1136/bmjonc-2023-000154 PMC11203102 39886164",
+      "doi": "10.1136/bmjonc-2023-000154"
+    },
+    {
+      "id": "R4",
+      "label": "4",
+      "citation": "Kaelin WG Jr Ratcliffe PJ Oxygen sensing by metazoans: the central role of the HIF hydroxylase pathway Mol Cell 2008 30 393 402 18498744",
+      "doi": ""
+    },
+    {
+      "id": "R5",
+      "label": "5",
+      "citation": "Frost J Frost M Batie M Jiang H Rocha S Roles of HIF and 2-Oxoglutarate-Dependent Dioxygenases in Controlling Gene Expression in Hypoxia Cancers (Basel) 2021 13 10.3390/cancers13020350 PMC7832865 33477877",
+      "doi": "10.3390/cancers13020350"
+    },
+    {
+      "id": "R6",
+      "label": "6",
+      "citation": "Schofield CJ Ratcliffe PJ Oxygen sensing by HIF hydroxylases Nat Rev Mol Cell Biol 2004 5 343 354 15122348",
+      "doi": ""
+    },
+    {
+      "id": "R7",
+      "label": "7",
+      "citation": "Druker J Wilson JW Child F Shakir D Fasanya T Rocha S Role of Hypoxia in the Control of the Cell Cycle Int J Mol Sci 2021 22 10.3390/ijms22094874 PMC8124716 34062959",
+      "doi": "10.3390/ijms22094874"
+    },
+    {
+      "id": "R8",
+      "label": "8",
+      "citation": "lommarini L Porcelli AM Gasparre G Kurelac I Non-Canonical Mechanisms Regulating Hypoxia-Inducible Factor 1 Alpha in Cancer Front Oncol 2017 7 286 10.3389/fonc.2017.00286 PMC5711814 29230384",
+      "doi": "10.3389/fonc.2017.00286"
+    },
+    {
+      "id": "R9",
+      "label": "9",
+      "citation": "Ivanova IG Park CV Kenneth NS Translating the Hypoxic Response-the Role of HIF Protein Translation in the Cellular Response to Low Oxygen Cells 2019 8 10.3390/cells8020114 PMC6406544 30717305",
+      "doi": "10.3390/cells8020114"
+    },
+    {
+      "id": "R10",
+      "label": "10",
+      "citation": "Kenneth NS Batie M Rocha S Rethinking the role of HIF in hepatocellular carcinoma FEBS J 2026 41645007",
+      "doi": ""
+    },
+    {
+      "id": "R11",
+      "label": "11",
+      "citation": "van Uden P Kenneth NS Rocha S Regulation of hypoxia-inducible factor-1alpha by NF-kappaB Biochem J 2008 412 477 484 10.1042/BJ20080476 PMC2474706 18393939",
+      "doi": "10.1042/BJ20080476"
+    },
+    {
+      "id": "R12",
+      "label": "12",
+      "citation": "van Uden P Kenneth NS Webster R Muller HA Mudie S Rocha S Evolutionary conserved regulation of HIF-1beta by NF-kappaB PLoS Genet 2011 7 e1001285 10.1371/journal.pgen.1001285 PMC3029248 21298084",
+      "doi": "10.1371/journal.pgen.1001285"
+    },
+    {
+      "id": "R13",
+      "label": "13",
+      "citation": "Bandarra D Biddlestone J Mudie S Muller HA Rocha S HIF-1alpha restricts NF-kappaB-dependent gene expression to control innate immunity signals Dis Model Mech 2015 8 169 181 10.1242/dmm.017285 PMC4314782 25510503",
+      "doi": "10.1242/dmm.017285"
+    },
+    {
+      "id": "R14",
+      "label": "14",
+      "citation": "D’Ignazio L Batie M Rocha S TNFSF14/LIGHT, a Non-Canonical NF-kappaB Stimulus, Induces the HIF Pathway Cells 2018 7 10.3390/cells7080102 PMC6116154 30096845",
+      "doi": "10.3390/cells7080102"
+    },
+    {
+      "id": "R15",
+      "label": "15",
+      "citation": "Bonello S Zahringer C BelAiba RS Djordjevic T Hess J Michiels C Kietzmann T Gorlach A Reactive oxygen species activate the HIF-1alpha promoter via a functional NFkappaB site Arterioscler Thromb Vasc Biol 2007 27 755 761 17272744",
+      "doi": ""
+    },
+    {
+      "id": "R16",
+      "label": "16",
+      "citation": "Dimitrova E Turberfield AH Klose RJ Histone demethylases in chromatin biology and beyond EMBO Rep 2015 16 1620 1639 10.15252/embr.201541113 PMC4687429 26564907",
+      "doi": "10.15252/embr.201541113"
+    },
+    {
+      "id": "R17",
+      "label": "17",
+      "citation": "Kooistra SM Helin K Molecular mechanisms and potential functions of histone demethylases Nat Rev Mol Cell Biol 2012 13 297 311 22473470",
+      "doi": ""
+    },
+    {
+      "id": "R18",
+      "label": "18",
+      "citation": "Batie M Frost J Frost M Wilson JW Schofield P Rocha S Hypoxia induces rapid changes to histone methylation and reprograms chromatin Science 2019 363 1222 1226 30872526",
+      "doi": ""
+    },
+    {
+      "id": "R19",
+      "label": "19",
+      "citation": "Chakraborty AA Laukka T Myllykoski M Ringel AE Booker MA Tolstorukov MY Meng YJ Meier SR Jennings RB Creech AL Herbert ZT Histone demethylase KDM6A directly senses oxygen to control chromatin and cell fate Science 2019 363 1217 1222 10.1126/science.aaw1026 PMC7336390 30872525",
+      "doi": "10.1126/science.aaw1026"
+    },
+    {
+      "id": "R20",
+      "label": "20",
+      "citation": "Hancock RL Dunne K Walport LJ Flashman E Kawamura A Epigenetic regulation by histone demethylases in hypoxia Epigenomics 2015 7 791 811 25832587",
+      "doi": ""
+    },
+    {
+      "id": "R21",
+      "label": "21",
+      "citation": "Collier H Albanese A Kwok CS Kou J Rocha S Functional crosstalk between chromatin and hypoxia signalling Cell Signal 2023 106 110660 36990334",
+      "doi": ""
+    },
+    {
+      "id": "R22",
+      "label": "22",
+      "citation": "Krieg AJ Rankin EB Chan D Razorenova O Fernandez S Giaccia AJ Regulation of the histone demethylase JMJD1A by hypoxia-inducible factor 1 alpha enhances hypoxic gene expression and tumor growth Mol Cell Biol 2010 30 344 353 10.1128/MCB.00444-09 PMC2798291 19858293",
+      "doi": "10.1128/MCB.00444-09"
+    },
+    {
+      "id": "R23",
+      "label": "23",
+      "citation": "Wan W Peng K Li M Qin L Tong Z Yan J Shen B Yu C Histone demethylase JMJD1A promotes urinary bladder cancer progression by enhancing glycolysis through coactivation of hypoxia inducible factor 1alpha Oncogene 2017 36 3868 3877 28263974",
+      "doi": ""
+    },
+    {
+      "id": "R24",
+      "label": "24",
+      "citation": "Luo W Chang R Zhong J Pandey A Semenza GL Histone demethylase JMJD2C is a coactivator for hypoxia-inducible factor 1 that is required for breast cancer progression Proc Natl Acad Sci U S A 2012 109 E3367 3376 10.1073/pnas.1217394109 PMC3523832 23129632",
+      "doi": "10.1073/pnas.1217394109"
+    },
+    {
+      "id": "R25",
+      "label": "25",
+      "citation": "Batie M Druker J D’Ignazio L Rocha S KDM2 Family Members are Regulated by HIF-1 in Hypoxia Cells 2017 6 10.3390/cells6010008 PMC5371873 28304334",
+      "doi": "10.3390/cells6010008"
+    },
+    {
+      "id": "R26",
+      "label": "26",
+      "citation": "Yan M Yang X Wang H Shao Q The critical role of histone lysine demethylase KDM2B in cancer Am J Transl Res 2018 10 2222 2233 PMC6129528 30210666",
+      "doi": ""
+    },
+    {
+      "id": "R27",
+      "label": "27",
+      "citation": "Vacik T Ladinovic D Raska I KDM2A/B lysine demethylases and their alternative isoforms in development and disease Nucleus 2018 9 431 441 10.1080/19491034.2018.1498707 PMC7000146 30059280",
+      "doi": "10.1080/19491034.2018.1498707"
+    },
+    {
+      "id": "R28",
+      "label": "28",
+      "citation": "Andricovich J Tzatsos A Biological Functions of the KDM2 Family of Histone Demethylases Adv Exp Med Biol 2023 1433 51 68 37751135",
+      "doi": ""
+    },
+    {
+      "id": "R29",
+      "label": "29",
+      "citation": "Kenneth NS Mudie S van Uden P Rocha S SWI/SNF regulates the cellular response to hypoxia J Biol Chem 2009 284 4123 4131 19097995",
+      "doi": ""
+    },
+    {
+      "id": "R30",
+      "label": "30",
+      "citation": "Turberfield AH Kondo T Nakayama M Koseki Y King HW Koseki H Klose RJ KDM2 proteins constrain transcription from CpG island gene promoters independently of their histone demethylase activity Nucleic Acids Res 2019 47 9005 9023 10.1093/nar/gkz607 PMC6753492 31363749",
+      "doi": "10.1093/nar/gkz607"
+    },
+    {
+      "id": "R31",
+      "label": "31",
+      "citation": "Tzatsos A Paskaleva P Ferrari F Deshpande V Stoykova S Contino G Wong KK Lan F Trojer P Park PJ Bardeesy N KDM2B promotes pancreatic cancer via Polycomb-dependent and -independent transcriptional programs J Clin Invest 2013 123 727 739 10.1172/JCI64535 PMC3561797 23321669",
+      "doi": "10.1172/JCI64535"
+    },
+    {
+      "id": "R32",
+      "label": "32",
+      "citation": "Zhou Q Zhang Y Wang B Zhou W Bi Y Huai W Chen X Chen Y Liu Z Liu X Zhan Z KDM2B promotes IL-6 production and inflammatory responses through Brg1-mediated chromatin remodeling Cell Mol Immunol 2020 17 834 842 10.1038/s41423-019-0251-z PMC7395766 31197256",
+      "doi": "10.1038/s41423-019-0251-z"
+    },
+    {
+      "id": "R33",
+      "label": "33",
+      "citation": "Chavdoula E Anastas V La Ferlita A Aldana J Carota G Spampinato M Soysal B Cosentini I Parashar S Sircar A Nigita G Transcriptional regulation of amino acid metabolism by KDM2B, in the context of ncPRC1.1 and in concert with MYC and ATF4 Metabolism 2024 150 155719 37935302",
+      "doi": ""
+    },
+    {
+      "id": "R34",
+      "label": "34",
+      "citation": "Melvin A Mudie S Rocha S The chromatin remodeler ISWI regulates the cellular response to hypoxia: role of FIH Mol Biol Cell 2011 22 4171 4181 10.1091/mbc.E11-02-0163 PMC3204077 21900490",
+      "doi": "10.1091/mbc.E11-02-0163"
+    },
+    {
+      "id": "R35",
+      "label": "35",
+      "citation": "Albanese A Daly LA Mennerich D Kietzmann T See V The Role of Hypoxia-Inducible Factor Post-Translational Modifications in Regulating Its Localisation, Stability, and Activity Int J Mol Sci 2020 22 10.3390/ijms22010268 PMC7796330 33383924",
+      "doi": "10.3390/ijms22010268"
+    },
+    {
+      "id": "R36",
+      "label": "36",
+      "citation": "Bett JS Ibrahim AF Garg AK Rocha S Hay RT SiRNA screening to identify ubiquitin and ubiquitin-like system regulators of biological pathways in cultured mammalian cells J Vis Exp 2014 10.3791/51572 PMC4207135 24893647",
+      "doi": "10.3791/51572"
+    },
+    {
+      "id": "R37",
+      "label": "37",
+      "citation": "Shmakova A Frost M Batie M Kenneth NS Rocha S PBRM1 Cooperates with YTHDF2 to Control HIF-1alpha Protein Translation Cells 2021 10 10.3390/cells10061425 PMC8228889 34200988",
+      "doi": "10.3390/cells10061425"
+    },
+    {
+      "id": "R38",
+      "label": "38",
+      "citation": "Ivanova IG Park CV Yemm AI Kenneth NS PERK/eIF2alpha signaling inhibits HIF-induced gene expression during the unfolded protein response via YB1-dependent regulation of HIF1alpha translation Nucleic Acids Res 2018 46 3878 3890 10.1093/nar/gky127 PMC5934640 29529249",
+      "doi": "10.1093/nar/gky127"
+    },
+    {
+      "id": "R39",
+      "label": "39",
+      "citation": "Farcas AM Blackledge NP Sudbery I Long HK McGouran JF Rose NR Lee S Sims D Cerase A Sheahan TW Koseki H KDM2B links the Polycomb Repressive Complex 1 (PRC1) to recognition of CpG islands Elife 2012 1 e00205 10.7554/eLife.00205 PMC3524939 23256043",
+      "doi": "10.7554/eLife.00205"
+    },
+    {
+      "id": "R40",
+      "label": "40",
+      "citation": "Wu X Johansen JV Helin K Fbxl10/Kdm2b recruits polycomb repressive complex 1 to CpG islands and regulates H2A ubiquitylation Mol Cell 2013 49 1134 1146 23395003",
+      "doi": ""
+    },
+    {
+      "id": "R41",
+      "label": "41",
+      "citation": "He J Shen L Wan M Taranova O Wu H Zhang Y Kdm2b maintains murine embryonic stem cell status by recruiting PRC1 complex to CpG islands of developmental genes Nat Cell Biol 2013 15 373 384 10.1038/ncb2702 PMC4078788 23502314",
+      "doi": "10.1038/ncb2702"
+    },
+    {
+      "id": "R42",
+      "label": "42",
+      "citation": "Blackledge NP Farcas AM Kondo T King HW McGouran JF Hanssen LLP Ito S Cooper S Kondo K Koseki Y Ishikura T Variant PRC1 complex-dependent H2A ubiquitylation drives PRC2 recruitment and polycomb domain formation Cell 2014 157 1445 1459 10.1016/j.cell.2014.05.004 PMC4048464 24856970",
+      "doi": "10.1016/j.cell.2014.05.004"
+    },
+    {
+      "id": "R43",
+      "label": "43",
+      "citation": "Han XR Zha Z Yuan HX Feng X Xia YK Lei QY Guan KL Xiong Y KDM2B/FBXL10 targets c-Fos for ubiquitylation and degradation in response to mitogenic stimulation Oncogene 2016 35 4179 4190 10.1038/onc.2015.482 PMC4931990 26725323",
+      "doi": "10.1038/onc.2015.482"
+    },
+    {
+      "id": "R44",
+      "label": "44",
+      "citation": "Li X Tian X Zhang D KDM2B regulates inflammation and oxidative stress of sepsis via targeting NF-kappaB and AP-1 pathways Immun Inflamm Dis 2023 11 e985 10.1002/iid3.985 PMC10510463 37773725",
+      "doi": "10.1002/iid3.985"
+    },
+    {
+      "id": "R45",
+      "label": "45",
+      "citation": "Wei Z Luo L Hu S Tian R Liu Z KDM2B overexpression prevents myocardial ischemia-reperfusion injury in rats through regulating inflammatory response via the TLR4/NF-kappaB p65 axis Exp Ther Med 2022 23 154 10.3892/etm.2021.11077 PMC8753960 35069835",
+      "doi": "10.3892/etm.2021.11077"
+    },
+    {
+      "id": "R46",
+      "label": "46",
+      "citation": "Huo D Yu Z Li R Gong M Sidoli S Lu X Hou Y Dai Z Kong Y Liu G Jensen ON CpG island reconfiguration for the establishment and synchronization of polycomb functions upon exit from naive pluripotency Mol Cell 2022 82 1169 1185 e1167 35202573",
+      "doi": ""
+    },
+    {
+      "id": "R47",
+      "label": "47",
+      "citation": "Andricovich J Kai Y Peng W Foudi A Tzatsos A Histone demethylase KDM2B regulates lineage commitment in normal and malignant hematopoiesis J Clin Invest 2016 126 905 920 10.1172/JCI84014 PMC4767361 26808549",
+      "doi": "10.1172/JCI84014"
+    },
+    {
+      "id": "R48",
+      "label": "48",
+      "citation": "Iyer NV Kotch LE Agani F Leung SW Laughner E Wenger RH Gassmann M Gearhart JD Lawler AM Yu AY Semenza GL Cellular and developmental control of O2 homeostasis by hypoxia-inducible factor 1 alpha Genes Dev 1998 12 149 162 10.1101/gad.12.2.149 PMC316445 9436976",
+      "doi": "10.1101/gad.12.2.149"
+    },
+    {
+      "id": "R49",
+      "label": "49",
+      "citation": "Ryan HE Lo J Johnson RS HIF-1 alpha is required for solid tumor formation and embryonic vascularization EMBO J 1998 17 3005 3015 10.1093/emboj/17.11.3005 PMC1170640 9606183",
+      "doi": "10.1093/emboj/17.11.3005"
+    },
+    {
+      "id": "R50",
+      "label": "50",
+      "citation": "Compernolle V Brusselmans K Franco D Moorman A Dewerchin M Collen D Carmeliet P Cardia bifida, defective heart development and abnormal neural crest migration in embryos lacking hypoxia-inducible factor-1alpha Cardiovasc Res 2003 60 569 579 14659802",
+      "doi": ""
+    },
+    {
+      "id": "R51",
+      "label": "51",
+      "citation": "Zhang X Yin Z Li C Nie L Chen K KDM2B mediates the Wnt/beta-catenin pathway through transcriptional activation of PKMYT1 via microRNA-let-7b-5p/EZH2 to affect the development of non-small cell lung cancer Exp Cell Res 2022 417 113208 35580699",
+      "doi": ""
+    },
+    {
+      "id": "R52",
+      "label": "52",
+      "citation": "Xie Z Li H Zang J Knockdown of lysine (K)-specific demethylase 2B KDM2B inhibits glycolysis and induces autophagy in lung squamous cell carcinoma cells by regulating the phosphatidylinositol 3-kinase/AKT/mammalian target of rapamycin pathway Bioengineered 2021 12 12227 12235 10.1080/21655979.2021.2005931 PMC8810134 34783291",
+      "doi": "10.1080/21655979.2021.2005931"
+    },
+    {
+      "id": "R53",
+      "label": "53",
+      "citation": "Sanches JGP Song B Zhang Q Cui X Yabasin IB Ntim M Li X He J Zhang Y Mao J Lu Y The Role of KDM2B and EZH2 in Regulating the Stemness in Colorectal Cancer Through the PI3K/AKT Pathway Front Oncol 2021 11 637298 10.3389/fonc.2021.637298 PMC8006351 33791221",
+      "doi": "10.3389/fonc.2021.637298"
+    },
+    {
+      "id": "R54",
+      "label": "54",
+      "citation": "Zhao E Tang C Jiang X Weng X Zhong X Zhang D Hou J Wang F Huang M Cui H Inhibition of cell proliferation and induction of autophagy by KDM2B/FBXL10 knockdown in gastric cancer cells Cell Signal 2017 36 222 229 28506929",
+      "doi": ""
+    },
+    {
+      "id": "R55",
+      "label": "55",
+      "citation": "Bellot G Garcia-Medina R Gounon P Chiche J Roux D Pouyssegur J Mazure NM Hypoxia-induced autophagy is mediated through hypoxia-inducible factor induction of BNIP3 and BNIP3L via their BH3 domains Mol Cell Biol 2009 29 2570 2581 10.1128/MCB.00166-09 PMC2682037 19273585",
+      "doi": "10.1128/MCB.00166-09"
+    },
+    {
+      "id": "R56",
+      "label": "56",
+      "citation": "Land SC Tee AR Hypoxia-inducible factor 1alpha is regulated by the mammalian target of rapamycin (mTOR) via an mTOR signaling motif J Biol Chem 2007 282 20534 20543 17502379",
+      "doi": ""
+    },
+    {
+      "id": "R57",
+      "label": "57",
+      "citation": "Dodd KM Yang J Shen MH Sampson JR Tee AR mTORCl drives HIF-1alpha and VEGF-A signalling via multiple mechanisms involving 4E-BP1, S6K1 and STAT3 Oncogene 2015 34 2239 2250 10.1038/onc.2014.164 PMC4172452 24931163",
+      "doi": "10.1038/onc.2014.164"
+    },
+    {
+      "id": "R58",
+      "label": "58",
+      "citation": "Dan HC Cooper MJ Cogswell PC Duncan JA Ting JP Baldwin AS Akt-dependent regulation of NF-kappaB is controlled by mTOR and Raptor in association with IKK Genes Dev 2008 22 1490 1500 10.1101/gad.1662308 PMC2418585 18519641",
+      "doi": "10.1101/gad.1662308"
+    },
+    {
+      "id": "R59",
+      "label": "59",
+      "citation": "Tang Z Kang B Li C Chen T Zhang Z GEPIA2: an enhanced web server for large-scale expression profiling and interactive analysis Nucleic Acids Res 2019 47 W556 W560 10.1093/nar/gkz430 PMC6602440 31114875",
+      "doi": "10.1093/nar/gkz430"
     }
   ]
 }

@@ -25,6 +25,13 @@ class Legend(BaseModel):
     text: str
 
 
+class Reference(BaseModel):
+    id: str                 # JATS id, e.g. "R12"
+    label: str              # e.g. "12" (may be empty for author-year styles)
+    citation: str           # formatted citation text
+    doi: str = ""
+
+
 class Paper(BaseModel):
     doi: str
     title: str
@@ -32,6 +39,7 @@ class Paper(BaseModel):
     source: str             # where the full text came from
     sections: list[Section]
     legends: list[Legend]
+    references: list[Reference] = []
 
     def section(self, sid: str) -> Section | None:
         return next((s for s in self.sections if s.id == sid), None)
@@ -51,6 +59,25 @@ class Experiment(BaseModel):
 
 class ExperimentList(BaseModel):
     experiments: list[Experiment]
+
+
+# ---------------------------------------------------------------- resolve output
+
+class Gap(BaseModel):
+    detail: str = Field(description="The specific missing detail, e.g. 'volume of lysis buffer per well'")
+    why_needed: str = Field(description="Why the experiment can't be run correctly without it")
+    status: Literal["resolved", "assumable", "missing"] = Field(
+        description="resolved = found in a cited paper/kit manual/web source; assumable = a standard-practice default is defensible; missing = not found and no defensible default")
+    resolution: str = Field(description="The value/procedure found or assumed; empty if missing")
+    source: str = Field(description="URL or citation the resolution came from; 'standard practice' for assumable; empty if missing")
+
+
+class Sufficiency(BaseModel):
+    verdict: Literal["proceed", "proceed_with_assumptions", "reject"]
+    summary: str = Field(description="One or two sentences justifying the verdict")
+    gaps: list[Gap]
+    retrieved_details: str = Field(
+        description="Concise protocol details recovered from cited papers, kit manuals or other sources, each with its source URL, for use when writing the protocol. Empty if none")
 
 
 # ---------------------------------------------------------------- extract output

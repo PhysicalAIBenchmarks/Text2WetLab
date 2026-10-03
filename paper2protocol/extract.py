@@ -1,7 +1,7 @@
 """(Paper, Experiment) → structured Protocol of transfers, mixes and manual steps."""
 
 from . import llm
-from .ingest import paper_text
+from .ingest import experiment_section_ids, paper_text
 from .models import CAPACITY_UL, Experiment, Paper, Protocol
 
 TASK = """\
@@ -34,16 +34,18 @@ earlier step. Stocks with ample volume use volume_ul = null.
 - Lay out conditions (siRNAs, treatments, normoxia/hypoxia, replicates, controls) on \
 explicit, non-overlapping wells, and state the layout in `assumptions`.
 - Include master-mix preparation (e.g. transfection complexes, qPCR mixes) as transfers into tubes.
-- Fill gaps with standard lab practice and set assumed=true on that step/container/content; \
+- Where the paper is silent, use the DETAILS RECOVERED FROM CITED SOURCES (if given) and \
+cite their source in `assumptions`; otherwise fill gaps with standard lab practice and set assumed=true on that step/container/content; \
 list every assumption. Commercial kits: follow standard manufacturer volumes and say so.
 - source_quote: copy the exact sentence fragment from the paper behind each step.
 - Keep the protocol to what one person would run for this experiment; do not include analysis.
 """
 
 
-def extract(paper: Paper, exp: Experiment) -> Protocol:
-    refs = exp.section_refs + [r for r in exp.shared_refs if r not in exp.section_refs]
-    context = paper_text(paper, section_ids=refs, legends=True)
+def extract(paper: Paper, exp: Experiment, details: str = "") -> Protocol:
+    """`details` = resolve.details_block(...) output: values recovered from cited sources."""
+    refs = experiment_section_ids(paper, exp)
+    context = paper_text(paper, section_ids=refs, legends=True) + ("\n\n" + details if details else "")
     task = TASK.format(
         title=exp.title, goal=exp.goal,
         sections=", ".join(f"{r} ({_heading(paper, r)})" for r in exp.section_refs),

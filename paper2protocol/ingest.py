@@ -6,7 +6,7 @@ from pathlib import Path
 import httpx
 from lxml import etree
 
-from .models import Legend, Paper, Section
+from .models import Legend, Paper, Reference, Section
 
 BIORXIV_API = "https://api.biorxiv.org/details/biorxiv/{doi}"
 EPMC_SEARCH = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
@@ -30,16 +30,17 @@ def fetch_paper(doi: str, xml_path: str | None = None) -> Paper:
     if xml_path:
         return parse_jats(Path(xml_path).read_bytes(), doi, source=f"file:{xml_path}")
     errors = []
+    # Europe PMC first: its JATS has tables as text, where bioRxiv often ships table images.
     with httpx.Client(headers=HEADERS, timeout=60, follow_redirects=True) as http:
-        try:
-            return parse_jats(_biorxiv_xml(http, doi), doi, source="biorxiv")
-        except Exception as e:  # noqa: BLE001 — try the next source
-            errors.append(f"bioRxiv: {e}")
         try:
             xml, pid = _epmc_xml(http, doi)
             return parse_jats(xml, doi, source=f"europepmc:{pid}")
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:  # noqa: BLE001 — try the next source
             errors.append(f"Europe PMC: {e}")
+        try:
+            return parse_jats(_biorxiv_xml(http, doi), doi, source="biorxiv")
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"bioRxiv: {e}")
     raise RuntimeError(
         f"Could not get full text for {doi}:\n  " + "\n  ".join(errors)
         + "\nDownload the JATS XML in a browser and pass it with --xml."
@@ -93,6 +94,11 @@ def _text(el) -> str:
     return re.sub(r"\s+", " ", el.xpath("string()")).strip() if el is not None else ""
 
 
+def _join_text(el) -> str:
+    """Like _text, but separates child elements (JATS citations have no inner whitespace)."""
+    return re.sub(r"\s+", " ", " ".join(t.strip() for t in el.itertext() if t.strip()))
+
+
 def _strip_ns(root):
     for el in root.iter():
         if isinstance(el.tag, str) and "}" in el.tag:
@@ -125,7 +131,15 @@ def parse_jats(xml: bytes, doi: str, source: str) -> Paper:
     back = root.find("back")
     if back is not None:  # some preprints put methods/supplementary under <back>
         _walk(back, "b", [], sections)
-    return Paper(doi=doi, title=title, abstract=abstract, source=source, sections=sections, legends=legends)
+    references = []
+    for i, ref in enumerate(root.iter("ref"), 1):
+        cit = next((c for c in ref if c.tag in ("element-citation", "mixed-citation", "citation")), None)
+        doi_el = ref.find(".//pub-id[@pub-id-type='doi']")
+        references.append(Reference(id=ref.get("id") or f"ref{i}", label=_text(ref.find("label")),
+                                    citation=_join_text(cit if cit is not None else ref),
+                                    doi=_text(doi_el)))
+    return Paper(doi=doi, title=title, abstract=abstract, source=source, sections=sections,
+                 legends=legends, references=references)
 
 
 def _walk(parent, prefix: str, path: list[str], out: list[Section], kind: str = ""):
@@ -156,12 +170,24 @@ def _table_text(tw) -> str:
     cap = _text(tw.find("caption")) or _text(tw.find("label"))
     if cap:
         rows.append(cap)
-    for tr in tw.iter("tr"):
+    trs = list(tw.iter("tr"))
+    for tr in trs:
         rows.append(" | ".join(_text(c) for c in tr if c.tag in ("td", "th")))
+    if not trs and tw.find(".//graphic") is not None:
+        rows.append("[table provided only as an image in this source; contents unavailable]")
     return "\n".join(rows)
 
 
-def paper_text(paper: Paper, section_ids: list[str] | None = None, legends: bool = True) -> str:
+def experiment_section_ids(paper: Paper, exp) -> list[str]:
+    """Sections an experiment's prompts should see: its own refs plus every Methods section
+    (reagent tables and shared recipes are often not listed in shared_refs)."""
+    ids = set(exp.section_refs) | set(exp.shared_refs)
+    ids |= {s.id for s in paper.sections if "method" in s.kind.lower() or "material" in s.heading.lower()}
+    return [s.id for s in paper.sections if s.id in ids]
+
+
+def paper_text(paper: Paper, section_ids: list[str] | None = None, legends: bool = True,
+               references: bool = False) -> str:
     """Render the paper (or a subset of sections) as tagged plain text for prompts."""
     out = [f"TITLE: {paper.title}", f"DOI: {paper.doi}", "", f"ABSTRACT: {paper.abstract}", ""]
     for s in paper.sections:
@@ -171,4 +197,9 @@ def paper_text(paper: Paper, section_ids: list[str] | None = None, legends: bool
         out.append("FIGURE LEGENDS")
         for lg in paper.legends:
             out.append(f"[{lg.label}] {lg.text}\n")
+    if references and paper.references:
+        out.append("REFERENCES")
+        for r in paper.references:
+            link = f" https://doi.org/{r.doi}" if r.doi else ""
+            out.append(f"[{r.label or r.id}] {r.citation}{link}")
     return "\n".join(out)
