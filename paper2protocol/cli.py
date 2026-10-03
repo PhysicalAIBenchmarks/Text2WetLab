@@ -6,7 +6,7 @@ import re
 import sys
 from pathlib import Path
 
-from . import llm
+from . import guard, llm
 from .check import check
 from .critic import critique
 from .extract import extract
@@ -14,6 +14,7 @@ from .identify import identify, verify_figure_refs
 from .ingest import fetch_paper, normalize_doi, search
 from .models import Experiment, Paper
 from .render import render
+from .sources import SOURCES
 from .resolve import details_block, resolve
 
 
@@ -36,7 +37,7 @@ def load_paper(args) -> tuple[Paper, Path]:
         paper = Paper.model_validate_json(pj.read_text())
     else:
         print(f"Fetching {doi} ...", file=sys.stderr)
-        paper = fetch_paper(doi, args.xml)
+        paper = fetch_paper(doi, args.xml, args.source)
         _dump(pj, paper)
     print(f"{paper.title}\n  ({paper.source}, {len(paper.sections)} sections, {len(paper.legends)} figures)\n",
           file=sys.stderr)
@@ -52,9 +53,9 @@ def get_experiments(paper: Paper, out: Path) -> list[Experiment]:
 
 
 def cmd_search(args):
-    for i, h in enumerate(search(args.query, args.limit), 1):
+    for i, h in enumerate(search(args.query, args.limit, preprints_only=args.biorxiv), 1):
         ft = "" if h["full_text_in_epmc"] else "  (no Europe PMC full text)"
-        print(f"{i:2}. {h['title']}\n    {h['doi']}  {h['date']}{ft}")
+        print(f"{i:2}. {h['title']}\n    {h['doi']}  {h['venue']}  {h['date']}{ft}")
 
 
 def cmd_list(args):
@@ -84,15 +85,25 @@ def _pick(args) -> tuple[Paper, Experiment, Path]:
 
 
 def _assess(args, paper, exp, ed):
+    llm.WEB_EVENTS.clear()
     suff = resolve(paper, exp, web=not args.no_web)
     _dump(ed / "sufficiency.json", suff)
+    flags = guard.audit(llm.WEB_EVENTS, paper)
+    (ed / "web_access.json").write_text(json.dumps({
+        "flags": [f.model_dump() for f in flags],
+        "events": [e.model_dump() for e in llm.WEB_EVENTS]}, indent=2, ensure_ascii=False))
+    fetched = sum(e.kind == "fetch" for e in llm.WEB_EVENTS)
+    print(f"Web research: {sum(e.kind == 'search' for e in llm.WEB_EVENTS)} searches, {fetched} pages fetched "
+          f"(log: {ed / 'web_access.json'})")
+    for f in flags:
+        print(f"  !! LEAK FLAG [{f.severity}] {f.value} — {f.reason}")
     print(f"Detail check: {suff.verdict} — {suff.summary}")
     for g in suff.gaps:
         print(f"  [{g.status}] {g.detail}")
         if g.resolution:
             print(f"      → {g.resolution}" + (f"  ({g.source})" if g.source else ""))
     print()
-    return suff
+    return suff, flags
 
 
 def cmd_assess(args):
@@ -101,9 +112,9 @@ def cmd_assess(args):
 
 def cmd_convert(args):
     paper, exp, ed = _pick(args)
-    details = ""
+    details, flags = "", []
     if not args.skip_assess:
-        suff = _assess(args, paper, exp, ed)
+        suff, flags = _assess(args, paper, exp, ed)
         if suff.verdict == "reject" and not args.force:
             sys.exit("Rejected: not enough detail to run this experiment (see gaps above). "
                      "Use --force to convert anyway.")
@@ -112,6 +123,11 @@ def cmd_convert(args):
     protocol = extract(paper, exp, details)
     _dump(ed / "protocol.json", protocol)
     text = render(protocol)
+    accessed = [f for f in flags if f.severity == "accessed"]
+    if accessed:
+        text = ("WARNING: during research the pipeline opened possible author code/supplementary files:\n"
+                + "".join(f"  {f.value} ({f.reason})\n" for f in accessed)
+                + "This protocol may not be an independent reconstruction from the paper text.\n\n" + text)
     (ed / "protocol.txt").write_text(text)
 
     issues = check(protocol)
@@ -131,6 +147,8 @@ def cmd_convert(args):
         print(f"\nCritic: {report.verdict} — {report.summary}")
         for c in report.issues:
             print(f"  step {c.step}: [{c.severity}] {c.issue}\n      → {c.suggestion}")
+    if flags:
+        print(f"\n!! {len(flags)} leak flag(s) from web research — see {ed / 'web_access.json'}")
     print(f"\nSaved to {ed}/", file=sys.stderr)
 
 
@@ -141,8 +159,9 @@ def main(argv=None):
     ap.add_argument("--out", default="out", help="output directory (default: out/)")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
-    s = sub.add_parser("search", help="find bioRxiv papers by title/keywords")
+    s = sub.add_parser("search", help="find papers by title/keywords (Europe PMC)")
     s.add_argument("query")
+    s.add_argument("--biorxiv", action="store_true", help="only bioRxiv preprints")
     s.add_argument("--limit", type=int, default=10)
     s.set_defaults(func=cmd_search)
 
@@ -150,7 +169,9 @@ def main(argv=None):
                           ("assess", cmd_assess, "check whether an experiment has enough detail to run"),
                           ("convert", cmd_convert, "assess, then convert one experiment to instructions")]:
         p = sub.add_parser(name, help=hlp)
-        p.add_argument("doi", help="bioRxiv DOI or URL")
+        p.add_argument("doi", help="DOI, doi.org link or publisher article URL")
+        p.add_argument("--source", choices=[src.name for src in SOURCES],
+                       help="fetch full text only from this source (default: try all that apply)")
         p.add_argument("--xml", help="use a local JATS XML file instead of downloading")
         p.add_argument("--refetch", action="store_true", help="ignore saved paper.json")
         if name in ("assess", "convert"):

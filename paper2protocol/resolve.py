@@ -4,7 +4,7 @@ Finds the details needed to execute the experiment, fills gaps from cited papers
 manuals and other web sources, and returns proceed / proceed_with_assumptions / reject.
 """
 
-from . import llm
+from . import guard, llm
 from .ingest import experiment_section_ids, paper_text
 from .models import Experiment, Paper, Sufficiency
 
@@ -45,7 +45,8 @@ RESEARCH_WEB = (
     "open-access copies via PubMed Central or Europe PMC if the publisher page is paywalled), "
     "and fetch the manufacturer's manual/technical bulletin for every commercial kit or "
     "transfection reagent used. Do not answer from memory when a source can be fetched; "
-    "only fall back to 'assumable' after a search fails to find the detail."
+    "only fall back to 'assumable' after a search fails to find the detail. "
+    + guard.PROMPT_RULE
 )
 RESEARCH_OFFLINE = (
     "use your own knowledge of the cited methods and kit manuals, and say so in the source "

@@ -1,0 +1,128 @@
+Yeast strain engineering and LC-HRMS detection of 4-DG and mycosporine-glycine (MG) in SC.L2, SC.L3, SC.L6 and SC.L26
+
+Containers:
+- bsaI_tube: 1.5 mL tube — BsaI-HF v2 enzyme (NEBridge Golden Gate kit) [assumed]
+- ligase_tube: 1.5 mL tube — T4 DNA ligase [assumed]
+- ligbuffer_tube: 1.5 mL tube — T4 ligase buffer [assumed]
+- link_vector_tube: 1.5 mL tube — Destination vector (e.g. link-021/022/024/027), BsaI-compatible [assumed]
+- type3_insert_tube: 1.5 mL tube — Type-3 intermediate plasmid carrying gene flanked by BsaI sites (xyl1-3, Np.mysA-C) [assumed]
+- water_tube: 15 mL tube — Sterile nuclease-free water [assumed]
+- gg_tube: 1.5 mL tube — Golden Gate assembly reaction (20 uL; repeated per cassette) [assumed]
+- peg_tube: 50 mL tube — 50% PEG3350 [assumed]
+- liac_tube: 15 mL tube — 1 M lithium acetate [assumed]
+- ssdna_tube: 1.5 mL tube — 2 mg/mL salmon-sperm ssDNA [assumed]
+- pCRCT_HIS3_tube: 1.5 mL tube — pCRCT-HIS3 (gRNA/Cas9, URA3) [assumed]
+- pCRCT_308a_tube: 1.5 mL tube — pCRCT-308a [assumed]
+- pCRCT_NQM1_tube: 1.5 mL tube — pCRCT-NQM1 [assumed]
+- pCRCT_YP_tube: 1.5 mL tube — pCRCT-YP [assumed]
+- insert_XYL_tube: 1.5 mL tube — PCR-linearized XYL1-XYL2-XYL3 cassettes with HIS3 homology arms [assumed]
+- insert_mysAB_tube: 1.5 mL tube — PCR-linearized mysA + mysB cassettes with 308 homology arms [assumed]
+- insert_mysBA_tube: 1.5 mL tube — PCR-linearized second copy mysB + mysA with NQM1 homology arms [assumed]
+- insert_mysC_tube: 1.5 mL tube — PCR-linearized mysC cassette with YP homology arms [assumed]
+- tf_L2_tube: 1.5 mL tube — SC.L1 competent cell pellet (transformation to give SC.L2) [assumed]
+- tf_L3_tube: 1.5 mL tube — SC.L2 competent cell pellet (transformation to give SC.L3) [assumed]
+- tf_L6_tube: 1.5 mL tube — SC.L3 competent cell pellet (transformation to give SC.L6) [assumed]
+- tf_L26_tube: 1.5 mL tube — SC.L6 competent cell pellet (transformation to give SC.L26) [assumed]
+- medium_reservoir: reservoir — SC-Ura medium with 12 g/L glucose and 8 g/L xylose [assumed]
+- pre_L2_tube: 15 mL tube — Overnight pre-culture of SC.L2 [assumed]
+- pre_L3_tube: 15 mL tube — Overnight pre-culture of SC.L3 [assumed]
+- pre_L6_tube: 15 mL tube — Overnight pre-culture of SC.L6 [assumed]
+- pre_L26_tube: 15 mL tube — Overnight pre-culture of SC.L26 [assumed]
+- culture_plate: 96-well plate — 48 h production cultures (adapted from 250 mL flasks); rows A-D = SC.L2, SC.L3, SC.L6, SC.L26, columns 1-3 = biological replicates [assumed]
+- filter_plate: 96-well plate — 0.22 um filter plate for clarifying extracts [assumed]
+- lcms_plate: 96-well plate — Collection plate for filtered extracts for LC-HRMS [assumed]
+
+Starting contents:
+- bsaI_tube: stock BsaI-HF v2 [assumed]
+- ligase_tube: stock T4 DNA ligase [assumed]
+- ligbuffer_tube: stock T4 DNA ligase buffer [assumed]
+- link_vector_tube: stock Destination vector plasmid (link-0xx) [assumed]
+- type3_insert_tube: stock Type-3 intermediate plasmid with gene [assumed]
+- water_tube: stock Sterile water [assumed]
+- peg_tube: stock 50% PEG3350
+- liac_tube: stock 1 M LiAc
+- ssdna_tube: stock 2 mg/mL ssDNA
+- pCRCT_HIS3_tube: stock pCRCT-HIS3 plasmid (250 ng/uL) [assumed]
+- pCRCT_308a_tube: stock pCRCT-308a plasmid (250 ng/uL) [assumed]
+- pCRCT_NQM1_tube: stock pCRCT-NQM1 plasmid (250 ng/uL) [assumed]
+- pCRCT_YP_tube: stock pCRCT-YP plasmid (250 ng/uL) [assumed]
+- insert_XYL_tube: stock Linear XYL1-3 insert DNA (500 ng/uL) [assumed]
+- insert_mysAB_tube: stock Linear mysA+mysB insert DNA (500 ng/uL) [assumed]
+- insert_mysBA_tube: stock Linear mysB+mysA (2nd copy) insert DNA (500 ng/uL) [assumed]
+- insert_mysC_tube: stock Linear mysC insert DNA (500 ng/uL) [assumed]
+- tf_L2_tube: stock SC.L1 (CEN.PK2 tal1 delta) competent cells, pellet from 5-10 mL culture at OD600 0.5-0.8 [assumed]
+- tf_L3_tube: stock SC.L2 competent cells, pellet from 5-10 mL culture at OD600 0.5-0.8 [assumed]
+- tf_L6_tube: stock SC.L3 competent cells, pellet from 5-10 mL culture at OD600 0.5-0.8 [assumed]
+- tf_L26_tube: stock SC.L6 competent cells, pellet from 5-10 mL culture at OD600 0.5-0.8 [assumed]
+- medium_reservoir: stock SC-Ura medium (1.7 g/L YNB, 5 g/L ammonium sulfate, 1.29 g/L DO supplement -Ura, 12 g/L glucose, 8 g/L xylose)
+
+Steps:
+1. Transfer 1 µL of BsaI-HF v2 from bsaI_tube to gg_tube. Note: Volumes from the published version of the paper; one reaction shown, repeat for each cassette. [assumed]
+2. Transfer 1 µL of T4 DNA ligase from ligase_tube to gg_tube. [assumed]
+3. Transfer 2 µL of T4 ligase buffer from ligbuffer_tube to gg_tube. [assumed]
+4. Transfer 2 µL of Destination vector (link-0xx) from link_vector_tube to gg_tube. Note: Volume assumed so vector:insert is 1:2 molar. [assumed]
+5. Transfer 2 µL of Type-3 intermediate plasmid (gene flanked by BsaI sites) from type3_insert_tube to gg_tube. Note: Volume assumed (insert at 2x molar excess). [assumed]
+6. Transfer 12 µL of Water from water_tube to gg_tube. Note: Brings reaction to 20 uL. [assumed]
+7. Mix gg_tube by pipetting 10 µL up and down 3 times. Note: Gentle pipette mixing. [assumed]
+8. MANUAL: Thermocycle gg_tube: 30 cycles of 5 min at 37 C then 5 min at 16 C. Transform into E. coli DH5alpha, miniprep, verify by Sanger sequencing; linearize inserts by PCR with homology arms and prepare competent yeast cells of the parent strains (5-10 mL culture, OD600 0.5-0.8). Note: Cycling from the published version; PCR linearization and competent cell preparation assumed. [assumed]
+9. Transfer 250 µL of 50% PEG3350 from peg_tube to tf_L2_tube. Note: Step 2 transformation (SC.L1 to SC.L2, HIS3::XYL1-3). Conditions from the published version. [assumed]
+10. Transfer 36 µL of 1 M LiAc from liac_tube to tf_L2_tube. [assumed]
+11. Transfer 10 µL of 2 mg/mL ssDNA from ssdna_tube to tf_L2_tube. [assumed]
+12. Transfer 1 µL of pCRCT-HIS3 (250 ng) from pCRCT_HIS3_tube to tf_L2_tube. Note: Stock concentration assumed 250 ng/uL. [assumed]
+13. Transfer 4 µL of Linear XYL1-3 insert (2000 ng) from insert_XYL_tube to tf_L2_tube. Note: Stock concentration assumed 500 ng/uL. [assumed]
+14. Transfer 59 µL of Water from water_tube to tf_L2_tube. Note: Brings mix to 360 uL. [assumed]
+15. Mix tf_L2_tube by pipetting 200 µL up and down 10 times. Note: Resuspend pellet. [assumed]
+16. MANUAL: Incubate tf_L2_tube at 42 C for 40 min. Plate on SC-Ura, then verify SC.L2 clones by colony PCR and Sanger sequencing; prepare competent cells of SC.L2 for the next step (loss of pCRCT plasmid between steps not specified).
+17. Transfer 250 µL of 50% PEG3350 from peg_tube to tf_L3_tube. Note: Step 3 transformation (SC.L2 to SC.L3, 308::mysA + mysB). [assumed]
+18. Transfer 36 µL of 1 M LiAc from liac_tube to tf_L3_tube. [assumed]
+19. Transfer 10 µL of 2 mg/mL ssDNA from ssdna_tube to tf_L3_tube. [assumed]
+20. Transfer 1 µL of pCRCT-308a (250 ng) from pCRCT_308a_tube to tf_L3_tube. [assumed]
+21. Transfer 4 µL of Linear mysA+mysB insert (2000 ng) from insert_mysAB_tube to tf_L3_tube. [assumed]
+22. Transfer 59 µL of Water from water_tube to tf_L3_tube. [assumed]
+23. Mix tf_L3_tube by pipetting 200 µL up and down 10 times. [assumed]
+24. MANUAL: Incubate tf_L3_tube at 42 C for 40 min. Plate on SC-Ura, verify SC.L3 clones by colony PCR and Sanger sequencing; prepare competent cells of SC.L3.
+25. Transfer 250 µL of 50% PEG3350 from peg_tube to tf_L6_tube. Note: Step 4 transformation (SC.L3 to SC.L6, NQM1::mysB + mysA, NQM1 disrupted). [assumed]
+26. Transfer 36 µL of 1 M LiAc from liac_tube to tf_L6_tube. [assumed]
+27. Transfer 10 µL of 2 mg/mL ssDNA from ssdna_tube to tf_L6_tube. [assumed]
+28. Transfer 1 µL of pCRCT-NQM1 (250 ng) from pCRCT_NQM1_tube to tf_L6_tube. [assumed]
+29. Transfer 4 µL of Linear mysB+mysA insert (2000 ng) from insert_mysBA_tube to tf_L6_tube. [assumed]
+30. Transfer 59 µL of Water from water_tube to tf_L6_tube. [assumed]
+31. Mix tf_L6_tube by pipetting 200 µL up and down 10 times. [assumed]
+32. MANUAL: Incubate tf_L6_tube at 42 C for 40 min. Plate on SC-Ura, verify SC.L6 clones by colony PCR and Sanger sequencing; prepare competent cells of SC.L6.
+33. Transfer 250 µL of 50% PEG3350 from peg_tube to tf_L26_tube. Note: Step 5 transformation (SC.L6 to SC.L26, YP::mysC). [assumed]
+34. Transfer 36 µL of 1 M LiAc from liac_tube to tf_L26_tube. [assumed]
+35. Transfer 10 µL of 2 mg/mL ssDNA from ssdna_tube to tf_L26_tube. [assumed]
+36. Transfer 1 µL of pCRCT-YP (250 ng) from pCRCT_YP_tube to tf_L26_tube. [assumed]
+37. Transfer 4 µL of Linear mysC insert (2000 ng) from insert_mysC_tube to tf_L26_tube. [assumed]
+38. Transfer 59 µL of Water from water_tube to tf_L26_tube. [assumed]
+39. Mix tf_L26_tube by pipetting 200 µL up and down 10 times. [assumed]
+40. MANUAL: Incubate tf_L26_tube at 42 C for 40 min. Plate on SC-Ura, verify SC.L26 clones by colony PCR and Sanger sequencing. Streak verified SC.L2, SC.L3, SC.L6 and SC.L26 colonies for pre-cultures.
+41. Transfer 3000 µL of SC-Ura medium (12 g/L glucose, 8 g/L xylose) from medium_reservoir to pre_L2_tube. Note: Pre-culture volume assumed. [assumed]
+42. Transfer 3000 µL of SC-Ura medium (12 g/L glucose, 8 g/L xylose) from medium_reservoir to pre_L3_tube. [assumed]
+43. Transfer 3000 µL of SC-Ura medium (12 g/L glucose, 8 g/L xylose) from medium_reservoir to pre_L6_tube. [assumed]
+44. Transfer 3000 µL of SC-Ura medium (12 g/L glucose, 8 g/L xylose) from medium_reservoir to pre_L26_tube. [assumed]
+45. MANUAL: Inoculate one colony each of SC.L2, SC.L3, SC.L6 and SC.L26 into pre_L2_tube, pre_L3_tube, pre_L6_tube and pre_L26_tube. Incubate overnight at 30 C, 200 rpm. Measure OD600 and dilute each with medium to OD600 1.0. Note: Pre-culture and OD adjustment assumed; 30 C and 200 rpm from the published version. [assumed]
+46. Transfer 180 µL of SC-Ura medium (12 g/L glucose, 8 g/L xylose) from medium_reservoir to culture_plate wells A1:D3 (each well). Note: Adapted from 100 mL in a 250 mL flask to 200 uL per well; wells A1:D3 only. [assumed]
+47. Transfer 20 µL of SC.L2 pre-culture (OD600 1.0) from pre_L2_tube to culture_plate wells A1:A3 (each well). Note: Start OD600 about 0.1. [assumed]
+48. Transfer 20 µL of SC.L3 pre-culture (OD600 1.0) from pre_L3_tube to culture_plate wells B1:B3 (each well). [assumed]
+49. Transfer 20 µL of SC.L6 pre-culture (OD600 1.0) from pre_L6_tube to culture_plate wells C1:C3 (each well). [assumed]
+50. Transfer 20 µL of SC.L26 pre-culture (OD600 1.0) from pre_L26_tube to culture_plate wells D1:D3 (each well). [assumed]
+51. MANUAL: Seal culture_plate with a gas-permeable seal and incubate for 48 h at 30 C with shaking at 200 rpm. Note: Temperature and shaking from the published version; plate format assumed. [assumed]
+52. MANUAL: Freeze-thaw culture_plate (whole culture, wells A1:D3) twice: -80 C then thaw at 25 C. Note: Freeze/thaw temperatures from the published version.
+53. MANUAL: Centrifuge culture_plate for 10 min at the maximum speed allowed by the plate rotor (about 4000 x g). Note: Published 10000 rpm for 10 min is not possible for a plate; the plate-rotor speed is an adaptation. [assumed]
+54. Transfer 150 µL of Culture supernatant from culture_plate wells A1:D3 to filter_plate wells A1:D3 (each well). Note: Well-to-well pairing in order; pellet left in the plate. [assumed]
+55. MANUAL: Filter filter_plate (0.22 um) into lcms_plate wells A1:D3 by vacuum or centrifugation. Seal lcms_plate and store at -20 C until LC-HRMS. Note: Filter-plate format assumed. [assumed]
+56. MANUAL: Inject 1 uL per sample (neat filtered supernatant from lcms_plate A1:D3) onto a UPLC HSS T3 column (2.5 um, 100 x 2.1 mm) at 25 C on a Vanquish Flex UHPLC with a Q-Exactive Plus (HESI, ESI+ 3.0 kV and ESI- -2.8 kV in one run, capillary and heater 350 C, sheath/aux/sweep gas 50/15/2 AU, S-lens RF 50%). Mobile phase A 0.1% formic acid in water, B acetonitrile, 0.2 mL/min; gradient: 0-5 min 1% B, 5-7 min 1-30% B, 7-9 min 30-99% B, 9-10 min 99% B, 10-10.1 min 99-1% B, 10.1-15 min 1% B. Full scan m/z 100-800 at 70,000 resolution (AGC 3e6, max injection time 100 ms); MS2 isolation window 4.0 m/z, 17,500 resolution, AGC 1e5, max injection time 50 ms, stepped NCE 30/40/50 eV, N2 collision gas. UV detection at 334 nm. Extract ion chromatograms at m/z 188.08-189.08 (4-DG, about 3.24 min) and m/z 245.10-246.10 (MG, about 2.93 min); compare relative peak areas among strains. Note: No standards described for 4-DG or MG; relative peak areas only (Fig. 2B). Shinorine and porphyra-334 standards (s4.8) are not used here.
+
+Assumptions:
+- Golden Gate details (20 uL: 1 uL BsaI-HF v2, 1 uL T4 ligase, 2 uL buffer, vector:insert 1:2, 30 cycles of 5 min 37 C / 5 min 16 C, DH5alpha transformation, Sanger verification) come from the published version (https://pmc.ncbi.nlm.nih.gov/articles/PMC11983340/). The 2 uL vector, 2 uL insert and 12 uL water split is assumed. One reaction is shown and is repeated for each cassette.
+- Yeast CRISPR transformation conditions (250 uL 50% PEG3350, 36 uL 1 M LiAc, 10 uL 2 mg/mL ssDNA, 250 ng pCRCT, 2000 ng linear insert, 42 C 40 min, selection on -Ura, colony PCR and Sanger) come from the published version, because refs 29 and 30 were not retrieved. Stock concentrations of 250 ng/uL (pCRCT) and 500 ng/uL (insert) and 59 uL water to reach 360 uL are assumed. Transformations are shown in 1.5 mL tubes with competent cell pellets from 5-10 mL cultures at OD600 0.5-0.8.
+- Strain lineage (CEN.PK2 -> SC.L1 tal1 delta -> SC.L2 HIS3::XYL1-3 -> SC.L3 308::mysA+mysB -> SC.L6 NQM1::mysB+mysA -> SC.L26 YP::mysC) is from the published version Tables 1 and 2 (Tables are images in the preprint). SC.L1 is assumed available from an earlier TAL1 knockout. Curing of pCRCT between steps is not described.
+- gRNA sequences, homology-arm lengths (about 40-500 bp), locus coordinates and PCR linearization of inserts are not stated; design 20-nt gRNAs for HIS3, 308a, NQM1 and YPRCd15c, and functionally equivalent strains are acceptable. Competent cell preparation is assumed.
+- Carbon source: the preprint uses 12 g/L glucose + 8 g/L xylose, whereas the published version lists 2% glucose; the preprint medium is used here. Medium also assumed to contain the standard SC-Ura supplements; the published version's supplement mix of 1.4 g/L -His/-Trp/-Leu/-Ura plus 380 mg/L Leu, 76 mg/L Trp and 76 mg/L His can be used instead of the preprint's 1.29 g/L DO Supplement -Ura.
+- Culture adapted from 100 mL SC-Ura in a 250 mL flask (30 C, 200 rpm, 48 h; published version) to 200 uL per well in a 96-well plate (180 uL medium + 20 uL inoculum), with a gas-permeable seal. Evaporation and aeration differ from flasks.
+- Plate layout: culture_plate A1:A3 = SC.L2, B1:B3 = SC.L3, C1:C3 = SC.L6, D1:D3 = SC.L26 (n = 3 biological replicates each). The same layout is kept in filter_plate and lcms_plate.
+- Inoculation: overnight pre-culture in 3 mL SC-Ura (30 C, 200 rpm), adjusted to OD600 1.0 and diluted 1:10 into the culture well to start OD600 about 0.1, identical for all strains (standard practice).
+- Extraction: two freeze-thaw cycles at -80 C / 25 C, centrifugation and 0.22 um filtration follow the published version (10000 rpm, 10 min). Centrifugation is adapted to a plate rotor (about 4000 x g, 10 min), and 150 uL supernatant is transferred to a 0.22 um filter plate and filtered into the collection plate; both are assumptions. Samples are stored at -20 C.
+- LC-HRMS parameters are as in the preprint s4.7. Neat filtered supernatant is injected; peaks are identified by EIC and MS2 and compared by relative peak area, since no 4-DG or MG standards are described. The 0.1 mg/mL shinorine and porphyra-334 standards in s4.8 are not used for this experiment, and no statistical analysis is included.
+- Reagent stocks (BsaI, ligase, buffer, plasmids, inserts, PEG, LiAc, ssDNA) are assumed to be available in tubes with ample volume; container names are assumed.
