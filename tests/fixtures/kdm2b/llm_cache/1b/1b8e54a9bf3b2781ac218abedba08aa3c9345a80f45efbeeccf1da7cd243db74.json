@@ -1,0 +1,326 @@
+{
+ "key": "1b8e54a9bf3b2781ac218abedba08aa3c9345a80f45efbeeccf1da7cd243db74",
+ "stage": "extract",
+ "created": "2026-10-03T17:26:55",
+ "refusal": false,
+ "request": {
+  "model": "claude-sonnet-5-5",
+  "max_tokens": 64000,
+  "system": "You are an expert wet-lab scientist helping convert published biology methods into precise, executable liquid-handling instructions. Be faithful to the paper: never invent results, and mark anything not stated in the paper as an assumption.",
+  "messages": [
+   {
+    "role": "user",
+    "content": [
+     {
+      "type": "text",
+      "text": "TITLE: KDM2B controls HIF levels and activity through its JmjC and CxxC domains\nDOI: 10.64898/2026.03.26.714448\n\nABSTRACT: AbstractHypoxia-inducible factors (HIFs) are key regulators of cellular responses to low oxygen (hypoxia), controlling the expression of genes required for survival and adaptation. KDM2B, a chromatin-modifying enzyme, is a direct target of HIF-1α, but its precise role in regulating HIF and the hypoxia response remains unclear. Here, we investigated the role of KDM2B in the response to hypoxia in a variety of cell lines. Our analysis reveals that KDM2B depletion regulates HIF activity in a cell type-dependent manner, with KDM2B depletion decreasing HIF activity in U2OS and MDA-MB-231 cells and increasing HIF activity in HeLa cells. We show that KDM2B depletion also reduces HIF-1α protein and RNA expression and reduces HIF-1α binding at hypoxia-response elements of its target genes in U2OS and MDA-MB-231 cells. Conversely, overexpression of KDM2B enhances HIF activity and HIF-1α levels in both U2OS and HEK293 cells. Mechanistically, we find that KDM2B requires its JmjC demethylase and CxxC DNA-binding domains for HIF regulation. Furthermore, we demonstrate that KDM2B is required for RNA Pol II recruitment to the promoter of HIF1A. At the cellular level, KDM2B supports cell proliferation, with its depletion impairing proliferation and reducing cell numbers under hypoxic conditions. Our work highlights a new function of KDM2B as a key regulator of HIF-1α expression, acting through its demethylase and DNA-binding functions. Our data indicate that KDM2B is essential for cellular adaptation to hypoxia, impacting both HIF-dependent gene expression and cell survival, and has important implications for our understanding of HIF regulation.\n\n[s4.1] Methods > Reagents and tools table\n\n\n[s4.2] Methods > Cell lines\nHeLa, U2OS, and MDA-MB-231 cell lines were maintained in DMEM supplemented with 10% v/v FBS, 2 mM L-glutamine, 100 units/mL penicillin, and 100 µg/mL streptomycin. U2OS-HRE (hypoxia response element), MDA-MB-231-HRE, HeLa-HRE, and HEK293-HRE luciferase lines were generated in the lab by co-transfection with a HRE luciferase plasmid containing 3 copies of 21 bps of the iNOS 21bp HRE (5’-AGTGACTACGTGCTGCCTAGG-‘3) subcloned into KpnI and MluI restriction sites of the pGL3 promoter vector (Promega), which was kindly gifted by G. Melillo (National Cancer Institute, National Institutes of Health, Bethesda, MD), together with a puromycin-resistance gene containing vector. U2OS-κB luciferase cells were generated in the lab by transfection with the pGL4.32(luc2P/NF-κB-RE/Hygro) vector. Additionally, 0.5μg/mL puromycin was added to cell culture media for U2OS-HRE, MDA-MB-231-HRE, and HEK293-HRE luciferase cell lines, and 150 μg/mL hygromycin for U2OS-κB luciferase cells. Cell lines were cultured for no more than 30 passages and routinely tested for mycoplasma contamination using a MycoAlert Mycoplasma Detection Kit.\n\n[s4.3] Methods > Cell treatments\nHypoxia treatments were performed by incubating cells in an Invivo2 300 hypoxia workstation (Baker Ruskin) at 1% O2, 5% CO2, and 37 °C. To avoid reoxygenation, cells were lysed in the workstation. TNF-α (Peprotech) was dissolved in PBS and used at a final concentration of 10 ng/mL.\n\n[s4.4] Methods > siRNA transfections\nHEK293 cells were transfected in 35mm plates with a final concentration of 27 nM of siRNA by mixing siRNA, 0.12 M CaCl2, HEPES buffered saline (0.156 M NaCl, 0.375 M Na2HPO4, and 10mM HEPES), and water at a final volume of 400 µL and adding to cells. All other cell lines were transfected in 35mm plates with a final concentration of 27 nM of siRNA using Interferin (Poluplus, VWR) transfection reagent. For reverse transfections, the transfection mixture was added to the media immediately before cell seeding.\n\n[s4.9] Methods > Luciferase assay\nCells were lysed in Passive lysis buffer. Luciferase activity was measured using a Luciferase Assay System kit and normalised to protein concentration determined by Bradford assay using Bio-Rad Protein Assay Dye Reagent.\n\nFIGURE LEGENDS\n[Figure 1.] KDM2B is a positive regulator of HIF reporter activity.A) Schematic of the hypoxia response element (HRE)-luciferase plasmid stably expressed in cells to measure HIF activity. B) Luciferase assay analysis in U2OS, MDA-MB-231, and HeLa HRE-luciferase cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Tukey’s test. C) qPCR analysis of KDM2B RNA levels in U2OS, MDA-MB-231, and HeLa HRE-luciferase cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. ACTB was used as a normalising gene. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Tukey’s test. D) Luciferase assay analysis in U2OS and HeLa HRE-luciferase cells cultured at 21% oxygen and transfected with control, KDM2B (0.1 µg), or KDM2B (1 µg) plasmids for 48 hours. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test.\n\n[Figure 2.] KDM2B regulates HIF activity.A) Western blot analysis for the indicated proteins in U2OS and MDA-MB-231 cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. A representative Western blot of three biological replicates is shown. B) qPCR analysis of KDM2B RNA levels in U2OS and MDA-MB-231 cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. ACTB was used as a normalising gene. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Tukey’s test. C) ChIP-qPCR analysis in U2OS cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. ChIP was performed with HIF-1α and non-specific antibody (IgG) immunoprecipitations (IPs), followed by DNA extraction and qPCR analysis at hypoxia response elements (HREs) located on the promoters of BNIP3, CA9, and PHD3 (EGLN3). Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test.\n\n[Figure 3.] KDM2B regulates HIF-1α mRNA and protein expression.A) Western blot analysis for the indicated proteins in U2OS and MDA-MB-231 cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. A representative Western blot of three biological replicates is shown. B) qPCR analysis of HIF1A RNA levels in U2OS and MDA-MB-231cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. ACTB was used as a normalising gene. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Tukey’s test.\n\n[Figure 4.] KDM2B controls HIF activity through its JmjC and CxxC domains.A) Schematic of KDM2B protein domains and loss-of-functions mutations used in this study. B) Luciferase assay analysis in U2OS and HEK293 HRE-luciferase cells cultured at 21% oxygen and transfected with control, KDM2B WT, KDM2B JmjC, KDM2B CxxC, KDM2B PHD, or KDM2B F-box plasmids for 48 hours. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test. C) Western blot analysis for the indicated proteins in U2OS and HEK293 HRE-luciferase cells cultured at 21% oxygen and transfected with control, KDM2B WT, KDM2B JmjC, KDM2B CxxC, KDM2B PHD, or KDM2B F-box plasmids for 48 hours. A representative Western blot of three biological replicates is shown. * Lower band is non-specific. D) qPCR analysis of HIF1A RNA levels in U2OS HRE-luciferase cells cultured at 21% oxygen and transfected with control, KDM2B WT, KDM2B JmjC, KDM2B CxxC, KDM2B PHD, or KDM2B F-box plasmids for 48 hours. ACTB was used as a normalising gene. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test.\n\n[Figure 5.] Recruitment of RNA Pol II to the HIF1A promoter is modulated by KDM2B.A) Schematic of ChIP-qPCR analysis to measure binding of RNAP2 to the HIF1A promoter. B) ChIP-qPCR analysis U2OS cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours. ChIP was performed with RNA Pol II and non-specific antibody (IgG) immunoprecipitations (IPs), followed by DNA extraction and qPCR analysis at the HIF1A promoter. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Tukey’s test. C) ChIP-qPCR analysis in U2OS cells cultured at 21% oxygen and transfected with control, KDM2B WT, KDM2B JmjC, KDM2B CxxC, KDM2B PHD, or KDM2B F-box plasmids for 48 hours. ChIP was performed with RNA Pol II and non-specific antibody (IgG) immunoprecipitations (IPs), followed by DNA extraction and qPCR analysis at the HIF1A promoter. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test. D) Western blot and E) Western blot quantification analysis for KDM2B protein levels in U2OS cells cultured at 21% oxygen and transfected with control, KDM2B WT, KDM2B JmjC, KDM2B CxxC, KDM2B PHD, or KDM2B F-box plasmids for 48 hours. β-actin was used as a normalising protein. A representative Western blot of three biological replicates is shown. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test. * Lower band is non-specific.\n\n[Figure 6.] Cell proliferation is impaired in response to KDM2B depletion in normal oxygen conditions and hypoxia.Cell proliferation assay in A) U2OS and B) MDA-MB-231 cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 96 hours, and exposed or not to 1% oxygen for 72 hours. Data represent mean (n=3 biological replicates) ± SEM. P values for group comparisons were calculated by one-way ANOVA with Dunnett’s test.\n",
+      "cache_control": {
+       "type": "ephemeral"
+      }
+     },
+     {
+      "type": "text",
+      "text": "Convert the experiment below into a liquid-handling protocol for a lab where liquids are held in 96-well plates, tubes or reservoirs and moved by pipetting.\n\nEXPERIMENT: HRE-luciferase reporter assay after KDM2B siRNA knockdown in normoxia and hypoxia\nGOAL: Measure HIF transcriptional activity in U2OS, MDA-MB-231 and HeLa HRE-luciferase cells after KDM2B depletion with or without 1% O2.\nSECTIONS IN BENCH ORDER: s4.2 (Methods > Cell lines), s4.4 (Methods > siRNA transfections), s4.3 (Methods > Cell treatments), s4.9 (Methods > Luciferase assay)\nSUPPORTING SECTIONS: s4.1 (Methods > Reagents and tools table)\nFIGURES: Figure 1B\nDEFERRED METHODS (not described in this paper): none\n\nContainers — only these kinds, with working capacity per well/tube:\n  plate_96: 360 µL\n  tube_1.5ml: 1500 µL\n  tube_15ml: 15000 µL\n  tube_50ml: 50000 µL\n  reservoir: 290000 µL\n  waste: no limit\n- Adapt dishes/flasks/6-well plates to a 96-well plate (scale volumes proportionally to surface area, 96-well ≈ 0.32 cm²) or tubes, and record each adaptation in `assumptions`.\n- Use a container of kind \"waste\" for removed media/supernatant.\n\nSteps:\n- \"transfer\": move volume_ul from source into EACH destination well/tube. Either one source well feeds every destination, or source_wells and dest_wells have equal length and pair in order. Wells are \"A1\" or rectangular ranges \"A1:H12\". Tubes/reservoirs use empty well lists.\n- \"mix\": pipette-mix dest/dest_wells, volume_ul, mix_cycles.\n- \"manual\": anything that is not pipetting (incubate, centrifuge, seal, shake, thermocycle, read plate, image, harvest by scraping, wait). Put the full action with all parameters (time, temperature, speed, settings) in `action`; container fields may be null/empty.\n- Every reagent a transfer draws from must appear in initial_contents or be filled by an earlier step. Stocks with ample volume use volume_ul = null.\n- Lay out conditions (siRNAs, treatments, normoxia/hypoxia, replicates, controls) on explicit, non-overlapping wells, and state the layout in `assumptions`.\n- Include master-mix preparation (e.g. transfection complexes, qPCR mixes) as transfers into tubes.\n- Fill gaps with standard lab practice and set assumed=true on that step/container/content; list every assumption. Commercial kits: follow standard manufacturer volumes and say so.\n- source_quote: copy the exact sentence fragment from the paper behind each step.\n- Keep the protocol to what one person would run for this experiment; do not include analysis.\n"
+     }
+    ]
+   }
+  ],
+  "output_config": {
+   "effort": "high",
+   "format": {
+    "type": "json_schema",
+    "schema": {
+     "$defs": {
+      "Container": {
+       "type": "object",
+       "title": "Container",
+       "properties": {
+        "name": {
+         "type": "string",
+         "description": "Unique label, e.g. 'plate1', 'siRNA_mix_tube'",
+         "title": "Name"
+        },
+        "kind": {
+         "type": "string",
+         "enum": [
+          "plate_96",
+          "tube_1.5ml",
+          "tube_15ml",
+          "tube_50ml",
+          "reservoir",
+          "waste"
+         ],
+         "title": "Kind"
+        },
+        "description": {
+         "type": "string",
+         "description": "What it holds or is for",
+         "title": "Description"
+        },
+        "assumed": {
+         "type": "boolean",
+         "description": "True if the paper does not specify this container",
+         "title": "Assumed"
+        }
+       },
+       "additionalProperties": false,
+       "required": [
+        "name",
+        "kind",
+        "description",
+        "assumed"
+       ]
+      },
+      "Content": {
+       "type": "object",
+       "title": "Content",
+       "properties": {
+        "container": {
+         "type": "string",
+         "title": "Container"
+        },
+        "wells": {
+         "type": "array",
+         "description": "Wells like 'A1' or ranges like 'A1:H12'; empty list for a tube/reservoir",
+         "title": "Wells",
+         "items": {
+          "type": "string"
+         }
+        },
+        "reagent": {
+         "type": "string",
+         "title": "Reagent"
+        },
+        "volume_ul": {
+         "anyOf": [
+          {
+           "type": "number"
+          },
+          {
+           "type": "null"
+          }
+         ],
+         "description": "Volume per well/tube in µL; null means a stock with ample volume",
+         "title": "Volume Ul"
+        },
+        "assumed": {
+         "type": "boolean",
+         "title": "Assumed"
+        }
+       },
+       "additionalProperties": false,
+       "required": [
+        "container",
+        "wells",
+        "reagent",
+        "volume_ul",
+        "assumed"
+       ]
+      },
+      "Step": {
+       "type": "object",
+       "title": "Step",
+       "properties": {
+        "kind": {
+         "type": "string",
+         "enum": [
+          "transfer",
+          "mix",
+          "manual"
+         ],
+         "title": "Kind"
+        },
+        "source": {
+         "anyOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "null"
+          }
+         ],
+         "description": "Source container name (transfer only)",
+         "title": "Source"
+        },
+        "source_wells": {
+         "type": "array",
+         "description": "Source wells/ranges (transfer); empty for tubes",
+         "title": "Source Wells",
+         "items": {
+          "type": "string"
+         }
+        },
+        "dest": {
+         "anyOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "null"
+          }
+         ],
+         "description": "Destination container name (transfer) or container to mix (mix)",
+         "title": "Dest"
+        },
+        "dest_wells": {
+         "type": "array",
+         "description": "Destination wells/ranges (transfer, mix); empty for tubes",
+         "title": "Dest Wells",
+         "items": {
+          "type": "string"
+         }
+        },
+        "volume_ul": {
+         "anyOf": [
+          {
+           "type": "number"
+          },
+          {
+           "type": "null"
+          }
+         ],
+         "description": "µL per destination (transfer) or mix volume (mix)",
+         "title": "Volume Ul"
+        },
+        "reagent": {
+         "type": "string",
+         "description": "What is being moved (transfer); empty otherwise",
+         "title": "Reagent"
+        },
+        "mix_cycles": {
+         "anyOf": [
+          {
+           "type": "integer"
+          },
+          {
+           "type": "null"
+          }
+         ],
+         "description": "Mix repetitions (mix, or post-dispense mix for transfer)",
+         "title": "Mix Cycles"
+        },
+        "action": {
+         "type": "string",
+         "description": "For manual steps: the non-pipetting action with parameters, e.g. 'Incubate plate1 24 h at 37 °C, 5% CO2'. Empty otherwise",
+         "title": "Action"
+        },
+        "source_quote": {
+         "type": "string",
+         "description": "Verbatim text from the paper this step comes from; empty if none",
+         "title": "Source Quote"
+        },
+        "assumed": {
+         "type": "boolean",
+         "description": "True if any value in this step is not stated in the paper",
+         "title": "Assumed"
+        },
+        "note": {
+         "type": "string",
+         "description": "Short clarification, or empty",
+         "title": "Note"
+        }
+       },
+       "additionalProperties": false,
+       "required": [
+        "kind",
+        "source",
+        "source_wells",
+        "dest",
+        "dest_wells",
+        "volume_ul",
+        "reagent",
+        "mix_cycles",
+        "action",
+        "source_quote",
+        "assumed",
+        "note"
+       ]
+      }
+     },
+     "type": "object",
+     "title": "Protocol",
+     "properties": {
+      "title": {
+       "type": "string",
+       "title": "Title"
+      },
+      "containers": {
+       "type": "array",
+       "title": "Containers",
+       "items": {
+        "$ref": "#/$defs/Container"
+       }
+      },
+      "initial_contents": {
+       "type": "array",
+       "title": "Initial Contents",
+       "items": {
+        "$ref": "#/$defs/Content"
+       }
+      },
+      "steps": {
+       "type": "array",
+       "title": "Steps",
+       "items": {
+        "$ref": "#/$defs/Step"
+       }
+      },
+      "assumptions": {
+       "type": "array",
+       "description": "Every value or choice not stated in the paper, one per line",
+       "title": "Assumptions",
+       "items": {
+        "type": "string"
+       }
+      }
+     },
+     "additionalProperties": false,
+     "required": [
+      "title",
+      "containers",
+      "initial_contents",
+      "steps",
+      "assumptions"
+     ]
+    }
+   }
+  }
+ },
+ "response": {
+  "id": "msg_011Cffce257nDfeNH7NwsCbE",
+  "container": null,
+  "content": [
+   {
+    "signature": "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",
+    "thinking": "",
+    "type": "thinking"
+   },
+   {
+    "text": "{\"title\":\"HRE-luciferase reporter assay after KDM2B siRNA knockdown in normoxia and hypoxia (U2OS, MDA-MB-231, HeLa HRE-luciferase cells; 96-well format)\",\"containers\":[{\"name\":\"plate_norm\",\"kind\":\"plate_96\",\"description\":\"96-well (ideally white, clear-bottom) cell plate kept at 21% O2; 3 cell lines x 3 siRNAs x 3 replicate wells\",\"assumed\":true},{\"name\":\"plate_hypo\",\"kind\":\"plate_96\",\"description\":\"96-well (ideally white, clear-bottom) cell plate moved to 1% O2 for the last 24 h; same layout as plate_norm\",\"assumed\":true},{\"name\":\"plate_bradford\",\"kind\":\"plate_96\",\"description\":\"Clear 96-well plate for Bradford protein assay of lysates (norm in A1:C9, hypo in D1:F9)\",\"assumed\":true},{\"name\":\"tube_cells_U2OS\",\"kind\":\"tube_15ml\",\"description\":\"U2OS-HRE cell suspension in complete DMEM for seeding\",\"assumed\":true},{\"name\":\"tube_cells_MDA\",\"kind\":\"tube_15ml\",\"description\":\"MDA-MB-231-HRE cell suspension in complete DMEM for seeding\",\"assumed\":true},{\"name\":\"tube_cells_HeLa\",\"kind\":\"tube_15ml\",\"description\":\"HeLa-HRE cell suspension in complete DMEM for seeding\",\"assumed\":true},{\"name\":\"tube_siCtrl_stock\",\"kind\":\"tube_1.5ml\",\"description\":\"Control siRNA stock, 1 µM\",\"assumed\":true},{\"name\":\"tube_siKDM2B_1_stock\",\"kind\":\"tube_1.5ml\",\"description\":\"KDM2B_1 siRNA stock, 1 µM\",\"assumed\":true},{\"name\":\"tube_siKDM2B_2_stock\",\"kind\":\"tube_1.5ml\",\"description\":\"KDM2B_2 siRNA stock, 1 µM\",\"assumed\":true},{\"name\":\"tube_interferin\",\"kind\":\"tube_1.5ml\",\"description\":\"INTERFERin transfection reagent (Polyplus)\",\"assumed\":false},{\"name\":\"tube_serumfree_DMEM\",\"kind\":\"tube_15ml\",\"description\":\"Serum-free DMEM for diluting transfection complexes\",\"assumed\":true},{\"name\":\"tube_mix_Ctrl\",\"kind\":\"tube_1.5ml\",\"description\":\"Transfection complex master mix, control siRNA\",\"assumed\":true},{\"name\":\"tube_mix_KDM2B_1\",\"kind\":\"tube_1.5ml\",\"description\":\"Transfection complex master mix, KDM2B_1 siRNA\",\"assumed\":true},{\"name\":\"tube_mix_KDM2B_2\",\"kind\":\"tube_1.5ml\",\"description\":\"Transfection complex master mix, KDM2B_2 siRNA\",\"assumed\":true},{\"name\":\"res_PBS\",\"kind\":\"reservoir\",\"description\":\"PBS for washing cells\",\"assumed\":true},{\"name\":\"tube_PLB\",\"kind\":\"tube_15ml\",\"description\":\"1x Passive Lysis Buffer\",\"assumed\":false},{\"name\":\"tube_LAR\",\"kind\":\"tube_15ml\",\"description\":\"Luciferase Assay Reagent (Luciferase Assay System kit)\",\"assumed\":false},{\"name\":\"res_Bradford\",\"kind\":\"reservoir\",\"description\":\"Bio-Rad Protein Assay Dye Reagent, diluted 1:5 in water\",\"assumed\":false},{\"name\":\"waste\",\"kind\":\"waste\",\"description\":\"Liquid waste\",\"assumed\":true}],\"initial_contents\":[{\"container\":\"tube_cells_U2OS\",\"wells\":[],\"reagent\":\"U2OS-HRE cells at 5.5e4 cells/mL in complete DMEM (10% FBS, 2 mM L-glutamine, pen/strep, no puromycin)\",\"volume_ul\":2500,\"assumed\":true},{\"container\":\"tube_cells_MDA\",\"wells\":[],\"reagent\":\"MDA-MB-231-HRE cells at 5.5e4 cells/mL in complete DMEM (10% FBS, 2 mM L-glutamine, pen/strep, no puromycin)\",\"volume_ul\":2500,\"assumed\":true},{\"container\":\"tube_cells_HeLa\",\"wells\":[],\"reagent\":\"HeLa-HRE cells at 5.5e4 cells/mL in complete DMEM (10% FBS, 2 mM L-glutamine, pen/strep, no puromycin)\",\"volume_ul\":2500,\"assumed\":true},{\"container\":\"tube_siCtrl_stock\",\"wells\":[],\"reagent\":\"Control siRNA 1 µM\",\"volume_ul\":null,\"assumed\":true},{\"container\":\"tube_siKDM2B_1_stock\",\"wells\":[],\"reagent\":\"KDM2B_1 siRNA 1 µM\",\"volume_ul\":null,\"assumed\":true},{\"container\":\"tube_siKDM2B_2_stock\",\"wells\":[],\"reagent\":\"KDM2B_2 siRNA 1 µM\",\"volume_ul\":null,\"assumed\":true},{\"container\":\"tube_interferin\",\"wells\":[],\"reagent\":\"INTERFERin transfection reagent\",\"volume_ul\":null,\"assumed\":false},{\"container\":\"tube_serumfree_DMEM\",\"wells\":[],\"reagent\":\"Serum-free DMEM\",\"volume_ul\":null,\"assumed\":true},{\"container\":\"res_PBS\",\"wells\":[],\"reagent\":\"PBS\",\"volume_ul\":null,\"assumed\":true},{\"container\":\"tube_PLB\",\"wells\":[],\"reagent\":\"1x Passive Lysis Buffer\",\"volume_ul\":null,\"assumed\":false},{\"container\":\"tube_LAR\",\"wells\":[],\"reagent\":\"Luciferase Assay Reagent\",\"volume_ul\":null,\"assumed\":false},{\"container\":\"res_Bradford\",\"wells\":[],\"reagent\":\"Bio-Rad Protein Assay Dye Reagent, 1:5 diluted\",\"volume_ul\":null,\"assumed\":true}],\"steps\":[{\"kind\":\"manual\",\"source\":null,\"source_wells\":[],\"dest\":null,\"dest_wells\":[],\"volume_ul\":null,\"reagent\":\"\",\"mix_cycles\":null,\"action\":\"Harvest exponentially growing U2OS-HRE, MDA-MB-231-HRE and HeLa-HRE cells (maintained in DMEM + 10% FBS, 2 mM L-glutamine, 100 U/mL penicillin, 100 µg/mL streptomycin, with 0.5 µg/mL puromycin for the HRE lines) by trypsinisation, count, and resuspend each line at 5.5e4 cells/mL in complete DMEM without puromycin in tube_cells_U2OS, tube_cells_MDA and tube_cells_HeLa\",\"source_quote\":\"HeLa, U2OS, and MDA-MB-231 cell lines were maintained in DMEM supplemented with 10% v/v FBS, 2 mM L-glutamine, 100 units/mL penicillin, and 100 µg/mL streptomycin.\",\"assumed\":true,\"note\":\"Seeding density and cell preparation are not stated in the paper.\"},{\"kind\":\"transfer\",\"source\":\"tube_serumfree_DMEM\",\"source_wells\":[],\"dest\":\"tube_mix_Ctrl\",\"dest_wells\":[],\"volume_ul\":138,\"reagent\":\"Serum-free DMEM\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"\",\"assumed\":true,\"note\":\"Complex master mix prepared for 20 wells (18 needed + overage).\"},{\"kind\":\"transfer\",\"source\":\"tube_serumfree_DMEM\",\"source_wells\":[],\"dest\":\"tube_mix_KDM2B_1\",\"dest_wells\":[],\"volume_ul\":138,\"reagent\":\"Serum-free DMEM\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_serumfree_DMEM\",\"source_wells\":[],\"dest\":\"tube_mix_KDM2B_2\",\"dest_wells\":[],\"volume_ul\":138,\"reagent\":\"Serum-free DMEM\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_siCtrl_stock\",\"source_wells\":[],\"dest\":\"tube_mix_Ctrl\",\"dest_wells\":[],\"volume_ul\":54,\"reagent\":\"Control siRNA 1 µM\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"with a final concentration of 27 nM of siRNA\",\"assumed\":true,\"note\":\"2.7 µL of 1 µM siRNA per 100 µL final well volume gives 27 nM; x20 wells.\"},{\"kind\":\"transfer\",\"source\":\"tube_siKDM2B_1_stock\",\"source_wells\":[],\"dest\":\"tube_mix_KDM2B_1\",\"dest_wells\":[],\"volume_ul\":54,\"reagent\":\"KDM2B_1 siRNA 1 µM\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"with a final concentration of 27 nM of siRNA\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_siKDM2B_2_stock\",\"source_wells\":[],\"dest\":\"tube_mix_KDM2B_2\",\"dest_wells\":[],\"volume_ul\":54,\"reagent\":\"KDM2B_2 siRNA 1 µM\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"with a final concentration of 27 nM of siRNA\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_interferin\",\"source_wells\":[],\"dest\":\"tube_mix_Ctrl\",\"dest_wells\":[],\"volume_ul\":8,\"reagent\":\"INTERFERin\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"using Interferin (Poluplus, VWR) transfection reagent\",\"assumed\":true,\"note\":\"0.4 µL per well x20 wells; volume per well scaled to 96-well format.\"},{\"kind\":\"transfer\",\"source\":\"tube_interferin\",\"source_wells\":[],\"dest\":\"tube_mix_KDM2B_1\",\"dest_wells\":[],\"volume_ul\":8,\"reagent\":\"INTERFERin\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"using Interferin (Poluplus, VWR) transfection reagent\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_interferin\",\"source_wells\":[],\"dest\":\"tube_mix_KDM2B_2\",\"dest_wells\":[],\"volume_ul\":8,\"reagent\":\"INTERFERin\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"using Interferin (Poluplus, VWR) transfection reagent\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"mix\",\"source\":null,\"source_wells\":[],\"dest\":\"tube_mix_Ctrl\",\"dest_wells\":[],\"volume_ul\":100,\"reagent\":\"\",\"mix_cycles\":5,\"action\":\"\",\"source_quote\":\"\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"mix\",\"source\":null,\"source_wells\":[],\"dest\":\"tube_mix_KDM2B_1\",\"dest_wells\":[],\"volume_ul\":100,\"reagent\":\"\",\"mix_cycles\":5,\"action\":\"\",\"source_quote\":\"\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"mix\",\"source\":null,\"source_wells\":[],\"dest\":\"tube_mix_KDM2B_2\",\"dest_wells\":[],\"volume_ul\":100,\"reagent\":\"\",\"mix_cycles\":5,\"action\":\"\",\"source_quote\":\"\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"manual\",\"source\":null,\"source_wells\":[],\"dest\":null,\"dest_wells\":[],\"volume_ul\":null,\"reagent\":\"\",\"mix_cycles\":null,\"action\":\"Incubate the three transfection master mixes 10 min at room temperature to allow complex formation\",\"source_quote\":\"\",\"assumed\":true,\"note\":\"Standard INTERFERin practice; not stated in paper.\"},{\"kind\":\"transfer\",\"source\":\"tube_mix_Ctrl\",\"source_wells\":[],\"dest\":\"plate_norm\",\"dest_wells\":[\"A1:A9\"],\"volume_ul\":10,\"reagent\":\"Control siRNA/INTERFERin complex\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"For reverse transfections, the transfection mixture was added to the media immediately before cell seeding.\",\"assumed\":true,\"note\":\"Complex added to empty wells before seeding (reverse transfection).\"},{\"kind\":\"transfer\",\"source\":\"tube_mix_KDM2B_1\",\"source_wells\":[],\"dest\":\"plate_norm\",\"dest_wells\":[\"B1:B9\"],\"volume_ul\":10,\"reagent\":\"KDM2B_1 siRNA/INTERFERin complex\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"For reverse transfections, the transfection mixture was added to the media immediately before cell seeding.\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_mix_KDM2B_2\",\"source_wells\":[],\"dest\":\"plate_norm\",\"dest_wells\":[\"C1:C9\"],\"volume_ul\":10,\"reagent\":\"KDM2B_2 siRNA/INTERFERin complex\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"For reverse transfections, the transfection mixture was added to the media immediately before cell seeding.\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_mix_Ctrl\",\"source_wells\":[],\"dest\":\"plate_hypo\",\"dest_wells\":[\"A1:A9\"],\"volume_ul\":10,\"reagent\":\"Control siRNA/INTERFERin complex\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"For reverse transfections, the transfection mixture was added to the media immediately before cell seeding.\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_mix_KDM2B_1\",\"source_wells\":[],\"dest\":\"plate_hypo\",\"dest_wells\":[\"B1:B9\"],\"volume_ul\":10,\"reagent\":\"KDM2B_1 siRNA/INTERFERin complex\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"For reverse transfections, the transfection mixture was added to the media immediately before cell seeding.\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_mix_KDM2B_2\",\"source_wells\":[],\"dest\":\"plate_hypo\",\"dest_wells\":[\"C1:C9\"],\"volume_ul\":10,\"reagent\":\"KDM2B_2 siRNA/INTERFERin complex\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"For reverse transfections, the transfection mixture was added to the media immediately before cell seeding.\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_cells_U2OS\",\"source_wells\":[],\"dest\":\"plate_norm\",\"dest_wells\":[\"A1:C3\"],\"volume_ul\":90,\"reagent\":\"U2OS-HRE cell suspension\",\"mix_cycles\":2,\"action\":\"\",\"source_quote\":\"cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours\",\"assumed\":true,\"note\":\"U2OS in columns 1-3; ~5,000 cells/well; final volume 100 µL/well.\"},{\"kind\":\"transfer\",\"source\":\"tube_cells_MDA\",\"source_wells\":[],\"dest\":\"plate_norm\",\"dest_wells\":[\"A4:C6\"],\"volume_ul\":90,\"reagent\":\"MDA-MB-231-HRE cell suspension\",\"mix_cycles\":2,\"action\":\"\",\"source_quote\":\"cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours\",\"assumed\":true,\"note\":\"MDA-MB-231 in columns 4-6.\"},{\"kind\":\"transfer\",\"source\":\"tube_cells_HeLa\",\"source_wells\":[],\"dest\":\"plate_norm\",\"dest_wells\":[\"A7:C9\"],\"volume_ul\":90,\"reagent\":\"HeLa-HRE cell suspension\",\"mix_cycles\":2,\"action\":\"\",\"source_quote\":\"cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours\",\"assumed\":true,\"note\":\"HeLa in columns 7-9.\"},{\"kind\":\"transfer\",\"source\":\"tube_cells_U2OS\",\"source_wells\":[],\"dest\":\"plate_hypo\",\"dest_wells\":[\"A1:C3\"],\"volume_ul\":90,\"reagent\":\"U2OS-HRE cell suspension\",\"mix_cycles\":2,\"action\":\"\",\"source_quote\":\"cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_cells_MDA\",\"source_wells\":[],\"dest\":\"plate_hypo\",\"dest_wells\":[\"A4:C6\"],\"volume_ul\":90,\"reagent\":\"MDA-MB-231-HRE cell suspension\",\"mix_cycles\":2,\"action\":\"\",\"source_quote\":\"cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_cells_HeLa\",\"source_wells\":[],\"dest\":\"plate_hypo\",\"dest_wells\":[\"A7:C9\"],\"volume_ul\":90,\"reagent\":\"HeLa-HRE cell suspension\",\"mix_cycles\":2,\"action\":\"\",\"source_quote\":\"cells cultured at 21% oxygen, transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"manual\",\"source\":null,\"source_wells\":[],\"dest\":null,\"dest_wells\":[],\"volume_ul\":null,\"reagent\":\"\",\"mix_cycles\":null,\"action\":\"Incubate plate_norm and plate_hypo for 24 h at 37 °C, 5% CO2, 21% O2\",\"source_quote\":\"transfected with control, KDM2B_1, or KDM2B_2 siRNA for 48 hours, and exposed or not to 1% oxygen for 24 hours\",\"assumed\":true,\"note\":\"Hypoxia is applied for the final 24 h of the 48 h siRNA treatment.\"},{\"kind\":\"manual\",\"source\":null,\"source_wells\":[],\"dest\":null,\"dest_wells\":[],\"volume_ul\":null,\"reagent\":\"\",\"mix_cycles\":null,\"action\":\"Move plate_hypo into the Invivo2 300 hypoxia workstation and incubate 24 h at 1% O2, 5% CO2, 37 °C; keep plate_norm for the same 24 h at 21% O2, 5% CO2, 37 °C (total 48 h after transfection)\",\"source_quote\":\"Hypoxia treatments were performed by incubating cells in an Invivo2 300 hypoxia workstation (Baker Ruskin) at 1% O2, 5% CO2, and 37 °C.\",\"assumed\":false,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"plate_hypo\",\"source_wells\":[\"A1:C9\"],\"dest\":\"waste\",\"dest_wells\":[],\"volume_ul\":100,\"reagent\":\"Culture medium\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"To avoid reoxygenation, cells were lysed in the workstation.\",\"assumed\":true,\"note\":\"Performed inside the hypoxia workstation.\"},{\"kind\":\"transfer\",\"source\":\"res_PBS\",\"source_wells\":[],\"dest\":\"plate_hypo\",\"dest_wells\":[\"A1:C9\"],\"volume_ul\":100,\"reagent\":\"PBS\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"\",\"assumed\":true,\"note\":\"PBS wash assumed; use PBS pre-equilibrated in the workstation.\"},{\"kind\":\"transfer\",\"source\":\"plate_hypo\",\"source_wells\":[\"A1:C9\"],\"dest\":\"waste\",\"dest_wells\":[],\"volume_ul\":100,\"reagent\":\"PBS\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_PLB\",\"source_wells\":[],\"dest\":\"plate_hypo\",\"dest_wells\":[\"A1:C9\"],\"volume_ul\":20,\"reagent\":\"1x Passive Lysis Buffer\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"Cells were lysed in Passive lysis buffer.\",\"assumed\":true,\"note\":\"20 µL/well is the manufacturer's standard for 96-well plates; lysed inside the workstation.\"},{\"kind\":\"transfer\",\"source\":\"plate_norm\",\"source_wells\":[\"A1:C9\"],\"dest\":\"waste\",\"dest_wells\":[],\"volume_ul\":100,\"reagent\":\"Culture medium\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"res_PBS\",\"source_wells\":[],\"dest\":\"plate_norm\",\"dest_wells\":[\"A1:C9\"],\"volume_ul\":100,\"reagent\":\"PBS\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"plate_norm\",\"source_wells\":[\"A1:C9\"],\"dest\":\"waste\",\"dest_wells\":[],\"volume_ul\":100,\"reagent\":\"PBS\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_PLB\",\"source_wells\":[],\"dest\":\"plate_norm\",\"dest_wells\":[\"A1:C9\"],\"volume_ul\":20,\"reagent\":\"1x Passive Lysis Buffer\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"Cells were lysed in Passive lysis buffer.\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"manual\",\"source\":null,\"source_wells\":[],\"dest\":null,\"dest_wells\":[],\"volume_ul\":null,\"reagent\":\"\",\"mix_cycles\":null,\"action\":\"Shake plate_norm and plate_hypo (the latter still in the workstation) for 15 min at room temperature to lyse cells\",\"source_quote\":\"Cells were lysed in Passive lysis buffer.\",\"assumed\":true,\"note\":\"Lysis time per standard Passive Lysis Buffer protocol.\"},{\"kind\":\"transfer\",\"source\":\"plate_norm\",\"source_wells\":[\"A1:C9\"],\"dest\":\"plate_bradford\",\"dest_wells\":[\"A1:C9\"],\"volume_ul\":5,\"reagent\":\"Cell lysate\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"normalised to protein concentration determined by Bradford assay using Bio-Rad Protein Assay Dye Reagent\",\"assumed\":true,\"note\":\"5 µL of lysate reserved for protein determination; 15 µL remains for luciferase.\"},{\"kind\":\"transfer\",\"source\":\"plate_hypo\",\"source_wells\":[\"A1:C9\"],\"dest\":\"plate_bradford\",\"dest_wells\":[\"D1:F9\"],\"volume_ul\":5,\"reagent\":\"Cell lysate\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"normalised to protein concentration determined by Bradford assay using Bio-Rad Protein Assay Dye Reagent\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"res_Bradford\",\"source_wells\":[],\"dest\":\"plate_bradford\",\"dest_wells\":[\"A1:F9\"],\"volume_ul\":250,\"reagent\":\"Bio-Rad Protein Assay Dye Reagent (1:5 diluted)\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"using Bio-Rad Protein Assay Dye Reagent\",\"assumed\":true,\"note\":\"Standard microplate Bradford volumes.\"},{\"kind\":\"manual\",\"source\":null,\"source_wells\":[],\"dest\":null,\"dest_wells\":[],\"volume_ul\":null,\"reagent\":\"\",\"mix_cycles\":null,\"action\":\"Incubate plate_bradford 5 min at room temperature and read absorbance at 595 nm (BSA standard curve prepared separately)\",\"source_quote\":\"normalised to protein concentration determined by Bradford assay\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"transfer\",\"source\":\"tube_LAR\",\"source_wells\":[],\"dest\":\"plate_norm\",\"dest_wells\":[\"A1:C9\"],\"volume_ul\":100,\"reagent\":\"Luciferase Assay Reagent\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"Luciferase activity was measured using a Luciferase Assay System kit\",\"assumed\":true,\"note\":\"Standard manufacturer volume of 100 µL reagent per well.\"},{\"kind\":\"transfer\",\"source\":\"tube_LAR\",\"source_wells\":[],\"dest\":\"plate_hypo\",\"dest_wells\":[\"A1:C9\"],\"volume_ul\":100,\"reagent\":\"Luciferase Assay Reagent\",\"mix_cycles\":null,\"action\":\"\",\"source_quote\":\"Luciferase activity was measured using a Luciferase Assay System kit\",\"assumed\":true,\"note\":\"\"},{\"kind\":\"manual\",\"source\":null,\"source_wells\":[],\"dest\":null,\"dest_wells\":[],\"volume_ul\":null,\"reagent\":\"\",\"mix_cycles\":null,\"action\":\"Measure luminescence of plate_norm and plate_hypo in a plate luminometer (2 s delay, 10 s integration); normalise luminescence to protein concentration from Bradford assay\",\"source_quote\":\"Luciferase activity was measured using a Luciferase Assay System kit and normalised to protein concentration determined by Bradford assay\",\"assumed\":true,\"note\":\"Luminometer settings assumed.\"}],\"assumptions\":[\"Layout on both plate_norm (21% O2) and plate_hypo (1% O2): rows A/B/C = control / KDM2B_1 / KDM2B_2 siRNA; columns 1-3 = U2OS-HRE, 4-6 = MDA-MB-231-HRE, 7-9 = HeLa-HRE; the 3 columns per cell line are the 3 replicates. Replicates are in-plate wells rather than independent experiments.\",\"Plate_bradford layout: lysates from plate_norm in A1:C9, from plate_hypo in D1:F9.\",\"35 mm dish scaled to a 96-well plate (~0.32 cm2 vs ~9.6 cm2) and rounded to 100 µL final volume per well (10 µL transfection complex + 90 µL cell suspension).\",\"Final siRNA concentration 27 nM as in the paper; achieved with 2.7 µL of an assumed 1 µM siRNA stock per well. The INTERFERin amount (0.4 µL/well) and 10 min complex formation are assumed standard manufacturer values; calcium phosphate transfection (HEK293) not used here.\",\"Master mixes prepared for 20 wells per siRNA (18 needed) in serum-free DMEM.\",\"Seeding density ~5,000 cells/well (5.5e4 cells/mL) is assumed; seeding medium assumed to omit puromycin; cell harvest and counting are not detailed in the paper.\",\"Reverse transfection: complex added to empty wells then cells seeded on top, mixed with 2 cycles after dispensing.\",\"Timeline assumed from Figure 1B legend: 48 h siRNA treatment, with the hypoxia plate placed at 1% O2 for the final 24 h; plate_norm stays at 21% O2.\",\"PBS wash before lysis assumed; medium removed from plates fully before adding lysis buffer; hypoxic plate handled and lysed inside the hypoxia workstation to avoid reoxygenation.\",\"Passive Lysis Buffer 20 µL/well, 15 min shaking; 5 µL lysate used for Bradford; luciferase reagent 100 µL added to the remaining 15 µL lysate directly in the cell plate (white plate assumed). Bradford dye diluted 1:5, 250 µL/well; standard curve prepared separately.\",\"Luminometer settings (2 s delay, 10 s integration) are assumed.\",\"Puromycin (0.5 µg/mL) selection of HRE lines is used during routine maintenance; not included during the siRNA experiment (assumed).\",\"Volumes of stocks (siRNA, INTERFERin, buffers) are listed as null/ample; cell suspension tubes assumed to contain 2500 µL.\"]}",
+    "type": "text"
+   }
+  ],
+  "diagnostics": null,
+  "model": "claude-sonnet-5-5",
+  "role": "assistant",
+  "stop_details": null,
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 0,
+    "ephemeral_5m_input_tokens": 6925
+   },
+   "cache_creation_input_tokens": 6925,
+   "cache_read_input_tokens": 0,
+   "inference_geo": "global",
+   "input_tokens": 1034,
+   "output_tokens": 15186,
+   "output_tokens_details": {
+    "thinking_tokens": 5414
+   },
+   "service_tier": "standard"
+  }
+ }
+}
