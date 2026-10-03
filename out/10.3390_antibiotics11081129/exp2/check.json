@@ -1,0 +1,27 @@
+[
+  {
+    "step": 12,
+    "severity": "error",
+    "message": "culture_plate_1 A1 reaches 2005 µL, above plate_96_deep capacity 2000 µL"
+  },
+  {
+    "step": 13,
+    "severity": "error",
+    "message": "culture_plate_2 A1 reaches 2005 µL, above plate_96_deep capacity 2000 µL"
+  },
+  {
+    "step": 14,
+    "severity": "error",
+    "message": "culture_plate_3 A1 reaches 2005 µL, above plate_96_deep capacity 2000 µL"
+  },
+  {
+    "step": 15,
+    "severity": "error",
+    "message": "culture_plate_4 A1 reaches 2005 µL, above plate_96_deep capacity 2000 µL"
+  },
+  {
+    "step": 16,
+    "severity": "error",
+    "message": "culture_plate_5 A1 reaches 2005 µL, above plate_96_deep capacity 2000 µL"
+  }
+]

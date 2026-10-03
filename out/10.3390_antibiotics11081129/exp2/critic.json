@@ -1,0 +1,60 @@
+{
+  "verdict": "major_issues",
+  "summary": "The protocol follows the paper's overall workflow and the Table 1 doses are correct, but there are several real problems. The deep-well overfill flagged by the automated check is real. The 1 mL of LB plus 5 µL of inoculum plus 1 mL of glycerol comes to 2005 µL, and the 5 µL inoculum is an invented value. The empty H12 stock well is used as a blank, which conflicts with the layout needed for WT and G_blank controls. The paper only says 'mix' for the glycerol step, and the paper's 1 mL + 1 mL volumes are kept even though they overfill. The bulk antibiotic-LB volume, the antibiotic-free LB control and the solvent control are also mishandled. Several assumed details are internally inconsistent.",
+  "issues": [
+    {
+      "step": 12,
+      "severity": "major",
+      "issue": "Culture plate wells reach 2005 µL (1000 µL LB + 5 µL inoculum + 1000 µL glycerol), above the 2000 µL deep-well capacity. This is the cause of the automated check error and applies to steps 12-16. The cause is the invented 5 µL inoculum in steps 6-10 added to the paper's 1 mL + 1 mL volumes. The assumption note claims 2 mL is 'at the plate working capacity', which is not valid with the extra 5 µL. A well filled to 2 mL has no headspace for mixing, so mixing 5 times would spill or cross-contaminate wells.",
+      "suggestion": "Reduce the inoculum (e.g. 1-2 µL) and/or pre-fill 995 µL LB so the total is ≤2000 µL, or better, use a plate with greater headroom (or remove 5 µL before adding glycerol). Alternatively, add 1 mL of glycerol only after removing a small volume, or mix with a smaller working volume. State clearly that the paper's 1 mL + 1 mL implies a full 2 mL well and that mixing must be gentle. Note: this is unavoidable if the paper's volumes are followed, so flag the departure as an assumption."
+    },
+    {
+      "step": 6,
+      "severity": "major",
+      "issue": "Inoculum volume (5 µL) from glycerol stock is invented. It also pushes the wells over capacity (see step 12). Using the 20 µL pipette to transfer 5 µL from a frozen glycerol stock needs the stocks to be thawed or the tip to scrape the frozen surface, which is not stated.",
+      "suggestion": "Use a smaller inoculum (1-2 µL), or state that it is unspecified and that stocks should be thawed or the surface scraped. Keep the paper-stated volumes where possible. Add a manual thaw/handling step for stock plates."
+    },
+    {
+      "step": 6,
+      "severity": "major",
+      "issue": "Layout: the protocol assumes H12 of every stock plate is empty and uses it as the uninoculated blank, but the library has 447 knockouts plus WT over 5 plates (480 wells), so the plates are essentially full (5 x 96 = 480 wells; 447 + WT leaves about 32 free wells). The claim that H12 is empty on every plate and that WT is present on every plate is not supported by the paper and may not match the real layout. Also, if H12 is empty, the blank is not 'inoculated with the same medium and antibiotic', which is fine, but the blank well must still get the 297 µL antibiotic-LB.",
+      "suggestion": "Mark the layout as an assumption to be matched to the actual library map. Make sure at least one WT well and one uninoculated medium well per plate are explicitly defined, and note that G_blank comes from medium-only wells."
+    },
+    {
+      "step": 28,
+      "severity": "major",
+      "issue": "Bulk antibiotic-LB volume: 146853 µL LB + 147 µL stock = 147000 µL, but the 3% overage is based on 142.56 mL needed. That is OK, but one reservoir holding 147 mL is above the claimed 290 mL capacity only on paper; OT-2 multichannel reservoirs typically are 12-channel, with ~22 mL per channel, so a single 147 mL reservoir is not realistic. Also the transfer of 146.9 mL as a single 'transfer' is not a liquid-handling step.",
+      "suggestion": "Prepare the antibiotic-LB manually in a bottle and use refilled reservoirs (e.g. 12-channel reservoir refilled, or reservoir per plate). Mark the bulk preparation as MANUAL. Alternatively split into per-plate batches (~30 mL per plate)."
+    },
+    {
+      "step": 29,
+      "severity": "major",
+      "issue": "Azithromycin 7.5 mg/mL in DMSO at 1000x gives 0.1% DMSO, but no solvent-matched control is included, and the assumption states one is 'advised but not included'. Also, the paper's WT growth is compared to LB alone, so a DMSO control would be needed for compounds dissolved in DMSO. The paper says compounds were 'readily soluble in LB', which suggests no organic solvent; assuming DMSO contradicts this. Azithromycin stock preparation (filter-sterilising, DMSO) is not a listed step either.",
+      "suggestion": "Assume aqueous/LB-soluble stocks per the paper, or mark DMSO as an assumption and add a solvent control. Add an explicit manual step for stock preparation and filter sterilisation."
+    },
+    {
+      "step": 27,
+      "severity": "minor",
+      "issue": "Plates are stored at -20 °C 'sealed or covered', but no cover or seal step is written, and the paper does not describe one. Also, the 10 plates are never given a step that creates the antibiotic-free LB control condition (the full screen includes LB alone, Figs 1-3).",
+      "suggestion": "Add a note about covering stored plates (assumption) and add the antibiotic-free LB condition (LB alone, 297 µL) as a separate step or explicit repeat."
+    },
+    {
+      "step": 34,
+      "severity": "minor",
+      "issue": "Thawing: the plates are assumed thawed at room temperature, but the paper adds LB straight to the pre-inoculated plates; the assumption is flagged but alters the lag phase of cells, and condensation on a frozen plate could affect imaging.",
+      "suggestion": "Keep it as a flagged assumption and note that thawing time should be consistent across plates."
+    },
+    {
+      "step": 46,
+      "severity": "minor",
+      "issue": "Using G_blank from the uninoculated H12 wells: the paper does not say how G_blank was determined. The 48 h run time is assumed from the MIC readout; this is reasonable but the Growth Profiler can only hold 10 plates, so all 10 plates run at once, which is consistent with the paper.",
+      "suggestion": "Keep, but label G_blank source as an assumption."
+    },
+    {
+      "step": 0,
+      "severity": "minor",
+      "issue": "Only one of 18 compounds is written out (the other 17 plus LB alone are left as 'repeat'). Also the assumptions list Sigma and TCI sourcing but the azithromycin entry in the containers does not state supplier.",
+      "suggestion": "Provide a table of compound, stock concentration and stock volume for each of the 18 compounds, or clearly parametrise the protocol."
+    }
+  ]
+}
