@@ -3,13 +3,14 @@
 If a prompt/schema/model changes, the cache key changes and this fails with a cache miss:
 re-record by running the CLI with --cache refresh and copying .cache/llm into the fixture.
 """
+import json
 import shutil
 from pathlib import Path
 
 from paper2protocol import cli, llm
 
-FIX = Path(__file__).parent / "fixtures" / "kdm2b"
-DOI = "10.64898/2026.03.26.714448"
+FIX = Path(__file__).parent / "fixtures" / "plos_rna"
+DOI = "10.1371/journal.pone.0246302"
 
 
 def test_list_and_convert_from_cache(tmp_path, monkeypatch, capsys):
@@ -20,14 +21,15 @@ def test_list_and_convert_from_cache(tmp_path, monkeypatch, capsys):
 
     cli.main(["--cache", "only", "--out", str(tmp_path / "out"), "list", DOI])
     listed = capsys.readouterr().out
-    assert "1. HRE-luciferase reporter assay" in listed
-    assert "[Figure 1B]" in listed
+    assert "2. RNA extraction from clinical" in listed
+    assert "Figure 1, Figure 2" in listed
 
-    cli.main(["--cache", "only", "--out", str(tmp_path / "out"), "convert", DOI, "-e", "1"])
-    text = (out / "exp1" / "protocol.txt").read_text()
+    cli.main(["--cache", "only", "--out", str(tmp_path / "out"), "convert", DOI, "-e", "2"])
+    text = (out / "exp2" / "protocol.txt").read_text()
     assert "Steps:" in text and "Transfer" in text and "MANUAL:" in text
-    assert (out / "exp1" / "critic.json").exists()
-    assert (out / "exp1" / "sufficiency.json").exists()
+    assert (out / "exp2" / "critic.json").exists()
+    assert (out / "exp2" / "sufficiency.json").exists()
+    assert json.loads((out / "exp2" / "web_access.json").read_text())["flags"] == []
 
 
 def test_convert_stops_on_reject(tmp_path, monkeypatch):

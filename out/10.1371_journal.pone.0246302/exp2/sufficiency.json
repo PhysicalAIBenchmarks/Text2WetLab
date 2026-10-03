@@ -1,0 +1,63 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the reagent volumes (Table 1), the OT-2 incubation and magnet timings, and the inactivation step. The deferred qPCR and MMkit procedures were recovered from the Thermo Fisher manuals. The remaining gaps are robot and KingFisher script parameters, carrier RNA identity, master mix and the OT-2 mixing volume. Each has a defensible standard default and none changes what the experiment measures, so none is 'missing'.",
+  "gaps": [
+    {
+      "detail": "qPCR reaction composition, volumes, cycling conditions and controls ('conditions recommended by the manufacturer')",
+      "why_needed": "Ct values for orf1ab, S, N and RNaseP are the main readout",
+      "status": "resolved",
+      "resolution": "Per 20 µL reaction mix: 6.25 µL 4X master mix, 1.25 µL 2019-nCoV assay (20X), 1.25 µL RNase P assay (20X), 11.25 µL RT-PCR grade water. Prepare with 10% overage, one mix per assay (orf1ab, S, N), duplexed with RNase P. Add 5 µL extracted nucleic acid for a 25 µL total. Run one 2019-nCoV Control (1 µL + 4 µL water) and one NTC per assay per plate. Cycling is Standard mode with comparative Ct. TaqPath 1-Step RT-qPCR Master Mix CG: 25°C 2 min (UNG), 50°C 15 min (RT), 95°C 2 min, then 40 cycles of 95°C 3 s and 60°C 30 s. The manual's Fast Virus 1-Step mix uses a shorter 5 min RT and 20 s activation. The manual calls a result positive at Ct < 37, inconclusive at 37–40, and negative at Ct = 40 or undetermined with a valid RNase P. A sample is SARS-CoV-2 positive if any two of the three assays are positive.",
+      "source": "https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019096_TaqMan2019nCoVAssayKit_PI.pdf"
+    },
+    {
+      "detail": "Which master mix was used for qPCR",
+      "why_needed": "The cycling program (RT time, activation time) depends on the master mix; the paper does not name it",
+      "status": "assumable",
+      "resolution": "Use TaqPath 1-Step RT-qPCR Master Mix, CG (A15299/A15300), the first-listed option in the manual, with the standard program above on the CFX96 Touch.",
+      "source": "https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019096_TaqMan2019nCoVAssayKit_PI.pdf"
+    },
+    {
+      "detail": "MMkit commercial procedure ('according to manufacturer instructions') and the Lysis/Binding solution ratio",
+      "why_needed": "This is the reference arm. The paper states 300 µL Lysis + 300 µL Binding per sample, but the current manual gives 350 + 350 µL for 700 µL total.",
+      "status": "resolved",
+      "resolution": "Plate setup per well: Wash Plate 1 with 500 µL Wash Solution 1 (deep well), Wash Plate 2 with 500 µL Wash Solution 2 (deep well), Elution plate with 90 µL Elution Buffer (standard plate), plus a tip comb. Bead/PK mix per sample is 20 µL beads + 10 µL Proteinase K (20 mg/mL), with 10% overage; vortex the beads first. Add 30 µL bead/PK mix to each well, then 200 µL sample, then 700 µL Lysis/Binding solution. Mix the Lysis/Binding solution by inverting at least 10 times. Load the plates and run the MagMAX_CORE script. Use the 700 µL total from Table 1 and note the paper/manual discrepancy in the 300/300 vs 350/350 split.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0015944_MagMAXCORE_NA_Kit_UG.pdf (Tables 1 and 8, Simple Workflow); paper s2.3"
+    },
+    {
+      "detail": "KingFisher/MagMAX Express-96 script parameters (MagMAX_CORE_KF-96) used for MMkit and MMin-house",
+      "why_needed": "Mixing, collection and elution times and the elution heating step are defined inside the instrument script",
+      "status": "assumable",
+      "resolution": "Use the Thermo-supplied MagMAX_CORE_KF-96.bdz script unmodified. It is downloaded from the kit's product literature page; the version with heated elution is the default, and a no_heat variant exists. The current user guide (Rev D) no longer covers the Express-96, so internal step times could not be retrieved. For MMin-house, put 40 µL beads, 500 µL isopropanol and 500 µL sample in each deep-well plate well, 500 µL 70% ethanol in each of the two wash plates, and 90 µL Elution Buffer in the elution plate.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0015945-MagMAXCORE-Mech-Lysis-Module-UG.pdf; https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0015944_MagMAXCORE_NA_Kit_UG.pdf"
+    },
+    {
+      "detail": "OT-2 liquid-handling parameters (aspirate/dispense heights, flow rates, mix volume for the 5 mixes, tip handling, magnet engage height, pipette type, plate and labware definitions)",
+      "why_needed": "Needed to program the robot. The paper defers them to a GitHub repository, which was deliberately not consulted.",
+      "status": "assumable",
+      "resolution": "Paper-stated parameters: 40 µL beads, 250 µL isopropanol and 250 µL inactivated sample per well in a deep-well plate. Mix by pipetting 5 times, then incubate 5 min at room temperature. Engage the GEN1 magnet for 4 min, then remove and discard the supernatant. Add 500 µL 70% ethanol, remove and discard, and repeat once. Air dry for 4 min. Disengage the magnet, add 100 µL Elution Buffer, and wait 30 s. Re-engage the magnet for 90 s, then transfer the supernatant to a 96-well plate. Defaults for the unstated parameters: mix volume of about 200–300 µL, pipetting slowly near the well bottom, aspirating supernatant slowly at the well bottom, and a fresh tip for each transfer or well.",
+      "source": "standard practice; stated parameters from paper s2.3"
+    },
+    {
+      "detail": "Carrier RNA identity and final concentration in the inactivation reagent",
+      "why_needed": "The paper says 4 M GTC with 5 µg/mL carrier RNA. It does not name the carrier or give its source or the GTC buffer composition.",
+      "status": "assumable",
+      "resolution": "Use a commercial carrier RNA (e.g. Qiagen poly-A carrier RNA) in the 4 M GTC (Qiagen) at 5 µg/mL as stated. Mix 500 µL VTM + 500 µL GTC/carrier, heat at 80°C for 2 min, then vortex briefly. The paper does not say whether 5 µg/mL is the concentration in the GTC stock or the final value.",
+      "source": "standard practice; paper s2.1"
+    },
+    {
+      "detail": "Bead handling and reagent preparation for the in-house reagents (bead equilibration/resuspension, composition of 70% ethanol, composition of Omega Elution Buffer)",
+      "why_needed": "Bead binding and elution efficiency depend on how these reagents are prepared",
+      "status": "resolved",
+      "resolution": "Bring Mag-Bind TotalPure NGS to room temperature and vortex to resuspend before use. The Omega Elution Buffer is 10 mM Tris-HCl pH 8.5. Prepare 70% ethanol fresh, using nuclease-free water (as the paper's 'freshly prepared'). The beads are used with isopropanol rather than the kit's PCR clean-up ratio, following the adapted He et al. method (5 min room-temperature binding, two 70% ethanol washes).",
+      "source": "https://omegabiotek.com/product/elution-buffer/; https://www.jantdx.com/wp-content/uploads/2023/09/Mag-Bind-TotalPure-NGS-protocol.pdf; https://www.nature.com/articles/srep45199"
+    },
+    {
+      "detail": "Elution volume and sample volume inconsistency across protocols",
+      "why_needed": "Each arm uses different input and elution volumes, so the dilution factors differ between arms",
+      "status": "resolved",
+      "resolution": "Table 1 gives the per-arm volumes. MMkit: 200 µL sample, 700 µL Lysis/Binding, 30 µL beads (20 µL beads + 10 µL PK), 500 + 500 µL washes, 90 µL elution. OT-2in-house: 250 µL sample, 250 µL isopropanol, 40 µL beads, 500 + 500 µL washes, 100 µL elution. MMin-house: 500 µL sample, 500 µL isopropanol, 40 µL beads, 500 + 500 µL washes, 90 µL elution. The inactivated sample is VTM:GTC 1:1, so each sample is diluted 2-fold before extraction.",
+      "source": "paper s2.2 Table 1 and s2.3"
+    }
+  ],
+  "retrieved_details": "qPCR (TaqMan 2019-nCoV Assay Kit v1 PI, https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019096_TaqMan2019nCoVAssayKit_PI.pdf): per assay, mix 6.25 µL 4X master mix + 1.25 µL 2019-nCoV assay (20X; orf1ab, S or N) + 1.25 µL RNase P assay (20X) + 11.25 µL RT-PCR grade water = 20 µL. Add 5 µL sample for 25 µL total. Include a positive control (1 µL Control v1 + 4 µL water, expect Ct ≤ 30) and an NTC (expect undetermined) per assay per plate. Standard cycling mode, comparative Ct, FAM for the viral assay and VIC for RNase P. TaqPath 1-Step RT-qPCR Master Mix CG: 25°C 2 min, 50°C 15 min, 95°C 2 min, then 40 cycles of 95°C 3 s / 60°C 30 s. TaqMan Fast Virus 1-Step Master Mix: no UNG step, 50°C 5 min, 95°C 20 s, then 40 cycles of 95°C 3 s / 60°C 30 s. Positive call is Ct < 37 for an individual assay. Sample positive if at least 2 of 3 assays are positive.\n\nMMkit (MagMAX CORE user guide, https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0015944_MagMAXCORE_NA_Kit_UG.pdf): wash plates with 500 µL Wash Solution 1 and 500 µL Wash Solution 2 (deep well), elution plate with 90 µL Elution Buffer. Bead/PK mix is 20 µL beads + 10 µL Proteinase K (20 mg/mL) per sample. The guide's Lysis/Binding solution is 350 + 350 µL (the paper says 300 + 300 µL). Add 30 µL bead/PK mix, then 200 µL sample, then 700 µL Lysis/Binding to each well. Script: MagMAX_CORE_KF-96.bdz (KingFisher 96/MagMAX Express-96), not preinstalled; download it from the kit's product page (https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0015945-MagMAXCORE-Mech-Lysis-Module-UG.pdf). A no_heat variant exists.\n\nIn-house method origin (He et al. Sci Rep 2017, https://www.nature.com/articles/srep45199): after lysis, add an equal volume of absolute alcohol and magnetic beads, incubate 5 min at room temperature, magnetically collect, wash twice with 70% ethanol, then elute. This paper's modification uses isopropanol and 40 µL Mag-Bind TotalPure NGS beads.\n\nOmega Mag-Bind TotalPure NGS (https://www.jantdx.com/wp-content/uploads/2023/09/Mag-Bind-TotalPure-NGS-protocol.pdf): equilibrate to room temperature and vortex before use. Omega Elution Buffer is 10 mM Tris-HCl pH 8.5 (https://omegabiotek.com/product/elution-buffer/).\n\nTaqMan 2019-nCoV Control Kit v1 (A47533): 1 x 10^4 copies/µL (https://www.thermofisher.com/order/catalog/product/A47533?us=&en=). For clinical samples: inactivate 500 µL VTM + 500 µL 4 M GTC with 5 µg/mL carrier RNA (80°C 2 min, brief vortex), then use 200 µL (MMkit), 250 µL (OT-2) or 500 µL (MMin-house) of inactivated sample. OT-2 timings from the paper: 5 min room-temperature bind, 4 min magnet, 2 x 500 µL 70% ethanol washes, 4 min air dry, 100 µL elution with 30 s off-magnet, then 90 s on-magnet before collection. Unrecovered and assumed: OT-2 script mechanics (heights, speeds, mix volume, tips) and the KingFisher script internals."
+}

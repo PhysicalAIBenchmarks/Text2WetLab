@@ -82,11 +82,12 @@ class Sufficiency(BaseModel):
 
 # ---------------------------------------------------------------- extract output
 
-ContainerKind = Literal["plate_96", "tube_1.5ml", "tube_15ml", "tube_50ml", "reservoir", "waste"]
+ContainerKind = Literal["plate_96", "plate_96_deep", "tube_1.5ml", "tube_15ml", "tube_50ml", "reservoir", "waste"]
 
 # Working capacity per well/tube in µL; enforced by check.py, not the LLM.
 CAPACITY_UL: dict[str, float | None] = {
     "plate_96": 360,
+    "plate_96_deep": 2000,
     "tube_1.5ml": 1500,
     "tube_15ml": 15000,
     "tube_50ml": 50000,

@@ -1,0 +1,119 @@
+HRE-luciferase reporter assay after KDM2B siRNA knockdown in normoxia/hypoxia (U2OS, MDA-MB-231, HeLa; Figure 1B), scaled to 96-well plates
+
+Containers:
+- plate_norm: 96-well plate — Cell culture plate, 21% O2 (normoxia) condition; wells A1:C9 used [assumed]
+- plate_hypox: 96-well plate — Cell culture plate, 1% O2 (hypoxia) condition from 24 h; wells A1:C9 used [assumed]
+- lum_plate: 96-well plate — White 96-well assay plate for luciferase readout; normoxia lysates in A1:C9, hypoxia lysates in D1:F9 [assumed]
+- bradford_plate: 96-well plate — Clear 96-well plate for Bradford protein assay; samples in A1:F9 (same layout as lum_plate), BSA standards in G1:H7 [assumed]
+- siRNA_ctrl_stock: 1.5 mL tube — 20 uM control siRNA stock [assumed]
+- siRNA_KDM2B_1_stock: 1.5 mL tube — 20 uM KDM2B_1 siRNA stock [assumed]
+- siRNA_KDM2B_2_stock: 1.5 mL tube — 20 uM KDM2B_2 siRNA stock [assumed]
+- interferin_tube: 1.5 mL tube — INTERFERin transfection reagent [assumed]
+- serumfree_medium_tube: 15 mL tube — Serum-free medium (Opti-MEM or serum-free DMEM) for complexation [assumed]
+- complex_ctrl: 1.5 mL tube — Control siRNA-INTERFERin complex master mix [assumed]
+- complex_KDM2B_1: 1.5 mL tube — KDM2B_1 siRNA-INTERFERin complex master mix [assumed]
+- complex_KDM2B_2: 1.5 mL tube — KDM2B_2 siRNA-INTERFERin complex master mix [assumed]
+- U2OS_cells: 15 mL tube — U2OS HRE-luciferase cell suspension [assumed]
+- MDAMB231_cells: 15 mL tube — MDA-MB-231 HRE-luciferase cell suspension [assumed]
+- HeLa_cells: 15 mL tube — HeLa HRE-luciferase cell suspension [assumed]
+- PBS_reservoir: reservoir — PBS for rinsing (pre-equilibrated in hypoxia workstation for hypoxic plate) [assumed]
+- water_reservoir: reservoir — Nuclease-free/distilled water [assumed]
+- PLB_5x_tube: 1.5 mL tube — Promega Passive Lysis Buffer 5X (E1941)
+- PLB_1x_tube: 15 mL tube — 1X Passive Lysis Buffer working solution [assumed]
+- luc_reagent_tube: 15 mL tube — Luciferase Assay Reagent (E1500 substrate reconstituted in buffer)
+- dye_conc_tube: 15 mL tube — Bio-Rad Protein Assay Dye Reagent Concentrate
+- dye_1x_tube: 50 mL tube — Bradford dye diluted 1:5 with water [assumed]
+- waste: waste container — Liquid waste [assumed]
+
+Starting contents:
+- siRNA_ctrl_stock: stock Control siRNA (CAGUCGCGUUUGCGACUGG), 20 uM [assumed]
+- siRNA_KDM2B_1_stock: stock KDM2B_1 siRNA (CCACUGCAAGUCUAUCACA), 20 uM [assumed]
+- siRNA_KDM2B_2_stock: stock KDM2B_2 siRNA (GGGAGUGUCCGAAGUGUAA), 20 uM [assumed]
+- interferin_tube: stock INTERFERin transfection reagent
+- serumfree_medium_tube: stock Serum-free medium [assumed]
+- U2OS_cells: 1600 µL U2OS HRE-luciferase cell suspension, 75,800 cells/mL in complete DMEM (10% FBS, 2 mM L-glutamine, pen/strep), no puromycin [assumed]
+- MDAMB231_cells: 1600 µL MDA-MB-231 HRE-luciferase cell suspension, 75,800 cells/mL in complete DMEM (10% FBS, 2 mM L-glutamine, pen/strep), no puromycin [assumed]
+- HeLa_cells: 1600 µL HeLa HRE-luciferase cell suspension, 75,800 cells/mL in complete DMEM (10% FBS, 2 mM L-glutamine, pen/strep), no puromycin [assumed]
+- PBS_reservoir: stock PBS [assumed]
+- water_reservoir: stock Water [assumed]
+- PLB_5x_tube: 600 µL Passive Lysis Buffer 5X
+- luc_reagent_tube: stock Luciferase Assay Reagent
+- dye_conc_tube: stock Bio-Rad Protein Assay Dye Reagent Concentrate
+- bradford_plate wells G1, H1: 5 µL BSA standard 0 mg/mL in 1X PLB [assumed]
+- bradford_plate wells G2, H2: 5 µL BSA standard 0.05 mg/mL in 1X PLB [assumed]
+- bradford_plate wells G3, H3: 5 µL BSA standard 0.1 mg/mL in 1X PLB [assumed]
+- bradford_plate wells G4, H4: 5 µL BSA standard 0.2 mg/mL in 1X PLB [assumed]
+- bradford_plate wells G5, H5: 5 µL BSA standard 0.3 mg/mL in 1X PLB [assumed]
+- bradford_plate wells G6, H6: 5 µL BSA standard 0.4 mg/mL in 1X PLB [assumed]
+- bradford_plate wells G7, H7: 5 µL BSA standard 0.5 mg/mL in 1X PLB [assumed]
+
+Steps:
+1. MANUAL: Maintain U2OS, MDA-MB-231 and HeLa HRE-luciferase cells in DMEM + 10% FBS + 2 mM L-glutamine + 100 U/mL penicillin + 100 ug/mL streptomycin (<=30 passages, mycoplasma-tested). On the day of the experiment trypsinise, count (e.g. trypan blue) and dilute each line to 75,800 cells/mL in complete medium WITHOUT puromycin into U2OS_cells, MDAMB231_cells and HeLa_cells (5,000 cells per 66 uL). Note: Seeding density and puromycin omission are assumptions (see assumptions). [assumed]
+2. MANUAL: Vortex INTERFERin tube (interferin_tube) 5 s and spin down briefly. Note: Per INTERFERin manufacturer protocol. [assumed]
+3. Transfer 156 µL of Serum-free medium from serumfree_medium_tube to complex_ctrl. Note: Master mix for 24 wells at 6.5 uL medium/well (incl. ~33% overage over 18 wells). [assumed]
+4. Transfer 156 µL of Serum-free medium from serumfree_medium_tube to complex_KDM2B_1. Note: Master mix for 24 wells. [assumed]
+5. Transfer 156 µL of Serum-free medium from serumfree_medium_tube to complex_KDM2B_2. Note: Master mix for 24 wells. [assumed]
+6. Transfer 2.4 µL of Control siRNA 20 uM from siRNA_ctrl_stock to complex_ctrl. Note: 48 pmol = 2 pmol/well x 24 wells; gives ~27 nM in 73 uL final per well. [assumed]
+7. Transfer 2.4 µL of KDM2B_1 siRNA 20 uM from siRNA_KDM2B_1_stock to complex_KDM2B_1. Note: 48 pmol for 24 wells. [assumed]
+8. Transfer 2.4 µL of KDM2B_2 siRNA 20 uM from siRNA_KDM2B_2_stock to complex_KDM2B_2. Note: 48 pmol for 24 wells. [assumed]
+9. Transfer 9.6 µL of INTERFERin from interferin_tube to complex_ctrl. Note: 0.4 uL/well x 24 wells (12 uL per 35 mm well scaled by area, INTERFERin manual Table 3). [assumed]
+10. Transfer 9.6 µL of INTERFERin from interferin_tube to complex_KDM2B_1. Note: 0.4 uL/well x 24 wells. [assumed]
+11. Transfer 9.6 µL of INTERFERin from interferin_tube to complex_KDM2B_2. Note: 0.4 uL/well x 24 wells. [assumed]
+12. MANUAL: Vortex each complex tube (complex_ctrl, complex_KDM2B_1, complex_KDM2B_2) for 10 s, then incubate 10 min at room temperature (do not exceed 30 min). Note: Timing from INTERFERin manufacturer protocol. [assumed]
+13. Transfer 7 µL of Control siRNA-INTERFERin complex from complex_ctrl to plate_norm wells A1:A9 (each well). Note: Row A = control siRNA. [assumed]
+14. Transfer 7 µL of KDM2B_1 siRNA-INTERFERin complex from complex_KDM2B_1 to plate_norm wells B1:B9 (each well). Note: Row B = KDM2B_1. [assumed]
+15. Transfer 7 µL of KDM2B_2 siRNA-INTERFERin complex from complex_KDM2B_2 to plate_norm wells C1:C9 (each well). Note: Row C = KDM2B_2. [assumed]
+16. Transfer 7 µL of Control siRNA-INTERFERin complex from complex_ctrl to plate_hypox wells A1:A9 (each well). Note: Row A = control siRNA. [assumed]
+17. Transfer 7 µL of KDM2B_1 siRNA-INTERFERin complex from complex_KDM2B_1 to plate_hypox wells B1:B9 (each well). Note: Row B = KDM2B_1. [assumed]
+18. Transfer 7 µL of KDM2B_2 siRNA-INTERFERin complex from complex_KDM2B_2 to plate_hypox wells C1:C9 (each well). Note: Row C = KDM2B_2. [assumed]
+19. Mix U2OS_cells by pipetting 500 µL up and down 5 times. Note: Resuspend gently before dispensing. [assumed]
+20. Mix MDAMB231_cells by pipetting 500 µL up and down 5 times. Note: Resuspend gently before dispensing. [assumed]
+21. Mix HeLa_cells by pipetting 500 µL up and down 5 times. Note: Resuspend gently before dispensing. [assumed]
+22. Transfer 66 µL of U2OS HRE-luciferase cell suspension from U2OS_cells to plate_norm wells A1:C3 (each well). Note: 5,000 cells/well; U2OS block A1:C3. [assumed]
+23. Transfer 66 µL of MDA-MB-231 HRE-luciferase cell suspension from MDAMB231_cells to plate_norm wells A4:C6 (each well). Note: 5,000 cells/well; MDA-MB-231 block A4:C6. [assumed]
+24. Transfer 66 µL of HeLa HRE-luciferase cell suspension from HeLa_cells to plate_norm wells A7:C9 (each well). Note: 5,000 cells/well; HeLa block A7:C9. [assumed]
+25. Transfer 66 µL of U2OS HRE-luciferase cell suspension from U2OS_cells to plate_hypox wells A1:C3 (each well). Note: 5,000 cells/well; U2OS block A1:C3. [assumed]
+26. Transfer 66 µL of MDA-MB-231 HRE-luciferase cell suspension from MDAMB231_cells to plate_hypox wells A4:C6 (each well). Note: 5,000 cells/well; MDA-MB-231 block A4:C6. [assumed]
+27. Transfer 66 µL of HeLa HRE-luciferase cell suspension from HeLa_cells to plate_hypox wells A7:C9 (each well). Note: 5,000 cells/well; HeLa block A7:C9. [assumed]
+28. MANUAL: Gently swirl plate_norm and plate_hypox to distribute, then incubate both plates for 24 h at 37 °C, 21% O2, 5% CO2. Note: Hypoxia starts at 24 h post reverse transfection, as in the proliferation assay (s4.11). [assumed]
+29. MANUAL: At 24 h post-transfection, without changing medium, move plate_hypox into the Invivo2 300 hypoxia workstation (1% O2, 5% CO2, 37 °C) for 24 h. Keep plate_norm in the 21% O2 incubator (37 °C, 5% CO2) for the remaining 24 h (48 h total siRNA exposure). Pre-equilibrate PBS and lysis buffer in the workstation. Note: Timing of hypoxia start from s4.11 and standard practice.
+30. Transfer 1920 µL of Water from water_reservoir to PLB_1x_tube. Note: Prepare 1X PLB (5X diluted 1:4) during the last hour of incubation; 2.4 mL covers 54 wells x 40 uL with overage; also place aliquot inside the workstation. [assumed]
+31. Transfer 480 µL of Passive Lysis Buffer 5X from PLB_5x_tube to PLB_1x_tube. Note: 1 part 5X + 4 parts water per Promega. [assumed]
+32. Mix PLB_1x_tube by pipetting 1000 µL up and down 5 times. [assumed]
+33. MANUAL: At 48 h post-transfection, harvest. Process plate_hypox INSIDE the hypoxia workstation (all rinsing and lysis) to avoid reoxygenation; process plate_norm on the bench.
+34. Transfer 73 µL of Culture medium from plate_norm wells A1:C9 to waste. Note: Remove medium. [assumed]
+35. Transfer 100 µL of PBS from PBS_reservoir to plate_norm wells A1:C9 (each well). Note: PBS rinse (volume assumed). [assumed]
+36. Transfer 100 µL of PBS from plate_norm wells A1:C9 to waste. Note: Remove PBS completely. [assumed]
+37. Transfer 40 µL of 1X Passive Lysis Buffer from PLB_1x_tube to plate_norm wells A1:C9 (each well). Note: 40 uL/well (Promega gives 20 uL for 96-well; doubled to leave lysate for luciferase and Bradford). [assumed]
+38. Transfer 73 µL of Culture medium from plate_hypox wells A1:C9 to waste. Note: Done inside the workstation. [assumed]
+39. Transfer 100 µL of PBS from PBS_reservoir to plate_hypox wells A1:C9 (each well). Note: Pre-equilibrated PBS, inside workstation. [assumed]
+40. Transfer 100 µL of PBS from plate_hypox wells A1:C9 to waste. Note: Inside workstation. [assumed]
+41. Transfer 40 µL of 1X Passive Lysis Buffer from PLB_1x_tube to plate_hypox wells A1:C9 (each well). Note: Inside workstation. [assumed]
+42. MANUAL: Shake plate_norm and plate_hypox for 15 min at room temperature (seal plate_hypox before leaving the workstation, after lysis is complete). Optionally centrifuge plates briefly (e.g. 500 x g, 1 min) to clear debris. Keep lysates on ice. Note: Promega protocol-based timing. [assumed]
+43. Transfer 20 µL of Cell lysate (normoxia) from plate_norm wells A1:C9 to lum_plate wells A1:C9 (each well). Note: 20 uL lysate per luciferase reaction (Promega TB281); well-to-well pairing. [assumed]
+44. Transfer 20 µL of Cell lysate (hypoxia) from plate_hypox wells A1:C9 to lum_plate wells D1:F9 (each well). Note: Hypoxia lysates in rows D-F of lum_plate. [assumed]
+45. Transfer 5 µL of Cell lysate (normoxia) from plate_norm wells A1:C9 to bradford_plate wells A1:C9 (each well). Note: 5 uL lysate for Bradford. [assumed]
+46. Transfer 5 µL of Cell lysate (hypoxia) from plate_hypox wells A1:C9 to bradford_plate wells D1:F9 (each well). Note: 5 uL lysate for Bradford. [assumed]
+47. Transfer 12800 µL of Water from water_reservoir to dye_1x_tube. Note: Dilute dye 1:5; 16 mL covers 68 wells x 200 uL with overage. [assumed]
+48. Transfer 3200 µL of Bio-Rad Protein Assay Dye Reagent Concentrate from dye_conc_tube to dye_1x_tube. Note: 1:5 dilution. [assumed]
+49. Mix dye_1x_tube by pipetting 1000 µL up and down 5 times. Note: Mix by inversion if preferred. [assumed]
+50. Transfer 200 µL of 1X Bradford dye from dye_1x_tube to bradford_plate wells A1:F9, G1:H7 (each well). Note: Samples and standards. [assumed]
+51. MANUAL: Shake bradford_plate briefly, incubate at least 5 min at room temperature, read absorbance at 595 nm. Note: Standard Bradford practice. [assumed]
+52. Transfer 100 µL of Luciferase Assay Reagent from luc_reagent_tube to lum_plate wells A1:F9 (each well). Note: 100 uL reagent per 20 uL lysate (Promega TB281); preferably via luminometer injector or dispense row-by-row immediately before reading. [assumed]
+53. MANUAL: Read lum_plate in a luminometer/plate reader with a 2 s delay and a 10 s integration per well (same settings for all wells). Report RLU normalised to protein (Bradford) concentration. Note: Instrument model not stated in the paper. [assumed]
+
+Assumptions:
+- Plate layout (identical for plate_norm and plate_hypox): rows A/B/C = control/KDM2B_1/KDM2B_2 siRNA; columns 1-3 = U2OS, 4-6 = MDA-MB-231, 7-9 = HeLa (3 biological replicates per condition in adjacent columns). Normoxia and hypoxia are separate plates (54 experimental wells total).
+- lum_plate and bradford_plate layout: normoxia lysates A1:C9, hypoxia lysates D1:F9; BSA standards (0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5 mg/mL in 1X PLB, 5 uL, duplicates) in G1:H7 of bradford_plate; standards assumed pre-prepared (Bio-Rad Bradford protocol, standard practice).
+- Adaptation from 35 mm dishes to 96-well plates by surface area (~9.6 cm2 vs 0.32 cm2, factor ~1/30): 150,000 cells (INTERFERin manual Table 1, 150,000 ± 50,000 cells per 6-well/35 mm) -> 5,000 cells/well; final volume 2.2 mL -> 73 uL (66 uL cell suspension + 7 uL complex); 12 uL INTERFERin -> 0.4 uL; 200 uL complexation medium -> ~6.5 uL; ~59 pmol siRNA -> ~2 pmol per well, giving ~27 nM final.
+- INTERFERin details from Polyplus/Sartorius protocol (Table 3, 10–50 nM siRNA): vortex INTERFERin 5 s, vortex siRNA+INTERFERin mix 10 s, incubate 10 min at room temperature (<=30 min), reverse transfection by adding mix to plate then cell suspension. Complex master mixes made for 24 wells (18 needed) to cover pipetting loss.
+- siRNAs assumed to be annealed unmodified 19-mer duplexes from IDT supplied/diluted as 20 uM stocks; overhangs not stated in paper (confirm with IDT order).
+- Reverse transfection at t=0 (paper states reverse transfection is used and hypoxia starts 24 h after transfection in s4.11); hypoxia plate moved to 1% O2 at 24 h, both plates lysed at 48 h. Total 48 h siRNA and 24 h hypoxia per Fig 1B legend.
+- Puromycin (0.5 ug/mL, used for routine culture of HRE lines) omitted during the siRNA experiment (standard practice for lipid transfection); medium otherwise DMEM + 10% FBS, 2 mM L-glutamine, 100 U/mL penicillin, 100 ug/mL streptomycin. No medium change at hypoxia start.
+- Medium for HRE cells at 73 uL/well may evaporate in hypoxia; unused wells are left empty (plate edge effects not mitigated); assumption for convenience.
+- Lysis: PBS rinse 100 uL/well (assumed); 1X PLB (5X PLB diluted 1:4 with water, Promega) at 40 uL/well (Promega Dual-Luciferase manual gives 20 uL/well for 96-well; doubled so that 20 uL for luciferase plus 5 uL for Bradford can be taken); 15 min shaking at room temperature; optional clearing spin (Promega TB281 12,000 x g 15 s). Hypoxia plate rinsed and lysed inside the workstation with pre-equilibrated PBS and lysis buffer; cell scraping not used in plate format.
+- Luciferase assay per Promega TB281: 20 uL lysate + 100 uL Luciferase Assay Reagent (reconstituted and equilibrated to room temperature), 2 s delay, 10 s read; same settings for all wells; instrument not stated in paper.
+- Bradford: Bio-Rad dye concentrate diluted 1:5 with water; 5 uL lysate + 200 uL diluted dye per well in 96-well plate; incubate >=5 min; read at 595 nm; BSA standards 0–0.5 mg/mL prepared in 1X PLB (Bio-Rad protocol / standard practice). Luciferase reported as RLU per ug protein (analysis not part of this protocol).
+- Cell harvest, counting and dilution are performed manually (trypsinisation) before pipetting; cell suspension volume of 1600 uL per line covers 18 wells x 66 uL with overage; 15 mL tubes used.
+- Transfer steps from many plate wells to waste use source_wells with an empty dest_wells list (bulk aspiration of the listed wells, 73 uL or 100 uL each, e.g. by multichannel).
+- Reagent volumes of stocks (siRNA, INTERFERin, serum-free medium, PBS, water, luciferase reagent, dye concentrate) assumed ample (volume null).

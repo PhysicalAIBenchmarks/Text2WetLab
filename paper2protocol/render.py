@@ -3,7 +3,7 @@
 from .models import Protocol, Step
 
 KIND_LABEL = {
-    "plate_96": "96-well plate", "tube_1.5ml": "1.5 mL tube", "tube_15ml": "15 mL tube",
+    "plate_96": "96-well plate", "plate_96_deep": "96-deep-well plate (2 mL)", "tube_1.5ml": "1.5 mL tube", "tube_15ml": "15 mL tube",
     "tube_50ml": "50 mL tube", "reservoir": "reservoir", "waste": "waste container",
 }
 
