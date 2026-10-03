@@ -1,0 +1,30 @@
+{
+  "verdict": "minor_issues",
+  "summary": "The arithmetic and plate layout check out. The bulk medium adds up to 55,000 µL, and the supplement volumes match the paper's 1.5% methanol, 0.5% glycerol and 150 µg/mL hygromycin (825, 275 and 165 µL). The 2x2 Latin-square mosaic is a valid design: five strains plus blanks, 4 blocks (16 wells) each, with no overlaps or gaps. The 20 µL culture + 180 µL water dilution matches the 1/10 dilution in the Fig 4 legend, and the incubation conditions match s4.6. The remaining problems are practical: mixing of the bulk medium is likely inadequate, a manual de-sealing step is missing, the single-plate readout is a debatable choice, and the reservoir type and tip usage are not specified.",
+  "issues": [
+    {
+      "step": 4,
+      "severity": "minor",
+      "issue": "The 55 mL bulk medium is mixed by pipetting only 1000 µL up and down 10 times. This is unlikely to homogenize 55 mL, especially with 275 µL of viscous glycerol and 825 µL of methanol layered on top. Uneven supplement concentration across wells would add variability to the growth and fluorescence comparison.",
+      "suggestion": "Mix much more thoroughly: use many more mix cycles at the maximum volume, aspirating from the bottom and dispensing near the surface. Alternatively, pre-mix the medium manually before loading it on the deck."
+    },
+    {
+      "step": 13,
+      "severity": "minor",
+      "issue": "Step 11 ends with the culture plate sealed in the shaker, and step 13 starts pipetting from it. No manual step removes the air-permeable seal or moves the plate back onto the deck.",
+      "suggestion": "Add a MANUAL step between steps 11 and 13: remove the seal and place culture_plate on the deck, with any brief spin or settling instruction if intended."
+    },
+    {
+      "step": 15,
+      "severity": "minor",
+      "issue": "A single black clear-bottom plate is used for both OD600 and fluorescence. Black plates give higher background and lower signal for absorbance, and the gap assessment suggested a clear plate for OD600 and a black plate for fluorescence. This is flagged as an assumption, but the paper does not support it.",
+      "suggestion": "Either transfer into two plates (clear for OD600, black for fluorescence) or state explicitly that the black clear-bottom plate is an unverified assumption. Also state the read volume, 200 µL per well."
+    },
+    {
+      "step": 5,
+      "severity": "minor",
+      "issue": "The reservoir type is not specified. 55 mL of medium needs a single-well reservoir (e.g., about 195 mL). It would overflow a 12-well reservoir channel. The protocol also uses a fresh tip for each of 96 medium dispenses and for each mixing and transfer step, so total tip usage (about 96 + 80 + 96 + 96) may exceed the OT-2 deck capacity.",
+      "suggestion": "Specify a single-well reservoir for the medium. Tips need not be changed between wells when dispensing sterile medium, and when mixing wells with a tip that is then discarded. Alternatively, allow tip racks to be reloaded mid-run."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "Section s4.6 gives the media, antibiotic, plate, shaker settings and duration, and the cited Grieß-Osowski 2025 preprint supplies the plate-reader dilution and wavelengths. The mosaic layout, inoculum volume and preculture state, strain construct identities, and reader plate type and gain are not stated. None of these changes what the validation measures, because it checks for cross-contamination, so each can be set to a defensible default.",
+  "gaps": [
+    {
+      "detail": "Plate-reader method (dilution, OD600 and fluorescence wavelengths) deferred to Grieß-Osowski et al., 2025",
+      "why_needed": "The OD600 and GFP/RFP readouts in Fig 4C-E depend on the sample dilution and the excitation/emission settings.",
+      "status": "resolved",
+      "resolution": "Aliquots of culture were diluted with water, generally 1:10, to avoid saturation, and read in 96-well plates. This matches the 1/10 dilution in the Fig 4 legend. OD600 and fluorescence were read on a BioTek Synergy H1 (or Tecan M1000). GFP excitation/emission was 485/511 nm. The cited paper lists 569/593 nm for mRuby2, not mScarlet.",
+      "source": "https://www.biorxiv.org/content/10.1101/2025.03.09.642175v2 (Plate reader measurements section)"
+    },
+    {
+      "detail": "Base medium composition (YP) and Pichia growth/induction conditions",
+      "why_needed": "The paper gives only 'YP media' with methanol, glycerol and hygromycin, so the YP recipe is needed.",
+      "status": "resolved",
+      "resolution": "YP base is 1% (w/v) yeast extract and 2% (w/v) peptone. Hygromycin at 150 µg/mL keeps episomal plasmids. The cited paper pre-cultures cells in glycerol-rich medium for ≥24 h and then induces them in methanol-containing medium. It also uses YPM+G, i.e. methanol plus glycerol supplementation.",
+      "source": "https://www.biorxiv.org/content/10.1101/2025.03.09.642175v2 (Yeast growth and medium composition)"
+    },
+    {
+      "detail": "Plate-reader settings: volume per well, plate type (clear versus black), gain, read height, and the RFP wavelengths for mScarlet",
+      "why_needed": "The fluorescence readout is quantitative, so these settings affect it.",
+      "status": "assumable",
+      "resolution": "Dilute 1:10 in water, using a clear 96-well plate for OD600 and a black or black clear-bottom plate for fluorescence, with about 200 µL per well. Use the same fixed gain for all wells. Use GFP at 485/511 nm. For mScarlet, use about 569/593 nm, taken from the mRuby2 setting in the cited paper, or the reader's standard red/mScarlet channel (about 569/594 nm). The cited paper did not report mScarlet settings or gain.",
+      "source": "standard practice; wavelengths from https://www.biorxiv.org/content/10.1101/2025.03.09.642175v2"
+    },
+    {
+      "detail": "Mosaic layout (which strain or blank goes in which well; what 'liquids' means in Fig 4B)",
+      "why_needed": "The contamination check needs a defined arrangement of strains and blanks, so that carry-over into blank wells can be seen.",
+      "status": "assumable",
+      "resolution": "Use a checkerboard or mosaic of the five strains (GFP, RFP-1, RFP-2, RFP-3, X-33) plus uninoculated medium-only wells. The exact layout is shown only in Fig 4B, and the text does not describe it. The 'liquids' in the Fig 4 legend are presumably the media or cultures dispensed.",
+      "source": "standard practice; Fig 4B legend"
+    },
+    {
+      "detail": "Inoculum volume, source, and preculture density for each strain",
+      "why_needed": "This sets the starting cell density in the 500 µL cultures.",
+      "status": "assumable",
+      "resolution": "Inoculate each well with a small volume (about 5-10 µL) of dense preculture or glycerol stock, the same for every strain. The paper does not state the preculture state or volume. This only affects growth level, not the contamination check.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Order and volume of dispensing the media into the 96 deep-well plate, and the YP medium, methanol, glycerol and hygromycin stock concentrations",
+      "why_needed": "Each well must receive 500 µL of the same medium. Methanol and glycerol are given as final percentages only.",
+      "status": "assumable",
+      "resolution": "Dispense 500 µL per well of YP medium, made as YP plus 1.5% (v/v) methanol, 0.5% (v/v) glycerol and 150 µg/mL hygromycin. Mix the supplements into the bulk medium before dispensing. Seal with an air-permeable cover.",
+      "source": "s4.6; standard practice"
+    },
+    {
+      "detail": "Identity of the RFP-1, RFP-2 and RFP-3 mScarlet constructs and the GFP strain",
+      "why_needed": "These are the specific strains to be inoculated.",
+      "status": "assumable",
+      "resolution": "The paper describes them only as Pichia strains expressing sfGFP or mScarlet from pAOX1, using the strains from Grieß-Osowski 2025. The cited preprint's methods did not list the RFP-1 to RFP-3 constructs. Any strains with distinct GFP or RFP expression plus X-33 as a non-fluorescent control are sufficient to test for cross-contamination.",
+      "source": "s4.6; https://www.biorxiv.org/content/10.1101/2025.03.09.642175v2"
+    },
+    {
+      "detail": "Supplementary Method 6 (BOTany6-Universal instructions, run-time table format)",
+      "why_needed": "This covers the robot setup, labware and table inputs for the transfers.",
+      "status": "assumable",
+      "resolution": "The supplementary file and the authors' code were deliberately not used. Define a generic source-to-destination transfer table (source well, destination well, volume) and use fresh tips for each inoculation. The paper gives no tip-handling detail.",
+      "source": "standard practice"
+    }
+  ],
+  "retrieved_details": "From Grieß-Osowski et al. 2025 (https://www.biorxiv.org/content/10.1101/2025.03.09.642175v2): (1) Medium. YP base is 1% (w/v) yeast extract and 2% (w/v) peptone. YPD adds 2% glucose and YPM adds 1.5% (v/v) methanol. The best-performing medium was YPM+G, i.e. methanol plus glycerol. Hygromycin at 150 µg/mL keeps episomal vectors. (2) Cultivation. Pichia was grown at 30°C in a shaking incubator (250 rpm in 24-well plates in that paper; this paper uses 800 rpm, 80% humidity, 72 h in 96 deep-well plates). Cells were pre-cultured ≥24 h in glycerol-rich medium, centrifuged at 2000 g for 2 min, and resuspended in methanol medium for induction. (3) Plate reader. Equal aliquots of cultures were diluted with water, generally 1:10, and read in 96-well plates. OD600 and fluorescence were measured on a BioTek Synergy H1 (or Tecan M1000). GFP excitation/emission was 485/511 nm, and mRuby2 was 569/593 nm (use about this for mScarlet). Fluorescence was normalized to OD600 (GFP/OD600). Not found in that paper: plate type, gain and read volume, the RFP-1 to RFP-3 construct identities, and the mosaic layout. From the BOTany paper s4.6: 500 µL of YP with 1.5% (v/v) methanol, 0.5% (v/v) glycerol and 150 µg/mL hygromycin per well, in a NEST 96-well 2 mL plate, for 72 h at 30°C, 800 rpm and 80% humidity (Infors Multitron). Plate reader: BioTek Synergy H1, with 1/10 diluted aliquots (Fig 4 legend)."
+}

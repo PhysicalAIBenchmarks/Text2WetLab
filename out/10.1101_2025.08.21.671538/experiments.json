@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Automated Plant MoClo Level 1 Golden Gate assembly with colony PCR verification",
+    "goal": "Test whether OT-2 BOTany1-3 workflows (primer dilution, PCR setup, Golden Gate assembly) correctly assemble seven Plant MoClo Level 1 vectors, verified by colony PCR.",
+    "section_refs": [
+      "s4.2",
+      "s4.3",
+      "s4.4"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "Supplementary Method 1 (BOTany1-Primers instructions)",
+      "Supplementary Method 2 (BOTany2-PCR instructions)",
+      "Supplementary Method 3 (BOTany3-MoClo instructions)",
+      "colony PCR cycling conditions not given"
+    ],
+    "figure_refs": [
+      "Figure 1D"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Automated E. coli transformation (BOTany4-Shock&Go) with blue/white screening",
+    "goal": "Validate parallel heat-shock transformation of competent E. coli with Plant MoClo assemblies on the OT-2 by colony counts and fraction of blue (empty-vector) colonies.",
+    "section_refs": [
+      "s4.3",
+      "s4.4"
+    ],
+    "shared_refs": [
+      "s4.1"
+    ],
+    "unresolved_refs": [
+      "Supplementary Method 4 (BOTany4-Shock&Go instructions)",
+      "Mix&Go! (Zymo) comparison conditions not described"
+    ],
+    "figure_refs": [
+      "Figure 2C",
+      "Figure 2D"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "MagBead plasmid extraction and downstream use in Golden Gate assembly, E. coli transformation and colony PCR",
+    "goal": "Show that plasmids extracted semi-automatically with Zyppy-96 MagBead kit on OT-2 are suitable for Golden Gate assembly and E. coli transformation, with colony PCR genotyping of resulting colonies.",
+    "section_refs": [
+      "s4.4",
+      "s4.5",
+      "s4.3",
+      "s4.2"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "Supplementary Method S5 (MagBead kit protocol)",
+      "Supplementary Figure S2 and S3 comparison/digestion details"
+    ],
+    "figure_refs": [
+      "Figure 3A",
+      "Figure 3B",
+      "Figure 3C"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Pichia electroporation with MagBead-extracted Level 1 plasmids and colony genotyping",
+    "goal": "Demonstrate MagBead-extracted episomal plasmids are pure and concentrated enough for Pichia electroporation.",
+    "section_refs": [
+      "s4.4",
+      "s4.5",
+      "s4.6"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "Pichia experiments conducted 'as previously described (Grieß-Osowski et al., 2025)'",
+      "Lin-Cereghino et al., 2005 electroporation method"
+    ],
+    "figure_refs": [
+      "Figure 3D"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "BOTany6-Universal mosaic inoculation of Pichia strains in 96 deep-well plate",
+    "goal": "Validate the universal pipetting protocol by filling a 96 deep-well plate with media and inoculating fluorescent Pichia strains in a mosaic pattern, checking for cross-contamination via OD600 and fluorescence.",
+    "section_refs": [
+      "s4.6"
+    ],
+    "shared_refs": [
+      "s4.1"
+    ],
+    "unresolved_refs": [
+      "Supplementary Method 6 (BOTany6-Universal instructions)",
+      "Plate reader quantification 'as described in Grieß-Osowski et al., 2025'"
+    ],
+    "figure_refs": [
+      "Figure 4B",
+      "Figure 4C",
+      "Figure 4D",
+      "Figure 4E"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

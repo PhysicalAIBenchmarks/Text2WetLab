@@ -1,0 +1,77 @@
+{
+  "verdict": "reject",
+  "summary": "The paper's MagBead method is a custom workflow (Supplementary Method S5) that is not in the main text. The authors say the standard kit and OT-2 scripts did not give enough DNA, so the kit manual cannot stand in for it. The Level 0 plasmids, the genotyping primers and the Golden Gate/transformation/colony-PCR programmes are also unspecified. The cycling and heat-shock programmes are assumable, but the MagBead gap is not.",
+  "gaps": [
+    {
+      "detail": "Custom MagBead workflow (Supp. Method S5) after the authors' modifications: manual lysis/neutralization/clearing volumes and timings in 24 deep-well plates, OT-2 Magnetic Module engage times and heights, Heater Shaker temperature, speed and durations, 8-channel mixing and aspiration settings, drying and elution conditions",
+      "why_needed": "The authors state that neither the standard kit instructions nor the available OT-2 scripts gave enough DNA in their hands. They developed a new manual workflow and script with Opentrons and Zymo. Following only the stock manual would likely reproduce the failure they reported, and the exact conditions behind the plasmid yield are not in the retrievable text.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Identity of the MoClo Level 0 plasmids (coding sequences) extracted by MagBead and used as Golden Gate inputs, plus the Level 1 acceptor, promoter, terminator and antibiotic for the assembly",
+      "why_needed": "Fig. 3C does not name the parts, so the assembly and the expected colony-PCR amplicon sizes cannot be reproduced. The paper says only that Level 0 CDS plasmids were used.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Genotyping primer sequences and colony PCR cycling programme (annealing temperature, extension time, cycle number, colony-to-reaction input). The paper refers to primers from Fig. 1A but does not list them.",
+      "why_needed": "The genotyping readout depends on primer identity. Without the sequences the expected band sizes cannot be defined.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Golden Gate thermocycling programme (digest/ligation temperatures, durations, cycle number, final digest and inactivation)",
+      "why_needed": "Section s4.3 gives only reaction composition. Ligation temperature is given (22 °C for Thermo ligase, 16 °C for NEB), but cycle number and durations are 'user-defined'.",
+      "status": "assumable",
+      "resolution": "Standard programme: 25–35 cycles of 37 °C for 5 min (digest) and 16 °C for 5 min (ligation), then 50 °C for 10 min and 80 °C for 10 min. Alternatively use 22 °C ligation steps with the Thermo ligase.",
+      "source": "https://www.jove.com/t/61993/rapid-assembly-multi-gene-constructs-using-modular-golden-gate"
+    },
+    {
+      "detail": "E. coli transformation specifics (Supp. Method S4): DNA volume per 50–100 µL competent cells, ice incubation, heat-shock temperature and time, recovery medium and volume, recovery temperature",
+      "why_needed": "The paper gives only the on-deck heat shock, cooling, an hour of recovery in rich medium, and plating of 50 µL.",
+      "status": "assumable",
+      "resolution": "Standard CaCl2-competent protocol: 1–2 µL (or up to ~5 µL) of the Golden Gate reaction into 50 µL cells, 20–30 min on ice, 42 °C heat shock for 30–45 s, 2 min on ice, add about 250–500 µL LB or SOC, recover at 37 °C for 1 h. Then plate 50 µL on low-salt LB agar with carbenicillin (50 µg/mL) for L1 or spectinomycin (50 µg/mL) for LM. Add X-gal (10 µL of 20 mg/mL) and IPTG (30 µL of 100 mM) per 60 mm plate for blue/white screening.",
+      "source": "standard practice (plating and X-gal/IPTG values from s4.4)"
+    },
+    {
+      "detail": "Culture volume and method used for plasmid extraction, and the standard kit volumes for lysis, binding, washing and elution",
+      "why_needed": "The paper gives 1.6 mL cultures in 24 deep-well plates, with 800 µL removed for glycerol stocks. The kit volumes are needed for reagent loading.",
+      "status": "resolved",
+      "resolution": "The remaining ~800 µL of culture is close to the kit's 750 µL scale, so the kit reagent volumes can be used as the baseline. The kit's steps are listed in retrieved_details. The authors' modifications are still unknown (see the first gap).",
+      "source": "https://files.zymoresearch.com/protocols/_d4100_d4101_d4102_zyppy-96_magbead_miniprep.pdf"
+    },
+    {
+      "detail": "Zyppy Wash Buffer preparation and Deep Blue Lysis Buffer handling",
+      "why_needed": "The wash buffer concentrate must be diluted with ethanol, and the lysis buffer may have precipitated.",
+      "status": "resolved",
+      "resolution": "Add 208 mL of 95% ethanol to the 48 mL wash buffer concentrate. If the Deep Blue Lysis Buffer has precipitated, warm it at 30–37 °C for 30 min and mix by inversion. Do not microwave it.",
+      "source": "https://files.zymoresearch.com/protocols/_d4100_d4101_d4102_zyppy-96_magbead_miniprep.pdf"
+    },
+    {
+      "detail": "Competent cell preparation (TOP10F'), including the number of cells per transformation",
+      "why_needed": "Cells are needed for the transformation step.",
+      "status": "resolved",
+      "resolution": "Section s4.4 gives the full in-house CaCl2/MgCl2 preparation. Aliquots are 50–100 µL at OD600 200–250, stored at −80 °C. Efficiency is ~10^6 colonies/µg pUC19.",
+      "source": "s4.4"
+    },
+    {
+      "detail": "Golden Gate reaction composition and enzymes",
+      "why_needed": "Needed to set up the assembly of the MagBead-purified plasmids.",
+      "status": "resolved",
+      "resolution": "10 µL reaction: 1 µL each of backbone, promoter, CDS and terminator, plus 6 µL master mix. The master mix is 1 µL 10 mM ATP, 1 µL 10× FastDigest buffer, 0.5 µL FastDigest Eco31I (BsaI) or BpiI, 0.5 µL T4 ligase (Thermo EL0012 at 22 °C, or NEB M0202 at 16 °C) and 3 µL water.",
+      "source": "s4.3"
+    },
+    {
+      "detail": "Colony PCR reaction composition",
+      "why_needed": "Needed to set up the genotyping reactions.",
+      "status": "resolved",
+      "resolution": "10 µL reaction: 5 µL Red Taq 2X master mix, 2 µL water, 1 µL of each 10 mM primer and 1 µL template. Primers are diluted from dry oligos with 100–300 µL water to make stocks.",
+      "source": "s4.2"
+    }
+  ],
+  "retrieved_details": "Zyppy-96 Plasmid MagBead Miniprep (Zymo D4100/D4101/D4102) manual, https://files.zymoresearch.com/protocols/_d4100_d4101_d4102_zyppy-96_magbead_miniprep.pdf. Buffer prep: add 208 mL 95% ethanol to the 48 mL Zyppy Wash Buffer concentrate. If Deep Blue Lysis Buffer has precipitated, warm at 30–37 °C for 30 min and invert; do not microwave. Neutralization Buffer (yellow) is stored at 4–8 °C and contains 200 µg/mL RNase A. Vortex the clearing and binding beads before every use. Elution Buffer is 10 mM Tris-HCl pH 8.5, 0.1 mM EDTA; water can be used instead. A strong-field magnetic stand is recommended (ZR-96 MagStand, P1005). Procedure is at room temperature (15–30 °C).\n\nKit automated procedure, 750 µL culture per well (the authors say this gave insufficient DNA in their hands):\n1. Add 100 µL Deep Blue Lysis Buffer and vortex 10 s. Wait 5 min until the culture turns clear blue.\n2. Add 450 µL Neutralization Buffer and vortex 45 s. The sample turns dark yellow.\n3. Add 50 µL MagClearing Beads and vortex 10 s.\n4. Place on the magnetic stand for 5 min. Transfer the cleared lysate (~750 µL), taken from about half the well depth, to a collection plate.\n5. Add 30 µL MagBinding Beads and vortex. Incubate 10 min at room temperature, vortexing 5 s every 30 s. Place on the magnet for 5 min and discard the supernatant.\n6. Off the magnet, add 200 µL Endo-Wash Buffer and vortex 30 s. Place on the magnet for 2 min and discard the supernatant.\n7. Add 400 µL Zyppy Wash Buffer and vortex 30 s. Place on the magnet for 2 min and discard the supernatant. Repeat this wash once.\n8. Dry at 65 °C for 30 min until the pellet is no longer glossy.\n9. Add 40 µL Elution Buffer and vortex 10 s. Incubate at 65 °C for 5 min, vortexing 5 s each minute. Place on the magnet for 1 min and transfer ~30 µL eluate to an elution plate. Store at −20 °C if not used immediately.\n\nKit manual procedure (multichannel pipette): lyse for 1–2 min, then go to neutralization within 3 min. Invert gently 4–6 times (over-inversion can carry over genomic DNA). Bind 10 min, magnet 2–3 min. Washes are by pipette resuspension with 2–3 min on the magnet. Dry at 65 °C for 10–15 min, or at room temperature for 30 min. Elute at 65 °C for 10 min, then 2–3 min on the magnet.\n\nFrom the paper's main text (biorxiv 2025.08.21.671538): cells are grown in autoclavable 24 deep-well plates (250 rpm, 1.9 cm orbit), compatible with the Zymo MagStand. The initial lysis, neutralization and clearing steps are manual. BOTany5 does plasmid binding, washing and elution with an 8-channel pipette, using the Magnetic Module and Heater Shaker. MagBead yields were 5–10% of a standard miniprep (with some chromosomal DNA) but gave the correct restriction digests. All tested colonies from Golden Gate assembly with MagBead plasmids were PCR-positive. Exact S5 parameters are not in the main text.\n\nGeneric Golden Gate programme (assumption): 25–35 cycles of 37 °C for 5 min and 16 °C for 5 min, then 50 °C for 10 min and 80 °C for 10 min. Source: https://www.jove.com/t/61993/rapid-assembly-multi-gene-constructs-using-modular-golden-gate"
+}
