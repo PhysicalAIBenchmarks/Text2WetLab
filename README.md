@@ -10,10 +10,12 @@ Given a plain-English instruction, can a language model generate a correct, safe
 
 ```
 ref/          Reference implementations (ground truth protocols)
-tasks/        Benchmark tasks — NL inputs + expected outputs
+tasks/        Benchmark tasks — one folder per task: input.nl.txt, assumptions.md, ir.json
   L1/         Layer 1: liquid handling (aspirate / dispense / tip management)
   L2/         Layer 2: fine-grained (volumes, concentrations, scheduling)
 eval/         Evaluation harness (PyLabRobot simulation + assertions)
+paper/        arXiv write-up (placeholder)
+scripts/      deploy_hf.py (HF upload; run by CI on push to main)
 assets/
   urdf/       Robot URDFs for 3D simulation
   stl/        Labware STL/OBJ models

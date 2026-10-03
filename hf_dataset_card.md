@@ -4,7 +4,7 @@ language:
 license: apache-2.0
 task_categories:
 - text-generation
-- text2text-generation
+- translation
 tags:
 - biology
 - lab-automation
