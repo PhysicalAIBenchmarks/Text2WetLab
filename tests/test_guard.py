@@ -31,3 +31,9 @@ def test_web_events_parses_server_tool_blocks():
 def test_normalize_doi_from_publisher_urls():
     assert normalize_doi("https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0246302") == "10.1371/journal.pone.0246302"
     assert normalize_doi("https://www.biorxiv.org/content/10.1101/2024.09.14.613006v2.full") == "10.1101/2024.09.14.613006"
+
+
+def test_article_id_extracted_from_publisher_url():
+    from paper2protocol.sources import ARTICLE_ID
+    url = "https://academic.oup.com/synbio/article/5/1/ysaa010/5869449?login=false"
+    assert ARTICLE_ID.search(url).group(1) == "ysaa010"

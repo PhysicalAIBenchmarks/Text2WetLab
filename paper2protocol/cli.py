@@ -30,7 +30,7 @@ def _dump(path: Path, obj) -> None:
 
 
 def load_paper(args) -> tuple[Paper, Path]:
-    doi = normalize_doi(args.doi)
+    doi = normalize_doi(args.doi, allow_lookup=True)
     out = _out_dir(args.out, doi)
     pj = out / "paper.json"
     if pj.exists() and not args.xml and not args.refetch:
@@ -169,7 +169,7 @@ def main(argv=None):
                           ("assess", cmd_assess, "check whether an experiment has enough detail to run"),
                           ("convert", cmd_convert, "assess, then convert one experiment to instructions")]:
         p = sub.add_parser(name, help=hlp)
-        p.add_argument("doi", help="DOI, doi.org link or publisher article URL")
+        p.add_argument("doi", help="DOI, doi.org link, publisher article URL, or article id/title")
         p.add_argument("--source", choices=[src.name for src in SOURCES],
                        help="fetch full text only from this source (default: try all that apply)")
         p.add_argument("--xml", help="use a local JATS XML file instead of downloading")

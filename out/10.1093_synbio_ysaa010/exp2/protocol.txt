@@ -1,0 +1,52 @@
+Flow cytometry of sfGFP, mCherry and BFP expression from picked DNA-BOT colonies
+
+Containers:
+- LB_Cm_reservoir: reservoir — LB medium with 25 µg/ml chloramphenicol, used for overnight cultures and 6 h sub-cultures (about 82 mL needed) [assumed]
+- PBS_kan_reservoir: reservoir — Phosphate buffered saline with 2 mg/ml kanamycin for sample off-sampling (about 54 mL needed) [assumed]
+- ON1: 96-well plate — Overnight culture plate, biological replicate 1 (one colony per construct) [assumed]
+- ON2: 96-well plate — Overnight culture plate, biological replicate 2 [assumed]
+- ON3: 96-well plate — Overnight culture plate, biological replicate 3 [assumed]
+- SUB1: 96-well plate — 6 h sub-culture plate, replicate 1 (1:200 dilution of ON1) [assumed]
+- SUB2: 96-well plate — 6 h sub-culture plate, replicate 2 [assumed]
+- SUB3: 96-well plate — 6 h sub-culture plate, replicate 3 [assumed]
+- FC1: 96-well plate — Flow cytometry sample plate, replicate 1 (2 µl culture in 200 µl PBS-kanamycin) [assumed]
+- FC2: 96-well plate — Flow cytometry sample plate, replicate 2 [assumed]
+- FC3: 96-well plate — Flow cytometry sample plate, replicate 3 [assumed]
+
+Starting contents:
+- LB_Cm_reservoir: stock LB medium + 25 µg/ml chloramphenicol
+- PBS_kan_reservoir: stock PBS + 2 mg/ml kanamycin
+
+Steps:
+1. Transfer 200 µL of LB medium + 25 µg/ml chloramphenicol from LB_Cm_reservoir to ON1 wells A1:H11, A12:B12 (each well). Note: A1:H11 = 88 constructs; A12 = backbone control strain; B12 = uninoculated medium blank (control layout assumed).
+2. Transfer 200 µL of LB medium + 25 µg/ml chloramphenicol from LB_Cm_reservoir to ON2 wells A1:H11, A12:B12 (each well). Note: Replicate 2 plate, same layout.
+3. Transfer 200 µL of LB medium + 25 µg/ml chloramphenicol from LB_Cm_reservoir to ON3 wells A1:H11, A12:B12 (each well). Note: Replicate 3 plate, same layout.
+4. MANUAL: Using sterile tips or toothpicks, pick one individual colony from each construct's spot on the DNA-BOT agar plate into the matching well of ON1 (A1:H11, well position = construct position in the 88-construct layout). Pick a different colony for each of ON2 and ON3, giving three biological replicates per construct. Inoculate ON1/ON2/ON3 well A12 with the mScarlet-free p15A CmR backbone control strain; leave B12 uninoculated. Note: Control strain in A12 and blank in B12 are assumed additions; triplicate colonies per construct are from the cited open-access article.
+5. MANUAL: Seal ON1, ON2 and ON3 with a breathable film or loose lid and incubate overnight (about 16-18 h) at 30 °C, shaking at 600 rpm. Note: Duration of 16-18 h is assumed (paper states only 'overnight'). [assumed]
+6. Transfer 99.5 µL of LB medium + 25 µg/ml chloramphenicol from LB_Cm_reservoir to SUB1 wells A1:H11, A12:B12 (each well). Note: 99.5 µl medium + 0.5 µl overnight culture = 100 µl, 1:200 dilution. [assumed]
+7. Transfer 99.5 µL of LB medium + 25 µg/ml chloramphenicol from LB_Cm_reservoir to SUB2 wells A1:H11, A12:B12 (each well). Note: Replicate 2. [assumed]
+8. Transfer 99.5 µL of LB medium + 25 µg/ml chloramphenicol from LB_Cm_reservoir to SUB3 wells A1:H11, A12:B12 (each well). Note: Replicate 3. [assumed]
+9. Transfer 0.5 µL of Overnight culture from ON1 wells A1:H11, A12:B12 to SUB1 wells A1:H11, A12:B12 (each well), then mix 3 times. Note: 0.5 µl into 99.5 µl gives 1:200. Well-to-well same position. Post-dispense mix of 3 cycles is assumed. [assumed]
+10. Transfer 0.5 µL of Overnight culture from ON2 wells A1:H11, A12:B12 to SUB2 wells A1:H11, A12:B12 (each well), then mix 3 times. Note: Replicate 2. [assumed]
+11. Transfer 0.5 µL of Overnight culture from ON3 wells A1:H11, A12:B12 to SUB3 wells A1:H11, A12:B12 (each well), then mix 3 times. Note: Replicate 3. [assumed]
+12. MANUAL: Seal SUB1, SUB2 and SUB3 with a breathable film or loose lid and incubate for 6 h at 30 °C, shaking at 600 rpm. Note: Shaking speed of 600 rpm assumed to match the overnight culture. [assumed]
+13. Transfer 200 µL of PBS + 2 mg/ml kanamycin from PBS_kan_reservoir to FC1 wells A1:H11, A12:B12 (each well). Note: Dispense before sampling so the culture is stopped immediately.
+14. Transfer 200 µL of PBS + 2 mg/ml kanamycin from PBS_kan_reservoir to FC2 wells A1:H11, A12:B12 (each well). Note: Replicate 2.
+15. Transfer 200 µL of PBS + 2 mg/ml kanamycin from PBS_kan_reservoir to FC3 wells A1:H11, A12:B12 (each well). Note: Replicate 3.
+16. Transfer 2 µL of 6 h sub-culture from SUB1 wells A1:H11, A12:B12 to FC1 wells A1:H11, A12:B12 (each well), then mix 3 times. Note: Same-position transfer. Post-dispense mix (3 cycles) is assumed.
+17. Transfer 2 µL of 6 h sub-culture from SUB2 wells A1:H11, A12:B12 to FC2 wells A1:H11, A12:B12 (each well), then mix 3 times. Note: Replicate 2.
+18. Transfer 2 µL of 6 h sub-culture from SUB3 wells A1:H11, A12:B12 to FC3 wells A1:H11, A12:B12 (each well), then mix 3 times. Note: Replicate 3.
+19. MANUAL: Acquire FC1, FC2 and FC3 on an Attune NxT Flow Cytometer from the 96-well plates, using the same forward/side scatter gating and instrument settings for all samples. Record sfGFP in BL1 (530/30, 488 nm laser), mCherry in YL2 (620/15, 561 nm laser) and mTagBFP in VL1 (440/50, 405 nm laser). Keep detector voltages identical for all plates, use a moderate flow rate (about 100-200 µl/min) and record about 10,000 gated events per well. Hold plates at 4 °C or room temperature until acquisition, keeping the hold time consistent. Export data to FlowJo V10 for gating (analysis not part of this protocol). Note: Channels from Thermo Fisher Attune NxT fluorescent protein application note; voltages, flow rate and event count are standard practice, not stated in the paper. [assumed]
+
+Assumptions:
+- Layout: 88 constructs occupy A1:H11 of each plate (same position as in the DNA-BOT transformation/construct layout); well A12 holds the mScarlet-free p15A CmR backbone control strain (background control) and B12 an uninoculated medium blank. These controls are not stated in the paper and were added as standard practice; C12:H12 remain empty.
+- Three biological replicates are run as three separate plates (ON1-3, SUB1-3, FC1-3), each from a different picked colony per construct; the triplicate-colony design comes from the cited DNA-BOT open-access article (https://academic.oup.com/synbio/article/5/1/ysaa010/5869449).
+- Overnight culture duration assumed to be 16-18 h; plates sealed with breathable film or loose lid (standard practice).
+- The 1:200 dilution is implemented as 0.5 µl overnight culture into 99.5 µl LB-Cm (100 µl total), per standard practice and the gap assessment.
+- Shaking at 600 rpm assumed for the 6 h sub-culture (the paper states speed only for the overnight culture); post-transfer mixing of 3 cycles is assumed.
+- PBS with 2 mg/ml kanamycin is prepared fresh or from a filter-sterilised stock in a reservoir; hold time and temperature before acquisition are unspecified and should be kept consistent.
+- Flow cytometer channels (BL1 530/30 for sfGFP, YL2 620/15 for mCherry, VL1 440/50 for mTagBFP) are the manufacturer-recommended assignments from Thermo Fisher's Attune NxT fluorescent protein application note; the paper does not state them. The optional FP filter kit was not used.
+- Detector voltages, flow rate (about 100-200 µl/min), events per well (about 10,000) and the FSC/SSC bacterial gate drawn on a non-fluorescent control are standard practice, not stated in the paper.
+- LB-Cm volume requirement is about 82 mL (ON plates 3 × 90 wells × 200 µl plus sub-culture 3 × 90 × 99.5 µl), PBS-kan about 54 mL; both fit in one reservoir each (290 mL capacity). Reservoir stocks listed as ample (volume null).
+- Culture plates are 96-well plates with working volume of at least 202 µl, and the 202 µl final sample is read directly from the plate.
+- Data analysis (FlowJo V10 gating, background correction, normalisation, log-scaled plotting of means and SD) is deferred and not included in this protocol.

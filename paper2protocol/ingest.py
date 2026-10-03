@@ -1,20 +1,26 @@
 """DOI → Paper: fetch JATS full text (see sources.py) and parse it into sections/legends/refs."""
 
 import re
+import sys
 from pathlib import Path
 
 from lxml import etree
 
 from .models import Legend, Paper, Reference, Section
-from .sources import fetch_jats, search  # noqa: F401  (search re-exported for cli)
+from .sources import fetch_jats, lookup_doi, search  # noqa: F401  (re-exported for cli)
 
 
 
-def normalize_doi(s: str) -> str:
-    """Accept bare DOIs, doi.org URLs and publisher URLs (e.g. PLOS ?id=..., bioRxiv content URLs)."""
+def normalize_doi(s: str, allow_lookup: bool = False) -> str:
+    """Accept bare DOIs, doi.org URLs and publisher URLs (e.g. PLOS ?id=..., bioRxiv content
+    URLs). With allow_lookup, a URL/id/title with no DOI in it is resolved via Europe PMC."""
     s = s.strip()
     m = re.search(r"(10\.\d{4,9}/[^\s?#&]+)", s)
     if not m:
+        if allow_lookup:
+            doi, title = lookup_doi(s)
+            print(f"Resolved to {doi} — {title}", file=sys.stderr)
+            return doi
         raise ValueError(f"Not a DOI: {s!r}")
     doi = m.group(1)
     doi = re.sub(r"(\.full|\.full-text|\.abstract|\.pdf|\.source\.xml)$", "", doi)

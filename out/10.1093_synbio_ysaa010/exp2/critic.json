@@ -1,0 +1,60 @@
+{
+  "verdict": "major_issues",
+  "summary": "The protocol follows the paper's overall flow (200 µl overnight cultures, 1:200 dilution into 100 µl, 6 h growth, 2 µl into 200 µl PBS-kan, Attune NxT acquisition). Several practical and fidelity problems remain: 0.5 µl pipetting is not reliable on an OT-2 and the dilution is done as an unreliable single sub-µl transfer, the three-replicate/plate layout and kanamycin-in-PBS handling raise feasibility concerns, the 88 construct layout is an assumed addition, and a few liquid-handling details (tip handling, mixing volume, plate volume capacity) are missing or not workable.",
+  "issues": [
+    {
+      "step": 9,
+      "severity": "major",
+      "issue": "The 1:200 dilution is implemented as a 0.5 µl transfer from the overnight culture. This is below the reliable range of OT-2 pipettes (P20 min ~1-2 µl), so the dilution would be highly inaccurate. The paper only says 'diluted 200 times into 100 µl'; the 0.5 µl is the model's own derivation. Also a 3x mix after 0.5 µl is unspecified in volume.",
+      "suggestion": "Flag the 0.5 µl volume as outside reliable pipetting range and either perform an intermediate dilution (e.g., 1:10 predilution then 10 µl into 90 µl... or 2 µl into 398 µl in a deep-well plate) or do this transfer manually/with a multichannel; state mix volume and that fresh tips are used for each well."
+    },
+    {
+      "step": 10,
+      "severity": "major",
+      "issue": "Same issue as step 9 for replicate 2: 0.5 µl transfer is not reliably dispensable, and the culture is not mixed/resuspended before sampling (overnight cultures settle after shaking).",
+      "suggestion": "Resuspend overnight cultures (e.g., mix in-well with a larger volume) before aspirating, and use a workable volume/intermediate dilution; use new tips per well."
+    },
+    {
+      "step": 11,
+      "severity": "major",
+      "issue": "Same issue as steps 9-10 for replicate 3 (0.5 µl transfer, no pre-mix, tip handling unspecified).",
+      "suggestion": "Apply the same fix as step 9."
+    },
+    {
+      "step": 16,
+      "severity": "minor",
+      "issue": "2 µl transfer of culture into 200 µl PBS-kan is at the lower edge of OT-2 P20 range; tip handling (new tip per well to avoid carryover of fluorescent cells between constructs) and mixing volume are not specified. Mixing 3 times with a P20 in a 202 µl well is also not fully effective.",
+      "suggestion": "Specify a P20 with fresh tip per well, touch-off/mix at a defined volume (e.g., 15-20 µl), and note that tip changes are essential to avoid cross-contamination between fluorescent constructs."
+    },
+    {
+      "step": 1,
+      "severity": "minor",
+      "issue": "Reservoir-to-plate dispensing of media (steps 1-3, 6-8, 13-15) does not state tip policy; a single tip dispensing sterile medium across plates is acceptable only if it never touches inoculated wells. The protocol also orders medium dispensing for sub-culture plates (steps 6-8) after the overnight incubation step, so sterile handling timing is fine, but the plate-to-plate sequencing means ON plates sit uncovered on the deck during inoculation.",
+      "suggestion": "State that media dispensing is done with no contact to wells (or with fresh tips) and add sealing/lid handling between steps; consider prefilling sub-culture plates during the overnight."
+    },
+    {
+      "step": 4,
+      "severity": "minor",
+      "issue": "The A12 backbone control and B12 blank wells and the 88-construct A1:H11 layout are assumptions not in the paper. The paper's own Fig. 3 layout and the backbone/no-plasmid controls on the transformation plate (A12-H12) differ from this assumed layout; the paper's background correction reference is unspecified. Colonies for ON2/ON3 'different colony' per construct is from the cited article but the protocol does not say whether replicates were from the same spot.",
+      "suggestion": "Explicitly mark control wells as assumed and, if the construct map follows the DNA-BOT construct csv, reference the csv for well-to-construct mapping; clarify that replicates were picked from the same spot (different colonies)."
+    },
+    {
+      "step": 5,
+      "severity": "minor",
+      "issue": "Sealing with breathable film while shaking 96-well plates at 600 rpm with 200 µl culture can cause cross-contamination/splashing and evaporation; the paper states shaking speed but the plate type/shaker orbit is not given. Also 100 µl sub-cultures in a 6 h incubation at 600 rpm are prone to evaporation edge effects.",
+      "suggestion": "Note plate type and sealing as assumptions and consider a gas-permeable seal; keep the same arrangement for all replicates."
+    },
+    {
+      "step": 19,
+      "severity": "minor",
+      "issue": "Acquisition details (flow rate 100-200 µl/min, 10,000 events, hold at 4 °C or room temperature) are given as options ('or'), which is ambiguous for an executable protocol. Also the acquisition volume per well and mixing/backflush settings are not defined.",
+      "suggestion": "Choose one hold condition (e.g., room temperature, read within a fixed time), state sample volume to acquire and mixing/backflush settings, and keep marked as assumed."
+    },
+    {
+      "step": 13,
+      "severity": "minor",
+      "issue": "Preparation of PBS with 2 mg/ml kanamycin is not given as an explicit step; the paper states 2 mg/ml kanamycin in PBS, and the protocol lists it only as starting contents.",
+      "suggestion": "Add a prep note (kanamycin stock dilution into PBS) and mark as assumed; confirm that the final 202 µl volume fits the plate chosen."
+    }
+  ]
+}
