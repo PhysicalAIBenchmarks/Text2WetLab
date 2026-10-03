@@ -8,7 +8,7 @@ from huggingface_hub import HfApi
 
 REPO_ID = os.environ.get("HF_REPO_ID", "EvanOLeary/Text2WetLab")
 ROOT = Path(__file__).resolve().parent.parent
-INCLUDE = ["tasks", "ref", "eval", "paper", "assets", "LICENSE"]
+INCLUDE = ["tasks", "ref", "eval", "paper", "assets", "docs", "LICENSE"]
 
 api = HfApi(token=os.environ["HF_TOKEN"])
 api.create_repo(REPO_ID, repo_type="dataset", exist_ok=True)

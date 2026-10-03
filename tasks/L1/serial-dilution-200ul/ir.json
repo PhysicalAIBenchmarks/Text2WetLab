@@ -1,11 +1,49 @@
 {
-  "task": "L1-serial-dilution-200ul",
-  "steps": [
-    {"op": "pick_up_tip", "from": "tiprack:A1"},
-    {"op": "aspirate", "volume_uL": 200, "from": "trough:A1"},
-    {"op": "dispense", "volume_uL": 100, "to": "plate:A1"},
-    {"op": "dispense", "volume_uL": 100, "to": "plate:B1"},
-    {"op": "drop_tip"}
+  "title": "Serial dilution 200 µL → 2 × 100 µL into plate",
+  "containers": [
+    {
+      "name": "reservoir",
+      "kind": "reservoir",
+      "description": "Reagent trough, pre-filled with source liquid",
+      "assumed": false
+    },
+    {
+      "name": "plate",
+      "kind": "plate_96",
+      "description": "96-well destination plate",
+      "assumed": true
+    }
   ],
-  "assumed": ["per_well_volume=100", "wells=A1,B1", "single_aspirate_for_both"]
+  "initial_contents": [
+    {
+      "container": "reservoir",
+      "wells": [],
+      "reagent": "reagent",
+      "volume_ul": 10000,
+      "assumed": false
+    }
+  ],
+  "steps": [
+    {
+      "kind": "transfer",
+      "source": "reservoir",
+      "source_wells": [],
+      "dest": "plate",
+      "dest_wells": ["A1", "B1"],
+      "volume_ul": 100,
+      "reagent": "reagent",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Move 200 microlitres from the reservoir into two wells on the plate.",
+      "assumed": true,
+      "note": "100 µL per well (total 200 µL); wells A1/B1 assumed; single aspirate + two dispenses at robot layer"
+    }
+  ],
+  "assumptions": [
+    "per_well_volume=100 µL — total 200 µL split equally between two wells",
+    "wells=A1,B1 — first two rows of column 1",
+    "single_aspirate_for_both — aspirate 200 µL once, dispense 100 µL twice",
+    "plate is a standard 96-well plate (360 µL working capacity per well)",
+    "reservoir is pre-filled with ≥200 µL of reagent"
+  ]
 }

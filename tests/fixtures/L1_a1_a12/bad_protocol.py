@@ -9,5 +9,5 @@ def run(p):
     for i in range(12):
         if i == 0:
             pip.aspirate(300, rs["A1"]); left += 300
-        pip.dispense(100, pl.wells()[i]); left -= 100
+        pip.dispense(100, pl.rows()[0][i]); left -= 100
     pip.drop_tip()

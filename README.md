@@ -41,6 +41,8 @@ assets/
   stl/                Labware STL/OBJ models
 ```
 
+[Examples gallery](docs/examples.md): every example drawn through one interface (`eval/ir_viz.py`).
+
 ## Layers
 
 | Layer | Description | Target platform |

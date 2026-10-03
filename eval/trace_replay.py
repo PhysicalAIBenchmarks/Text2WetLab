@@ -2,7 +2,7 @@
 Replay an `opentrons_simulate` run log through WetLabEnv.
 
     opentrons_simulate protocol.py > run.log
-    python eval/trace_replay.py run.log
+    python eval/trace_replay.py run.log [--gif out.gif]
 
 Only atomic commands are replayed (pick up / aspirate / dispense / drop tip). Composite
 lines such as "Transferring ..." are skipped; their nested atomic commands follow them in
@@ -86,8 +86,31 @@ def replay(text: str) -> dict:
     }
 
 
+def record(text: str, out: str, fps: int = 3) -> int:
+    """Replay the log and save the 2D env view of every step as a GIF/MP4. Returns frame count."""
+    import imageio
+
+    env = WetLabEnv(render_mode="rgb_array")
+    env.reset()
+    frames = [env.render()]
+    for a in parse_log(text):
+        _, _, terminated, truncated, _ = env.step(a)
+        frames.append(env.render())
+        if terminated or truncated:
+            break
+    frames += [frames[-1]] * 3
+    if out.endswith(".gif"):
+        imageio.mimsave(out, frames, duration=1000 / fps, loop=0)
+    else:
+        imageio.mimsave(out, frames, fps=fps)
+    return len(frames)
+
+
 if __name__ == "__main__":
     result = replay(pathlib.Path(sys.argv[1]).read_text())
     print("criteria:", result["criteria"])
     print("errors:  ", result["errors"] or "none")
     print("tip attached at end:", result["tip_attached"])
+    if "--gif" in sys.argv:
+        out = sys.argv[sys.argv.index("--gif") + 1]
+        print(f"saved {record(pathlib.Path(sys.argv[1]).read_text(), out)} frames -> {out}")
