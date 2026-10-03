@@ -23,7 +23,7 @@ def expand_wells(wells: list[str], kind: str) -> list[str]:
                 for c in range(min(ca, cb), max(ca, cb) + 1):
                     out.append(f"{ROWS[r]}{c}")
         else:
-            if kind == "plate_96":
+            if kind.startswith("plate_96"):
                 _rc(w)  # validate
             out.append(w)
     return out

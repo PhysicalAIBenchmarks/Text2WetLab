@@ -1,6 +1,6 @@
 # paper2protocol
 
-bioRxiv paper → experiments (with figure links) → numbered natural-language liquid-handling
+Paper (bioRxiv, PLOS, or any open-access article in Europe PMC) → experiments (with figure links) → numbered natural-language liquid-handling
 instructions (96-well plates, tubes, reservoirs) for a downstream parser LLM.
 
 Design: `docs/superpowers/specs/2026-10-03-paper2protocol-design.md`
@@ -10,7 +10,7 @@ Design: `docs/superpowers/specs/2026-10-03-paper2protocol-design.md`
 Needs `ANTHROPIC_API_KEY` in `.env`.
 
 ```bash
-uv run paper2protocol search "KDM2B HIF"                       # find DOIs by title words
+uv run paper2protocol search "KDM2B HIF"                       # find DOIs by title words (--biorxiv: preprints only)
 uv run paper2protocol list 10.64898/2026.03.26.714448           # numbered experiments + figures
 uv run paper2protocol assess 10.64898/2026.03.26.714448 -e 1    # enough detail to run it? (web research)
 uv run paper2protocol convert 10.64898/2026.03.26.714448 -e 1   # assess → instructions + checks + critic
@@ -20,10 +20,24 @@ uv run paper2protocol convert 10.64898/2026.03.26.714448 -e 1   # assess → ins
 `--skip-assess` skips it, `--no-web` assesses without web research).
 
 Outputs go to `out/<doi>/`: `paper.json`, `experiments.json`, and `exp<N>/` with
-`sufficiency.json`, `protocol.json`, `protocol.txt` (the deliverable), `check.json`, `critic.json`.
+`sufficiency.json`, `web_access.json`, `protocol.json`, `protocol.txt` (the deliverable), `check.json`, `critic.json`.
 
-Full text comes from Europe PMC JATS when available (tables as text), else bioRxiv JATS
-(tables are often images there). If both fail, download the XML and pass `--xml file.xml`.
+The paper can be a DOI, a doi.org link or a publisher URL (e.g.
+`https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0246302`).
+
+Full text comes from the sources in `sources.py`, tried in order: Europe PMC (most
+open-access journals via PMC, plus preprints; tables as text), PLOS, bioRxiv. Force one with
+`--source`, or pass a downloaded JATS file with `--xml file.xml`. To add a publisher, write a
+fetch function returning JATS XML and append a `Source` to `SOURCES`.
+
+## Leak guard
+
+The protocol must come from the paper's text, not from the authors' own code (e.g. an
+Opentrons `.py` in the supplementary files). `guard.py` (1) tells the research model not to
+use the paper's code/supplementary files, (2) blocks code-hosting domains (GitHub, GitLab,
+Opentrons protocol library) in the web tools, and (3) audits every searched/fetched URL.
+Flags print as `!! LEAK FLAG`, are logged in `exp<N>/web_access.json`, and an opened
+flagged URL adds a warning to the top of `protocol.txt`.
 
 ## Pipeline
 
@@ -53,7 +67,8 @@ exact request, so re-runs are free. `--cache refresh` re-calls, `--cache off` by
 uv run pytest -q
 ```
 
-`tests/test_pipeline.py` replays recorded responses from `tests/fixtures/kdm2b/llm_cache`.
+`tests/test_pipeline.py` replays recorded responses from `tests/fixtures/plos_rna/llm_cache`
+(PLOS ONE 10.1371/journal.pone.0246302, experiment 2).
 After changing a prompt, schema or model, re-run `list` and `convert -e 1` on that paper,
 copy the hit cache entries into the fixture cache, and strip non-text content blocks
 (web-fetch results make entries several MB).

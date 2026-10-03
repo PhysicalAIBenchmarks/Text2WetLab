@@ -16,6 +16,8 @@ import anthropic
 from dotenv import load_dotenv
 from pydantic import BaseModel, ValidationError
 
+from . import guard
+
 load_dotenv()
 
 CACHE_VERSION = 1
@@ -31,11 +33,14 @@ STAGES: dict[str, dict] = {
     "critic": {"model": "claude-sonnet-5-5", "effort": "high", "max_tokens": 32000},
 }
 
-# Server-side web tools (run on Anthropic's side; no client loop needed).
+# Server-side web tools (run on Anthropic's side; no client loop needed). Code hosts are
+# blocked so the model can't copy the authors' scripts (see guard.py).
 WEB_TOOLS = [
-    {"type": "web_search_20260209", "name": "web_search", "max_uses": 8},
-    {"type": "web_fetch_20260209", "name": "web_fetch", "max_uses": 10},
+    {"type": "web_search_20260209", "name": "web_search", "max_uses": 8, "blocked_domains": guard.BLOCKED_DOMAINS},
+    {"type": "web_fetch_20260209", "name": "web_fetch", "max_uses": 10, "blocked_domains": guard.BLOCKED_DOMAINS},
 ]
+# Every web search/fetch/result seen by tool-using calls, for guard.audit(). Callers clear it.
+WEB_EVENTS: list = []
 
 SYSTEM = (
     "You are an expert wet-lab scientist helping convert published biology methods into "
@@ -123,11 +128,13 @@ def structured(stage: str, context: str, task: str, schema: type[T], tools: list
     for attempt in range(2):
         resp = _call(stage, req)
         # Server-tool loops can pause; resume by re-sending the paused assistant turn.
+        WEB_EVENTS.extend(guard.web_events(resp))
         for _ in range(5):
             if resp.get("stop_reason") != "pause_turn":
                 break
             req = {**req, "messages": req["messages"] + [{"role": "assistant", "content": resp["content"]}]}
             resp = _call(stage, req)
+            WEB_EVENTS.extend(guard.web_events(resp))
         if resp.get("stop_reason") == "refusal":
             sd = resp.get("stop_details") or {}
             raise LLMRefusal(stage, sd.get("category"), sd.get("explanation"))
