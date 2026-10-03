@@ -36,7 +36,6 @@ BG, PANEL, TEXT = "#07070f", "#0c0c1a", "#8090c0"
 SRC, DST, BAD = "#ffa726", "#00d4ff", "#ff5252"
 MAX_PANELS_PER_ROW = 8
 MIN_COLS = 4  # keeps a 1-2 container deck from stretching panels across the frame
-EMPTY_TO_FULL = LinearSegmentedColormap.from_list("fill", ["#0a0a14", "#2f9bff"])
 
 
 def pairs(step, kinds):
@@ -86,12 +85,31 @@ def timeline(p: Protocol):
     return states, touched
 
 
-def fill(vol, key, kind):
-    v = vol.get(key, 0.0)
-    cap = CAPACITY_UL.get(kind) or 1.0
+FILL_CMAP = LinearSegmentedColormap.from_list(
+    "fill", [(0.0, "#2b6cff"), (0.5, "#18d6c8"), (0.8, "#ffd23f"), (1.0, "#ff9100")])
+EMPTY_RGB = (0.04, 0.04, 0.08)
+LEGEND = [("0-80%", "#18d6c8"), ("80-100%", "#ffd23f"), ("full", "#ff9100"),
+          (">cap", "#ff2626"), ("overdrawn", "#ff00cc"), ("stock", "#00e676")]
+
+
+def fill_rgb(ratio, stock=False):
+    """Colour for a fill ratio (volume / capacity): blue (low) -> teal -> amber (80%+) -> orange (full).
+    Red = above capacity, magenta = overdrawn (negative volume), green = stock with ample volume."""
+    if stock:
+        return (0.0, 0.9, 0.5)
+    if ratio < -1e-9:
+        return (1.0, 0.0, 0.8)
+    if ratio > 1 + 1e-9:
+        return (1.0, 0.15, 0.15)
+    return tuple(FILL_CMAP(min(ratio, 1.0))[:3])
+
+
+def ratio(state, key, kind):
+    """Volume / capacity for one well or tube; None = stock with ample volume; 0 if never filled."""
+    v = state.get(key, 0.0)
     if v is None:
-        return 1.0
-    return float(np.clip(v / cap, 0, 1)) if v > 0 else 0.0
+        return None
+    return v / (CAPACITY_UL.get(kind) or 1.0)
 
 
 def draw(p, kinds, state, touched, caption, bad, size=(1280, 720)):
@@ -107,24 +125,26 @@ def draw(p, kinds, state, touched, caption, bad, size=(1280, 720)):
         ax.set_facecolor(PANEL)
         ax.set_xticks([]); ax.set_yticks([])
         if c.kind.startswith("plate_96"):
-            grid = np.zeros((8, 12))
-            stock = np.zeros((8, 12), bool)
+            img = np.zeros((8, 12, 3)) + EMPTY_RGB
             for r in range(8):
                 for k in range(12):
-                    key = (c.name, f"{'ABCDEFGH'[r]}{k + 1}")
-                    f = fill(state, key, c.kind)
-                    grid[r, k] = 0.3 + 0.7 * f if f > 0 else 0.0  # any liquid stays visible
-                    stock[r, k] = key in state and state[key] is None
-            ax.imshow(grid, cmap=EMPTY_TO_FULL, vmin=0, vmax=1, aspect="equal")
+                    f = ratio(state, (c.name, f"{'ABCDEFGH'[r]}{k + 1}"), c.kind)
+                    if f is None:
+                        img[r, k] = fill_rgb(0, True)
+                    elif abs(f) > 1e-9:
+                        img[r, k] = fill_rgb(f)
+            ax.imshow(img, aspect="equal")
             for (cn, w) in touched[0] + touched[1]:
                 if cn == c.name and w:
                     r, k = "ABCDEFGH".index(w[0]), int(w[1:]) - 1
                     ax.add_patch(plt.Rectangle((k - .5, r - .5), 1, 1, fill=False,
                                                ec=SRC if (cn, w) in touched[0] else DST, lw=1))
         else:
-            f = fill(state, (c.name, ""), c.kind)
-            ax.barh([0], [f], color="#00e676" if state.get((c.name, "")) is None and (c.name, "") in state
-                    else "#00b0ff", height=0.6)
+            f = ratio(state, (c.name, ""), c.kind)
+            if f is None:
+                ax.barh([0], [1.0], color=fill_rgb(0, True), height=0.6)
+            elif abs(f) > 1e-9:
+                ax.barh([0], [min(max(abs(f), 0.04), 1.0)], color=fill_rgb(f), height=0.6)
             ax.set_xlim(0, 1); ax.set_ylim(-.6, .6)
             if c.kind == "waste":
                 ax.set_facecolor("#1a0c0c")

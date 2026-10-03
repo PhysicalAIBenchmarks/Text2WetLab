@@ -94,6 +94,43 @@ The pipeline is text -> IR -> 3D. For the L1 tasks there is also Python and an O
 
 ![Golden Gate 3D](../assets/examples3d/L2-golden-gate-assembly.gif)
 
+## Colour coding and physics tracking
+
+Both views colour liquid by fill state (volume / capacity):
+
+| Colour | Meaning |
+|---|---|
+| blue -> teal | filling, under 80% of capacity |
+| amber | 80-100% |
+| orange | full |
+| red | above capacity |
+| magenta | overdrawn: more withdrawn than the source held |
+| green | stock with ample volume |
+
+Under the two views a tracking strip plots, per frame: liquid in the tip against the pipette
+maximum (default P1000, `--pipette-max` to change), tip height against the rim of the labware
+beneath it, the fullest container as % of capacity, and a running issue count (checker errors,
+a single dispense larger than the pipette, and collisions). The HUD above it shows the same
+numbers and flags "needs N aspirations" when a step moves more than one pipette load, which is
+the original A1-A12 re-aspirate test.
+
+Collision rule: a lateral move whose tip passes below the rim of labware it crosses is a
+collision. The default animation lifts first, so it never collides. `--no-lift` drives straight
+between work heights to show the check firing (tip turns red, issue count climbs):
+
+```bash
+python eval/ir_mujoco.py tasks/L1/example/ir.json --no-lift -o out.mp4
+```
+
+![No lift: collision flagged](../assets/examples3d/L1-example-NO-LIFT-collision.gif)
+
+Issues the checker finds in the paper protocols now show up in the strip, for example 4 in the
+yeast protocol, 7 in the RNA extraction one and 3 in the KDM2B one.
+
+Limits: the physics is bookkeeping plus geometry, not fluid dynamics. Collisions are checked
+against labware footprints and rim heights only (no tip-to-tip or gantry self collisions), and
+the tip is drawn as one load even when a step needs several aspirations.
+
 ## What the IR view does not show
 Tips, pipette capacity, deck slots and heights. Those need the robot layer (Python or an
 Opentrons log), so use `trace_replay.py` for them.
