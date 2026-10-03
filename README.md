@@ -41,7 +41,9 @@ assets/
   stl/                Labware STL/OBJ models
 ```
 
-[Examples gallery](docs/examples.md) · [Harbor task: OT-2 RNA extraction](tasks/L2/opentrons-rna-extraction/README.md): every example drawn through one interface (`eval/ir_viz.py`).
+[Examples gallery](docs/examples.md): every example drawn through one interface (`eval/ir_viz.py`).
+
+[Harbor task: OT-2 RNA extraction](tasks/L2/opentrons-rna-extraction/README.md): agent writes a protocol from the paper, graded on the simulated run.
 
 ## Layers
 
