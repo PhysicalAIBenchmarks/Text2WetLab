@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Extraction efficiency of in-house vs commercial protocols using spiked mock samples (TaqMan control)",
+    "goal": "Compare nucleic acid extraction efficiency of MMkit, OT-2in-house and MMin-house using mock samples with standard, low and very-low viral loads of the DNA positive control.",
+    "section_refs": [
+      "s2.4",
+      "s2.3",
+      "s2.5"
+    ],
+    "shared_refs": [
+      "s2.2"
+    ],
+    "unresolved_refs": [
+      "qPCR 'conditions recommended by the manufacturer'",
+      "MMkit 'according to the manufacturer instructions'",
+      "OT-2 script details deposited on GitHub"
+    ],
+    "figure_refs": [
+      "S1 Table"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "RNA extraction from clinical nasopharyngeal swabs with three protocols followed by SARS-CoV-2 RT-qPCR",
+    "goal": "Compare detection rate and Ct values for orf1ab, S and N targets in 141 positive clinical samples extracted in parallel with MMkit, OT-2in-house and MMin-house.",
+    "section_refs": [
+      "s2.1",
+      "s2.3",
+      "s2.5"
+    ],
+    "shared_refs": [
+      "s2.2"
+    ],
+    "unresolved_refs": [
+      "qPCR 'conditions recommended by the manufacturer'",
+      "MMkit 'according to the manufacturer instructions'",
+      "OT-2 script details deposited on GitHub"
+    ],
+    "figure_refs": [
+      "Figure 1",
+      "Figure 2",
+      "S1 Fig"
+    ],
+    "liquid_handling": "mostly"
+  }
+]
