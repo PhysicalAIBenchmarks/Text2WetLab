@@ -27,6 +27,7 @@ eval/         Evaluation harness (PyLabRobot + MuJoCo 3D sim + Gymnasium env)
   ot2.xml             MuJoCo MJCF model of the OT-2 Cartesian gantry
   wetlab_mujoco_env.py  Headless 3D sim — recordable, reward-shaped on T1–T6
   wetlab_gym.py         Lightweight Gymnasium env (no MuJoCo dep)
+  trace_replay.py       Replays an opentrons_simulate log through WetLabEnv
 docs/
   agent-spec.md       Pipeline spec, acceptance criteria AC1–AC7, risk register R1–R15
   leaderboard.html    Self-contained leaderboard — runs eval entirely in-browser
@@ -39,6 +40,8 @@ assets/
   urdf/               Robot URDFs for 3D simulation
   stl/                Labware STL/OBJ models
 ```
+
+[Examples gallery](docs/examples.md): every example drawn through one interface (`eval/ir_viz.py`).
 
 ## Layers
 

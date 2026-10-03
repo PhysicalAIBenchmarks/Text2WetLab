@@ -24,6 +24,10 @@ size_categories:
 Evaluates whether language models can translate plain-English lab instructions
 into correct, safe, executable liquid-handling protocols for the Opentrons OT-2.
 
+## Reference episode
+
+![OT-2 reference episode](assets/episode_mujoco.gif)
+
 ## Task
 
 Given a natural language instruction (at varying levels of specificity),

@@ -1,0 +1,1 @@
+Clean up 50 µL PCR products using 0.8× AMPure XP magnetic beads: add 40 µL beads to each well, incubate 5 minutes, engage the magnet and remove the supernatant, wash twice with 200 µL 80% ethanol, dry 5 minutes, then elute in 50 µL nuclease-free water.
