@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """Build the Text2WetLab submission video (1280x720, 24 fps).
 
-    uv run python scripts/make_trailer.py --cut 2min   # results/trailer.mp4, under 2:00 (no challenge 3, scenes x0.8)
-    uv run python scripts/make_trailer.py --cut 3min   # results/trailer_3min.mp4, all three challenges
+    uv run python scripts/make_trailer.py --cut 2min   # results/trailer.mp4, under 2:00 (challenges 1-2, 3 result figures)
+    uv run python scripts/make_trailer.py --cut 3min   # results/trailer_3min.mp4 (all 3 challenges, 5 figures, scenes x1.2)
 
 Scene time splits go to results/<output>_timesplits.md.
 
-Teaser, title, motivation (the text-to-lab-code gap), then each challenge as:
+Teaser, title, sourced stats, model / hardware / standard, workflow, the reproducibility gap, then each challenge as:
   paper (CC BY PDF page, passages the task uses highlighted) | task instruction / code
   -> historical MuJoCo replay of the Protocol IR
-  -> rubric verdict with the judge's own words (round R2 scores, from results/<model>/<task>/reward.json)
-and the eval-round figures from docs/harbor-results/figures (R7 latest run, per-task comparison).
+  -> rubric verdict with the judge's own words (round R7, commit 48836f1, read with git show)
+and the preprint figures (PR #50, commit 817e453): headline, per task, errors (+ grader, corpus in 3min).
 
 Inputs:
   - source PDFs: fetched from sources/<slug>/record.json and checked against its SHA-256
@@ -226,21 +226,175 @@ def pdf_panel(pdf: Path, page: int, phrases, size, tmp: Path) -> Image.Image:
     return crop
 
 
-# ── results data ───────────────────────────────────────────────────────────────
+# ── data: eval round R7 (clean re-run, 21 trials) and the preprint figures, read from git ─────────────────────
+
+R7 = "48836f1"       # results/<model>/<task>/{reward,judge,result}.json for the latest clean run
+PREPRINT = "817e453"  # docs/preprint/figures/*.png (PR #50)
+
+
+def git_bytes(commit, path):
+    r = subprocess.run(["git", "-C", str(ROOT), "show", f"{commit}:{path}"], capture_output=True)
+    return r.stdout if r.returncode == 0 else None
+
+
+def git_json(commit, path):
+    b = git_bytes(commit, path)
+    return json.loads(b) if b and b.strip() else None
+
 
 def reward(model, task):
-    return json.loads((RES / model / task / "reward.json").read_text())
+    return git_json(R7, f"results/{model}/{task}/reward.json")
 
 
 def judge_items(model, task):
-    return json.loads((RES / model / task / "judge.json").read_text())["judge"]["items"]
+    j = git_json(R7, f"results/{model}/{task}/judge.json") or git_json(R7, f"results/{model}/{task}/result.json") or {}
+    return (j.get("judge") or {}).get("items", [])
 
 
 def evidence(model, task, item):
     return next(i["evidence"] for i in judge_items(model, task) if i["id"] == item)
 
 
-# ── scene builders ─────────────────────────────────────────────────────────────
+# ── icons (drawn, so they scale and stay on-palette) ───────────────────────────────────────────────────────────
+
+def icon_paper(d, cx, cy, s, col):
+    w, h, f = s * 0.72, s, s * 0.22
+    x0, y0 = cx - w / 2, cy - h / 2
+    d.polygon([(x0, y0), (x0 + w - f, y0), (x0 + w, y0 + f), (x0 + w, y0 + h), (x0, y0 + h)], outline=col, width=3)
+    d.polygon([(x0 + w - f, y0), (x0 + w - f, y0 + f), (x0 + w, y0 + f)], outline=col, width=3)
+    text(d, (cx, y0 + h * 0.3), "PDF", int(s * 0.16), col, bold=True, anchor="mm")
+    for k in range(4):
+        y = y0 + h * (0.48 + k * 0.12)
+        d.line([(x0 + w * 0.16, y), (x0 + w * (0.84 if k < 3 else 0.6), y)], fill=col, width=3)
+
+
+def icon_list(d, cx, cy, s, col):
+    for k in range(3):
+        y = cy - s * 0.32 + k * s * 0.32
+        text(d, (cx - s * 0.38, y), str(k + 1), int(s * 0.2), col, bold=True, anchor="mm")
+        d.line([(cx - s * 0.2, y), (cx + s * 0.42, y)], fill=col, width=4)
+
+
+def icon_code(d, cx, cy, s, col):
+    d.rounded_rectangle([cx - s * 0.5, cy - s * 0.4, cx + s * 0.5, cy + s * 0.4], radius=int(s * 0.1), outline=col, width=3)
+    text(d, (cx, cy), "</>", int(s * 0.34), col, mono=True, bold=True, anchor="mm")
+
+
+def icon_robot(d, cx, cy, s, col):
+    # an OT-2 seen from the front: frame, gantry, pipette, deck with a plate
+    x0, x1, y0, y1 = cx - s * 0.5, cx + s * 0.5, cy - s * 0.45, cy + s * 0.45
+    d.line([(x0, y1), (x0, y0), (x1, y0), (x1, y1)], fill=col, width=4)
+    d.line([(x0 - s * 0.08, y1), (x1 + s * 0.08, y1)], fill=col, width=5)
+    px = cx + s * 0.12
+    d.rectangle([px - s * 0.07, y0, px + s * 0.07, y0 + s * 0.3], outline=col, width=3)
+    d.line([(px, y0 + s * 0.3), (px, y0 + s * 0.52)], fill=col, width=3)
+    d.rectangle([cx - s * 0.36, y1 - s * 0.16, cx + s * 0.02, y1 - s * 0.02], outline=col, width=3)
+    for k in range(4):
+        d.ellipse([cx - s * 0.32 + k * s * 0.09 - 3, y1 - s * 0.1 - 3, cx - s * 0.32 + k * s * 0.09 + 3, y1 - s * 0.1 + 3], fill=col)
+
+
+def icon_check(d, cx, cy, s, col):
+    icon_code(d, cx, cy, s, col)
+    r = s * 0.2
+    bx, by = cx + s * 0.42, cy + s * 0.34
+    d.ellipse([bx - r, by - r, bx + r, by + r], fill=col)
+    d.line([(bx - r * 0.5, by), (bx - r * 0.1, by + r * 0.4), (bx + r * 0.55, by - r * 0.4)], fill=BG, width=4)
+
+
+# ── opening ────────────────────────────────────────────────────────────────────────────────────────────────────
+
+def stats_card(out):
+    img = canvas()
+    d = chrome(img, "Why this matters", "Sources: Baker, Nature 533:452 (2016) · Freedman et al., PLOS Biol 13:e1002165 (2015) · opentrons.com/robots/ot-2 · Boiko et al., Nature 624:570 (2023)")
+    text(d, (W // 2, 112), "Science is starting to run through code.", 40, WHITE, bold=True, anchor="mm")
+    text(d, (W // 2, 160), "When an AI misreads a protocol, the robot executes the mistake exactly.", 22, LGREY, anchor="mm")
+    tiles = [("70%", AMBER, "of 1,576 researchers have failed to", "reproduce another lab's experiment", "Nature, 2016"),
+             ("$28B", AMBER, "a year spent on irreproducible", "preclinical research, US alone", "PLOS Biology, 2015"),
+             ("40+", TEAL, "countries where thousands of labs", "automate with the Opentrons OT-2", "Opentrons"),
+             ("2023", TEAL, "an LLM agent first wrote and ran", "OT-2 liquid-handling code itself", "Coscientist, Nature 2023")]
+    n, gap = len(tiles), 20
+    tw = (W - 80 - gap * (n - 1)) // n
+    for k, (big, col, l1, l2, src) in enumerate(tiles):
+        x = 40 + k * (tw + gap)
+        d.rectangle([x, 215, x + tw, 520], fill=PANEL, outline=LINE)
+        d.rectangle([x, 215, x + tw, 219], fill=col)
+        text(d, (x + tw // 2, 310), big, 72, col, bold=True, anchor="mm")
+        text(d, (x + tw // 2, 395), l1, 17, LGREY, anchor="mm")
+        text(d, (x + tw // 2, 421), l2, 17, LGREY, anchor="mm")
+        text(d, (x + tw // 2, 480), src, 14, DGREY, anchor="mm")
+    text(d, (W // 2, 588), "Before AI runs the lab, we need to measure how faithfully it turns text into lab code.", 23, WHITE, bold=True, anchor="mm")
+    return scene(out, 10, img)
+
+
+def standard_card(out):
+    img = canvas()
+    d = chrome(img, "Text2WetLab  ·  model  ·  hardware  ·  standard", "Corpus and trial counts: docs/preprint (PR #50), computed from the committed results.")
+    text(d, (W // 2, 105), "A benchmark for the text-to-lab-code gap", 36, WHITE, bold=True, anchor="mm")
+    cols = [("MODEL", AMBER, icon_code, ["Claude Opus 5.5, Sonnet 5.5, Fable 5.1", "as Claude Code agents.", "Any agent plugs in through Harbor."]),
+            ("HARDWARE", AMBER, icon_robot, ["Opentrons OT-2 liquid handler,", "in thousands of labs worldwide.", "Every run replayed in MuJoCo."]),
+            ("STANDARD", TEAL, icon_check, ["Opentrons Python Protocol API,", "checked by opentrons_simulate.", "Harbor tasks, graders hidden."])]
+    gap, cw = 24, (W - 80 - 48) // 3
+    for k, (head, col, icon, lines) in enumerate(cols):
+        x = 40 + k * (cw + gap)
+        d.rectangle([x, 150, x + cw, 420], fill=PANEL, outline=LINE)
+        icon(d, x + 70, 218, 70, col)
+        text(d, (x + 130, 205), head, 20, col, bold=True)
+        y = 290
+        for ln in lines:
+            text(d, (x + 26, y), ln, 18, LGREY)
+            y += 34
+    nums = [("36", "papers"), ("123", "experiments"), ("29", "converted to protocols"), ("147", "graded agent trials")]
+    nw = (W - 80) // len(nums)
+    for k, (v, lbl) in enumerate(nums):
+        cx = 40 + k * nw + nw // 2
+        text(d, (cx, 488), v, 46, WHITE, bold=True, anchor="mm")
+        text(d, (cx, 534), lbl, 17, MGREY, anchor="mm")
+    return scene(out, 9, img)
+
+
+def workflow_card(out):
+    img = canvas()
+    d = chrome(img, "How it works", "The model never sees the researchers' code. It is the ground truth the run is judged against.")
+    steps = [("Paper", "methods in prose", icon_paper, MGREY), ("AI breakdown", "ordered Protocol IR", icon_list, AMBER),
+             ("AI code", "OT-2 Python", icon_code, AMBER), ("Real world", "simulator + robot", icon_robot, AMBER)]
+    n, bw = len(steps), 230
+    gap = (W - 80 - n * bw) // (n - 1)
+    for k, (h_, sub, icon, col) in enumerate(steps):
+        x = 40 + k * (bw + gap)
+        d.rectangle([x, 110, x + bw, 340], fill=PANEL, outline=col, width=2)
+        icon(d, x + bw // 2, 190, 90, col)
+        text(d, (x + bw // 2, 278), h_, 23, WHITE, bold=True, anchor="mm")
+        text(d, (x + bw // 2, 310), sub, 16, MGREY, anchor="mm")
+        if k < n - 1:
+            ax = x + bw + 6
+            d.line([(ax, 225), (ax + gap - 14, 225)], fill=DGREY, width=3)
+            d.polygon([(ax + gap - 14, 217), (ax + gap - 4, 225), (ax + gap - 14, 233)], fill=DGREY)
+    d.rectangle([40, 390, W - 40, 560], fill=PANEL, outline=TEAL, width=2)
+    icon_check(d, 130, 475, 90, TEAL)
+    text(d, (220, 425), "GROUND TRUTH", 16, TEAL, bold=True)
+    text(d, (220, 455), "The researchers' own written and tested code, hidden from the model.", 22, WHITE)
+    text(d, (220, 495), "Graded twice: a deterministic gate (simulate + end-state checks), then a task rubric judge.", 17, LGREY)
+    text(d, (220, 525), "Each reproduced PDF becomes runnable code with proof: an evidence layer around past science.", 17, LGREY)
+    return scene(out, 8, img)
+
+
+def fig_card(out, png, kicker, caption, dur):
+    """A figure cropped to its content; light (preprint) figures sit on a white paper card."""
+    im = Image.open(png).convert("RGB")
+    ground = Image.new("RGB", im.size, im.getpixel((5, 5)))
+    box = ImageChops.difference(im, ground).convert("L").point(lambda v: 255 if v > 12 else 0).getbbox()
+    im = im.crop(box)
+    light = sum(im.getpixel((0, 0))) > 600
+    pad = 28 if light else 0
+    im.thumbnail((W - 80 - 2 * pad, H - 150 - 2 * pad), Image.LANCZOS)
+    img = canvas()
+    d = chrome(img, kicker, caption)
+    x, y = (W - im.width) // 2, 70 + (H - 150 - im.height) // 2
+    if light:
+        d.rounded_rectangle([x - pad, y - pad, x + im.width + pad, y + im.height + pad], radius=10, fill=(255, 255, 255))
+    img.paste(im, (x, y))
+    return scene(out, dur, img)
+
 
 def title_card(out):
     img = canvas()
@@ -249,7 +403,7 @@ def title_card(out):
     text(d, (W // 2, 330), "From published wet-lab papers to executable OT-2 robot protocols", 26, LGREY, anchor="mm")
     text(d, (W // 2, 372), "A benchmark for LLM agents, with simulation and rubric grading", 20, MGREY, anchor="mm")
     text(d, (W // 2, 470), "Evan O'Leary  ·  Mohammed Alshehri  ·  Laurence Legon", 18, DGREY, anchor="mm")
-    return scene(out, 5, img)
+    return scene(out, 4, img)
 
 
 def cold_open(out, hist):
@@ -257,7 +411,7 @@ def cold_open(out, hist):
     d = ImageDraw.Draw(img)
     label(d, (40, H - 92), "Golden Gate Assembly  ·  33 steps  ·  Protocol IR replayed in MuJoCo", AMBER, 20)
     text(d, (50, H - 40), "AssemblyTron (Synthetic Biology 2023), ingested by paper2protocol", 15, MGREY)
-    return scene(out, 7, img, [dict(src=hist / "L2-golden-gate-assembly.mp4", box=(0, 0, W, H - 100), ss=6, speed=3)])
+    return scene(out, 5, img, [dict(src=hist / "L2-golden-gate-assembly.mp4", box=(0, 0, W, H - 100), ss=6, speed=3)])
 
 
 def gap_card(out):
@@ -266,7 +420,7 @@ def gap_card(out):
     text(d, (W // 2, 100), "Papers describe protocols in prose. The researchers' code is what actually ran.", 24, WHITE, anchor="mm")
     cols = [("PAPER (prose)", MGREY, '"After 90 sec collect the\nsupernatant and transfer to a\n96-well microtiter plate."', "PLOS ONE 2021, p.4"),
             ("RESEARCHERS' CODE (ground truth)", TEAL, "p300multi.transfer(80, ...\n  .bottom(z=0)\n  .move(Point(x=-2)), ...)", "viral_rna_extraction_protocol.py:373"),
-            ("AGENT (read only the paper)", RED, "m300.aspirate(ELUTION_VOL,\n             src.bottom(1))\n# ELUTION_VOL = 100", "Opus 5.5 protocol.py:208")]
+            ("AGENT (read only the paper)", RED, "m300.aspirate(ELUTION_VOL,\n             src.bottom(0.8))\n# ELUTION_VOL = 100", "Opus 5.5, round R7: protocol.py:205")]
     x, cw = 40, (W - 80 - 40) // 3
     for head, col, body, src in cols:
         d.rectangle([x, 150, x + cw, 520], fill=PANEL, outline=LINE)
@@ -281,29 +435,6 @@ def gap_card(out):
         x += cw + 20
     text(d, (W // 2, 575), "The 80 µL recovery volume and the side-shift away from the pellet appear only in the code.", 20, LGREY, anchor="mm")
     text(d, (W // 2, 612), "Text2WetLab treats the researchers' executable protocol as ground truth.", 22, AMBER, anchor="mm")
-    return scene(out, 11, img)
-
-
-def pipeline_card(out):
-    img = canvas()
-    d = chrome(img, "How a task is built and graded")
-    steps = [("Paper", "PDF / DOI\nSHA-256 pinned"), ("paper2protocol", "LLM extraction\n+ critic"), ("Protocol IR", "steps, volumes,\nlabware"),
-             ("Agent", "writes OT-2\nPython in Harbor"), ("Simulator", "opentrons_simulate\n+ end-state checks"), ("Judge", "task rubric\n0 / 0.5 / 1")]
-    n, bw, y = len(steps), 170, 230
-    gap = (W - 80 - n * bw) // (n - 1)
-    for i, (h_, sub) in enumerate(steps):
-        x = 40 + i * (bw + gap)
-        col = TEAL if i >= 4 else AMBER
-        d.rectangle([x, y, x + bw, y + 150], fill=PANEL, outline=col, width=2)
-        text(d, (x + bw // 2, y + 40), h_, 20, WHITE, bold=True, anchor="mm")
-        for j, s in enumerate(sub.split("\n")):
-            text(d, (x + bw // 2, y + 85 + j * 24), s, 15, MGREY, anchor="mm")
-        if i < n - 1:
-            ax = x + bw + 4
-            d.line([(ax, y + 75), (ax + gap - 8, y + 75)], fill=DGREY, width=3)
-            d.polygon([(ax + gap - 8, y + 68), (ax + gap - 1, y + 75), (ax + gap - 8, y + 82)], fill=DGREY)
-    text(d, (W // 2, 460), "reward = ( deterministic gate + judge mean ) / 2        critical failure caps reward at 0.3", 20, LGREY, anchor="mm", mono=True)
-    text(d, (W // 2, 510), "Every trial runs in a Harbor sandbox on Modal  ·  pass@1  ·  3 Claude models  ·  7 tasks", 18, MGREY, anchor="mm")
     return scene(out, 9, img)
 
 
@@ -315,7 +446,7 @@ def sim_card(out, hist):
     label(d, (640, 90), "Without the lift: tip drags through the labware", RED)
     text(d, (W // 2, 560), "A log line can look valid while the motion is physically wrong.", 22, WHITE, anchor="mm")
     text(d, (W // 2, 595), "The replay shows the motion that actually happened, step by step, with telemetry.", 18, MGREY, anchor="mm")
-    return scene(out, 8, img, [dict(src=hist / "L1-example.mp4", box=(40, 140, cw, chh), speed=0.6),
+    return scene(out, 7, img, [dict(src=hist / "L1-example.mp4", box=(40, 140, cw, chh), speed=0.6),
                                dict(src=hist / "L1-example-NO-LIFT-collision.mp4", box=(640, 140, cw, chh), speed=0.6)])
 
 
@@ -327,7 +458,7 @@ def chapter(out, n, name, cite, lic, blurb):
     text(d, (W // 2, 370), cite, 20, LGREY, anchor="mm")
     text(d, (W // 2, 405), lic, 15, DGREY, anchor="mm")
     text(d, (W // 2, 480), blurb, 22, TEAL, anchor="mm")
-    return scene(out, 4, img)
+    return scene(out, 3, img)
 
 
 def side_by_side(out, kicker, paper_img, paper_head, right_head, right_draw, caption):
@@ -339,7 +470,7 @@ def side_by_side(out, kicker, paper_img, paper_head, right_head, right_draw, cap
     d.rectangle([39, 99, 40 + paper_img.width, 100 + paper_img.height], outline=LINE)
     d.rectangle([680, 100, W - 40, 100 + paper_img.height], fill=PANEL, outline=LINE)
     right_draw(d, 700, 120, W - 40 - 720)
-    return scene(out, 11, img)
+    return scene(out, 8, img)
 
 
 def replay(out, kicker, src, ss, speed, head, sub, caption):
@@ -347,12 +478,12 @@ def replay(out, kicker, src, ss, speed, head, sub, caption):
     d = chrome(img, kicker, caption)
     label(d, (40, H - 112), head, AMBER, 19)
     text(d, (50, H - 62), sub, 15, LGREY)
-    return scene(out, 9, img, [dict(src=src, box=(40, 64, W - 80, H - 190), ss=ss, speed=speed)])
+    return scene(out, 6, img, [dict(src=src, box=(40, 64, W - 80, H - 190), ss=ss, speed=speed)])
 
 
 def verdict(out, task, kicker, headline, quote_model, quote_items, takeaway):
     img = canvas()
-    d = chrome(img, kicker, "Round R2 (graded rubric)  ·  scores: results/<model>/" + task + "/reward.json  ·  quotes: judge.json")
+    d = chrome(img, kicker, f"Round R7 (binary rubric, commit {R7})  ·  scores and quotes: results/<model>/{task}/ reward.json, judge")
     text(d, (40, 80), headline, 30, WHITE, bold=True)
     items = [k[7:] for k in reward(MODELS[0][0], task) if k.startswith("rubric_")]
     y = 140
@@ -382,57 +513,7 @@ def verdict(out, task, kicker, headline, quote_model, quote_items, takeaway):
         text(d, (40, y + 14), f"{dict(MODELS)[quote_model]}  ·  {item}", 14, AMBER, bold=True)
         y = wrap(d, (40, y + 38), "“" + q + "”", 17, W - 80, LGREY) + 14
     text(d, (40, H - 70), takeaway, 19, TEAL, bold=True)
-    return scene(out, 11, img)
-
-
-def motive_future(out):
-    img = canvas()
-    d = chrome(img, "Why this matters")
-    text(d, (W // 2, 150), "The next 20 years of science:", 30, MGREY, anchor="mm")
-    text(d, (W // 2, 205), "AI models like Claude and Gemini running experiments through code.", 32, WHITE, bold=True, anchor="mm")
-    y = 300
-    for s_, col in [("As millions of experiments are executed by AI, even a small error rate", LGREY),
-                    ("turns into millions in losses: reagents, equipment, patient samples,", LGREY),
-                    ("and lost progress in science, medicine and our understanding of life.", LGREY)]:
-        text(d, (W // 2, y), s_, 24, col, anchor="mm")
-        y += 40
-    text(d, (W // 2, 480), "Before AI runs the lab, we need to measure how faithfully it turns text into lab code.", 22, AMBER, anchor="mm")
-    return scene(out, 9, img)
-
-
-def motive_gap(out):
-    img = canvas()
-    d = chrome(img, "The text-to-lab-code gap")
-    text(d, (W // 2, 100), "Like text-to-SQL and text-to-action, prose and executable code are different modalities.", 22, WHITE, anchor="mm")
-    cols = [("1  ·  BENCHMARK", AMBER, ["Published studies that release both", "the paper (natural language) and", "the researchers' own tested Python."]),
-            ("2  ·  TEST", AMBER, ["Hide the code. The model splits the", "paper into an ordered Intermediate", "Representation, then writes the code", "that drives the robot."]),
-            ("3  ·  EVIDENCE LAYER", TEAL, ["The reproducibility crisis as an", "opportunity: every PDF becomes", "runnable code with proof, published", "on HuggingFace."])]
-    x, cw = 40, (W - 80 - 40) // 3
-    for head, col, lines in cols:
-        d.rectangle([x, 150, x + cw, 430], fill=PANEL, outline=LINE)
-        d.rectangle([x, 150, x + cw, 154], fill=col)
-        text(d, (x + 22, 178), head, 15, col, bold=True)
-        y = 225
-        for ln in lines:
-            text(d, (x + 22, y), ln, 19, LGREY)
-            y += 32
-        x += cw + 20
-    text(d, (W // 2, 490), "Ground truth is the researchers' written and tested code, not the model's reading of the paper.", 21, TEAL, anchor="mm")
-    text(d, (W // 2, 530), "Fixing this gap for the next generation of science, and adding an evidence layer around past science.", 19, MGREY, anchor="mm")
-    return scene(out, 9, img)
-
-
-def fig_card(out, png, kicker, caption, dur):
-    """A figure from docs/harbor-results/figures, cropped to its content and fitted under the kicker."""
-    im = Image.open(png).convert("RGB")
-    ground = Image.new("RGB", im.size, im.getpixel((5, 5)))
-    box = ImageChops.difference(im, ground).convert("L").point(lambda v: 255 if v > 12 else 0).getbbox()
-    im = im.crop(box)
-    im.thumbnail((W - 80, H - 150), Image.LANCZOS)
-    img = canvas()
-    d = chrome(img, kicker, caption)
-    img.paste(im, ((W - im.width) // 2, 70 + (H - 150 - im.height) // 2))
-    return scene(out, dur, img)
+    return scene(out, 8, img)
 
 
 def cta_card(out):
@@ -443,10 +524,17 @@ def cta_card(out):
     text(d, (W // 2, 375), "physicalaibenchmarks.github.io/Text2WetLab", 22, TEAL, anchor="mm", mono=True)
     text(d, (W // 2, 460), "Harbor-compatible tasks  ·  hidden graders  ·  CC BY source papers pinned by SHA-256", 17, MGREY, anchor="mm")
     text(d, (W // 2, 500), "Renders: opentrons-mujoco-viz  ·  Simulator: Opentrons 7.5  ·  Judge: claude-sonnet-5-5", 15, DGREY, anchor="mm")
-    return scene(out, 7, img)
+    return scene(out, 4, img)
 
 
 # ── main ───────────────────────────────────────────────────────────────────────
+
+def git_media_at(commit, path, dest: Path) -> Path:
+    out = dest / Path(path).name
+    if not out.exists():
+        out.write_bytes(git_bytes(commit, path))
+    return out
+
 
 def git_media(path, dest: Path) -> Path:
     out = dest / Path(path).name
@@ -462,9 +550,9 @@ def main():
     a = ap.parse_args()
     global SCALE, OUT, N_CHALLENGES
     if a.cut == "2min":
-        SCALE, N_CHALLENGES = 0.8, 2
+        N_CHALLENGES = 2
     else:
-        OUT = RES / "trailer_3min.mp4"
+        SCALE, OUT = 1.2, RES / "trailer_3min.mp4"
     tmp = Path(tempfile.mkdtemp(prefix="t2wl_trailer_"))
     hist = tmp / "hist"
     hist.mkdir()
@@ -477,11 +565,12 @@ def main():
     print("intro")
     segs.append(cold_open(S("cold"), hist))
     segs.append(title_card(S("title")))
-    segs.append(motive_future(S("motive")))
-    segs.append(motive_gap(S("textlab")))
+    segs.append(stats_card(S("stats")))
+    segs.append(standard_card(S("standard")))
+    segs.append(workflow_card(S("workflow")))
     segs.append(gap_card(S("gap")))
-    segs.append(pipeline_card(S("pipeline")))
-    segs.append(sim_card(S("sim"), hist))
+    if a.cut == "3min":
+        segs.append(sim_card(S("sim"), hist))
 
     # ── Challenge 1: Golden Gate (AssemblyTron) ──
     print("challenge 1: golden gate")
@@ -525,9 +614,9 @@ def main():
             text(d, (x, y), ln, 14, WHITE, mono=True)
             y += 22
         y += 18
-        text(d, (x, y), "AGENT  ·  Opus 5.5  ·  protocol.py:207-209", 13, RED, bold=True)
+        text(d, (x, y), "AGENT  ·  Opus 5.5  ·  round R7, protocol.py:202-205", 13, RED, bold=True)
         y += 26
-        for ln in ["m300.flow_rate.aspirate = 20", "m300.aspirate(ELUTION_VOL, src.bottom(1))", "# ELUTION_VOL = 100"]:
+        for ln in ["m300.flow_rate.aspirate = 20", "m300.aspirate(ELUTION_VOL, src.bottom(0.8))", "# ELUTION_VOL = 100"]:
             text(d, (x, y), ln, 14, WHITE, mono=True)
             y += 22
 
@@ -538,7 +627,7 @@ def main():
                        "paper2protocol IR for the same paper  ·  91 steps",
                        "Lysis/binding, beads, two 70% ethanol washes, air dry, elution, transfer to the 4 °C plate.",
                        "Render: assets/examples3d/paper-10_1371_journal_pone_0246302-exp2.mp4"))
-    segs.append(verdict(S("c2v"), rna, "Challenge 2  ·  verdict", "Every model recovered 100 µL. The 80 µL is only in the code.",
+    segs.append(verdict(S("c2v"), rna, "Challenge 2  ·  verdict", "Every model over-recovered the eluate (90-100 µL); the 80 µL is only in the code.",
                         rnam, ["elution_recovery"], "The reproducibility gap: the parameter is in the researchers' code, not the paper."))
 
     if a.cut == "3min":  # the 2min cut omits challenge 3 (colony PCR)
@@ -559,21 +648,23 @@ def main():
                            "Protocol IR replay  ·  master mix, then colony template, then primers",
                            "Telemetry shows the tip height cycling once per well across all 96 wells.",
                            f"Historical render, 3 Oct 2026 ({HIST_BRANCH}: assets/examples3d/L2-colony-pcr-screening.mp4)"))
-        segs.append(verdict(S("c3v"), cp, "Challenge 3  ·  verdict", "Correct end state, but the judge deducted for practice",
-                            cpm, ["tips_and_contamination", "robot_practice"], "End-state checks cannot express practice. The rubric layer covers it."))
+        segs.append(verdict(S("c3v"), cp, "Challenge 3  ·  verdict", "All three models: 1.000 under the binary rubric",
+                            cpm, ["tips_and_contamination"], "96 wells, 1 µL additions, fresh tips per colony: no model loses a point here."))
 
 
     print("outro")
-    figs = ROOT / "docs/harbor-results/figures"
-    segs.append(fig_card(S("fig_latest"), figs / "fig1_latest_run_dark.png", "Latest clean run  ·  R7  ·  21 trials",
-                         "All three models tie at 0.943. Every point lost was a judge rubric item.", 6))
-    segs.append(fig_card(S("fig_per_task"), figs / "fig6_points_lost_per_task_dark.png", "Per-task comparison  ·  points lost, R3 to R7",
-                         "Only RNA extraction and E. coli heat shock separate the models.", 8))
+    fig = lambda name: tmp / (git_media_at(PREPRINT, f"docs/preprint/figures/{name}.png", tmp).name)  # noqa: E731
+    segs.append(fig_card(S("fig_headline"), fig("fig2_headline"), "Results  ·  rounds R3-R7  ·  3 models x 7 tasks x 5 rounds",
+                         "Reward: Opus 0.931, Sonnet 0.920, Fable 0.954. Fable costs 8.5x Sonnet per trial for no clear gain.", 6))
+    segs.append(fig_card(S("fig_per_task"), fig("fig3_per_task"), "Per-task comparison",
+                         "Only E. coli heat shock and RNA extraction separate the models; the other 5 tasks score 1.0 for all.", 6))
+    segs.append(fig_card(S("fig_errors"), fig("fig4_errors"), "Where the points go",
+                         "47% of lost points: over-recovering the eluate. 16%: wrong reagent order. 15%: mixing competent cells.", 6))
     if a.cut == "3min":
-        segs.append(fig_card(S("fig_errors"), figs / "fig5_error_types_dark.png", "Error types  ·  binary-judge rounds R3 to R7",
-                             "Over-recovering the eluate is the one error every model makes.", 7))
-        segs.append(fig_card(S("fig_rounds"), figs / "fig2_reward_by_round_dark.png", "Mean reward by eval round",
-                             "The grader changed every round; most of the movement is the grader, not the model.", 6))
+        segs.append(fig_card(S("fig_grader"), fig("fig5_grader"), "Which grader layer caught it",
+                             "Of 147 trials, 108 got full marks; all 39 that lost points lost them to the LLM judge.", 6))
+        segs.append(fig_card(S("fig_corpus"), fig("fig6_corpus"), "The corpus",
+                             "36 papers, 123 experiments, 85 mostly liquid handling, 29 converted to protocols.", 5))
     segs.append(cta_card(S("cta")))
 
     lst = tmp / "concat.txt"
