@@ -181,3 +181,5 @@ Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1
 - With 1 attempt each, small differences between models are noise.
 
 Per-trial scores, failed items with the judge's reasons, tokens and cost are in `results/summary.json`.
+
+**Judge choice:** Haiku 4.5 was tried as a cheaper judge (one call, and one call per item) and not adopted: ampure's ~212k-token run log exceeds its 200k context, and it misread several protocols. Details in [`results/HAIKU_JUDGE_EXPERIMENTS.md`](results/HAIKU_JUDGE_EXPERIMENTS.md).
