@@ -97,11 +97,11 @@ Judged against: task text + Slowpoke paper (`/data/paper.txt`). Source: `tasks/c
 
 | # | Item | Passes only if |
 |---|---|---|
-| 1 | `master_mix` | 18 uL Q5 2x master mix into each of the 96 PCR wells. |
-| 2 | `template_and_primers` | 1 uL colony template and 1 uL primer pair from each source well into the matching PCR well with the 20 uL pipette, giving 20 uL reactions. |
-| 3 | `tips_and_contamination` | A fresh tip for every colony and every primer pair, and no cross-contamination between samples. Reusing one tip for master mix into empty wells passes. |
-| 4 | `thermocycling` | Seal and the thermocycling program (98 C 30 s; 30x [98 C 10 s, 60 C 30 s, 72 C 30 s]; 72 C 2 min; 4 C hold) recorded. |
-| 5 | `fidelity_to_paper` | Consistent with the task text and the Slowpoke paper; no missing or invented steps; comments and metadata are accurate. |
+| 1 | `reaction_setup` | Each PCR well gets 2x master mix, its colony's primer pair and about 1 uL colony template, master mix first. 10 uL (paper) or 20-25 uL (Q5 protocol) reactions both pass. |
+| 2 | `sample_mapping` | Template and primers from each source well go to the matching PCR well for all 96 colonies, none skipped or doubled. |
+| 3 | `tips_and_contamination` | Always pipettes with a tip and drops all tips; fresh tip per colony and primer pair; one tip for master mix into empty wells passes. |
+| 4 | `thermocycling` | Sealing and a colony PCR program recorded per the paper: initial denaturation, ~30 cycles, final extension, 4 C hold, at Q5-suitable temperatures. |
+| 5 | `fidelity_to_paper` | The paper's method on the given deck, no missing, invented or reordered steps; values match the paper or a sound adaptation; accurate comments and metadata. |
 
 ### ecoli-heat-shock-transformation
 
@@ -121,11 +121,11 @@ Judged against: task text + AssemblyTron paper (`/data/paper.txt`). Source: `tas
 
 | # | Item | Passes only if |
 |---|---|---|
-| 1 | `pcr_setup` | PCR reactions for each fragment set up as specified (primer and template amounts, reaction volume) with primers and templates paired to the correct wells. |
-| 2 | `dpni_and_cleanup` | DpnI digestion and the fragment clean-up and concentration steps carried out or recorded in order. |
-| 3 | `assembly_mix` | Fragments combined in the specified volumes for each assembly with BsaI-HFv2, T4 ligase and buffer, with volumes matching the task. |
-| 4 | `cycling_and_transformation` | Golden Gate cycling program run or recorded as specified, then assemblies transformed into TOP10 cells as specified. |
-| 5 | `tips_and_contamination` | Fresh tips between different fragments and assemblies, and no cross-contamination. |
+| 1 | `pcr_setup` | 7 fragment PCRs per the paper: 25 uL Q5 reactions, 0.1 uM each primer, 0.5 ng template, primers and template from the design table. |
+| 2 | `dpni_and_cleanup` | Gradient PCR program recorded, then DpnI digestion (19 uL water, 5 uL rCutSmart, 1 uL DpnI; 37 C 30 min, 65 C 20 min), then a clean-up pause, in order. |
+| 3 | `assembly_mix` | Four 20 uL Golden Gate reactions with design-table fragment volumes, 2 uL 10x T4 ligase buffer, ~1-2 uL BsaI-HFv2 + T4 ligase mix, water to 20 uL. |
+| 4 | `cycling_and_transformation` | A standard BsaI/T4 ligase program recorded, then clean-up into 10 uL water and TOP10 transformation (30 min ice, 42 C 60 s, 250 uL LB + dextrose 37 C 60 min, kanamycin plates). |
+| 5 | `tips_and_contamination` | Always pipettes with a tip and drops all tips; fresh tips between fragments, templates, primers and assemblies; shared-reagent tip only if it never aspirates from those wells. |
 
 ### opentrons-rna-extraction
 
@@ -172,7 +172,8 @@ Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1
 
 - No trial errored, and none tripped a reward-hacking trap.
 - **Heat-shock (Fable):** failed `fidelity_to_task` for pipette-mixing the competent cells, which the task doesn't ask for.
-- **RNA extraction:** the instruction now lists the exact steps (including the 80 µL recovery), and all 3 models score 1.0.
+- **RNA extraction:** this run used the step-list instruction (including the 80 µL recovery); all 3 models scored 1.0.
+- These results predate the paper-only instructions now used by `colony-pcr-screening`, `golden-gate-assembly` and `opentrons-rna-extraction`.
 - With 1 attempt each, small differences between models are noise.
 
 Per-trial scores, failed items with the judge's reasons, tokens and cost are in `results/summary.json`.

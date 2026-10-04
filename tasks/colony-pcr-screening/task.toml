@@ -3,7 +3,7 @@ schema_version = "1.4"
 [task]
 name = "text2wetlab/colony-pcr-screening"
 version = "0.1.0"
-description = "Colony PCR screening with Q5 Hot Start master mix"
+description = "Colony PCR screening of 96 colonies on the OT-2, following the Slowpoke paper's OT-2 workflow adapted to the given reagents"
 authors = [{ name = "Text2WetLab" }]
 keywords = ["opentrons", "ot-2", "lab-automation", "protocol-generation"]
 

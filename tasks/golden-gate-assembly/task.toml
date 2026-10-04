@@ -3,7 +3,7 @@ schema_version = "1.4"
 [task]
 name = "text2wetlab/golden-gate-assembly"
 version = "0.1.0"
-description = "Golden Gate assembly of four four-fragment chromoprotein expression plasmids with AssemblyTron on the OT-2"
+description = "Golden Gate assembly of four chromoprotein plasmids with AssemblyTron on the OT-2, with the steps and quantities worked out from the paper"
 authors = [{ name = "Text2WetLab" }]
 keywords = ["opentrons", "ot-2", "lab-automation", "protocol-generation"]
 

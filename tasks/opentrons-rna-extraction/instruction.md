@@ -1,6 +1,6 @@
 # Automate a magnetic-bead RNA extraction on an Opentrons OT-2
 
-`/data/paper.txt` is the text of "Automated low-cost SARS-CoV-2 RNA extraction protocols" (PLOS ONE, 2021, doi:10.1371/journal.pone.0246302). Implement its **in-house OT-2 magnetic-bead protocol** for **48 samples** as an Opentrons Python protocol. The exact steps are listed below; the paper is there for background.
+`/data/paper.txt` is the text of "Automated low-cost SARS-CoV-2 RNA extraction protocols" (PLOS ONE, 2021, doi:10.1371/journal.pone.0246302). Implement its **in-house OT-2 magnetic-bead protocol** for **48 samples** as an Opentrons Python protocol, using the reagent volumes, step order, incubation, magnet and drying times described in the paper.
 
 Write the protocol to **`/app/protocol.py`**.
 
@@ -24,30 +24,9 @@ Reservoir (slot 5) columns: **2** magnetic beads; **4** elution buffer; **6–7*
 
 Place the 48 samples in the **odd columns (1, 3, 5, 7, 9, 11)** of the magnetic-module plate, one sample per well, and recover each eluate into its own well of the elution plate on the temperature module, which must be kept at 4 °C. Send removed supernatant and washes to the waste plate in slot 1.
 
-## The protocol to implement
-
-Do these steps in this order, for every one of the 48 sample wells (odd columns of the magnetic-module plate):
-
-1. Make sure the magnetic module is disengaged and set the temperature module to 4 °C before any eluate reaches the elution plate.
-2. Add 40 µL magnetic beads (reservoir column 2) to each sample well.
-3. Add 250 µL isopropanol (reservoir columns 6–7) to each sample well.
-4. Add 250 µL of each sample from its tube to its own well (samples 1–24 from slot 10, 25–48 from slot 7), with a fresh tip per sample, and mix by pipetting 5 times.
-5. Incubate 5 min at room temperature (`protocol.delay`).
-6. Engage the magnet and wait 4 min.
-7. With the magnet engaged, remove the supernatant (about 540 µL) from each well to the waste plate.
-8. Add 500 µL 70% ethanol (reservoir columns 9–12) to each well, then, with the magnet engaged, remove it to the waste plate.
-9. Repeat step 8 for a second 500 µL 70% ethanol wash.
-10. Air-dry the beads for 4 min with the magnet engaged.
-11. Disengage the magnet and add 100 µL elution buffer (reservoir column 4) to each well; mix to resuspend the beads.
-12. Wait 30 s, engage the magnet and wait 90 s.
-13. Transfer 80 µL of eluate from each well to its own well of the elution plate on the 4 °C temperature module.
-14. Disengage the magnet at the end of the run.
-
-Any tip that touches a sample well must not touch another sample well. Reagents may be dispensed into several wells with one tip only if that tip never aspirates from a sample well.
-
 ## Tools and constraints
 
 - Use OT-2 Python API `apiLevel` between `'2.2'` and `'2.15'`; Opentrons 7.5.0 is installed.
-- Simulate with: `opentrons_simulate -L /data/labware /app/protocol.py` (`/data/labware` holds the `thermo_96_wellplate_200ul` definition). Your protocol must simulate without errors.
+- `/data/labware` holds the definition of the custom `thermo_96_wellplate_200ul`; load it by name with `load_labware`, like standard labware.
 - No internet access besides the model API; the authors' published code is not available.
-- The protocol is graded on what the simulated robot actually does (volumes, order, timing, magnet and tip handling).
+- The protocol is graded on what the robot would actually do (volumes, order, timing, magnet and tip handling).
