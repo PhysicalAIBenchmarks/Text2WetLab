@@ -1,18 +1,23 @@
-# Trailer time splits
+# Trailer time splits (2min cut)
 
-`results/trailer.mp4`, built by `scripts/make_trailer.py`. Total 1:58.0.
+`results/trailer.mp4`, built by `scripts/make_trailer.py --cut 2min`. Total 1:57.6.
 
-| Time | Length | Scene | On screen |
-|---|---|---|---|
-| 0:00.0 - 0:05.0 | 5 s | `title` | Title: can an AI agent turn a paper into a correct robot protocol? |
-| 0:05.0 - 0:13.0 | 8 s | `gap` | The reproducibility gap: text -> AI breakdown -> AI code -> replay, vs ground truth |
-| 0:13.0 - 0:21.0 | 8 s | `ex1_text` | Ex1 task text | AI breakdown (step 1 note: 'Gently flick to mix, no vortex') |
-| 0:21.0 - 0:33.0 | 12 s | `ex1_code` | Ex1 AI code (line 23 mix_after boxed red) | agent replay, red while it mixes the cells (1.5-4.0 s) |
-| 0:33.0 - 0:45.0 | 12 s | `ex1_truth` | Ex1 ground-truth oracle (no mix) vs agent (red during mix) + materials and impact |
-| 0:45.0 - 0:54.0 | 9 s | `ex2_text` | Ex2 paper p4 (elution steps highlighted) | AI breakdown (step 36 '100 µL assumed' boxed red) |
-| 0:54.0 - 1:07.0 | 13 s | `ex2_code` | Ex2 AI code (recover ELUTION_VOL=100 boxed red) | agent replay cued to recovery (t=527 s), red throughout |
-| 1:07.0 - 1:21.0 | 14 s | `ex2_truth` | Ex2 authors' code (transfer 80 µL with side_shift) + their run, teal at recovery (t=487 s) + materials and impact |
-| 1:21.0 - 1:28.0 | 7 s | `ex3_text` | Ex3 paper p3 step 1 (order highlighted) | AI breakdown steps 21-23 in order (teal) |
-| 1:28.0 - 1:38.0 | 10 s | `ex3_code` | Ex3 AI code (sample-first loop boxed red) | agent replay, red from the first sample transfer (1.2 s) |
-| 1:38.0 - 1:49.0 | 11 s | `ex3_truth` | Ex3 authors' run (beads first, teal) vs agent (sample first, red) + materials and impact |
-| 1:49.0 - 1:58.0 | 9 s | `results` | R7 results: all three models 0.943; cost $1.25 / $0.39 / $3.43; links |
+| Time | Length | Scene |
+|---|---|---|
+| 0:00.0 - 0:05.6 | 5.6 s | `cold` |
+| 0:05.6 - 0:09.6 | 4.0 s | `title` |
+| 0:09.6 - 0:18.4 | 8.8 s | `gap` |
+| 0:18.4 - 0:25.6 | 7.2 s | `pipeline` |
+| 0:25.6 - 0:32.0 | 6.4 s | `sim` |
+| 0:32.0 - 0:35.2 | 3.2 s | `c1` |
+| 0:35.2 - 0:44.0 | 8.8 s | `c1ab` |
+| 0:44.0 - 0:51.2 | 7.2 s | `c1ir` |
+| 0:51.2 - 0:59.2 | 8.0 s | `c1vs` |
+| 0:59.2 - 1:08.0 | 8.8 s | `c1v` |
+| 1:08.0 - 1:11.2 | 3.2 s | `c2` |
+| 1:11.2 - 1:20.0 | 8.8 s | `c2ab` |
+| 1:20.0 - 1:27.2 | 7.2 s | `c2ir` |
+| 1:27.2 - 1:35.2 | 8.0 s | `c2vs` |
+| 1:35.2 - 1:44.0 | 8.8 s | `c2v` |
+| 1:44.0 - 1:52.0 | 8.0 s | `results` |
+| 1:52.0 - 1:57.6 | 5.6 s | `cta` |

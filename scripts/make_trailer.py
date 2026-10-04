@@ -1,20 +1,26 @@
 #!/usr/bin/env python3
-"""Build the Text2WetLab submission video: results/trailer.mp4 (1280x720, 24 fps, under 2 minutes).
+"""Build the Text2WetLab submission video (1280x720, 24 fps).
 
-    uv run python scripts/make_trailer.py [--renders DIR]
+    uv run python scripts/make_trailer.py --cut 2min   # results/trailer.mp4, under 2:00 (no challenge 3, scenes x0.8)
+    uv run python scripts/make_trailer.py --cut 3min   # results/trailer_3min.mp4, all three challenges
+    add --renders DIR to point at the agent renders (default /tmp/t2wl_renders)
 
-Three worked errors from the eval runs, each as:
-  original text (task / paper, CC BY page with the passage highlighted) | AI breakdown (Protocol IR)
-  -> AI code with the faulty lines boxed in red | the agent's run, replayed in MuJoCo
-  -> ground truth (oracle or the authors' own script) next to the agent, with materials cost and impact
-The video panels are composited frame by frame from <render>.timeline.json (scripts/render_run.py), so the red
-border and the event ticker turn red exactly while the erroneous robot events play.
+Scores are from the committed results/<model>/<task>/reward.json, which is eval round R2 (graded rubric).
+Scene time splits go to results/<output>_timesplits.md.
 
-Inputs: --renders DIR with r7-ecoli-opus, gt-ecoli, r7-rna-opus, gt-rna, r5-rna-sonnet (.mp4 + .timeline.json),
-made with scripts/render_run.py from the protocols named in main(). Source PDFs are fetched from
-sources/<slug>/record.json and checked against its SHA-256; only redistributable (CC BY) papers are used.
-A scene-by-scene time split is written to results/trailer_timesplits.md.
-Needs ffmpeg and poppler (pdftoppm, pdftotext).
+Three challenges, each shown as:
+  paper (CC BY PDF page, passages the task uses highlighted) | task instruction / code
+  -> historical MuJoCo replay of the Protocol IR
+  -> oracle vs scored agent protocol, rendered in the OT-2 scene
+  -> rubric verdict with the judge's own words
+
+Inputs:
+  - source PDFs: fetched from sources/<slug>/record.json and checked against its SHA-256
+    (only papers whose record says redistributable=yes are used)
+  - historical renders: read from the backup/l2-outputs-oct04 branch with `git show`
+  - agent renders: --renders DIR holding <task>-<model>.mp4, made with scripts/render_run.py
+    from results/<model>/<task>/protocol.py (falls back to results/<task>/best_run.mp4)
+Needs ffmpeg, pdftoppm and pdftotext (poppler). Text is drawn with Pillow, so ffmpeg needs no drawtext.
 """
 import argparse
 import hashlib
@@ -23,10 +29,10 @@ import json
 import re
 import subprocess
 import tempfile
+import textwrap
 import urllib.request
 from pathlib import Path
 
-import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -76,8 +82,13 @@ def duration(path) -> float:
 ENC = ["-pix_fmt", "yuv420p", "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-r", str(FPS), "-an"]
 
 
+N_CHALLENGES = 3
+SCALE = 1.0  # every scene's length is multiplied by this (the 2min cut uses 0.8)
+
+
 def scene(out: Path, dur: float, bg: Image.Image, clips=(), fade=0.35):
     """bg image + clips overlaid. clip = dict(src, box=(x,y,w,h), speed=None|float, ss=0)."""
+    dur = round(dur * SCALE, 2)
     png = out.with_suffix(".png")
     bg.save(png)
     args = ["-loop", "1", "-framerate", str(FPS), "-i", str(png)]
@@ -186,14 +197,13 @@ def pdf_panel(pdf: Path, page: int, phrases, size, tmp: Path) -> Image.Image:
     od = ImageDraw.Draw(over)
     boxes = []
     for ph in phrases:
-        ph, nth = ph if isinstance(ph, tuple) else (ph, 0)
         pt = [norm(t) for t in ph.split()]
-        hits = [i for i in range(len(toks) - len(pt) + 1) if toks[i:i + len(pt)] == pt]
-        for i in hits[nth:nth + 1]:
-            for _, x0, y0, x1, y1 in words[i:i + len(pt)]:
-                od.rectangle([x0 - 3, y0 - 2, x1 + 3, y1 + 2], fill=HILITE + (110,))
-                boxes.append((x0, y0, x1, y1))
-            break
+        for i in range(len(toks) - len(pt) + 1):
+            if toks[i:i + len(pt)] == pt:
+                for _, x0, y0, x1, y1 in words[i:i + len(pt)]:
+                    od.rectangle([x0 - 3, y0 - 2, x1 + 3, y1 + 2], fill=HILITE + (110,))
+                    boxes.append((x0, y0, x1, y1))
+                break
         else:
             raise SystemExit(f"phrase not found on {pdf.name} p{page}: {ph!r}")
     page_img = Image.alpha_composite(page_img.convert("RGBA"), over).convert("RGB")
@@ -234,382 +244,352 @@ def evidence(model, task, item):
     return next(i["evidence"] for i in judge_items(model, task) if i["id"] == item)
 
 
-# ── video panel: render + timeline -> zoomed deck, event ticker, red border on errors ───────────────────────────
+# ── scene builders ─────────────────────────────────────────────────────────────
 
-DECK = (210, 140, 800, 520)  # crop of the 960x544 OT-2 render that holds the deck
-
-
-def panel_clip(src: Path, t0: float, t1: float, out_dur: float, size, out: Path, names, errors=(), oks=(), title=""):
-    """Write a size=(w,h) clip of src between t0 and t1 seconds, stretched to out_dur.
-
-    errors / oks: [(ta, tb, message)] windows in source time. During an error window the border, banner and
-    ticker are red; during an ok window they are teal. names(labware, well) -> readable location."""
-    import imageio.v2 as iio2
-    import imageio.v3 as iio
-    tl = json.loads(Path(f"{src}.timeline.json").read_text())
-    sf0, sf1 = int(t0 * 12), int(t1 * 12) + 1
-    src_frames = []
-    for i, fr in enumerate(iio.imiter(src)):
-        if i >= sf1:
-            break
-        if i >= sf0:
-            src_frames.append(fr)
-    w, h = size
-    vh = h - 112
-    n = int(out_dur * FPS)
-    speed = (t1 - t0) / out_dur
-    writer = iio2.get_writer(str(out), fps=FPS, codec="libx264", quality=8, macro_block_size=1)
-    fbold, freg, fban = F(15, bold=True), F(15), F(16, bold=True)
-
-    def window(s, wins):
-        return next((wn for wn in wins if wn[0] <= s <= wn[1]), None)
-
-    def describe(e):
-        v = f"{e['volume']:g} µL " if e.get("volume") else ""
-        where = names(e.get("labware") or "", e.get("well") or "")
-        k = {"pick": "pick up tip", "drop": "drop tip", "engage": "magnet ON", "disengage": "magnet OFF"}.get(e["kind"], e["kind"])
-        if e["kind"] == "delay":
-            return f"wait {e.get('seconds') or 0:g} s"
-        return f"{k} {v}{('· ' + where) if where and e['kind'] in ('aspirate', 'dispense') else ''}".strip()
-
-    for k in range(n):
-        s = t0 + k / FPS * speed
-        fr = Image.fromarray(src_frames[min(len(src_frames) - 1, max(0, int(s * 12) - sf0))])
-        img = Image.new("RGB", (w, h), (0, 0, 0))
-        img.paste(fr.crop(DECK).resize((w, vh), Image.LANCZOS), (0, 0))
-        d = ImageDraw.Draw(img)
-        err, ok = window(s, errors), window(s, oks)
-        col = RED if err else (TEAL if ok else LINE)
-        if err or ok:
-            msg = (err or ok)[2]
-            tw = d.textlength(msg, font=fban)
-            d.rectangle([10, 10, 30 + tw, 40], fill=col)
-            d.text((20, 15), msg, font=fban, fill=WHITE if err else BG)
-        if title:
-            d.text((w - 12, vh - 26), title, font=F(13, bold=True), fill=LGREY, anchor="ra")
-        d.text((w - 12, vh - 46), f"t = {s:6.1f} s", font=F(13, mono=True), fill=MGREY, anchor="ra")
-        past = [e for e in tl if e["t"] <= s][-4:]
-        d.rectangle([0, vh, w, h], fill=PANEL)
-        for j, e in enumerate(past):
-            cur = j == len(past) - 1
-            bad, good = window(e["t"], errors), window(e["t"], oks)
-            c = RED if bad else (TEAL if good else (WHITE if cur else MGREY))
-            d.text((14, vh + 8 + j * 25), ("> " if cur else "  ") + describe(e), font=fbold if cur else freg, fill=c)
-        d.rectangle([0, 0, w - 1, h - 1], outline=col, width=6 if (err or ok) else 2)
-        writer.append_data(np.asarray(img))
-    writer.close()
-    return out
-
-
-# ── static panels ─────────────────────────────────────────────────────────────────────────────────────────────
-
-def code_panel(d, box, path, first, last, marks, head, head_col):
-    """Source lines first..last of path with line numbers; marks = [(a, b, color, note)] boxes lines a..b."""
-    x0, y0, x1, y1 = box
-    d.rectangle(box, fill=PANEL, outline=LINE)
-    text(d, (x0 + 16, y0 + 12), head, 13, head_col, bold=True)
-    f = F(14, mono=True)
-    lines = Path(path).read_text().splitlines()
-    y, lh, ys = y0 + 42, 21, {}
-    maxw = x1 - x0 - 70
-    ye = {}
-    for no in range(first, last + 1):
-        ln = lines[no - 1].rstrip()
-        ys[no] = y
-        d.text((x0 + 14, y), f"{no:>3}", font=f, fill=DGREY)
-        indent = " " * (len(ln) - len(ln.lstrip()) + 4)
-        while True:  # wrap long lines so nothing that matters is cut off
-            cut = len(ln)
-            while d.textlength(ln[:cut], font=f) > maxw:
-                cut -= 1
-            d.text((x0 + 54, y), ln[:cut], font=f, fill=WHITE)
-            y += lh
-            if cut == len(ln):
-                break
-            ln = indent + ln[cut:]
-        ye[no] = y
-    ny = y + 10  # notes go under the code, never over it
-    for a, b, colr, note in marks:
-        d.rectangle([x0 + 48, ys[a] - 3, x1 - 8, ye[b] - 2], outline=colr, width=3)
-        if note:
-            tw = d.textlength(f"lines {a}-{b}: {note}", font=F(15, bold=True))
-            d.rectangle([x0 + 14, ny, x0 + 34 + tw, ny + 28], fill=colr)
-            text(d, (x0 + 24, ny + 5), f"lines {a}-{b}: {note}" if a != b else f"line {a}: {note}", 15, WHITE if colr == RED else BG, bold=True)
-            ny += 34
-
-
-def ir_panel(d, box, rows, head):
-    """rows = [(step_no, summary, note, color|None)]; colored rows get a box and their note."""
-    x0, y0, x1, y1 = box
-    d.rectangle(box, fill=PANEL, outline=LINE)
-    text(d, (x0 + 16, y0 + 12), head, 13, AMBER, bold=True)
-    y = y0 + 44
-    for no, summary, note, colr in rows:
-        top = y
-        text(d, (x0 + 16, y), f"{no:>2}", 15, DGREY, mono=True)
-        y = wrap(d, (x0 + 56, y), summary, 17, x1 - x0 - 80, WHITE if colr else LGREY, gap=4)
-        if note:
-            y = wrap(d, (x0 + 56, y + 2), "note: " + note, 15, x1 - x0 - 80, colr or MGREY, gap=3)
-        if colr:
-            d.rectangle([x0 + 8, top - 6, x1 - 8, y + 2], outline=colr, width=3)
-        y += 14
-
-
-def strip(d, y, cost, impact):
-    d.rectangle([40, y, W - 40, y + 118], fill=PANEL, outline=LINE)
-    text(d, (60, y + 14), "MATERIALS AT STAKE", 13, AMBER, bold=True)
-    wrap(d, (60, y + 38), cost, 16, 520, LGREY, gap=4)
-    text(d, (640, y + 14), "IMPACT IF RUN AS WRITTEN", 13, RED, bold=True)
-    wrap(d, (640, y + 38), impact, 16, 580, LGREY, gap=4)
-
-
-# ── scenes ────────────────────────────────────────────────────────────────────────────────────────────────────
-
-def title_card(out, dur):
+def title_card(out):
     img = canvas()
     d = ImageDraw.Draw(img)
     text(d, (W // 2, 250), "Text2WetLab", 84, WHITE, bold=True, anchor="mm")
-    text(d, (W // 2, 330), "Can an AI agent turn a published wet-lab method into a correct robot protocol?", 25, LGREY, anchor="mm")
-    text(d, (W // 2, 372), "3 worked errors  ·  Claude agents in Harbor  ·  OT-2 replayed in MuJoCo", 19, MGREY, anchor="mm")
-    text(d, (W // 2, 470), "Niall O'Leary  ·  Evan O'Leary  ·  Mohammed Alshehri  ·  Laurence Sturdy", 17, DGREY, anchor="mm")
-    return scene(out, dur, img)
+    text(d, (W // 2, 330), "From published wet-lab papers to executable OT-2 robot protocols", 26, LGREY, anchor="mm")
+    text(d, (W // 2, 372), "A benchmark for LLM agents, with simulation and rubric grading", 20, MGREY, anchor="mm")
+    text(d, (W // 2, 470), "Niall O'Leary  ·  Evan O'Leary  ·  Mohammed Alshehri  ·  Laurence Sturdy", 18, DGREY, anchor="mm")
+    return scene(out, 5, img)
 
 
-def gap_card(out, dur):
+def cold_open(out, hist):
+    img = canvas()
+    d = ImageDraw.Draw(img)
+    label(d, (40, H - 92), "Golden Gate Assembly  ·  33 steps  ·  Protocol IR replayed in MuJoCo", AMBER, 20)
+    text(d, (50, H - 40), "AssemblyTron (Synthetic Biology 2023), ingested by paper2protocol", 15, MGREY)
+    return scene(out, 7, img, [dict(src=hist / "L2-golden-gate-assembly.mp4", box=(0, 0, W, H - 100), ss=6, speed=3)])
+
+
+def gap_card(out):
     img = canvas()
     d = chrome(img, "The reproducibility gap")
-    text(d, (W // 2, 110), "Papers describe a protocol in prose. The researchers' script is what actually ran on the robot.", 22, WHITE, anchor="mm")
-    steps = [("Original text", "task or paper", MGREY), ("AI breakdown", "Protocol IR", AMBER), ("AI code", "OT-2 Python", AMBER),
-             ("Robot replay", "simulator + MuJoCo", AMBER), ("Ground truth", "authors' script / oracle", TEAL)]
-    bw, y = 200, 210
-    gap = (W - 80 - len(steps) * bw) // (len(steps) - 1)
-    for i, (h_, sub, col) in enumerate(steps):
+    text(d, (W // 2, 100), "Papers describe protocols in prose. The researchers' code is what actually ran.", 24, WHITE, anchor="mm")
+    cols = [("PAPER (prose)", MGREY, '"After 90 sec collect the\nsupernatant and transfer to a\n96-well microtiter plate."', "PLOS ONE 2021, p.4"),
+            ("RESEARCHERS' CODE (ground truth)", TEAL, "p300multi.transfer(80, ...\n  .bottom(z=0)\n  .move(Point(x=-2)), ...)", "viral_rna_extraction_protocol.py:373"),
+            ("AGENT (read only the paper)", RED, "m300.aspirate(ELUTION_VOL,\n             src.bottom(1))\n# ELUTION_VOL = 100", "Opus 5.5 protocol.py:208")]
+    x, cw = 40, (W - 80 - 40) // 3
+    for head, col, body, src in cols:
+        d.rectangle([x, 150, x + cw, 520], fill=PANEL, outline=LINE)
+        d.rectangle([x, 150, x + cw, 154], fill=col)
+        text(d, (x + 20, 178), head, 15, col, bold=True)
+        mono = "PAPER" not in head
+        y = 230
+        for ln in body.split("\n"):
+            text(d, (x + 20, y), ln, 19 if mono else 21, WHITE, mono=mono)
+            y += 34
+        text(d, (x + 20, 480), src, 13, DGREY)
+        x += cw + 20
+    text(d, (W // 2, 575), "The 80 µL recovery volume and the side-shift away from the pellet appear only in the code.", 20, LGREY, anchor="mm")
+    text(d, (W // 2, 612), "Text2WetLab treats the researchers' executable protocol as ground truth.", 22, AMBER, anchor="mm")
+    return scene(out, 11, img)
+
+
+def pipeline_card(out):
+    img = canvas()
+    d = chrome(img, "How a task is built and graded")
+    steps = [("Paper", "PDF / DOI\nSHA-256 pinned"), ("paper2protocol", "LLM extraction\n+ critic"), ("Protocol IR", "steps, volumes,\nlabware"),
+             ("Agent", "writes OT-2\nPython in Harbor"), ("Simulator", "opentrons_simulate\n+ end-state checks"), ("Judge", "task rubric\n0 / 0.5 / 1")]
+    n, bw, y = len(steps), 170, 230
+    gap = (W - 80 - n * bw) // (n - 1)
+    for i, (h_, sub) in enumerate(steps):
         x = 40 + i * (bw + gap)
-        d.rectangle([x, y, x + bw, y + 120], fill=PANEL, outline=col, width=2)
-        text(d, (x + bw // 2, y + 44), h_, 21, WHITE, bold=True, anchor="mm")
-        text(d, (x + bw // 2, y + 80), sub, 15, MGREY, anchor="mm")
-        if i < len(steps) - 1:
-            ax = x + bw + 6
-            d.line([(ax, y + 60), (ax + gap - 12, y + 60)], fill=DGREY, width=3)
-            d.polygon([(ax + gap - 12, y + 53), (ax + gap - 4, y + 60), (ax + gap - 12, y + 67)], fill=DGREY)
-    text(d, (W // 2, 420), "Graded by a deterministic gate (simulate + end-state checks) and a task rubric judge.", 20, LGREY, anchor="mm")
-    text(d, (W // 2, 460), "Red boxes mark where the AI output departs from the ground truth.", 20, RED, anchor="mm")
-    return scene(out, dur, img)
+        col = TEAL if i >= 4 else AMBER
+        d.rectangle([x, y, x + bw, y + 150], fill=PANEL, outline=col, width=2)
+        text(d, (x + bw // 2, y + 40), h_, 20, WHITE, bold=True, anchor="mm")
+        for j, s in enumerate(sub.split("\n")):
+            text(d, (x + bw // 2, y + 85 + j * 24), s, 15, MGREY, anchor="mm")
+        if i < n - 1:
+            ax = x + bw + 4
+            d.line([(ax, y + 75), (ax + gap - 8, y + 75)], fill=DGREY, width=3)
+            d.polygon([(ax + gap - 8, y + 68), (ax + gap - 1, y + 75), (ax + gap - 8, y + 82)], fill=DGREY)
+    text(d, (W // 2, 460), "reward = ( deterministic gate + judge mean ) / 2        critical failure caps reward at 0.3", 20, LGREY, anchor="mm", mono=True)
+    text(d, (W // 2, 510), "Every trial runs in a Harbor sandbox on Modal  ·  pass@1  ·  3 Claude models  ·  7 tasks", 18, MGREY, anchor="mm")
+    return scene(out, 9, img)
 
 
-def two_col(out, dur, kicker, caption, left_draw, right_draw, clips=()):
+def sim_card(out, hist):
+    img = canvas()
+    d = chrome(img, "Why replay in 3D", "Same one-step transfer, rendered by opentrons-mujoco-viz from the run log")
+    cw, chh = 600, 330
+    label(d, (40, 90), "With a lift between wells", TEAL)
+    label(d, (640, 90), "Without the lift: tip drags through the labware", RED)
+    text(d, (W // 2, 560), "A log line can look valid while the motion is physically wrong.", 22, WHITE, anchor="mm")
+    text(d, (W // 2, 595), "The replay shows the motion that actually happened, step by step, with telemetry.", 18, MGREY, anchor="mm")
+    return scene(out, 8, img, [dict(src=hist / "L1-example.mp4", box=(40, 140, cw, chh), speed=0.6),
+                               dict(src=hist / "L1-example-NO-LIFT-collision.mp4", box=(640, 140, cw, chh), speed=0.6)])
+
+
+def chapter(out, n, name, cite, lic, blurb):
+    img = canvas()
+    d = ImageDraw.Draw(img)
+    text(d, (W // 2, 230), f"CHALLENGE {n} / {N_CHALLENGES}", 20, AMBER, bold=True, anchor="mm")
+    text(d, (W // 2, 300), name, 58, WHITE, bold=True, anchor="mm")
+    text(d, (W // 2, 370), cite, 20, LGREY, anchor="mm")
+    text(d, (W // 2, 405), lic, 15, DGREY, anchor="mm")
+    text(d, (W // 2, 480), blurb, 22, TEAL, anchor="mm")
+    return scene(out, 4, img)
+
+
+def side_by_side(out, kicker, paper_img, paper_head, right_head, right_draw, caption):
     img = canvas()
     d = chrome(img, kicker, caption)
-    left_draw(img, d)
-    right_draw(img, d)
-    return scene(out, dur, img, clips)
+    text(d, (40, 72), "SIDE A  ·  " + paper_head, 15, MGREY, bold=True)
+    text(d, (680, 72), "SIDE B  ·  " + right_head, 15, MGREY, bold=True)
+    img.paste(paper_img, (40, 100))
+    d.rectangle([39, 99, 40 + paper_img.width, 100 + paper_img.height], outline=LINE)
+    d.rectangle([680, 100, W - 40, 100 + paper_img.height], fill=PANEL, outline=LINE)
+    right_draw(d, 700, 120, W - 40 - 720)
+    return scene(out, 11, img)
 
 
-def results_card(out, dur):
+def replay(out, kicker, src, ss, speed, head, sub, caption):
     img = canvas()
-    d = chrome(img, "Latest clean run  ·  R7  ·  21 trials  ·  pass@1", "Every point lost was a judge rubric item: no crash, simulator or end-state failure in any trial.")
-    rows = [("Opus 5.5", 0.943, 1.25), ("Sonnet 5.5", 0.943, 0.39), ("Fable 5.1", 0.943, 3.43)]
-    text(d, (40, 90), "Mean reward over 7 tasks", 16, MGREY)
-    text(d, (760, 90), "Agent cost, all 7 tasks", 16, MGREY)
-    for i, (name, r, c) in enumerate(rows):
-        y = 125 + i * 56
+    d = chrome(img, kicker, caption)
+    label(d, (40, H - 112), head, AMBER, 19)
+    text(d, (50, H - 62), sub, 15, LGREY)
+    return scene(out, 9, img, [dict(src=src, box=(40, 64, W - 80, H - 190), ss=ss, speed=speed)])
+
+
+def versus(out, kicker, oracle, agent, agent_label, caption, dur=10):
+    img = canvas()
+    d = chrome(img, kicker, caption)
+    cw, chh = 590, 334
+    label(d, (40, 80), "ORACLE  ·  the task's reference protocol", TEAL)
+    label(d, (650, 80), agent_label, AMBER)
+    z = (0.2, 0.2, 0.6, 0.72)  # zoom on the deck: x, y, w, h as fractions of the render
+    return scene(out, dur, img, [dict(src=oracle, box=(40, 130, cw, chh), crop=z), dict(src=agent, box=(650, 130, cw, chh), crop=z)])
+
+
+def verdict(out, task, kicker, headline, quote_model, quote_items, takeaway):
+    img = canvas()
+    d = chrome(img, kicker, "Round R2 (graded rubric)  ·  scores: results/<model>/" + task + "/reward.json  ·  quotes: judge.json")
+    text(d, (40, 80), headline, 30, WHITE, bold=True)
+    items = [k[7:] for k in reward(MODELS[0][0], task) if k.startswith("rubric_")]
+    y = 140
+    MX = 400
+    cell = min(72, (W - 80 - MX) // len(items))
+    for k, it in enumerate(items):
+        d.text((MX + k * cell + cell // 2, y), it.replace("_", "\n")[:28], font=F(10), fill=MGREY, anchor="ma", align="center")
+    y += 50
+    for m, name in MODELS:
+        r = reward(m, task)
+        text(d, (40, y + 8), name, 20, WHITE, bold=True)
+        bx = 150
+        d.rectangle([bx, y + 6, bx + 160, y + 26], fill=PANEL)
+        d.rectangle([bx, y + 6, bx + int(160 * r["reward"]), y + 26], fill=TEAL if r["reward"] >= 0.95 else AMBER)
+        text(d, (bx + 168, y + 8), f"{r['reward']:.3f}", 16, LGREY, mono=True)
+        for k, it in enumerate(items):
+            s = r.get("rubric_" + it, 1.0)
+            col = TEAL if s == 1 else (AMBER if s == 0.5 else RED)
+            d.rectangle([MX + k * cell + 4, y + 2, MX + (k + 1) * cell - 4, y + 30], fill=col if s < 1 else (14, 60, 56))
+            if s < 1:
+                text(d, (MX + k * cell + cell // 2, y + 16), f"{s:g}", 14, BG, bold=True, anchor="mm")
+        y += 44
+    y += 16
+    for item in quote_items:
+        q = evidence(quote_model, task, item)
+        d.rectangle([40, y, W - 40, y + 4], fill=AMBER)
+        text(d, (40, y + 14), f"{dict(MODELS)[quote_model]}  ·  {item}", 14, AMBER, bold=True)
+        y = wrap(d, (40, y + 38), "“" + q + "”", 17, W - 80, LGREY) + 14
+    text(d, (40, H - 70), takeaway, 19, TEAL, bold=True)
+    return scene(out, 11, img)
+
+
+def results_card(out):
+    img = canvas()
+    d = chrome(img, "Results  ·  pass@1  ·  round R2, graded rubric", "21/21 trials passed the simulator and every end-state check. In the latest binary-rubric re-run (R7) all three score 0.943.")
+    tasks = ["a1-a12-100ul", "split-200ul-two-wells", "ampure-bead-cleanup", "colony-pcr-screening",
+             "ecoli-heat-shock-transformation", "golden-gate-assembly", "opentrons-rna-extraction"]
+    y = 100
+    for m, name in MODELS:
+        mean = sum(reward(m, t)["reward"] for t in tasks) / len(tasks)
         text(d, (40, y), name, 24, WHITE, bold=True)
-        d.rectangle([210, y + 2, 590, y + 30], fill=PANEL)
-        d.rectangle([210, y + 2, 210 + int(380 * r), y + 30], fill=TEAL)
-        text(d, (605, y + 2), f"{r:.3f}", 22, WHITE, mono=True)
-        d.rectangle([760, y + 2, 760 + int(100 * c), y + 30], fill=AMBER)
-        text(d, (770 + int(100 * c), y + 2), f"${c:.2f}", 22, WHITE, mono=True)
-    y = 330
-    for s in ["All three tie. Only RNA extraction and E. coli heat shock separate the models;",
-              "the other 5 tasks score 1.0 for every model.",
-              "The 80 µL recovery is missed by every model: it is in the authors' code, not the paper."]:
-        text(d, (40, y), s, 20, LGREY)
-        y += 34
-    text(d, (40, 470), "github.com/PhysicalAIBenchmarks/Text2WetLab", 24, AMBER, mono=True)
-    text(d, (40, 508), "physicalaibenchmarks.github.io/Text2WetLab", 20, TEAL, mono=True)
-    return scene(out, dur, img)
+        d.rectangle([210, y + 2, 210 + 420, y + 28], fill=PANEL)
+        d.rectangle([210, y + 2, 210 + int(420 * mean), y + 28], fill=AMBER if m == MODELS[0][0] else (TEAL if "sonnet" in m else MGREY))
+        text(d, (645, y + 2), f"{mean:.3f}", 22, WHITE, mono=True)
+        y += 50
+    y += 20
+    cw = (W - 80 - 160) // len(tasks)
+    for k, t in enumerate(tasks):
+        short = {"a1-a12-100ul": "A1-A12", "split-200ul-two-wells": "split", "ampure-bead-cleanup": "AMPure",
+                 "colony-pcr-screening": "colony PCR", "ecoli-heat-shock-transformation": "E. coli HS",
+                 "golden-gate-assembly": "Golden Gate", "opentrons-rna-extraction": "RNA extr."}[t]
+        text(d, (200 + k * cw + cw // 2, y), short, 14, MGREY, anchor="ma")
+    y += 28
+    for m, name in MODELS:
+        text(d, (40, y + 12), name, 17, LGREY)
+        for k, t in enumerate(tasks):
+            r = reward(m, t)["reward"]
+            g = (r - 0.7) / 0.3
+            col = tuple(int(a + (b - a) * max(0, min(1, g))) for a, b in zip((120, 40, 30), (14, 120, 108)))
+            d.rectangle([200 + k * cw + 3, y, 200 + (k + 1) * cw - 3, y + 40], fill=col)
+            text(d, (200 + k * cw + cw // 2, y + 20), f"{r:.3f}", 16, WHITE, mono=True, anchor="mm")
+        y += 46
+    return scene(out, 10, img)
 
 
-# ── the three examples ────────────────────────────────────────────────────────────────────────────────────────
+def cta_card(out):
+    img = canvas()
+    d = ImageDraw.Draw(img)
+    text(d, (W // 2, 250), "Text2WetLab", 56, WHITE, bold=True, anchor="mm")
+    text(d, (W // 2, 330), "github.com/PhysicalAIBenchmarks/Text2WetLab", 26, AMBER, anchor="mm", mono=True)
+    text(d, (W // 2, 375), "physicalaibenchmarks.github.io/Text2WetLab", 22, TEAL, anchor="mm", mono=True)
+    text(d, (W // 2, 460), "Harbor-compatible tasks  ·  hidden graders  ·  CC BY source papers pinned by SHA-256", 17, MGREY, anchor="mm")
+    text(d, (W // 2, 500), "Renders: opentrons-mujoco-viz  ·  Simulator: Opentrons 7.5  ·  Judge: claude-sonnet-5-5", 15, DGREY, anchor="mm")
+    return scene(out, 7, img)
 
-def ecoli_names(lw, well):
-    for k, v in (("plasmid", "plasmid DNA"), ("tubes", "competent cells"), ("soc", "SOC medium")):
-        if k in lw.lower():
-            return f"{v} {well}"
-    return ""
+
+# ── main ───────────────────────────────────────────────────────────────────────
+
+def git_media(path, dest: Path) -> Path:
+    out = dest / Path(path).name
+    if not out.exists():
+        out.write_bytes(subprocess.run(["git", "-C", str(ROOT), "show", f"{HIST_BRANCH}:{path}"],
+                                       capture_output=True, check=True).stdout)
+    return out
 
 
-def rna_names(lw, well):
-    slot = lw.rsplit(" ", 1)[-1] if lw else ""
-    if slot == "5":
-        reag = {"A1": "beads", "A2": "beads", "A4": "elution buffer", "A6": "isopropanol", "A7": "isopropanol"}.get(well, "ethanol")
-        return f"reservoir {well} ({reag})"
-    return {"4": f"extraction plate {well} (magnet)", "6": f"elution plate {well} (4 °C)", "1": "waste",
-            "10": f"sample tube {well}", "7": f"sample tube {well}"}.get(slot, "")
+def agent_clip(renders: Path, task, model):
+    p = renders / f"{task}-{model}.mp4" if renders else None
+    return p if p and p.exists() else RES / task / "best_run.mp4"
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--renders", type=Path, default=Path("/tmp/t2wl_renders"))
+    ap.add_argument("--cut", choices=["2min", "3min"], default="2min")
     a = ap.parse_args()
-    R = a.renders
+    global SCALE, OUT, N_CHALLENGES
+    if a.cut == "2min":
+        SCALE, N_CHALLENGES = 0.8, 2
+    else:
+        OUT = RES / "trailer_3min.mp4"
     tmp = Path(tempfile.mkdtemp(prefix="t2wl_trailer_"))
-    plan = []  # (name, seconds, description)
-
-    def add(fn, name, dur, desc, *args):
-        out = tmp / f"{len(plan):02d}_{name}.mp4"
-        fn(out, dur, *args)
-        plan.append((out, dur, name, desc))
-
-    L, RT = (40, 72, 620, 560), (660, 72, W - 40, 560)  # left / right column boxes
-    VBOX = (660, 72, 580, 488)                            # video panel x, y, w, h
+    hist = tmp / "hist"
+    hist.mkdir()
+    for p in ["assets/examples3d/L2-golden-gate-assembly.mp4", "assets/examples3d/L2-colony-pcr-screening.mp4",
+              "assets/examples3d/L1-example.mp4", "assets/examples3d/L1-example-NO-LIFT-collision.mp4"]:
+        git_media(p, hist)
+    segs = []
+    S = lambda name: tmp / f"{len(segs):02d}_{name}.mp4"  # noqa: E731
 
     print("intro")
-    add(title_card, "title", 5, "Title: can an AI agent turn a paper into a correct robot protocol?")
-    add(gap_card, "gap", 8, "The reproducibility gap: text -> AI breakdown -> AI code -> replay, vs ground truth")
+    segs.append(cold_open(S("cold"), hist))
+    segs.append(title_card(S("title")))
+    segs.append(gap_card(S("gap")))
+    segs.append(pipeline_card(S("pipeline")))
+    segs.append(sim_card(S("sim"), hist))
 
-    # ── Example 1: E. coli heat shock (R7, Opus 5.5) ──
-    print("example 1")
-    ec_task = (ROOT / "tasks/ecoli-heat-shock-transformation/public/instruction.md").read_text().strip()
-    ir = json.loads((ROOT / "tasks/ecoli-heat-shock-transformation/public/ir.json").read_text())["steps"]
+    # ── Challenge 1: Golden Gate (AssemblyTron) ──
+    print("challenge 1: golden gate")
+    gg, ggm = "golden-gate-assembly", "claude-opus-5-5"
+    segs.append(chapter(S("c1"), 1, "Golden Gate Assembly", "Bryant Jr. et al., AssemblyTron, Synthetic Biology 8(1) 2023  ·  doi:10.1093/synbio/ysac032",
+                        "CC BY 4.0", "33 steps: gradient PCR, DpnI digest, clean-up, assembly, transformation"))
+    pdf = pdf_panel(fetch_pdf("assemblytron"), 6, ["formed a Dpn1 digestion to eliminate residual template DNA",
+                                                   "cleaned and concentrated to remove polymerase",
+                                                   "a volume proportional to the fragment length for each"], (620, 520), tmp)
+    instr = (ROOT / "tasks" / gg / "public/instruction.md").read_text().strip()
+    segs.append(side_by_side(S("c1ab"), "Challenge 1  ·  paper vs task", pdf, "AssemblyTron, p.6", "task instruction (paper2protocol output)",
+                             lambda d, x, y, w: wrap(d, (x, y), instr, 19, w, LGREY, gap=9,
+                                                     highlights=["DpnI digestion to remove residual template", "clean and concentrate the fragments",
+                                                                 "volumes proportional to fragment length"]),
+                             "Highlighted: the sentences paper2protocol turned into the instruction. The inset shows where the crop sits on the page."))
+    segs.append(replay(S("c1ir"), "Challenge 1  ·  Protocol IR to MuJoCo", hist / "L2-golden-gate-assembly.mp4", 0, 4.5,
+                       "Protocol IR replay  ·  2D deck state + 3D arm + telemetry",
+                       "Each of the 33 IR steps is replayed. Tip height, pipette volume and container fill are logged per frame.",
+                       f"Historical render, 3 Oct 2026 ({HIST_BRANCH}: assets/examples3d/L2-golden-gate-assembly.mp4)"))
+    segs.append(versus(S("c1vs"), "Challenge 1  ·  oracle vs agent", RES / gg / "oracle_run.mp4", agent_clip(a.renders, gg, ggm),
+                       "AGENT  ·  Opus 5.5  ·  reward 1.000", "Both run in the OT-2 scene from the Opentrons 7.5 run log (scripts/render_run.py). Sped up."))
+    segs.append(verdict(S("c1v"), gg, "Challenge 1  ·  verdict", "All three models: 1.000 on the longest protocol",
+                        ggm, ["dpni_and_cleanup", "assembly_mix"], "33 steps from a paper, with no deductions from simulator or judge."))
 
-    def ex1_left(img, d):
-        d.rectangle(L, fill=PANEL, outline=LINE)
-        text(d, (L[0] + 16, L[1] + 12), "ORIGINAL TASK TEXT (what the agent is given)", 13, MGREY, bold=True)
-        wrap(d, (L[0] + 20, L[1] + 56), ec_task, 26, L[2] - L[0] - 40, WHITE, gap=12)
+    # ── Challenge 2: RNA extraction (HULP, PLOS ONE) ──
+    print("challenge 2: rna extraction")
+    rna, rnam = "opentrons-rna-extraction", "claude-opus-5-5"
+    segs.append(chapter(S("c2"), 2, "SARS-CoV-2 RNA Extraction", "Lázaro-Perona et al., PLOS ONE 16(2) 2021  ·  doi:10.1371/journal.pone.0246302",
+                        "CC BY 4.0  ·  authors' OT-2 script: github.com/HULPopentrons/RNA_extraction_OT2opentrons",
+                        "48 samples, magnetic beads, two ethanol washes, elution into a 4 °C plate"))
+    pdf = pdf_panel(fetch_pdf("hulp-rna-extraction"), 4, ["Air dry for 4 min", "add 100μL of Elution Buffer",
+                                                          "collect the supernatant and transfer to a 96-well microtiter plate"], (620, 520), tmp)
 
-    def ex1_right(img, d):
-        ir_panel(d, RT, [(1, "Transfer 2 µL plasmid DNA into the competent cells", ir[0]["note"], TEAL),
-                         (2, "Manual: heat shock 42 °C 45 s, then ice 2 min", None, None),
-                         (3, "Transfer 250 µL SOC medium", ir[2]["note"], None),
-                         (4, "Manual: 37 °C 60 min outgrowth", ir[3]["note"], None)], "AI BREAKDOWN  ·  Protocol IR (tasks/…/public/ir.json)")
+    def rna_right(d, x, y, w):
+        y = wrap(d, (x, y), "Task: implement the paper's in-house OT-2 magnetic-bead protocol for 48 samples, using the reagent volumes, "
+                            "step order, incubation, magnet and drying times described in the paper.", 17, w, LGREY, gap=7,
+                 highlights=["described in the paper"])
+        y += 18
+        text(d, (x, y), "AUTHORS' CODE  ·  viral_rna_extraction_protocol.py:363-373", 13, TEAL, bold=True)
+        y += 26
+        for ln in ["# 15.3) 80 ul recover eluted viral RNA", "p300multi.flow_rate.aspirate = 50", "side_shift = -2",
+                   "p300multi.transfer(80, ...bottom(z=0)", "    .move(Point(x=side_shift)), ...)"]:
+            text(d, (x, y), ln, 14, WHITE, mono=True)
+            y += 22
+        y += 18
+        text(d, (x, y), "AGENT  ·  Opus 5.5  ·  protocol.py:207-209", 13, RED, bold=True)
+        y += 26
+        for ln in ["m300.flow_rate.aspirate = 20", "m300.aspirate(ELUTION_VOL, src.bottom(1))", "# ELUTION_VOL = 100"]:
+            text(d, (x, y), ln, 14, WHITE, mono=True)
+            y += 22
 
-    add(lambda o, du: two_col(o, du, "Example 1 / 3  ·  E. coli heat-shock transformation", "The breakdown itself says: flick to mix, no pipetting.", ex1_left, ex1_right),
-        "ex1_text", 8, "Ex1 task text | AI breakdown (step 1 note: 'Gently flick to mix, no vortex')")
+    segs.append(side_by_side(S("c2ab"), "Challenge 2  ·  paper vs researchers' code", pdf, "PLOS ONE 2021, p.4 (methods)", "task + code",
+                             rna_right, "The paper gives no recovery volume. The authors' code recovers 80 µL with a side-shift away from the pellet."))
+    segs.append(replay(S("c2ir"), "Challenge 2  ·  Protocol IR to MuJoCo",
+                       ROOT / "assets/examples3d/paper-10_1371_journal_pone_0246302-exp2.mp4", 0, None,
+                       "paper2protocol IR for the same paper  ·  91 steps",
+                       "Lysis/binding, beads, two 70% ethanol washes, air dry, elution, transfer to the 4 °C plate.",
+                       "Render: assets/examples3d/paper-10_1371_journal_pone_0246302-exp2.mp4"))
+    segs.append(versus(S("c2vs"), "Challenge 2  ·  oracle vs agent", RES / rna / "oracle_run.mp4", agent_clip(a.renders, rna, rnam),
+                       "AGENT  ·  Opus 5.5  ·  reward 0.889", "48 samples, about 10 minutes of robot time each, shown at ~60x."))
+    segs.append(verdict(S("c2v"), rna, "Challenge 2  ·  verdict", "Every model recovered 100 µL. The 80 µL is only in the code.",
+                        rnam, ["elution_recovery"], "The reproducibility gap: the parameter is in the researchers' code, not the paper."))
 
-    ec_agent = R / "r7-ecoli-opus.mp4"
-    clip = panel_clip(ec_agent, 0, 6.33, 12, VBOX[2:], tmp / "ex1_agent.mp4", ecoli_names,
-                      errors=[(1.4, 4.2, "ERROR: pipette-mixes competent cells 3 × 10 µL")], title="AI run · Opus 5.5 (R7)")
-    add(lambda o, du: two_col(o, du, "Example 1 / 3  ·  AI code + robot run", "results/claude-opus-5-5/ecoli-heat-shock-transformation/protocol.py at R7 (48836f1)",
-                              lambda img, d: code_panel(d, L, "/tmp/r7/claude-opus-5-5/ecoli-heat-shock-transformation/protocol.py", 18, 29,
-                                                        [(23, 23, RED, "mix_after=(3, 10): not in the task")], "AI CODE  ·  Opus 5.5", AMBER),
-                              lambda img, d: None, [dict(src=clip, box=VBOX)]),
-        "ex1_code", 12, "Ex1 AI code (line 23 mix_after boxed red) | agent replay, red while it mixes the cells (1.5-4.0 s)")
+    if a.cut == "3min":  # the 2min cut omits challenge 3 (colony PCR)
+        # ── Challenge 3: Colony PCR (Slowpoke) ──
+        print("challenge 3: colony pcr")
+        cp, cpm = "colony-pcr-screening", "claude-sonnet-5-5"
+        segs.append(chapter(S("c3"), 3, "Colony PCR Screening", "Malcı et al., Slowpoke, ACS Synth. Biol. 15, 511-521 (2026)  ·  doi:10.1021/acssynbio.5c00629",
+                            "CC BY 4.0  ·  task instruction is hand-written, modelled on this workflow", "96 wells: 18 µL master mix + 1 µL colony + 1 µL primer"))
+        pdf = pdf_panel(fetch_pdf("slowpoke"), 4, ["For the colony PCR step, the deck layout includes",
+                                                    "mix plate for dispensing the master mix",
+                                                    "a tube rack for reagents, a source plate for colonies, and a PCR"], (620, 520), tmp)
+        instr = (ROOT / "tasks" / cp / "public/instruction.md").read_text().strip()
+        segs.append(side_by_side(S("c3ab"), "Challenge 3  ·  workflow vs task", pdf, "Slowpoke, p.4", "task instruction (hand-written)",
+                                 lambda d, x, y, w: wrap(d, (x, y), instr, 21, w, LGREY, gap=10,
+                                                         highlights=["master mix", "colony template", "primer mix", "18 µL", "1 µL"]),
+                                 "The 1 µL additions are where practice matters: tip choice, dispense height, touch-tip, blow-out."))
+        segs.append(replay(S("c3ir"), "Challenge 3  ·  Protocol IR to MuJoCo", hist / "L2-colony-pcr-screening.mp4", 0, 0.9,
+                           "Protocol IR replay  ·  master mix, then colony template, then primers",
+                           "Telemetry shows the tip height cycling once per well across all 96 wells.",
+                           f"Historical render, 3 Oct 2026 ({HIST_BRANCH}: assets/examples3d/L2-colony-pcr-screening.mp4)"))
+        segs.append(versus(S("c3vs"), "Challenge 3  ·  oracle vs agent", RES / cp / "oracle_run.mp4", agent_clip(a.renders, cp, cpm),
+                           "AGENT  ·  Sonnet 5.5  ·  reward 0.875", "Every trial passed no_cross_contamination: colonies and primers always got fresh tips."))
+        segs.append(verdict(S("c3v"), cp, "Challenge 3  ·  verdict", "Correct end state, but the judge deducted for practice",
+                            cpm, ["tips_and_contamination", "robot_practice"], "End-state checks cannot express practice. The rubric layer covers it."))
 
-    gt = panel_clip(R / "gt-ecoli.mp4", 0, 3.33, 9.5, (580, 330), tmp / "ex1_gt.mp4", ecoli_names,
-                    oks=[(0.4, 1.1, "2 µL plasmid, no mixing")], title="GROUND TRUTH · oracle")
-    ag = panel_clip(ec_agent, 0, 6.33, 9.5, (580, 330), tmp / "ex1_ag.mp4", ecoli_names,
-                    errors=[(1.4, 4.2, "3 × 10 µL mix in the cells")], title="AI · Opus 5.5")
-
-    def ex1_gt(img, d):
-        strip(d, 440, "One 50 µL competent-cell aliquot, 2 µL plasmid, 250 µL SOC. High-efficiency competent cells list at roughly "
-                      "$10-25 per tube (estimate); a 96-tube plate is about $1-2.4k.",
-              "Pipetting fragile competent cells lowers transformation efficiency: few or no colonies, and about a day lost to "
-              "re-plating. Opus and Fable both made this error at R7; Sonnet did not.")
-    add(lambda o, du: two_col(o, du, "Example 1 / 3  ·  ground truth vs AI", "", ex1_gt, lambda i, d: None,
-                              [dict(src=gt, box=(40, 80, 580, 330)), dict(src=ag, box=(660, 80, 580, 330))]),
-        "ex1_truth", 12, "Ex1 ground-truth oracle (no mix) vs agent (red during mix) + materials and impact")
-
-    # ── Example 2: RNA extraction elution (R7, Opus 5.5; same error in all models) ──
-    print("example 2")
-    pdf = fetch_pdf("hulp-rna-extraction")
-    p4 = pdf_panel(pdf, 4, ["Air dry for 4 min", "add 100μL of Elution Buffer", "collect the supernatant and transfer to a 96-well microtiter plate"], (580, 488), tmp)
-
-    def ex2_left(img, d):
-        img.paste(p4, (40, 72))
-        d.rectangle([39, 71, 620, 560], outline=LINE)
-        label(d, (48, 520), "ORIGINAL TEXT · Lázaro-Perona et al., PLOS ONE 2021, p.4 (CC BY)", MGREY, 13)
-
-    def ex2_right(img, d):
-        ir_panel(d, RT, [(32, "Manual: air dry 4 min", None, None),
-                         (34, "Transfer 100 µL elution buffer (magnet off)", None, None),
-                         (35, "Manual: magnet on after 30 s, wait 90 s", None, None),
-                         (36, "Transfer eluted RNA to elution plate: 100 µL", "Transferred volume assumed equal to the 100 µL elution volume.", RED)],
-                 "AI BREAKDOWN  ·  paper2protocol IR, sources/hulp-rna-extraction/pipeline/exp2")
-
-    add(lambda o, du: two_col(o, du, "Example 2 / 3  ·  SARS-CoV-2 RNA extraction, 48 samples", "The paper gives no recovery volume. The AI breakdown fills the gap with an assumption.", ex2_left, ex2_right),
-        "ex2_text", 9, "Ex2 paper p4 (elution steps highlighted) | AI breakdown (step 36 '100 µL assumed' boxed red)")
-
-    rna_agent = R / "r7-rna-opus.mp4"
-    clip = panel_clip(rna_agent, 524.5, 537.7, 13, VBOX[2:], tmp / "ex2_agent.mp4", rna_names,
-                      errors=[(527.1, 537.7, "ERROR: recovers 100 µL, beside the bead pellet")], title="AI run · Opus 5.5 (R7)")
-    add(lambda o, du: two_col(o, du, "Example 2 / 3  ·  AI code + robot run", "All three models over-recover at R7: Opus 100 µL, Sonnet 100 µL, Fable 90 µL.",
-                              lambda img, d: code_panel(d, L, "/tmp/r7/claude-opus-5-5/opentrons-rna-extraction/protocol.py", 198, 210,
-                                                        [(205, 206, RED, "ELUTION_VOL = 100: the whole elution")], "AI CODE  ·  Opus 5.5", AMBER),
-                              lambda img, d: None, [dict(src=clip, box=VBOX)]),
-        "ex2_code", 13, "Ex2 AI code (recover ELUTION_VOL=100 boxed red) | agent replay cued to recovery (t=527 s), red throughout")
-
-    gt = panel_clip(R / "gt-rna.mp4", 485.5, 498.5, 13, (580, 300), tmp / "ex2_gt.mp4", rna_names,
-                    oks=[(486.9, 498.5, "80 µL, tip shifted 2 mm off the pellet")], title="GROUND TRUTH · authors' script")
-
-    def ex2_truth(img, d):
-        code_panel(d, (40, 72, 620, 372), ROOT / "sources/hulp-rna-extraction/code/viral_rna_extraction_protocol.py", 363, 373,
-                   [(369, 373, TEAL, "80 µL, from the side of the well")], "GROUND TRUTH  ·  authors' viral_rna_extraction_protocol.py", TEAL)
-        strip(d, 420, "Per 48-sample run: about 54 € of reagents and labware (paper: 107 € per 96 samples) and about 1 h 45 min "
-                      "of robot time (3.5 h per 96).",
-              "Drawing the full 100 µL next to the pellet risks bead carry-over into RT-qPCR: shifted Ct values or failed wells, "
-              "then re-extraction of 48 patient samples. The paper saw no effect from bead traces in its manual variant, so this is a risk.")
-    add(lambda o, du: two_col(o, du, "Example 2 / 3  ·  ground truth: the researchers' code", "", ex2_truth, lambda i, d: None,
-                              [dict(src=gt, box=(660, 72, 580, 300))]),
-        "ex2_truth", 14, "Ex2 authors' code (transfer 80 µL with side_shift) + their run, teal at recovery (t=487 s) + materials and impact")
-
-    # ── Example 3: RNA extraction reagent order (R5, Sonnet 5.5) ──
-    print("example 3")
-    p3 = pdf_panel(pdf, 3, [("Dispense in a Deep well plate 40μL of magnetic beads", 1), "250μL of Isopropanol and 250μL of sample per well."], (580, 488), tmp)
-
-    def ex3_left(img, d):
-        img.paste(p3, (40, 72))
-        d.rectangle([39, 71, 620, 560], outline=LINE)
-        label(d, (48, 520), "ORIGINAL TEXT · PLOS ONE 2021, p.3: OT-2 in-house step 1", MGREY, 13)
-
-    def ex3_right(img, d):
-        ir_panel(d, RT, [(21, "Transfer 40 µL magnetic beads to the deep-well plate", None, TEAL),
-                         (22, "Transfer 250 µL isopropanol", None, TEAL),
-                         (23, "Transfer 250 µL inactivated sample", None, TEAL),
-                         (24, "Mix 5x, incubate 5 min", None, None)], "AI BREAKDOWN  ·  paper2protocol IR, exp2 steps 21-24")
-
-    add(lambda o, du: two_col(o, du, "Example 3 / 3  ·  same paper, binding step", "The paper and the breakdown agree: beads, then isopropanol, then sample.", ex3_left, ex3_right),
-        "ex3_text", 7, "Ex3 paper p3 step 1 (order highlighted) | AI breakdown steps 21-23 in order (teal)")
-
-    ord_agent = R / "r5-rna-sonnet.mp4"
-    clip = panel_clip(ord_agent, 0, 9, 10, VBOX[2:], tmp / "ex3_agent.mp4", rna_names,
-                      errors=[(1.0, 9, "ERROR: sample goes in first, before beads and isopropanol")], title="AI run · Sonnet 5.5 (R5)")
-    add(lambda o, du: two_col(o, du, "Example 3 / 3  ·  AI code + robot run", "Sonnet 5.5 made this reordering in 4 of 5 binary-judge rounds (R3-R6). R5 shown.",
-                              lambda img, d: code_panel(d, L, "/tmp/r5/sonnet_rna.py", 63, 76,
-                                                        [(64, 69, RED, "samples first"), (72, 76, AMBER, "beads + isopropanol after")], "AI CODE  ·  Sonnet 5.5", AMBER),
-                              lambda img, d: None, [dict(src=clip, box=VBOX)]),
-        "ex3_code", 10, "Ex3 AI code (sample-first loop boxed red) | agent replay, red from the first sample transfer (1.2 s)")
-
-    gt = panel_clip(R / "gt-rna.mp4", 0, 7, 8.5, (580, 330), tmp / "ex3_gt.mp4", rna_names,
-                    oks=[(0.7, 7, "1st addition: 40 µL beads")], title="GROUND TRUTH · authors' script")
-    ag = panel_clip(ord_agent, 0, 7, 8.5, (580, 330), tmp / "ex3_ag.mp4", rna_names,
-                    errors=[(1.0, 7, "1st addition: 250 µL sample")], title="AI · Sonnet 5.5")
-
-    def ex3_truth(img, d):
-        strip(d, 440, "The same 48-sample run: about 54 € and 1 h 45 min of robot time.",
-              "This changes the order the authors validated against the MagMAX kit, so the paper's reported Ct performance no "
-              "longer applies. The protocol would need re-validation before clinical use.")
-    add(lambda o, du: two_col(o, du, "Example 3 / 3  ·  ground truth vs AI", "", ex3_truth, lambda i, d: None,
-                              [dict(src=gt, box=(40, 80, 580, 330)), dict(src=ag, box=(660, 80, 580, 330))]),
-        "ex3_truth", 11, "Ex3 authors' run (beads first, teal) vs agent (sample first, red) + materials and impact")
 
     print("outro")
-    add(results_card, "results", 9, "R7 results: all three models 0.943; cost $1.25 / $0.39 / $3.43; links")
+    segs.append(results_card(S("results")))
+    segs.append(cta_card(S("cta")))
 
     lst = tmp / "concat.txt"
-    lst.write_text("".join(f"file '{p}'\n" for p, *_ in plan))
+    lst.write_text("".join(f"file '{s}'\n" for s in segs))
     ff("-f", "concat", "-safe", "0", "-i", str(lst), "-c", "copy", "-movflags", "+faststart", str(OUT))
-    total = duration(OUT)
+    d = duration(OUT)
     rows, t = [], 0.0
-    for _, du, name, desc in plan:
-        rows.append(f"| {int(t // 60)}:{t % 60:04.1f} - {int((t + du) // 60)}:{(t + du) % 60:04.1f} | {du:g} s | `{name}` | {desc} |")
+    for sg in segs:
+        du = duration(sg)
+        rows.append(f"| {int(t // 60)}:{t % 60:04.1f} - {int((t + du) // 60)}:{(t + du) % 60:04.1f} | {du:.1f} s | `{sg.stem[3:]}` |")
         t += du
-    md = ("# Trailer time splits\n\n`results/trailer.mp4`, built by `scripts/make_trailer.py`. "
-          f"Total {int(total // 60)}:{total % 60:04.1f}.\n\n| Time | Length | Scene | On screen |\n|---|---|---|---|\n" + "\n".join(rows) + "\n")
-    (RES / "trailer_timesplits.md").write_text(md)
+    md = (f"# Trailer time splits ({a.cut} cut)\n\n`results/{OUT.name}`, built by `scripts/make_trailer.py --cut {a.cut}`. "
+          f"Total {int(d // 60)}:{d % 60:04.1f}.\n\n| Time | Length | Scene |\n|---|---|---|\n" + "\n".join(rows) + "\n")
+    (RES / f"{OUT.stem}_timesplits.md").write_text(md)
     print(md)
-    print(f"{OUT}  {total:.1f} s  {OUT.stat().st_size / 1e6:.1f} MB  (scratch {tmp})")
-    assert total <= 120, "trailer is over 2 minutes"
+    print(f"{OUT}  {int(d // 60)}:{int(d % 60):02d}  {OUT.stat().st_size / 1e6:.1f} MB  ({len(segs)} scenes, scratch {tmp})")
+    if a.cut == "2min":
+        assert d <= 120, "2min cut is over 2 minutes"
 
 
 if __name__ == "__main__":
