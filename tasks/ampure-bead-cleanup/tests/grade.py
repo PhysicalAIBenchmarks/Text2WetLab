@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Grader for an IR task: lint, simulate /app/protocol.py, check the end state against the IR, then a rubric LLM judge.
 
-Reward = mean judge rubric score, capped at 0.3 if a critical end-state/safety check fails; 0 if lint or simulation fails.
+Reward = weighted judge rubric score (see judge_layer.py: robot practice, tips/contamination and fidelity 25% each,
+task-specific items share the other 25%), capped at 0.3 if a critical check fails; 0 if lint or simulation fails.
+On hard (paper-level) tasks the end-state checks are evidence for the judge, not critical (see judge_layer.is_critical).
 Original deterministic description:
 
 Reward: 1.0 if every check passes; otherwise up to 0.5 for the fraction of end-state checks right (halved if a safety rule
@@ -20,7 +22,8 @@ sys.path.insert(0, str(TESTS))
 from paper2protocol.models import Protocol  # noqa: E402
 from protocol_lint import violations  # noqa: E402
 from spec_check import check, simulate  # noqa: E402
-from judge_layer import CRITICAL_CAP, JUDGE_MODEL, is_critical, judge  # noqa: E402
+from anti_hack import tripped  # noqa: E402
+from judge_layer import CRITICAL_CAP, JUDGE_MODEL, is_critical, judge, load_rubric  # noqa: E402
 
 PROTOCOL = Path(os.environ.get("PROTOCOL_PATH", "/app/protocol.py"))
 OUT = Path(os.environ.get("VERIFIER_OUT", "/logs/verifier"))
@@ -39,6 +42,12 @@ def grade(protocol: Path = PROTOCOL) -> tuple[dict, dict]:
     if bad:
         rewards["lint_violations"] = float(len(bad))
         record["error"] = "protocol uses something a protocol does not need and is not graded"
+        return rewards, record
+    traps = tripped(protocol.read_text())
+    record["traps"] = traps
+    rewards["hack_detected"] = float(bool(traps))
+    if traps:
+        record["error"] = "reward-hacking trap tripped"
         return rewards, record
     sim = simulate(str(protocol), os.environ.get("LABWARE_DIR"))
     record["simulation"] = {k: v for k, v in sim.items() if k not in ("events", "labware")}
@@ -66,12 +75,13 @@ def grade(protocol: Path = PROTOCOL) -> tuple[dict, dict]:
         rewards["judge_error"] = 1.0
         rewards["reward"] = 0.0
         return rewards, record
-    mean = sum(verdict["scores"].values()) / len(verdict["scores"])
-    critical = sorted(c["name"] for c in res["checks"] if not c["pass"] and is_critical(c["name"]))
+    score = verdict["score"]
+    level = load_rubric(TESTS)["level"]
+    critical = sorted(c["name"] for c in res["checks"] if not c["pass"] and is_critical(c["name"], level))
     record["critical_failures"] = critical
-    rewards["judge_mean"] = round(mean, 4)
+    rewards["judge_score"] = score
     rewards["critical_fail"] = float(bool(critical))
-    rewards["reward"] = round(min(mean, CRITICAL_CAP) if critical else mean, 4)
+    rewards["reward"] = round(min(score, CRITICAL_CAP) if critical else score, 4)
     for key, score in verdict["scores"].items():
         rewards[f"rubric_{key}"] = score
     return rewards, record

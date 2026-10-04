@@ -1,26 +1,27 @@
-[
- {
-  "id": "deck_and_hardware",
-  "text": "Loads the specified labware with the given labels/slots and uses suitable pipettes and tip racks."
- },
- {
-  "id": "volumes_and_wells",
-  "text": "Exactly 100 uL into each of A1-A12 of the plate, from reservoir A1, nothing else touched."
- },
- {
-  "id": "pipette_choice",
-  "text": "Uses the 300 uL pipette for 100 uL (not repeated 20 uL shots) and respects pipette limits."
- },
- {
-  "id": "tip_usage",
-  "text": "Sensible tip strategy (one tip reused is fine for a single reagent into empty wells); no pipetting without a tip; tip dropped at end."
- },
- {
-  "id": "robot_practice",
-  "text": "Physically sensible: liquid handling heights/flow, no needless moves, apiLevel in range, clear metadata."
- },
- {
-  "id": "fidelity_to_task",
-  "text": "No invented, missing or extra steps relative to the task text; comments and metadata are accurate."
- }
-]
+{
+ "level": "easy",
+ "core": [
+  {
+   "id": "robot_practice",
+   "text": "Sound OT-2 practice: a valid apiLevel and metadata; every volume handled by a pipette whose range covers it (nothing below its minimum or above its maximum); no well filled beyond its capacity; modules and labware used as intended; nothing physically unsafe or nonsensical (e.g. pipetting from or into the wrong labware, or needless extra handling that puts samples at risk)."
+  },
+  {
+   "id": "tips_and_contamination",
+   "text": "Never aspirates, dispenses or mixes without a tip attached, and drops every tip so that no tip is left on a pipette at the end of the run. A fresh tip whenever the pipette moves on to a different sample, template or stock that carryover would contaminate, and no cross-contamination of samples or reagent stocks. Reusing one tip for the whole run or a fresh tip per well both pass."
+  },
+  {
+   "id": "fidelity_to_task",
+   "text": "All-or-nothing bonus for a fully faithful protocol: every step in the task text is carried out (or recorded with protocol.comment where it cannot be simulated) in the given order with the given quantities and conditions, nothing is added that would change the outcome, and comments and metadata are accurate. Any deviation fails this item, even one already failed under another item."
+  }
+ ],
+ "task": [
+  {
+   "id": "deck_and_hardware",
+   "text": "Loads the specified labware in the given slots with the given labels, and uses suitable pipettes and tip racks."
+  },
+  {
+   "id": "volumes_and_wells",
+   "text": "Exactly 100 uL from reservoir A1 into each of plate wells A1-A12 using the 300 uL pipette, and no other wells touched."
+  }
+ ]
+}

@@ -1,0 +1,169 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 490
+  },
+  "checks": [
+    {
+      "name": "simulator_ran",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tip_before_aspirate",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_overdispense",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_aspirate_from_empty_well",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "tip_dropped_at_end",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no_cross_contamination",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "end_state:water",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:q5_buffer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:dntp",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:q5_pol",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:pcr_mm",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:primer_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:template_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:pcr_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:rcutsmart",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:dpni",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:t4_buffer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:gg_enzyme",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:assembly_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:cells_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:lb_dextrose",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "judge": {
+    "items": [
+      {
+        "id": "pcr_setup",
+        "score": 1,
+        "evidence": "Master mix 106/40/4/2 \u00b5L, 19 \u00b5L to A1:G1, 2.5 \u00b5L fwd/rev primers paired by well with new tips, 1 \u00b5L templates in A1,A1,B1,C1,A1,A1,D1 order, mixes done; end-state checks pass."
+      },
+      {
+        "id": "dpni_and_cleanup",
+        "score": 1,
+        "evidence": "Steps 12-15 add 19 \u00b5L water, 5 \u00b5L rCutSmart, 1 \u00b5L DpnI and mix 3x at 30 \u00b5L; the incubation and Zymo cleanup are recorded in protocol.comment in order."
+      },
+      {
+        "id": "assembly_mix",
+        "score": 1,
+        "evidence": "Assembly wells get 7 \u00b5L water, 2 \u00b5L T4 buffer, 3/2/3 \u00b5L of fragments 2/5/6, 2 \u00b5L of fragments 1/3/4/7 and 1 \u00b5L enzyme mix with 5 mixes after dispensing; assembly_plate end-state passes."
+      },
+      {
+        "id": "cycling_and_transformation",
+        "score": 1,
+        "evidence": "The Golden Gate program and cleanup are recorded as comments, then 5 \u00b5L goes to cells A1:D1, 250 \u00b5L LB is added, and the ice/heat shock/recovery steps are recorded."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "new_tip='always' is used for primers, templates, chromoprotein fragments and the transfer to cells; no_cross_contamination and tip checks pass."
+      }
+    ],
+    "scores": {
+      "pcr_setup": 1.0,
+      "dpni_and_cleanup": 1.0,
+      "assembly_mix": 1.0,
+      "cycling_and_transformation": 1.0,
+      "tips_and_contamination": 1.0
+    },
+    "summary": "The protocol simulates cleanly, and all measured checks pass. Quantities, well pairings, manual-step comments and tip handling match the task.",
+    "model": "claude-sonnet-5-5"
+  },
+  "critical_failures": [],
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "checks_frac": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "deterministic_reward": 1.0,
+    "judge_mean": 1.0,
+    "critical_fail": 0.0,
+    "rubric_pcr_setup": 1.0,
+    "rubric_dpni_and_cleanup": 1.0,
+    "rubric_assembly_mix": 1.0,
+    "rubric_cycling_and_transformation": 1.0,
+    "rubric_tips_and_contamination": 1.0
+  }
+}

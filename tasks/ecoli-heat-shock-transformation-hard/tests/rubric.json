@@ -1,0 +1,31 @@
+{
+ "level": "hard",
+ "core": [
+  {
+   "id": "robot_practice",
+   "text": "Sound OT-2 practice: a valid apiLevel and metadata; every volume handled by a pipette whose range covers it (nothing below its minimum or above its maximum); no well filled beyond its capacity; modules and labware used as intended; nothing physically unsafe or nonsensical (e.g. pipetting from or into the wrong labware, or needless extra handling that puts samples at risk)."
+  },
+  {
+   "id": "tips_and_contamination",
+   "text": "Never aspirates, dispenses or mixes without a tip attached, and drops every tip so that no tip is left on a pipette at the end of the run. A fresh tip whenever the pipette moves on to a different sample, template or stock that carryover would contaminate, and no cross-contamination of samples or reagent stocks. A fresh tip for every plasmid, and no tip that has touched one transformation touches another or goes back into a stock."
+  },
+  {
+   "id": "fidelity_to_paper",
+   "text": "All-or-nothing bonus for a fully faithful protocol: it implements the paper's method on the given deck with no missing, invented or reordered steps; volumes, times, temperatures and reagents match the paper, or are a sound adaptation where the given deck or reagents force one; and comments and metadata (including any citation) are accurate. Any deviation fails this item, even one already failed under another item."
+  }
+ ],
+ "task": [
+  {
+   "id": "dna_addition",
+   "text": "1 uL of each plasmid (the paper's low-volume configuration) into the 10 uL of competent cells in the matching transformation-plate well (plasmid A1 to cells A1 and so on) for all 8 plasmids, with the thermocycler block at 4 C while cells are handled."
+  },
+  {
+   "id": "heat_shock",
+   "text": "Run on the thermocycler module as in APEX Protocol 1: 4 C for 30 min with DNA, then 42 C for 30 s, lid closed (a short return to 4 C afterwards passes)."
+  },
+  {
+   "id": "soc_recovery",
+   "text": "50 uL SOC (low-volume configuration) added to each transformation after the heat shock, then recovery at 37 C for 1 h on the thermocycler module."
+  }
+ ]
+}

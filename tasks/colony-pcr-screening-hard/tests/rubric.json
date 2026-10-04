@@ -1,0 +1,31 @@
+{
+ "level": "hard",
+ "core": [
+  {
+   "id": "robot_practice",
+   "text": "Sound OT-2 practice: a valid apiLevel and metadata; every volume handled by a pipette whose range covers it (nothing below its minimum or above its maximum); no well filled beyond its capacity; modules and labware used as intended; nothing physically unsafe or nonsensical (e.g. pipetting from or into the wrong labware, or needless extra handling that puts samples at risk)."
+  },
+  {
+   "id": "tips_and_contamination",
+   "text": "Never aspirates, dispenses or mixes without a tip attached, and drops every tip so that no tip is left on a pipette at the end of the run. A fresh tip whenever the pipette moves on to a different sample, template or stock that carryover would contaminate, and no cross-contamination of samples or reagent stocks. A fresh tip for every colony and every primer pair; reusing one tip for master mix into empty wells passes."
+  },
+  {
+   "id": "fidelity_to_paper",
+   "text": "All-or-nothing bonus for a fully faithful protocol: it implements the paper's method on the given deck with no missing, invented or reordered steps; volumes, times, temperatures and reagents match the paper, or are a sound adaptation where the given deck or reagents force one; and comments and metadata (including any citation) are accurate. Any deviation fails this item, even one already failed under another item."
+  }
+ ],
+ "task": [
+  {
+   "id": "reaction_setup",
+   "text": "Every PCR well gets the 2x master mix (1x in the final reaction), its colony's primer pair and about 1 uL of colony template (the paper's OT-2 template volume), with master mix in the well before the template as in the paper. A 10 uL reaction (the paper's OT-2 workflow) or a 20-25 uL reaction (the Q5 manufacturer's protocol) both pass."
+  },
+  {
+   "id": "sample_mapping",
+   "text": "Template and primer pair from each source well go to the matching PCR well (A1 to A1 and so on) for all 96 colonies, with no well skipped or used twice."
+  },
+  {
+   "id": "thermocycling",
+   "text": "Plate sealing and a colony PCR program recorded that follows the paper (the master-mix manufacturer's protocol with annealing and extension adjusted to the primers and amplicon): initial denaturation, about 30 cycles of denaturation, annealing and extension, a final extension and a 4 C hold, at temperatures suitable for the Q5 Hot Start master mix provided."
+  }
+ ]
+}

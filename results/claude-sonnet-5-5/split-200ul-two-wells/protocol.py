@@ -1,6 +1,6 @@
 from opentrons import protocol_api
 
-metadata = {'apiName': 'Split 200 uL into two wells', 'apiLevel': '2.15'}
+metadata = {'protocolName': 'Split 200 uL into two 100 uL wells', 'apiLevel': '2.15'}
 
 
 def run(protocol: protocol_api.ProtocolContext):
@@ -11,4 +11,4 @@ def run(protocol: protocol_api.ProtocolContext):
     protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
-    p300.transfer(100, reservoir['A1'], [plate['A1'], plate['B1']])
+    p300.transfer(100, reservoir['A1'], [plate['A1'], plate['B1']], new_tip='always')

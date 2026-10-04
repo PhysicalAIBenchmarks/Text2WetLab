@@ -110,7 +110,7 @@ def make_card(out: Path, duration: float, lines: list):
 
 def make_label_overlay(base: Image.Image, label: str, detail: str) -> Image.Image:
     """Overlay label text onto a copy of `base` image."""
-    img = base.copy().convert("RGB")
+    img = base.copy().convert("RGBA")
     draw = ImageDraw.Draw(img)
 
     if label:
@@ -145,7 +145,7 @@ def make_task_clip(
     if label or detail:
         # Extract one frame, build overlay PNG, burn it in via overlay filter
         frame_png = out.parent / (out.stem + "_label.png")
-        frame_img = Image.new("RGB", (W, H), (0, 0, 0))
+        frame_img = Image.new("RGBA", (W, H), (0, 0, 0, 0))  # transparent, so only the label boxes cover the footage
         overlay = make_label_overlay(frame_img, label, detail)
         overlay.save(str(frame_png))
 
@@ -218,7 +218,7 @@ def main():
         ("Evaluation Pipeline", 44, WHITE, 30),
         ("PDF / DOI   ->   Protocol IR   ->   OT-2 Python", 27, AMBER, 14),
         ("->   opentrons_simulate   ->   Harbor Sandbox", 27, AMBER, 30),
-        ("Deterministic gate  +  LLM rubric judge (claude-sonnet-5-5)", 19, DGREY, 0),
+        ("Simulator gate  +  checks  +  LLM judge (3 core items 75%, task items 25%)", 19, DGREY, 0),
     ])
     segs.append(s)
 
@@ -248,7 +248,7 @@ def main():
     s = tmp / "05a_ecoli_label.mp4"
     make_card(s, 4.0, [
         ("E. coli Heat-Shock Transformation", 40, WHITE, 16),
-        ("4-step protocol from the APEX published method", 21, MGREY, 0),
+        ("Easy: the supplier's manual method.   Hard: APEX on the thermocycler.", 21, MGREY, 0),
     ])
     segs.append(s)
 
@@ -256,17 +256,17 @@ def main():
     make_task_clip(
         RESULTS / "ecoli-heat-shock-transformation" / "best_run.mp4", s,
         speed=1.0,
-        label="Best agent -- Opus 5.5  (reward 0.714)",
-        detail="rubric_dna_addition 0.5  |  rubric_fidelity_to_task 0.5",
+        label="Agent -- Sonnet 5.5  (reward 1.0)",
+        detail="DNA into the cells with no pipette mix, as the task asks",
     )
     segs.append(s)
 
     s = tmp / "05c_ecoli_insight.mp4"
     make_card(s, 7.0, [
         ("Phantom Mix Hallucination", 38, AMBER, 24),
-        ("Opus 5.5 and Fable 5.1 added unrequested mix_after=(3, 10)", 24, LGREY, 12),
+        ("Opus 5.5 and Fable 5.1 keep adding mix_after=(3, 10)", 24, LGREY, 12),
         ("to the competent-cells step -- biologically harmful.", 24, LGREY, 28),
-        ("Sonnet 5.5 avoided it:  0.857  vs  0.714.", 23, TEAL, 0),
+        ("Opus 3 of 5 rounds, Fable 4 of 5.  Sonnet never.", 23, TEAL, 0),
     ])
     segs.append(s)
 
@@ -309,7 +309,7 @@ def main():
         RESULTS / "opentrons-rna-extraction" / "oracle_run.mp4", s,
         speed=60.0, max_out_sec=10.0,
         label="Oracle -- RNA Extraction, 48 samples  (60x speed)",
-        detail="Bead-based magnetic separation  |  9-item rubric",
+        detail="Bead-based magnetic separation  |  16 run-log checks + judge",
     )
     segs.append(s)
 
@@ -318,7 +318,7 @@ def main():
         ("Elution Volume Error", 38, AMBER, 24),
         ("All models used 100 uL instead of ~80 uL.", 25, LGREY, 12),
         ("Risks RNA pellet carry-over in clinical diagnostics.", 21, MGREY, 26),
-        ("rubric_elution_recovery  0.5  for all three models.", 21, TEAL, 0),
+        ("elution_recovery failed for all three models.", 21, TEAL, 0),
     ])
     segs.append(s)
 
@@ -329,7 +329,7 @@ def main():
         RESULTS / "colony-pcr-screening" / "oracle_run.mp4", s,
         speed=80.0, max_out_sec=8.0,
         label="Oracle -- Colony PCR Screening  (80x speed)",
-        detail="Opus 5.5: 1.000  |  All 8 rubric items: full marks",
+        detail="All three models: 1.0",
     )
     segs.append(s)
 
@@ -337,8 +337,8 @@ def main():
     make_task_clip(
         RESULTS / "colony-pcr-screening" / "best_run.mp4", s,
         speed=80.0, max_out_sec=8.0,
-        label="Best agent -- Sonnet 5.5 / Fable 5.1  (reward 0.875)",
-        detail="rubric_tips_and_contamination 0.5  -- tip reuse across colonies",
+        label="Agent -- Sonnet 5.5  (reward 1.0)",
+        detail="Fresh tip for every colony and every primer pair",
     )
     segs.append(s)
 
@@ -346,13 +346,13 @@ def main():
     print("[9/10] Results")
     s = tmp / "09_results.mp4"
     make_card(s, 20.0, [
-        ("Results  --  pass@1  2026-10-04", 34, WHITE, 38),
-        ("claude-opus-5-5        0.935", 30, AMBER, 16),
-        ("claude-sonnet-5-5      0.910", 30, LGREY, 16),
-        ("claude-fable-5-1       0.882", 30, MGREY, 36),
-        ("100% simulator pass rate", 20, TEAL, 10),
-        ("Score variation from LLM rubric judge only", 20, TEAL, 10),
-        ("Sonnet 5.5  =  97.3% of Opus performance at 33% of cost", 20, TEAL, 0),
+        ("Results  --  pass@1, 7 easy tasks, 2026-10-04", 34, WHITE, 38),
+        ("claude-fable-5-1       0.971     $3.77", 30, AMBER, 16),
+        ("claude-opus-5-5        0.914     $1.26", 30, LGREY, 16),
+        ("claude-sonnet-5-5      0.914     $0.39", 30, LGREY, 36),
+        ("100% simulator pass rate  |  0 of 21 trials tripped a hack trap", 20, TEAL, 10),
+        ("Every lost point is an LLM-judge rubric item", 20, TEAL, 10),
+        ("4 hard tasks (paper -> protocol) are next", 20, TEAL, 0),
     ])
     segs.append(s)
 
@@ -362,7 +362,7 @@ def main():
     make_card(s, 10.0, [
         ("github.com/PhysicalAIBenchmarks/Text2WetLab", 26, AMBER, 16),
         ("physicalaibenchmarks.github.io/Text2WetLab", 23, TEAL, 30),
-        ("Apache 2.0   |   Harbor-compatible   |   HuggingFace dataset", 17, DGREY, 0),
+        ("MIT   |   Harbor-compatible   |   HuggingFace dataset", 17, DGREY, 0),
     ])
     segs.append(s)
 

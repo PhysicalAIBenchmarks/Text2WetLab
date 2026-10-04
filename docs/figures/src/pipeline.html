@@ -1,0 +1,52 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Text2WetLab pipeline</title>
+<style>
+:root { --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --line:#c3c2b7; --surface:#fcfcfb; --page:#ffffff; --blue:#2a78d6; --orange:#eb6834; --aqua:#1baf7a; --wash-b:#eaf2fc; --wash-o:#fdf0ea; --wash-a:#e8f7f1; }
+body { margin:0; background:var(--page); font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); }
+.wrap { width:1180px; padding:28px 30px 24px; }
+.row { display:flex; align-items:stretch; gap:0; }
+.stage { flex:1; border:1px solid rgba(11,11,11,.12); border-radius:10px; background:var(--surface); padding:14px 16px; }
+.stage h3 { margin:0 0 4px; font-size:15px; font-weight:650; display:flex; align-items:center; gap:8px; }
+.stage p { margin:0; color:var(--ink2); font-size:13px; }
+.stage code { font-size:12px; color:var(--ink); background:#f0efec; padding:1px 4px; border-radius:3px; }
+.key { width:10px; height:10px; border-radius:50%; display:inline-block; }
+.arrow { width:34px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:22px; }
+.band { margin:6px 0 10px; font-size:12px; font-weight:600; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; }
+.layers { display:flex; gap:6px; margin-top:8px; }
+.layer { flex:1; border-radius:8px; padding:10px 10px 9px; background:var(--wash-a); border:1px solid rgba(27,175,122,.35); }
+.layer b { display:block; font-size:13px; }
+.layer span { font-size:12px; color:var(--ink2); }
+.layer.judge { background:var(--wash-b); border-color:rgba(42,120,214,.4); flex:1.5; }
+.layer.cap { background:var(--wash-o); border-color:rgba(235,104,52,.4); }
+.down { text-align:center; color:var(--muted); font-size:20px; margin:4px 0; }
+.levels { display:flex; gap:10px; margin-top:8px; }
+.levels div { flex:1; font-size:12px; color:var(--ink2); border-left:3px solid var(--line); padding-left:8px; }
+</style></head>
+<body><div class="wrap">
+  <div class="band">1 · Build tasks from papers</div>
+  <div class="row">
+    <div class="stage"><h3><span class="key" style="background:var(--orange)"></span>Paper + authors' code</h3><p>36 papers, 123 experiments in <code>sources/</code>. Code kept aside as an independent check, never an input.</p></div>
+    <div class="arrow">→</div>
+    <div class="stage"><h3><span class="key" style="background:var(--orange)"></span>paper2protocol</h3><p><code>list</code> the experiments, <code>assess</code> if one has enough detail, <code>convert</code> it to instructions + a protocol IR.</p></div>
+    <div class="arrow">→</div>
+    <div class="stage"><h3><span class="key" style="background:var(--orange)"></span>Harbor task</h3><p>Fixed deck, reference protocol, <code>rubric.json</code>, 10 traps.</p>
+      <div class="levels"><div><b>Easy</b>: exact steps and quantities</div><div><b>Hard</b>: goal + paper at <code>/data</code></div></div></div>
+  </div>
+  <div class="down">↓</div>
+  <div class="band">2 · Run the agent in a Harbor sandbox (Modal or Docker)</div>
+  <div class="row">
+    <div class="stage"><h3><span class="key" style="background:var(--blue)"></span>Claude Code agent</h3><p>Reads <code>instruction.md</code> (and the paper on hard tasks), writes <code>/app/protocol.py</code>. Opus 5.5, Sonnet 5.5, Fable 5.1.</p></div>
+    <div class="arrow">→</div>
+    <div class="stage" style="flex:2.6"><h3><span class="key" style="background:var(--aqua)"></span>Verifier <code>tests/test.sh</code>, copied in only after the agent finishes</h3>
+      <div class="layers">
+        <div class="layer"><b>Lint</b><span>fail → 0</span></div>
+        <div class="layer"><b>Hack traps</b><span>10 traps, any → 0</span></div>
+        <div class="layer"><b>Simulator</b><span><code>opentrons_simulate</code>, fail → 0</span></div>
+        <div class="layer"><b>Checks</b><span>end state or run log</span></div>
+        <div class="layer judge"><b>LLM judge</b><span>3 core items 75%, task items 25%, each pass/fail</span></div>
+        <div class="layer cap"><b>Critical cap</b><span>reward ≤ 0.3</span></div>
+      </div></div>
+    <div class="arrow">→</div>
+    <div class="stage" style="flex:.8"><h3>reward.json</h3><p>0 to 1, plus every rubric item and trap.</p></div>
+  </div>
+</div></body></html>

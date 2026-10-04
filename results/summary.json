@@ -1,342 +1,506 @@
-{
- "a1-a12-100ul": {
+[
+ {
+  "model": "claude-opus-5-5",
   "task": "a1-a12-100ul",
-  "grader": "deterministic end-state checker",
-  "oracle": [
-   {
-    "job": "oracle-a1-a12-100ul",
-    "reward": 1.0,
-    "sim_pass": 1.0,
-    "cost_usd": 0,
-    "failed": [],
-    "protocol": null
-   }
-  ],
-  "trials": [
-   {
-    "job": "agent-sonnet-5-5-a1-a12-100ul",
-    "reward": 1.0,
-    "sim_pass": 1.0,
-    "cost_usd": 0.0287,
-    "failed": [],
-    "protocol": "/Users/nialloleary/Desktop/Text2WetLab-integration/results/harbor-jobs/agent-sonnet-5-5-a1-a12-100ul/harbor__eGpQMMK/verifier/protocol.py"
-   }
-  ],
-  "adversarial": {
-   "control_reference_solution": 1.0,
-   "control_api_2_14": 1.0,
-   "control_api_2_15": 1.0,
-   "empty_protocol": 0.0,
-   "drop_last_transfer": 0.0,
-   "halve_volumes": 0.0,
-   "double_volumes": 0.0,
-   "no_labels": 0.0,
-   "swap_two_labels": null,
-   "reservoir_labelled_as_plate_kind": 0.125,
-   "wrong_slot": 0.25,
-   "duplicate_label": 0.0,
-   "finish_holding_a_tip": 0.25,
-   "extra_liquid_into_target": 0.0,
-   "share_one_tip_across_sources": null,
-   "comment_spoof_only": 0.0,
-   "forged_result_then_systemexit": 0.0,
-   "import_os_and_exit": 0.0,
-   "read_the_answer_key": 0.0,
-   "patch_the_log_parser": 0.0,
-   "dunder_escape": 0.0
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "deck_and_hardware": 1.0,
+   "volumes_and_wells": 1.0,
+   "tip_usage": 1.0,
+   "robot_practice": 1.0,
+   "fidelity_to_task": 1.0
   },
-  "best_trial": {
-   "job": "agent-sonnet-5-5-a1-a12-100ul",
-   "reward": 1.0,
-   "cost_usd": 0.0287
-  }
+  "cost_usd": 0.0496,
+  "input_tokens": 33104,
+  "output_tokens": 884,
+  "duration_s": 27,
+  "exception": null
  },
- "ampure-bead-cleanup": {
+ {
+  "model": "claude-opus-5-5",
   "task": "ampure-bead-cleanup",
-  "grader": "deterministic end-state checker",
-  "oracle": [
-   {
-    "job": "oracle-ampure-bead-cleanup",
-    "reward": 1.0,
-    "sim_pass": 1.0,
-    "cost_usd": 0,
-    "failed": [],
-    "protocol": null
-   }
-  ],
-  "trials": [
-   {
-    "job": "agent-sonnet-5-5-ampure-bead-cleanup",
-    "reward": 0.0,
-    "sim_pass": 1.0,
-    "cost_usd": 0.0454,
-    "failed": [
-     "no_aspirate_from_empty_well",
-     "end_state:sample_plate",
-     "end_state:elution_plate"
-    ],
-    "protocol": "/Users/nialloleary/Desktop/Text2WetLab-integration/results/harbor-jobs/agent-sonnet-5-5-ampure-bead-cleanup/harbor__d3qoQMX/verifier/protocol.py"
-   }
-  ],
-  "adversarial": {
-   "control_reference_solution": 1.0,
-   "control_api_2_14": 1.0,
-   "control_api_2_15": 1.0,
-   "empty_protocol": 0.0,
-   "drop_last_transfer": 0.0,
-   "halve_volumes": 0.0,
-   "double_volumes": 0.0,
-   "no_labels": 0.0,
-   "swap_two_labels": 0.25,
-   "reservoir_labelled_as_plate_kind": 0.0833,
-   "wrong_slot": 0.125,
-   "duplicate_label": 0.0,
-   "finish_holding_a_tip": 0.0,
-   "extra_liquid_into_target": 0.0,
-   "share_one_tip_across_sources": 0.25,
-   "comment_spoof_only": 0.0,
-   "forged_result_then_systemexit": 0.0,
-   "import_os_and_exit": 0.0,
-   "read_the_answer_key": 0.0,
-   "patch_the_log_parser": 0.0,
-   "dunder_escape": 0.0
-  }
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "binding": 1.0,
+   "supernatant_and_washes": 1.0,
+   "drying_and_elution": 1.0,
+   "recovery": 1.0,
+   "tips_and_contamination": 1.0
+  },
+  "cost_usd": 0.1082,
+  "input_tokens": 36544,
+  "output_tokens": 2832,
+  "duration_s": 66,
+  "exception": null
  },
- "colony-pcr-screening": {
+ {
+  "model": "claude-opus-5-5",
   "task": "colony-pcr-screening",
-  "grader": "deterministic end-state checker",
-  "oracle": [
-   {
-    "job": "oracle-colony-pcr-screening",
-    "reward": 1.0,
-    "sim_pass": 1.0,
-    "cost_usd": 0,
-    "failed": [],
-    "protocol": null
-   }
-  ],
-  "trials": [
-   {
-    "job": "agent-sonnet-5-5-colony-pcr-screening",
-    "reward": 1.0,
-    "sim_pass": 1.0,
-    "cost_usd": 0.0329,
-    "failed": [],
-    "protocol": "/Users/nialloleary/Desktop/Text2WetLab-integration/results/harbor-jobs/agent-sonnet-5-5-colony-pcr-screening/harbor__stP2KXF/verifier/protocol.py"
-   }
-  ],
-  "adversarial": {
-   "control_reference_solution": 1.0,
-   "control_api_2_14": 1.0,
-   "control_api_2_15": 1.0,
-   "empty_protocol": 0.0,
-   "drop_last_transfer": 0.3333,
-   "halve_volumes": 0.3333,
-   "double_volumes": 0.3333,
-   "no_labels": 0.0,
-   "swap_two_labels": 0.0833,
-   "reservoir_labelled_as_plate_kind": 0.1875,
-   "wrong_slot": 0.1667,
-   "duplicate_label": 0.0,
-   "finish_holding_a_tip": 0.25,
-   "extra_liquid_into_target": 0.3333,
-   "share_one_tip_across_sources": 0.25,
-   "comment_spoof_only": 0.0,
-   "forged_result_then_systemexit": 0.0,
-   "import_os_and_exit": 0.0,
-   "read_the_answer_key": 0.0,
-   "patch_the_log_parser": 0.0,
-   "dunder_escape": 0.0
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "master_mix": 1.0,
+   "template_and_primers": 1.0,
+   "tips_and_contamination": 1.0,
+   "thermocycling": 1.0,
+   "fidelity_to_paper": 1.0
   },
-  "best_trial": {
-   "job": "agent-sonnet-5-5-colony-pcr-screening",
-   "reward": 1.0,
-   "cost_usd": 0.0329
-  }
+  "cost_usd": 0.1173,
+  "input_tokens": 78707,
+  "output_tokens": 2313,
+  "duration_s": 47,
+  "exception": null
  },
- "ecoli-heat-shock-transformation": {
+ {
+  "model": "claude-opus-5-5",
   "task": "ecoli-heat-shock-transformation",
-  "grader": "deterministic end-state checker",
-  "oracle": [
-   {
-    "job": "oracle-ecoli-heat-shock-transformation",
-    "reward": 1.0,
-    "sim_pass": 1.0,
-    "cost_usd": 0,
-    "failed": [],
-    "protocol": null
-   }
-  ],
-  "trials": [
-   {
-    "job": "agent-sonnet-5-5-ecoli-heat-shock-transformation",
-    "reward": 1.0,
-    "sim_pass": 1.0,
-    "cost_usd": 0.0283,
-    "failed": [],
-    "protocol": "/Users/nialloleary/Desktop/Text2WetLab-integration/results/harbor-jobs/agent-sonnet-5-5-ecoli-heat-shock-transformation/harbor__2tKFFHj/verifier/protocol.py"
-   }
-  ],
-  "adversarial": {
-   "control_reference_solution": 1.0,
-   "control_api_2_14": 1.0,
-   "control_api_2_15": 1.0,
-   "empty_protocol": 0.0,
-   "drop_last_transfer": 0.25,
-   "halve_volumes": 0.25,
-   "double_volumes": 0.25,
-   "no_labels": 0.0,
-   "swap_two_labels": null,
-   "reservoir_labelled_as_plate_kind": 0.1667,
-   "wrong_slot": 0.125,
-   "duplicate_label": 0.0,
-   "finish_holding_a_tip": 0.25,
-   "extra_liquid_into_target": 0.0,
-   "share_one_tip_across_sources": null,
-   "comment_spoof_only": 0.0,
-   "forged_result_then_systemexit": 0.0,
-   "import_os_and_exit": 0.0,
-   "read_the_answer_key": 0.0,
-   "patch_the_log_parser": 0.0,
-   "dunder_escape": 0.0
+  "reward": 0.8,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 0.8,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "dna_addition": 1.0,
+   "heat_shock": 1.0,
+   "soc_recovery": 1.0,
+   "tip_usage": 1.0,
+   "fidelity_to_task": 0.0
   },
-  "best_trial": {
-   "job": "agent-sonnet-5-5-ecoli-heat-shock-transformation",
-   "reward": 1.0,
-   "cost_usd": 0.0283
-  }
+  "cost_usd": 0.072,
+  "input_tokens": 34779,
+  "output_tokens": 1319,
+  "duration_s": 28,
+  "exception": null
  },
- "golden-gate-assembly": {
+ {
+  "model": "claude-opus-5-5",
   "task": "golden-gate-assembly",
-  "grader": "deterministic end-state checker",
-  "oracle": [
-   {
-    "job": "oracle-golden-gate-assembly",
-    "reward": 1.0,
-    "sim_pass": 1.0,
-    "cost_usd": 0,
-    "failed": [],
-    "protocol": null
-   }
-  ],
-  "trials": [
-   {
-    "job": "agent-sonnet-5-5-golden-gate-assembly",
-    "reward": 0.4333,
-    "sim_pass": 1.0,
-    "cost_usd": 0.0723,
-    "failed": [
-     "end_state:pcr_plate",
-     "end_state:cells_plate"
-    ],
-    "protocol": "/Users/nialloleary/Desktop/Text2WetLab-integration/results/harbor-jobs/agent-sonnet-5-5-golden-gate-assembly/harbor__r75LNjC/verifier/protocol.py"
-   }
-  ],
-  "adversarial": {
-   "control_reference_solution": 1.0,
-   "control_api_2_14": 1.0,
-   "control_api_2_15": 1.0,
-   "empty_protocol": 0.0,
-   "drop_last_transfer": 0.4667,
-   "halve_volumes": 0.15,
-   "double_volumes": 0.3,
-   "no_labels": 0.0,
-   "swap_two_labels": 0.2167,
-   "reservoir_labelled_as_plate_kind": null,
-   "wrong_slot": 0.2333,
-   "duplicate_label": 0.0,
-   "finish_holding_a_tip": 0.25,
-   "extra_liquid_into_target": 0.0,
-   "share_one_tip_across_sources": 0.25,
-   "comment_spoof_only": 0.0,
-   "forged_result_then_systemexit": 0.0,
-   "import_os_and_exit": 0.0,
-   "read_the_answer_key": 0.0,
-   "patch_the_log_parser": 0.0,
-   "dunder_escape": 0.0
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "pcr_setup": 1.0,
+   "dpni_and_cleanup": 1.0,
+   "assembly_mix": 1.0,
+   "cycling_and_transformation": 1.0,
+   "tips_and_contamination": 1.0
   },
-  "best_trial": {
-   "job": "agent-sonnet-5-5-golden-gate-assembly",
-   "reward": 0.4333,
-   "cost_usd": 0.0723
-  }
+  "cost_usd": 0.5457,
+  "input_tokens": 174291,
+  "output_tokens": 7944,
+  "duration_s": 107,
+  "exception": null
  },
- "opentrons-rna-extraction": {
+ {
+  "model": "claude-opus-5-5",
   "task": "opentrons-rna-extraction",
-  "grader": "LLM judge + 16 checks",
-  "oracle": [
-   {
-    "job": "oracle-opentrons-rna-extraction",
-    "reward": 0.9444,
-    "sim_pass": 1.0,
-    "cost_usd": 0,
-    "failed": [
-     "fidelity_to_paper"
-    ],
-    "protocol": "/Users/nialloleary/Desktop/Text2WetLab-integration/results/harbor-jobs/oracle-opentrons-rna-extraction/harbor__fCLXsyx/verifier/protocol.py"
-   }
-  ],
-  "trials": [
-   {
-    "job": "agent-sonnet-5-5-opentrons-rna-extraction",
-    "reward": 0.8889,
-    "sim_pass": 1.0,
-    "cost_usd": 0.1278,
-    "failed": [
-     "elution_recovery",
-     "robot_practice"
-    ],
-    "protocol": "/Users/nialloleary/Desktop/Text2WetLab-integration/results/harbor-jobs/agent-sonnet-5-5-opentrons-rna-extraction/harbor__8XSK4Gm/verifier/protocol.py"
-   }
-  ],
-  "adversarial": {},
-  "best_trial": {
-   "job": "agent-sonnet-5-5-opentrons-rna-extraction",
-   "reward": 0.8889,
-   "cost_usd": 0.1278
-  }
- },
- "split-200ul-two-wells": {
-  "task": "split-200ul-two-wells",
-  "grader": "deterministic end-state checker",
-  "oracle": [],
-  "trials": [
-   {
-    "job": "agent-sonnet-5-5-split-200ul-two-wells",
-    "reward": 1.0,
-    "sim_pass": 1.0,
-    "cost_usd": 0.0276,
-    "failed": [],
-    "protocol": "/Users/nialloleary/Desktop/Text2WetLab-integration/results/harbor-jobs/agent-sonnet-5-5-split-200ul-two-wells/harbor__sDY6BVF/verifier/protocol.py"
-   }
-  ],
-  "adversarial": {
-   "control_reference_solution": 1.0,
-   "control_api_2_14": 1.0,
-   "control_api_2_15": 1.0,
-   "empty_protocol": 0.0,
-   "drop_last_transfer": 0.0,
-   "halve_volumes": 0.0,
-   "double_volumes": 0.0,
-   "no_labels": 0.0,
-   "swap_two_labels": null,
-   "reservoir_labelled_as_plate_kind": 0.125,
-   "wrong_slot": 0.25,
-   "duplicate_label": 0.0,
-   "finish_holding_a_tip": 0.25,
-   "extra_liquid_into_target": 0.0,
-   "share_one_tip_across_sources": null,
-   "comment_spoof_only": 0.0,
-   "forged_result_then_systemexit": 0.0,
-   "import_os_and_exit": 0.0,
-   "read_the_answer_key": 0.0,
-   "patch_the_log_parser": 0.0,
-   "dunder_escape": 0.0
+  "reward": 0.6,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 0.6,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "sample_handling": 1.0,
+   "binding_and_separation": 1.0,
+   "washes_and_drying": 1.0,
+   "elution_recovery": 0.0,
+   "fidelity_to_paper": 0.0
   },
-  "best_trial": {
-   "job": "agent-sonnet-5-5-split-200ul-two-wells",
-   "reward": 1.0,
-   "cost_usd": 0.0276
-  }
+  "cost_usd": 0.3154,
+  "input_tokens": 209288,
+  "output_tokens": 8557,
+  "duration_s": 115,
+  "exception": null
+ },
+ {
+  "model": "claude-opus-5-5",
+  "task": "split-200ul-two-wells",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "deck_and_hardware": 1.0,
+   "volumes_and_wells": 1.0,
+   "tip_usage": 1.0,
+   "robot_practice": 1.0,
+   "fidelity_to_task": 1.0
+  },
+  "cost_usd": 0.049,
+  "input_tokens": 33213,
+  "output_tokens": 820,
+  "duration_s": 23,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "a1-a12-100ul",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "deck_and_hardware": 1.0,
+   "volumes_and_wells": 1.0,
+   "tip_usage": 1.0,
+   "robot_practice": 1.0,
+   "fidelity_to_task": 1.0
+  },
+  "cost_usd": 0.0287,
+  "input_tokens": 33154,
+  "output_tokens": 657,
+  "duration_s": 22,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "ampure-bead-cleanup",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "binding": 1.0,
+   "supernatant_and_washes": 1.0,
+   "drying_and_elution": 1.0,
+   "recovery": 1.0,
+   "tips_and_contamination": 1.0
+  },
+  "cost_usd": 0.0466,
+  "input_tokens": 35966,
+  "output_tokens": 1967,
+  "duration_s": 50,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "colony-pcr-screening",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "master_mix": 1.0,
+   "template_and_primers": 1.0,
+   "tips_and_contamination": 1.0,
+   "thermocycling": 1.0,
+   "fidelity_to_paper": 1.0
+  },
+  "cost_usd": 0.0655,
+  "input_tokens": 67964,
+  "output_tokens": 1829,
+  "duration_s": 40,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "ecoli-heat-shock-transformation",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "dna_addition": 1.0,
+   "heat_shock": 1.0,
+   "soc_recovery": 1.0,
+   "tip_usage": 1.0,
+   "fidelity_to_task": 1.0
+  },
+  "cost_usd": 0.0345,
+  "input_tokens": 34332,
+  "output_tokens": 1031,
+  "duration_s": 23,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "golden-gate-assembly",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "pcr_setup": 1.0,
+   "dpni_and_cleanup": 1.0,
+   "assembly_mix": 1.0,
+   "cycling_and_transformation": 1.0,
+   "tips_and_contamination": 1.0
+  },
+  "cost_usd": 0.0829,
+  "input_tokens": 45002,
+  "output_tokens": 4123,
+  "duration_s": 47,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "opentrons-rna-extraction",
+  "reward": 0.4,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 0.4,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "sample_handling": 1.0,
+   "binding_and_separation": 0.0,
+   "washes_and_drying": 1.0,
+   "elution_recovery": 0.0,
+   "fidelity_to_paper": 0.0
+  },
+  "cost_usd": 0.1083,
+  "input_tokens": 80107,
+  "output_tokens": 6038,
+  "duration_s": 67,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "split-200ul-two-wells",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "deck_and_hardware": 1.0,
+   "volumes_and_wells": 1.0,
+   "tip_usage": 1.0,
+   "robot_practice": 1.0,
+   "fidelity_to_task": 1.0
+  },
+  "cost_usd": 0.0252,
+  "input_tokens": 33116,
+  "output_tokens": 658,
+  "duration_s": 23,
+  "exception": null
+ },
+ {
+  "model": "claude-fable-5-1",
+  "task": "a1-a12-100ul",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "deck_and_hardware": 1.0,
+   "volumes_and_wells": 1.0,
+   "tip_usage": 1.0,
+   "robot_practice": 1.0,
+   "fidelity_to_task": 1.0
+  },
+  "cost_usd": 0.1478,
+  "input_tokens": 38670,
+  "output_tokens": 1011,
+  "duration_s": 35,
+  "exception": null
+ },
+ {
+  "model": "claude-fable-5-1",
+  "task": "ampure-bead-cleanup",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "binding": 1.0,
+   "supernatant_and_washes": 1.0,
+   "drying_and_elution": 1.0,
+   "recovery": 1.0,
+   "tips_and_contamination": 1.0
+  },
+  "cost_usd": 0.4238,
+  "input_tokens": 66975,
+  "output_tokens": 4646,
+  "duration_s": 92,
+  "exception": null
+ },
+ {
+  "model": "claude-fable-5-1",
+  "task": "colony-pcr-screening",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "master_mix": 1.0,
+   "template_and_primers": 1.0,
+   "tips_and_contamination": 1.0,
+   "thermocycling": 1.0,
+   "fidelity_to_paper": 1.0
+  },
+  "cost_usd": 0.3634,
+  "input_tokens": 73336,
+  "output_tokens": 3175,
+  "duration_s": 65,
+  "exception": null
+ },
+ {
+  "model": "claude-fable-5-1",
+  "task": "ecoli-heat-shock-transformation",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "dna_addition": 1.0,
+   "heat_shock": 1.0,
+   "soc_recovery": 1.0,
+   "tip_usage": 1.0,
+   "fidelity_to_task": 1.0
+  },
+  "cost_usd": 0.1776,
+  "input_tokens": 38976,
+  "output_tokens": 1621,
+  "duration_s": 40,
+  "exception": null
+ },
+ {
+  "model": "claude-fable-5-1",
+  "task": "golden-gate-assembly",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "pcr_setup": 1.0,
+   "dpni_and_cleanup": 1.0,
+   "assembly_mix": 1.0,
+   "cycling_and_transformation": 1.0,
+   "tips_and_contamination": 1.0
+  },
+  "cost_usd": 0.9396,
+  "input_tokens": 193465,
+  "output_tokens": 15362,
+  "duration_s": 190,
+  "exception": null
+ },
+ {
+  "model": "claude-fable-5-1",
+  "task": "opentrons-rna-extraction",
+  "reward": 0.8,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 0.8,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "sample_handling": 1.0,
+   "binding_and_separation": 1.0,
+   "washes_and_drying": 1.0,
+   "elution_recovery": 0.0,
+   "fidelity_to_paper": 1.0
+  },
+  "cost_usd": 1.5903,
+  "input_tokens": 356285,
+  "output_tokens": 18465,
+  "duration_s": 269,
+  "exception": null
+ },
+ {
+  "model": "claude-fable-5-1",
+  "task": "split-200ul-two-wells",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 1.0,
+  "critical_fail": 0.0,
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "rubric": {
+   "deck_and_hardware": 1.0,
+   "volumes_and_wells": 1.0,
+   "tip_usage": 1.0,
+   "robot_practice": 1.0,
+   "fidelity_to_task": 1.0
+  },
+  "cost_usd": 0.1278,
+  "input_tokens": 37078,
+  "output_tokens": 1004,
+  "duration_s": 29,
+  "exception": null
  }
-}
+]
