@@ -14,3 +14,5 @@ Instruction: "Screen transformant colonies by PCR: add 18 µL Q5 Hot Start maste
 Key contamination risk: template must use a fresh tip per well.
 Master mix and primers can reuse tips within their respective transfers.
 The thermocycler protocol is entirely absent from the NL input.
+
+**Pinned for Harbor grading:** Plates are filled across all 96 wells (A1:H12), one sample per well in the same position on every plate, because the instruction says 'each well' and gives no count.

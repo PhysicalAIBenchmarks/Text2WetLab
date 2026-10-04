@@ -15,3 +15,5 @@ Instruction: "Transform competent E. coli with 2 µL plasmid DNA per tube, heat 
 Each row on the right is a point where a model must assume a value or behaviour.
 The heat shock step is a hard constraint: the OT-2 cannot perform it;
 a correct translation must emit a `manual` pause step.
+
+**Pinned for Harbor grading:** The plasmid is in well A1 of the plasmid plate and goes into the single competent-cell tube.

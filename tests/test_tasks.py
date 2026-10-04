@@ -51,16 +51,18 @@ def test_a_harbor_folder_is_a_complete_harbor_task():
             assert re.fullmatch(r"[\w-]+/[\w-]+", meta["task"]["name"])      # Harbor's org/name rule
 
 
-def test_the_task_text_is_the_same_everywhere_it_is_copied():
-    """public/, harbor/ and the grader's tests/ each need the text. One was dropped once between two commits."""
+def test_the_task_text_reaches_the_agent_and_the_grader():
+    """The brief must contain the public instruction. The RNA task's brief IS the instruction and its LLM judge reads a
+    third copy from tests/; that copy was dropped once between two commits."""
     for task in ALL:
         h = task / "harbor"
-        if h.exists():
-            want = (task / "public/instruction.md").read_bytes()
-            assert (h / "instruction.md").read_bytes() == want, task.name
-            grade = h / "tests/grade.py"
-            if "/tests/instruction.md" in grade.read_text():
-                assert (h / "tests/instruction.md").read_bytes() == want, task.name
+        if not h.exists():
+            continue
+        want = (task / "public/instruction.md").read_text().strip()
+        assert want in (h / "instruction.md").read_text(), task.name
+        grade = h / "tests/grade.py"
+        if "/tests/instruction.md" in grade.read_text():
+            assert (h / "tests/instruction.md").read_text().strip() == want, task.name
 
 
 def test_no_layer_scheme_is_left():

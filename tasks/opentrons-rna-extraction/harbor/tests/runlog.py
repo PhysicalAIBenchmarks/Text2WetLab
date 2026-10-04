@@ -21,6 +21,19 @@ PATTERNS = [
 INSTRUMENT_KINDS = {"aspirate", "dispense", "pick", "drop"}
 
 _comment = protocol_api.ProtocolContext.comment
+LOADNAMES: dict[str, str] = {}   # str(labware) as it appears in the run log -> the load name it was created from
+
+
+def _recording(original):
+    def load_labware(self, load_name, *args, **kwargs):
+        labware = original(self, load_name, *args, **kwargs)
+        LOADNAMES[str(labware)] = labware.load_name
+        return labware
+    return load_labware
+
+
+for _cls in (protocol_api.ProtocolContext, protocol_api.ModuleContext):
+    _cls.load_labware = _recording(_cls.load_labware)
 
 
 def tagged_comment(self, msg):
@@ -78,8 +91,12 @@ def main(protocol: str, labware_dir: str) -> dict:
             walk(entry.get("subcommands", []))
 
     walk(runlog)
-    return {"ok": True, "events": events, "n_commands": len(runlog)}
+    return {"ok": True, "events": events, "n_commands": len(runlog), "labware": dict(LOADNAMES)}
 
 
 if __name__ == "__main__":
-    print(json.dumps(main(sys.argv[1], sys.argv[2])))
+    result = json.dumps(main(sys.argv[1], sys.argv[2]))
+    if len(sys.argv) > 3:       # the grader names a file for the result; stdout is not trusted (a protocol can print)
+        with open(sys.argv[3], "w") as handle:
+            handle.write(result)
+    print(result)
