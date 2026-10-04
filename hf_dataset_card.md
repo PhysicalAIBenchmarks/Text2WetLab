@@ -114,7 +114,7 @@ Papers are ingested via `paper2protocol`: PDF/DOI → LLM extraction → Protoco
 ```bibtex
 @misc{oleary2026text2wetlab,
   title  = {Text2WetLab: Benchmarking Large Language Model Agents on Opentrons OT-2 Protocol Generation},
-  author = {O'Leary, Niall and O'Leary, Evan and Alshehri, Mohammed and Sturdy, Laurence},
+  author = {O'Leary, Evan and Alshehri, Mohammed and Legon, Laurence},
   year   = {2026},
   url    = {https://github.com/PhysicalAIBenchmarks/Text2WetLab}
 }

@@ -3,23 +3,19 @@
 
     uv run python scripts/make_trailer.py --cut 2min   # results/trailer.mp4, under 2:00 (no challenge 3, scenes x0.8)
     uv run python scripts/make_trailer.py --cut 3min   # results/trailer_3min.mp4, all three challenges
-    add --renders DIR to point at the agent renders (default /tmp/t2wl_renders, made by scripts/trailer_renders.py)
 
-Scores are from the committed results/<model>/<task>/reward.json, which is eval round R2 (graded rubric).
 Scene time splits go to results/<output>_timesplits.md.
 
-Three challenges, each shown as:
+Teaser, title, motivation (the text-to-lab-code gap), then each challenge as:
   paper (CC BY PDF page, passages the task uses highlighted) | task instruction / code
   -> historical MuJoCo replay of the Protocol IR
-  -> oracle vs scored agent protocol, rendered in the OT-2 scene
-  -> rubric verdict with the judge's own words
+  -> rubric verdict with the judge's own words (round R2 scores, from results/<model>/<task>/reward.json)
+and the eval-round figures from docs/harbor-results/figures (R7 latest run, per-task comparison).
 
 Inputs:
   - source PDFs: fetched from sources/<slug>/record.json and checked against its SHA-256
     (only papers whose record says redistributable=yes are used)
   - historical renders: read from the backup/l2-outputs-oct04 branch with `git show`
-  - agent renders: --renders DIR holding <task>-<model>.mp4, made with scripts/render_run.py
-    from results/<model>/<task>/protocol.py (falls back to results/<task>/best_run.mp4)
 Needs ffmpeg, pdftoppm and pdftotext (poppler). Text is drawn with Pillow, so ffmpeg needs no drawtext.
 """
 import argparse
@@ -33,7 +29,7 @@ import textwrap
 import urllib.request
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageChops, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
 RES = ROOT / "results"
@@ -252,7 +248,7 @@ def title_card(out):
     text(d, (W // 2, 250), "Text2WetLab", 84, WHITE, bold=True, anchor="mm")
     text(d, (W // 2, 330), "From published wet-lab papers to executable OT-2 robot protocols", 26, LGREY, anchor="mm")
     text(d, (W // 2, 372), "A benchmark for LLM agents, with simulation and rubric grading", 20, MGREY, anchor="mm")
-    text(d, (W // 2, 470), "Niall O'Leary  ·  Evan O'Leary  ·  Mohammed Alshehri  ·  Laurence Sturdy", 18, DGREY, anchor="mm")
+    text(d, (W // 2, 470), "Evan O'Leary  ·  Mohammed Alshehri  ·  Laurence Legon", 18, DGREY, anchor="mm")
     return scene(out, 5, img)
 
 
@@ -354,16 +350,6 @@ def replay(out, kicker, src, ss, speed, head, sub, caption):
     return scene(out, 9, img, [dict(src=src, box=(40, 64, W - 80, H - 190), ss=ss, speed=speed)])
 
 
-def versus(out, kicker, oracle, agent, agent_label, caption, dur=10):
-    img = canvas()
-    d = chrome(img, kicker, caption)
-    cw, chh = 590, 334
-    label(d, (40, 80), "ORACLE  ·  the task's reference protocol", TEAL)
-    label(d, (650, 80), agent_label, AMBER)
-    z = (0.2, 0.2, 0.6, 0.72)  # zoom on the deck: x, y, w, h as fractions of the render
-    return scene(out, dur, img, [dict(src=oracle, box=(40, 130, cw, chh), crop=z), dict(src=agent, box=(650, 130, cw, chh), crop=z)])
-
-
 def verdict(out, task, kicker, headline, quote_model, quote_items, takeaway):
     img = canvas()
     d = chrome(img, kicker, "Round R2 (graded rubric)  ·  scores: results/<model>/" + task + "/reward.json  ·  quotes: judge.json")
@@ -399,37 +385,54 @@ def verdict(out, task, kicker, headline, quote_model, quote_items, takeaway):
     return scene(out, 11, img)
 
 
-def results_card(out):
+def motive_future(out):
     img = canvas()
-    d = chrome(img, "Results  ·  pass@1  ·  round R2, graded rubric", "21/21 trials passed the simulator and every end-state check. In the latest binary-rubric re-run (R7) all three score 0.943.")
-    tasks = ["a1-a12-100ul", "split-200ul-two-wells", "ampure-bead-cleanup", "colony-pcr-screening",
-             "ecoli-heat-shock-transformation", "golden-gate-assembly", "opentrons-rna-extraction"]
-    y = 100
-    for m, name in MODELS:
-        mean = sum(reward(m, t)["reward"] for t in tasks) / len(tasks)
-        text(d, (40, y), name, 24, WHITE, bold=True)
-        d.rectangle([210, y + 2, 210 + 420, y + 28], fill=PANEL)
-        d.rectangle([210, y + 2, 210 + int(420 * mean), y + 28], fill=AMBER if m == MODELS[0][0] else (TEAL if "sonnet" in m else MGREY))
-        text(d, (645, y + 2), f"{mean:.3f}", 22, WHITE, mono=True)
-        y += 50
-    y += 20
-    cw = (W - 80 - 160) // len(tasks)
-    for k, t in enumerate(tasks):
-        short = {"a1-a12-100ul": "A1-A12", "split-200ul-two-wells": "split", "ampure-bead-cleanup": "AMPure",
-                 "colony-pcr-screening": "colony PCR", "ecoli-heat-shock-transformation": "E. coli HS",
-                 "golden-gate-assembly": "Golden Gate", "opentrons-rna-extraction": "RNA extr."}[t]
-        text(d, (200 + k * cw + cw // 2, y), short, 14, MGREY, anchor="ma")
-    y += 28
-    for m, name in MODELS:
-        text(d, (40, y + 12), name, 17, LGREY)
-        for k, t in enumerate(tasks):
-            r = reward(m, t)["reward"]
-            g = (r - 0.7) / 0.3
-            col = tuple(int(a + (b - a) * max(0, min(1, g))) for a, b in zip((120, 40, 30), (14, 120, 108)))
-            d.rectangle([200 + k * cw + 3, y, 200 + (k + 1) * cw - 3, y + 40], fill=col)
-            text(d, (200 + k * cw + cw // 2, y + 20), f"{r:.3f}", 16, WHITE, mono=True, anchor="mm")
-        y += 46
-    return scene(out, 10, img)
+    d = chrome(img, "Why this matters")
+    text(d, (W // 2, 150), "The next 20 years of science:", 30, MGREY, anchor="mm")
+    text(d, (W // 2, 205), "AI models like Claude and Gemini running experiments through code.", 32, WHITE, bold=True, anchor="mm")
+    y = 300
+    for s_, col in [("As millions of experiments are executed by AI, even a small error rate", LGREY),
+                    ("turns into millions in losses: reagents, equipment, patient samples,", LGREY),
+                    ("and lost progress in science, medicine and our understanding of life.", LGREY)]:
+        text(d, (W // 2, y), s_, 24, col, anchor="mm")
+        y += 40
+    text(d, (W // 2, 480), "Before AI runs the lab, we need to measure how faithfully it turns text into lab code.", 22, AMBER, anchor="mm")
+    return scene(out, 9, img)
+
+
+def motive_gap(out):
+    img = canvas()
+    d = chrome(img, "The text-to-lab-code gap")
+    text(d, (W // 2, 100), "Like text-to-SQL and text-to-action, prose and executable code are different modalities.", 22, WHITE, anchor="mm")
+    cols = [("1  ·  BENCHMARK", AMBER, ["Published studies that release both", "the paper (natural language) and", "the researchers' own tested Python."]),
+            ("2  ·  TEST", AMBER, ["Hide the code. The model splits the", "paper into an ordered Intermediate", "Representation, then writes the code", "that drives the robot."]),
+            ("3  ·  EVIDENCE LAYER", TEAL, ["The reproducibility crisis as an", "opportunity: every PDF becomes", "runnable code with proof, published", "on HuggingFace."])]
+    x, cw = 40, (W - 80 - 40) // 3
+    for head, col, lines in cols:
+        d.rectangle([x, 150, x + cw, 430], fill=PANEL, outline=LINE)
+        d.rectangle([x, 150, x + cw, 154], fill=col)
+        text(d, (x + 22, 178), head, 15, col, bold=True)
+        y = 225
+        for ln in lines:
+            text(d, (x + 22, y), ln, 19, LGREY)
+            y += 32
+        x += cw + 20
+    text(d, (W // 2, 490), "Ground truth is the researchers' written and tested code, not the model's reading of the paper.", 21, TEAL, anchor="mm")
+    text(d, (W // 2, 530), "Fixing this gap for the next generation of science, and adding an evidence layer around past science.", 19, MGREY, anchor="mm")
+    return scene(out, 9, img)
+
+
+def fig_card(out, png, kicker, caption, dur):
+    """A figure from docs/harbor-results/figures, cropped to its content and fitted under the kicker."""
+    im = Image.open(png).convert("RGB")
+    ground = Image.new("RGB", im.size, im.getpixel((5, 5)))
+    box = ImageChops.difference(im, ground).convert("L").point(lambda v: 255 if v > 12 else 0).getbbox()
+    im = im.crop(box)
+    im.thumbnail((W - 80, H - 150), Image.LANCZOS)
+    img = canvas()
+    d = chrome(img, kicker, caption)
+    img.paste(im, ((W - im.width) // 2, 70 + (H - 150 - im.height) // 2))
+    return scene(out, dur, img)
 
 
 def cta_card(out):
@@ -453,14 +456,8 @@ def git_media(path, dest: Path) -> Path:
     return out
 
 
-def agent_clip(renders: Path, task, model):
-    p = renders / f"{task}-{model}.mp4" if renders else None
-    return p if p and p.exists() else RES / task / "best_run.mp4"
-
-
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--renders", type=Path, default=Path("/tmp/t2wl_renders"))
     ap.add_argument("--cut", choices=["2min", "3min"], default="2min")
     a = ap.parse_args()
     global SCALE, OUT, N_CHALLENGES
@@ -480,6 +477,8 @@ def main():
     print("intro")
     segs.append(cold_open(S("cold"), hist))
     segs.append(title_card(S("title")))
+    segs.append(motive_future(S("motive")))
+    segs.append(motive_gap(S("textlab")))
     segs.append(gap_card(S("gap")))
     segs.append(pipeline_card(S("pipeline")))
     segs.append(sim_card(S("sim"), hist))
@@ -502,8 +501,6 @@ def main():
                        "Protocol IR replay  ·  2D deck state + 3D arm + telemetry",
                        "Each of the 33 IR steps is replayed. Tip height, pipette volume and container fill are logged per frame.",
                        f"Historical render, 3 Oct 2026 ({HIST_BRANCH}: assets/examples3d/L2-golden-gate-assembly.mp4)"))
-    segs.append(versus(S("c1vs"), "Challenge 1  ·  oracle vs agent", RES / gg / "oracle_run.mp4", agent_clip(a.renders, gg, ggm),
-                       "AGENT  ·  Opus 5.5  ·  reward 1.000", "Both run in the OT-2 scene from the Opentrons 7.5 run log (scripts/render_run.py). Sped up."))
     segs.append(verdict(S("c1v"), gg, "Challenge 1  ·  verdict", "All three models: 1.000 on the longest protocol",
                         ggm, ["dpni_and_cleanup", "assembly_mix"], "33 steps from a paper, with no deductions from simulator or judge."))
 
@@ -541,8 +538,6 @@ def main():
                        "paper2protocol IR for the same paper  ·  91 steps",
                        "Lysis/binding, beads, two 70% ethanol washes, air dry, elution, transfer to the 4 °C plate.",
                        "Render: assets/examples3d/paper-10_1371_journal_pone_0246302-exp2.mp4"))
-    segs.append(versus(S("c2vs"), "Challenge 2  ·  oracle vs agent", RES / rna / "oracle_run.mp4", agent_clip(a.renders, rna, rnam),
-                       "AGENT  ·  Opus 5.5  ·  reward 0.889", "48 samples, about 10 minutes of robot time each, shown at ~60x."))
     segs.append(verdict(S("c2v"), rna, "Challenge 2  ·  verdict", "Every model recovered 100 µL. The 80 µL is only in the code.",
                         rnam, ["elution_recovery"], "The reproducibility gap: the parameter is in the researchers' code, not the paper."))
 
@@ -564,14 +559,21 @@ def main():
                            "Protocol IR replay  ·  master mix, then colony template, then primers",
                            "Telemetry shows the tip height cycling once per well across all 96 wells.",
                            f"Historical render, 3 Oct 2026 ({HIST_BRANCH}: assets/examples3d/L2-colony-pcr-screening.mp4)"))
-        segs.append(versus(S("c3vs"), "Challenge 3  ·  oracle vs agent", RES / cp / "oracle_run.mp4", agent_clip(a.renders, cp, cpm),
-                           "AGENT  ·  Sonnet 5.5  ·  reward 0.875", "Every trial passed no_cross_contamination: colonies and primers always got fresh tips."))
         segs.append(verdict(S("c3v"), cp, "Challenge 3  ·  verdict", "Correct end state, but the judge deducted for practice",
                             cpm, ["tips_and_contamination", "robot_practice"], "End-state checks cannot express practice. The rubric layer covers it."))
 
 
     print("outro")
-    segs.append(results_card(S("results")))
+    figs = ROOT / "docs/harbor-results/figures"
+    segs.append(fig_card(S("fig_latest"), figs / "fig1_latest_run_dark.png", "Latest clean run  ·  R7  ·  21 trials",
+                         "All three models tie at 0.943. Every point lost was a judge rubric item.", 6))
+    segs.append(fig_card(S("fig_per_task"), figs / "fig6_points_lost_per_task_dark.png", "Per-task comparison  ·  points lost, R3 to R7",
+                         "Only RNA extraction and E. coli heat shock separate the models.", 8))
+    if a.cut == "3min":
+        segs.append(fig_card(S("fig_errors"), figs / "fig5_error_types_dark.png", "Error types  ·  binary-judge rounds R3 to R7",
+                             "Over-recovering the eluate is the one error every model makes.", 7))
+        segs.append(fig_card(S("fig_rounds"), figs / "fig2_reward_by_round_dark.png", "Mean reward by eval round",
+                             "The grader changed every round; most of the movement is the grader, not the model.", 6))
     segs.append(cta_card(S("cta")))
 
     lst = tmp / "concat.txt"
