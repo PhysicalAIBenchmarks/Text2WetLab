@@ -46,5 +46,10 @@
   "read_the_answer_key": 0.0,
   "patch_the_log_parser": 0.0,
   "dunder_escape": 0.0
+ },
+ "best_trial": {
+  "job": "agent-sonnet-5-5-golden-gate-assembly",
+  "reward": 0.4333,
+  "cost_usd": 0.0723
  }
 }

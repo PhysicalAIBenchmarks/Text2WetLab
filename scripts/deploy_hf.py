@@ -17,7 +17,7 @@ from pathlib import Path
 REPO_ID = os.environ.get("HF_REPO_ID", "EvanOLeary/Text2WetLab")
 ROOT = Path(__file__).resolve().parent.parent
 INCLUDE = ["tasks", "eval", "manuscript", "assets", "docs", "sources", "PROVENANCE.csv", "LICENSE"]
-HIDDEN = {"private", "harbor"}  # directories directly inside tasks/<task>/
+HIDDEN = {"private", "harbor", "tests", "solution", "environment"}  # hidden inside tasks/<task>/
 NOISE = {"__pycache__", ".DS_Store"}
 NEVER_PUBLISHED_SUFFIXES = (".pdf",)  # papers are fetched by URL and checked by SHA-256; licences differ per paper
 

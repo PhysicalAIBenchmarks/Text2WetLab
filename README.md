@@ -2,6 +2,8 @@
 
 Seven [Harbor](https://github.com/laude-institute/harbor) benchmark tasks. In each one an AI agent writes an Opentrons OT-2 Python protocol to `/app/protocol.py`, and the protocol is graded on what the simulated robot actually does.
 
+**[View the full leaderboard →](https://physicalaibenchmarks.github.io/Text2WetLab/leaderboard.html)**
+
 ## Tasks
 
 | Task | What the agent must automate | Grader |
@@ -139,26 +141,29 @@ Validation: deliberately broken oracles scored 0.72 (ampure with incubation, mag
 
 During development, the ground truth scored 0.94 and deliberately broken protocols scored 0 to 0.78.
 
-## Related work
+## Results (2026-10-04)
 
 The Claude Code agent (`-a claude-code`) was run with Harbor in Modal sandboxes (`-e modal`), 1 attempt per task per model (pass@1), on 2026-10-04. All 7 tasks used the common grader. The oracle solutions scored 0.89 to 1.0.
 
 | Task | Opus 5.5 | Sonnet 5.5 | Fable 5.1 |
 |---|---|---|---|
-| a1-a12-100ul | 1.0 | 0.917 | 0.833 |
-| split-200ul-two-wells | 1.0 | 1.0 | 0.917 |
-| ampure-bead-cleanup | 0.944 | 0.889 | 1.0 |
-| colony-pcr-screening | 1.0 | 0.875 | 0.875 |
+| a1-a12-100ul | 1.000 | 0.917 | 0.833 |
+| split-200ul-two-wells | 1.000 | 1.000 | 0.917 |
+| ampure-bead-cleanup | 0.944 | 0.889 | 1.000 |
+| colony-pcr-screening | 1.000 | 0.875 | 0.875 |
 | ecoli-heat-shock-transformation | 0.714 | 0.857 | 0.714 |
-| golden-gate-assembly | 1.0 | 1.0 | 1.0 |
+| golden-gate-assembly | 1.000 | 1.000 | 1.000 |
 | opentrons-rna-extraction | 0.889 | 0.833 | 0.833 |
-| **Mean** | **0.935** | **0.910** | **0.882** |
-| Agent cost (USD) | 1.25 | 0.41 | 3.69 |
+| **Mean (pass@1)** | **0.935** | **0.910** | **0.882** |
+| Agent cost (USD) | $1.25 | $0.41 | $3.69 |
+
+**[Interactive leaderboard with 3D renders →](https://physicalaibenchmarks.github.io/Text2WetLab/leaderboard.html)**
 
 What the results show:
 - **No trial errored or failed a deterministic or critical check.** All 21 protocols simulated and passed every end-state check, so every point lost came from the judge.
 - **The judge separates the models where the old pass/fail grader did not.** Common deductions were: mixing competent cells and having no operator pause in heat-shock; reusing one master-mix tip in colony PCR; recovering 100 µL instead of about 80 µL in RNA extraction; and aspiration heights near the beads in ampure.
-- **The judge is sometimes inconsistent.** It marked down fresh-tip-per-well in `a1-a12-100ul` as "wasteful" even though fresh tips are allowed. With 1 attempt and an LLM judge, differences of about 0.1 between models are within noise.
+- **The judge is sometimes inconsistent.** It marked down fresh-tip-per-well in `a1-a12-100ul` as "wasteful" even though fresh tips are allowed. With 1 attempt and an LLM judge, differences of ~0.1 between models are within noise.
+- **Sonnet 5.5 is the best value.** It scores 0.910 at $0.41/run vs Opus 5.5 at $1.25/run (3x cheaper, <3% lower).
 
 The previous run (local Docker, 6 tasks graded deterministically) gave every model 1.0 on those 6 tasks.
 

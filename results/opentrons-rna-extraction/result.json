@@ -26,5 +26,10 @@
    "protocol": "/Users/nialloleary/Desktop/Text2WetLab-integration/results/harbor-jobs/agent-sonnet-5-5-opentrons-rna-extraction/harbor__8XSK4Gm/verifier/protocol.py"
   }
  ],
- "adversarial": {}
+ "adversarial": {},
+ "best_trial": {
+  "job": "agent-sonnet-5-5-opentrons-rna-extraction",
+  "reward": 0.8889,
+  "cost_usd": 0.1278
+ }
 }
