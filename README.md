@@ -33,26 +33,88 @@ Harbor builds the environment and runs the agent inside it. It then runs `tests/
 
 ## How to run
 
-You need Docker (or another Harbor environment such as Modal), Python 3.12+ and an Anthropic API key. All 7 graders use the key at grading time for the LLM judge. For Modal, run `modal token new` once.
+### 1. Prerequisites
+
+- Python 3.12+ (Harbor won't install on 3.10) and [uv](https://docs.astral.sh/uv/) or pip
+- Docker running locally, **or** a [Modal](https://modal.com) account for cloud sandboxes
+- An Anthropic API key. The Claude Code agent uses it, and all 7 graders use it for the LLM judge
 
 ```bash
-pip install harbor modal dockerfile-parse   # modal + dockerfile-parse are needed for -e modal
+git clone -b devin/1791063775-opentrons-rna-extraction-only https://github.com/PhysicalAIBenchmarks/Text2WetLab.git
+cd Text2WetLab
+
+uv tool install harbor            # or: pip install harbor
 export ANTHROPIC_API_KEY=sk-ant-...
 
-# 1. Oracle check: the reference solutions score about 0.89 to 1.0
+# Modal only: extra packages + one-time login
+pip install modal dockerfile-parse     # or: uv tool install harbor --with modal --with dockerfile-parse
+modal token new
+```
+
+If you don't want to install Harbor, put `uvx --python 3.12 --from harbor` in front of every `harbor` command below (for Modal: `uvx --python 3.12 --from harbor --with modal --with dockerfile-parse`).
+
+### 2. Check that the tasks are solvable (oracle)
+
+The oracle "agent" just copies `solution/protocol.py`. Run it first to confirm the images build and the graders work:
+
+```bash
 harbor run -p tasks -a oracle -y
+```
 
-# 2. Run an agent on all 7 tasks (2 at a time)
-harbor run -p tasks -a claude-code -m anthropic/claude-sonnet-5-5 -e modal -n 4 -y
+Expected: about 0.89 to 1.0 on every task (the LLM judge rarely gives the reference full marks).
 
-# Run one task, 3 attempts each, on Modal
+### 3. Run an agent on all 7 tasks
+
+```bash
+# Local Docker, 2 tasks at a time
+harbor run -p tasks -a claude-code -m anthropic/claude-sonnet-5-5 -n 2 -y
+
+# Modal sandboxes, all 7 tasks in parallel
+harbor run -p tasks -a claude-code -m anthropic/claude-sonnet-5-5 -e modal -n 7 -y
+```
+
+Swap the model with `-m anthropic/claude-opus-5-5` or `-m anthropic/claude-fable-5-1`. To compare models, run one command per model; they can run at the same time.
+
+### 4. Run a subset or repeat attempts
+
+```bash
+# One task
+harbor run -p tasks/golden-gate-assembly -a claude-code -m anthropic/claude-opus-5-5 -y
+
+# Several tasks by name (glob patterns work)
+harbor run -p tasks -i 'colony-pcr-screening' -i 'ecoli-*' -a claude-code -m anthropic/claude-opus-5-5 -y
+
+# 3 attempts per task (pass@k), on Modal
 harbor run -p tasks/opentrons-rna-extraction -a claude-code -m anthropic/claude-opus-5-5 -k 3 -e modal -y
 ```
 
-Each trial writes the following to `/logs/verifier/`, which ends up in the Harbor job output:
-- `reward.json`: final reward and sub-scores
-- `protocol.py`: a copy of the graded protocol
-- `judge.json` (checks, judge scores and evidence); RNA also writes `events.json` (simulator log)
+Paths for each task:
+
+| Task | `-p` path |
+|---|---|
+| A1 to A12, 100 µL | `tasks/a1-a12-100ul` |
+| Split 200 µL into two wells | `tasks/split-200ul-two-wells` |
+| AMPure bead cleanup | `tasks/ampure-bead-cleanup` |
+| Colony PCR screening | `tasks/colony-pcr-screening` |
+| E. coli heat shock transformation | `tasks/ecoli-heat-shock-transformation` |
+| Golden Gate assembly | `tasks/golden-gate-assembly` |
+| RNA extraction (PLOS ONE 2021) | `tasks/opentrons-rna-extraction` |
+
+Useful flags:
+- `-y` auto-confirms prompts. Without it, Harbor stops and asks before passing `ANTHROPIC_API_KEY` to the verifier
+- `-n` sets how many trials run at once, `-k` sets attempts per task
+- `-o <dir>` changes the output folder (default `jobs/`), `--job-name` names the run
+- `--force-build` rebuilds the task images after you edit a Dockerfile
+
+### 5. Read the results
+
+Each run creates `jobs/<job-name>/`. Inside it, `result.json` holds the job-level scores, and each trial folder has:
+- `agent/`: the Claude Code transcript, plus token and cost counts
+- `verifier/reward.json`: final reward and sub-scores
+- `verifier/protocol.py`: a copy of the graded protocol
+- `verifier/judge.json`: checks, judge scores and evidence (RNA also writes `verifier/events.json`, the simulator log)
+
+Rewards go from 0 to 1 and are capped at 0.3 when a critical check fails (see below).
 
 ## How grading works
 
