@@ -1,6 +1,6 @@
 # Text2WetLab Harbor tasks (Opentrons OT-2)
 
-Seven [Harbor](https://github.com/laude-institute/harbor) benchmark tasks. In each one an AI agent writes an Opentrons OT-2 Python protocol to `/app/protocol.py`, and the protocol is graded on what the simulated robot actually does.
+Eleven [Harbor](https://github.com/laude-institute/harbor) benchmark tasks at two levels. In each one an AI agent writes an Opentrons OT-2 Python protocol to `/app/protocol.py`, and the protocol is graded on what the simulated robot actually does.
 
 ## Tasks
 
@@ -13,6 +13,22 @@ Seven [Harbor](https://github.com/laude-institute/harbor) benchmark tasks. In ea
 | `ecoli-heat-shock-transformation` | E. coli heat shock transformation with SOC recovery | Simulator and LLM judge on the run log |
 | `golden-gate-assembly` | Golden Gate assembly of four four-fragment chromoprotein plasmids (AssemblyTron) | Simulator and LLM judge on the run log |
 | `opentrons-rna-extraction` | 48-sample magnetic-bead SARS-CoV-2 RNA extraction from PLOS ONE 2021 ([doi:10.1371/journal.pone.0246302](https://doi.org/10.1371/journal.pone.0246302)) | Simulator and LLM judge on the run log |
+
+## Levels
+
+- **Easy (`tasks/<task>`, 7 tasks):** the instruction gives the deck, the starting contents and the exact steps with every quantity. `opentrons-rna-extraction` is the paper's RNA extraction rewritten as a step list.
+- **Hard (`tasks/<task>-hard`, 4 tasks):** the instruction gives only the deck, the starting contents, a short goal and the paper at `/data/paper.txt`. The agent works out volumes, order, times and temperatures itself. The instruction says the `opentrons` package is installed but doesn't tell the agent to run `opentrons_simulate`.
+
+| Hard task | Source paper | Notes |
+|---|---|---|
+| `golden-gate-assembly-hard` | AssemblyTron (Synth. Biol. 2022, CC BY) | The instruction gives the j5/AssemblyTron design table (fragment templates, assembly volumes), which the paper can't. The paper's text has no Golden Gate recipe or cycling program, so the rubric accepts standard practice for those |
+| `colony-pcr-screening-hard` | Slowpoke (ACS Synth. Biol., CC BY) | The paper's OT-2 recipe (9 µL Phire mix with primers + 1 µL colony) doesn't match the deck's Q5 mix and per-colony primers, so the rubric accepts the paper's recipe adapted to them |
+| `ecoli-heat-shock-transformation-hard` | APEX Protocol 1 (bioRxiv 10.1101/2024.08.13.607171) | A new deck: 10 µL cells, 1 µL DNA, 50 µL SOC, 4 °C 30 min / 42 °C 30 s / 37 °C 1 h on the thermocycler module (the easy task follows the paper's manual comparison method instead). The run log also records thermocycler steps for this task |
+| `opentrons-rna-extraction-hard` | PLOS ONE 2021 | The original paper-only RNA task, renamed |
+
+APEX is bioRxiv "all rights reserved", so its text isn't in the repo (`.gitignore`). `environment/fetch_paper.py` fetches the pinned v1 from the bioRxiv API while the image builds, unless `environment/data/paper.txt` is already there; its sha256 is pinned in `tests/data_hashes.json`. That image build therefore needs network access.
+
+None of the instructions mention the judge, a rubric or a grader, so agents aren't invited to write text aimed at the judge.
 
 ## Layout
 
@@ -35,12 +51,12 @@ cd Text2WetLab
 export ANTHROPIC_API_KEY=sk-ant-...
 uvx modal token new        # one-time Modal login
 
-# all 7 tasks, one model (swap in claude-sonnet-5-5 or claude-fable-5-1)
+# all 11 tasks (both levels), one model (swap in claude-sonnet-5-5 or claude-fable-5-1)
 uvx --python 3.12 --from harbor --with modal --with dockerfile-parse \
-  harbor run -p tasks -a claude-code -m anthropic/claude-opus-5-5 -e modal -n 7 -y
+  harbor run -p tasks -a claude-code -m anthropic/claude-opus-5-5 -e modal -n 11 -y
 ```
 
-- One task: `-p tasks/<task>`. More attempts per task: `-k 3`.
+- One task: `-p tasks/<task>`. One level: `-i '*-hard'` (hard) or `-x '*-hard'` (easy). More attempts per task: `-k 3`.
 - Results go to `jobs/<run>/`. Each trial's score is in `verifier/reward.json`, and the judge's reasons are in `verifier/result.json` (`judge.json` for RNA).
 
 ## Grading
@@ -127,9 +143,9 @@ Judged against: task text + AssemblyTron paper (`/data/paper.txt`). Source: `tas
 | 4 | `cycling_and_transformation` | Golden Gate cycling program run or recorded as specified, then assemblies transformed into TOP10 cells as specified. |
 | 5 | `tips_and_contamination` | Fresh tips between different fragments and assemblies, and no cross-contamination. |
 
-### opentrons-rna-extraction
+### opentrons-rna-extraction and opentrons-rna-extraction-hard
 
-Judged against: PLOS ONE paper (`/data/paper.txt`). Source: `tasks/opentrons-rna-extraction/tests/grade.py`.
+Both levels use the same rubric. Judged against: PLOS ONE paper (`/data/paper.txt`). Source: `tests/grade.py` in each RNA task.
 
 | # | Item | Passes only if |
 |---|---|---|
@@ -138,6 +154,16 @@ Judged against: PLOS ONE paper (`/data/paper.txt`). Source: `tasks/opentrons-rna
 | 3 | `washes_and_drying` | Two 500 uL 70% ethanol washes, each fully removed with the magnet engaged, then about 4 min air-dry and the magnet disengaged before elution. |
 | 4 | `elution_recovery` | 100 uL elution added off-magnet and mixed, magnet re-engaged about 90 s, and about 80 uL recovered into a distinct well of the elution plate held at 4 C. |
 | 5 | `fidelity_to_paper` | No invented, missing or reordered steps relative to the paper; reagent identities and comments/metadata are accurate. |
+
+### Hard tasks
+
+The hard rubrics are in each `tasks/<task>-hard/tests/rubric.json`. They have the same 5-item, pass/fail format as the easy ones, but each item states the paper's values and accepts a sound adaptation where the deck or reagents force one.
+
+| Task | Items |
+|---|---|
+| `golden-gate-assembly-hard` | `pcr_setup`, `dpni_and_cleanup`, `assembly_mix`, `cycling_and_transformation`, `tips_and_contamination` |
+| `colony-pcr-screening-hard` | `reaction_setup`, `sample_mapping`, `tips_and_contamination`, `thermocycling`, `fidelity_to_paper` |
+| `ecoli-heat-shock-transformation-hard` | `dna_addition`, `heat_shock`, `soc_recovery`, `tip_usage`, `fidelity_to_paper` |
 
 ## Reward-hacking traps
 
@@ -156,7 +182,7 @@ Judged against: PLOS ONE paper (`/data/paper.txt`). Source: `tasks/opentrons-rna
 
 ## Results
 
-Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1 attempt per task per model, all 21 trials in one batch on 2026-10-04.
+Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1 attempt per task per model, all 21 trials in one batch on 2026-10-04. These runs predate the hard level: the RNA row is the paper-only task now called `opentrons-rna-extraction-hard`, and the other rows are the easy tasks.
 
 | Task | Opus 5.5 | Sonnet 5.5 | Fable 5.1 |
 |---|---|---|---|

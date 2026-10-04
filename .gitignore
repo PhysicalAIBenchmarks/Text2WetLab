@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.cache/
+.pytest_cache/
+# Papers that may not be redistributed: fetched at image build time by the task's environment/fetch_paper.py
+tasks/ecoli-heat-shock-transformation-hard/environment/data/paper.txt
