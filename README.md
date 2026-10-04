@@ -12,7 +12,7 @@ N. O'Leary · E. O'Leary · M. Alshehri · L. Sturdy
 
 <a href="results/trailer.mp4"><img src="assets/trailer_preview.gif" width="760" alt="Text2WetLab trailer preview"></a>
 
-<sub>Trailer preview (2:27). Click for the full video. Built by <code>scripts/make_trailer.py</code>.</sub>
+<sub>Trailer preview (1:58). Click for the full video; 3-minute cut: <a href="results/trailer_3min.mp4"><code>trailer_3min.mp4</code></a>, errors cut: <a href="results/trailer_errors.mp4"><code>trailer_errors.mp4</code></a>. Built by <code>scripts/make_trailer.py</code>.</sub>
 
 </div>
 
@@ -243,7 +243,7 @@ Each run writes `jobs/<job-name>/`, with `agent/` (transcript, tokens, cost) and
 
 <p align="center"><img src="docs/figures/fig7_trailer_storyboard.png" width="100%" alt="Eight frames from the trailer"></p>
 
-<p align="center"><sub><b>Figure 7.</b> The trailer (<a href="results/trailer.mp4"><code>results/trailer.mp4</code></a>, 2:27): title, the reproducibility gap, the evaluation pipeline, an oracle run, the phantom-mix finding, Golden Gate and RNA extraction oracle renders, and the R4 results. Agent renders are Sonnet 5.5 runs. Storyboard: <a href="docs/VIDEO_STORYBOARD.md"><code>docs/VIDEO_STORYBOARD.md</code></a>.</sub></p>
+<p align="center"><sub><b>Figure 7 | Trailer storyboard.</b> Frames from <a href="results/trailer.mp4"><code>results/trailer.mp4</code></a> (1:58): a paper-derived protocol replayed in MuJoCo; the reproducibility gap (the paper's prose, the researchers' code and an agent's code side by side); how a task is built and graded; paper versus task text; oracle and agent runs for Golden Gate and RNA extraction; and the verdict that every model recovers 100 µL where the authors' code takes 80 µL. Every render and code panel is rebuilt from committed protocols by <code>scripts/trailer_renders.py</code>, <code>make_trailer.py</code> and <code>make_trailer_errors.py</code>.</sub></p>
 
 ### B. From paper to task
 
@@ -265,7 +265,7 @@ Task-to-paper map: [`docs/task-sources.md`](docs/task-sources.md). Candidate pap
 
 ```
 tasks/<task>[-hard]/   Harbor tasks: task.toml, instruction.md, environment/, solution/, tests/
-results/               summary.json, SUMMARY.md, per-model protocols and judge output, renders, trailer.mp4
+results/               summary.json, SUMMARY.md, per-model protocols and judge output, renders, trailer.mp4 (+ 3min, errors cuts)
 docs/harbor-results/   Cross-round comparison: interactive page, figures, scripts and data
 docs/figures/          Figures 1 and 7 for this README (sources in docs/figures/src/)
 paper2protocol/        Paper → instructions + protocol IR

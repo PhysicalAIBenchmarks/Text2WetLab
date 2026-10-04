@@ -528,14 +528,16 @@ elution volume.
 
 \paragraph{colony-pcr-screening (PCR setup with colony DNA).}
 Each well receives its own colony DNA source.
-A correct protocol picks up a fresh tip before each colony-DNA addition to
-prevent cross-contamination between colonies.
-Sonnet and Fable both reused tips across colony DNA sources
-(\texttt{tips\_and\_contamination}\,=\,0.5), which would mix template DNA
-between samples---a biologically significant error that a deterministic
-checker cannot detect because it requires understanding that colony DNA
-sources are biologically distinct.
-Both models additionally received a deduction on \texttt{robot\_practice}.
+All three models used a fresh tip for every colony-template and primer
+addition, and the deterministic \texttt{no\_cross\_contamination} check
+passed in every trial.
+Sonnet and Fable lost half a point on \texttt{tips\_and\_contamination}
+because a single tip dispensed all 96 master-mix aliquots without explicit
+contact control.
+Both also lost half a point on \texttt{robot\_practice} for default
+dispense heights, with no touch-tip or blow-out on the 1\,\textmu L
+additions.
+Opus scored 1.0 on both items.
 Opus produced the only perfect score.
 
 \paragraph{ecoli-heat-shock-transformation (bacterial transformation).}
@@ -608,22 +610,30 @@ This is a model-specific failure of instruction fidelity: the model
 to mix competent cells, and introduces a hallucinated step that is not
 in the instruction.
 
-\paragraph{Finding 4: Cross-contamination error invisible to deterministic grading.}
-Sonnet and Fable both reused tips across colony DNA sources in the colony-PCR
-task.
-This error scored 0.5 on \texttt{tips\_and\_contamination} but would have
-received 1.0 from the deterministic layer because the deterministic layer
-does not track liquid identity---only tip presence and volume bounds.
-This is the clearest demonstration that the LLM judge layer is necessary.
+\paragraph{Finding 4: Dispensing practice is visible only to the judge.}
+In colony PCR, every trial passed all deterministic checks, including
+\texttt{no\_cross\_contamination}, because templates and primers always got
+fresh tips.
+Sonnet and Fable still lost points for running all 96 master-mix
+dispenses from one tip without contact control, and for default dispense
+heights with no touch-tip or blow-out on 1\,\textmu L volumes.
+These are matters of practice rather than end-state correctness.
+The end-state checks cannot express them, so the rubric layer is needed.
 
 \paragraph{Finding 5: Universal elution-volume error with clinical implications.}
-All three models aspirated 100\,\textmu L in the RNA-extraction elution step
-rather than the recommended 80\,\textmu L.
-In a clinical RNA extraction the elution plate is subsequently submitted
-for RT-qPCR; aspirating the full elution volume risks bead carry-over, which
+All three models recovered the full 100\,\textmu L elution volume in the
+RNA-extraction task.
+The authors' deposited OT-2 script recovers only 80\,\textmu L
+(\texttt{viral\_rna\_extraction\_protocol.py}, line 373).
+In a clinical RNA extraction the elution plate goes on to RT-qPCR, and
+aspirating the full volume next to the pellet risks bead carry-over, which
 inhibits PCR.
-No model reproduced the conservative aspiration strategy described in the
-source paper.
+The paper itself says only ``add 100\,\textmu L of Elution Buffer \ldots\
+collect the supernatant'' (p.\,4).
+The 80\,\textmu L figure appears only in the authors' code.
+This is the reproducibility gap in miniature.
+The prose omits a parameter that the researchers' executable protocol
+encodes, so an agent that reads only the paper cannot recover it.
 
 \paragraph{Finding 6: No model dominates all niches.}
 Fable produced the only perfect score on \texttt{ampure-bead-cleanup};

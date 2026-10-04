@@ -274,9 +274,9 @@ canvas{display:block;width:100%;max-width:860px}
     <span class="score-badge fable">Fable 0.875</span>
   </div>
 </div>
-<p>Distribute PCR master mix, add colony template DNA from individual tubes, add forward and reverse primers, record thermocycling comment. The critical concern: cross-contamination. Each colony DNA source must receive a fresh tip; reusing tips transfers DNA between colony samples, producing false positives.</p>
-<p>Opus 5.5 handled this perfectly. Both Sonnet 5.5 and Fable 5.1 scored 0.875, both losing <em>tips_and_contamination</em> = 0.5 and <em>robot_practice</em> = 0.5. The judge noted "a tip is reused across template additions without justification; in colony PCR, cross-contamination between colony DNA sources is the primary failure mode." Crucially, the deterministic grader did not catch this—volumes were correct. Only the judge layer identified the safety issue.</p>
-<div class="callout bad">Both Sonnet and Fable made the same cross-contamination error. In a real deployment, incorrect tip reuse in colony PCR wastes an entire plate run. This demonstrates the necessity of the LLM judge layer.</div>
+<p>Distribute PCR master mix, add colony template DNA from individual tubes, add primers, and record a thermocycling comment. Each colony template must get a fresh tip.</p>
+<p>All three models used a fresh tip per colony template and per primer, and the deterministic <em>no_cross_contamination</em> check passed in every trial. Sonnet 5.5 and Fable 5.1 each scored 0.875, losing half a point each on <em>tips_and_contamination</em> and <em>robot_practice</em>. On tips, the judge wrote of Fable: "One tip is reused for all 96 master mix dispenses, and it is dispensed with the tip not touching liquid, which is acceptable." On practice, it wrote of Sonnet: "dispensing uses default heights with no touch tip or blow-out."</p>
+<div class="callout">These deductions concern practice, not correctness. The end-state checks cannot express them, so the rubric layer is needed.</div>
 </div>
 
 <div class="task-card">
