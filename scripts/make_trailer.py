@@ -10,7 +10,7 @@ Teaser, title, sourced stats, model / hardware / standard, workflow, the reprodu
   paper (CC BY PDF page, passages the task uses highlighted) | task instruction / code
   -> historical MuJoCo replay of the Protocol IR
   -> rubric verdict with the judge's own words (round R7, commit 48836f1, read with git show)
-and the preprint figures (PR #50, commit 817e453): headline, per task, errors (+ grader, corpus in 3min).
+then Results (preprint figures from PR #50, commit 817e453, each with its discussion) and a Discussion slide.
 
 Inputs:
   - source PDFs: fetched from sources/<slug>/record.json and checked against its SHA-256
@@ -118,9 +118,9 @@ def text(d, xy, s, size, color=WHITE, mono=False, bold=False, anchor="la"):
     d.text(xy, s, font=F(size, mono, bold), fill=color, anchor=anchor)
 
 
-def wrap(d, xy, s, size, width_px, color=LGREY, mono=False, gap=6, highlights=()):
+def wrap(d, xy, s, size, width_px, color=LGREY, mono=False, gap=6, highlights=(), bold=False):
     """Word-wrap s into width_px; phrases in `highlights` get a yellow marker behind them."""
-    f = F(size, mono)
+    f = F(size, mono, bold)
     x0, y = xy
     words, line, lines = s.split(), "", []
     for w_ in words:
@@ -306,8 +306,8 @@ def icon_check(d, cx, cy, s, col):
 def stats_card(out):
     img = canvas()
     d = chrome(img, "Why this matters", "Sources: Baker, Nature 533:452 (2016) · Freedman et al., PLOS Biol 13:e1002165 (2015) · opentrons.com/robots/ot-2 · Boiko et al., Nature 624:570 (2023)")
-    text(d, (W // 2, 112), "Science is starting to run through code.", 40, WHITE, bold=True, anchor="mm")
-    text(d, (W // 2, 160), "When an AI misreads a protocol, the robot executes the mistake exactly.", 22, LGREY, anchor="mm")
+    text(d, (W // 2, 106), "The next generation of experiments will be run by AI, through code.", 34, WHITE, bold=True, anchor="mm")
+    text(d, (W // 2, 152), "At millions of experiments, even a rare mistranslation costs reagents, equipment, patients and progress.", 20, LGREY, anchor="mm")
     tiles = [("70%", AMBER, "of 1,576 researchers have failed to", "reproduce another lab's experiment", "Nature, 2016"),
              ("$28B", AMBER, "a year spent on irreproducible", "preclinical research, US alone", "PLOS Biology, 2015"),
              ("40+", TEAL, "countries where thousands of labs", "automate with the Opentrons OT-2", "Opentrons"),
@@ -322,8 +322,9 @@ def stats_card(out):
         text(d, (x + tw // 2, 395), l1, 17, LGREY, anchor="mm")
         text(d, (x + tw // 2, 421), l2, 17, LGREY, anchor="mm")
         text(d, (x + tw // 2, 480), src, 14, DGREY, anchor="mm")
-    text(d, (W // 2, 588), "Before AI runs the lab, we need to measure how faithfully it turns text into lab code.", 23, WHITE, bold=True, anchor="mm")
-    return scene(out, 10, img)
+    text(d, (W // 2, 572), "Text2WetLab closes the text-to-lab-code gap for future science,", 23, WHITE, bold=True, anchor="mm")
+    text(d, (W // 2, 606), "and adds an evidence layer around past science.", 23, AMBER, bold=True, anchor="mm")
+    return scene(out, 9, img)
 
 
 def standard_card(out):
@@ -349,7 +350,7 @@ def standard_card(out):
         cx = 40 + k * nw + nw // 2
         text(d, (cx, 488), v, 46, WHITE, bold=True, anchor="mm")
         text(d, (cx, 534), lbl, 17, MGREY, anchor="mm")
-    return scene(out, 9, img)
+    return scene(out, 8, img)
 
 
 def workflow_card(out):
@@ -375,24 +376,47 @@ def workflow_card(out):
     text(d, (220, 455), "The researchers' own written and tested code, hidden from the model.", 22, WHITE)
     text(d, (220, 495), "Graded twice: a deterministic gate (simulate + end-state checks), then a task rubric judge.", 17, LGREY)
     text(d, (220, 525), "Each reproduced PDF becomes runnable code with proof: an evidence layer around past science.", 17, LGREY)
-    return scene(out, 8, img)
+    return scene(out, 7, img)
 
 
-def fig_card(out, png, kicker, caption, dur):
-    """A figure cropped to its content; light (preprint) figures sit on a white paper card."""
+def result_fig(out, png, n, title, bullets, dur, crop=None, total=3):
+    """Results scene: figure on a paper card (left) and its discussion (right)."""
     im = Image.open(png).convert("RGB")
+    if crop:
+        im = im.crop(crop)
     ground = Image.new("RGB", im.size, im.getpixel((5, 5)))
-    box = ImageChops.difference(im, ground).convert("L").point(lambda v: 255 if v > 12 else 0).getbbox()
-    im = im.crop(box)
-    light = sum(im.getpixel((0, 0))) > 600
-    pad = 28 if light else 0
-    im.thumbnail((W - 80 - 2 * pad, H - 150 - 2 * pad), Image.LANCZOS)
+    im = im.crop(ImageChops.difference(im, ground).convert("L").point(lambda v: 255 if v > 12 else 0).getbbox())
     img = canvas()
-    d = chrome(img, kicker, caption)
-    x, y = (W - im.width) // 2, 70 + (H - 150 - im.height) // 2
-    if light:
-        d.rounded_rectangle([x - pad, y - pad, x + im.width + pad, y + im.height + pad], radius=10, fill=(255, 255, 255))
-    img.paste(im, (x, y))
+    d = chrome(img, f"Results  ·  {n} / {total}", "Figures: docs/preprint (PR #50). 3 Claude models x 7 tasks x 5 eval rounds (R3-R7), 105 trials, pass@1 per round.")
+    fx0, fy0, fx1, fy1 = 40, 72, 800, 664
+    pad = 24
+    im.thumbnail((fx1 - fx0 - 2 * pad, fy1 - fy0 - 2 * pad), Image.LANCZOS)
+    d.rounded_rectangle([fx0, fy0, fx1, fy1], radius=10, fill=(255, 255, 255))
+    img.paste(im, (fx0 + (fx1 - fx0 - im.width) // 2, fy0 + (fy1 - fy0 - im.height) // 2))
+    x, w = 830, W - 40 - 830
+    y = wrap(d, (x, 84), title, 27, w, WHITE, gap=8, bold=True) + 22
+    d.line([(x, y), (x + 60, y)], fill=AMBER, width=3)
+    y += 24
+    for b in bullets:
+        d.ellipse([x, y + 8, x + 8, y + 16], fill=AMBER)
+        y = wrap(d, (x + 22, y), b, 18, w - 22, LGREY, gap=6) + 16
+    return scene(out, dur, img)
+
+
+def discussion_card(out, dur):
+    img = canvas()
+    d = chrome(img, "Discussion")
+    text(d, (40, 82), "Frontier models write lab code that runs. Faithfulness is the open problem.", 30, WHITE, bold=True)
+    pts = [("Execution is solved.", "No trial failed the simulator, the end-state checks or the reward-hack traps. Every lost point came from the rubric judge."),
+           ("Fidelity is not.", "The errors are parameters that live only in the researchers' code (the 80 µL recovery), steps nobody asked for, and reagent order."),
+           ("Researchers' code is the right ground truth.", "Grading against the authors' tested script exposes the gap between what a paper says and what the robot must do."),
+           ("Limits.", "7 tasks, one attempt per round, an LLM judge. Next: more of the 123 extracted experiments, and runs on real OT-2 hardware.")]
+    y = 150
+    for head, body in pts:
+        text(d, (40, y), head, 21, AMBER, bold=True)
+        y = wrap(d, (40, y + 32), body, 19, W - 80, LGREY, gap=6) + 22
+    text(d, (40, H - 90), "github.com/PhysicalAIBenchmarks/Text2WetLab", 22, AMBER, mono=True)
+    text(d, (40, H - 58), "physicalaibenchmarks.github.io/Text2WetLab", 18, TEAL, mono=True)
     return scene(out, dur, img)
 
 
@@ -411,7 +435,7 @@ def cold_open(out, hist):
     d = ImageDraw.Draw(img)
     label(d, (40, H - 92), "Golden Gate Assembly  ·  33 steps  ·  Protocol IR replayed in MuJoCo", AMBER, 20)
     text(d, (50, H - 40), "AssemblyTron (Synthetic Biology 2023), ingested by paper2protocol", 15, MGREY)
-    return scene(out, 5, img, [dict(src=hist / "L2-golden-gate-assembly.mp4", box=(0, 0, W, H - 100), ss=6, speed=3)])
+    return scene(out, 4, img, [dict(src=hist / "L2-golden-gate-assembly.mp4", box=(0, 0, W, H - 100), ss=6, speed=3)])
 
 
 def gap_card(out):
@@ -435,7 +459,7 @@ def gap_card(out):
         x += cw + 20
     text(d, (W // 2, 575), "The 80 µL recovery volume and the side-shift away from the pellet appear only in the code.", 20, LGREY, anchor="mm")
     text(d, (W // 2, 612), "Text2WetLab treats the researchers' executable protocol as ground truth.", 22, AMBER, anchor="mm")
-    return scene(out, 9, img)
+    return scene(out, 8, img)
 
 
 def sim_card(out, hist):
@@ -515,19 +539,6 @@ def verdict(out, task, kicker, headline, quote_model, quote_items, takeaway):
     text(d, (40, H - 70), takeaway, 19, TEAL, bold=True)
     return scene(out, 8, img)
 
-
-def cta_card(out):
-    img = canvas()
-    d = ImageDraw.Draw(img)
-    text(d, (W // 2, 250), "Text2WetLab", 56, WHITE, bold=True, anchor="mm")
-    text(d, (W // 2, 330), "github.com/PhysicalAIBenchmarks/Text2WetLab", 26, AMBER, anchor="mm", mono=True)
-    text(d, (W // 2, 375), "physicalaibenchmarks.github.io/Text2WetLab", 22, TEAL, anchor="mm", mono=True)
-    text(d, (W // 2, 460), "Harbor-compatible tasks  ·  hidden graders  ·  CC BY source papers pinned by SHA-256", 17, MGREY, anchor="mm")
-    text(d, (W // 2, 500), "Renders: opentrons-mujoco-viz  ·  Simulator: Opentrons 7.5  ·  Judge: claude-sonnet-5-5", 15, DGREY, anchor="mm")
-    return scene(out, 4, img)
-
-
-# ── main ───────────────────────────────────────────────────────────────────────
 
 def git_media_at(commit, path, dest: Path) -> Path:
     out = dest / Path(path).name
@@ -652,20 +663,29 @@ def main():
                             cpm, ["tips_and_contamination"], "96 wells, 1 µL additions, fresh tips per colony: no model loses a point here."))
 
 
-    print("outro")
-    fig = lambda name: tmp / (git_media_at(PREPRINT, f"docs/preprint/figures/{name}.png", tmp).name)  # noqa: E731
-    segs.append(fig_card(S("fig_headline"), fig("fig2_headline"), "Results  ·  rounds R3-R7  ·  3 models x 7 tasks x 5 rounds",
-                         "Reward: Opus 0.931, Sonnet 0.920, Fable 0.954. Fable costs 8.5x Sonnet per trial for no clear gain.", 6))
-    segs.append(fig_card(S("fig_per_task"), fig("fig3_per_task"), "Per-task comparison",
-                         "Only E. coli heat shock and RNA extraction separate the models; the other 5 tasks score 1.0 for all.", 6))
-    segs.append(fig_card(S("fig_errors"), fig("fig4_errors"), "Where the points go",
-                         "47% of lost points: over-recovering the eluate. 16%: wrong reagent order. 15%: mixing competent cells.", 6))
+    print("results")
+    fig = lambda name: git_media_at(PREPRINT, f"docs/preprint/figures/{name}.png", tmp)  # noqa: E731
+    nres = 3 if a.cut == "2min" else 5
+    segs.append(result_fig(S("res_reward"), fig("fig2_headline"), 1, "All three models score within 0.04 of each other",
+                           ["Mean reward over rounds R3-R7: Fable 5.1 0.954, Opus 5.5 0.931, Sonnet 5.5 0.920.",
+                            "Every trial passed the simulator and every end-state check; all lost points came from the rubric judge."],
+                           7, crop=(0, 0, 742, 1016), total=nres))
+    segs.append(result_fig(S("res_per_task"), fig("fig3_per_task"), 2, "Five tasks are solved; two separate the models",
+                           ["Every model scores 1.0 on 5 of 7 tasks in every round, including the 33-step Golden Gate assembly.",
+                            "E. coli heat shock: Sonnet 1.00, Fable 0.84, Opus 0.80.",
+                            "RNA extraction: Fable 0.84, Opus 0.72, Sonnet 0.44."], 7, total=nres))
+    segs.append(result_fig(S("res_errors"), fig("fig4_errors"), 3, "The errors are fidelity errors, not crashes",
+                           ["47% of lost points: recovering 90-100 µL of eluate where the authors' code takes 80 µL (14 of 15 trials).",
+                            "16%: Sonnet adds the sample before beads and isopropanol.",
+                            "15%: Opus and Fable pipette-mix the competent cells."], 7, total=nres))
     if a.cut == "3min":
-        segs.append(fig_card(S("fig_grader"), fig("fig5_grader"), "Which grader layer caught it",
-                             "Of 147 trials, 108 got full marks; all 39 that lost points lost them to the LLM judge.", 6))
-        segs.append(fig_card(S("fig_corpus"), fig("fig6_corpus"), "The corpus",
-                             "36 papers, 123 experiments, 85 mostly liquid handling, 29 converted to protocols.", 5))
-    segs.append(cta_card(S("cta")))
+        segs.append(result_fig(S("res_grader"), fig("fig5_grader"), 4, "Only the rubric judge catches these errors",
+                               ["Of 147 trials (R1-R7), 108 got full marks and 39 lost points.",
+                                "All 39 lost them to the LLM judge: none to the reward-hack traps, simulator, end-state checks or cap."], 7, total=nres))
+        segs.append(result_fig(S("res_corpus"), fig("fig6_corpus"), 5, "A corpus to grow the benchmark",
+                               ["36 papers (2020-2026) yield 123 experiments; 85 are mostly liquid handling.",
+                                "29 are already converted to protocols by paper2protocol."], 6, total=nres))
+    segs.append(discussion_card(S("discussion"), 8))
 
     lst = tmp / "concat.txt"
     lst.write_text("".join(f"file '{s}'\n" for s in segs))
