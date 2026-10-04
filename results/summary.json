@@ -6,7 +6,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -29,7 +28,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -52,7 +50,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -75,7 +72,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 0.8,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -98,7 +94,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -116,35 +111,11 @@
  },
  {
   "model": "claude-opus-5-5",
-  "task": "rna-extraction",
-  "reward": 0.8,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_mean": 0.8,
-  "critical_fail": 0.0,
-  "judge_error": 0.0,
-  "sim_pass": 1.0,
-  "rubric": {
-   "sample_handling": 1.0,
-   "binding_and_separation": 1.0,
-   "washes_and_drying": 1.0,
-   "elution_recovery": 0.0,
-   "fidelity_to_paper": 1.0
-  },
-  "cost_usd": 0.3362,
-  "input_tokens": 210061,
-  "output_tokens": 9548,
-  "duration_s": 252,
-  "exception": null
- },
- {
-  "model": "claude-opus-5-5",
   "task": "split-200ul-two-wells",
   "reward": 1.0,
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -167,7 +138,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -190,7 +160,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -213,7 +182,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -236,7 +204,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -259,7 +226,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -277,35 +243,11 @@
  },
  {
   "model": "claude-sonnet-5-5",
-  "task": "rna-extraction",
-  "reward": 0.4,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_mean": 0.4,
-  "critical_fail": 0.0,
-  "judge_error": 0.0,
-  "sim_pass": 1.0,
-  "rubric": {
-   "sample_handling": 1.0,
-   "binding_and_separation": 0.0,
-   "washes_and_drying": 1.0,
-   "elution_recovery": 0.0,
-   "fidelity_to_paper": 0.0
-  },
-  "cost_usd": 0.142,
-  "input_tokens": 143381,
-  "output_tokens": 7154,
-  "duration_s": 98,
-  "exception": null
- },
- {
-  "model": "claude-sonnet-5-5",
   "task": "split-200ul-two-wells",
   "reward": 1.0,
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -328,7 +270,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -351,7 +292,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -374,7 +314,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -397,7 +336,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 0.8,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -420,7 +358,6 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -438,35 +375,11 @@
  },
  {
   "model": "claude-fable-5-1",
-  "task": "rna-extraction",
-  "reward": 0.8,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_mean": 0.8,
-  "critical_fail": 0.0,
-  "judge_error": 0.0,
-  "sim_pass": 1.0,
-  "rubric": {
-   "sample_handling": 1.0,
-   "binding_and_separation": 1.0,
-   "washes_and_drying": 1.0,
-   "elution_recovery": 0.0,
-   "fidelity_to_paper": 1.0
-  },
-  "cost_usd": 1.2183,
-  "input_tokens": 297639,
-  "output_tokens": 14567,
-  "duration_s": 212,
-  "exception": null
- },
- {
-  "model": "claude-fable-5-1",
   "task": "split-200ul-two-wells",
   "reward": 1.0,
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
@@ -480,6 +393,72 @@
   "input_tokens": 37137,
   "output_tokens": 1050,
   "duration_s": 31,
+  "exception": null
+ },
+ {
+  "model": "claude-opus-5-5",
+  "task": "opentrons-rna-extraction",
+  "reward": 0.6,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 0.6,
+  "judge_error": 0.0,
+  "sim_pass": 1.0,
+  "rubric": {
+   "sample_handling": 1.0,
+   "binding_and_separation": 1.0,
+   "washes_and_drying": 1.0,
+   "elution_recovery": 0.0,
+   "fidelity_to_paper": 0.0
+  },
+  "cost_usd": 0.3612,
+  "input_tokens": 249044,
+  "output_tokens": 9446,
+  "duration_s": 130,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "opentrons-rna-extraction",
+  "reward": 0.4,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 0.4,
+  "judge_error": 0.0,
+  "sim_pass": 1.0,
+  "rubric": {
+   "sample_handling": 1.0,
+   "binding_and_separation": 0.0,
+   "washes_and_drying": 1.0,
+   "elution_recovery": 0.0,
+   "fidelity_to_paper": 0.0
+  },
+  "cost_usd": 0.1408,
+  "input_tokens": 115530,
+  "output_tokens": 7379,
+  "duration_s": 97,
+  "exception": null
+ },
+ {
+  "model": "claude-fable-5-1",
+  "task": "opentrons-rna-extraction",
+  "reward": 0.8,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_mean": 0.8,
+  "judge_error": 0.0,
+  "sim_pass": 1.0,
+  "rubric": {
+   "sample_handling": 1.0,
+   "binding_and_separation": 1.0,
+   "washes_and_drying": 1.0,
+   "elution_recovery": 0.0,
+   "fidelity_to_paper": 1.0
+  },
+  "cost_usd": 1.4352,
+  "input_tokens": 370449,
+  "output_tokens": 15659,
+  "duration_s": 233,
   "exception": null
  }
 ]
