@@ -1,0 +1,85 @@
+Robotic pipetting-speed spot growth assay of yeast (OT-2, 50/130/210/290 µL/s) with time-lapse scanning
+
+Containers:
+- culture_rep1: 50 mL tube — 30 mL W303-1B culture, biological replicate 1 (deck 7, A4)
+- culture_rep2: 50 mL tube — 30 mL W303-1B culture, biological replicate 2 (deck 7, B4)
+- water_tube: 50 mL tube — 50 mL Milli-Q water (deck 7, B3)
+- a620_plate: 96-well plate — Corning 3997 96-well polypropylene plate for A620 reading (deck 11 on PlateShuttle)
+- dilution_plate: 96-deep-well plate (2 mL) — Stand-in for the 24 x 2 mL screw-cap tubes in the deck 8 rack; one well per sample tube, A1:D6 [assumed]
+- spot_plate: 96-well plate — Spotting wells holding diluted yeast, A1:D6, from which spots are drawn [assumed]
+- ring_filler_tube: 1.5 mL tube — Diluted culture for the 24 outer-ring filler spots per plate [assumed]
+- agar_plate_deck6: 96-well plate — Stand-in for the YPD agar microplate Petri dish on deck 6; spots are mapped to a 6x8 grid, wells A1:F8 [assumed]
+- agar_plate_deck9: 96-well plate — Stand-in for the YPD agar microplate Petri dish on deck 9; spots are mapped to a 6x8 grid, wells A1:F8 [assumed]
+
+Starting contents:
+- culture_rep1: 30000 µL S. cerevisiae W303-1B culture in YPD (3 h subculture)
+- culture_rep2: 30000 µL S. cerevisiae W303-1B culture in YPD (3 h subculture)
+- water_tube: 50000 µL Milli-Q water
+- agar_plate_deck6 wells A1:F8: stock YPD agar surface (dried 2 d) [assumed]
+- agar_plate_deck9 wells A1:F8: stock YPD agar surface (dried 2 d) [assumed]
+
+Steps:
+1. MANUAL: Prepare YPD liquid medium: dissolve 2% Peptone, 1% Yeast Extract and 0.003% Adenine in 450 mL deionized water (YP) and separately prepare 500 mL of 20% dextrose in deionized water. Cover the bottles with foil and autoclave at 120 °C for 2 h. Add 50 mL of the 20% dextrose to 450 mL YP.
+2. MANUAL: Prepare YPD agar: dissolve 2% Peptone, 1% Yeast Extract, 2% Agar and 0.003% Adenine in 450 mL deionized water, autoclave at 120 °C for 2 h, then add 50 mL of 20% dextrose. Pour into microplate Petri dishes on a clean bench (about 35-40 mL per dish) and leave on the clean bench for 2 d to harden and dry the surface. Weigh each dish for the tip-height calibration. Note: Pour volume and weighing are assumptions (Taguchi et al. 2023 preprint). [assumed]
+3. MANUAL: Streak W303-1B wild-type from the -80 °C freeze stock onto a YPD agar plate and incubate 2 d at 30 °C.
+4. MANUAL: Add 3 mL YPD to each of two autoclaved test tubes, inoculate each with a yeast colony (one per tube) and incubate in a shaking water bath at 30 °C, 160 rpm for 16 h. These are the two biological replicates. Note: A single colony per tube is assumed.
+5. MANUAL: For each replicate, inoculate 3 mL of overnight culture into 27 mL fresh YPD in a 250 mL Erlenmeyer flask and shake at 30 °C, 160 rpm for 3 h. Transfer the 30 mL of each culture to a 50 mL tube (culture_rep1, culture_rep2). Note: Culture tubes then hold 30 mL each, as loaded on deck 7.
+6. MANUAL: Load the OT-2 deck: deck 4 300 µL tips; deck 5 20 µL tips; deck 6 and deck 9 YPD agar microplate Petri dishes (lids off); deck 7 tube rack with culture rep1 (A4), culture rep2 (B4), Milli-Q water (B3); deck 8 rack with 24 empty 2 mL screw-cap tubes; deck 11 96-well plate on PlateShuttle. Set tip height for spotting from the plate weight: Z = 2 mm dish bottom + agar height + 1 mm clearance. Note: Tip height calculation is from the Taguchi et al. 2023 preprint. Detailed deck design is deferred to Experimental Design.pdf. [assumed]
+7. Mix culture_rep1 by pipetting 200 µL up and down 5 times. Note: Gentle resuspension before aspiration; assumed at the default flow rate. [assumed]
+8. Mix culture_rep2 by pipetting 200 µL up and down 5 times. Note: Gentle resuspension before aspiration; assumed at the default flow rate. [assumed]
+9. Transfer 180 µL of Milli-Q water from water_tube to a620_plate wells A1:D6 (each well). Note: 180 µL water per A620 well (Taguchi et al. 2023); default flow rate. [assumed]
+10. Transfer 200 µL of Milli-Q water from water_tube to a620_plate wells H1:H3 (each well). Note: Water-only blank wells for A620 subtraction. [assumed]
+11. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep1 to a620_plate wells A1, C4, D1 (each well). Note: Rep 1, 50 µL/s aspirate+dispense. [assumed]
+12. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep2 to a620_plate wells A5, B6, D5 (each well). Note: Rep 2, 50 µL/s aspirate+dispense. [assumed]
+13. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep1 to a620_plate wells A6, B5, C5 (each well). Note: Rep 1, 130 µL/s aspirate+dispense. [assumed]
+14. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep2 to a620_plate wells A2, C3, D3 (each well). Note: Rep 2, 130 µL/s aspirate+dispense. [assumed]
+15. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep1 to a620_plate wells A3, C2, D6 (each well). Note: Rep 1, 210 µL/s aspirate+dispense. [assumed]
+16. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep2 to a620_plate wells B1, B4, D2 (each well). Note: Rep 2, 210 µL/s aspirate+dispense. [assumed]
+17. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep1 to a620_plate wells B2, B3, D4 (each well). Note: Rep 1, 290 µL/s aspirate+dispense. [assumed]
+18. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep2 to a620_plate wells A4, C1, C6 (each well). Note: Rep 2, 290 µL/s aspirate+dispense. [assumed]
+19. Mix a620_plate wells A1:D6 by pipetting 100 µL up and down 3 times. Note: Mix before the A620 read; default flow rate. [assumed]
+20. MANUAL: Move the 96-well plate into the Absorbance 96 plate reader (PlateShuttle or by hand) and measure A620. Subtract the mean H2O blank (H1:H3). For each sample, calculate the culture and water volumes needed to dilute to A620 = 0.020. Note: Target A620 0.020 and blank subtraction are from Taguchi et al. 2023. Dilution volumes in later steps are nominal and are replaced by the calculated values. [assumed]
+21. Transfer 280 µL of Milli-Q water from water_tube to dilution_plate wells A1:D6 (each well). Note: Nominal volume; use the per-sample volume calculated from A620. Default flow rate. [assumed]
+22. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep1 to dilution_plate wells A1, C4, D1 (each well). Note: Rep 1, 50 µL/s. Nominal volume; use the calculated per-sample volume. [assumed]
+23. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep2 to dilution_plate wells A5, B6, D5 (each well). Note: Rep 2, 50 µL/s. Nominal volume; use the calculated per-sample volume. [assumed]
+24. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep1 to dilution_plate wells A6, B5, C5 (each well). Note: Rep 1, 130 µL/s. Nominal volume; use the calculated per-sample volume. [assumed]
+25. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep2 to dilution_plate wells A2, C3, D3 (each well). Note: Rep 2, 130 µL/s. Nominal volume; use the calculated per-sample volume. [assumed]
+26. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep1 to dilution_plate wells A3, C2, D6 (each well). Note: Rep 1, 210 µL/s. Nominal volume; use the calculated per-sample volume. [assumed]
+27. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep2 to dilution_plate wells B1, B4, D2 (each well). Note: Rep 2, 210 µL/s. Nominal volume; use the calculated per-sample volume. [assumed]
+28. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep1 to dilution_plate wells B2, B3, D4 (each well). Note: Rep 1, 290 µL/s. Nominal volume; use the calculated per-sample volume. [assumed]
+29. Transfer 20 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep2 to dilution_plate wells A4, C1, C6 (each well). Note: Rep 2, 290 µL/s. Nominal volume; use the calculated per-sample volume. [assumed]
+30. Mix dilution_plate wells A1:D6 by pipetting 150 µL up and down 3 times. Note: Mix diluted samples; default flow rate. [assumed]
+31. Transfer 560 µL of Milli-Q water from water_tube to ring_filler_tube. Note: Filler dilution at the nominal 1:15 ratio, 600 µL total. Same density as the samples, per the gap assessment. [assumed]
+32. Transfer 40 µL of S. cerevisiae W303-1B culture in YPD (3 h subculture) from culture_rep1 to ring_filler_tube, then mix 3 times. Note: Adjust to A620 0.020 as for the samples. Default flow rate; 3 post-dispense mix cycles. [assumed]
+33. Transfer 50 µL of Diluted yeast culture from dilution_plate wells A1, C4, D1 to spot_plate wells A1, C4, D1 (each well). Note: Rep 1, 50 µL/s. 50 µL per spotting well is assumed. [assumed]
+34. Transfer 50 µL of Diluted yeast culture from dilution_plate wells A5, B6, D5 to spot_plate wells A5, B6, D5 (each well). Note: Rep 2, 50 µL/s. [assumed]
+35. Transfer 50 µL of Diluted yeast culture from dilution_plate wells A6, B5, C5 to spot_plate wells A6, B5, C5 (each well). Note: Rep 1, 130 µL/s. [assumed]
+36. Transfer 50 µL of Diluted yeast culture from dilution_plate wells A2, C3, D3 to spot_plate wells A2, C3, D3 (each well). Note: Rep 2, 130 µL/s. [assumed]
+37. Transfer 50 µL of Diluted yeast culture from dilution_plate wells A3, C2, D6 to spot_plate wells A3, C2, D6 (each well). Note: Rep 1, 210 µL/s. [assumed]
+38. Transfer 50 µL of Diluted yeast culture from dilution_plate wells B1, B4, D2 to spot_plate wells B1, B4, D2 (each well). Note: Rep 2, 210 µL/s. [assumed]
+39. Transfer 50 µL of Diluted yeast culture from dilution_plate wells B2, B3, D4 to spot_plate wells B2, B3, D4 (each well). Note: Rep 1, 290 µL/s. [assumed]
+40. Transfer 50 µL of Diluted yeast culture from dilution_plate wells A4, C1, C6 to spot_plate wells A4, C1, C6 (each well). Note: Rep 2, 290 µL/s. [assumed]
+41. Transfer 5 µL of Diluted yeast culture from spot_plate wells A1, A2, A3, A4, A5, A6, B1, B2, B3, B4, B5, B6, C1, C2, C3, C4, C5, C6, D1, D2, D3, D4, D5, D6 to agar_plate_deck6 wells B2, B3, B4, B5, B6, B7, C2, C3, C4, C5, C6, C7, D2, D3, D4, D5, D6, D7, E2, E3, E4, E5, E6, E7 (each well). Note: Spot in sample order A1 to D6 (top to bottom) so speed and replicate are not confounded with spotting order. 5 µL with P20 and 20 µL tips, default flow rate. The 24 samples fill the inner 4x6 block B2:E7. [assumed]
+42. Transfer 5 µL of Diluted yeast culture (ring filler) from ring_filler_tube to agar_plate_deck6 wells A1, A2, A3, A4, A5, A6, A7, A8, F1, F2, F3, F4, F5, F6, F7, F8, B1, C1, D1, E1, B8, C8, D8, E8 (each well). Note: 24 outer-ring filler spots, spotted after the inner spots (assumed). [assumed]
+43. Transfer 5 µL of Diluted yeast culture from spot_plate wells A1, A2, A3, A4, A5, A6, B1, B2, B3, B4, B5, B6, C1, C2, C3, C4, C5, C6, D1, D2, D3, D4, D5, D6 to agar_plate_deck9 wells B2, B3, B4, B5, B6, B7, C2, C3, C4, C5, C6, C7, D2, D3, D4, D5, D6, D7, E2, E3, E4, E5, E6, E7 (each well). Note: The same 24 samples are spotted on the second plate, after the deck 6 plate, in the same order. [assumed]
+44. Transfer 5 µL of Diluted yeast culture (ring filler) from ring_filler_tube to agar_plate_deck9 wells A1, A2, A3, A4, A5, A6, A7, A8, F1, F2, F3, F4, F5, F6, F7, F8, B1, C1, D1, E1, B8, C8, D8, E8 (each well). Note: 24 outer-ring filler spots on the second plate. [assumed]
+45. MANUAL: Cover the two spotted dishes with lids and place them agar-side down on the flatbed scanners (Epson GT-X980) inside the 30 °C incubator, aligned to the scanner corners. Run time-lapse scanning with scan-epson-lower.sh (scanimage) at 600 dpi, colour/RGB, every 10 min for 72 h (432 images). Note: 30 °C and colour mode are assumed (Taguchi et al. 2023 used a GT-X980 in a 30 °C incubator). Image analysis with baQFA is not part of this protocol. [assumed]
+
+Assumptions:
+- A620 target 0.020 for normalising cell density, read in a 96-well plate: taken from Taguchi et al. 2023 (bioRxiv 10.1101/2022.07.16.500326), not stated in this paper.
+- A620 well: 180 µL H2O + 20 µL culture (200 µL), with H2O-only blank wells H1:H3 subtracted (Taguchi et al. 2023). Mix 3 x 100 µL before reading is assumed.
+- The A620 reading is done in the Byonoy Absorbance 96 reader, via PlateShuttle or by hand. PlateShuttle operation is deferred to GitHub.
+- Dilution volumes are nominal: 20 µL culture + 280 µL water (300 µL) per 2 mL tube. In practice use the per-sample volumes calculated from A620. The paper does not state them.
+- The 24 x 2 mL screw-cap tubes are represented by wells A1:D6 of a deep-well plate (dilution_plate).
+- Pipette: the paper lists two P20 entries but also 300 µL tips, so a P300 is assumed for volumes over 20 µL. Spots use a P20 with 20 µL tips.
+- The test speed (50/130/210/290 µL/s, aspirate and dispense) is applied to culture to A620 wells, culture to 2 mL tubes, and 2 mL tubes to spotting wells. Water dispensing, mixing, spotting onto agar and filler transfers use the default OT-2 flow rate. Speed is given in step notes because the schema has no speed field.
+- Design inferred: 24 samples = 4 speeds x 2 biological replicates x 3 technical replicates, with the same 24 samples spotted on both plates (4x6 inner spots each) plus a 24-spot outer ring (6x8 grid).
+- Sample layout (well: speed-biorep), in spotting order: A1 50-1, A2 130-2, A3 210-1, A4 290-2, A5 50-2, A6 130-1, B1 210-2, B2 290-1, B3 290-1, B4 210-2, B5 130-1, B6 50-2, C1 290-2, C2 210-1, C3 130-2, C4 50-1, C5 130-1, C6 290-2, D1 50-1, D2 210-2, D3 130-2, D4 290-1, D5 50-2, D6 210-1. This ordering is my own interleaving; the paper's agar_plate_annotation.csv is deferred.
+- Agar plates are represented as 96-well plates (A1:F8 = 6x8 spot grid); inner spots B2:E7 are filled row by row from top to bottom in sample order, and the outer ring is A1:A8, F1:F8, B1:E1 and B8:E8.
+- The spotting wells (spot_plate A1:D6) hold 50 µL per sample; spots of 5 µL are drawn from there. Both volumes are assumed (5 µL spot from Taguchi et al. 2023).
+- Filler for the outer ring: 40 µL rep 1 culture + 560 µL water (nominal), spotted after the inner spots on each plate; plates are spotted sequentially, deck 6 then deck 9.
+- Culture resuspension before aspiration: mix 5 x 200 µL, assumed.
+- Agar pour volume (about 35-40 mL per dish) and weighing are assumed. Tip Z = 2 mm dish bottom + agar height + 1 mm clearance (Taguchi et al. 2023; agar density 0.00107 g/mm³, 86 mm dish diameter in that paper, to be re-measured for these dishes).
+- Single colony used to inoculate each overnight culture; the paper does not state colony size.
+- Scanner: 30 °C, colour/RGB, plates agar-side down aligned to scanner corners (Taguchi et al. 2023 used the same scanner and a 30 °C incubator; this paper scans every 10 min rather than 90 min).
+- Analysis (baQFA, ANOVA, RNA-seq sample preparation) is excluded; the protocol covers spotting and scanning only.

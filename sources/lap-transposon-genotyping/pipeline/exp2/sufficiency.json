@@ -1,0 +1,70 @@
+{
+  "verdict": "reject",
+  "summary": "The paper does not give the arbitrary PCR conditions. It defers them to Das et al. 2005 [11] and Martínez-García 2014 [23] and points to Table 1 and supplementary files for primers and variables. My research was cut off by a tool-use limit: the PMC and PubMed fetches returned errors and later searches were refused. I could not retrieve primer sequences, cycling programs, primer concentrations, or the template and carry-over volumes, and guessing these would risk invalidating the experiment.",
+  "gaps": [
+    {
+      "detail": "Sequences of ARB6, ARB2, ME-O-Km-Ext-F and ME-O-Km-Int-F (Table 1 is not in the supplied text)",
+      "why_needed": "Primer identity determines whether the nested arbitrary PCR works at all. ARB6 and ARB2 contain a degenerate arbitrary segment and a common tail. ME-O-Km-Ext-F and ME-O-Km-Int-F are custom transposon-end primers that cannot be guessed.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Arbitrary PCR1 cycling program (denaturation, annealing temperature and time, extension time, cycle number)",
+      "why_needed": "The Das method uses low-stringency early cycles for arbitrary priming. Annealing temperature and cycle number decide which flanking products are amplified.",
+      "status": "missing",
+      "resolution": "The paper says only 'as in [23]/[11]'. I could not fetch either reference, so no program was recovered.",
+      "source": ""
+    },
+    {
+      "detail": "Arbitrary PCR2 cycling program and the amount of PCR1 product carried over (dilution or volume)",
+      "why_needed": "The second round must be primed from a defined amount of PCR1 product. Over- or under-loading changes the smear and the sequencing yield.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Reaction volume, primer final concentrations and Phire master mix proportion for each PCR",
+      "why_needed": "Needed to set up the reactions. The OT-2 variables files (S4–S6) hold these values but are not in the text.",
+      "status": "missing",
+      "resolution": "The Phire manual would give 1X master mix and 0.5 µM primers as defaults, but I did not fetch it. Without the primer list, final concentrations remain unknown.",
+      "source": ""
+    },
+    {
+      "detail": "Volume and density of the template cell suspension (colony material in milliQ water) added to PCR1",
+      "why_needed": "The paper says excess colony material inhibits the PCR, so the template amount is critical.",
+      "status": "missing",
+      "resolution": "The paper only says the PCR plate is filled with milliQ water and inoculated from the selected wells.",
+      "source": ""
+    },
+    {
+      "detail": "Agarose gel electrophoresis conditions (agarose %, buffer, voltage, time, stain, volume loaded)",
+      "why_needed": "Needed to verify amplification (a smear is expected) in Fig. 3.",
+      "status": "assumable",
+      "resolution": "Use a standard 1% agarose gel in TAE with a DNA stain. Load a few µL of PCR product (the Phire Green mix has a loading dye) next to GeneRuler 1 kb Plus ladder, which is named in the Fig. 2 and 3 legends. A smear without discrete bands is the expected result.",
+      "source": "standard practice; ladder from Fig. 2 and 3 legends"
+    },
+    {
+      "detail": "Sequencing submission details",
+      "why_needed": "The samples must be prepared the way the sequencing service expects.",
+      "status": "resolved",
+      "resolution": "Send 10 µL of the PCR2 product plus 10 µL of ME-O-Km-Int-F primer to Macrogen Spain for Sanger sequencing. The primer concentration is not given. Use the service's required concentration, which is typically 5 µM.",
+      "source": "s2.4 (primer concentration: standard practice)"
+    },
+    {
+      "detail": "Master mix identity for each PCR round",
+      "why_needed": "The two rounds use different Phire mixes.",
+      "status": "resolved",
+      "resolution": "Arbitrary PCR1 uses Phire Green Hot Start II PCR Master Mix. Arbitrary PCR2 uses Phire Hot Start II PCR Master Mix (no dye).",
+      "source": "s2.1"
+    },
+    {
+      "detail": "Culture and plate preparation before PCR",
+      "why_needed": "This sets the starting material for the PCR.",
+      "status": "resolved",
+      "resolution": "Pick colonies into M9-citrate with 50 µg/ml kanamycin and grow overnight at 30 °C with shaking. Replicate into M9-citrate with 500 µg/ml ampicillin and into LB with kanamycin. After a second overnight, select wells that grew with kanamycin but not ampicillin. Inoculate the selected wells into 30% glycerol and into milliQ water for the PCR steps.",
+      "source": "s2.2, s2.4"
+    }
+  ],
+  "retrieved_details": "From the paper (s2.1, s2.4): PCR1 uses ARB6 with ME-O-Km-Ext-F and Phire Green Hot Start II master mix. PCR2 uses ARB2 with ME-O-Km-Int-F and Phire Hot Start II master mix, with the PCR1 plate as source plate. Template is colony material in milliQ water, with a layout of 46 variants per plate. Run a gel of a few variants (Fig. 3) with GeneRuler 1 kb Plus. Send 10 µL of PCR2 product plus 10 µL of ME-O-Km-Int-F primer to Macrogen Spain, then annotate with TnAtlas tnfind against the P. putida KT2440 reference. Troubleshooting (s2.3): arbitrary PCR gives a smear even for successful variants. If there is no band or the sequence quality is poor, purify the PCR1 product before PCR2 or use alternative arbitrary primers [11]. A search result (https://link.springer.com/article/10.1186/1471-2180-11-38) confirms that the Das method with ARB6/ARB2 and ME-O is used for P. putida transposon mapping, but it gives no cycling conditions. Not recovered: primer sequences, cycling programs, volumes and primer concentrations. The cited sources are Das 2005 (https://doi.org/10.1016/j.mimet.2005.02.011) and Martínez-García 2014 (https://doi.org/10.3389/fbioe.2014.00046, PMC4211546), plus the Thermo Phire Hot Start II manual. These should be fetched to complete the protocol."
+}

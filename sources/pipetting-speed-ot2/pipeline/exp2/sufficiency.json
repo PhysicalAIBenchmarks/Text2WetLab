@@ -1,0 +1,56 @@
+{
+  "verdict": "reject",
+  "summary": "The paper does not say how cells were pipetted into the 24 RNA-seq tubes. The volumes, the OD-based target cell amount, the speed-controlled steps and the mixing are all missing. They define the independent variable and cannot be defaulted, and the only source is the authors' protocol script, which I was told not to use. The ISOGEN extraction and NEBNext library-prep details were recoverable from manuals and are only minor gaps.",
+  "gaps": [
+    {
+      "detail": "Volumes of culture, Milli-Q water and final suspension in each 2 mL RNA-seq tube. This includes the target cell density or OD620 that the dilution was normalized to.",
+      "why_needed": "Cell number per tube sets what is pelleted and lysed, and must fit in a 2 mL tube. Without these volumes the robot protocol cannot be written.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Which pipetting steps were run at the tested speeds (50/130/210/290 µL/s) and how: aspirate, dispense and/or mix, number of mix cycles, pipette and tip used per step, and whether the speed applies to the transfer into the 2 mL tubes and the transfer to the spotting wells.",
+      "why_needed": "Pipetting speed is the independent variable. The shear exposure of the cells in the RNA tubes cannot be reproduced without the number and type of aspirate/dispense/mix operations at each speed.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Assignment of the 24 tubes to speed × biological replicate (4 speeds × 2 biological replicates, so 3 tubes per condition is implied) and the order of processing. Also the hold time between pipetting and centrifugation.",
+      "why_needed": "Pipetting takes about 70 min, and cells sitting in diluted medium at room temperature could change their expression. The exact timing and layout are needed to avoid confounding.",
+      "status": "missing",
+      "resolution": "",
+      "source": "Paper states only that spot order was set to avoid confounding with speed (agar_plate_annotation.csv, not used) and that elapsed time was recorded."
+    },
+    {
+      "detail": "Post-lysis ISOGEN RNA isolation: chloroform, isopropanol and ethanol volumes, centrifugation conditions, resuspension solvent and volume. Also whether the 800 µL of supernatant was cleared of beads and debris before the chloroform step.",
+      "why_needed": "The paper stops at collecting 800 µL of supernatant. Total RNA must be obtained to reach the 100 ng input and RIN > 7.6.",
+      "status": "resolved",
+      "resolution": "Per the manufacturer protocol: stand 5 min at RT, add 0.2 mL chloroform per 1 mL ISOGEN, shake 15 s, stand 2-3 min, spin 12,000 × g 15 min 4°C. Transfer the aqueous phase (about 60% of the ISOGEN volume), add 0.5 mL isopropanol per 1 mL ISOGEN (or 0.8 volume), stand 5-10 min, spin 12,000 × g 10 min 4°C. Wash the pellet with at least 1 mL 70% ethanol, spin 7,500 × g 5 min 4°C, air-dry 5-10 min, dissolve in RNase-free water (optionally 55-60°C for 10-15 min). Scale the chloroform to the 800 µL collected.",
+      "source": "https://www.nippongene.com/english/tds/tds_isogen-e1109.pdf"
+    },
+    {
+      "detail": "Poly(A) purification and NEBNext Ultra Directional library prep parameters, because the paper says only 'following the manufacturer's protocol'. These include fragmentation time, adaptor dilution, PCR cycles and cleanups.",
+      "why_needed": "Needed to reproduce the library construction.",
+      "status": "resolved",
+      "resolution": "Poly(A) isolation with NEBNext Oligo d(T)25 beads: 20 µL beads, 50 µL RNA, 65°C 5 min, RT binding 5 min, 2 washes, elute 80°C 2 min. Library prep for intact RNA (RIN > 7): fragment 15 min at 94°C, then first-strand synthesis (25°C 10 min, 42°C 15 min, 70°C 15 min). Dilute the adaptor 1:9 to 1.5 µM, ligate 15 min at 20°C, USER digestion 37°C 15 min, then PCR (98°C 30 s initial denaturation). The number of PCR cycles is adjusted to RNA input per the manual. Note that the paper calls E7490 a 'Poly-T column kit', but NEB E7490 is the magnetic Poly(A) mRNA isolation module.",
+      "source": "https://www.neb.com/protocols/2015/06/09/protocol-for-use-with-purified-mrna-or-ribosome-depleted-rna-e7420 ; https://www.neb.com/en/-/media/nebus/files/manuals/manuale7490.pdf ; https://people.duke.edu/~ccc14/duke-hts-2017/_downloads/manualE7420_v8.pdf"
+    },
+    {
+      "detail": "Pelleting step: temperature, and how the supernatant medium was removed before adding ISOGEN and beads.",
+      "why_needed": "Residual medium or an unspecified temperature can affect lysis and RNA yield.",
+      "status": "assumable",
+      "resolution": "Spin at 10,000 × g for 1 min as stated. Remove as much supernatant as possible by pipette. Use room temperature or 4°C. The ISOGEN manual says to remove medium as much as possible before lysis.",
+      "source": "standard practice; https://www.nippongene.com/english/tds/tds_isogen-e1109.pdf"
+    },
+    {
+      "detail": "Library indexing and multiplexing scheme, pooling, and library QC.",
+      "why_needed": "Needed to pool 24 libraries and load 1.5 pM on the NextSeq 500.",
+      "status": "assumable",
+      "resolution": "Use NEBNext Multiplex Oligos with unique indexes per sample, quantify by Bioanalyzer or qPCR, pool equimolarly, and load at 1.5 pM with 36 nt paired-end reads as stated. Quality control of RNA with the Agilent RNA 6000 Pico kit (RIN > 7.6) follows its standard manual.",
+      "source": "standard practice"
+    }
+  ],
+  "retrieved_details": "ISOGEN manual (Nippon Gene, https://www.nippongene.com/english/tds/tds_isogen-e1109.pdf): sample 5-10×10^6 cells per 1 mL ISOGEN. Lysate stable at -70°C for at least 1 month. The aqueous phase is about 60% of the ISOGEN volume. Chloroform volume is 0.2 mL per 1 mL ISOGEN, and isopropanol is 0.5 mL per 1 mL ISOGEN (or 0.8 volume of aqueous phase). Spins and washes are as in the gap entry above. NEB E7490 (https://www.neb.com/en/-/media/nebus/files/manuals/manuale7490.pdf): 20 µL Oligo d(T)25 beads per sample, wash with 100 µL RNA Binding Buffer (2X) in the standard protocol (50 µL in the express protocol), bind total RNA diluted to 50 µL, 2 min magnet steps. Elute in 17 µL Tris buffer at 80°C for 2 min and collect 15 µL. NEB E7420 protocol (https://www.neb.com/protocols/2015/06/09/protocol-for-use-with-purified-mrna-or-ribosome-depleted-rna-e7420): fragmentation 15 min at 94°C for RIN > 7 (7-8 min for RIN 2-6), first-strand synthesis 25°C 10 min, 42°C 15 min, 70°C 15 min, end prep, adaptor 15 µM diluted 1:9 in 10 mM Tris/10 mM NaCl, ligation mix 83.5 µL for 15 min at 20°C, USER 37°C 15 min, PCR initial denaturation 98°C 30 s. Starting material is 100 ng-1 µg total RNA quantified by Bioanalyzer, with PCR cycles adjusted to input. Paper-stated (s2): cells from 10,000 × g 1 min spin; 1.00 g 0.5 mm zirconia/silica beads plus 500 µL ISOGEN; Micro Smash 3,500 rpm 240 s; add 500 µL ISOGEN; 3,500 rpm 60 s; collect 800 µL supernatant; Bioanalyzer RNA 6000 Pico, RIN > 7.60; 100 ng total RNA to poly(A) purification; 1.5 pM pooled library on NextSeq 500 High-Output v2, 36 nt paired-end. Not retrievable without the authors' script: the per-tube cell volumes and OD target, the speed-dependent pipetting steps and mix cycles, and the processing timeline. The cited Taguchi 2023 spot-assay paper (doi 10.1016/j.slast.2022.12.001) could not be fetched beyond its abstract."
+}

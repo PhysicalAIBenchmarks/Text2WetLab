@@ -1,0 +1,1858 @@
+{
+  "title": "Extraction efficiency of MMkit, OT-2in-house and MMin-house protocols using spiked mock samples (TaqMan 2019-nCoV control)",
+  "containers": [
+    {
+      "name": "ctrl_stock",
+      "kind": "tube_1.5ml",
+      "description": "TaqMan 2019-nCoV Control Kit v1 DNA positive control, 1x10^4 copies/uL",
+      "assumed": false
+    },
+    {
+      "name": "ctrl_1e3",
+      "kind": "tube_1.5ml",
+      "description": "Ten-fold dilution of control (1x10^3 copies/uL), 100 uL",
+      "assumed": true
+    },
+    {
+      "name": "ctrl_1e2",
+      "kind": "tube_1.5ml",
+      "description": "Hundred-fold dilution of control (1x10^2 copies/uL), 100 uL",
+      "assumed": true
+    },
+    {
+      "name": "water",
+      "kind": "tube_50ml",
+      "description": "Nuclease-free water (Ambion)",
+      "assumed": false
+    },
+    {
+      "name": "vtm",
+      "kind": "tube_50ml",
+      "description": "Viral transport medium (Deltalab)",
+      "assumed": false
+    },
+    {
+      "name": "gtc",
+      "kind": "tube_50ml",
+      "description": "4 M guanidine isothiocyanate with 5 ug/mL carrier RNA",
+      "assumed": false
+    },
+    {
+      "name": "mock_plate",
+      "kind": "plate_96_deep",
+      "description": "Mock samples (1000 uL each): A1:A3 standard, A4:A6 low, A7:A9 very-low, A10 negative control",
+      "assumed": true
+    },
+    {
+      "name": "mmkit_beads",
+      "kind": "tube_1.5ml",
+      "description": "MagMAX CORE Magnetic Beads",
+      "assumed": false
+    },
+    {
+      "name": "mmkit_pk",
+      "kind": "tube_1.5ml",
+      "description": "MagMAX CORE Proteinase K",
+      "assumed": false
+    },
+    {
+      "name": "mmkit_lysis",
+      "kind": "tube_15ml",
+      "description": "MagMAX CORE Lysis Solution",
+      "assumed": false
+    },
+    {
+      "name": "mmkit_binding",
+      "kind": "tube_15ml",
+      "description": "MagMAX CORE Binding Solution",
+      "assumed": false
+    },
+    {
+      "name": "mmkit_wash1_stock",
+      "kind": "tube_15ml",
+      "description": "MagMAX CORE Wash Solution 1",
+      "assumed": false
+    },
+    {
+      "name": "mmkit_wash2_stock",
+      "kind": "tube_15ml",
+      "description": "MagMAX CORE Wash Solution 2",
+      "assumed": false
+    },
+    {
+      "name": "mmkit_eb_stock",
+      "kind": "tube_15ml",
+      "description": "MagMAX CORE Elution Buffer",
+      "assumed": false
+    },
+    {
+      "name": "mmkit_bead_pk",
+      "kind": "tube_1.5ml",
+      "description": "Beads/PK mix (20 uL beads + 10 uL PK per sample, +10% overage)",
+      "assumed": false
+    },
+    {
+      "name": "mmkit_lysis_binding",
+      "kind": "tube_15ml",
+      "description": "Lysis/Binding solution (350+350 uL per sample, +10% overage)",
+      "assumed": false
+    },
+    {
+      "name": "mmkit_sample_plate",
+      "kind": "plate_96_deep",
+      "description": "MMkit sample deep-well plate",
+      "assumed": false
+    },
+    {
+      "name": "mmkit_wash1_plate",
+      "kind": "plate_96_deep",
+      "description": "MMkit Wash Solution 1 deep-well plate",
+      "assumed": false
+    },
+    {
+      "name": "mmkit_wash2_plate",
+      "kind": "plate_96_deep",
+      "description": "MMkit Wash Solution 2 deep-well plate",
+      "assumed": false
+    },
+    {
+      "name": "mmkit_elution_plate",
+      "kind": "plate_96",
+      "description": "MagMAX Express 96 microtiter elution plate for MMkit; holds final eluate",
+      "assumed": false
+    },
+    {
+      "name": "beads_total",
+      "kind": "tube_1.5ml",
+      "description": "Mag-Bind TotalPure NGS magnetic beads (Omega Bio-Tek)",
+      "assumed": false
+    },
+    {
+      "name": "ipa",
+      "kind": "tube_15ml",
+      "description": "2-Propanol absolute (Emsure)",
+      "assumed": false
+    },
+    {
+      "name": "etoh_abs",
+      "kind": "tube_50ml",
+      "description": "Absolute ethanol (Emsure)",
+      "assumed": false
+    },
+    {
+      "name": "etoh70",
+      "kind": "tube_50ml",
+      "description": "Freshly prepared 70% ethanol",
+      "assumed": false
+    },
+    {
+      "name": "omega_eb",
+      "kind": "tube_15ml",
+      "description": "Elution Buffer (Omega BIO-TEK)",
+      "assumed": false
+    },
+    {
+      "name": "mmin_sample_plate",
+      "kind": "plate_96_deep",
+      "description": "MMin-house sample deep-well plate",
+      "assumed": false
+    },
+    {
+      "name": "mmin_wash1_plate",
+      "kind": "plate_96_deep",
+      "description": "MMin-house 70% ethanol wash plate 1",
+      "assumed": false
+    },
+    {
+      "name": "mmin_wash2_plate",
+      "kind": "plate_96_deep",
+      "description": "MMin-house 70% ethanol wash plate 2",
+      "assumed": false
+    },
+    {
+      "name": "mmin_elution_plate",
+      "kind": "plate_96",
+      "description": "MagMAX Express 96 microtiter elution plate for MMin-house; holds final eluate",
+      "assumed": false
+    },
+    {
+      "name": "ot2_plate",
+      "kind": "plate_96_deep",
+      "description": "OT-2in-house deep-well plate on GEN1 magnetic module",
+      "assumed": false
+    },
+    {
+      "name": "ot2_eluate",
+      "kind": "plate_96",
+      "description": "96-well microtiter plate receiving OT-2in-house eluate",
+      "assumed": false
+    },
+    {
+      "name": "waste",
+      "kind": "waste",
+      "description": "Liquid waste (supernatants, ethanol)",
+      "assumed": true
+    },
+    {
+      "name": "taqpath_mm",
+      "kind": "tube_1.5ml",
+      "description": "TaqPath 1-Step RT-qPCR Master Mix, CG (4x)",
+      "assumed": true
+    },
+    {
+      "name": "assay_orf1ab",
+      "kind": "tube_1.5ml",
+      "description": "TaqMan 2019-nCoV Assay ORF1ab (20x, FAM)",
+      "assumed": false
+    },
+    {
+      "name": "assay_s",
+      "kind": "tube_1.5ml",
+      "description": "TaqMan 2019-nCoV Assay S gene (20x, FAM)",
+      "assumed": false
+    },
+    {
+      "name": "assay_n",
+      "kind": "tube_1.5ml",
+      "description": "TaqMan 2019-nCoV Assay N gene (20x, FAM)",
+      "assumed": false
+    },
+    {
+      "name": "assay_rnasep",
+      "kind": "tube_1.5ml",
+      "description": "TaqMan RNase P assay (20x, VIC)",
+      "assumed": false
+    },
+    {
+      "name": "mix_orf1ab",
+      "kind": "tube_1.5ml",
+      "description": "qPCR master mix for ORF1ab/RNaseP duplex",
+      "assumed": true
+    },
+    {
+      "name": "mix_s",
+      "kind": "tube_1.5ml",
+      "description": "qPCR master mix for S/RNaseP duplex",
+      "assumed": true
+    },
+    {
+      "name": "mix_n",
+      "kind": "tube_1.5ml",
+      "description": "qPCR master mix for N/RNaseP duplex",
+      "assumed": true
+    },
+    {
+      "name": "qpcr_orf1ab",
+      "kind": "plate_96",
+      "description": "qPCR plate, ORF1ab assay",
+      "assumed": true
+    },
+    {
+      "name": "qpcr_s",
+      "kind": "plate_96",
+      "description": "qPCR plate, S assay",
+      "assumed": true
+    },
+    {
+      "name": "qpcr_n",
+      "kind": "plate_96",
+      "description": "qPCR plate, N assay",
+      "assumed": true
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "ctrl_stock",
+      "wells": [],
+      "reagent": "TaqMan 2019-nCoV Control v1, 1e4 copies/uL",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "water",
+      "wells": [],
+      "reagent": "Nuclease-free water",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "vtm",
+      "wells": [],
+      "reagent": "Viral transport medium",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "gtc",
+      "wells": [],
+      "reagent": "4 M GTC + 5 ug/mL carrier RNA",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "mmkit_beads",
+      "wells": [],
+      "reagent": "MagMAX CORE Magnetic Beads",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "mmkit_pk",
+      "wells": [],
+      "reagent": "MagMAX CORE Proteinase K",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "mmkit_lysis",
+      "wells": [],
+      "reagent": "MagMAX CORE Lysis Solution",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "mmkit_binding",
+      "wells": [],
+      "reagent": "MagMAX CORE Binding Solution",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "mmkit_wash1_stock",
+      "wells": [],
+      "reagent": "MagMAX CORE Wash Solution 1",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "mmkit_wash2_stock",
+      "wells": [],
+      "reagent": "MagMAX CORE Wash Solution 2",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "mmkit_eb_stock",
+      "wells": [],
+      "reagent": "MagMAX CORE Elution Buffer",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "beads_total",
+      "wells": [],
+      "reagent": "Mag-Bind TotalPure NGS beads",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "ipa",
+      "wells": [],
+      "reagent": "Isopropanol absolute",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "etoh_abs",
+      "wells": [],
+      "reagent": "Absolute ethanol",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "omega_eb",
+      "wells": [],
+      "reagent": "Omega Elution Buffer",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "taqpath_mm",
+      "wells": [],
+      "reagent": "TaqPath 1-Step RT-qPCR Master Mix, CG (4x)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "assay_orf1ab",
+      "wells": [],
+      "reagent": "TaqMan 2019-nCoV ORF1ab assay 20x",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "assay_s",
+      "wells": [],
+      "reagent": "TaqMan 2019-nCoV S assay 20x",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "assay_n",
+      "wells": [],
+      "reagent": "TaqMan 2019-nCoV N assay 20x",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "assay_rnasep",
+      "wells": [],
+      "reagent": "TaqMan RNase P assay 20x",
+      "volume_ul": null,
+      "assumed": false
+    }
+  ],
+  "steps": [
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "ctrl_1e3",
+      "dest_wells": [],
+      "volume_ul": 90.0,
+      "reagent": "Nuclease-free water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "using ten-fold serial dilutions of the positive control",
+      "assumed": true,
+      "note": "Diluent assumed nuclease-free water"
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_stock",
+      "source_wells": [],
+      "dest": "ctrl_1e3",
+      "dest_wells": [],
+      "volume_ul": 10.0,
+      "reagent": "TaqMan 2019-nCoV Control v1",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "using ten-fold serial dilutions of the positive control",
+      "assumed": true,
+      "note": "1e3 copies/uL"
+    },
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "ctrl_1e2",
+      "dest_wells": [],
+      "volume_ul": 90.0,
+      "reagent": "Nuclease-free water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "using ten-fold serial dilutions of the positive control",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_1e3",
+      "source_wells": [],
+      "dest": "ctrl_1e2",
+      "dest_wells": [],
+      "volume_ul": 10.0,
+      "reagent": "Control 1e3 copies/uL",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "using ten-fold serial dilutions of the positive control",
+      "assumed": true,
+      "note": "1e2 copies/uL"
+    },
+    {
+      "kind": "transfer",
+      "source": "vtm",
+      "source_wells": [],
+      "dest": "mock_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 490.0,
+      "reagent": "Viral transport medium",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "mixing 10 μL of the positive control with 490 μL of viral transport medium and 500 μL of GTC",
+      "assumed": false,
+      "note": "A1:A3 standard, A4:A6 low, A7:A9 very-low, A10 negative"
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_stock",
+      "source_wells": [],
+      "dest": "mock_plate",
+      "dest_wells": [
+        "A1:A3"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "Control 1e4 copies/uL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The standard viral load sample was prepared by mixing 10 μL of the positive control",
+      "assumed": false,
+      "note": "Standard load, triplicate"
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_1e3",
+      "source_wells": [],
+      "dest": "mock_plate",
+      "dest_wells": [
+        "A4:A6"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "Control 1e3 copies/uL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The low and very-low viral loads were prepared in the same manner but using ten-fold serial dilutions of the positive control.",
+      "assumed": false,
+      "note": "Low load, triplicate"
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_1e2",
+      "source_wells": [],
+      "dest": "mock_plate",
+      "dest_wells": [
+        "A7:A9"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "Control 1e2 copies/uL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The low and very-low viral loads were prepared in the same manner but using ten-fold serial dilutions of the positive control.",
+      "assumed": false,
+      "note": "Very-low load, triplicate"
+    },
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "mock_plate",
+      "dest_wells": [
+        "A10"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "Nuclease-free water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Negative controls were included in all the runs.",
+      "assumed": true,
+      "note": "Negative control = VTM + GTC + water instead of control"
+    },
+    {
+      "kind": "transfer",
+      "source": "gtc",
+      "source_wells": [],
+      "dest": "mock_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 500.0,
+      "reagent": "4 M GTC + carrier RNA",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "and 500 μL of GTC",
+      "assumed": false,
+      "note": "Mix volume 500 uL assumed"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal mock_plate, heat 2 min at 80 °C, short vortex, unseal",
+      "source_quote": "followed by heating the samples 2 min at 80°C and a short vortex mixing",
+      "assumed": true,
+      "note": "Applied to mock samples by assumption (same as clinical samples)"
+    },
+    {
+      "kind": "transfer",
+      "source": "mmkit_beads",
+      "source_wells": [],
+      "dest": "mmkit_bead_pk",
+      "dest_wells": [],
+      "volume_ul": 220.0,
+      "reagent": "MagMAX CORE Magnetic Beads",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Prepare a mixture of 20μL of MagMAX™ CORE Magnetic Beads and 10μL of MagMAX™ CORE Proteinase K per sample (beads/PK mix).",
+      "assumed": true,
+      "note": "20 uL x 10 samples + 10% overage"
+    },
+    {
+      "kind": "transfer",
+      "source": "mmkit_pk",
+      "source_wells": [],
+      "dest": "mmkit_bead_pk",
+      "dest_wells": [],
+      "volume_ul": 110.0,
+      "reagent": "MagMAX CORE Proteinase K",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Prepare a mixture of 20μL of MagMAX™ CORE Magnetic Beads and 10μL of MagMAX™ CORE Proteinase K per sample (beads/PK mix).",
+      "assumed": true,
+      "note": "10 uL x 10 samples + 10% overage"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Vortex mmkit_bead_pk to resuspend",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Per kit manual"
+    },
+    {
+      "kind": "transfer",
+      "source": "mmkit_lysis",
+      "source_wells": [],
+      "dest": "mmkit_lysis_binding",
+      "dest_wells": [],
+      "volume_ul": 3850.0,
+      "reagent": "MagMAX CORE Lysis Solution",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Prepare a mixture of 300μL MagMAX™ CORE Lysis Solution and 300μL MagMAX™ CORE Binding Solution per sample (Lysis/Binding solution).",
+      "assumed": true,
+      "note": "Kit manual: 350 uL per sample (700 uL total per Table 1) x 10 + 10% overage"
+    },
+    {
+      "kind": "transfer",
+      "source": "mmkit_binding",
+      "source_wells": [],
+      "dest": "mmkit_lysis_binding",
+      "dest_wells": [],
+      "volume_ul": 3850.0,
+      "reagent": "MagMAX CORE Binding Solution",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Prepare a mixture of 300μL MagMAX™ CORE Lysis Solution and 300μL MagMAX™ CORE Binding Solution per sample (Lysis/Binding solution).",
+      "assumed": true,
+      "note": "350 uL per sample per kit manual"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Invert mmkit_lysis_binding at least 10 times",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Per kit manual"
+    },
+    {
+      "kind": "transfer",
+      "source": "mmkit_wash1_stock",
+      "source_wells": [],
+      "dest": "mmkit_wash1_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 500.0,
+      "reagent": "MagMAX CORE Wash Solution 1",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "one with 500μL of MagMAX™ CORE Wash Solution 1 per well",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mmkit_wash2_stock",
+      "source_wells": [],
+      "dest": "mmkit_wash2_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 500.0,
+      "reagent": "MagMAX CORE Wash Solution 2",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "another one with 500μL of MagMAX™ CORE Wash Solution 2 per well",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mmkit_eb_stock",
+      "source_wells": [],
+      "dest": "mmkit_elution_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 90.0,
+      "reagent": "MagMAX CORE Elution Buffer",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Prepare a MagMAX™ Express 96 microtiter plate with 90μL of MagMAX™ CORE Elution Buffer per well.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mmkit_bead_pk",
+      "source_wells": [],
+      "dest": "mmkit_sample_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 30.0,
+      "reagent": "Beads/PK mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dispense in a Deep well plate 30μL of beads/PK mix",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mock_plate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "mmkit_sample_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 200.0,
+      "reagent": "Mock sample",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "and 200μL of sample per well",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mmkit_lysis_binding",
+      "source_wells": [],
+      "dest": "mmkit_sample_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 700.0,
+      "reagent": "Lysis/Binding solution",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "700μL of Lysis/Binding solution",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Load mmkit_sample_plate, mmkit_wash1_plate, mmkit_wash2_plate, mmkit_elution_plate and tip comb in the KingFisher MagMAX Express-96; run script MagMAX_CORE_KF-96 with default vendor settings; store eluate on ice for immediate qPCR",
+      "source_quote": "Put all the plates in the system and run the script MagMAX_CORE_KF-96.",
+      "assumed": false,
+      "note": "Script parameters not given in the paper; vendor defaults assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "etoh_abs",
+      "source_wells": [],
+      "dest": "etoh70",
+      "dest_wells": [],
+      "volume_ul": 17500.0,
+      "reagent": "Absolute ethanol",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "freshly prepared ethanol 70%",
+      "assumed": true,
+      "note": "25 mL of 70% v/v; enough for MMin-house and OT-2 washes"
+    },
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "etoh70",
+      "dest_wells": [],
+      "volume_ul": 7500.0,
+      "reagent": "Nuclease-free water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "freshly prepared ethanol 70%",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Invert etoh70 tube to mix; prepare fresh on the day",
+      "source_quote": "freshly prepared ethanol 70%",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "etoh70",
+      "source_wells": [],
+      "dest": "mmin_wash1_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 500.0,
+      "reagent": "Ethanol 70%",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Prepare two Deep well plates with 500μL of Ethanol 70% per well.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "etoh70",
+      "source_wells": [],
+      "dest": "mmin_wash2_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 500.0,
+      "reagent": "Ethanol 70%",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Prepare two Deep well plates with 500μL of Ethanol 70% per well.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "omega_eb",
+      "source_wells": [],
+      "dest": "mmin_elution_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 90.0,
+      "reagent": "Omega Elution Buffer",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Prepare a MagMAX™ Express 96 microtiter plate with 90μL of Elution Buffer (Omega BIO-TEK, Norcross, GA, USA) per well.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "beads_total",
+      "source_wells": [],
+      "dest": "mmin_sample_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 40.0,
+      "reagent": "Mag-Bind TotalPure NGS beads",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dispense in a Deep well plate 40μL of magnetic beads",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ipa",
+      "source_wells": [],
+      "dest": "mmin_sample_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 500.0,
+      "reagent": "Isopropanol",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "500μL of Isopropanol",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mock_plate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "mmin_sample_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 500.0,
+      "reagent": "Mock sample",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "500μL of sample per well",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Load mmin_sample_plate, mmin_wash1_plate, mmin_wash2_plate, mmin_elution_plate and tip comb in the KingFisher MagMAX Express-96; run script MagMAX_CORE_KF-96 (same as MMkit)",
+      "source_quote": "Put all the plates in the system and run the script MagMAX_CORE_KF-96.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "beads_total",
+      "source_wells": [],
+      "dest": "ot2_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 40.0,
+      "reagent": "Mag-Bind TotalPure NGS beads",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dispense in a Deep well plate 40μL of magnetic beads",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ipa",
+      "source_wells": [],
+      "dest": "ot2_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 250.0,
+      "reagent": "Isopropanol",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "250μL of Isopropanol",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mock_plate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "ot2_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 250.0,
+      "reagent": "Mock sample",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "250μL of sample per well",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "ot2_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 200.0,
+      "reagent": "",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "Mix by pipetting five times",
+      "assumed": true,
+      "note": "Mix volume 200 uL assumed"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate ot2_plate 5 min at room temperature",
+      "source_quote": "incubate 5 min at room temperature",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Engage GEN1 magnetic module for 4 min",
+      "source_quote": "Activate the GEN1 magnetic module 4 min.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ot2_plate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "waste",
+      "dest_wells": [],
+      "volume_ul": 540.0,
+      "reagent": "Supernatant",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Collect the supernatant and discard.",
+      "assumed": true,
+      "note": "540 uL = total volume added; magnet engaged"
+    },
+    {
+      "kind": "transfer",
+      "source": "etoh70",
+      "source_wells": [],
+      "dest": "ot2_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 500.0,
+      "reagent": "Ethanol 70%",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Add 500μL of Ethanol 70%, collect and discard.",
+      "assumed": false,
+      "note": "Wash 1"
+    },
+    {
+      "kind": "transfer",
+      "source": "ot2_plate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "waste",
+      "dest_wells": [],
+      "volume_ul": 500.0,
+      "reagent": "Ethanol 70% wash",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Add 500μL of Ethanol 70%, collect and discard.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "etoh70",
+      "source_wells": [],
+      "dest": "ot2_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 500.0,
+      "reagent": "Ethanol 70%",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Add 500μL of Ethanol 70%, collect and discard.",
+      "assumed": false,
+      "note": "Wash 2"
+    },
+    {
+      "kind": "transfer",
+      "source": "ot2_plate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "waste",
+      "dest_wells": [],
+      "volume_ul": 500.0,
+      "reagent": "Ethanol 70% wash",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Add 500μL of Ethanol 70%, collect and discard.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Air dry beads 4 min at room temperature, then turn off the GEN1 magnetic module",
+      "source_quote": "Air dry for 4 min. Turn off the GEN1 magnetic module",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "omega_eb",
+      "source_wells": [],
+      "dest": "ot2_plate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 100.0,
+      "reagent": "Omega Elution Buffer",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "add 100μL of Elution Buffer (Omega BIO-TEK, Norcross, GA, USA).",
+      "assumed": true,
+      "note": "Resuspension by pipetting 5x assumed"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Wait 30 sec, turn on GEN1 magnetic module, wait 90 sec",
+      "source_quote": "After 30 sec turn on the GEN1 magnetic module. After 90 sec collect the supernatant",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ot2_plate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "ot2_eluate",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 100.0,
+      "reagent": "Eluate",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "collect the supernatant and transfer to a 96-well microtiter plate.",
+      "assumed": true,
+      "note": "Full 100 uL assumed collected"
+    },
+    {
+      "kind": "transfer",
+      "source": "taqpath_mm",
+      "source_wells": [],
+      "dest": "mix_orf1ab",
+      "dest_wells": [],
+      "volume_ul": 237.5,
+      "reagent": "TaqPath 4x Master Mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "using the TaqMan 2019-nCoV Assay Kit v1 that targets the orf1ab, spike (S), nucleocapsid (N) and human RNaseP genes",
+      "assumed": true,
+      "note": "6.25 uL x 38 reactions (34 + 10% overage)"
+    },
+    {
+      "kind": "transfer",
+      "source": "assay_orf1ab",
+      "source_wells": [],
+      "dest": "mix_orf1ab",
+      "dest_wells": [],
+      "volume_ul": 47.5,
+      "reagent": "ORF1ab assay 20x",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "1.25 uL x 38"
+    },
+    {
+      "kind": "transfer",
+      "source": "assay_rnasep",
+      "source_wells": [],
+      "dest": "mix_orf1ab",
+      "dest_wells": [],
+      "volume_ul": 47.5,
+      "reagent": "RNase P assay 20x",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "1.25 uL x 38"
+    },
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "mix_orf1ab",
+      "dest_wells": [],
+      "volume_ul": 427.5,
+      "reagent": "Water",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "11.25 uL x 38; mix volume 300 uL"
+    },
+    {
+      "kind": "transfer",
+      "source": "mix_orf1ab",
+      "source_wells": [],
+      "dest": "qpcr_orf1ab",
+      "dest_wells": [
+        "A1:C10"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "ORF1ab/RNaseP master mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Layout: row A MMkit, row B MMin-house, row C OT-2in-house; D1:D3 control reference, D4 NTC"
+    },
+    {
+      "kind": "transfer",
+      "source": "mix_orf1ab",
+      "source_wells": [],
+      "dest": "qpcr_orf1ab",
+      "dest_wells": [
+        "D1:D4"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "ORF1ab/RNaseP master mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mmkit_elution_plate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "qpcr_orf1ab",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "MMkit eluate",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "extracted nucleic acid samples were dispensed automatically in qPCR strips with another OT-2 module",
+      "assumed": true,
+      "note": "Dispensed to a 96-well plate instead of strips"
+    },
+    {
+      "kind": "transfer",
+      "source": "mmin_elution_plate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "qpcr_orf1ab",
+      "dest_wells": [
+        "B1:B10"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "MMin-house eluate",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "extracted nucleic acid samples were dispensed automatically in qPCR strips with another OT-2 module",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ot2_eluate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "qpcr_orf1ab",
+      "dest_wells": [
+        "C1:C10"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "OT-2in-house eluate",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "extracted nucleic acid samples were dispensed automatically in qPCR strips with another OT-2 module",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_stock",
+      "source_wells": [],
+      "dest": "qpcr_orf1ab",
+      "dest_wells": [
+        "D1"
+      ],
+      "volume_ul": 1.0,
+      "reagent": "Control 1e4 copies/uL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "the positive controls prepared directly from the stock",
+      "assumed": true,
+      "note": "Reference (Ctpc)"
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_1e3",
+      "source_wells": [],
+      "dest": "qpcr_orf1ab",
+      "dest_wells": [
+        "D2"
+      ],
+      "volume_ul": 1.0,
+      "reagent": "Control 1e3 copies/uL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "the positive controls prepared directly from the stock",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_1e2",
+      "source_wells": [],
+      "dest": "qpcr_orf1ab",
+      "dest_wells": [
+        "D3"
+      ],
+      "volume_ul": 1.0,
+      "reagent": "Control 1e2 copies/uL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "the positive controls prepared directly from the stock",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "qpcr_orf1ab",
+      "dest_wells": [
+        "D1:D3"
+      ],
+      "volume_ul": 4.0,
+      "reagent": "Water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Control wells total 5 uL template"
+    },
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "qpcr_orf1ab",
+      "dest_wells": [
+        "D4"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Water (NTC)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "No-template control"
+    },
+    {
+      "kind": "transfer",
+      "source": "taqpath_mm",
+      "source_wells": [],
+      "dest": "mix_s",
+      "dest_wells": [],
+      "volume_ul": 237.5,
+      "reagent": "TaqPath 4x Master Mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "using the TaqMan 2019-nCoV Assay Kit v1 that targets the orf1ab, spike (S), nucleocapsid (N) and human RNaseP genes",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "assay_s",
+      "source_wells": [],
+      "dest": "mix_s",
+      "dest_wells": [],
+      "volume_ul": 47.5,
+      "reagent": "S assay 20x",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "assay_rnasep",
+      "source_wells": [],
+      "dest": "mix_s",
+      "dest_wells": [],
+      "volume_ul": 47.5,
+      "reagent": "RNase P assay 20x",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "mix_s",
+      "dest_wells": [],
+      "volume_ul": 427.5,
+      "reagent": "Water",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Mix volume 300 uL"
+    },
+    {
+      "kind": "transfer",
+      "source": "mix_s",
+      "source_wells": [],
+      "dest": "qpcr_s",
+      "dest_wells": [
+        "A1:C10"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S/RNaseP master mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mix_s",
+      "source_wells": [],
+      "dest": "qpcr_s",
+      "dest_wells": [
+        "D1:D4"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S/RNaseP master mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mmkit_elution_plate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "qpcr_s",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "MMkit eluate",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "extracted nucleic acid samples were dispensed automatically in qPCR strips with another OT-2 module",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mmin_elution_plate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "qpcr_s",
+      "dest_wells": [
+        "B1:B10"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "MMin-house eluate",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "extracted nucleic acid samples were dispensed automatically in qPCR strips with another OT-2 module",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ot2_eluate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "qpcr_s",
+      "dest_wells": [
+        "C1:C10"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "OT-2in-house eluate",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "extracted nucleic acid samples were dispensed automatically in qPCR strips with another OT-2 module",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_stock",
+      "source_wells": [],
+      "dest": "qpcr_s",
+      "dest_wells": [
+        "D1"
+      ],
+      "volume_ul": 1.0,
+      "reagent": "Control 1e4 copies/uL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "the positive controls prepared directly from the stock",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_1e3",
+      "source_wells": [],
+      "dest": "qpcr_s",
+      "dest_wells": [
+        "D2"
+      ],
+      "volume_ul": 1.0,
+      "reagent": "Control 1e3 copies/uL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "the positive controls prepared directly from the stock",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_1e2",
+      "source_wells": [],
+      "dest": "qpcr_s",
+      "dest_wells": [
+        "D3"
+      ],
+      "volume_ul": 1.0,
+      "reagent": "Control 1e2 copies/uL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "the positive controls prepared directly from the stock",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "qpcr_s",
+      "dest_wells": [
+        "D1:D3"
+      ],
+      "volume_ul": 4.0,
+      "reagent": "Water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "qpcr_s",
+      "dest_wells": [
+        "D4"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Water (NTC)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "taqpath_mm",
+      "source_wells": [],
+      "dest": "mix_n",
+      "dest_wells": [],
+      "volume_ul": 237.5,
+      "reagent": "TaqPath 4x Master Mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "using the TaqMan 2019-nCoV Assay Kit v1 that targets the orf1ab, spike (S), nucleocapsid (N) and human RNaseP genes",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "assay_n",
+      "source_wells": [],
+      "dest": "mix_n",
+      "dest_wells": [],
+      "volume_ul": 47.5,
+      "reagent": "N assay 20x",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "assay_rnasep",
+      "source_wells": [],
+      "dest": "mix_n",
+      "dest_wells": [],
+      "volume_ul": 47.5,
+      "reagent": "RNase P assay 20x",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "mix_n",
+      "dest_wells": [],
+      "volume_ul": 427.5,
+      "reagent": "Water",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Mix volume 300 uL"
+    },
+    {
+      "kind": "transfer",
+      "source": "mix_n",
+      "source_wells": [],
+      "dest": "qpcr_n",
+      "dest_wells": [
+        "A1:C10"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "N/RNaseP master mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mix_n",
+      "source_wells": [],
+      "dest": "qpcr_n",
+      "dest_wells": [
+        "D1:D4"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "N/RNaseP master mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mmkit_elution_plate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "qpcr_n",
+      "dest_wells": [
+        "A1:A10"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "MMkit eluate",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "extracted nucleic acid samples were dispensed automatically in qPCR strips with another OT-2 module",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "mmin_elution_plate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "qpcr_n",
+      "dest_wells": [
+        "B1:B10"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "MMin-house eluate",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "extracted nucleic acid samples were dispensed automatically in qPCR strips with another OT-2 module",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ot2_eluate",
+      "source_wells": [
+        "A1:A10"
+      ],
+      "dest": "qpcr_n",
+      "dest_wells": [
+        "C1:C10"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "OT-2in-house eluate",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "extracted nucleic acid samples were dispensed automatically in qPCR strips with another OT-2 module",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_stock",
+      "source_wells": [],
+      "dest": "qpcr_n",
+      "dest_wells": [
+        "D1"
+      ],
+      "volume_ul": 1.0,
+      "reagent": "Control 1e4 copies/uL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "the positive controls prepared directly from the stock",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_1e3",
+      "source_wells": [],
+      "dest": "qpcr_n",
+      "dest_wells": [
+        "D2"
+      ],
+      "volume_ul": 1.0,
+      "reagent": "Control 1e3 copies/uL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "the positive controls prepared directly from the stock",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ctrl_1e2",
+      "source_wells": [],
+      "dest": "qpcr_n",
+      "dest_wells": [
+        "D3"
+      ],
+      "volume_ul": 1.0,
+      "reagent": "Control 1e2 copies/uL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "the positive controls prepared directly from the stock",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "qpcr_n",
+      "dest_wells": [
+        "D1:D3"
+      ],
+      "volume_ul": 4.0,
+      "reagent": "Water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "qpcr_n",
+      "dest_wells": [
+        "D4"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Water (NTC)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal qpcr_orf1ab, qpcr_s and qpcr_n, briefly centrifuge, run on CFX96 Touch: 25 °C 2 min, 50 °C 15 min, 95 °C 2 min, then 40 cycles of 95 °C 3 s and 60 °C 30 s; read FAM (target) and VIC (RNase P)",
+      "source_quote": "All qPCR assays were performed in a CFX96 Touch Real-Time PCR Detection System (Bio-Rad, Hercules, CA, USA).",
+      "assumed": true,
+      "note": "Cycling from the TaqMan 2019-nCoV Assay Kit v1 manual for TaqPath 1-Step master mix"
+    }
+  ],
+  "assumptions": [
+    "Mock samples laid out in deep-well plate mock_plate: A1:A3 standard, A4:A6 low, A7:A9 very-low, A10 negative control (VTM + GTC + water, no control DNA). One 1000 uL mock well per replicate supplies all three methods (200 + 250 + 500 uL).",
+    "The same mock sample layout (A1:A10) is used in every method plate and eluate plate. qPCR plates: row A MMkit, row B MMin-house, row C OT-2in-house (columns 1-10); D1:D3 control reference (1e4, 1e3, 1e2 copies/uL), D4 NTC.",
+    "Ten-fold serial dilutions of the control (ctrl_1e3, ctrl_1e2) were made in nuclease-free water (diluent not stated in paper).",
+    "The paper's arithmetic (10 uL x 1e4 copies/uL in 1 mL) gives 1e5 copies/mL, not the stated 1e6 copies/mL; the stated procedure was followed and efficiency should use actual copies added.",
+    "Mock samples receive the same GTC (with 5 ug/mL carrier RNA), 80 °C 2 min and short vortex as clinical samples; mock plate mix volume 500 uL x 5 cycles assumed.",
+    "MMkit Lysis/Binding: paper text says 300+300 uL but Table 1 says 700 uL; used 350 uL Lysis + 350 uL Binding per sample from the MagMAX CORE user guide (MAN0015944). Beads/PK mix 20+10 uL per sample with 10% overage; kit volumes (30 uL beads/PK, 200 uL sample, 700 uL lysis/binding, 500 uL washes, 90 uL elution) follow the guide and Table 1.",
+    "KingFisher script MagMAX_CORE_KF-96 run with default vendor settings (times, mixing, heating not given); identical script for MMkit and MMin-house. Tip comb and plate loading order per vendor guide.",
+    "70% ethanol prepared fresh as 17.5 mL absolute ethanol + 7.5 mL water (25 mL; ~20 mL needed for both in-house arms).",
+    "OT-2 parameters not given in paper (pipette/tip type, rates, heights, magnet height): assumed default Opentrons P300/P1000 settings; mix volume 200 uL; supernatant removal 540 uL; bead resuspension in elution buffer by pipetting 5x; eluate transfer volume 100 uL; the authors' GitHub scripts were not used.",
+    "OT-2in-house run on deep-well plate on the GEN1 magnetic module; eluate transferred to a standard 96-well plate.",
+    "Reagents in stocks (ctrl_stock, VTM, GTC, kit reagents, beads, IPA, etc.) assumed to be in ample volume (volume null).",
+    "qPCR master mix not named in paper: TaqPath 1-Step RT-qPCR Master Mix, CG assumed; per reaction 6.25 uL 4x mix + 1.25 uL 2019-nCoV assay + 1.25 uL RNase P assay + 11.25 uL water + 5 uL template = 25 uL, with 10% overage (38 reactions per assay) per TaqMan 2019-nCoV Assay Kit v1 manual (MAN0019096). Each of the ORF1ab, S and N assays is run in duplex with RNase P on its own plate.",
+    "Cycling conditions from MAN0019096 for TaqPath 1-Step master mix (25 °C 2 min; 50 °C 15 min; 95 °C 2 min; 40 x 95 °C 3 s / 60 °C 30 s). Positive call Ct < 37 and auto baseline / fixed threshold per target on CFX Maestro are analysis-side assumptions.",
+    "Reference (Ctpc) wells: 1 uL of control stock or dilution + 4 uL water per well, run once per plate; expected copies are to be corrected afterwards for each method's input volume (200, 250, 500 uL) and elution volume (90 or 100 uL). Replicates of reference wells not stated.",
+    "Eluate dispensed into a qPCR 96-well plate (5 uL) instead of strips, by OT-2 or by hand; the paper used qPCR strips with another OT-2 module.",
+    "Waste container used for discarded supernatant and ethanol; waste transfers use no destination wells.",
+    "Tubes for beads/PK, lysis/binding, ethanol and qPCR mixes are assumed containers; deep-well plate capacity (2000 uL) suffices for the largest well volume (1040 uL)."
+  ]
+}

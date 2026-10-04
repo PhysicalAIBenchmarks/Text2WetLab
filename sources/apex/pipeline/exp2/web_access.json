@@ -1,0 +1,125 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "search",
+      "value": "APEX Automated Protein EXpression E. coli Opentrons transformation low volume 10 µl cells 50 µl SOC"
+    },
+    {
+      "kind": "search",
+      "value": "Thermo Fisher Subcloning Efficiency DH5alpha competent cells protocol 50 µl cells 42°C 20 seconds 950 µl SOC"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0018593_DH5alpha_competent_cells_sub_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0018520_DH5alpha_competent_cells_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.mclab.com/mclab_pages/Dh5-AlphaUserManual.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0001367-MAXEfficiencyDH5alpha-CompCells-PI.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/subcloningefficiencydh5alpha_man.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/us/en/home/life-science/cloning/competent-cells-for-transformation/competent-cells-strains/dh5a-competent-cells.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://iright.com/products/thermo-fisher-18265017"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8546135"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/order/catalog/product/EC0111/faqs"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2024.08.13.607171v1.full"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.themoonlight.io/en/review/biorxiv/apex-automated-protein-expression-in-escherichia-coli"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/383184815_APEX_Automated_Protein_EXpression_in_Escherichia_coli"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/5314219_Automated_Recombinant_Protein_Expression_Screening_in_Escherichia_coli"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2024.08.13.607171.full.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/10.1021/acssynbio.5c00189"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/40893113/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/org/science/article/abs/pii/S2161506325002992"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/-/media/nebus/files/application-notes/appnote_automated_nebexpress_cellfree_expression_and_purification.pdf?rev=b02e81267f48450ea2afc5ee93c77c62&sc_lang=en-us&hash=29AAC072E8AACFEBE4BA3AEB4779E1E6"
+    },
+    {
+      "kind": "search",
+      "value": "Subcloning Efficiency DH5α Competent Cells user guide MAN0001574 transformation protocol heat shock 42°C 20 seconds"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0018593_DH5alpha_competent_cells_sub_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/order/catalog/product/EC0111/faqs"
+    },
+    {
+      "kind": "result",
+      "value": "https://kirschner.med.harvard.edu/files/protocols/Invitrogen_libDH5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.mclab.com/mclab_pages/Dh5-AlphaUserManual.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://takara.co.kr/file/manual/pdf/9057_e.v2001Da.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8546135"
+    },
+    {
+      "kind": "result",
+      "value": "https://ecampusontario.pressbooks.pub/biochem2l06/chapter/3-2-4-protocol-for-transforming-your-ligation-reaction-into-e-coli-dh5%CE%B1-cells/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/products/c2988-neb-5-alpha-competent-e-coli-subcloning-efficiency"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6423538"
+    }
+  ]
+}

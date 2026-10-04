@@ -1,0 +1,93 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "search",
+      "value": "Hanahan 1983 SOC transformation heat shock competent cells protocol Thermo BL21(DE3) overnight culture"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/transformation-protocol-for-bl21-de3-competent-cel-bgtwjwpe.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/oneshot_bl21ai_man.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0018595_BL21_DE3competent_cells_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8785162"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8709772"
+    },
+    {
+      "kind": "result",
+      "value": "https://tools.thermofisher.com/content/sfs/manuals/oneshotbl21_man.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9399763"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sigmaaldrich.com/US/en/technical-documents/technical-article/cell-culture-and-cell-culture-analysis/primary-cell-culture/bl21-chemically-competent-cells"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9096825"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.promega.com/-/media/files/resources/protcards/e-coli-competent-cells-quick-protocol.pdf?rev=81255b2b910545eb8c4c176dc722b7cf&sc_lang=en"
+    },
+    {
+      "kind": "search",
+      "value": "Addgene 62563 pJKR-H-araC sfGFP antibiotic resistance"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/62563/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/62557/"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11365410"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/62561/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/62559/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/62560/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/62567/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7901672"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2502.12675"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2024.08.13.607171v1.full.pdf"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "fetch",
+      "value": "https://opentrons.com.cn/wp-content/uploads/2023/11/Viscous-Liquid-Handling-Automation-using-Opentrons-OT-2.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://opentrons.com.cn/wp-content/uploads/2023/11/Viscous-Liquid-Handling-Automation-using-Opentrons-OT-2.pdf"
+    }
+  ]
+}

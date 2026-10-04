@@ -1,0 +1,56 @@
+{
+  "verdict": "reject",
+  "summary": "The main text only says the comparison was run in a Greiner polypropylene 96-well plate sealed with aluminium tape, 'under otherwise equivalent conditions'. It gives no plate model or well volume, sealing procedure, formulations, reaction volume, or number of samples. These are deferred to the SI, and I was not allowed to use the paper's own SI or code. The cited papers and manufacturer pages I searched did not supply them, and guessing them would change the monomer-loss and reactivity-ratio results.",
+  "gaps": [
+    {
+      "detail": "Exact Greiner plate (catalogue number, well volume, shallow or deep well, skirt, bottom shape)",
+      "why_needed": "Headspace and well geometry set evaporation. A standard 96-well polypropylene plate holds only about 300 µL per well, so the 400 µL used in the 48-vial reactor may not fit.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Reaction volume per well and total monomer concentration in the 96-well plate",
+      "why_needed": "Headspace-to-liquid ratio controls monomer loss. The paper also gives 2 M (s2.3) and 4 M (s2.5) for the 48-vial setup, which conflict.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Aluminium tape product and sealing procedure (tape type or adhesive, applicator or roller, pressure applied, sealing before or after dispensing, time left unsealed)",
+      "why_needed": "Evaporation or absorption by the sealant is the outcome being compared. The paper attributes the 48-vial result to a strong compressive seal, so the 96-well seal must be reproduced exactly.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Which monomer pairs were run in the 96-well plate, and the f10 and AIBN wt% design with the number of wells",
+      "why_needed": "The paper says roughly twice as many samples were needed. It does not say how many wells, which f10 values or which AIBN levels were used. These define the dataset used for the r1/r2 comparison.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Heating and shaking conditions for the 96-well plate (temperature, shaker model and rpm, plate adapter or thermal contact)",
+      "why_needed": "Rate and evaporation depend on how the plate is heated and shaken. The paper states 75 °C for 2 h in toluene for all experiments but gives no shaker speed or adapter.",
+      "status": "assumable",
+      "resolution": "75 °C, 2 h, toluene, AIBN 0.05–2 wt% vs monomer, as for the 48-vial format. Shaker speed and adapter remain unknown. Use moderate shaking and record it.",
+      "source": "s2.3 and Table 2 caption of the paper; remainder standard practice"
+    },
+    {
+      "detail": "NMR sampling and preparation from the 96-well plate (aliquot volume, deuterated solvent and volume, tube type, t0 and t1 timing, deoxygenation or inhibitor removal)",
+      "why_needed": "Conversion and composition come from t0 and t1 NMR. The 3D-printed NMR holder and cut tubes were designed for the 48-vial workflow.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Opentrons OT-2 pipette, tip type and the labware definition used for the 96-well plate",
+      "why_needed": "Dispensing accuracy for viscous or volatile monomer and toluene mixtures at microlitre scale affects the true f0.",
+      "status": "assumable",
+      "resolution": "Use a P300 or P20 single-channel pipette with a custom labware definition for the chosen plate. Measure f10 from t0 NMR, as the paper does, so dispensing errors are corrected.",
+      "source": "standard practice; paper s2.1 (composition measured by t0 NMR)"
+    }
+  ],
+  "retrieved_details": "Recoverable from the paper text: monomer pairs BMA-BA, BMA-St, St-BA, St-MMA, GMA-BA and GMA-St; toluene solvent; 75 °C for 2 h; AIBN 0.05–2 wt% vs total monomer; f10 0.1–0.8; 48-vial design of 4 f10 levels × 5 AIBN levels (20 reactions, 400 µL each, 40 NMR samples); t0 and t1 1H NMR to get composition and conversion; plate formats compared in s2.5; 96-well plate (Greiner, polypropylene) sealed with aluminium tape showed monomer loss and wider JCIs, and needed about twice as many samples. Web search found no source for the 96-well plate protocol. The paper's PMC full text (https://pmc.ncbi.nlm.nih.gov/articles/PMC13103962/) only repeats the sentence about 96-well plates. Opentrons docs (https://docs.opentrons.com/ot-2/labware/types/) say the OT-2 supports third-party 96-well plates via labware definitions."
+}

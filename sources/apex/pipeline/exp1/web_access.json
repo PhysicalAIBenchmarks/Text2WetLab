@@ -1,0 +1,53 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "fetch",
+      "value": "https://www.biorxiv.org/content/10.1101/2024.08.13.607171v2.full"
+    },
+    {
+      "kind": "search",
+      "value": "Thermo Fisher Subcloning Efficiency DH5α competent cells protocol 50 µl 42°C SOC"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0018593_DH5alpha_competent_cells_sub_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9556446"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/store/v3/products/faqs/EC0112"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/us/en/home/life-science/cloning/competent-cells-for-transformation/competent-cells-strains/dh5a-competent-cells.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://kirschner.med.harvard.edu/files/protocols/Invitrogen_maxDH5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/us/en/home/references/protocols/cloning/competent-cells-protocol/t1-phage-resistant-competent-cells.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://iright.com/products/thermo-fisher-18265017"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/subcloningefficiencydh5alpha_man.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/order/catalog/product/EC0111?us&en"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0001367-MAXEfficiencyDH5alpha-CompCells-PI.pdf"
+    }
+  ]
+}

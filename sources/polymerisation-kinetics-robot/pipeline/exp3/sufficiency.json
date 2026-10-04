@@ -1,0 +1,56 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the core design for these controls: BMA/BA in toluene at 2 M total monomer, 400 µL per well, 75 °C, AIBN 0.05–2 wt% of monomer, 2 h versus 30 min, f10 0.1–0.9, 5 AIBN levels, and NMR at t0 and t1. The remaining gaps are NMR sample preparation, sealing and shaker details, and the SI Table S2 layout. These are either derivable from the text or have defensible defaults, and none changes the measured composition and conversion. I could not retrieve the full text or cited references (search and fetch returned nothing usable), so none of these gaps are source-resolved.",
+  "gaps": [
+    {
+      "detail": "Exact well composition and layout of the extended 45-point set (SI Table S2, rows 1–20 and 61–85) and of the 30 min set (rows 41–60)",
+      "why_needed": "Defines which f10 and AIBN wt% combinations are dispensed in each plate",
+      "status": "assumable",
+      "resolution": "Table S2 is deferred to the SI, which I did not use. It can be rebuilt from the main text. The 30 min set repeats the Table 1 design (f10 = 0.1, 0.3, 0.5, 0.8 × AIBN 0.05, 0.25, 0.5, 1.0, 2.0 wt%, 20 wells) stopped at 30 min. The extended set is 9 f10 levels (0.1–0.9 in 0.1 steps) × the same 5 AIBN levels = 45 reactions. Of these, 20 are the original Table 1 set (rows 1–20) and 25 are new (rows 61–85: f10 = 0.2, 0.4, 0.6, 0.7, 0.9 × 5 AIBN). A 48-well reactor holds all 45 at once. Well positions are randomised by the script.",
+      "source": "s2.3, s2.4 (inferred; the 45 = 9×5 split is my reconstruction)"
+    },
+    {
+      "detail": "Monomer, AIBN and solvent stock preparation: neat versus stock solutions, and inhibitor removal",
+      "why_needed": "Needed to hit 2 M total monomer and the AIBN wt% at 400 µL per well",
+      "status": "assumable",
+      "resolution": "Prepare BMA and BA with inhibitor removed (basic alumina plug). Prepare a toluene AIBN stock and dispense it from the csv-defined volumes. Fill to 400 µL with toluene. Compute AIBN mass as wt% of total monomer mass. Check that the AIBN stock volume stays small enough to dispense accurately at the lowest 0.05 wt% level.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Reactor sealing method and deoxygenation",
+      "why_needed": "Evaporation and oxygen affect conversion",
+      "status": "assumable",
+      "resolution": "The paper says the reactor is sealed with strong compressive force on all vials, and the approach polymerises through oxygen using high AIBN loadings. No degassing is described, so none is performed. Keep wells unsealed for as short a time as possible during dispensing.",
+      "source": "s2.1, s2.3 (sealing and no-degassing details inferred); standard practice"
+    },
+    {
+      "detail": "Heater-shaker settings (shaking speed) and the 75 °C setpoint, including warm-up",
+      "why_needed": "Reaction temperature and mixing",
+      "status": "assumable",
+      "resolution": "Set the temperature to 75 °C (stated in Table 1) and run for 2 h or 30 min. Use moderate orbital shaking, about 300–500 rpm. Start timing when the reactor reaches 75 °C. The speed is not given.",
+      "source": "s2.4 (75 °C, 2 h); standard practice for shaking speed"
+    },
+    {
+      "detail": "NMR sample preparation: aliquot volume, deuterated solvent, volume, quenching, and NMR tube dimensions",
+      "why_needed": "Needed to obtain t0 and t1 spectra for f1 and X",
+      "status": "assumable",
+      "resolution": "Take a small aliquot (about 10–20 µL) from each well. Dispense it into a cut NMR tube pre-filled with CDCl3 (about 500–600 µL). The paper does not state the solvent. Take the t1 aliquot after reopening the cooled reactor. Ideally add a radical inhibitor such as BHT, which the paper does not mention. Conversion is a ratio, so exact dilution does not affect it. Cut the tubes so they clear the tip-loaded pipette heads, using a glass tube cutter. Use the 3D-printed NMR holder (Fig. S1).",
+      "source": "s2.1 (tube cutting and holder); standard practice for the rest"
+    },
+    {
+      "detail": "NMR acquisition parameters and which vinyl peaks are integrated",
+      "why_needed": "Needed to quantify BMA and BA conversion",
+      "status": "assumable",
+      "resolution": "Run a standard 1H NMR with a sufficient relaxation delay. Integrate the non-overlapping vinyl signals of each monomer against a constant reference. Compare t0 with t1 for each monomer to get individual conversions and f1. The paper says only that the monomer vinyl peaks do not overlap.",
+      "source": "s2.3 (non-overlap statement); standard practice"
+    },
+    {
+      "detail": "Which datasets make up the combined 56- or 79-point sets (Fig. 3b, Fig. 4a)",
+      "why_needed": "Needed for the dataset-size comparison",
+      "status": "assumable",
+      "resolution": "This is a post-hoc pooling of runs, not a bench step. Run the 20-point, 2 h repeat, 30 min and 45-point sets, then pool the data. The text gives both 56 and 79 as totals, so the pooled set is not fully defined. The two numbers are inconsistent and cannot be reconciled from the main text.",
+      "source": "s2.4"
+    }
+  ],
+  "retrieved_details": "No external sources could be fetched. The article pages and PubMed returned only abstract and figure-legend stubs, and later searches hit the tool limit. All details come from the paper text. System: Opentrons OT-2 with a 48-well reactor and a plate shaker/heater. BMA (M1) and BA (M2) in toluene, total monomer 2 M, 400 µL per well. Thermal initiator AIBN at 0.05, 0.25, 0.5, 1.0 and 2.0 wt% relative to total monomer. f10 = 0.1, 0.3, 0.5, 0.8 for the 20-point design, or 0.1–0.9 in 0.1 steps for the 45-point set. Reactions at 75 °C for 2 h, or 30 min for the time control. t0 and t1 NMR samples are prepared automatically. Well positions are randomised by the Python script, with the reaction csv imported automatically. Tubes are cut with a glass tube cutter to clear the pipette heads. Pause for the operator to move the reactor to the shaker, then return it for the t1 samples."
+}

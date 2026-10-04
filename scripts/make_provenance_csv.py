@@ -27,12 +27,20 @@ GH = f"https://github.com/{REPO}"
 
 # (current path or folder, a former path or folder). Applied repeatedly, so a path moved twice is found.
 L2_TASKS = ["ampure-bead-cleanup", "colony-pcr-screening", "ecoli-heat-shock-transformation", "golden-gate-assembly"]
+def pipeline_doi(slug):
+    """DOI a paper was converted under: paper.json if present, else the record (paper.json is not committed for
+    papers whose licence does not allow redistributing their text)."""
+    f = ROOT / "sources" / slug / "pipeline/paper.json"
+    return json.loads(f.read_text())["doi"] if f.exists() else json.loads((ROOT / "sources" / slug / "record.json").read_text())["doi_primary"]
+
+
 # sources/<slug>/ layout: pipeline outputs used to be data/pipeline_runs/<doi>/, vendored code references/<name>/
 _VENDORED = {"dna-bot": "dna-bot-ysaa010", "botany": "botany-kiag066", "transporter-screening": "transporter-screening-antibiotics11081129",
              "hulp-rna-extraction": "hulp-rna-extraction", "slowpoke": "slowpoke"}
 SOURCES_MOVE = (
-    [(f"sources/{pj.parent.parent.name}/pipeline", "data/pipeline_runs/" + re.sub(r"[^\w.-]+", "_", json.loads(pj.read_text())["doi"]))
-     for pj in sorted(ROOT.glob("sources/*/pipeline/paper.json"))]
+    [(f"sources/{rj.parent.name}/pipeline", "data/pipeline_runs/" + re.sub(r"[^\w.-]+", "_", d))
+     for rj in sorted(ROOT.glob("sources/*/record.json")) if (rj.parent / "pipeline").is_dir()
+     for d in dict.fromkeys([json.loads(rj.read_text()).get("doi_primary", "")] + json.loads(rj.read_text()).get("dois", [])) if d]
     + [(f"sources/{slug}/code", f"references/{old}") for slug, old in _VENDORED.items()]
     + [("sources/master.csv", "ingestion/master.csv"), ("sources/sources.json", "ingestion/sources.json")]
 )
@@ -185,10 +193,10 @@ for c in json.loads((ROOT / "sources/candidates.json").read_text()):
 # ---- pipeline outputs ------------------------------------------------------------------
 pipeline = {}  # sha256 of protocol.json -> (doi, exp)
 for p in sorted(ROOT.glob("sources/*/pipeline/exp*/protocol.json")):
-    pipeline[sha256(p)] = (json.loads((p.parent.parent / "paper.json").read_text())["doi"], p.parent.name)
+    pipeline[sha256(p)] = (pipeline_doi(p.parent.parent.parent.name), p.parent.name)
 for p in sorted(ROOT.glob("sources/*/pipeline/exp*/protocol.json")):
     d = p.parent
-    paper = json.loads((d.parent / "paper.json").read_text())
+    paper = {"doi": pipeline_doi(d.parent.parent.name), "title": json.loads((ROOT / "sources" / d.parent.parent.name / "record.json").read_text())["title"]}
     crit = json.loads((d / "critic.json").read_text()).get("verdict", "") if (d / "critic.json").exists() else ""
     suff = json.loads((d / "sufficiency.json").read_text()).get("verdict", "") if (d / "sufficiency.json").exists() else ""
     add(record_id=f"run:{paper['doi']}#{d.name}", record_type="pipeline_output", path=str(p.relative_to(ROOT)),
@@ -263,14 +271,14 @@ def render_stem(ir):
     parts = ir.relative_to(ROOT).parts
     if parts[0] == "tasks":
         return parts[1]
-    doi = json.loads((ir.parent.parent / "paper.json").read_text())["doi"]
+    doi = pipeline_doi(ir.parents[2].name)
     return "paper-" + re.sub(r"[^\w]+", "_", doi) + "-" + ir.parent.name
 
 
 for ir in sorted(ROOT.glob("tasks/*/public/ir.json")) + sorted(ROOT.glob("sources/*/pipeline/exp*/protocol.json")):
     stem = render_stem(ir)
     from_paper = ir.name == "protocol.json"
-    doi = json.loads((ir.parent.parent / "paper.json").read_text())["doi"] if from_paper else ""
+    doi = pipeline_doi(ir.parents[2].name) if from_paper else ""
     exp = ir.parent.name if from_paper else ""
     for variant in (stem, f"{stem}-NO-LIFT-collision"):
         mp4 = ROOT / f"assets/examples3d/{variant}.mp4"

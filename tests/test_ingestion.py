@@ -23,7 +23,7 @@ def test_a_paper_that_splits_gets_one_row_per_experiment():
     for d in (ROOT / "sources").glob("*/pipeline/experiments.json"):
         raw = json.loads(d.read_text())
         n = len(raw if isinstance(raw, list) else raw["experiments"])
-        doi = json.loads((d.parent / "paper.json").read_text())["doi"]   # not the folder name: DOIs hold several slashes
+        doi = json.loads((d.parent.parent / "record.json").read_text())["doi_primary"]   # not the folder name: DOIs hold several slashes
         got = [r for r in rows if r["doi"] == doi or doi in r["other_dois"].split(" | ")]
         assert got and len({r["slug"] for r in got}) == 1
         assert sum(r["experiment_source"] == "paper2protocol identify" for r in got) == n, doi
@@ -64,3 +64,15 @@ def test_rerunning_ingest_never_loosens_a_licence_or_drops_curated_fields():
     assert out["pdf"]["redistributable"] == "no" and out["pdf"]["licence"] == "cc_no"
     assert out["code"][0]["redistributable"] == "no" and out["code"][0]["licence"] == "AGPL-3.0"
     assert out["code"][1]["status"] == "downloaded" and out["code"][1]["sha"] == "abc"
+
+
+def test_full_text_of_papers_we_may_not_redistribute_is_not_committed():
+    """paper.json is the paper's verbatim text. Only CC BY / CC0 papers may have it in the repo."""
+    import re
+    import subprocess
+
+    tracked = set(subprocess.run(["git", "ls-files", "sources"], capture_output=True, text=True, cwd=ROOT).stdout.split())
+    for rec in (ROOT / "sources").glob("*/record.json"):
+        lic = (json.loads(rec.read_text()).get("paper_licence") or "").lower().strip()
+        if not re.fullmatch(r"cc by( [\d.]+)?|cc0", lic):
+            assert f"sources/{rec.parent.name}/pipeline/paper.json" not in tracked, f"{rec.parent.name} ({lic or 'no licence'}): paper.json is tracked"

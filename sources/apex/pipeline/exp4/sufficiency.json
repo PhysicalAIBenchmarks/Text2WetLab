@@ -1,0 +1,49 @@
+{
+  "verdict": "reject",
+  "summary": "The main text only says that water goes into a 96-well PCR plate, colonies are picked and resuspended by hand, PCR master mix is added by the robot, PCR runs on the Opentrons thermocycler, and products go on an agarose gel. The primers, master mix identity, reaction volumes and cycling program are all deferred to Supplementary File 1 (Protocol 5). I found no cited paper or kit manual that supplies them, so the PCR cannot be reconstructed faithfully.",
+  "gaps": [
+    {
+      "detail": "Primer identities and sequences (forward and reverse), and the expected amplicon size for the sfGFP insert in pJKR-H-araC",
+      "why_needed": "The primers decide what the PCR detects: sfGFP insert, vector backbone, or a junction. The expected band size is needed to read the gel. Without them the result cannot be interpreted as confirming the sfGFP plasmid.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "PCR master mix identity and concentration (polymerase, buffer, dNTPs, primer final concentration)",
+      "why_needed": "The master mix must tolerate crude colony lysate and gives the amplification efficiency. The robot cannot be programmed without the mix composition and the volume dispensed per well.",
+      "status": "missing",
+      "resolution": "Only generic colony-PCR formats were found, e.g. 2X Taq master mix with 0.2 µM primers (labprotocol.co, Promega GoTaq note). None is tied to this paper.",
+      "source": ""
+    },
+    {
+      "detail": "Volumes: water per well, colony resuspension volume, master mix volume per well, final reaction volume, and template volume if any is transferred",
+      "why_needed": "The liquid-handling steps require exact volumes. The dilution of the colony material also affects PCR inhibition.",
+      "status": "missing",
+      "resolution": "Generic examples only, such as 10–100 µL water per well with a 2.5–5 µL template (Roche/KAPA note, Promega note, protocol-online). The paper's own volumes are not stated.",
+      "source": "https://sequencing.roche.com/content/dam/diagnostics_microsites/sequencing/us/en/resources/pdfs/application-notes/colony-pcr-app-note-mc-us-07380.pdf"
+    },
+    {
+      "detail": "Thermocycler program: initial denaturation or lysis, number of cycles, annealing temperature, extension time, final extension, lid temperature",
+      "why_needed": "The annealing temperature depends on the unknown primers, and the extension time depends on the amplicon size. The program cannot be defined without them.",
+      "status": "missing",
+      "resolution": "Generic Taq colony-PCR defaults exist (95 °C for 5 min, then about 30 cycles of 95 °C for 30 s, annealing, and 72 °C for 1 min/kb). They cannot be applied without the primers and amplicon.",
+      "source": ""
+    },
+    {
+      "detail": "Agarose gel conditions: % agarose, buffer (TAE or TBE), stain, ladder, voltage and run time, loading buffer",
+      "why_needed": "The paper only says products were analysed by agarose gel electrophoresis. Resolving the expected band needs a suitable gel percentage and ladder.",
+      "status": "assumable",
+      "resolution": "Use a standard 1–2% agarose gel in TAE with a DNA stain, a ladder spanning the expected amplicon size, and about 100 V for 30–45 min. Choose the exact values once the amplicon size is known.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Colony source and picking details: which plate and spots are picked, and the tool and amount of colony material",
+      "why_needed": "The picked colonies must be the sfGFP-transformed spots. Too much colony material inhibits PCR.",
+      "status": "assumable",
+      "resolution": "Pick the sfGFP (pEX05) transformant spots from the Protocol 2 plates (Fig. 5a describes pEX05 and pEX01 spots). Use a sterile tip and pick a small amount of colony material, as in the generic protocols found.",
+      "source": "standard practice; s2.4"
+    }
+  ],
+  "retrieved_details": "Only generic colony-PCR formats were retrieved. None is specific to this paper's Protocol 5, and none fills the primer, master-mix or cycling gaps. (1) Addgene lists pJKR-H-araC (#62563) as a high-copy pUC-backbone plasmid with ampicillin resistance and a GFP insert, https://www.addgene.org/62563/. The sfGFP insert size is given as 714 bp on the sister plasmid pJKR-H-cdaR, https://www.addgene.org/62557/. The paper's primers were not found. (2) Generic Taq colony PCR, https://labprotocol.co/blog/colony-pcr-protocol: 2X master mix with 0.2 µM each primer, 30 cycles at 95 °C for 30 s, annealing, and 68–72 °C for 1 min/kb. (3) Promega note, https://www.promega.com/-/media/files/resources/promega-notes/101/recombinant-clone-screening-using-the-gotaq-hot-start-green-master-mix.pdf: colonies suspended in 100 µL water and heated at 95 °C for 5 min. (4) Paper-stated details: water is first distributed into a 96-well PCR plate, colonies are manually resuspended, master mix is added by the robot, PCR runs on the Opentrons thermocycler, and products go on an agarose gel (s2.4). Antibiotic concentrations for selection are in s4.1."
+}

@@ -1,0 +1,63 @@
+{
+  "verdict": "reject",
+  "summary": "The main text gives the design: BMA and BA in toluene at 2 M total monomer, 400 µL per well, f10 of 0.1/0.3/0.5/0.8, AIBN 0.05–2 wt% vs monomer, 75 °C for 2 h, 20 wells with randomised positions, and t0/t1 NMR samples. It omits several details that decide whether the experiment works. These are how oxygen is handled, how the reactor is sealed and shaken, how stock solutions are made, and how the t0/t1 NMR samples are taken, quenched, and diluted. I searched for them. The only cited-paper fetches that succeeded (the IUPAC guidelines, Autzen 2024) cover data evaluation, not these bench steps, and the other cited OT-2 reference could not be fetched. No defensible defaults exist for these, so the experiment cannot be run faithfully.",
+  "gaps": [
+    {
+      "detail": "Deoxygenation / oxygen-handling strategy for the microlitre reactions (degassing, inert-atmosphere dispensing, or polymerising through oxygen)",
+      "why_needed": "Oxygen inhibition changes the induction period and the conversion reached at each AIBN level, so it changes the X data the whole experiment depends on. The abstract says deoxygenation was a challenge and that high AIBN is used to polymerise through oxygen, but the procedure is not described.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Monomer purification (inhibitor removal), purity and suppliers for BMA and BA, and the grade of AIBN and toluene",
+      "why_needed": "Residual inhibitor affects the kinetics and conversion, and the stated AIBN wt% levels depend on the purity and form of the reagents.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Preparation of stock solutions and the dispensing recipe: monomer stock concentration, AIBN stock solvent and concentration, and the volumes of monomers, AIBN solution and toluene per well. These must give 2 M total monomer in 400 µL, with AIBN 0.05, 0.25, 0.5, 1.0 and 2.0 wt% relative to monomer.",
+      "why_needed": "The target concentrations are given (2 M, 400 µL, wt% AIBN vs monomer). The stock concentrations, the order of addition, and the mapping from wt% to µL are not. Total monomer mass also depends on the f10 mix.",
+      "status": "missing",
+      "resolution": "Target values only: 2 M total monomer, 400 µL per well, and AIBN wt% relative to total monomer. The wt% to µL mapping must be calculated from monomer molar masses (BMA 142.20 g/mol, BA 128.17 g/mol), but the stock concentrations are not given.",
+      "source": "s2.3"
+    },
+    {
+      "detail": "Reactor identity, material and well-plate format, and the sealing method and pressure",
+      "why_needed": "The paper attributes the lack of evaporation to a strong compressive seal over all vials. Without the reactor type, vial type, septum or cap, and sealing procedure, evaporation and oxygen ingress cannot be controlled.",
+      "status": "missing",
+      "resolution": "The text says only 'a 48-well reactor' with 'a strong compressive force' applied to all vials. Vials and septa are not specified.",
+      "source": "s2.1"
+    },
+    {
+      "detail": "Heater-shaker settings: shaking speed, how the 75 °C setpoint was reached and verified, and whether the plate was pre-heated",
+      "why_needed": "Mixing and heat transfer affect the time at temperature and therefore the conversion in a fixed 2 h run. The shaker is described only as a 'plate shaker'.",
+      "status": "assumable",
+      "resolution": "Set 75 °C and 2 h as stated. Shaking speed is not given. Use a moderate orbital speed (for example 500–1000 rpm, within the Opentrons Heater-Shaker range of 200–3000 rpm), and record the value. Note that the Opentrons heater-shaker's stated range is 37–95 °C.",
+      "source": "standard practice; https://docs.opentrons.com/heater-shaker/"
+    },
+    {
+      "detail": "t0 and t1 NMR sample preparation: aliquot volume from each well, deuterated solvent and volume, NMR tube size, and whether the polymerisation is quenched, cooled or diluted into the NMR solvent",
+      "why_needed": "Conversion and f1 come from vinyl-peak integrals. The t1 aliquot must reflect conversion at 2 h, so quenching or dilution is essential. The tube length was cut to fit the OT-2 pipette heads (Fig. S1/S2), but the final dimensions are not given. These procedures are in the SI, which I was told not to use.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "NMR acquisition and processing parameters (spectrometer field, number of scans, relaxation delay, which vinyl peaks are integrated, and how conversion and f1 are calculated from the integrals)",
+      "why_needed": "Quantitative integration of the BMA and BA vinyl signals is the only readout. The paper says the monomer vinyl peaks do not overlap, but gives no parameters and does not say which peaks are used.",
+      "status": "missing",
+      "resolution": "",
+      "source": "flagged as deferred; not in main text"
+    },
+    {
+      "detail": "Robot configuration: pipettes (P20/P300), tip handling for volatile and viscous liquids, labware definitions, deck layout, the custom 3D-printed NMR tube holder, aspiration and dispense settings, and the timing of the pause between the t0 and t1 protocols",
+      "why_needed": "Dispensing accuracy at microlitre scale controls f10 and AIBN levels. The tip-loaded pipette heads clash with the NMR tubes unless they are cut to size. The paper says the custom labware is in Fig. S1, and the scripts are in the SI.",
+      "status": "assumable",
+      "resolution": "Use OT-2 single-channel P20/P300 pipettes with new tips per transfer. The robot selects 20 random wells out of 48 per run. The repeat experiments re-randomise the well locations. The NMR tube length must be cut to clear the pipette heads (glass tube cutter, Fig. S2).",
+      "source": "standard practice; s2.1"
+    }
+  ],
+  "retrieved_details": "From the paper text (s2.1, s2.3, s2.4): BMA (M1) and BA (M2) copolymerisation in toluene at 75 °C for 2 h. Total monomer 2 M, total volume 400 µL per well. 20 variants: f10 = 0.1, 0.3, 0.5, 0.8 crossed with AIBN 0.05, 0.25, 0.5, 1.0, 2.0 wt% relative to total monomer. Use 20 of 48 wells, with the positions randomised by the Python script (the csv input is imported automatically). Run protocol 1 to prepare the mixtures and the t0 NMR samples, then pause. The operator moves the sealed reactor to the plate shaker for polymerisation (2 h). The reactor then goes back on the OT-2 and protocol 2 prepares the t1 NMR samples. The reactor is sealed with strong compressive force (no evaporation measured over 2 h). The glass NMR tubes were cut shorter so they do not clash with the pipette heads. Repeats were run on different days with re-randomised wells. Data processing: IUPAC Contour 2.4.0 and errors of ΔX = Δf1 = 0.05 were used (analysis, not bench). Sources fetched: IUPAC guidelines (Autzen et al., Polym. Chem. 2024, 15, 1851, https://pubs.rsc.org/en/content/articlepdf/2024/py/d4py00270a), which covers experimental design and evaluation but gives no OT-2 bench parameters. Opentrons Heater-Shaker specs (https://docs.opentrons.com/heater-shaker/): 37–95 °C, 200–3000 rpm. The cited OT-2 polymerisation reference (Van de Reydt 2023, ref 19) could not be retrieved, and the Opentrons docs gave no polymerisation details."
+}

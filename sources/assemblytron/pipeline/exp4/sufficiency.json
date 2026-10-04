@@ -1,0 +1,98 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives enough of the Fig 5 workflow to run it: 25 µL PCRs, 0.1 µM primers, 0.5 ng template, cycling, DpnI digest, pooling, column cleanup, TOP10 transformation, recovery, plating and colour scoring. Several details are not stated: the primer and fragment design files, per-fragment annealing temperatures, extension time per kb, full PCR mix composition, pooling volumes and the Zymo column steps. Each is either resolved from a fetched source (NEB Q5 protocol, AQUA paper) or has a defensible standard default that does not change the measured transformation efficiency or colour fraction.",
+  "gaps": [
+    {
+      "detail": "Fragment/primer design for the four 4-fragment chromoprotein constructs (primer sequences, which parts are amplified from which template, homology length)",
+      "why_needed": "Primers define the amplicons and overlaps that must assemble in vivo. The paper's primer table and j5 design files are supplementary and were not used.",
+      "status": "assumable",
+      "resolution": "Per the paper's Methods, the templates are the four pIDMv5K-J23100-[tsPurple/YukonOFP/aeBlue/fuGFP]-B1006 plasmids. Each construct is four fragments, presumably backbone/KanR + J23100 promoter + chromoprotein CDS + B1006 terminator, with the backbone coming from the aeBlue plasmid. This is inferred from the text, not stated. Design primers with 20+ bp (ideally ~32 bp) of terminal homology between adjacent fragments. Section 3.3 says '20+ bps' of homology, and the AQUA paper reports 16–32 bp works, with 32 bp optimal.",
+      "source": "s3.3, s2.2; https://doi.org/10.1371/journal.pone.0137652"
+    },
+    {
+      "detail": "Per-fragment annealing temperature",
+      "why_needed": "The Ta controls PCR specificity and yield for each fragment.",
+      "status": "assumable",
+      "resolution": "The paper says the annealing temperatures were set by AssemblyTron/j5 using an optimal linear gradient, with each tube assigned a temperature on a gradient thermocycler (Bio-Rad C100). Compute each primer pair's Tm, choose a gradient spanning the pairs, and assign each tube the temperature nearest its pair's optimal Ta. This follows the paper's gradient approach but is not a numeric value from it.",
+      "source": "s2.3, s2.4, Figure 2B legend; standard practice"
+    },
+    {
+      "detail": "Extension time per fragment at 72°C",
+      "why_needed": "The extension time is needed to program the thermocycler for each amplicon length.",
+      "status": "resolved",
+      "resolution": "The paper says only 'extension times as specified by AssemblyTron'. NEB gives 20–30 s/kb for Q5, with 10 s/kb possible for simple plasmid templates. Use 30 s/kb (Q5) × amplicon length, with a minimum of ~15–30 s. NEB documents 15–30 s/kb for Phusion; that figure is from memory because the Phusion page could not be fetched.",
+      "source": "https://www.neb.com/en/protocols/pcr-using-q5-high-fidelity-dna-polymerase-m0491"
+    },
+    {
+      "detail": "Which polymerase (Phusion or Q5) and cycle number (34 vs 36) were used for Fig 5",
+      "why_needed": "The enzyme and cycle number affect yield and the extension rate.",
+      "status": "assumable",
+      "resolution": "The paper lists either enzyme and 34 or 36 cycles without saying which applies to Fig 5. Use Q5 with 34 cycles: 98°C 30 s; 34 × (98°C 10 s, Ta 30 s, 72°C extension); 72°C 5 min.",
+      "source": "s2.3; standard practice"
+    },
+    {
+      "detail": "Full PCR mix composition (buffer, dNTPs, enzyme amount, water) for the 25 µL reaction",
+      "why_needed": "Only primers (0.1 µM), template (0.5 ng) and volume (25 µL) are given.",
+      "status": "assumable",
+      "resolution": "Use the NEB Q5 25 µL recipe: 1× Q5 buffer, 200 µM dNTPs, 0.25 µL Q5 polymerase, 0.1 µM of each primer, 0.5 ng linearized template, water to 25 µL. I did not read the NEB page's recipe table. These are NEB's usual amounts from memory.",
+      "source": "standard practice (NEB Q5 manual)"
+    },
+    {
+      "detail": "Restriction enzyme used to linearize templates, and its digest conditions",
+      "why_needed": "Linearized templates are specified, but the enzyme is not.",
+      "status": "assumable",
+      "resolution": "Linearize each template with any enzyme that cuts outside the amplicons, per NEB buffer conditions. Template amount in the PCR is fixed at 0.5 ng per 25 µL. The enzyme choice does not affect the readout, because DpnI removes the template afterwards.",
+      "source": "s2.3; standard practice"
+    },
+    {
+      "detail": "DpnI digestion of each PCR",
+      "why_needed": "This removes template plasmid, which would otherwise give background colonies, notably blue ones from the aeBlue backbone.",
+      "status": "resolved",
+      "resolution": "To each 25 µL PCR add 19 µL water, 5 µL rCutSmart buffer and 1 µL DpnI. Incubate 30 min at 37°C, then heat-inactivate 20 min at 65°C. The enzyme concentration is not given; the standard NEB stock is 20 U/µL, assumed here.",
+      "source": "s2.3"
+    },
+    {
+      "detail": "Pooling of separate fragment PCRs: volumes and total amount",
+      "why_needed": "The paper says only that products are combined 'using volumes proportional to fragment length'. Fragment ratios determine assembly efficiency.",
+      "status": "assumable",
+      "resolution": "Combine the DpnI-treated PCRs in volumes proportional to fragment length, which gives roughly equimolar fragments when yields are similar. Use the total volume the cleanup column can take. AQUA used a 3:1 insert:vector molar ratio, with 12 ng vector per kb, in 10 µL total, but that was for gel-purified fragments.",
+      "source": "s3.3; https://doi.org/10.1371/journal.pone.0137652"
+    },
+    {
+      "detail": "Column cleanup procedure (Zymo DNA Clean & Concentrator-5)",
+      "why_needed": "The paper defers to the kit, and the pooled fragment mix is cleaned before transformation.",
+      "status": "assumable",
+      "resolution": "The Zymo manual could not be fetched. Use the standard procedure: add binding buffer (typically 5 volumes, the usual ratio for PCR products), spin the mix through the column, wash twice with Zymo wash buffer, dry-spin, then elute in 10 µL water, as stated in the paper.",
+      "source": "s2.3; standard practice (Zymo kit)"
+    },
+    {
+      "detail": "DNA amount/volume used for transformation vs. quantification",
+      "why_needed": "This sets the µg of DNA behind CFU/µg.",
+      "status": "assumable",
+      "resolution": "The paper says the 10 µL elution was transformed into 50 µL of cells and that 'the other 5 µL' was used for NanoDrop. I read this as 5 µL for transformation and 5 µL for NanoDrop. Quantify the DNA actually transformed or plated to compute CFU/µg.",
+      "source": "s2.3"
+    },
+    {
+      "detail": "Competent cells and recovery medium for Fig 5",
+      "why_needed": "A flagged deferred item: some figures used a different cell batch.",
+      "status": "resolved",
+      "resolution": "Fig 5 uses the in-house Hanahan TOP10 cells (efficiency 8.47×10^8 CFU/µg pUC19). Super Optimal Broth recovery was used only for Fig 4, so Fig 5 uses LB + 0.2% dextrose. Transformation: 50 µL cells, 30 min on ice, 42°C for 60 s, add 250 µL LB + 0.2% dextrose, recover 60 min at 37°C.",
+      "source": "s2.1, s2.3"
+    },
+    {
+      "detail": "Plating volume, antibiotic, and colony scoring",
+      "why_needed": "These are needed to calculate CFU/µg and the fraction of correctly coloured colonies.",
+      "status": "assumable",
+      "resolution": "Plate 50–200 µL of the base mix or a 10× dilution, chosen by the predicted efficiency (~10^3 CFU/µg expected). Use LB agar with 50 µg/mL kanamycin (the pIDMv5K plasmids are Kan-resistant, but the paper does not state kanamycin for Fig 5). Incubate at 37°C overnight. Count colonies manually, report CFU/µg of DNA plated, and score colour (Yukon = orange; others per construct). Blue colonies come from the template backbone, and uncoloured colonies are failures.",
+      "source": "s2.1, s2.3, s3.3; standard practice"
+    },
+    {
+      "detail": "Robot-specific details: deck layout, reagent positions, pipetting and mixing parameters, tube positions in the thermocycler",
+      "why_needed": "These are needed to run the automated PCR set-up and pooling steps on the OT-2.",
+      "status": "assumable",
+      "resolution": "The paper defers these to AssemblyTron-generated files and supplementary tables, which were not used. Set them manually using standard OT-2 practice. The deck layout, tip handling and mixing are set-up choices and do not change the biological outcome. PCR tubes are 100 µL tubes moved by hand to the gradient thermocycler.",
+      "source": "s2.4, Figure 1 legend; standard practice"
+    }
+  ],
+  "retrieved_details": "AQUA cloning (Beyer et al. 2015, https://doi.org/10.1371/journal.pone.0137652; fetched), Methods and Results. (1) In vivo assembly in E. coli of linear fragments with 16–32 bp terminal homology; 32 bp gave the most colonies, and 16–32 bp all worked. (2) The original protocol mixed gel-purified fragments in 10 µL water, with insert:vector 3:1 and 12 ng vector per kb of vector size. Mixtures were incubated 1 h at room temperature, then 5 µL went into 25 µL chemically competent TOP10. The cells were incubated 10 min on ice, heat shocked 45 s at 42°C, held 2 min on ice, and recovered in 250 µL LB with shaking for 1 h at 37°C and 700 rpm. They were plated on antibiotic LB, and colonies were read after about 16 h. The AssemblyTron paper changes this: DpnI-treated separate PCRs, column cleanup, 50 µL of cells, a 30 min ice step and 60 s heat shock. (3) 4-fragment assemblies reached 83% accuracy by colony PCR. (4) DpnI is optional in AQUA, but it is useful when too much template carries over, which gives false-positive colonies. NEB Q5 protocol (https://www.neb.com/en/protocols/pcr-using-q5-high-fidelity-dna-polymerase-m0491): initial denaturation 98°C 30 s; 25–35 cycles of 98°C 5–10 s, annealing 10–30 s, 72°C 20–30 s/kb (10 s/kb possible for simple plasmid templates); final extension 72°C 2 min; 5X Q5 buffer gives 2.0 mM Mg at 1X. From the AssemblyTron paper itself: Phusion or Q5, 25 µL PCRs, 0.1 µM primers, 0.5 ng linearized template; 30 s 98°C, 34 or 36 cycles of 10 s 98°C / 30 s Ta / extension at 72°C, final 5 min 72°C; DpnI mix of 19 µL water + 5 µL rCutSmart + 1 µL DpnI, 30 min 37°C, then 20 min 65°C; pooled fragments cleaned with Zymo DCC-5 and eluted in 10 µL water; 50 µL TOP10 (Hanahan, 8.47×10^8 CFU/µg), 30 min ice, 42°C 60 s, 60 min 37°C recovery with 250 µL LB + 0.2% dextrose; plate 50–200 µL of base or 10× dilution, 37°C overnight. The paper's Fig 5 results: ~10^3 CFU/µg; Yukon 68.7% correct and >80% for the other colours."
+}

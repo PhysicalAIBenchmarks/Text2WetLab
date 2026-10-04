@@ -1,0 +1,117 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "fetch",
+      "value": "https://www.nature.com/articles/s41598-021-97571-2"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8429412/"
+    },
+    {
+      "kind": "search",
+      "value": "Gren Streptomyces griseofuscus DSM 40191 heterologous expression host conjugation methods Sci Rep 2021"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8443760/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/354603215_Characterization_and_engineering_of_Streptomyces_griseofuscus_DSM_40191_as_a_potential_host_for_heterologous_expression_of_biosynthetic_gene_clusters"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8443760/"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/article/10.1007/s11274-023-03861-4"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/386589879_ActinoMation_a_literate_programming_approach_for_medium-throughput_robotic_conjugation_of_Streptomyces_spp"
+    },
+    {
+      "kind": "result",
+      "value": "https://nanoporetech.com/resource-centre/characterization-and-engineering-streptomyces-griseofuscus-dsm-40191-potential-0"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2020.11.06.372458.full.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://academic.oup.com/jimb/article/doi/10.1093/jimb/kuae009/7619141"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/abs/10.1021/sb3001003"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8443760/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8443760/"
+    },
+    {
+      "kind": "search",
+      "value": "Streptomyces griseofuscus DSM 40191 conjugation E. coli ET12567 pUZ8002 spores 2xYT washed MgCl2 SFM overlay nalidixic acid apramycin methods 'conjugation' Gren"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7679098/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8443760/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC152450/"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9119853"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9976165"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11261713/"
+    },
+    {
+      "kind": "result",
+      "value": "https://aem.asm.org/content/69/1/84.full.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4752574"
+    },
+    {
+      "kind": "result",
+      "value": "https://streptomyces.org.uk/redirect/RecombineeringFEMSMP-2006-5.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8443760/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8443760/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://europepmc.org/api/fulltextRepo?pprId=PMC8443760"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8443760/fullTextXML"
+    }
+  ]
+}

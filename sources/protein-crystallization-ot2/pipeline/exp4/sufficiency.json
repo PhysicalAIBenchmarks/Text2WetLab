@@ -1,0 +1,63 @@
+{
+  "verdict": "reject",
+  "summary": "The only methods section for this experiment (s2.1) lists the pipettes and tips. It does not describe the gravimetric measurement, the glycerol dilution series, the volumes tested for glycerol, the number of replicates, or the human comparator. The cited Opentrons viscous-liquid note (ref 27) gives a gravimetric method and glycerol parameters only for different pipettes, glycerol concentrations and replicate counts, so it cannot stand in for these details.",
+  "gaps": [
+    {
+      "detail": "Gravimetric/measurement method: balance model and readability, weighing vessel, evaporation control, how mass is converted to volume, and how accuracy and precision are calculated",
+      "why_needed": "Accuracy and precision at 1 µL and 100 µL cannot be measured without a defined, sufficiently sensitive balance and procedure. Evaporation and vibration error are comparable to a 1 µL aliquot.",
+      "status": "missing",
+      "resolution": "Ref 27 describes a custom rig with the scale on a separate bench to isolate OT-2 vibration. It does not name a balance model or give a weighing-vessel or evaporation-control procedure. A generic analytical or micro balance is a guess, and an inadequate balance would invalidate the 1 µL result.",
+      "source": ""
+    },
+    {
+      "detail": "Glycerol series: which concentrations were tested within '0-100%', step size, v/v or w/w, and diluent",
+      "why_needed": "The result is a function of viscosity, so the exact concentrations tested define the experiment.",
+      "status": "missing",
+      "resolution": "Ref 27 used 10%, 90% and 99% glycerol, made by diluting 99% glycerol (Sigma G5516) with molecular-grade water in 10 mL batches in 15 mL tubes. The paper's own series is not stated, so the concentrations cannot be reconstructed.",
+      "source": "https://opentrons.com.cn/wp-content/uploads/2023/11/Viscous-Liquid-Handling-Automation-using-Opentrons-OT-2.pdf"
+    },
+    {
+      "detail": "Volumes pipetted for glycerol solutions, and which pipette (p10 GEN1 or p300 GEN2) was used for each volume and liquid",
+      "why_needed": "Only water volumes (1 and 100 µL) are given. The glycerol volumes and pipette assignments are needed to reproduce the comparison.",
+      "status": "missing",
+      "resolution": "Not stated in the paper.",
+      "source": ""
+    },
+    {
+      "detail": "Replicate number per condition, for both OT-2 and human",
+      "why_needed": "Precision (CV) and the human vs robot comparison depend on n.",
+      "status": "missing",
+      "resolution": "Ref 27 used 4 repetitions per volume for the P20 and 10 for the P300 and P1000. The paper's n is not stated, so these are not transferable.",
+      "source": "https://opentrons.com.cn/wp-content/uploads/2023/11/Viscous-Liquid-Handling-Automation-using-Opentrons-OT-2.pdf"
+    },
+    {
+      "detail": "Human comparator: pipette brand and model (manual p10 and p100/p200 or other), tip type, number and experience of operators, technique (forward or reverse pipetting)",
+      "why_needed": "The human arm of the comparison is undefined without these.",
+      "status": "missing",
+      "resolution": "Not described in the paper.",
+      "source": ""
+    },
+    {
+      "detail": "OT-2 aspirate, dispense, delay, blow-out and withdrawal settings for water and glycerol with the p10 GEN1 and p300 GEN2 pipettes",
+      "why_needed": "Flow rates, delays and withdrawal speed strongly affect viscous-liquid accuracy. The paper does not say whether defaults or tuned settings were used.",
+      "status": "missing",
+      "resolution": "Ref 27 Tables A1-A3 give tuned values for GEN2 P20, P300 and P1000 pipettes (for example, P300 glycerol 90%: aspiration and dispense 64.75 µL/s, 8 s delays, withdrawal 1 mm/s, blow-out 4 µL/s). It has no values for the p10 GEN1 pipette, and the paper does not say it used them. Default parameters were used for water in ref 27.",
+      "source": "https://opentrons.com.cn/wp-content/uploads/2023/11/Viscous-Liquid-Handling-Automation-using-Opentrons-OT-2.pdf"
+    },
+    {
+      "detail": "Ambient temperature and humidity, and the density correction used for glycerol mixtures",
+      "why_needed": "Mass-to-volume conversion depends on liquid density and temperature, and evaporation depends on humidity.",
+      "status": "assumable",
+      "resolution": "Record room temperature and humidity, and use tabulated glycerol-water density at that temperature. Ref 27 reports testing at 23-32 °C and 35-45% RH and cites an online glycerol density/viscosity calculator.",
+      "source": "standard practice; https://opentrons.com.cn/wp-content/uploads/2023/11/Viscous-Liquid-Handling-Automation-using-Opentrons-OT-2.pdf"
+    },
+    {
+      "detail": "Pipette hardware and tips",
+      "why_needed": "Defines the robot arms and consumables used.",
+      "status": "resolved",
+      "resolution": "OT-2 with a p10 GEN1 pipette on the left mount and a p300 GEN2 on the right. Tips are GEB PT0010-9B-NS (10 µL) and Opentrons 999-00081 (200 µL), respectively.",
+      "source": "s2.1"
+    }
+  ],
+  "retrieved_details": "From the Opentrons application note 'Viscous Liquid Handling Automation using Opentrons OT-2' (ref 27; https://opentrons.com.cn/wp-content/uploads/2023/11/Viscous-Liquid-Handling-Automation-using-Opentrons-OT-2.pdf). It is a different study (GEN2 P20/P300/P1000, API 2.9) and is shown only as a possible template:\n- Glycerol dilutions were made from 99% glycerol (Sigma G5516) and molecular-grade water (Invitrogen 10977023), as 10 mL total in 15 mL Falcon tubes.\n- Gravimetry used a custom rig with the scale on a separate bench to avoid OT-2 vibration. It ran at 23-32 °C and 35-45% RH. Volumes and replicates were: P20 at 1, 10 and 20 µL with n=4; P300 at 20, 150 and 300 µL with n=10; P1000 at 100, 500 and 1000 µL with n=10.\n- Dynamic viscosities cited: 1.3 mPa·s for 10% glycerol, 168 mPa·s for 90%, 893 mPa·s for 99%.\n- Viscous-handling recipe: slow aspiration with a delay, slow tip withdrawal (1-5 mm/s), slow dispense with a delay, and a slow blow-out. Table A2 (P300): glycerol 10% 83.25 µL/s, 2 s delay, 5 mm/s withdrawal, blow-out 10 µL/s; 90% 64.75 µL/s, 8 s, 1 mm/s, blow-out 4 µL/s; 99% 55.5 µL/s, 10 s, 1 mm/s, blow-out 4 µL/s. Table A1 (P20): 10% 6.804 µL/s with 2 s delay; 90% 5.292 µL/s with 7 s; 99% 3.78 µL/s with 10 s.\nThe paper's own gravimetric method, glycerol series, replicates and human operator details were not found in any cited or accessible source."
+}

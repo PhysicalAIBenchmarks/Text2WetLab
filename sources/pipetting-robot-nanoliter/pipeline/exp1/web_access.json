@@ -1,0 +1,153 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8143861/"
+    },
+    {
+      "kind": "search",
+      "value": "Adapting a Low-Cost and Open-Source Commercial Pipetting Robot for Nanoliter Liquid Handling Councill SLAS Technology fluorescein"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.slas-technology.org/article/S2472-6303(22)01108-6/fulltext"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13118588/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.semanticscholar.org/paper/Adapting-a-Low-Cost-and-Open-Source-Commercial-for-Councill-Axtell/b391585afebbe3bd3292cb621e82c174b7027a01"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.semanticscholar.org/paper/Adapting-a-Low-Cost-and-Open-Source-Commercial-for-Councill-Axtell/b391585afebbe3bd3292cb621e82c174b7027a01/figure/1"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.pnnl.gov/publications/adapting-low-cost-and-open-source-commercial-pipetting-robot-nanoliter-liquid-handling"
+    },
+    {
+      "kind": "result",
+      "value": "https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/jssc.70379?af=R"
+    },
+    {
+      "kind": "result",
+      "value": "https://sage.figshare.com/collections/Adapting_a_Low-Cost_and_Open-Source_Commercial_Pipetting_Robot_for_Nanoliter_Liquid_Handling/5214707"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.osti.gov/servlets/purl/1864140"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.nature.com/articles/s41467-022-30643-7"
+    },
+    {
+      "kind": "fetch",
+      "value": ""
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.slas-technology.org/article/S2472-6303(22)01108-6/fulltext"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8143861/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8143861/"
+    },
+    {
+      "kind": "search",
+      "value": "Councill Adapting Low-Cost Open-Source Pipetting Robot Nanoliter Liquid Handling PMC8143861 fluorescein plate reader dispense"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8143861/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.semanticscholar.org/paper/Adapting-a-Low-Cost-and-Open-Source-Commercial-for-Councill-Axtell/b391585afebbe3bd3292cb621e82c174b7027a01"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.pnnl.gov/publications/adapting-low-cost-and-open-source-commercial-pipetting-robot-nanoliter-liquid-handling"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/science/article/pii/S2472630322011086"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/347073702_Adapting_a_Low-Cost_and_Open-Source_Commercial_Pipetting_Robot_for_Nanoliter_Liquid_Handling"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.osti.gov/servlets/purl/1864140"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.nature.com/articles/s41467-022-30643-7"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/science/article/pii/S1369703X22003825"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/353025544_Open-source_personal_pipetting_robots_with_live-cell_incubation_and_microscopy_compatibility"
+    },
+    {
+      "kind": "search",
+      "value": "Opentrons OT-1 nanoliter fluorescein sodium borate pH 9.3 calibration curve dispensed plate reader gain"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.osti.gov/servlets/purl/1864140"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.slas-technology.org/article/S2472-6303(22)01108-6/fulltext"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13118588/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/science/article/pii/S1535553506001924"
+    },
+    {
+      "kind": "result",
+      "value": "https://opentrons.com/products/opentrons-flex-absorbance-plate-reader-module-gen1"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.sagepub.com/doi/10.1016/j.jala.2006.05.006"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/figure/Fluorescence-Ratio-pH-Calibration-Curve-A-Plate-reader-normalized-fluorescence-curves_fig1_316733756"
+    },
+    {
+      "kind": "result",
+      "value": "https://cdn.clinicaltrials.gov/large-docs/03/NCT01979003/Prot_SAP_000.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2604.07768"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8143861/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8143861/"
+    }
+  ]
+}

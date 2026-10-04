@@ -1,0 +1,54 @@
+{
+  "verdict": "major_issues",
+  "summary": "Volumes, temperatures, times, antibiotic choices and the 5-column robot layout largely match the paper (50 µL cells + 2 µL plasmid, 4 °C 30 min, 42 °C 30 s, 950 µL warm LB, 60 min at 37 °C and 250 rpm, 100 µL LB for the manual arm). There are three real problems. The air-gap/LB handling in steps 9 and 11 is contradictory. The robot and manual arms differ in post-heat-shock handling, which confounds the comparison. The manual arm is sequenced and set up in a way that does not give a fair comparison. Several smaller gaps remain (redundant mixing, cell thawing, tip capacity, missing manual control, undefined dilutions).",
+  "issues": [
+    {
+      "step": 9,
+      "severity": "major",
+      "issue": "The note says the robot aspirates 100 µL LB, then a 30 µL air gap, then 45 µL mix, and dispenses this into heatshock_plate. That would put the 100 µL LB on the cells before heat shock, which contradicts the paper's manual protocol (LB added after heat shock). Step 11 then says the same 100 µL LB is dispensed with the mix into the deep-well plate, so the notes in steps 9 and 11 conflict. Neither step defines where the 100 µL LB goes, and step 11 aspirates from a plate that may already contain it.",
+      "suggestion": "Resolve the sequence explicitly and mark it as an interpretation of s3.1.1. Either (a) the LB plug is aspirated from the deep-well plate, then air, then mix, and the whole column is dispensed in step 11 only, with step 9 moving only the cell mix to the heat-shock plate using its own air gap, or (b) state clearly that LB is added to the heat-shock plate and adjust the heat-shock volumes. Do not describe the LB aspiration in step 9 if it is not dispensed there."
+    },
+    {
+      "step": 15,
+      "severity": "major",
+      "issue": "The manual arm includes a 5 min ice step after heat shock, and a flick-mix, taken from NEB. The paper's own manual protocol (s2.2) has neither, and the robot arm omits the ice step (step 10). The two arms being compared therefore differ in procedure beyond manual vs automated. Flicking a 96-well plate is also not a practical way to mix cells and DNA.",
+      "suggestion": "Make the arms equivalent. Follow s2.2 for both (30 s at 42 °C, then LB) or add the ice step to both, and flag the choice as an assumption. State a workable mixing method for the plate format, such as gentle pipetting or tapping, or run the manual arm in individual tubes as in the paper."
+    },
+    {
+      "step": 14,
+      "severity": "minor",
+      "issue": "The manual arm is performed after the robot arm's plating (step 13). No handling of the manual_plate competent cells is given in the meantime (thawing, ice, temperature), so these cells sit without temperature control for the whole robot run. This could depress manual efficiency and bias the robot vs manual comparison. The paper ran both under comparable conditions.",
+      "suggestion": "Place the manual-arm preparation in parallel with the robot run, or state that the cells are kept on ice/chilled until step 14 and are handled in the same time window as the robot cells."
+    },
+    {
+      "step": 7,
+      "severity": "minor",
+      "issue": "Step 7 repeats the mixing already done in step 6 (mix 3 times). This gives a second round of pipette-mixing of competent cells, which are fragile (NEB says to flick gently). The paper describes a single mix.",
+      "suggestion": "Remove step 7, or merge it into step 6 as a single 3-cycle gentle mix at reduced speed."
+    },
+    {
+      "step": 6,
+      "severity": "minor",
+      "issue": "The starting contents show 50 µL competent cells already in the cells_plate wells. The Mach1 cells come as frozen single-use vials, and ET12567 cells are frozen aliquots. No thawing on ice or dispensing into the plate is described, and the plate must stay cold on the block.",
+      "suggestion": "Add a manual step to thaw the cells on ice and aliquot 50 µL per well into the cells_plate on the pre-chilled block immediately before starting the robot."
+    },
+    {
+      "step": 13,
+      "severity": "minor",
+      "issue": "The dilution series (neat, 1:10, 1:100) has no defined diluent, volumes or tube/plate format. No plate count is given for 40 outgrowths × 3 dilutions. Neat plating of Mach1 at ~10^6 CFU/µg could produce lawns, and CFU/µg cannot be calculated without defined dilution steps and the final outgrowth volume.",
+      "suggestion": "Specify the dilution scheme (for example 10 µL into 90 µL LB), the volume plated per plate, and the outgrowth volume used in the CFU/µg calculation. State how many plates are used per well or per column."
+    },
+    {
+      "step": 17,
+      "severity": "minor",
+      "issue": "The manual arm has no no-DNA negative control, although the robot arm does (Fig. 6 states that negative controls were run).",
+      "suggestion": "Add a no-DNA (TE) control well or column to the manual arm, with the same plating."
+    },
+    {
+      "step": 1,
+      "severity": "minor",
+      "issue": "Only one 300 µL tip box (slot 11, 12 columns) is specified. Steps 2, 6, 7, 9 and 11 each use a column of new tips per sample column. Counted this way, they need roughly 15 or more columns, more than one box holds.",
+      "suggestion": "Add a second tip box (for example at slot 10) or state explicit tip-reuse rules per column."
+    }
+  ]
+}

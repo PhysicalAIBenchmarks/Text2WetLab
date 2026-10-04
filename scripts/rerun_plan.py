@@ -52,6 +52,8 @@ def measured_envelopes():
         exps = json.loads((d.parent.parent / "experiments.json").read_text())
         exps = exps if isinstance(exps, list) else exps["experiments"]
         n = int(d.parent.name[3:])
+        if not (d.parent.parent / "paper.json").exists():   # not committed for papers whose text we may not redistribute
+            continue
         paper = Paper.model_validate_json((d.parent.parent / "paper.json").read_text())
         exp = Experiment.model_validate(exps[n - 1])
         inp.append(len(paper_text(paper, section_ids=experiment_section_ids(paper, exp), legends=True)) / CHARS_PER_TOKEN)

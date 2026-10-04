@@ -1,0 +1,63 @@
+{
+  "verdict": "reject",
+  "summary": "The paper describes the hardware, OT-2 setup and calibration, and the general workflow (CaCl2 in wells, alginate droplets, imaging, EDTA). It does not give the quantities that set the measured result. The EDTA volume and its time of addition are missing, as are the CaCl2 and alginate volumes. The pixel-intensity analysis is also undefined. A search turned up only generic EDTA-dissolution data for alginate beads, which is not a defensible substitute because disintegration kinetics depend on the EDTA-to-bead ratio.",
+  "gaps": [
+    {
+      "detail": "Volume (and delivery step) of 200 mM EDTA added per well, plus EDTA solvent/pH",
+      "why_needed": "Disintegration rate and the intensity-decay curve in Fig. 6B/C depend on the EDTA:gel ratio and on the EDTA pH. Only '200 mM' is stated.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Time of EDTA addition relative to the imaging schedule, and which pipette adds it",
+      "why_needed": "The 'before' and 'after' time series (Fig. 6A/B) need a defined zero point. The paper does not say when the EDTA is added or how long after bead formation. It also does not say whether imaging continues without interruption.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Volume of 1.0% CaCl2 per well and the exact alginate droplet volume and number of droplets per well",
+      "why_needed": "Bead size, gel mass and optical opacity (the pixel-intensity readout) depend on these. The text only says 'three separate droplets' with air gaps and a '20 µL pipette'. It also lists a 300 µL pipette in the left mount, so the two statements conflict.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Alginate identity (supplier, grade, molecular weight) and CaCl2 grade. Alginate and CaCl2 diluent or solvent (assumed water), and whether the 1.5% and 1.0% values are w/v",
+      "why_needed": "Gel strength and opacity depend on the alginate grade and the solvent. The paper gives only '1.5% alginate' and '1.0% calcium'.",
+      "status": "assumable",
+      "resolution": "Assume % w/v in deionized water, using standard low-/medium-viscosity sodium alginate and CaCl2. Record the lot and supplier.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Imaging time-point schedule for the EDTA experiment",
+      "why_needed": "This sets the temporal resolution of the time-lapse. The paper gives a schedule only as an example: 20, 40, 60 s, then 5-min steps to 30 min. It also says a full 96-well plate takes about 3 h.",
+      "status": "assumable",
+      "resolution": "Use the example schedule: 20 s, 40 s, 60 s, then every 5 min to 30 min. Image only the wells being used (a subset of the plate). The paper states about 5 s per well image.",
+      "source": "s8.2"
+    },
+    {
+      "detail": "Pixel-intensity analysis method (grayscale conversion, ROI per bead or well, mean computation, normalization)",
+      "why_needed": "The reported readout is 'mean pixel intensity'. The conversion and ROI affect absolute values.",
+      "status": "assumable",
+      "resolution": "Convert the 640x480 RGB images to grayscale and compute the mean intensity over a fixed circular ROI centered on the well or bead. Apply the same ROI across all time points. Per Fig. 5, error bars are the distribution of pixel values.",
+      "source": "standard practice; s6.4, Fig. 5 legend"
+    },
+    {
+      "detail": "Camera settings (exposure, gain, white balance, lighting) and camera-to-well distance",
+      "why_needed": "Pixel intensity is sensitive to these settings, so they must stay constant.",
+      "status": "assumable",
+      "resolution": "Keep auto-exposure and white balance off or fixed throughout. Set the focus manually on the live feed. Image at the native 640x480 resolution. About 10 mm of camera protrudes from the holder.",
+      "source": "s6.2, s6.4, s7.3; standard practice"
+    },
+    {
+      "detail": "Reagent dispensing and handling details (aspirate and dispense heights, speeds, tip touch-off height, mixing after EDTA)",
+      "why_needed": "The droplet must coalesce centered in the well, and the EDTA must contact the gel.",
+      "status": "assumable",
+      "resolution": "Dispense the droplet just before detachment, then touch it to the liquid surface in the well. Add EDTA gently without disturbing the beads. Do not mix, or mix only minimally.",
+      "source": "s7.4; standard practice"
+    }
+  ],
+  "retrieved_details": "From the paper (no external source supplied the missing values):\n- Deck (s7.1): slot 1 = 96-well plate; slot 8 = 1000 µL tips; slot 9 = 300 µL tips (the text also says '20 µL pipette'); slot 10 = 2 mL vial rack with reagent vials; slot 11 = camera holder with pick-and-place tool. Right mount = 1000 µL pipette; left mount = 300 µL pipette.\n- Calibration (s7.2): run the Opentrons deck calibration, then the labware position check. Focus the camera on the live feed using the ring at its top. Center the camera over the well by adjusting offsets in the app.\n- Camera server (s7.3, s6.4): Python 3.10+, OpenCV-Python, Pillow and Tkinter. Run CameraServer.py with the server IP set on the LAN. Images are 640x480 RGB.\n- Dispensing (s7.4): CaCl2 goes into wells first. Alginate is drawn as separate droplets with air gaps, dispensed to just before detachment, then touched to the liquid surface to coalesce. The camera then images each well.\n- Validation (s8.2): 1.5% alginate and 1.0% CaCl2 beads, 200 mM EDTA. About 5 s per well image. Example intervals: 20 s, 40 s, 60 s, 5, 10, 15, 20, 25 and 30 min. Full 96-well plate is about 3 h. Readout is mean pixel intensity, which rises before EDTA and drops sharply after.\n- Web searches only found generic EDTA-dissolution data for alginate beads (e.g. a patent report that 0.008 M EDTA did not dissolve beads in 30 min while 0.025-0.1 M did). That does not fix this paper's volume or timing. Related: PubMed record https://pubmed.ncbi.nlm.nih.gov/40546787/."
+}

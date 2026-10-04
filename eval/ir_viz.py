@@ -145,11 +145,18 @@ def find_irs():
     return found
 
 
+def pipeline_doi(slug):
+    """DOI a paper was converted under: paper.json if present, else the record (paper.json is not committed for
+    papers whose licence does not allow redistributing their text)."""
+    f = ROOT / "sources" / slug / "pipeline/paper.json"
+    return json.loads(f.read_text())["doi"] if f.exists() else json.loads((ROOT / "sources" / slug / "record.json").read_text())["doi_primary"]
+
+
 def name_for(path: pathlib.Path):
     rel = path.relative_to(ROOT)
     if rel.parts[0] == "tasks":
         return rel.parts[1]
-    doi = json.loads((path.parent.parent / "paper.json").read_text())["doi"]   # sources/<slug>/pipeline/exp<N>/protocol.json
+    doi = pipeline_doi(path.parents[2].name)   # sources/<slug>/pipeline/exp<N>/protocol.json
     return "paper-" + re.sub(r"[^\w]+", "_", doi) + "-" + path.parent.name
 
 

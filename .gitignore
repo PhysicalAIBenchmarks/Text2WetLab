@@ -4,3 +4,10 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# Full text of papers whose licence does not allow redistribution (see tests/test_ingestion.py); re-fetch with paper2protocol
+sources/apex/pipeline/paper.json
+sources/covid-diagnostic-capacity-2021/pipeline/paper.json
+sources/covid-diagnostic-capacity-2022/pipeline/paper.json
+sources/polymerisation-kinetics-robot/pipeline/paper.json
+sources/yeast-mycosporine/pipeline/paper.json

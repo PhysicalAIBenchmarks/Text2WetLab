@@ -1,0 +1,42 @@
+{
+  "verdict": "minor_issues",
+  "summary": "The protocol follows the paper's design. Per pair it uses 20 reactions (4 f10 levels × 5 AIBN levels), 2 M total monomer, 400 µL per well, 75 °C for 2 h, and t0/t1 NMR sampling giving 40 samples. The arithmetic checks out. The AIBN stock dilutions give 5.4, 2.7, 1.35 and 0.27 mg/mL. The monomer volumes are 20/60/100/160 µL for M1 and 180/140/100/40 µL for M2. The per-pair AIBN volumes plus toluene top-up make 200 µL. Every f10 level has all five AIBN levels, and all wells lie inside A1:F8. No steps are out of order, and no numbers contradict the paper. The remaining concerns are practical or fidelity issues rather than errors, and most are flagged as assumptions already.",
+  "issues": [
+    {
+      "step": 127,
+      "severity": "minor",
+      "issue": "NMR tubes are capped only once, after all six pairs are finished. The pair-1 t0 and t1 tubes sit uncapped for the whole multi-hour run, which is several 2 h polymerisations plus dispensing. CDCl3 and toluene can evaporate, and the volatile monomers (MMA, BA, St) can also be lost. This can bias integral-based f1 and X, and the t0/t1 samples would have unequal storage histories.",
+      "suggestion": "Add a manual capping step after each pair's t0 and t1 sampling (after steps 23/27, 43/47 and so on). Alternatively, run NMR on each pair before starting the next, or keep the tubes capped or covered."
+    },
+    {
+      "step": 9,
+      "severity": "minor",
+      "issue": "The paper randomises well positions with the Python script, and re-randomises them for repeat runs, to remove positional bias. Here one fixed pseudo-random layout is reused for all six pairs. Each AIBN level (and so each conversion regime) therefore always occupies the same plate positions. Any heating or shaking gradient across the plate is then confounded with AIBN level and conversion. This departs from the paper's stated approach.",
+      "suggestion": "Generate a new randomised layout for each pair, e.g. from the CSV by seeded shuffle. Record the layout used, and state clearly that the fixed layout is an assumption."
+    },
+    {
+      "step": 28,
+      "severity": "minor",
+      "issue": "Volumes of the AIBN stocks are fixed for each pair at the f10 = 0.5 mean molar mass. For BMA-St and GMA-St the true AIBN loading varies by about ±11% with f10 (e.g. 86 vs 108 mg monomer in 400 µL). It then deviates from the nominal 0.05–2 wt% levels. The paper's script computes exact per-well volumes. This does not bias the reactivity ratios, but it departs from 'wt% of total monomer'.",
+      "suggestion": "Compute the AIBN volume per well from the actual monomer mass of that well (the toluene top-up then varies per well), or state the real wt% per well in the dataset."
+    },
+    {
+      "step": 5,
+      "severity": "minor",
+      "issue": "The AIBN stock volumes leave little margin. After the dilutions, aibn_2wt holds about 5500 µL and the 2 wt% dispensing needs about 4350 µL across the six pairs. The 1, 0.5, 0.25 and 0.05 wt% tubes each hold 5000 µL against the same 4350 µL need. That leaves about 650–1150 µL, which is close to the dead volume of a 15 mL conical tube. Stocks also sit open on deck for many hours.",
+      "suggestion": "Prepare larger AIBN stock volumes, e.g. 15–20 mL in suitable tubes or reservoirs, or make fresh stocks per pair. Keep the stocks capped or covered."
+    },
+    {
+      "step": 0,
+      "severity": "minor",
+      "issue": "The full run covers six sequential pairs with a manual 2 h heating step each, so it takes many hours. Deck capacity is not addressed: six reactors, six NMR holders, ten stock tubes and two reservoirs do not fit on an OT-2 at once, and labware swaps are not described. The same long run leaves the toluene-based monomer stocks open on deck. Evaporation of toluene or volatile monomers would change the actual concentration, and St/MMA could start to polymerise in the stock.",
+      "suggestion": "Add deck layout and labware-swap instructions, e.g. one pair per protocol run. Keep stocks capped or cooled, and place the CSV-driven layout in separate protocol runs."
+    },
+    {
+      "step": 23,
+      "severity": "minor",
+      "issue": "The 15 µL aliquot in 585 µL CDCl3 gives only about 50 mM monomer at t0 and about 2–3 mM residual monomer at 94–96% conversion (Table 1). The low-conversion/high-conversion f1 values (0.00–0.06) then depend on very weak vinyl signals. This risks large errors in f1 and X, which the Contour analysis uses, unless many scans are collected. The volume is flagged as assumed but is not justified.",
+      "suggestion": "Consider a larger aliquot (e.g. 40–60 µL into about 550 µL CDCl3), or state the NMR scan count needed for adequate S/N on the residual monomer signals. Also note that P1000 or similar is needed for the 2500 µL stock transfers in steps 1–8, not the P20/P300 pipettes named in the assumptions."
+    }
+  ]
+}

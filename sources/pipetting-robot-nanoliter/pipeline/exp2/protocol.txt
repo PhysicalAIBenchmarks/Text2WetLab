@@ -1,0 +1,46 @@
+Autosampling nanoLC-MS of HeLa digest with sample-loop overfilling versus underfilling (OpenSampler, modified OT-2)
+
+Containers:
+- hela_stock: 1.5 mL tube — Pierce HeLa Protein Digest Standard stock, reconstituted to an assumed 200 ng/µL [assumed]
+- solventA_tube: 50 mL tube — Solvent A (LC-MS water + 0.1% formic acid); also the selector port 3 supply, dilution diluent, blank, chase and flush solvent
+- dil_20: 1.5 mL tube — HeLa digest 20 ng/µL in solvent A [assumed]
+- dil_10: 1.5 mL tube — HeLa digest 10 ng/µL in solvent A [assumed]
+- dil_5: 1.5 mL tube — HeLa digest 5 ng/µL in solvent A [assumed]
+- dil_2p5: 1.5 mL tube — HeLa digest 2.5 ng/µL in solvent A [assumed]
+- dil_0p5: 1.5 mL tube — HeLa digest 0.5 ng/µL in solvent A [assumed]
+- dil_0p25: 1.5 mL tube — HeLa digest 0.25 ng/µL in solvent A [assumed]
+- sample_plate: 96-well plate — LoBind PCR plate, foil-sealed, held at 4 °C on the OT-2 tempdeck; holds 10 µL sample/blank aliquots. The paper uses a 384-well plate; a 96-well plate is used here [assumed]
+- sample_loop: 1.5 mL tube — Placeholder for the OpenSampler sampling needle and 1 µL sample loop (13 cm x 100 µm i.d.) that receives aspirated sample and chase. The container kind is a stand-in only [assumed]
+- waste: waste container — Waste line on selector valve port 1 (loop flush)
+
+Starting contents:
+- hela_stock: stock HeLa digest standard 200 ng/µL (reconstituted per manufacturer, in water/0.1% FA) [assumed]
+- solventA_tube: stock Solvent A (water + 0.1% formic acid)
+
+Steps:
+1. MANUAL: Assemble autosampler: 25 µL Hamilton gastight syringe on the modified OT-2 pipette, with a MicroTight union to a 50 cm x 200 µm i.d. line to the selector valve centre port. Selector port 1 to waste, port 3 to solvent A, port 6 to two-position valve port 1 via a 15 cm x 200 µm line. Two-position valve: ports 2 and 5 carry the 13 cm x 100 µm loop (~1 µL), port 6 the sampling needle, port 3 the HPLC pump (75 cm x 20 µm line plus 55 cm nanoViper), port 4 the column (75 cm x 20 µm line, 15 cm x 20 µm fritted capillary, 15 cm x 75 µm i.d. C18 1.6 µm column with integrated emitter). Connect valve actuators to the ESP32-WROOM-32 GPIO; the relay triggers the LC gradient and a GPIO pin receives the end-of-method signal. Note: Hardware setup, not pipetting.
+2. MANUAL: Calibrate in the software. Home the syringe motor and define plunger maximum, minimum and reference positions (repeat at every software restart). Calibrate the sample plate by defining three corner wells, check the fourth corner and accept or recalibrate. Set the needle tip about 0.5-1 mm above the well bottom (assumed). Calibrate again whenever labware is added or moved. Note: Needle height is assumed. [assumed]
+3. MANUAL: Fill the syringe and lines with solvent A through selector port 3, then flush to waste through port 1 to purge bubbles. Place the foil-puncher (modified Gen1 pipette) and the tempdeck module (set to 4 °C) on the deck. Set syringe and stage speed to about 50 nL/s for sample and chase aspiration and about 1000 mm/min for stage travel (assumed). The 25 µL flush may run faster (about 1 µL/s or more, assumed). Note: Priming and speeds are assumed; speeds follow Councill et al. 2021. [assumed]
+4. MANUAL: Program the LC and MS methods. LC: 200 nL/min, pump waits for the software signal, then B goes 1→5% in 1 min, 5→25% over 20 min, 25→45% in 2 min, 45→75% in 1 min, 75% for 4 min, 75→25% in 1 min, 25% for 1 min, 25→75% in 1 min, 75% for 3 min, 75→1% in 1 min, 1% for 15 min. MS (Orbitrap Exploris 480): spray 2200 V, transfer tube 250 °C, MS1 120K, 375-1575 Th, RF lens 50%, AGC 300%, max IT 22 ms. DDA: intensity threshold 5.0e3, charge 2-6, dynamic exclusion 60 s, cycle 1.5 s, isolation 10 Th, HCD 30%, MS2 resolution 45 000 (2.5 and 10 ng) or 90 000 (250 pg). Note: Column temperature is not stated; ambient or 40-50 °C is assumed.
+5. Transfer 72 µL of Solvent A from solventA_tube to dil_20. Note: Dilution scheme and volumes are assumed. [assumed]
+6. Transfer 8 µL of HeLa digest stock (200 ng/µL) from hela_stock to dil_20, then mix 3 times. Note: 20 ng/µL, 80 µL. [assumed]
+7. Transfer 40 µL of Solvent A from solventA_tube to dil_10. [assumed]
+8. Transfer 40 µL of HeLa digest 20 ng/µL from dil_20 to dil_10, then mix 3 times. Note: 10 ng/µL, 80 µL. [assumed]
+9. Transfer 40 µL of Solvent A from solventA_tube to dil_5. [assumed]
+10. Transfer 40 µL of HeLa digest 10 ng/µL from dil_10 to dil_5, then mix 3 times. Note: 5 ng/µL, 80 µL. [assumed]
+11. Transfer 40 µL of Solvent A from solventA_tube to dil_2p5. [assumed]
+12. Transfer 40 µL of HeLa digest 5 ng/µL from dil_5 to dil_2p5, then mix 3 times. Note: 2.5 ng/µL, 80 µL. [assumed]
+13. Transfer 72 µL of Solvent A from solventA_tube to dil_0p5. [assumed]
+14. Transfer 8 µL of HeLa digest 5 ng/µL from dil_5 to dil_0p5, then mix 3 times. Note: 0.5 ng/µL, 80 µL. [assumed]
+15. Transfer 40 µL of Solvent A from solventA_tube to dil_0p25. [assumed]
+16. Transfer 40 µL of HeLa digest 0.5 ng/µL from dil_0p5 to dil_0p25, then mix 3 times. Note: 0.25 ng/µL, 80 µL. [assumed]
+17. Transfer 10 µL of HeLa digest 0.25 ng/µL from dil_0p25 to sample_plate wells A1, B1 (each well). Note: A1 = batch 1, B1 = batch 2. Separate aliquots per batch are assumed. [assumed]
+18. Transfer 10 µL of HeLa digest 0.5 ng/µL from dil_0p5 to sample_plate wells A2, B2 (each well). [assumed]
+19. Transfer 10 µL of HeLa digest 2.5 ng/µL from dil_2p5 to sample_plate wells A3, B3 (each well). [assumed]
+20. Transfer 10 µL of HeLa digest 5 ng/µL from dil_5 to sample_plate wells A4, B4 (each well). [assumed]
+21. Transfer 10 µL of HeLa digest 10 ng/µL from dil_10 to sample_plate wells A5, B5 (each well). [assumed]
+22. Transfer 10 µL of HeLa digest 20 ng/µL from dil_20 to sample_plate wells A6, B6 (each well). [assumed]
+23. Transfer 10 µL of Solvent A (blank) from solventA_tube to sample_plate wells C1, C2 (each well). Note: Blank wells and solvent are assumed. [assumed]
+24. MANUAL: Seal sample_plate with an adhesive cover foil and keep it at 4 °C on the tempdeck. Foil is punctured only immediately before the first injection of each well.
+25. MANUAL: BATCH 1 (wells A1-A6, ascending). Puncture the foil over well A1 with the foil-puncher (single downward stroke, assumed depth). Note: Batch 1, 0.25 ng/µL, overfill. [assumed]
+26. Transfer stock from sample_sample_placeholder to None.

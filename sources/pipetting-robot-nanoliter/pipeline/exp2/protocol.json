@@ -1,0 +1,475 @@
+{
+  "title": "Autosampling nanoLC-MS of HeLa digest with sample-loop overfilling versus underfilling (OpenSampler, modified OT-2)",
+  "containers": [
+    {
+      "name": "hela_stock",
+      "kind": "tube_1.5ml",
+      "description": "Pierce HeLa Protein Digest Standard stock, reconstituted to an assumed 200 ng/µL",
+      "assumed": true
+    },
+    {
+      "name": "solventA_tube",
+      "kind": "tube_50ml",
+      "description": "Solvent A (LC-MS water + 0.1% formic acid); also the selector port 3 supply, dilution diluent, blank, chase and flush solvent",
+      "assumed": false
+    },
+    {
+      "name": "dil_20",
+      "kind": "tube_1.5ml",
+      "description": "HeLa digest 20 ng/µL in solvent A",
+      "assumed": true
+    },
+    {
+      "name": "dil_10",
+      "kind": "tube_1.5ml",
+      "description": "HeLa digest 10 ng/µL in solvent A",
+      "assumed": true
+    },
+    {
+      "name": "dil_5",
+      "kind": "tube_1.5ml",
+      "description": "HeLa digest 5 ng/µL in solvent A",
+      "assumed": true
+    },
+    {
+      "name": "dil_2p5",
+      "kind": "tube_1.5ml",
+      "description": "HeLa digest 2.5 ng/µL in solvent A",
+      "assumed": true
+    },
+    {
+      "name": "dil_0p5",
+      "kind": "tube_1.5ml",
+      "description": "HeLa digest 0.5 ng/µL in solvent A",
+      "assumed": true
+    },
+    {
+      "name": "dil_0p25",
+      "kind": "tube_1.5ml",
+      "description": "HeLa digest 0.25 ng/µL in solvent A",
+      "assumed": true
+    },
+    {
+      "name": "sample_plate",
+      "kind": "plate_96",
+      "description": "LoBind PCR plate, foil-sealed, held at 4 °C on the OT-2 tempdeck; holds 10 µL sample/blank aliquots. The paper uses a 384-well plate; a 96-well plate is used here",
+      "assumed": true
+    },
+    {
+      "name": "sample_loop",
+      "kind": "tube_1.5ml",
+      "description": "Placeholder for the OpenSampler sampling needle and 1 µL sample loop (13 cm x 100 µm i.d.) that receives aspirated sample and chase. The container kind is a stand-in only",
+      "assumed": true
+    },
+    {
+      "name": "waste",
+      "kind": "waste",
+      "description": "Waste line on selector valve port 1 (loop flush)",
+      "assumed": false
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "hela_stock",
+      "wells": [],
+      "reagent": "HeLa digest standard 200 ng/µL (reconstituted per manufacturer, in water/0.1% FA)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "solventA_tube",
+      "wells": [],
+      "reagent": "Solvent A (water + 0.1% formic acid)",
+      "volume_ul": null,
+      "assumed": false
+    }
+  ],
+  "steps": [
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Assemble autosampler: 25 µL Hamilton gastight syringe on the modified OT-2 pipette, with a MicroTight union to a 50 cm x 200 µm i.d. line to the selector valve centre port. Selector port 1 to waste, port 3 to solvent A, port 6 to two-position valve port 1 via a 15 cm x 200 µm line. Two-position valve: ports 2 and 5 carry the 13 cm x 100 µm loop (~1 µL), port 6 the sampling needle, port 3 the HPLC pump (75 cm x 20 µm line plus 55 cm nanoViper), port 4 the column (75 cm x 20 µm line, 15 cm x 20 µm fritted capillary, 15 cm x 75 µm i.d. C18 1.6 µm column with integrated emitter). Connect valve actuators to the ESP32-WROOM-32 GPIO; the relay triggers the LC gradient and a GPIO pin receives the end-of-method signal.",
+      "source_quote": "A 13-cm-long, 100-μm-i.d. fused silica capillary was connected to the two-position valve to serve as a 1-μL sample loop.",
+      "assumed": false,
+      "note": "Hardware setup, not pipetting."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Calibrate in the software. Home the syringe motor and define plunger maximum, minimum and reference positions (repeat at every software restart). Calibrate the sample plate by defining three corner wells, check the fourth corner and accept or recalibrate. Set the needle tip about 0.5-1 mm above the well bottom (assumed). Calibrate again whenever labware is added or moved.",
+      "source_quote": "Syringe calibrations require homing the syringe motor and then defining a maximum and minimum position for the plunger as well as a preferred reference position.",
+      "assumed": true,
+      "note": "Needle height is assumed."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Fill the syringe and lines with solvent A through selector port 3, then flush to waste through port 1 to purge bubbles. Place the foil-puncher (modified Gen1 pipette) and the tempdeck module (set to 4 °C) on the deck. Set syringe and stage speed to about 50 nL/s for sample and chase aspiration and about 1000 mm/min for stage travel (assumed). The 25 µL flush may run faster (about 1 µL/s or more, assumed).",
+      "source_quote": "Dilutions were loaded in 10μL aliquots into 384-well plates maintained at 4° C using an OT-2 tempdeck module.",
+      "assumed": true,
+      "note": "Priming and speeds are assumed; speeds follow Councill et al. 2021."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Program the LC and MS methods. LC: 200 nL/min, pump waits for the software signal, then B goes 1→5% in 1 min, 5→25% over 20 min, 25→45% in 2 min, 45→75% in 1 min, 75% for 4 min, 75→25% in 1 min, 25% for 1 min, 25→75% in 1 min, 75% for 3 min, 75→1% in 1 min, 1% for 15 min. MS (Orbitrap Exploris 480): spray 2200 V, transfer tube 250 °C, MS1 120K, 375-1575 Th, RF lens 50%, AGC 300%, max IT 22 ms. DDA: intensity threshold 5.0e3, charge 2-6, dynamic exclusion 60 s, cycle 1.5 s, isolation 10 Th, HCD 30%, MS2 resolution 45 000 (2.5 and 10 ng) or 90 000 (250 pg).",
+      "source_quote": "The UltiMate 3000 pump was programmed to wait for a signal from our software to indicate that sample loading was finished.",
+      "assumed": false,
+      "note": "Column temperature is not stated; ambient or 40-50 °C is assumed."
+    },
+    {
+      "kind": "transfer",
+      "source": "solventA_tube",
+      "source_wells": [],
+      "dest": "dil_20",
+      "dest_wells": [],
+      "volume_ul": 72.0,
+      "reagent": "Solvent A",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dilutions of HeLa digest stock solutions were prepared at 0.25, 0.5, 2.5, 5, 10, and 20 ng/μL in solvent A.",
+      "assumed": true,
+      "note": "Dilution scheme and volumes are assumed."
+    },
+    {
+      "kind": "transfer",
+      "source": "hela_stock",
+      "source_wells": [],
+      "dest": "dil_20",
+      "dest_wells": [],
+      "volume_ul": 8.0,
+      "reagent": "HeLa digest stock (200 ng/µL)",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "Dilutions of HeLa digest stock solutions were prepared at 0.25, 0.5, 2.5, 5, 10, and 20 ng/μL in solvent A.",
+      "assumed": true,
+      "note": "20 ng/µL, 80 µL."
+    },
+    {
+      "kind": "transfer",
+      "source": "solventA_tube",
+      "source_wells": [],
+      "dest": "dil_10",
+      "dest_wells": [],
+      "volume_ul": 40.0,
+      "reagent": "Solvent A",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dilutions of HeLa digest stock solutions were prepared at 0.25, 0.5, 2.5, 5, 10, and 20 ng/μL in solvent A.",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "dil_20",
+      "source_wells": [],
+      "dest": "dil_10",
+      "dest_wells": [],
+      "volume_ul": 40.0,
+      "reagent": "HeLa digest 20 ng/µL",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "Dilutions of HeLa digest stock solutions were prepared at 0.25, 0.5, 2.5, 5, 10, and 20 ng/μL in solvent A.",
+      "assumed": true,
+      "note": "10 ng/µL, 80 µL."
+    },
+    {
+      "kind": "transfer",
+      "source": "solventA_tube",
+      "source_wells": [],
+      "dest": "dil_5",
+      "dest_wells": [],
+      "volume_ul": 40.0,
+      "reagent": "Solvent A",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dilutions of HeLa digest stock solutions were prepared at 0.25, 0.5, 2.5, 5, 10, and 20 ng/μL in solvent A.",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "dil_10",
+      "source_wells": [],
+      "dest": "dil_5",
+      "dest_wells": [],
+      "volume_ul": 40.0,
+      "reagent": "HeLa digest 10 ng/µL",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "Dilutions of HeLa digest stock solutions were prepared at 0.25, 0.5, 2.5, 5, 10, and 20 ng/μL in solvent A.",
+      "assumed": true,
+      "note": "5 ng/µL, 80 µL."
+    },
+    {
+      "kind": "transfer",
+      "source": "solventA_tube",
+      "source_wells": [],
+      "dest": "dil_2p5",
+      "dest_wells": [],
+      "volume_ul": 40.0,
+      "reagent": "Solvent A",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dilutions of HeLa digest stock solutions were prepared at 0.25, 0.5, 2.5, 5, 10, and 20 ng/μL in solvent A.",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "dil_5",
+      "source_wells": [],
+      "dest": "dil_2p5",
+      "dest_wells": [],
+      "volume_ul": 40.0,
+      "reagent": "HeLa digest 5 ng/µL",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "Dilutions of HeLa digest stock solutions were prepared at 0.25, 0.5, 2.5, 5, 10, and 20 ng/μL in solvent A.",
+      "assumed": true,
+      "note": "2.5 ng/µL, 80 µL."
+    },
+    {
+      "kind": "transfer",
+      "source": "solventA_tube",
+      "source_wells": [],
+      "dest": "dil_0p5",
+      "dest_wells": [],
+      "volume_ul": 72.0,
+      "reagent": "Solvent A",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dilutions of HeLa digest stock solutions were prepared at 0.25, 0.5, 2.5, 5, 10, and 20 ng/μL in solvent A.",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "dil_5",
+      "source_wells": [],
+      "dest": "dil_0p5",
+      "dest_wells": [],
+      "volume_ul": 8.0,
+      "reagent": "HeLa digest 5 ng/µL",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "Dilutions of HeLa digest stock solutions were prepared at 0.25, 0.5, 2.5, 5, 10, and 20 ng/μL in solvent A.",
+      "assumed": true,
+      "note": "0.5 ng/µL, 80 µL."
+    },
+    {
+      "kind": "transfer",
+      "source": "solventA_tube",
+      "source_wells": [],
+      "dest": "dil_0p25",
+      "dest_wells": [],
+      "volume_ul": 40.0,
+      "reagent": "Solvent A",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dilutions of HeLa digest stock solutions were prepared at 0.25, 0.5, 2.5, 5, 10, and 20 ng/μL in solvent A.",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "dil_0p5",
+      "source_wells": [],
+      "dest": "dil_0p25",
+      "dest_wells": [],
+      "volume_ul": 40.0,
+      "reagent": "HeLa digest 0.5 ng/µL",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "Dilutions of HeLa digest stock solutions were prepared at 0.25, 0.5, 2.5, 5, 10, and 20 ng/μL in solvent A.",
+      "assumed": true,
+      "note": "0.25 ng/µL, 80 µL."
+    },
+    {
+      "kind": "transfer",
+      "source": "dil_0p25",
+      "source_wells": [],
+      "dest": "sample_plate",
+      "dest_wells": [
+        "A1",
+        "B1"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "HeLa digest 0.25 ng/µL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dilutions were loaded in 10μL aliquots into 384-well plates maintained at 4° C using an OT-2 tempdeck module.",
+      "assumed": true,
+      "note": "A1 = batch 1, B1 = batch 2. Separate aliquots per batch are assumed."
+    },
+    {
+      "kind": "transfer",
+      "source": "dil_0p5",
+      "source_wells": [],
+      "dest": "sample_plate",
+      "dest_wells": [
+        "A2",
+        "B2"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "HeLa digest 0.5 ng/µL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dilutions were loaded in 10μL aliquots into 384-well plates maintained at 4° C using an OT-2 tempdeck module.",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "dil_2p5",
+      "source_wells": [],
+      "dest": "sample_plate",
+      "dest_wells": [
+        "A3",
+        "B3"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "HeLa digest 2.5 ng/µL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dilutions were loaded in 10μL aliquots into 384-well plates maintained at 4° C using an OT-2 tempdeck module.",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "dil_5",
+      "source_wells": [],
+      "dest": "sample_plate",
+      "dest_wells": [
+        "A4",
+        "B4"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "HeLa digest 5 ng/µL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dilutions were loaded in 10μL aliquots into 384-well plates maintained at 4° C using an OT-2 tempdeck module.",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "dil_10",
+      "source_wells": [],
+      "dest": "sample_plate",
+      "dest_wells": [
+        "A5",
+        "B5"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "HeLa digest 10 ng/µL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dilutions were loaded in 10μL aliquots into 384-well plates maintained at 4° C using an OT-2 tempdeck module.",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "dil_20",
+      "source_wells": [],
+      "dest": "sample_plate",
+      "dest_wells": [
+        "A6",
+        "B6"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "HeLa digest 20 ng/µL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dilutions were loaded in 10μL aliquots into 384-well plates maintained at 4° C using an OT-2 tempdeck module.",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "solventA_tube",
+      "source_wells": [],
+      "dest": "sample_plate",
+      "dest_wells": [
+        "C1",
+        "C2"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "Solvent A (blank)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "An aliquot of each digest concentration was analyzed in ascending concentration in each of two batches, with two blank injections between each batch.",
+      "assumed": true,
+      "note": "Blank wells and solvent are assumed."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal sample_plate with an adhesive cover foil and keep it at 4 °C on the tempdeck. Foil is punctured only immediately before the first injection of each well.",
+      "source_quote": "To limit evaporation, the foil seal for each aliquot was punctured immediately before the first injection, with replicate analyses following immediately.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "BATCH 1 (wells A1-A6, ascending). Puncture the foil over well A1 with the foil-puncher (single downward stroke, assumed depth).",
+      "source_quote": "the foil seal for each aliquot was punctured immediately before the first injection",
+      "assumed": true,
+      "note": "Batch 1, 0.25 ng/µL, overfill."
+    },
+    {
+      "kind": "transfer",
+      "source": "sample_sample_placeholder",
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": false,
+      "note": ""
+    }
+  ],
+  "assumptions": []
+}

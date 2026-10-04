@@ -1,0 +1,30 @@
+{
+  "verdict": "minor_issues",
+  "summary": "The protocol is faithful to the paper and the recovered manuals. Volumes check out: the 1000 µL mock sample covers the 200, 500 and 250 µL draws; the 540 µL OT-2 supernatant removal equals 40+250+250 µL; the Beads/PK, Lysis/Binding and 38-reaction qPCR mixes are correctly scaled; and the 80 °C, 2 min and 5/4/4/30/90 s timings match. The layout covers triplicate standard, low and very-low samples, an extraction negative and NTCs for all three methods. The remaining problems are minor practical or analysis-design points, not contradictions of the paper.",
+  "issues": [
+    {
+      "step": 31,
+      "severity": "minor",
+      "issue": "The Mag-Bind TotalPure NGS beads are dispensed (steps 31 and 35) with no instruction to resuspend them first. The MMkit beads are vortexed in step 14, but these beads settle quickly and are viscous. Uneven aliquots would add variability between the in-house arms.",
+      "suggestion": "Add a manual step to vortex or fully resuspend the Mag-Bind beads before dispensing. Re-mix between the MMin-house and OT-2 aliquots, or use a slow aspiration and dispense."
+    },
+    {
+      "step": 49,
+      "severity": "minor",
+      "issue": "The protocol assumes the full 100 µL of eluate is recovered. Beads retain some liquid and a safe aspiration height leaves some behind, so about 100 µL cannot be collected. The efficiency correction uses the elution volume, so this would bias the OT-2 result.",
+      "suggestion": "Transfer a slightly smaller volume (for example 90–95 µL) and record the actual volume. Alternatively, state clearly that the 100 µL elution volume is used in the efficiency correction."
+    },
+    {
+      "step": 59,
+      "severity": "minor",
+      "issue": "The reference (Ctpc) wells use 1 µL of the 1e4, 1e3 and 1e2 stocks. That puts roughly 1e4, 1e3 and 1e2 copies in the reaction. The extracted mock samples contain only about 1e3, 1e2 and 10 copies per 5 µL of eluate, depending on the method's input and elution volumes. The reference is therefore about 10-fold more concentrated than the extracts, and each reference is run as a single well. Assuming 100% PCR efficiency in the post-hoc correction adds uncertainty. The paper only says the amounts are corrected to match the dilution factor and the initial sample input.",
+      "suggestion": "Prepare the reference dilutions to match the expected copies per reaction for each method, or add them as extra dilutions. Run the reference wells in duplicate or triplicate, and state the correction calculation explicitly."
+    },
+    {
+      "step": 0,
+      "severity": "minor",
+      "issue": "The extraction negative control (A10) is made once per method. The paper says negative controls were included in all runs. The mock negative also has no triplicate, though a single extraction blank per run is reasonable.",
+      "suggestion": "Note that this is one extraction negative per method run plus an NTC per qPCR plate, or add a second negative well."
+    }
+  ]
+}

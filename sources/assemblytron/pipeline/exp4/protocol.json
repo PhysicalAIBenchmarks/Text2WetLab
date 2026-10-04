@@ -1,0 +1,754 @@
+{
+  "title": "AQUA-style homology-dependent assembly of four chromoprotein plasmids from separate PCRs (AssemblyTron, Fig. 5)",
+  "containers": [
+    {
+      "name": "pcr_plate",
+      "kind": "plate_96",
+      "description": "Thermocycler-compatible plate for 16 separate 25 µL fragment PCRs (rows A-D = tsPurple, YukonOFP, aeBlue, fuGFP constructs; columns 1-4 = fragments 1-4); later receives DpnI mix",
+      "assumed": true
+    },
+    {
+      "name": "primer_plate",
+      "kind": "plate_96",
+      "description": "Pre-mixed forward+reverse primer pairs (1 µM each) for the 16 fragments, same well layout as pcr_plate (A1:D4)",
+      "assumed": true
+    },
+    {
+      "name": "pool_plate",
+      "kind": "plate_96",
+      "description": "Pooled DpnI-treated fragments, one well per construct (A1 tsPurple, B1 Yukon, C1 aeBlue, D1 fuGFP)",
+      "assumed": true
+    },
+    {
+      "name": "eluate_plate",
+      "kind": "plate_96",
+      "description": "Column-purified pooled fragments eluted in 10 µL water (A1:D1, one per construct)",
+      "assumed": true
+    },
+    {
+      "name": "transform_plate",
+      "kind": "plate_96",
+      "description": "Chilled plate holding TOP10 competent cells for four transformations (A1:D1), used for transformation and recovery",
+      "assumed": true
+    },
+    {
+      "name": "water",
+      "kind": "tube_15ml",
+      "description": "Molecular grade water",
+      "assumed": true
+    },
+    {
+      "name": "q5_buffer",
+      "kind": "tube_1.5ml",
+      "description": "5X Q5 reaction buffer",
+      "assumed": true
+    },
+    {
+      "name": "dntp",
+      "kind": "tube_1.5ml",
+      "description": "10 mM dNTP mix",
+      "assumed": true
+    },
+    {
+      "name": "q5_pol",
+      "kind": "tube_1.5ml",
+      "description": "Q5 High-Fidelity DNA Polymerase (2 U/µL)",
+      "assumed": true
+    },
+    {
+      "name": "rcutsmart",
+      "kind": "tube_1.5ml",
+      "description": "rCutSmart buffer (NEB)",
+      "assumed": true
+    },
+    {
+      "name": "dpni",
+      "kind": "tube_1.5ml",
+      "description": "DpnI (NEB), 20 U/µL",
+      "assumed": true
+    },
+    {
+      "name": "tmpl_tsPurple",
+      "kind": "tube_1.5ml",
+      "description": "Linearized pIDMv5K-J23100-tsPurple-B1006, 0.25 ng/µL",
+      "assumed": true
+    },
+    {
+      "name": "tmpl_Yukon",
+      "kind": "tube_1.5ml",
+      "description": "Linearized pIDMv5K-J23100-YukonOFP-B1006, 0.25 ng/µL",
+      "assumed": true
+    },
+    {
+      "name": "tmpl_aeBlue",
+      "kind": "tube_1.5ml",
+      "description": "Linearized pIDMv5K-J23100-aeBlue-B1006, 0.25 ng/µL (backbone source and aeBlue template)",
+      "assumed": true
+    },
+    {
+      "name": "tmpl_fuGFP",
+      "kind": "tube_1.5ml",
+      "description": "Linearized pIDMv5K-J23100-fuGFP-B1006, 0.25 ng/µL",
+      "assumed": true
+    },
+    {
+      "name": "pcr_mm",
+      "kind": "tube_1.5ml",
+      "description": "PCR master mix (water, Q5 buffer, dNTP, Q5 polymerase) for 18 reactions",
+      "assumed": true
+    },
+    {
+      "name": "dpni_mix",
+      "kind": "tube_1.5ml",
+      "description": "DpnI digestion mix (water, rCutSmart, DpnI) for 18 reactions",
+      "assumed": true
+    },
+    {
+      "name": "lb_dextrose",
+      "kind": "reservoir",
+      "description": "LB + 0.2% (w/v) dextrose recovery medium",
+      "assumed": false
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "water",
+      "wells": [],
+      "reagent": "molecular grade water",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "q5_buffer",
+      "wells": [],
+      "reagent": "5X Q5 reaction buffer",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "dntp",
+      "wells": [],
+      "reagent": "10 mM dNTP mix",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "q5_pol",
+      "wells": [],
+      "reagent": "Q5 High-Fidelity DNA Polymerase",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "rcutsmart",
+      "wells": [],
+      "reagent": "rCutSmart buffer",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "dpni",
+      "wells": [],
+      "reagent": "DpnI",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "primer_plate",
+      "wells": [
+        "A1:D4"
+      ],
+      "reagent": "fwd+rev primer pair mix, 1 µM each (j5-designed, ~32 bp terminal homology between adjacent fragments)",
+      "volume_ul": 20.0,
+      "assumed": true
+    },
+    {
+      "container": "tmpl_tsPurple",
+      "wells": [],
+      "reagent": "linearized tsPurple template plasmid, 0.25 ng/µL",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "tmpl_Yukon",
+      "wells": [],
+      "reagent": "linearized YukonOFP template plasmid, 0.25 ng/µL",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "tmpl_aeBlue",
+      "wells": [],
+      "reagent": "linearized aeBlue template plasmid, 0.25 ng/µL",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "tmpl_fuGFP",
+      "wells": [],
+      "reagent": "linearized fuGFP template plasmid, 0.25 ng/µL",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "transform_plate",
+      "wells": [
+        "A1:D1"
+      ],
+      "reagent": "TOP10 chemically competent cells (Hanahan method, 8.47 × 10^8 CFU/µg pUC19), kept on ice",
+      "volume_ul": 50.0,
+      "assumed": false
+    },
+    {
+      "container": "lb_dextrose",
+      "wells": [],
+      "reagent": "LB + 0.2% (w/v) dextrose",
+      "volume_ul": null,
+      "assumed": false
+    }
+  ],
+  "steps": [
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "pcr_mm",
+      "dest_wells": [],
+      "volume_ul": 265.5,
+      "reagent": "molecular grade water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "PCRs were performed in 25 µL volumes using Phusion® High-Fidelity DNA Polymerase (NEB) or Q5® High-Fidelity DNA Polymerase (NEB) with 0.1 µM primers and 0.5 ng linearized plasmid template DNA.",
+      "assumed": true,
+      "note": "14.75 µL per reaction × 18 (16 + 2 overage)"
+    },
+    {
+      "kind": "transfer",
+      "source": "q5_buffer",
+      "source_wells": [],
+      "dest": "pcr_mm",
+      "dest_wells": [],
+      "volume_ul": 90.0,
+      "reagent": "5X Q5 reaction buffer",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "5 µL per reaction × 18 (1X final)"
+    },
+    {
+      "kind": "transfer",
+      "source": "dntp",
+      "source_wells": [],
+      "dest": "pcr_mm",
+      "dest_wells": [],
+      "volume_ul": 9.0,
+      "reagent": "10 mM dNTP mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "0.5 µL per reaction × 18 (200 µM final)"
+    },
+    {
+      "kind": "transfer",
+      "source": "q5_pol",
+      "source_wells": [],
+      "dest": "pcr_mm",
+      "dest_wells": [],
+      "volume_ul": 4.5,
+      "reagent": "Q5 High-Fidelity DNA Polymerase",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "0.25 µL per reaction × 18"
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "pcr_mm",
+      "dest_wells": [],
+      "volume_ul": 100.0,
+      "reagent": "",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Mix master mix gently"
+    },
+    {
+      "kind": "transfer",
+      "source": "pcr_mm",
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "A1:D4"
+      ],
+      "volume_ul": 20.5,
+      "reagent": "PCR master mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "PCRs were performed in 25 µL volumes",
+      "assumed": true,
+      "note": "Separate PCR for each of 16 fragments"
+    },
+    {
+      "kind": "transfer",
+      "source": "primer_plate",
+      "source_wells": [
+        "A1:D4"
+      ],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "A1:D4"
+      ],
+      "volume_ul": 2.5,
+      "reagent": "primer pair mix (1 µM each)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "with 0.1 µM primers",
+      "assumed": true,
+      "note": "2.5 µL of 1 µM each in 25 µL gives 0.1 µM each primer"
+    },
+    {
+      "kind": "transfer",
+      "source": "tmpl_aeBlue",
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "A1",
+        "B1",
+        "C1",
+        "D1"
+      ],
+      "volume_ul": 2.0,
+      "reagent": "linearized aeBlue template (backbone fragment 1 for all four constructs)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "0.5 ng linearized plasmid template DNA",
+      "assumed": true,
+      "note": "2 µL of 0.25 ng/µL = 0.5 ng"
+    },
+    {
+      "kind": "transfer",
+      "source": "tmpl_tsPurple",
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "A2:A4"
+      ],
+      "volume_ul": 2.0,
+      "reagent": "linearized tsPurple template",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "0.5 ng linearized plasmid template DNA",
+      "assumed": true,
+      "note": "Fragments 2-4 of tsPurple construct"
+    },
+    {
+      "kind": "transfer",
+      "source": "tmpl_Yukon",
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "B2:B4"
+      ],
+      "volume_ul": 2.0,
+      "reagent": "linearized YukonOFP template",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "0.5 ng linearized plasmid template DNA",
+      "assumed": true,
+      "note": "Fragments 2-4 of Yukon construct"
+    },
+    {
+      "kind": "transfer",
+      "source": "tmpl_aeBlue",
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "C2:C4"
+      ],
+      "volume_ul": 2.0,
+      "reagent": "linearized aeBlue template",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "0.5 ng linearized plasmid template DNA",
+      "assumed": true,
+      "note": "Fragments 2-4 of aeBlue construct"
+    },
+    {
+      "kind": "transfer",
+      "source": "tmpl_fuGFP",
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "D2:D4"
+      ],
+      "volume_ul": 2.0,
+      "reagent": "linearized fuGFP template",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "0.5 ng linearized plasmid template DNA",
+      "assumed": true,
+      "note": "Fragments 2-4 of fuGFP construct"
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "A1:D4"
+      ],
+      "volume_ul": 15.0,
+      "reagent": "",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Mix each PCR"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal pcr_plate and move manually to a Bio-Rad C100 gradient thermocycler. Run: 98°C 30 s; 34 cycles of 98°C 10 s, annealing 30 s at the per-fragment temperature from the optimal linear gradient (each well/tube assigned the gradient temperature nearest its primer pair's optimal Ta), 72°C extension at 30 s/kb of amplicon (minimum ~15-30 s); final 72°C 5 min; hold 4°C. Unseal and return to the robot deck.",
+      "source_quote": "Amplification was performed according to the following protocol: 30 s at 98°C, 34 or 36 cycles of 10 s at 98°C, 30 s at annealing temperatures specified by AssemblyTron/j5, extension times as specified by AssemblyTron at 72°C and a final 5 min extension at 72°C.",
+      "assumed": true,
+      "note": "Q5 with 34 cycles assumed; PCRs were manually transferred to the thermocycler"
+    },
+    {
+      "kind": "transfer",
+      "source": "water",
+      "source_wells": [],
+      "dest": "dpni_mix",
+      "dest_wells": [],
+      "volume_ul": 342.0,
+      "reagent": "molecular grade water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For plasmid template digestion, 19 µL water, 5 µL rCutSmart Buffer (NEB) and 1 µL DpnI (NEB) were added",
+      "assumed": true,
+      "note": "19 µL × 18"
+    },
+    {
+      "kind": "transfer",
+      "source": "rcutsmart",
+      "source_wells": [],
+      "dest": "dpni_mix",
+      "dest_wells": [],
+      "volume_ul": 90.0,
+      "reagent": "rCutSmart buffer",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "5 µL rCutSmart Buffer (NEB)",
+      "assumed": true,
+      "note": "5 µL × 18"
+    },
+    {
+      "kind": "transfer",
+      "source": "dpni",
+      "source_wells": [],
+      "dest": "dpni_mix",
+      "dest_wells": [],
+      "volume_ul": 18.0,
+      "reagent": "DpnI",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "1 µL DpnI (NEB)",
+      "assumed": true,
+      "note": "1 µL × 18"
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "dpni_mix",
+      "dest_wells": [],
+      "volume_ul": 100.0,
+      "reagent": "",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "dpni_mix",
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "A1:D4"
+      ],
+      "volume_ul": 25.0,
+      "reagent": "DpnI digestion mix (19 µL water + 5 µL rCutSmart + 1 µL DpnI)",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "For plasmid template digestion, 19 µL water, 5 µL rCutSmart Buffer (NEB) and 1 µL DpnI (NEB) were added",
+      "assumed": false,
+      "note": "Added to each 25 µL PCR (final 50 µL)"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal pcr_plate and incubate 30 min at 37°C, then heat-inactivate DpnI 20 min at 65°C (thermocycler); unseal and return to deck.",
+      "source_quote": "incubated for 30 min at 37°C prior to deactivation at 65°C for 20 min.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "pcr_plate",
+      "source_wells": [
+        "A1",
+        "B1",
+        "C1",
+        "D1"
+      ],
+      "dest": "pool_plate",
+      "dest_wells": [
+        "A1",
+        "B1",
+        "C1",
+        "D1"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "DpnI-treated fragment 1 PCR",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For separate fragment PCRs, the products are then combined using volumes proportional to fragment length.",
+      "assumed": true,
+      "note": "Fragment lengths not given; equal 20 µL per fragment used as placeholder (set volumes ∝ amplicon length when known)"
+    },
+    {
+      "kind": "transfer",
+      "source": "pcr_plate",
+      "source_wells": [
+        "A2",
+        "B2",
+        "C2",
+        "D2"
+      ],
+      "dest": "pool_plate",
+      "dest_wells": [
+        "A1",
+        "B1",
+        "C1",
+        "D1"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "DpnI-treated fragment 2 PCR",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For separate fragment PCRs, the products are then combined using volumes proportional to fragment length.",
+      "assumed": true,
+      "note": "Placeholder volume, see fragment 1 note"
+    },
+    {
+      "kind": "transfer",
+      "source": "pcr_plate",
+      "source_wells": [
+        "A3",
+        "B3",
+        "C3",
+        "D3"
+      ],
+      "dest": "pool_plate",
+      "dest_wells": [
+        "A1",
+        "B1",
+        "C1",
+        "D1"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "DpnI-treated fragment 3 PCR",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For separate fragment PCRs, the products are then combined using volumes proportional to fragment length.",
+      "assumed": true,
+      "note": "Placeholder volume, see fragment 1 note"
+    },
+    {
+      "kind": "transfer",
+      "source": "pcr_plate",
+      "source_wells": [
+        "A4",
+        "B4",
+        "C4",
+        "D4"
+      ],
+      "dest": "pool_plate",
+      "dest_wells": [
+        "A1",
+        "B1",
+        "C1",
+        "D1"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "DpnI-treated fragment 4 PCR",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For separate fragment PCRs, the products are then combined using volumes proportional to fragment length.",
+      "assumed": true,
+      "note": "Placeholder volume, see fragment 1 note"
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "pool_plate",
+      "dest_wells": [
+        "A1:D1"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "For each pool (80 µL), clean and concentrate with a Zymo DNA Clean & Concentrator-5 column per manufacturer's protocol (5 volumes binding buffer, spin, two washes, dry spin) and elute in 10 µL molecular grade water into eluate_plate wells A1:D1 (A1 tsPurple, B1 Yukon, C1 aeBlue, D1 fuGFP).",
+      "source_quote": "Final assemblies for Golden Gate (Figure 3) and fragment mixes for homology-dependent assembly (Figure 5) were cleaned and concentrated with DNA Clean and Concentrator-5 columns (Zymo), and DNA was eluted with 10 µL molecular grade water.",
+      "assumed": true,
+      "note": "Column steps done by hand: binding-buffer volume exceeds well capacity"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Use 5 µL of each eluate (remove by hand from eluate_plate A1:D1) to measure DNA concentration on a NanoDrop-2000c for transformation-efficiency calculation; 5 µL remains in each well.",
+      "source_quote": "The other 5 µL was used to measure DNA concentration for transformation efficiency calculations with a NanoDrop-2000c Microvolume Spectrophotometer (Thermo Fisher).",
+      "assumed": true,
+      "note": "Interpreted as 5 µL for quantification and 5 µL for transformation"
+    },
+    {
+      "kind": "transfer",
+      "source": "eluate_plate",
+      "source_wells": [
+        "A1",
+        "B1",
+        "C1",
+        "D1"
+      ],
+      "dest": "transform_plate",
+      "dest_wells": [
+        "A1",
+        "B1",
+        "C1",
+        "D1"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "purified fragment mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "This elution was transformed into 50 µL of TOP10-competent cells.",
+      "assumed": true,
+      "note": "Add to cells; do not mix by pipetting (gentle tap), keep cells on ice"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate transform_plate on ice 30 min, then heat shock at 42°C for 60 s.",
+      "source_quote": "Transformation mixes were incubated for 30 min on ice. Mixes were then heat shocked at 42°C for 60 s",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "lb_dextrose",
+      "source_wells": [],
+      "dest": "transform_plate",
+      "dest_wells": [
+        "A1:D1"
+      ],
+      "volume_ul": 250.0,
+      "reagent": "LB + 0.2% (w/v) dextrose",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "recovered at 37°C for 60 min with 250 µL LB with catabolite repression (LB + 0.2% (w/v) dextrose) medium added.",
+      "assumed": false,
+      "note": "Total ~305 µL per well"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal transform_plate and recover 60 min at 37°C with shaking (~250 rpm).",
+      "source_quote": "recovered at 37°C for 60 min",
+      "assumed": true,
+      "note": "Shaking speed not given in paper (AQUA used shaking)"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Spread 200 µL of each recovered transformation (undiluted; transform_plate A1:D1) on a separate LB agar + 50 µg/mL kanamycin plate (4 plates); incubate inverted at 37°C overnight. Next day count colonies manually (CFU/µg DNA plated) and score colony colour (blue = template backbone, uncoloured = failure).",
+      "source_quote": "Depending on the predicted assembly efficiency, 50–200 µL of the base mix or a 10× dilution was plated onto LB agar plates with the appropriate antibiotics for incubation at 37°C overnight. Colonies were manually counted and reported as CFU/μg of DNA plated.",
+      "assumed": true,
+      "note": "Undiluted 200 µL chosen given expected ~10^3 CFU/µg; kanamycin assumed for pIDMv5K plasmids"
+    }
+  ],
+  "assumptions": [
+    "Experiment layout: 16 separate PCRs in pcr_plate; rows A-D = tsPurple, YukonOFP, aeBlue, fuGFP constructs; columns 1-4 = fragments 1-4. Pools/eluates/transformations in wells A1:D1 in the same row order.",
+    "Fragment design inferred, not stated in the paper: fragment 1 = backbone/KanR from the aeBlue plasmid for all constructs; fragments 2-4 (promoter, chromoprotein CDS, terminator) from the respective chromoprotein plasmid (aeBlue plasmid for the aeBlue construct). Primers designed by j5 with 20+ bp (ideally ~32 bp) terminal homology (AQUA, Beyer et al. 2015, 16-32 bp works, 32 bp optimal).",
+    "Primer pair mixes at 1 µM each in primer_plate; 2.5 µL per 25 µL gives 0.1 µM. Templates pre-linearized with a restriction enzyme cutting outside the amplicon (enzyme not stated) and diluted to 0.25 ng/µL; 2 µL = 0.5 ng.",
+    "Polymerase Q5 and 34 cycles assumed (paper allows Phusion or Q5, 34 or 36 cycles). Q5 25 µL recipe from NEB (1X buffer, 200 µM dNTP, 0.25 µL polymerase), recalled from memory, not the paper. Master mix made for 18 reactions (2 overage).",
+    "Extension 30 s/kb (NEB Q5 20-30 s/kb); per-fragment annealing temperatures from the optimal linear gradient on the Bio-Rad C100 (values not given in paper).",
+    "PCR plate used instead of 100 µL PCR tubes (paper moved tubes by hand to the thermocycler); well/robot deck positions are my choice since AssemblyTron-generated files were not available.",
+    "DpnI mix 19 µL water + 5 µL rCutSmart + 1 µL DpnI per 25 µL PCR as in paper; DpnI stock assumed 20 U/µL (NEB standard).",
+    "Pooling volumes: paper says proportional to fragment length but lengths are not given; 20 µL of each DpnI-treated PCR used as placeholder; adjust to amplicon length.",
+    "Zymo DNA Clean & Concentrator-5 done by hand with standard manufacturer volumes (5 volumes binding buffer, 2 washes, dry spin); elution 10 µL as stated.",
+    "Paper states 10 µL elution transformed and 'the other 5 µL' used for NanoDrop; interpreted as 5 µL transformed and 5 µL for quantification.",
+    "Cells: in-house Hanahan TOP10 (8.47×10^8 CFU/µg) 50 µL; recovery in LB + 0.2% dextrose (SOB with catabolite repression was used only for Fig 4). The 2 min ice step after heat shock in AQUA (Beyer et al. 2015) not included as the paper does not state it.",
+    "Recovery shaking speed (~250 rpm) assumed (AQUA used shaking at 700 rpm in tubes).",
+    "Plating: 200 µL undiluted of the ~305 µL recovery per construct, on LB agar with 50 µg/mL kanamycin (assumed from pIDMv5K plasmids); the paper allows 50-200 µL of base or 10× dilution. Plating is manual; agar plates are not a listed container kind.",
+    "Mixing volumes/cycles for robot mixing are standard OT-2 choices, not from the paper.",
+    "Expected readout per paper: ~10^3 CFU/µg; Yukon 68.7% correct, >80% for other colours; DNA mass transformed computed from the NanoDrop measurement."
+  ]
+}

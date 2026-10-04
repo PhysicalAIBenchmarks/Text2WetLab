@@ -1,0 +1,197 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7864613/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://doi.org/10.1016/j.slast.2022.12.001"
+    },
+    {
+      "kind": "search",
+      "value": "Taguchi Suda Irie Ozaki Automation of yeast spot assays using an affordable liquid handling robot SLAS Technology 2023"
+    },
+    {
+      "kind": "result",
+      "value": "https://yeastgenome.org/reference/S000341319"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/science/article/pii/S2472630322051871"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2022.07.16.500326v1.full"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/abs/10.1021/acssynbio.0c00240"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/science/article/pii/S2472630324001158"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/article/10.1007/s12274-024-6970-1"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/362085650_Automation_of_yeast_spot_assays_using_an_affordable_liquid_handling_robot"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/366141410_Automation_of_yeast_spot_assays_using_an_affordable_liquid_handling_robot"
+    },
+    {
+      "kind": "result",
+      "value": "https://sites.google.com/view/ozakilab-jp/research"
+    },
+    {
+      "kind": "search",
+      "value": "Frey Quantifying Variation in Bacterial Reproductive Fitness: a High-Throughput Method baQFA mSystems 2021 methods"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/33531411"
+    },
+    {
+      "kind": "result",
+      "value": "https://d-nb.info/1286060966/34"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.asm.org/doi/pdf/10.1128/msystems.01323-20"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/article/10.1007/s00239-022-10087-9"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/figure/Genes-interacting-with-the-telomere-cap_fig7_51049319"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.asm.org/doi/10.1128/msystems.01323-20"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.asm.org/doi/10.1128/spectrum.02590-21"
+    },
+    {
+      "kind": "result",
+      "value": "https://figshare.com/articles/media/Quantifying_variation_in_bacterial_reproductive_fitness_a_high-throughput_method_BaQFA/13273172"
+    },
+    {
+      "kind": "result",
+      "value": "https://elifesciences.org/reviewed-preprints/102635"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2020.05.13.093807.full.pdf"
+    },
+    {
+      "kind": "search",
+      "value": "Taguchi Suda Irie Ozaki Automation of yeast spot assays using an affordable liquid handling robot SLAS Technology 2023"
+    },
+    {
+      "kind": "result",
+      "value": "https://yeastgenome.org/reference/S000341319"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/science/article/pii/S2472630322051871"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2022.07.16.500326v1.full"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/abs/10.1021/acssynbio.0c00240"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/science/article/pii/S2472630324001158"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/article/10.1007/s12274-024-6970-1"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/362085650_Automation_of_yeast_spot_assays_using_an_affordable_liquid_handling_robot"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/366141410_Automation_of_yeast_spot_assays_using_an_affordable_liquid_handling_robot"
+    },
+    {
+      "kind": "result",
+      "value": "https://sites.google.com/view/ozakilab-jp/research"
+    },
+    {
+      "kind": "search",
+      "value": "Frey Quantifying Variation in Bacterial Reproductive Fitness: a High-Throughput Method baQFA mSystems 2021 methods"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/33531411"
+    },
+    {
+      "kind": "result",
+      "value": "https://d-nb.info/1286060966/34"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.asm.org/doi/pdf/10.1128/msystems.01323-20"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/article/10.1007/s00239-022-10087-9"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/figure/Genes-interacting-with-the-telomere-cap_fig7_51049319"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.asm.org/doi/10.1128/msystems.01323-20"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.asm.org/doi/10.1128/spectrum.02590-21"
+    },
+    {
+      "kind": "result",
+      "value": "https://figshare.com/articles/media/Quantifying_variation_in_bacterial_reproductive_fitness_a_high-throughput_method_BaQFA/13273172"
+    },
+    {
+      "kind": "result",
+      "value": "https://elifesciences.org/reviewed-preprints/102635"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2020.05.13.093807.full.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.biorxiv.org/content/10.1101/2022.07.16.500326v1.full"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.biorxiv.org/content/10.1101/2022.07.16.500326v1.full"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://journals.asm.org/doi/10.1128/msystems.01323-20"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://journals.asm.org/doi/10.1128/msystems.01323-20"
+    }
+  ]
+}

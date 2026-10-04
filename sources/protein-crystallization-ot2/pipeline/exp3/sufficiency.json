@@ -1,0 +1,70 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper specifies the HEWL plate layout, reagent identities and concentrations, the 400 µL reservoir, the 4 µL drop (2 µL protein plus 2 µL reservoir), the OT-2 hardware, the 24 h readout and the number of plates. Several details for the human arm are not described: the manual technique, the crystal-scoring criterion, the incubation temperature and how setup time was measured. The 24 h readout and the plate counts come from the full text of the published article (ScienceDirect), not from the supplied excerpts. None of the unstated details should change what is measured, so each can be assumed with a defensible default.",
+  "gaps": [
+    {
+      "detail": "Manual (human) plate setup procedure: pipettes used, order of reagent addition, how reservoirs were mixed, and how the three people differed in experience",
+      "why_needed": "The comparison needs the humans to build the same plate as the OT-2: the same 24-well layout and volumes, with the drop formed from 2 µL protein and 2 µL reservoir.",
+      "status": "assumable",
+      "resolution": "Use the same layout and volumes as the OT-2 script. Reservoirs: 300–350 µL of HR2-805 in 10 µL steps per column (6 columns); 50 µL of 200 mM sodium acetate pH 4.6 in row A, pH 4.7 in row B and pH 4.8 in rows C and D; DI water to 400 µL. Drops: 2 µL of HEWL (20 mg/mL in 20 mM sodium acetate pH 4.6) plus 2 µL of that well's reservoir, dispensed onto the pedestal. Seal with Duck HP260 tape. Use manual P10/P200 pipettes and gently swirl the plate to spread the reservoir, as the paper describes for the food-dye plates. The paper only says three people of varying wet-lab experience each prepared three plates, so record experience level per person without defining it further.",
+      "source": "s2.5 of the paper; full text of the published article (https://www.sciencedirect.com/science/article/pii/S2472630325000263); standard practice for the manual pipetting details"
+    },
+    {
+      "detail": "Crystal scoring criterion and readout for Fig. 6 / Supplemental Fig. 5 (what counts as a crystal-positive well, and how it was imaged)",
+      "why_needed": "The consistency comparison depends on counting crystal-bearing wells per plate.",
+      "status": "assumable",
+      "resolution": "Score each of the 24 wells as crystals present or absent at 24 h under a stereomicroscope. The OT-2 plate was reported as 18/24 wells with crystals at 24 h. Use the same observer and criterion for every plate, ideally blinded to who set it up.",
+      "source": "Fig. 5 legend and the full text of the published article (https://www.sciencedirect.com/science/article/pii/S2472630325000263); standard practice for the criterion"
+    },
+    {
+      "detail": "Incubation temperature and conditions after sealing (the paper gives only 24 h)",
+      "why_needed": "Lysozyme nucleation and growth depend on temperature.",
+      "status": "assumable",
+      "resolution": "Incubate undisturbed at constant room temperature (about 20–22 °C) for 24 h. Use the same location for all OT-2 and human plates.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "How setup time was measured (start and end points, and whether reservoir and drop preparation were both included)",
+      "why_needed": "Time is one of the two compared outcomes.",
+      "status": "assumable",
+      "resolution": "Time from the start of reservoir preparation to the last drop dispensed, before taping. The OT-2 took 31 min for the HEWL plate: reservoirs plus about 12 min for the drops, with no mixing step needed. The paper says the OT-2 was slightly slower than the average person and significantly slower than an experienced wet-lab scientist, and that it frees the researcher for about 30 min. Human times are in the supplement, which I did not retrieve.",
+      "source": "full text of the published article (https://www.sciencedirect.com/science/article/pii/S2472630325000263)"
+    },
+    {
+      "detail": "Number of plates per arm",
+      "why_needed": "This sets the experimental scale.",
+      "status": "resolved",
+      "resolution": "The 3 OT-2 plates are the original HEWL plate plus two additional plates. The 9 human plates are 3 people with varying wet-lab familiarity, which I read as 3 plates each.",
+      "source": "https://www.sciencedirect.com/science/article/pii/S2472630325000263 (Results, Script 2)"
+    },
+    {
+      "detail": "Composition of HR2-805 15-Minute Lysozyme Crystallization Reagent",
+      "why_needed": "This is the reservoir precipitant, and the paper names only the catalogue number.",
+      "status": "resolved",
+      "resolution": "30% w/v PEG monomethyl ether 5,000, 1.0 M NaCl, 0.05 M sodium acetate trihydrate pH 4.6.",
+      "source": "https://hamptonresearch.com/product-Lysozyme-524.html ; https://hamptonresearch.com/uploads/support_materials/HR7-108_UG.pdf"
+    },
+    {
+      "detail": "OT-2 pipetting parameters: aspirate and dispense heights and speeds, tip-touch details, order of reagent transfers, and tip handling",
+      "why_needed": "These are needed to program the robot reliably.",
+      "status": "assumable",
+      "resolution": "Use OT-2 default flow rates. Dispense the reservoir components at the top of the moat, then add the protein and reservoir aspirates as in s2.5 (2 µL protein, then 2 µL reservoir, in the same tip). Do the tip-shake step by touching the tip to the well wall at the 12, 3, 6 and 9 o'clock positions. Skip the 200 µL aspirate/redispense at 3 and 9 o'clock that the food-dye script used, because the paper says HEWL media spread without it. Use the p10 Gen1 for the 4 µL drop (2 µL drops failed to eject) and the p300 Gen2 for reservoir volumes. Use a fresh tip per different liquid or well as needed.",
+      "source": "full text of the published article (https://www.sciencedirect.com/science/article/pii/S2472630325000263); standard practice for the rest"
+    },
+    {
+      "detail": "Custom labware definition and plate adapter files (the paper's JSON and STL live in its GitHub repository, which I was told not to use)",
+      "why_needed": "The OT-2 must locate the CrysChem plate wells and hold the plate.",
+      "status": "assumable",
+      "resolution": "The paper gives only the A1 offset (x 30.5, y 12.5, z 6.1 mm) and the plate dimensions (HR3-159, 150×106 mm). Build an equivalent custom labware definition from the Hampton CrysChem specifications and calibrate it on the deck. Use a 3D-printed PLA adapter that clips into two deck slots (the paper's was printed in 84 min on a Bambu X1C), or another stable fixture. Verify well positions and heights before using protein.",
+      "source": "s2.2 of the paper; standard practice"
+    },
+    {
+      "detail": "Lysozyme stock preparation details (dissolving and filtering)",
+      "why_needed": "The protein concentration affects whether crystals form.",
+      "status": "assumable",
+      "resolution": "Dissolve HR7-110 lysozyme to 20 mg/mL in 20 mM sodium acetate pH 4.6. Mix gently until clear, and spin or filter if cloudy. The paper's wording suggests the same stock was used for all plates, so use one stock for both arms.",
+      "source": "s2.5 of the paper; standard practice"
+    }
+  ],
+  "retrieved_details": "Source: full text of the published article, https://www.sciencedirect.com/science/article/pii/S2472630325000263. The 4 µL sitting drop was 2 µL protein plus 2 µL reservoir, because the 2 µL total drop could not be reliably ejected by the Gen1 p10. HEWL reservoirs needed no mixing step. The OT-2 HEWL plate took 31 min, with about 12 min for the drops. The OT-2 gave 18/24 crystal wells at 24 h. The comparison used two additional OT-2 plates and nine plates prepared by three people with varying wet-lab experience. The OT-2 was slightly slower than the average person and significantly slower than an experienced scientist, but it frees about 30 min and more consistently produces crystals. Fig. 6 and Supplemental Figure 5 hold the data, which I did not retrieve.\nSources: https://hamptonresearch.com/product-Lysozyme-524.html and https://hamptonresearch.com/uploads/support_materials/HR7-108_UG.pdf give the HR2-805 composition (30% w/v PEG MME 5,000, 1.0 M NaCl, 0.05 M sodium acetate pH 4.6). The HR7-110 user guide fetch returned only an unreadable PDF payload, so nothing was taken from it.\nFrom the paper methods (s2.1, s2.2, s2.5): p10 Gen1 on the left arm and p300 Gen2 on the right, with 10 µL and 200 µL tips. Hampton CrysChem HR3-159 24-well plate with a 3D-printed PLA adapter. Reservoirs: 300–350 µL HR2-805 stepping 10 µL per column; 50 µL of 200 mM sodium acetate at pH 4.6 (row A), 4.7 (row B) and 4.8 (rows C and D); DI water to 400 µL. Drops: 2 µL HEWL (HR7-110, 20 mg/mL in 20 mM sodium acetate pH 4.6) then 2 µL of that well's reservoir in the same tip, dispensed to the pedestal. Seal with Duck HP260 clear tape after all 24 drops. Score at 24 h."
+}

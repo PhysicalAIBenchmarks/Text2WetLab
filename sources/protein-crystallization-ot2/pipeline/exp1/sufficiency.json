@@ -1,0 +1,56 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the hardware, labware, tips, dye gradient layout, volumes (400 µL reservoir, 5 µL yellow + 5 µL reservoir into the pedestal) and the order of operations. It does not give the mixing parameters, the reservoir surface-flattening step, dye stock identities and concentrations, or the manual comparison procedure. The Results text with those details was not reachable (PMC returned a captcha and the search/fetch tool limit was hit), and the repository and scripts were deliberately not used. Each gap has a defensible default that would not change what this color-mixing check shows.",
+  "gaps": [
+    {
+      "detail": "Reservoir mixing procedure (aspirate/dispense cycles, mix volume, aspirate and dispense heights, flow rates). The Methods only say mixing is 'discussed momentarily' in Results.",
+      "why_needed": "Mixing is what the color gradient is meant to validate, so the robot needs mixing parameters.",
+      "status": "assumable",
+      "resolution": "Assumed: after all components are added to a 400 µL reservoir, mix with the p300 by aspirating and dispensing about 200–250 µL, 3–5 times. Use a tip height of about 1–2 mm above the moat bottom, default flow rates, and slow the dispense to limit bubbles. Check that the colors look uniform.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Reservoir surface flattening step named in the experiment goal. It is not described in s2.1–s2.4, and its mechanism, volumes and timing are unknown. It was probably done after mixing to level the liquid surface or meniscus.",
+      "why_needed": "The goal explicitly includes this step, so the technician needs to know what to do.",
+      "status": "assumable",
+      "resolution": "Assumed: after mixing, make one slow dispense or touch-off pass just under the liquid surface of each reservoir so the surface is level and bubble-free. Alternatively, pop bubbles and settle the plate. This step is cosmetic for a dye-mixing check and does not affect the comparison.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Identity, brand and concentration of the red, blue and yellow food dye stocks and the water. The paper only says 'pure' stocks and a 'yellow dye stock solution'.",
+      "why_needed": "The gradient and the final drop color depend on the dye strength.",
+      "status": "assumable",
+      "resolution": "Assumed: commercial liquid food dyes in DI water at a concentration that gives clear visible color at 30–150 µL in 400 µL. For example, use neat or 1:10 diluted red and blue and a diluted yellow, and keep the same stocks for the robot and manual plates. The exact concentration is not needed for the qualitative comparison.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Source tube/reservoir labware and geometry (tube type, volume, liquid-height model), tip pick-up order, deck positions for tip racks and tube rack, and which pipette handles which volume. Fig. 3 and Supp. Fig. 3 were not available as text.",
+      "why_needed": "The robot must avoid submerging the pipette body and must not run out of source liquid.",
+      "status": "assumable",
+      "resolution": "Assumed: dyes and water in 15 mL or 50 mL conical tubes or a tube rack, with liquid height tracked from tube geometry. The p300 (200 µL tips) handles transfers of about 30 µL and above, including the water top-up. The p10 handles the 5 µL yellow dye and 5 µL reservoir aspirations into one 10 µL tip. The CrysChem adapter occupies two deck slots and the custom labware JSON is loaded. Use a fresh tip for each distinct dye. For the 0 µL steps, skip the transfer.",
+      "source": "standard practice; s2.1, s2.2, s2.4"
+    },
+    {
+      "detail": "Order of addition within each reservoir and the water volume. Only totals are given: blue 0–150 µL in 30 µL steps by column, red 0–150 µL in 50 µL steps by row, water to 400 µL.",
+      "why_needed": "The plate layout is needed to calculate the water volume per well.",
+      "status": "assumable",
+      "resolution": "The layout follows from s2.4. There are 6 columns, with blue 0, 30, 60, 90, 120, 150 µL, and 4 rows, with red 0, 50, 100, 150 µL. Water per well is 400 − blue − red µL, so 100 to 400 µL. Add water first, then red, then blue, then mix. Dispense into the moat (the outer ring reservoir), not the center pedestal.",
+      "source": "s2.4; ordering is standard practice"
+    },
+    {
+      "detail": "Manual (human) comparison procedure: pipettes, order, timing and mixing method. Fig. 4 shows the result only.",
+      "why_needed": "The comparison plate needs the same layout done by hand.",
+      "status": "assumable",
+      "resolution": "Assumed: an experienced user sets up the same plate layout and volumes with manual P10/P200/P1000 pipettes, mixes by pipetting, and deposits 5 µL yellow plus 5 µL reservoir into each pedestal. Photograph both plates under the same lighting.",
+      "source": "standard practice; s2.4 and Fig. 4 legend"
+    },
+    {
+      "detail": "Plate sealing and imaging after setup. The dye plate is not stated to be sealed or incubated, and no imaging details are given.",
+      "why_needed": "Fig. 4 compares the plates visually.",
+      "status": "assumable",
+      "resolution": "Assumed: no incubation and no seal are needed for the dye mock. Photograph the plates from above on a white background right after setup. The crystallization runs seal with Duck HP260 clear tape (s2.5 and s2.6).",
+      "source": "standard practice"
+    }
+  ],
+  "retrieved_details": "From the paper (s2.1–s2.4): OT-2 with p10 gen1 (left) and p300 gen2 (right). Tips: GEB PT0010-9B-NS 10 µL and Opentrons 999-00081 200 µL. Plate: Hampton CrysChem 24-well HR3-159 on a 3D-printed PLA adapter (Cryschem_Plate_Adapter_V1.stl, 84 min on a Bambu Lab X1 Carbon). It clips into two deck slots. The custom labware JSON must be uploaded to the OT-2; well A1 is at x 30.5, y 12.5, z 6.1 mm. Scripts are Python 3.9 with the Opentrons module (https://docs.opentrons.com/v2/). The script sections cover source tube geometry, per-well source volumes, and transfers. Script 1: blue 0–150 µL in 30 µL steps per column; red 0–150 µL in 50 µL steps per row; water to 400 µL per reservoir. Then aspirate 5 µL yellow dye and 5 µL reservoir into the same tip (10 µL) and dispense onto the pedestal. Flattening and mixing details were not found in the provided text. Full text (PMC12229254, https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12229254/) could not be retrieved, so these were treated as assumptions."
+}

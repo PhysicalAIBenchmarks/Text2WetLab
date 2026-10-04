@@ -1,0 +1,56 @@
+{
+  "verdict": "reject",
+  "summary": "The generic PCR chemistry and cycling can be recovered from NEB's polymerase protocols. The paper does not identify the five fragments (templates, primers, sizes, per-fragment annealing temperatures) or the gradient actually run. These are deferred to Files S1–S4 and Table S4, which I may not use, and the gradient algorithm is not described. The experiment's outcome (every fragment amplifying in one gradient run) depends on those details, and guessing them would invalidate it.",
+  "gaps": [
+    {
+      "detail": "Identity of the five fragments: template plasmids, primer sequences, expected amplicon sizes, and which fragment uses which template",
+      "why_needed": "The experiment tests amplification of five specific fragments of varying length and annealing temperature. The primers and sizes define the reactions and the gel's expected band sizes. The paper only says the inputs are in Files S1–S4.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Per-fragment annealing temperatures (j5 primer Tm and 'delta') and the resulting gradient (low/high endpoints, step per tube, which tube number each fragment gets)",
+      "why_needed": "The gradient algorithm's output sets the thermocycler gradient and tube placement. The paper says only that Fragment 5 is >4°C above the others and sits in Row A, Column 6. The algorithm's full parameters and Table S4 are not in the text.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Which polymerase (Phusion vs Q5) was used for this experiment, and the buffer and enzyme amounts",
+      "why_needed": "The paper says 'Phusion or Q5' generically. The choice sets the buffer, extension rate and annealing behaviour. Buffer, dNTP and enzyme amounts are not stated.",
+      "status": "assumable",
+      "resolution": "Use NEB's standard 25 µL Q5 setup: 5 µL 5X Q5 buffer, 0.5 µL 10 mM dNTPs (200 µM final), 0.25 µL Q5 polymerase (0.02 U/µL), water to 25 µL. Phusion alternative per NEB: 1X HF buffer, 200 µM dNTPs, 1.0 U/50 µL. Primers at the paper's 0.1 µM and 0.5 ng template.",
+      "source": "https://www.neb.com/en/protocols/pcr-using-q5-high-fidelity-dna-polymerase-m0491?pdf=true ; https://www.neb.com/protocols/pcr-protocol-m0530?pdf=true"
+    },
+    {
+      "detail": "Extension time per fragment ('as specified by AssemblyTron') and exact cycle number (34 or 36)",
+      "why_needed": "The extension time must scale with amplicon length. The paper gives no per-fragment values.",
+      "status": "assumable",
+      "resolution": "Use 72°C at 30 s/kb (within NEB's range: Q5 20–30 s/kb, Phusion 15–30 s/kb) and 34 cycles. This is only workable once the amplicon sizes are known, and they are not.",
+      "source": "https://www.neb.com/en/protocols/pcr-using-q5-high-fidelity-dna-polymerase-m0491?pdf=true ; s2.3"
+    },
+    {
+      "detail": "Primer and template stock concentrations and how they are diluted on the OT-2 (96-well dilution plate, volumes)",
+      "why_needed": "Reaching 0.1 µM primers and 0.5 ng template in 25 µL requires known stock concentrations and dilution volumes. These are entered in the software pop-up and are not given in the text.",
+      "status": "assumable",
+      "resolution": "Dilute primers to a working stock and add enough to give 0.1 µM final in 25 µL. For example, 2.5 µL of a 1 µM stock gives 0.1 µM. Add 0.5 ng of linearised template, with the volume set by the measured concentration. These are standard-practice choices.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Gel electrophoresis details: volume loaded, voltage and run time, and whether DpnI-digested or raw PCR was run",
+      "why_needed": "Needed to reproduce the Figure 2A verification gel.",
+      "status": "assumable",
+      "resolution": "Load about 5 µL of each PCR (after DpnI digestion if done) next to the NEB 1 kb Plus ladder on a 1% agarose TAE gel with GelRed. Run at about 100 V for 30–45 min and image on an iBright.",
+      "source": "standard practice; s2.1"
+    },
+    {
+      "detail": "Whether DpnI digestion was applied to this PCR check",
+      "why_needed": "The DpnI step in s2.3 is described for plasmid template removal before assembly. It is unclear whether it was applied before the Figure 2A gel.",
+      "status": "assumable",
+      "resolution": "Optionally add 19 µL water, 5 µL rCutSmart buffer and 1 µL DpnI. Incubate 30 min at 37°C, then inactivate 20 min at 65°C, as in s2.3. This does not change band sizes.",
+      "source": "s2.3"
+    }
+  ],
+  "retrieved_details": "From the paper (s2.3): 25 µL PCRs with Phusion or Q5 HF polymerase, 0.1 µM primers, 0.5 ng linearised plasmid template (cut outside the amplicon). Cycling: 30 s at 98°C; 34 or 36 cycles of 10 s at 98°C, 30 s at the AssemblyTron/j5 annealing temperature, then extension at 72°C for the AssemblyTron-specified time; final 5 min at 72°C. DpnI digest (optional here): 19 µL water + 5 µL rCutSmart + 1 µL DpnI, 30 min at 37°C, then 20 min at 65°C. Gradient run: Bio-Rad C100 gradient thermocycler, with tube positions from the AssemblyTron-generated reaction setup file. Fragment 5 sits in Row A, Column 6 (the hotter end of the gradient). Gel: 1% agarose in TAE, GelRed, NEB 1 kb Plus ladder, iBright imaging (s2.1). From NEB Q5 protocol (https://www.neb.com/en/protocols/pcr-using-q5-high-fidelity-dna-polymerase-m0491?pdf=true): 25 µL reaction = 5 µL 5X Q5 buffer, 0.5 µL 10 mM dNTPs, 1.25 µL each of 10 µM primers (NEB standard 0.5 µM; the paper uses 0.1 µM), 0.25 µL Q5 polymerase, water to 25 µL. Cycling: 98°C for 30 s; 25–35 cycles of 98°C for 5–10 s, annealing for 10–30 s, 72°C at 20–30 s/kb; final extension 2 min at 72°C. From NEB Phusion protocol (https://www.neb.com/protocols/pcr-protocol-m0530?pdf=true): 1X HF buffer, 200 µM dNTPs, 1.0 U/50 µL polymerase; 98°C for 30 s; 25–35 cycles of 98°C for 5–10 s, 45–72°C for 10–30 s, 72°C at 15–30 s/kb; final extension 5–10 min at 72°C."
+}

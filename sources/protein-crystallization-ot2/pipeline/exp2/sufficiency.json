@@ -1,0 +1,70 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the reagents, concentrations, reservoir and drop volumes, plate layout, order of steps and hardware. The omitted details are all robot-handling or readout defaults (reservoir mixing, flow rates, incubation temperature, crystal scoring), which are resolved from vendor documents or are defensible assumptions that do not change the 24 h crystal-formation readout.",
+  "gaps": [
+    {
+      "detail": "Composition of Hampton '15-Minute Lysozyme Crystallization Reagent' (HR2-805), solution (1)",
+      "why_needed": "This is the precipitant, and its concentration sets the supersaturation in each well.",
+      "status": "resolved",
+      "resolution": "30% w/v PEG monomethyl ether 5,000, 1.0 M NaCl, 0.05 M sodium acetate trihydrate pH 4.6 (used as supplied, 300-350 ul per reservoir).",
+      "source": "https://hamptonresearch.com/product-Lysozyme-524.html"
+    },
+    {
+      "detail": "Preparation of the HEWL protein stock (HR7-110) at 20 mg/mL in 20 mM sodium acetate pH 4.6",
+      "why_needed": "The paper gives the final concentration and buffer but not how the lyophilized protein is dissolved or clarified.",
+      "status": "resolved",
+      "resolution": "Dissolve lyophilized lysozyme in 0.02 M sodium acetate trihydrate pH 4.6. Add the buffer to the powder and rock gently at room temperature. Do not vortex or shake, because that denatures the protein. Optionally centrifuge or filter (0.22-0.45 um) to remove amorphous material, which gives less nucleation. The formulated solution is stable for 24 h at 25 C, for up to 30 days at 4 C, and can be frozen at -20 to -70 C for up to a year. 20 mg/mL is at the low end of the recommended 20-100 mg/mL crystallization range. Whether the authors centrifuged or filtered their stock is not stated, so use it uncleared or clarified and record which.",
+      "source": "https://hamptonresearch.com/uploads/support_materials/HR7-110_UG.pdf"
+    },
+    {
+      "detail": "Preparation of the 200 mM sodium acetate stocks at pH 4.6, 4.7 and 4.8 (salt form, pH adjustment, filtration)",
+      "why_needed": "The acetate pH is the experimental variable (rows A, B, and C/D).",
+      "status": "assumable",
+      "resolution": "Make 200 mM sodium acetate (trihydrate) in DI water. Adjust to pH 4.6, 4.7 or 4.8 with acetic acid or HCl using a calibrated pH meter. Filter 0.22 um. Use at room temperature.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Reservoir mixing method, referred to as 'discussed momentarily' but not described in the text provided",
+      "why_needed": "The 400 ul reservoir must be homogeneous, because the PEG precipitant is viscous and denser than water, before the drop is drawn from it.",
+      "status": "assumable",
+      "resolution": "After all additions, mix each reservoir by repeated aspirate/dispense with the p300, e.g. 3-5 cycles at about 200-300 ul, with the tip kept off the well bottom. Alternatively, dispense the water first and the viscous PEG reagent last and mix in place. Use a fresh tip, or a tip rinse, per well to avoid cross-contamination.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Pipetting parameters: flow rates, aspirate/dispense heights, delays, blow-out and tip-touch settings for viscous PEG reagent, protein and reservoir liquid",
+      "why_needed": "Accurate delivery of the 300-350 ul viscous reagent and the 2 ul + 2 ul drop components depends on these.",
+      "status": "assumable",
+      "resolution": "Use slowed aspirate/dispense flow rates, a post-aspiration pause, slow tip withdrawal and a blow-out for the viscous PEG reagent, following Opentrons guidance for viscous liquids. Aspirate the 2 ul protein and 2 ul reservoir volumes with the p10 at default rates, taking the reservoir aliquot after the protein in the same tip. Dispense onto the pedestal with the tip just above the surface and touch the tip to the pedestal.",
+      "source": "https://opentrons.com.cn/wp-content/uploads/2023/11/Viscous-Liquid-Handling-Automation-using-Opentrons-OT-2.pdf (ref 27); standard practice"
+    },
+    {
+      "detail": "Which pipette handles which reagent, tip-change scheme, and deck slot layout (reagent tubes, tip racks, plate adapter)",
+      "why_needed": "Needed to write and run the protocol.",
+      "status": "assumable",
+      "resolution": "Use the p300 (200 ul tips) for reservoir additions of the 300-350 ul reagent, 50 ul acetate and water. Use the p10 (10 ul tips) for the 2 ul + 2 ul drops, with a new tip per well. Place the CrysChem adapter across two deck slots, with the plate seated in it. Choose the tube rack and tip rack slots freely. Define source-tube geometry so the tip does not fully submerge, as the paper describes for its scripts. Reservoir volumes per well: solution (1) 300 ul in column 1 up to 350 ul in column 6 (+10 ul per column); 50 ul acetate by row (A pH 4.6, B pH 4.7, C and D pH 4.8); DI water to a total of 400 ul. For the drop, aspirate 2 ul protein then 2 ul of that well's reservoir, and dispense the 4 ul onto the pedestal.",
+      "source": "s2.1, s2.3, s2.5; standard practice"
+    },
+    {
+      "detail": "Custom labware definition (.json) and plate adapter (.stl) for the Hampton HR3-159 CrysChem plate",
+      "why_needed": "The robot needs well coordinates and a plate holder to hit the reservoir moat and pedestal.",
+      "status": "assumable",
+      "resolution": "The paper states the A1 offset (x 30.5, y 12.5, z 6.1 mm), the 150 x 106 mm plate footprint, and that the adapter is PLA 3D-printed (84 min on a Bambu X1 Carbon) and clipped into two deck slots. The files are released by the authors, but they were deliberately not used here. A technician must obtain or create an equivalent adapter and custom labware definition, measuring the plate geometry (moat and pedestal positions, depths) and calibrating on the deck before running.",
+      "source": "s2.2"
+    },
+    {
+      "detail": "Incubation temperature and conditions for the 24 h crystal growth",
+      "why_needed": "Temperature affects lysozyme nucleation and growth rate.",
+      "status": "assumable",
+      "resolution": "After manual sealing with clear packing tape (Duck HP260), keep the plate undisturbed at ambient room temperature (about 20-25 C) for 24 h. Incubation temperature is not stated in the paper.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Crystal scoring criterion and imaging method at 24 h",
+      "why_needed": "The outcome is the number of wells with crystals (18/24 reported, Fig. 5A), so 'success' must be defined.",
+      "status": "assumable",
+      "resolution": "At 24 h, inspect each drop by stereo or light microscope and score a well positive if visible crystals are present (Fig. 5B shows well D4). Record per-well presence or absence.",
+      "source": "Fig. 5; standard practice"
+    }
+  ],
+  "retrieved_details": "HR2-805 15-Minute Lysozyme Reagent = 30% w/v PEG MME 5,000, 1.0 M NaCl, 0.05 M sodium acetate trihydrate pH 4.6 (https://hamptonresearch.com/product-Lysozyme-524.html). HR7-110 lysozyme user guide (https://hamptonresearch.com/uploads/support_materials/HR7-110_UG.pdf): recommended solubilization buffer is 0.02 M sodium acetate trihydrate pH 4.6, and the protein is dissolved at room temperature by gentle rocking with no vortexing. The sample may be centrifuged or filtered (0.22-0.45 um) and gives fewer nuclei if so. The recommended crystallization concentration is 20-100 mg/mL; lower concentrations give fewer, larger crystals. Stability: 25 C for 24 h, 4 C for 30 days, -20 to -70 C for 1 year. Opentrons viscous-liquid application note (https://opentrons.com.cn/wp-content/uploads/2023/11/Viscous-Liquid-Handling-Automation-using-Opentrons-OT-2.pdf): PEG-type viscous liquids need slower aspirate/dispense flow rates, a slow tip withdrawal, pauses and blow-out. From the paper: OT-2 with p10 gen1 (left, GEB 10 ul tips) and p300 gen2 (right, Opentrons 200 ul tips); Hampton CrysChem 24-well plate HR3-159 on a 3D-printed PLA adapter spanning two deck slots; A1 offset x 30.5, y 12.5, z 6.1 mm; reservoirs 400 ul; 4 ul sitting drop (2 ul protein + 2 ul reservoir) on the pedestal; plate sealed manually with Duck HP260 tape; 300-350 ul reagent (1) in steps of 10 ul per column; 50 ul 200 mM NaOAc pH 4.6 (row A), pH 4.7 (row B) and pH 4.8 (rows C and D); water to 400 ul; result 18/24 wells with crystals at 24 h."
+}

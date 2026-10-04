@@ -1,0 +1,77 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "fetch",
+      "value": "https://doi.org/10.1016/j.slast.2025.100268"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/?term=10.1016/j.slast.2025.100268"
+    },
+    {
+      "kind": "search",
+      "value": "Opentrons-2 protein crystallization scaleup 24-well CrysChem sitting drop lysozyme Campylobacter jejuni SLAS Technology 2025"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/40101838"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12229254/"
+    },
+    {
+      "kind": "result",
+      "value": "https://slas-technology.org/article/S2472-6303(25)00026-3/fulltext"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12229254/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/science/article/pii/S2472630325000263"
+    },
+    {
+      "kind": "result",
+      "value": "https://mcshan.chemistry.gatech.edu/static/outreach/Crystallizing%20Lysozyme_Spring2024_v2.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/uploads/cg_pdf/CG101_Optimization.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://insights.opentrons.com/lp/automating-protein-crystallization-on-the-ot-2-liquid-handler/"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7534396"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12229254/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12229254/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12229254/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12229254/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://slas-technology.org/article/S2472-6303(25)00026-3/fulltext"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12229254/fullTextXML"
+    }
+  ]
+}

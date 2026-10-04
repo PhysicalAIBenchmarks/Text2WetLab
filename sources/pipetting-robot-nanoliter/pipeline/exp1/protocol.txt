@@ -1,0 +1,70 @@
+Fluorescein dispensing characterization of the modified OT-2 (OpenSampler) for 5-500 nL sub-microliter liquid handling
+
+Containers:
+- assay_plate: 96-well plate — Clear-bottom plate on the OT-2 tempdeck at 4 °C. Holds 30 dispense wells (A1:E6), 25 standard wells (A7:E11) and unused wells. [assumed]
+- borate_buffer_tube: 50 mL tube — 50 mM sodium borate buffer, pH 9.3, for well prefill [assumed]
+- fluor_0.2mM_tube: 1.5 mL tube — 0.2 mM sodium fluorescein stock (for 500 nL dispenses) [assumed]
+- fluor_1mM_tube: 1.5 mL tube — 1 mM sodium fluorescein stock (for 100 nL dispenses) [assumed]
+- fluor_2mM_tube: 1.5 mL tube — 2 mM sodium fluorescein stock (for 50 nL dispenses) [assumed]
+- fluor_5mM_tube: 1.5 mL tube — 5 mM sodium fluorescein stock (for 20 nL dispenses) [assumed]
+- fluor_10mM_tube: 1.5 mL tube — 10 mM sodium fluorescein stock (for 10 nL dispenses) [assumed]
+- fluor_20mM_tube: 1.5 mL tube — 20 mM sodium fluorescein stock (for 5 nL dispenses) [assumed]
+- std_3uM_tube: 1.5 mL tube — 3 µM fluorescein calibration standard in borate buffer [assumed]
+- std_4uM_tube: 1.5 mL tube — 4 µM fluorescein calibration standard in borate buffer [assumed]
+- std_5uM_tube: 1.5 mL tube — 5 µM fluorescein calibration standard in borate buffer [assumed]
+- std_6uM_tube: 1.5 mL tube — 6 µM fluorescein calibration standard in borate buffer [assumed]
+- std_7uM_tube: 1.5 mL tube — 7 µM fluorescein calibration standard in borate buffer [assumed]
+- wash_buffer_tube: 50 mL tube — Water or borate buffer used as syringe system liquid and for needle flushes [assumed]
+- waste: waste container — Flush waste [assumed]
+
+Starting contents:
+- borate_buffer_tube: stock 50 mM sodium borate buffer, pH 9.3 [assumed]
+- fluor_0.2mM_tube: 100 µL 0.2 mM sodium fluorescein in 50 mM sodium borate buffer [assumed]
+- fluor_1mM_tube: 100 µL 1 mM sodium fluorescein in 50 mM sodium borate buffer [assumed]
+- fluor_2mM_tube: 100 µL 2 mM sodium fluorescein in 50 mM sodium borate buffer [assumed]
+- fluor_5mM_tube: 100 µL 5 mM sodium fluorescein in 50 mM sodium borate buffer [assumed]
+- fluor_10mM_tube: 100 µL 10 mM sodium fluorescein in 50 mM sodium borate buffer [assumed]
+- fluor_20mM_tube: 100 µL 20 mM sodium fluorescein in 50 mM sodium borate buffer [assumed]
+- std_3uM_tube: 150 µL 3 µM sodium fluorescein in 50 mM sodium borate buffer [assumed]
+- std_4uM_tube: 150 µL 4 µM sodium fluorescein in 50 mM sodium borate buffer [assumed]
+- std_5uM_tube: 150 µL 5 µM sodium fluorescein in 50 mM sodium borate buffer [assumed]
+- std_6uM_tube: 150 µL 6 µM sodium fluorescein in 50 mM sodium borate buffer [assumed]
+- std_7uM_tube: 150 µL 7 µM sodium fluorescein in 50 mM sodium borate buffer [assumed]
+- wash_buffer_tube: stock Water or 50 mM sodium borate buffer (system liquid / flush) [assumed]
+
+Steps:
+1. MANUAL: Configure the basic liquid-handling set-up: OT-2 Gen2 pipette body modified to drive a Hamilton 25 µL gastight 1702 syringe, with a 40 cm, 100 µm i.d. fused-silica sampling needle attached through a MicroTight union. Switch the OT-2 debug switch to OpenLC control. Fill the syringe and needle bubble-free with water or borate buffer and prime. Calibrate labware: set the three corner wells of the assay plate, test at the fourth corner and accept or recalibrate. Calibrate the syringe: home the syringe motor, then set the maximum, minimum and reference plunger positions. Recalibrate whenever the software is restarted. Note: Priming and the system liquid are not stated in the paper. Calibration steps follow s2.3. [assumed]
+2. MANUAL: Place the assay plate on the OT-2 tempdeck and cool to 4 °C. Keep it at 4 °C throughout preparation. Leave the plate unsealed during dispensing. Note: Leaving the plate unsealed is an assumption.
+3. Transfer 20 µL of 50 mM sodium borate buffer, pH 9.3 from borate_buffer_tube to assay_plate wells A1:E6 (each well). Note: Dispense wells: column 1 = 500 nL, 2 = 100 nL, 3 = 50 nL, 4 = 20 nL, 5 = 10 nL, 6 = 5 nL (rows A-E = 5 replicates). pH 9.3 is from ref 41.
+4. Transfer 20 µL of 3 µM fluorescein standard from std_3uM_tube to assay_plate wells A7:E7 (each well). Note: Standards are hand pipetted in the paper; here they are standard pipetting steps.
+5. Transfer 20 µL of 4 µM fluorescein standard from std_4uM_tube to assay_plate wells A8:E8 (each well).
+6. Transfer 20 µL of 5 µM fluorescein standard from std_5uM_tube to assay_plate wells A9:E9 (each well).
+7. Transfer 20 µL of 6 µM fluorescein standard from std_6uM_tube to assay_plate wells A10:E10 (each well).
+8. Transfer 20 µL of 7 µM fluorescein standard from std_7uM_tube to assay_plate wells A11:E11 (each well).
+9. Transfer 0.5 µL of 0.2 mM sodium fluorescein from fluor_0.2mM_tube to assay_plate wells A1:E1 (each well). Note: 500 nL into each of 5 wells using the modified syringe. Needle tip just below the buffer surface, slow draw and dispense, short dwell, all assumed. Run lowest concentration first.
+10. Transfer 25 µL of Wash buffer (needle flush) from wash_buffer_tube to waste. Note: Flush between concentrations. Volume by analogy with the 25 µL flush in s2.5. [assumed]
+11. Transfer 0.1 µL of 1 mM sodium fluorescein from fluor_1mM_tube to assay_plate wells A2:E2 (each well). Note: 100 nL into each of 5 wells.
+12. Transfer 25 µL of Wash buffer (needle flush) from wash_buffer_tube to waste. Note: Flush between concentrations. [assumed]
+13. Transfer 0.05 µL of 2 mM sodium fluorescein from fluor_2mM_tube to assay_plate wells A3:E3 (each well). Note: 50 nL into each of 5 wells.
+14. Transfer 25 µL of Wash buffer (needle flush) from wash_buffer_tube to waste. Note: Flush between concentrations. [assumed]
+15. Transfer 0.02 µL of 5 mM sodium fluorescein from fluor_5mM_tube to assay_plate wells A4:E4 (each well). Note: 20 nL into each of 5 wells.
+16. Transfer 25 µL of Wash buffer (needle flush) from wash_buffer_tube to waste. Note: Flush between concentrations. [assumed]
+17. Transfer 0.01 µL of 10 mM sodium fluorescein from fluor_10mM_tube to assay_plate wells A5:E5 (each well). Note: 10 nL into each of 5 wells.
+18. Transfer 25 µL of Wash buffer (needle flush) from wash_buffer_tube to waste. Note: Flush between concentrations. [assumed]
+19. Transfer 0.005 µL of 20 mM sodium fluorescein from fluor_20mM_tube to assay_plate wells A6:E6 (each well). Note: 5 nL into each of 5 wells.
+20. MANUAL: Spin the assay plate in a PlateFuge microcentrifuge for 1 min to eliminate bubbles. Note: Speed is fixed by the instrument.
+21. MANUAL: Briefly equilibrate the plate to room temperature to avoid condensation. Read fluorescence from the bottom of the plate on a Synergy Neo 2 plate reader: excitation 485/13 nm, emission 528/17 nm, gain 50. Read dispensed wells A1:E6 and standards A7:E11 on the same plate with the same settings. Note: Room-temperature equilibration and default read height and flashes are assumed. Repeat the whole procedure on separate days for batches OS-1 to OS-6. [assumed]
+
+Assumptions:
+- Plate adaptation: the paper uses a clear-bottom Corning 3544 384-well plate; this protocol uses a 96-well plate (plate_96, 360 µL working capacity). The 20 µL prefill fits. Wells are relabelled on a 96-well layout.
+- Layout in assay_plate: dispense wells A1:E1 = 500 nL of 0.2 mM, A2:E2 = 100 nL of 1 mM, A3:E3 = 50 nL of 2 mM, A4:E4 = 20 nL of 5 mM, A5:E5 = 10 nL of 10 mM, A6:E6 = 5 nL of 20 mM (n = 5 each, final 5 µM). Standards: A7:E7 = 3 µM, A8:E8 = 4 µM, A9:E9 = 5 µM, A10:E10 = 6 µM, A11:E11 = 7 µM (n = 5 each, 20 µL).
+- Diluent: 50 mM sodium borate buffer at pH 9.3 for the prefill, the fluorescein stocks and the 3-7 µM standards, taken from ref 41 (Councill et al., SLAS Technol 2021;26:311-319, DOI 10.1177/2472630320973591; https://pmc.ncbi.nlm.nih.gov/articles/PMC8143861/), seen only as a search snippet. Using borate buffer for the 0.2-20 mM stocks is assumed.
+- Fluorescein stocks and standards are treated as pre-prepared (initial contents). Stock volumes (100 µL) and standard volumes (150 µL) are assumed to exceed what is needed. Standards would be made by diluting the 10 mM stock into the borate buffer, as in ref 41.
+- Syringe aspirate and dispense speeds, air gaps and needle Z-height are not given. Assumed: slow draw and dispense, needle tip just below the buffer surface or touching it, short dwell before retracting. Record the values used.
+- System liquid: the syringe and 40 cm × 100 µm i.d. needle (about 3 µL) are filled bubble-free with water or borate buffer and primed before each batch. This is standard practice, not stated in the paper.
+- Stock aspiration: the target volume (plus a small excess if needed) is drawn from each stock. The needle is flushed with 25 µL of wash buffer between concentrations (volume by analogy with s2.5), processing the lowest concentration first. This is an assumption.
+- Step-to-volume conversion is derived from the 25 µL Hamilton 1702 syringe geometry and the s2.3 plunger min/max calibration, assuming linear displacement. The paper's OpenLC software or conversion table (s3.1) is not used here.
+- The plate is left unsealed during dispensing; foil punching with the modified Gen1 pipette is not needed for this characterization.
+- The tempdeck is held at 4 °C throughout preparation (stated). A brief room-temperature equilibration before reading is assumed. PlateFuge speed is its fixed setting; the plate reader uses default read height and flashes.
+- The paper reports six batches (OS-1 to OS-6) on different days plus one reference using the original OT-2 software with a nL-to-linear-distance conversion table. This protocol covers one batch only.
+- Grubbs outlier tests and the calculation of dispensed volumes are analysis and are not included.

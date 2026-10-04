@@ -1,0 +1,42 @@
+{
+  "verdict": "major_issues",
+  "summary": "The conjugation layout and robot deck setup follow the paper: the E. coli row pairing is consistent, 150 µL of each partner is dispensed, and the manual streak, overlay and PCR steps are present. There are three substantive problems. The donor culture volume is inconsistent with the culture and concentration steps. The colony PCR master mix does not reproduce the paper's per-reaction recipe. The PCR liquid-handling steps use volumes below the stated pipettes' range, with no deck setup for them. There are also smaller issues with controls, the colony count and CFU timing.",
+  "issues": [
+    {
+      "step": 3,
+      "severity": "major",
+      "issue": "Steps 1-3 grow 5 mL + ~15 mL = ~20 mL of culture per donor tube. Resuspending in 10% of the initial volume gives ~2 mL of 10x cells, not the 5000 µL listed in Starting contents. Each donor tube must supply 24 wells x 150 µL = 3.6 mL plus dead volume, so ~2 mL would run out. The 5000 µL figure matches the paper's '~31 conjugations' only if the prep is scaled up.",
+      "suggestion": "Either scale up the culture so that 10% of the initial volume is at least ~4.5-5 mL (e.g. ~45-50 mL culture per tube), or use more donor tubes. Also correct the Starting contents volumes and flag the culture scale as an assumption."
+    },
+    {
+      "step": 26,
+      "severity": "major",
+      "issue": "Steps 19-24 build a master mix of 770 + 110 + 110 + 55 + 55 + 2.75 µL for 110 reactions. That is ~10.025 µL per reaction, but step 26 dispenses only 9 µL per well. Every component is therefore ~10% under-delivered, and the final reaction has less buffer, dNTP, primer, enzyme and water than the paper's recipe. The note 'per-reaction volumes from s2.4' is not accurate. The paper's own recipe (1+1+0.5+0.5+0.025+1+7) sums to 11.025 µL, not the stated 10 µL, and this discrepancy is not flagged.",
+      "suggestion": "Flag the paper's volume inconsistency as an assumption. Then either dispense the full ~10 µL of master mix per well, or rescale the components (e.g. reduce water) so that 9 µL of mix plus 1 µL template gives a 10 µL reaction with the intended 1x buffer, 0.2 mM dNTP, 0.5 µM primers and 0.025 µL enzyme."
+    },
+    {
+      "step": 24,
+      "severity": "major",
+      "issue": "Steps 17-27 are robotic transfers of 1 µL, 2.75 µL and 9 µL. The only pipettes declared are a single-channel P300 and P1000, which cannot accurately dispense these volumes. No pipette or tip box is assigned for the PCR section, nor are the tube/plate positions for the water reservoir, reagent tubes, master mix tube, lysate plate and PCR plate. The 50 µL water fill into 96 wells with a single-channel P300 is also not specified.",
+      "suggestion": "Specify the pipette used for the PCR section (P20 single- or 8-channel for sub-20 µL volumes; P300 only for 50 µL and larger). Give a deck layout with slots and tip boxes for the PCR section. Make a dilution or larger-volume master mix of the enzyme so the Taq volume is pipettable."
+    },
+    {
+      "step": 18,
+      "severity": "minor",
+      "issue": "The paper is ambiguous: 12 PCRs per combination, but also three colonies per experiment. The protocol silently uses one colony per replicate position and states the conflict only in the Assumptions. It also maps PCR plate wells to conj_plate layout. This assumes a colony is available from every one of the 96 conjugation plates, but plates with no exconjugants cannot fill their wells, and the protocol has no rule for that case.",
+      "suggestion": "State how empty wells are handled (e.g. leave them blank or record 'no colony') and how false-positive rate is computed when fewer than 12 colonies are available. The paper's rates of 54.54% and 45.45% imply a denominator of 11."
+    },
+    {
+      "step": 16,
+      "severity": "minor",
+      "issue": "The serial-dilution CFU estimate is listed after the overlay and exconjugant counting, but it must be started on the day of conjugation (step 4/5) from the spore suspension. Otherwise the aliquot kept since step 4 sits for several days before dilution and plating, and the efficiency denominator may be inaccurate.",
+      "suggestion": "Move the dilution and plating of the spore aliquot to Day 2, right after spore adjustment or at the time of conjugation. Note that the count gives CFU per 150 µL input for each strain."
+    },
+    {
+      "step": 0,
+      "severity": "minor",
+      "issue": "The layout uses all 96 wells for the 8 strain/plasmid combinations and includes no controls, such as E. coli donor only, spores only, or a no-plasmid donor. These are standard for interpreting overlay colonies and false positives. The PCR plate also has no positive or negative amplification controls, since every well is used.",
+      "suggestion": "Note that the paper does not describe controls and Table S3 is unavailable. If controls are desired, run them manually or on a separate plate. Add at least a water and a plasmid-DNA PCR control, and state that this deviates from a full-plate 8x12 layout."
+    }
+  ]
+}

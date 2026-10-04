@@ -1,0 +1,36 @@
+{
+  "verdict": "minor_issues",
+  "summary": "The layout and volumes are correct and match the paper (s2.4). Blue is 0-150 µL in 30 µL steps by column. Red is 0-150 µL in 50 µL steps by row. Water is 400 minus blue minus red. Totals check out at about 6 mL water and 1.8 mL each of red and blue. The yellow-plus-reservoir 10 µL pedestal step is also faithful. The remaining problems are underspecified tip handling and a few unrealistic assumed parameters. None of them contradict the paper, and no major errors were found.",
+  "issues": [
+    {
+      "step": 33,
+      "severity": "minor",
+      "issue": "The mix step does not say that a fresh tip is used for each of the 24 reservoirs. Reusing one tip would cross-contaminate dyes, which would distort the gradient the experiment is meant to show. Mixing 200 µL is also the full capacity of the 200 µL tip, and the tip would need to sit 1-2 mm above the bottom of a narrow moat.",
+      "suggestion": "State one fresh p300 tip per well, or a tip change after each mix. Use a mix volume below tip capacity (about 150-180 µL). Check that the tip fits in the moat at the assumed height."
+    },
+    {
+      "step": 35,
+      "severity": "minor",
+      "issue": "The paper's single combined operation (5 µL yellow, then 5 µL reservoir, in one tip, dispensed onto the pedestal) is split into two transfer steps. If executed literally as two separate passes, the result would be wrong: either two separate drops per pedestal or a changed tip between the aspirations.",
+      "suggestion": "Merge steps 35 and 36 into one operation per well, or state explicitly that the tip is kept and not changed between them. Specify one fresh p10 tip per well, with 5 µL yellow aspirated first and then 5 µL reservoir, dispensed once onto the pedestal."
+    },
+    {
+      "step": 25,
+      "severity": "minor",
+      "issue": "Dyes are dispensed into wells that already contain water or other dye, and tip handling for this is unspecified. A tip contaminated with water or dye could be returned to the stock tube. For blue, a single tip would also touch the red-containing wells in rows B-D.",
+      "suggestion": "Specify dispensing above the liquid surface (no tip immersion), or a tip change per well when the tip touches liquid. Alternatively, note that the tip is only used for one dye and is discarded or reused only with that same dye."
+    },
+    {
+      "step": 34,
+      "severity": "minor",
+      "issue": "The flattening step is entirely assumed and manual. Popping bubbles with a hand-held tip in the middle of a robot run could disturb or contaminate the reservoirs. It is labeled a bubble pop or touch-off, but the paper does not say what flattening is.",
+      "suggestion": "Keep the step but flag clearly that it is a placeholder. Use a fresh clean tip per well, or omit the step and simply allow the plate to settle."
+    },
+    {
+      "step": 2,
+      "severity": "minor",
+      "issue": "The 400 µL water transfer, and others above 200 µL, are split into multiple aspirations using the 200 µL tips. The number of aspirations and the tip-reuse behavior are not stated, and the paper gives no details on how fill volumes above tip capacity are handled.",
+      "suggestion": "State that the p300 does multiple aspirations of at most 200 µL with the same tip from the water tube. Water is dispensed into the moat without touching the liquid."
+    }
+  ]
+}

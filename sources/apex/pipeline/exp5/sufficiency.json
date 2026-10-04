@@ -1,0 +1,84 @@
+{
+  "verdict": "reject",
+  "summary": "The paper does not identify the expression constructs or say which antibiotic goes with which plasmid, and these cannot be recovered from the text or the cited papers. Several critical protocol parameters are also deferred to Supplementary File 1, which I was told not to use. Other details were resolved or are defensible assumptions, but guessing the missing ones would risk invalidating the APEX-vs-manual comparison.",
+  "gaps": [
+    {
+      "detail": "Identity and sequence of the expression plasmids (pEX01 control, pEX04 29 kDa, pEX09 49 kDa, pEX07 222 kDa). This includes vector backbone, promoter, tag and which one is the Sfp, CVTA or PKS construct.",
+      "why_needed": "The experiment expresses these specific proteins. Table 2 is only an image and is unavailable. The plasmids were gifted by Prof. Campopiano, and the cited papers (Quadri 1998; Kaulmann 2007; Herrera 2024) give biology, not these constructs. Without them the expression and SDS-PAGE results cannot be reproduced.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Which antibiotic (carbenicillin 100, kanamycin 50, zeocin 25 or chloramphenicol 25 µg/mL) goes with each plasmid.",
+      "why_needed": "The selective agar and the culture media need the correct antibiotic. The antibiotic sentence in s4.1 is garbled (chloramphenicol appears twice and there is no mapping to plasmids). Using the wrong antibiotic would give no growth or no selection.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Mid-log OD600 trigger for induction and the volumes of the overnight starter and the subculture. The paper only says back-dilution to OD600 0.1 and growth to mid-log phase at 37 °C.",
+      "why_needed": "Induction timing affects expression and soluble yield. The 0.5 and 1 mL working volumes are known from Fig. 6, but the actual seeding and sampling volumes are not given for each protocol step.",
+      "status": "assumable",
+      "resolution": "Assume mid-log is OD600 about 0.4-0.6, checked by a plate-reader OD600 measurement. Back-dilute to OD600 0.1 in 0.5 or 1 mL of LB plus antibiotic in a 96 V-well 2 mL plate. Induce with 0.1 mM IPTG, seal with Breathe-Easy membrane and incubate at 20 °C for 18 h with vigorous shaking.",
+      "source": "s4.5, Fig. 6 legend; OD range is standard practice"
+    },
+    {
+      "detail": "Volumes and timings for APEX Protocol 1 transformation: DNA, cells, SOC, 4 °C pre-incubation, 42 °C heat shock and 37 °C recovery.",
+      "why_needed": "The thermocycler program and the liquid volumes must be set exactly. The full parameters are in Supplementary File 1, which I may not use.",
+      "status": "resolved",
+      "resolution": "Fig. 4 gives the low-volume configuration: 1 µL DNA (1.5×10^-4 pmol), 10 µL competent cells and 50 µL SOC. Hold at 4 °C for 30 min, heat shock at 42 °C for 30 s, then recover at 37 °C for 1 h. The manual comparison uses 50 µL cells and 250 µL SOC. The Fig. 4 DNA amount is for DH5α; the same low-volume settings are assumed for the BL21(DE3) transformations in Fig. 6.",
+      "source": "s2.2; Fig. 4 legend"
+    },
+    {
+      "detail": "Competent cell preparation (BL21(DE3)) and medium recipes.",
+      "why_needed": "Competent cells are required for transformation.",
+      "status": "resolved",
+      "resolution": "Grow a 5 mL overnight culture, dilute 1:100 into 50 mL LB and grow at 37 °C and 300 rpm to OD600 0.4. Chill on ice for 20 min and pellet at 4000 ×g and 4 °C for 10 min. Make cells Ca-competent by the Hanahan method and resuspend in 2 mL of 0.1 M CaCl2 with 15% glycerol. Store at −80 °C. LB: 5 g/L yeast extract, 10 g/L tryptone, 10 g/L NaCl. LB agar adds 1.5% agar. SOC: 2.5 g/L yeast extract, 10 g/L tryptone, 10 mM NaCl, 10 mM KCl, 20 mM glucose, 10 mM MgSO4 and 10 mM MgCl2.",
+      "source": "s4.1, s4.2"
+    },
+    {
+      "detail": "Colony selection (spotting) and sampling parameters: spot volume, spotting height above agar, agar height calculation, spiral parameters and the volume of culture medium inoculated.",
+      "why_needed": "The robot must dispense onto and sample from agar precisely.",
+      "status": "assumable",
+      "resolution": "Spot 5 µL of transformation onto LB-antibiotic agar. Agar height = (plate with agar weight − empty plate weight) / (base area × density). Use density 0.911 g/cm³ for rectangular OmniTray plates or 0.954 g/cm³ for round plates, and verify with a pipette-tip measurement. Sample by single pierce at the spot centre for dense spots, or by spiral for sparse spots. Inoculate LB-antibiotic in a 96 deep-well plate by mixing the tip in the medium, then grow overnight. The spotting height offset, the spiral radius and rotation settings, and the overnight volume are assumed (for example a 2-3 mm tip clearance, a spiral radius of about 1-1.5 mm, 2-3 turns and 0.5-1 mL of medium). Spots should be incubated at 37 °C overnight before sampling.",
+      "source": "s2.3, s2.4, Fig. 2 legend; remaining values are standard practice"
+    },
+    {
+      "detail": "Centrifugation force for plate pelleting. The text gives \"3.884 ×g\", which is likely a typo for 3,884 ×g.",
+      "why_needed": "Pelleting and lysate clarification depend on the g-force.",
+      "status": "assumable",
+      "resolution": "Use about 3,884 ×g for 10 min for plate centrifugation (automated workflow). Use 17,000 ×g for 10 min for microcentrifuge tubes (manual workflow). Use the same conditions again to clarify the lysate.",
+      "source": "s4.5 (interpretation of the typo is an assumption)"
+    },
+    {
+      "detail": "Lysis and sample preparation.",
+      "why_needed": "Soluble extracts are needed for SDS-PAGE.",
+      "status": "resolved",
+      "resolution": "Sample about 2.4×10^8 cells per well. Pellet the cells and lyse in 25 µL BugBuster Master Mix at room temperature for 15 min. Clarify by centrifugation. Mix 20 µL of cell-free extract with 20 µL of 2X SDS-PAGE sample buffer and boil for 6 min. The Merck/Novagen user protocol (TB055/TB333, mirrored at https://static.igem.org/mediawiki/2018/0/07/T--Exeter--BugBusterProteinExtraction.pdf) suggests about 1/5 of the culture volume as BugBuster for small cultures. The paper's growth-normalised pellet and 25 µL volume are used instead. The exact culture volume corresponding to 2.4×10^8 cells depends on OD and is not given.",
+      "source": "s4.5, s2.5; https://static.igem.org/mediawiki/2018/0/07/T--Exeter--BugBusterProteinExtraction.pdf"
+    },
+    {
+      "detail": "SDS-PAGE electrophoresis and staining conditions.",
+      "why_needed": "Needed to resolve and visualise the proteins.",
+      "status": "resolved",
+      "resolution": "Use a NuPAGE 4-12% Bis-Tris gel with 1X NuPAGE MES SDS running buffer at 200 V constant for 35 min. This matches the Invitrogen manual (https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0007891_NuPAGE_BisTris_MiniGels.pdf), which gives 35 min at 200 V for MES buffer. Stain with InstantBlue Coomassie. Use HiMark pre-stained standard as the marker. The load volume per lane is not given, so assume 10-20 µL.",
+      "source": "s4.5; https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0007891_NuPAGE_BisTris_MiniGels.pdf"
+    },
+    {
+      "detail": "Manual workflow details: transformation and sampling by hand.",
+      "why_needed": "This is the comparator arm of the experiment.",
+      "status": "assumable",
+      "resolution": "Use the manufacturer-style protocol with 50 µL cells and 250 µL SOC (Fig. 4), the same heat shock and the same downstream culture, induction and lysis conditions. Manual colony picking and manual pipetting are assumed. Centrifuge at 17,000 ×g.",
+      "source": "Fig. 4 legend, s4.5; standard practice"
+    },
+    {
+      "detail": "Thermocycler lid and plate settings, shaking speed and incubator details, and OD600 plate-reader details for overnight growth.",
+      "why_needed": "These are needed to reproduce the incubation conditions.",
+      "status": "assumable",
+      "resolution": "Use a heated lid at about 105 °C or open. Shake at about 250-300 rpm in a shaking incubator ('rigorous' shaking at 20 °C is assumed). Make OD600 readings in a 96-well plate after dilution.",
+      "source": "standard practice"
+    }
+  ],
+  "retrieved_details": "- Heat shock (default APEX Protocol 1): 4 °C for 30 min, 42 °C for 30 s, then SOC recovery at 37 °C for 1 h. LV configuration: 10 µL cells, 50 µL SOC, 1 µL DNA at 1.5×10^-4 pmol (paper s2.2, Fig. 4).\n- Competent cells: Hanahan method, 50 mL culture to OD600 0.4, 4000 ×g for 10 min at 4 °C, resuspend in 2 mL 0.1 M CaCl2 with 15% glycerol, store at −80 °C (s4.2).\n- Antibiotic concentrations: 100, 50, 25 and 25 µg/mL for carbenicillin, kanamycin, zeocin and chloramphenicol, with the plasmid-to-antibiotic mapping unresolved (s4.1).\n- Agar densities: 0.911 g/cm³ for rectangular plates and 0.954 g/cm³ for round plates. Height = agar mass / (area × density) (s2.3, Fig. 2).\n- Spot volume: 5 µL (s4.3, Fig. 4). Sampling by single pierce (dense) or spiral (sparse) (s2.4).\n- Expression: back-dilute to OD600 0.1 in 0.5 or 1 mL LB in a 96 V-well 2 mL plate (Greiner). Grow to mid-log at 37 °C, induce with 0.1 mM IPTG, seal with Breathe-Easy membrane and incubate at 20 °C for 18 h (s4.5, Fig. 6).\n- Harvest about 2.4×10^8 cells. Centrifuge at 17,000 ×g (manual) or about 3,884 ×g (plate) for 10 min. Lyse in 25 µL BugBuster Master Mix at room temperature for 15 min and clarify. Mix 20 µL extract with 20 µL 2X SDS sample buffer and boil for 6 min (s4.5).\n- Gel: NuPAGE 4-12% Bis-Tris, 1X MES SDS running buffer, 200 V for 35 min (consistent with https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0007891_NuPAGE_BisTris_MiniGels.pdf). Stain with InstantBlue Coomassie. Marker is HiMark pre-stained standard.\n- BugBuster general guidance: https://static.igem.org/mediawiki/2018/0/07/T--Exeter--BugBusterProteinExtraction.pdf\n- Not recoverable: Table 2 plasmid identities (Sfp, CVTA, PKS constructs), the antibiotic mapping, and the mid-log OD target."
+}

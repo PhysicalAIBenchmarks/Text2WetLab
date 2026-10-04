@@ -1,0 +1,77 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper plus the TaqPath IFU and MagMAX Pathogen user guide give enough to run extraction and RT-PCR. The IFU fully specifies the RT-PCR setup, but the MagMAX bead master mix, the BindIt script parameters, the EQA sample volume and the comparator-platform methods are not in the paper. For these I could find no exact source (web search quota ran out), so each rests on a stated assumption or on standard vendor procedures.",
+  "gaps": [
+    {
+      "detail": "TaqPath COVID-19 CE-IVD RT-PCR reaction mix composition and volumes (only 5 µL eluate is given in the paper)",
+      "why_needed": "Needed to prepare the master mix and dispense it in station C.",
+      "status": "resolved",
+      "resolution": "For >200 µL extraction input, 96-well plate, per reaction: 6.25 µL TaqPath 1-Step Multiplex Master Mix (No ROX, 4X), 1.25 µL COVID-19 Real Time PCR Assay Multiplex and 12.5 µL nuclease-free water. That makes 20 µL of reaction mix, plus 5 µL purified RNA for 25 µL total. Positive control well: 20 µL mix, 2 µL diluted TaqPath COVID-19 Control and 3 µL water. Negative control well: 20 µL mix and 5 µL of the extraction negative control (PBS at A1). Caveat: the paper used 460 µL lysate, but the IFU says inputs above 400 µL were not tested. Seal the plate, vortex 10–30 s, then centrifuge 1–2 min at ≥650 × g.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019215_TaqPathCOVID-19_CE-IVD_RT-PCR%20Kit_IFU.pdf"
+    },
+    {
+      "detail": "ABI 7500 Fast thermal protocol and run settings",
+      "why_needed": "Needed to program the instrument; the paper gives only the instrument name and software version.",
+      "status": "resolved",
+      "resolution": "Reaction volume 25 µL, passive reference None, detectors FAM = ORF1ab, VIC = N gene, ABY = S gene, JUN = MS2. Cycling: 25 °C for 2 min (UNG), 53 °C for 10 min (RT), 95 °C for 2 min, then 40 cycles of 95 °C for 3 s and 60 °C for 30 s. The 7500 instrument needs ABY and JUN dye calibration.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019215_TaqPathCOVID-19_CE-IVD_RT-PCR%20Kit_IFU.pdf"
+    },
+    {
+      "detail": "Positive control preparation",
+      "why_needed": "The positive control well needs a working dilution.",
+      "status": "resolved",
+      "resolution": "Dilute TaqPath COVID-19 Control (1×10^4 copies/µL) in two steps to 25 copies/µL: 2 µL into 98 µL of dilution buffer, then 12.5 µL of that into 87.5 µL of dilution buffer. Use 2 µL per well.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019215_TaqPathCOVID-19_CE-IVD_RT-PCR%20Kit_IFU.pdf"
+    },
+    {
+      "detail": "Composition of 'MagMax Pathogen RNA/DNA Bead Master Mix' (260 µL per well)",
+      "why_needed": "The paper gives only the total volume added per well. The ratio of beads, Lysis Enhancer and isopropanol determines binding.",
+      "status": "assumable",
+      "resolution": "The user guide defines the Bead Mix as 10 µL Nucleic Acid Binding Beads plus 10 µL Lysis ENHANCER (20 µL per reaction). The guide's isopropanol additions are 350 µL for a 600 µL sample and 65 µL for a 115 µL sample, i.e. about 0.55–0.6 volumes per sample volume. A defensible reconstruction for 460 µL lysate is 20 µL Bead Mix plus about 240 µL 100% isopropanol, giving 260 µL. This is an inference, not a verified value. The COVID-specific Thermo application note that likely states the exact composition could not be retrieved.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/4463379_MM_Path_UG.pdf"
+    },
+    {
+      "detail": "KingFisher Flex BindIt script 'MagMax_Pathogen_High_Volume' parameters (wash volumes, plate types, mixing/collection times, elution volume, temperatures)",
+      "why_needed": "Defines how the extraction runs on the instrument. The paper only names the script.",
+      "status": "assumable",
+      "resolution": "The script is a Thermo-supplied file and is run as supplied. For deep-well head plate layouts the user guide gives Wash Solution 1 at 300 µL in two deep-well plates, Wash Solution 2 at 450 µL in two deep-well plates, and 90 µL Elution Buffer in a standard plate (tip comb plate in a standard plate). The exact timings of the high-volume script were not found. Use the vendor script as is.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/4463379_MM_Path_UG.pdf"
+    },
+    {
+      "detail": "Wash Solution 1 and 2 preparation",
+      "why_needed": "The concentrates must be completed with alcohol before use.",
+      "status": "resolved",
+      "resolution": "Add 125 mL 100% isopropanol to Wash Solution 1 Concentrate (250 mL, final 375 mL). Add 232 mL 100% ethanol to each Wash Solution 2 Concentrate bottle (58 mL, final 290 mL).",
+      "source": "https://tools.thermofisher.com/content/sfs/manuals/4463379B.pdf"
+    },
+    {
+      "detail": "Volume of EQA sample mixed with Cobas omni Lysis Reagent, and the way 460 µL of lysate is obtained",
+      "why_needed": "The paper says samples were mixed 1:1 with Cobas omni Lysis Reagent but gives no input volumes.",
+      "status": "assumable",
+      "resolution": "Mix equal volumes, for example 250 µL EQA sample plus 250 µL Cobas omni LYS, which gives enough to transfer 460 µL per well. Include the A1 PBS negative control (460 µL). The 5 µL MS2 Phage Control is added per well after the bead mix.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Comparator platform procedures (Flow Solution, Cobas 6800, Hamilton-Seegene) and the Ct/call data",
+      "why_needed": "These are needed for the head-to-head comparison.",
+      "status": "assumable",
+      "resolution": "They are described only in S1 File, which I did not use. Run each platform per its manufacturer's routine IVD protocol on aliquots of the same lysed EQA samples.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "OT-2 station labware layouts, pipette types and tip handling for stations A, B1, B2 and C",
+      "why_needed": "Needed to program the liquid handling.",
+      "status": "assumable",
+      "resolution": "Defined only in S2 File and the authors' repository, which I may not use. Reconstruct from the stated volumes: 460 µL lysate to a KingFisher deep-well plate, 260 µL bead mix and 5 µL MS2 per well, then 20 µL mix plus 5 µL eluate into a 96-well PCR plate. Use P300/P1000 and P20 pipettes with a 96-well deep-well plate and an optical PCR plate.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Result interpretation criteria",
+      "why_needed": "Needed for positive/negative/invalid calls.",
+      "status": "resolved",
+      "resolution": "Positive: two or more targets amplified. Negative: internal control amplified and no viral targets. Invalid: no amplification of any target including the internal control. Anything else is marked 'revise' for microbiologist review.",
+      "source": "s2.2.3 of the paper"
+    }
+  ],
+  "retrieved_details": "TaqPath COVID-19 CE-IVD IFU (https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019215_TaqPathCOVID-19_CE-IVD_RT-PCR%20Kit_IFU.pdf): for >200 µL input, 96-well plate, the reaction mix is 6.25 µL TaqPath 1-Step Multiplex Master Mix (No ROX, 4X), 1.25 µL COVID-19 Real Time PCR Assay Multiplex and 12.5 µL nuclease-free water per reaction (20 µL total, with 10% overage in the kit's stated totals). Add 5 µL RNA per sample well. Positive control: 2 µL of the 25 copies/µL dilution plus 3 µL water. Negative control: 5 µL of the extraction negative control. Total 25 µL. Plates are MicroAmp Optical 96-well (0.1 mL Fast or 0.2 mL), sealed with MicroAmp Optical Adhesive Film. After sealing, vortex 10–30 s and centrifuge 1–2 min at ≥650 × g. Thermal protocol: 25 °C 2 min, 53 °C 10 min, 95 °C 2 min, then 40 cycles of 95 °C 3 s and 60 °C 30 s. Software settings: passive reference None, reaction volume 25 µL, reporters FAM/ORF1ab, VIC/N, ABY/S, JUN/MS2; control wells set to Standard or NTC and samples to Unknown. Calibrate the instrument for ABY and JUN dyes. The IFU lists MS2 Phage Control at 5 µL for 200 µL input and 10 µL for 400 µL input, and notes that inputs above 400 µL were not tested. MagMAX Pathogen RNA/DNA user guide (https://documents.thermofisher.com/TFS-Assets/LSG/manuals/4463379_MM_Path_UG.pdf and https://tools.thermofisher.com/content/sfs/manuals/4463379B.pdf): the Bead Mix per reaction is 10 µL Nucleic Acid Binding Beads plus 10 µL Lysis ENHANCER (20 µL total), mixed by vortexing and kept on ice for up to 4 h. Deep-well head layout for high-volume input: Wash Solution 1 300 µL ×2 deep-well plates, Wash Solution 2 450 µL ×2 deep-well plates, Elution Buffer 90 µL in a standard plate, and a tip comb in a standard plate. Wash Solution 1 is made with 125 mL isopropanol added to the concentrate. Wash Solution 2 is made with 232 mL ethanol added to each bottle. The paper itself specifies: 460 µL lysate (sample mixed 1:1 with Cobas omni LYS, no extra lysis solution) per deep-well plate well, 260 µL Bead Master Mix, 5 µL MS2 Phage Control, a 460 µL PBS negative control at A1, the BindIt protocol MagMax_Pathogen_High_Volume, 5 µL eluate for RT-PCR, and the ABI 7500 Fast."
+}

@@ -1,0 +1,257 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "search",
+      "value": "Phire Hot Start II PCR Master Mix manual colony PCR cycling conditions 20 µL reaction"
+    },
+    {
+      "kind": "result",
+      "value": "https://faculty.washington.edu/toby/PHIRE_plant_direct_pcr_kit_manual.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://tools.thermofisher.com/content/sfs/manuals/MAN0012959_Phire_Plant_Direct_PCR_MasterMixes_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/F-170_QR_TS_5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0013122_Phire_Green_HotStartII_PCR_MasterMix_1000x50_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/364110476_Colony_PCR_Protocol_for_Thermo_Scientific_Phire_Hot_Start_II_DNA_Polymerase_v1/fulltext/6400ed580cf1030a56678b84/Colony-PCR-Protocol-for-Thermo-Scientific-Phire-Hot-Start-II-DNA-Polymerase-v1.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://assets.fishersci.com/TFS-Assets/LSG/manuals/F-160_QR_TS_5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0013358_Phire_Plant_Direct_PCR_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012385_Phire_HotStartII_DNAPolymerase_200rxns_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/364110476_Colony_PCR_Protocol_for_Thermo_Scientific_Phire_Hot_Start_II_DNA_Polymerase_v1"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ulab360.com/files/prod/manuals/201305/10/78641002.pdf"
+    },
+    {
+      "kind": "search",
+      "value": "pBLAM1-x standardized transposon tools high-throughput screening conjugation protocol Pseudomonas putida PS3 PS4 PS5 PS6 primers"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/371754933_pBLAM1-x_Standardized_transposon_tools_for_high-throughput_screening"
+    },
+    {
+      "kind": "result",
+      "value": "https://oa.upm.es/83681/1/10090590.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://ouci.dntb.gov.ua/en/works/4vkPKQpl/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/399693758_Automated_workflow_for_genotyping_individual_transposon_library_variants"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/article/10.1186/s44330-025-00054-3"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/abs/10.1021/acssynbio.1c00353"
+    },
+    {
+      "kind": "result",
+      "value": "https://digital.csic.es/bitstream/10261/416583/1/Alejaldre_et_al_Automated_workflow_for_genotyping_2026.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10306358/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/ot-2-pcr-sample-preparation-protocol-de9u3h6w.html"
+    },
+    {
+      "kind": "search",
+      "value": "Martínez-García 2014 New transposon tools tailored for metabolic engineering Gram-negative colony PCR primers"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2014.00046/full"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/protocol/10.1007/978-1-4939-6472-7_18"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.osti.gov/etdeweb/biblio/22688016"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/268232219_New_Transposon_Tools_Tailored_for_Metabolic_Engineering_of_Gram-Negative_Microbial_Cell_Factories"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10306358/"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/protocol/10.1007/978-1-4939-7795-6_1"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2024.11.07.622458v1.full.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.asm.org/doi/10.1128/aem.01381-18#supplementary-materials"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4211546/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10306358/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10306358/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0013122_Phire_Green_HotStartII_PCR_MasterMix_1000x50_UG.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0013122_Phire_Green_HotStartII_PCR_MasterMix_1000x50_UG.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://link.springer.com/article/10.1186/s44330-025-00054-3"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://link.springer.com/article/10.1186/s44330-025-00054-3"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://link.springer.com/article/10.1186/s44330-025-00054-3/tables/1"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://oa.upm.es/83681/1/10090590.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://oa.upm.es/83681/1/10090590.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2014.00046/full"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2014.00046/full"
+    },
+    {
+      "kind": "search",
+      "value": "SEVA standard primers PS1 PS2 PS3 PS4 PS5 PS6 sequences oligonucleotide"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7294301/"
+    },
+    {
+      "kind": "result",
+      "value": "https://onlinelibrary.wiley.com/doi/full/10.1002/mbo3.1024"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8323895"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/233770708_The_Standard_European_Vector_Architecture_SEVA_A_coherent_platform_for_the_analysis_and_deployment_of_complex_prokaryotic_phenotypes"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10870675"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9884890"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8092997"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3531073/"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10538812"
+    },
+    {
+      "kind": "search",
+      "value": "SEVA PS3 PS4 PS5 PS6 primer sequence GGCGTATCACGAGGCCCTTTCG"
+    },
+    {
+      "kind": "result",
+      "value": "https://clinicaltrials.gov/study/NCT06829966"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6468749"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.seqanswers.com/forum/sequencing-technologies-companies/illumina-solexa/26886-illumina-sequencing-primer-questions"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/1911.02346"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6406863"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6410246"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/mol-bio-reference/sequencing-primers/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.promega.com/-/media/files/resources/technical-references/sequencing-primers.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6737253"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6573091"
+    }
+  ]
+}
