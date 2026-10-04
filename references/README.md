@@ -14,5 +14,5 @@ this folder) **and never published to the dataset** (`scripts/deploy_hf.py` is a
 | `slowpoke/` | Tom-Ellis-Lab/Slowpoke | MIT | yes, once `assemble.py` binds the shipped CSVs (colony PCR 573 commands, cloning 575) |
 
 Each folder's README pins the upstream commit. `PROVENANCE.csv` records, for every file, the upstream URL and
-whether its git blob hash matches upstream exactly (all 41 do). Files without a declared licence are for private
+whether its git blob hash matches upstream exactly (all 45 do). Files without a declared licence are for private
 comparison only: do not redistribute them without the authors' permission.

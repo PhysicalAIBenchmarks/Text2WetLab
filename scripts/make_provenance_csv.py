@@ -208,7 +208,7 @@ SETS = {"references/dna-bot-ysaa010": ("BASIC-DNA-ASSEMBLY/DNA-BOT", "ae9aebbd58
         "references/slowpoke": ("Tom-Ellis-Lab/Slowpoke", "62648d2bf390c28af061d68cee71075e27c251a6", "10.1021/acssynbio.5c00629")}
 for base, (repo, commit, doi) in SETS.items():
     up = tree(repo, commit)
-    for p in sorted((ROOT / base).rglob("*")):
+    for p in sorted(ROOT / f for f in git("ls-files", base).splitlines()):  # tracked files only, never stray caches
         if not p.is_file() or (p.name in ("README.md", "COMPARISON.md", "REPO_README.md", "assemble.py") and p.parent == ROOT / base):
             continue
         rel = str(p.relative_to(ROOT))
