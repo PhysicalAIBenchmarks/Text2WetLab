@@ -42,6 +42,7 @@ def origin_path(path):
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--extra-out", default=None)
+ap.add_argument("--out", default=None, help="output CSV (default: PROVENANCE.csv in the repo root)")
 args = ap.parse_args()
 
 
@@ -79,7 +80,8 @@ _login, _branches = {}, {}
 
 def login(sha):
     if sha not in _login:
-        _login[sha] = run("gh", "api", f"repos/{REPO}/commits/{sha}", "--jq", ".author.login // empty")
+        out = run("gh", "api", f"repos/{REPO}/commits/{sha}", "--jq", ".author.login // empty")
+        _login[sha] = "" if out.startswith("{") else out  # an API error body means the commit is not on GitHub yet
     return _login[sha]
 
 
@@ -248,8 +250,9 @@ for pat in ("paper2protocol/*.py", "eval/*.py", "scripts/*.py", "tests/*.py", f"
         add(record_id=f"code:{p.relative_to(ROOT)}", record_type="code", path=str(p.relative_to(ROOT)), name=p.name,
             ir_source="handwritten/Claude-assisted", notes="")
 
-with open(ROOT / "PROVENANCE.csv", "w", newline="") as f:
+OUT_CSV = pathlib.Path(args.out) if args.out else ROOT / "PROVENANCE.csv"
+with open(OUT_CSV, "w", newline="") as f:
     w = csv.DictWriter(f, fieldnames=COLS)
     w.writeheader()
     w.writerows(rows)
-print(len(rows), "rows ->", ROOT / "PROVENANCE.csv")
+print(len(rows), "rows ->", OUT_CSV)

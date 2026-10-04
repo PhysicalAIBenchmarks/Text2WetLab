@@ -66,16 +66,17 @@ def parse_log(text: str) -> list[dict]:
 
 
 def replay(text: str) -> dict:
-    """Run the parsed log through the env. Returns criteria, errors per step, final state."""
+    """Run the parsed log through the env. Returns criteria, errors per step, final state.
+    Every action is replayed: the env's own episode limits (20 steps, stop when T1-T6 pass) would
+    hide later faults and cut off long valid protocols."""
     env = WetLabEnv()
+    env.MAX_STEPS = 10**9
     env.reset()
     errors = []
     info = {"criteria": {}}
     for i, a in enumerate(parse_log(text), 1):
-        _, _, terminated, truncated, info = env.step(a)
+        _, _, _, _, info = env.step(a)
         errors += [(i, e) for e in info["errors"]]
-        if terminated or truncated:
-            break
     return {
         "criteria": info["criteria"],
         "errors": errors,
