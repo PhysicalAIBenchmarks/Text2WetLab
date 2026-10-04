@@ -1,0 +1,22 @@
+[
+ {
+  "id": "deck_and_hardware",
+  "text": "Loads the specified labware in the given slots with the given labels, and uses suitable pipettes and tip racks."
+ },
+ {
+  "id": "volumes_and_wells",
+  "text": "Exactly 100 uL from reservoir A1 into each of plate wells A1-A12 using the 300 uL pipette, and no other wells touched."
+ },
+ {
+  "id": "tip_usage",
+  "text": "Never pipettes without a tip and drops the tip at the end. Reusing one tip or using a fresh tip per well both pass."
+ },
+ {
+  "id": "robot_practice",
+  "text": "Volumes within pipette limits, apiLevel valid, nothing physically unsafe or nonsensical."
+ },
+ {
+  "id": "fidelity_to_task",
+  "text": "No missing steps and no steps that change the outcome; comments and metadata are accurate."
+ }
+]

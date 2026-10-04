@@ -1,0 +1,22 @@
+[
+ {
+  "id": "binding",
+  "text": "40 uL beads (0.8x) into each of the 96 samples, mixed about 10 times, and a 5 min incubation recorded before the magnet."
+ },
+ {
+  "id": "supernatant_and_washes",
+  "text": "Magnet engaged and settle recorded, about 90 uL supernatant removed to waste from every well, then two 200 uL 80% ethanol washes each fully removed to waste."
+ },
+ {
+  "id": "drying_and_elution",
+  "text": "About 5 min air dry, magnet disengaged, 50 uL water added and mixed about 10 times, 2 min incubation, then magnet re-engaged."
+ },
+ {
+  "id": "recovery",
+  "text": "45 uL eluate moved from each sample well to the matching elution plate well, so sample identity is preserved."
+ },
+ {
+  "id": "tips_and_contamination",
+  "text": "A fresh tip whenever touching a different sample (supernatant removal, ethanol removal, elution) and no cross-contamination between samples."
+ }
+]

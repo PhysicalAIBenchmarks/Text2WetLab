@@ -1,7 +1,0 @@
-[
-  {
-    "step": 4,
-    "severity": "error",
-    "message": "culture_plate A1 reaches 2010 µL, above plate_96_deep capacity 2000 µL"
-  }
-]

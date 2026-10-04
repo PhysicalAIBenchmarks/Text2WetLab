@@ -7,3 +7,5 @@ __pycache__/
 .DS_Store
 episode_mujoco.mp4
 reference_episode.mp4
+# Not redistributable: downloaded at image build time by environment/fetch_paper.py
+tasks/harbor/ecoli-heat-shock-transformation/environment/data/paper.txt
