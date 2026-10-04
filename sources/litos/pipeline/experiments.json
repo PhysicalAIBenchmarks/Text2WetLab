@@ -1,0 +1,138 @@
+[
+  {
+    "title": "Illumination field measurement with photographic paper",
+    "goal": "Characterize the spatial homogeneity and spread of LITOS blue light at different distances from the LED matrix.",
+    "section_refs": [
+      "s4.1",
+      "s4.3"
+    ],
+    "shared_refs": [
+      "s4.2"
+    ],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Supplementary Fig. S1"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "Whole-well homogeneity of optoFGFR stimulation in 96-well plates (ERK-KTR imaging)",
+    "goal": "Test whether four LEDs per well uniformly activate ERK in all NIH3T3 cells of a well, without spillover to adjacent wells.",
+    "section_refs": [
+      "s4.5",
+      "s4.6",
+      "s4.7"
+    ],
+    "shared_refs": [
+      "s4.1",
+      "s4.2",
+      "s4.4"
+    ],
+    "unresolved_refs": [
+      "image analysis pipeline established in our laboratory (ref 16)"
+    ],
+    "figure_refs": [
+      "Figure 4B",
+      "Figure 4C"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "pERK western blot vs ERK-KTR after optoFGFR stimulation in 6-well plates",
+    "goal": "Show LITOS can stimulate enough MCF10A cells for biochemical readouts and compare pERK dynamics to ERK-KTR C/N dynamics.",
+    "section_refs": [
+      "s4.5",
+      "s4.6",
+      "s4.7",
+      "s4.8"
+    ],
+    "shared_refs": [
+      "s4.1",
+      "s4.2",
+      "s4.4"
+    ],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 4D"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "optoRaf vs optoFGFR stimulation with light pulses of different durations",
+    "goal": "Compare ERK responses of two actuators with different activation mechanisms to light inputs of varying duration.",
+    "section_refs": [
+      "s4.5",
+      "s4.6",
+      "s4.7"
+    ],
+    "shared_refs": [
+      "s4.1",
+      "s4.2",
+      "s4.4"
+    ],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 5A"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "Small drug screen of MAPK inhibitors on optoFGFR-induced ERK dynamics",
+    "goal": "Show LITOS enables screening of inhibitors (RAF709, U0126, SCH772984) at two concentrations on ERK dynamics after a 10 s light pulse.",
+    "section_refs": [
+      "s4.5",
+      "s4.6",
+      "s4.7"
+    ],
+    "shared_refs": [
+      "s4.1",
+      "s4.2",
+      "s4.4"
+    ],
+    "unresolved_refs": [
+      "inhibitor concentrations and treatment timing not given in methods"
+    ],
+    "figure_refs": [
+      "Figure 5B"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "High temporal resolution ERK dynamics after a single 2 s pulse",
+    "goal": "Capture fine ERK activation and adaptation dynamics with 1 min fixation resolution.",
+    "section_refs": [
+      "s4.5",
+      "s4.6",
+      "s4.7"
+    ],
+    "shared_refs": [
+      "s4.1",
+      "s4.2",
+      "s4.4"
+    ],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 5C"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "Pulsatile vs sustained ERK dynamics with high- and low-frequency light pulses",
+    "goal": "Demonstrate complex stimulation patterns (10 s pulses every 2 or 20 min for 84 min) evoking sustained or pulsatile ERK dynamics.",
+    "section_refs": [
+      "s4.5",
+      "s4.6",
+      "s4.7"
+    ],
+    "shared_refs": [
+      "s4.1",
+      "s4.2",
+      "s4.4"
+    ],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 5D"
+    ],
+    "liquid_handling": "partly"
+  }
+]

@@ -1,0 +1,94 @@
+[
+  {
+    "title": "Genomic instability qPCR on iPSC genomic DNA",
+    "goal": "Detect genomic deletions or duplications in iPSC lines by qPCR of genomic DNA regions normalized to a CHR4 control region and a normal reference DNA.",
+    "section_refs": [
+      "s2.1",
+      "s2.3",
+      "s2.4"
+    ],
+    "shared_refs": [
+      "s2.7"
+    ],
+    "unresolved_refs": [
+      "Quality control profiling for the iPSCs used was outlined previously",
+      "qPCR conditions for genomic DNA (primers, DNA input amounts) not detailed; TaqMan setup described only for cDNA"
+    ],
+    "figure_refs": [
+      "Figure 2D"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "Absolute quantification of synaptic marker expression during iPSC to dopaminergic neuron differentiation",
+    "goal": "Measure SYP, KCNJ6 and GRIA1 transcript levels using a cDNA calibration curve, normalized to ACTB and GAPDH, across iPSC, NPC and DA neurons at 4 and 6 weeks in six cell lines.",
+    "section_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3",
+      "s2.4"
+    ],
+    "shared_refs": [
+      "s2.7"
+    ],
+    "unresolved_refs": [
+      "DA-NPC induction 'according to methods previously described'",
+      "maturation 'from the NPC stage' per previous reference",
+      "Quality control profiling outlined previously"
+    ],
+    "figure_refs": [
+      "Figure 3A",
+      "Figure 3D",
+      "Figure 3E",
+      "Figure 3F",
+      "Figure 3G",
+      "Figure 3H"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "Relative quantification (ΔCT and ΔΔCT) of PAX6, GRIN1 and CAMK2A at D0 and D7 of cortical differentiation",
+    "goal": "Compare expression of a progenitor marker and neuronal markers between neural precursor cells (D0) and day 7 cortical neurons, normalized to ACTB and GAPDH.",
+    "section_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3",
+      "s2.4"
+    ],
+    "shared_refs": [
+      "s2.7"
+    ],
+    "unresolved_refs": [
+      "Cortical progenitor induction 'as described previously'",
+      "Cortical differentiation media in an EDDU SOP"
+    ],
+    "figure_refs": [
+      "Figure 4D",
+      "Figure 4E",
+      "Figure 4F",
+      "Figure 4G",
+      "Figure 4H",
+      "Figure 4I"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "Nrxn3 qPCR in mouse subcortical regions after cocaine place preference (external dataset)",
+    "goal": "Quantify Nrxn3 expression normalized to B2M in STN, GP and SN of cocaine-treated vs control mice by absolute quantification on an Opticon 2 machine.",
+    "section_refs": [
+      "s2.5"
+    ],
+    "shared_refs": [
+      "s2.7"
+    ],
+    "unresolved_refs": [
+      "Conditioned place preference procedure and animal handling 'earlier published study'",
+      "'reverse transcription performed as above'"
+    ],
+    "figure_refs": [
+      "Figure 5A",
+      "Figure 5B"
+    ],
+    "liquid_handling": "partly"
+  }
+]

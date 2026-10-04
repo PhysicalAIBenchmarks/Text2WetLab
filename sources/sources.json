@@ -519,5 +519,192 @@
   "pmcid": null,
   "known_code": [],
   "note": "paper and code to be located; materials science, excluded as an outlier"
+ },
+ {
+  "slug": "chory-2021-hamilton",
+  "dois": [
+   "10.15252/msb.20209942"
+  ],
+  "title": "Enabling high-throughput biology with flexible open-source automation",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/dgretton/pyhamilton_population_dynamics",
+   "https://github.com/dgretton/many_asynchronous_turbidostats",
+   "https://github.com/dgretton/roboplaque",
+   "https://github.com/dgretton/platereader"
+  ],
+  "note": "Hamilton STARlet + BMG CLARIOstar"
+ },
+ {
+  "slug": "debenedictis-2022-prance",
+  "dois": [
+   "10.1038/s41592-021-01348-4"
+  ],
+  "title": "Systematic molecular evolution enables robust biomolecule discovery",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/dgretton/std-96-pace"
+  ],
+  "note": "Hamilton STARlet + BMG CLARIOstar; no PDF or full text retrieved"
+ },
+ {
+  "slug": "wrmxpress",
+  "dois": [
+   "10.1371/journal.pntd.0010937"
+  ],
+  "title": "wrmXpress: A modular package for high-throughput image analysis of parasitic and free-living worms",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/zamanianlab/wrmXpress"
+  ],
+  "note": "ImageXpress Nano; repo 748 MB, not cloned"
+ },
+ {
+  "slug": "wrmxpress-gui",
+  "dois": [
+   "10.1016/j.ijpddr.2025.100588"
+  ],
+  "title": "A graphical user interface for wrmXpress 2.0 streamlines helminth phenotypic screening",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/wheelerlab-uwec/wrmXpress-gui"
+  ],
+  "note": "ImageXpress Nano"
+ },
+ {
+  "slug": "glas-preciseflex",
+  "dois": [
+   "10.1039/d4dd00253a"
+  ],
+  "title": "GLAS: an open-source easily expandable Git-based scheduling architecture for integrated chemistry automation",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/swisscatplus/glas",
+   "https://github.com/swisscatplus/glas-web-client"
+  ],
+  "note": "Brooks PreciseFlex; chemistry; no PDF or full text retrieved"
+ },
+ {
+  "slug": "aros-cellpainting",
+  "dois": [
+   "10.1101/2025.05.30.657006"
+  ],
+  "title": "Integrating Cell Painting and Thermal Proteome Profiling for Inference of Targets and Mechanisms of Action",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/pharmbio/aros",
+   "https://github.com/pharmbio/robotlab",
+   "https://github.com/camilla-johansson/integrate-cp-tpp"
+  ],
+  "note": "Liconic STX"
+ },
+ {
+  "slug": "electroporation-bayesopt",
+  "dois": [
+   "10.1101/2025.11.18.689155"
+  ],
+  "title": "Active learning guides automated discovery of DNA delivery via electroporation",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/cultivarium/electroporation-bayesian-optimization"
+  ],
+  "note": "BTX Gemini X2 comparison; custom electroporator + CyBio FeliX + Opentrons Flex"
+ },
+ {
+  "slug": "lustro",
+  "dois": [
+   "10.1021/acssynbio.3c00215"
+  ],
+  "title": "Lustro: High-Throughput Optogenetic Experiments Enabled by Automation and a Yeast Optogenetic Toolbox",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/mccleanlab/Lustro"
+  ],
+  "note": "Tecan Spark"
+ },
+ {
+  "slug": "optoplate-ml",
+  "dois": [
+   "10.1021/acssynbio.3c00761"
+  ],
+  "title": "Dynamic Multiplexed Control and Modeling of Optogenetic Systems Using the High-Throughput Optoplate-96",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/mccleanlab/Optoplate-96",
+   "https://github.com/zavalab/ML"
+  ],
+  "note": "Tecan Spark; zavalab/ML 1.8 GB, not cloned"
+ },
+ {
+  "slug": "litos",
+  "dois": [
+   "10.1038/s41598-022-17312-x"
+  ],
+  "title": "LITOS: a versatile LED illumination tool for optogenetic stimulation",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/pertzlab/LITOS"
+  ],
+  "note": "LED hardware; pasted table's microPublication paper not found"
+ },
+ {
+  "slug": "auto-qpcr",
+  "dois": [
+   "10.1038/s41598-021-99727-6"
+  ],
+  "title": "Auto-qPCR: a python-based web app for automated and reproducible analysis of qPCR data",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/neuroeddu/Auto-qPCR"
+  ],
+  "note": "QuantStudio data analysis app"
+ },
+ {
+  "slug": "uc2-hi2",
+  "dois": [
+   "10.17504/protocols.io.bw8dphs6"
+  ],
+  "title": "UC2 - Automated Immunostaining Protocol using the Opentrons OT2 and UC2 High-throughput microscope",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/openUC2/UC2-Hi2"
+  ],
+  "note": "OT-2 (belongs to L2); no full text retrieved"
  }
 ]

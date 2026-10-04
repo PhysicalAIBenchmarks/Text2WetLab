@@ -1,0 +1,58 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/litos/pertzlab__LITOS",
+   "commit": "780679b8815543ab54b5af9738333a405e939954",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "yes",
+   "repo": "pertzlab/LITOS",
+   "robot_mentions": [],
+   "size_kb": 51826,
+   "status": "cloned",
+   "url": "https://github.com/pertzlab/LITOS"
+  }
+ ],
+ "doi_primary": "10.1038/s41598-022-17312-x",
+ "dois": [
+  "10.1038/s41598-022-17312-x"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 28,
+  "source": "europepmc:PMC9338960"
+ },
+ "journal": "",
+ "note": "LED hardware; pasted table's microPublication paper not found",
+ "open_access": true,
+ "origin": [
+  "L_other (non-Opentrons) candidates, 2026-10-04"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3001162,
+  "licence": "cc by",
+  "pages": 11,
+  "redistributable": "yes",
+  "sha256": "a78683acfe43d02871ba94ce5b1e52374be0d34850c440eb2cbb56ef253c1d1a",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s41598-022-17312-x.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s41598-022-17312-x.pdf"
+ },
+ "pmcid": "PMC9338960",
+ "slug": "litos",
+ "title": "LITOS: a versatile LED illumination tool for optogenetic stimulation",
+ "year": "2022"
+}

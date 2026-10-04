@@ -1,0 +1,69 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/glas-preciseflex/swisscatplus__glas",
+   "commit": "764f79daabad5abc48ffe10c4b60db2f9270c8f9",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 35,
+   "redistributable": "yes",
+   "repo": "swisscatplus/glas",
+   "robot_mentions": [],
+   "size_kb": 273,
+   "status": "cloned",
+   "url": "https://github.com/swisscatplus/glas"
+  },
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/glas-preciseflex/swisscatplus__glas-web-client",
+   "commit": "989c18f1aa193e4f9cdf3ca8d23ba5814309dec4",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "yes",
+   "repo": "swisscatplus/glas-web-client",
+   "robot_mentions": [],
+   "size_kb": 763,
+   "status": "cloned",
+   "url": "https://github.com/swisscatplus/glas-web-client"
+  }
+ ],
+ "dois": [
+  "10.1039/d4dd00253a"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1039/d4dd00253a:\n  europepmc: no Europe PMC full text for this DOI\nDo",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "manual"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": true,
+    "ok": false,
+    "url": "https://pubs.rsc.org/en/content/articlepdf/2024/dd/d4dd00253a"
+   }
+  ]
+ },
+ "pmcid": null,
+ "slug": "glas-preciseflex",
+ "title": "GLAS: an open-source easily expandable Git-based scheduling architecture for integrated chemistry automation",
+ "year": ""
+}

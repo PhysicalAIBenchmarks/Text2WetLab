@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Lustro screen of 13 optogenetic split TFs across light intensity, period and duty cycle",
+    "goal": "Measure relative induction of mScarlet-I reporter expression by blue light-responsive split TFs under varied light programs to compare response kinetics and sensitivity.",
+    "section_refs": [
+      "s4.1",
+      "s4.2"
+    ],
+    "shared_refs": [
+      "s2.1"
+    ],
+    "unresolved_refs": [
+      "Strain construction details in Table S3/S5 and primers in Table S2",
+      "Transformant screening 'using previously established methods'",
+      "optoPlate assembly and calibration 'in accordance with previously established procedures'",
+      "Lustro 'as previously described'"
+    ],
+    "figure_refs": [
+      "Figure 1C"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "Sequential activation of CRY2PHR(L348F)/CIB1 and eMagAF/eMagBF by light intensity sweep",
+    "goal": "Show that two split TFs in the same strain, driving orthogonal reporters mScarlet-I and miRFP680, are sequentially activated at different light intensities.",
+    "section_refs": [
+      "s4.1",
+      "s4.2"
+    ],
+    "shared_refs": [
+      "s2.2"
+    ],
+    "unresolved_refs": [
+      "Strain construction details in Table S3/S5",
+      "Lustro 'as previously described'",
+      "Transformant screening 'previously established methods'"
+    ],
+    "figure_refs": [
+      "Figure 2"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "Validation of switching pairs of optogenetic TFs in quadruplicate",
+    "goal": "Validate candidate TF pairs and light-condition pairs that show switching of relative induction.",
+    "section_refs": [
+      "s4.1",
+      "s4.2"
+    ],
+    "shared_refs": [
+      "s2.3"
+    ],
+    "unresolved_refs": [
+      "Lustro 'as previously described'",
+      "Additional switching pairs in Figure S2"
+    ],
+    "figure_refs": [
+      "Figure 3B",
+      "Figure S2"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "Activation domain swapping in eMagA/eMagB split TF",
+    "goal": "Test whether swapping the Gal4AD for VP16AD, p65AD or Msn2AD changes response magnitude but not relative response across light programs.",
+    "section_refs": [
+      "s4.1",
+      "s4.2"
+    ],
+    "shared_refs": [
+      "s2.4"
+    ],
+    "unresolved_refs": [
+      "Lustro 'as previously described'"
+    ],
+    "figure_refs": [
+      "Figure 4A",
+      "Figure 4B"
+    ],
+    "liquid_handling": "partly"
+  }
+]

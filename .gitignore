@@ -14,3 +14,15 @@ sources/yeast-mycosporine/pipeline/paper.json
 
 # Raw Harbor job output (trajectories, logs); per-task summaries live in results/
 results/harbor-jobs/
+sources/chory-2021-hamilton/pipeline/paper.json
+sources/debenedictis-2022-prance/pipeline/paper.json
+sources/wrmxpress/pipeline/paper.json
+sources/wrmxpress-gui/pipeline/paper.json
+sources/glas-preciseflex/pipeline/paper.json
+sources/aros-cellpainting/pipeline/paper.json
+sources/electroporation-bayesopt/pipeline/paper.json
+sources/lustro/pipeline/paper.json
+sources/optoplate-ml/pipeline/paper.json
+sources/litos/pipeline/paper.json
+sources/auto-qpcr/pipeline/paper.json
+sources/uc2-hi2/pipeline/paper.json

@@ -1,0 +1,45 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": true,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/uc2-hi2/openUC2__UC2-Hi2",
+   "commit": "63c6061ccadc199a7dee1bbb0a4437c5f626eeae",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "unclear",
+   "opentrons_py_files": 3,
+   "py_files": 11,
+   "redistributable": "no",
+   "repo": "openUC2/UC2-Hi2",
+   "robot_mentions": [],
+   "size_kb": 219408,
+   "status": "cloned",
+   "url": "https://github.com/openUC2/UC2-Hi2"
+  }
+ ],
+ "dois": [
+  "10.17504/protocols.io.bw8dphs6"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.17504/protocols.io.bw8dphs6:\n  europepmc: no Europe PMC full text for",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "manual"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "slug": "uc2-hi2",
+ "title": "UC2 - Automated Immunostaining Protocol using the Opentrons OT2 and UC2 High-throughput microscope",
+ "year": ""
+}

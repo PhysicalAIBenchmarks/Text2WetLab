@@ -1,0 +1,89 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/debenedictis-2022-prance/dgretton__std-96-pace",
+   "commit": "83caf4744c9f37d839ab809a4d3f95ccea6051e3",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 7,
+   "redistributable": "yes",
+   "repo": "dgretton/std-96-pace",
+   "robot_mentions": [],
+   "size_kb": 223,
+   "status": "cloned",
+   "url": "https://github.com/dgretton/std-96-pace"
+  }
+ ],
+ "doi_primary": "10.1038/s41592-021-01348-4",
+ "dois": [
+  "10.1038/s41592-021-01348-4"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1038/s41592-021-01348-4:\n  europepmc: Server error '500 ' for url 'ht",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "manual"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 520,
+    "manual": true,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC8903062&blobtype=pdf"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": false,
+    "url": "https://www.nature.com/articles/s41592-021-01348-4.pdf"
+   },
+   {
+    "http": 500,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11655129?pdf=render"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11655129.1/PMC11655129.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11655129.2/PMC11655129.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11655129.3/PMC11655129.3.pdf"
+   },
+   {
+    "http": 520,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC11655129&blobtype=pdf"
+   }
+  ]
+ },
+ "pmcid": "PMC11655129",
+ "slug": "debenedictis-2022-prance",
+ "title": "Systematic molecular evolution enables robust biomolecule discovery",
+ "year": "2022"
+}

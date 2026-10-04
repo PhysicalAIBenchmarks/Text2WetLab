@@ -1,0 +1,58 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/wrmxpress-gui/wheelerlab-uwec__wrmXpress-gui",
+   "commit": "129e46d61f93f61d0f89547e3a8418e93cfeb002",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "unclear",
+   "opentrons_py_files": 0,
+   "py_files": 30,
+   "redistributable": "no",
+   "repo": "wheelerlab-uwec/wrmXpress-gui",
+   "robot_mentions": [],
+   "size_kb": 154029,
+   "status": "cloned",
+   "url": "https://github.com/wheelerlab-uwec/wrmXpress-gui"
+  }
+ ],
+ "doi_primary": "10.1016/j.ijpddr.2025.100588",
+ "dois": [
+  "10.1016/j.ijpddr.2025.100588"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 13,
+  "source": "europepmc:PMC11984613"
+ },
+ "journal": "",
+ "note": "ImageXpress Nano",
+ "open_access": true,
+ "origin": [
+  "L_other (non-Opentrons) candidates, 2026-10-04"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 6287279,
+  "licence": "cc by",
+  "pages": 8,
+  "redistributable": "yes",
+  "sha256": "749d6a97cf328c902e0e1ef3dabda147659ffdcb21a3c0101f03f164e69b26fa",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://europepmc.org/articles/PMC11984613?pdf=render"
+   }
+  ],
+  "url": "https://europepmc.org/articles/PMC11984613?pdf=render"
+ },
+ "pmcid": "PMC11984613",
+ "slug": "wrmxpress-gui",
+ "title": "A graphical user interface for wrmXpress 2.0 streamlines helminth phenotypic screening",
+ "year": "2025"
+}

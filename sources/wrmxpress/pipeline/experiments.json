@@ -1,0 +1,101 @@
+[
+  {
+    "title": "Motility imaging of parasitic and free-living worms (B. malayi microfilariae, C. elegans, S. mansoni adults, Brugia adults)",
+    "goal": "Generate imaging data to demonstrate wrmXpress optical-flow motility and segmentation measurements across diverse worms and imaging platforms.",
+    "section_refs": [
+      "s2.3",
+      "s2.4",
+      "s2.5"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.2"
+    ],
+    "unresolved_refs": [
+      "Brugia spp. microfilariae and adult multivariate phenotyping protocols 'described elsewhere' [16,17]",
+      "C. elegans maintained 'using established rearing protocols'",
+      "bespoke imaging platform 'previously described' [10]"
+    ],
+    "figure_refs": [
+      "Figure 3",
+      "Figure S2"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "C. elegans development and transgenic marker imaging (mixed-size populations, unc-122p::GFP)",
+    "goal": "Image drug-treated, synchronized C. elegans for size/development analysis and transgene +/- classification.",
+    "section_refs": [
+      "s2.3",
+      "s2.5"
+    ],
+    "shared_refs": [
+      "s2.6",
+      "s2.7"
+    ],
+    "unresolved_refs": [
+      "C. elegans development assay described elsewhere [16,17]",
+      "'established rearing protocols'",
+      "'standard microinjection protocols' for transgenic strains"
+    ],
+    "figure_refs": [
+      "Figure 4A",
+      "Figure 5A",
+      "Figure 5B",
+      "Figure 5C",
+      "Figure S1"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "C. elegans feeding assay with fluorescent dyes",
+    "goal": "Quantify C. elegans feeding by measuring fluorescent dye in the intestine.",
+    "section_refs": [
+      "s2.3",
+      "s2.5"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "C. elegans feeding assay described elsewhere [16,17]",
+      "'established rearing protocols'"
+    ],
+    "figure_refs": [
+      "Figure 4B"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "In vitro fecundity assays of Brugia pahangi and Schistosoma mansoni adults",
+    "goal": "Quantify progeny/egg output of adult worms after drug treatment (e.g., praziquantel IC50 for S. mansoni fecundity vs motility).",
+    "section_refs": [
+      "s2.3",
+      "s2.4",
+      "s2.5"
+    ],
+    "shared_refs": [
+      "s2.1"
+    ],
+    "unresolved_refs": [
+      "Brugia fecundity protocol described elsewhere [16]",
+      "S. mansoni motility concentrations/enantiomer treatment details not given"
+    ],
+    "figure_refs": [
+      "Figure 4C"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "B. malayi microfilariae viability assay (CellTox staining)",
+    "goal": "Measure viability of microfilariae with a viability dye using GFP imaging.",
+    "section_refs": [
+      "s2.3",
+      "s2.5"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "Brugia microfilariae viability protocol described elsewhere [16,17]"
+    ],
+    "figure_refs": [],
+    "liquid_handling": "partly"
+  }
+]
