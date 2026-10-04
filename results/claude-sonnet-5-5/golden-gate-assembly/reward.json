@@ -1,1 +1,1 @@
-{"reward": 1.0, "sim_pass": 1.0, "lint_violations": 0.0, "hack_detected": 0.0, "judge_mean": 1.0, "rubric_pcr_setup": 1.0, "rubric_dpni_and_cleanup": 1.0, "rubric_assembly_mix": 1.0, "rubric_cycling_and_transformation": 1.0, "rubric_tips_and_contamination": 1.0}
+{"reward": 0.8, "sim_pass": 1.0, "lint_violations": 0.0, "hack_detected": 0.0, "judge_mean": 0.8, "rubric_pcr_setup": 1.0, "rubric_dpni_and_cleanup": 1.0, "rubric_assembly_mix": 1.0, "rubric_cycling_and_transformation": 0.0, "rubric_tips_and_contamination": 1.0}

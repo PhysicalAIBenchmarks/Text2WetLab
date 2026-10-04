@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 9
+    "n_commands": 7
   },
   "judge": {
     "items": [
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Reservoir in slot 1 and plate in slot 2 loaded with the correct labels; p20 left with the 20ul rack in slot 10 and p300 right with the 300ul rack in slot 11."
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the specified labels; p20 left with the 20uL rack in slot 10, p300 right with the 300uL rack in slot 11."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "Log shows 100 uL aspirated from reservoir A1 and dispensed into plate A1, then 100 uL into B1, all with the p300; no other wells touched."
+        "evidence": "Log shows 100 uL aspirated from reservoir A1 and dispensed into plate A1, then 100 uL aspirated and dispensed into B1, all with the P300, and no other wells touched."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Each aspirate/dispense is preceded by a pick up tip, and the log ends with a drop tip so no tip is held at the end."
+        "evidence": "The log opens with pick up tip, every pipetting step follows it, and it ends with drop tip."
       },
       {
         "id": "robot_practice",
         "score": 1,
-        "evidence": "100 uL is within the p300 range, apiLevel 2.15 is valid, and the simulation passed with no errors."
+        "evidence": "100 uL is within the P300 range, apiLevel 2.15 is valid, and the simulation passed."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The single transfer step is implemented exactly; the comments and metadata are accurate and make no claims of actions that are not performed."
+        "evidence": "The single transfer step is implemented exactly, and the comment and metadata are accurate."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol loads the specified deck and performs the 100 \u00b5L transfers from reservoir A1 to plate A1 and B1 with the p300, as the log confirms. Tips are handled correctly, and all values are within limits.",
+    "summary": "The protocol matches the task: it splits 200 \u00b5L into two 100 \u00b5L transfers with the P300, using one tip that is dropped at the end. All rubric items pass.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

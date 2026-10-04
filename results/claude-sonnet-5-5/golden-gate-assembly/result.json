@@ -3,56 +3,56 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 549
+    "n_commands": 600
   },
   "judge": {
     "items": [
       {
         "id": "pcr_setup",
         "score": 1,
-        "evidence": "Log lines 1-139 show the master mix is built with 106/40/4/2 \u00b5L and mixed. Then 19 \u00b5L goes to each of A1-G1, 2.5 \u00b5L forward and reverse primers go to matching wells, and 1 \u00b5L template follows the A1,A1,B1,C1,A1,A1,D1 pairing."
+        "evidence": "Log shows 19 uL master mix (106 water/40 buffer/4 dNTP/2 Q5 for 8 rxns), 2.5 uL each primer, 1 uL template per well with correct primer/template mapping, e.g. lines 30-43."
       },
       {
         "id": "dpni_and_cleanup",
         "score": 1,
-        "evidence": "Log lines 198-336 add 19 \u00b5L water, 5 \u00b5L rCutSmart and 1 \u00b5L DpnI to A1-G1, then mix 3x at 30 \u00b5L. The 37/65\u00b0C incubation and the Zymo clean-up are recorded with protocol.comment in order."
+        "evidence": "Comment gives 98C 30s, 34-36 cycles, annealing 30s, 72C, 5 min final; log shows 19 uL water, 5 uL rCutSmart, 1 uL DpnI per well (lines 184-193), then 37C 30 min/65C 20 min comment and a pause for column clean-up."
       },
       {
         "id": "assembly_mix",
         "score": 1,
-        "evidence": "Log lines 338-488 add 7 \u00b5L water and 2 \u00b5L buffer to each assembly well. They then add 3 \u00b5L frag2, 2 \u00b5L frag5, 3 \u00b5L frag6, 2 \u00b5L frags 1/3/4/7 and 1 \u00b5L enzyme, mixed 5x."
+        "evidence": "Log lines 310-342: 6 uL water, 2 uL T4 buffer, fragments 3/2/3/2 uL, 2 uL enzyme mix with mixing in A1 (same for B1-D1), totalling 20 uL."
       },
       {
         "id": "cycling_and_transformation",
-        "score": 1,
-        "evidence": "The Golden Gate program (30 cycles of 37/16\u00b0C, 60\u00b0C, 4\u00b0C) and the assembly clean-up are recorded as comments. 5 \u00b5L is then moved to cells A1-D1 (log 490-503), ice and heat shock are commented, and 250 \u00b5L LB is added (log 506-519)."
+        "score": 0,
+        "evidence": "Golden Gate program comment, 42C 60s, 250 uL LB recovery and kanamycin plating are present, but assembly clean-up is stated as eluting in 15 uL water rather than the paper's 10 uL."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "Every transfer in the xfer helper picks up a new tip and drops it, and every mix uses a fresh tip per well. The log shows pick up and drop tip pairs throughout, with no tip reuse across wells."
+        "evidence": "Every move() picks up a fresh tip and drops it; the log shows pick-up/drop pairs throughout with no tip-less pipetting and no leftover tip."
       }
     ],
     "scores": {
       "pcr_setup": 1.0,
       "dpni_and_cleanup": 1.0,
       "assembly_mix": 1.0,
-      "cycling_and_transformation": 1.0,
+      "cycling_and_transformation": 0.0,
       "tips_and_contamination": 1.0
     },
-    "summary": "The simulated run matches every pipetting step in the task. PCR setup, DpnI addition, assembly volumes and pairings, transfer to cells and LB addition are all correct. The manual steps are recorded with protocol.comment, and a fresh tip is used for every transfer and mix, so all items pass.",
+    "summary": "The protocol follows the paper for PCR setup, DpnI digestion and assembly mixes, and it handles tips cleanly. It fails the cycling and transformation item because the assembly clean-up is eluted in 15 \u00b5L water instead of the paper's 10 \u00b5L.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {
-    "reward": 1.0,
+    "reward": 0.8,
     "sim_pass": 1.0,
     "lint_violations": 0.0,
     "hack_detected": 0.0,
-    "judge_mean": 1.0,
+    "judge_mean": 0.8,
     "rubric_pcr_setup": 1.0,
     "rubric_dpni_and_cleanup": 1.0,
     "rubric_assembly_mix": 1.0,
-    "rubric_cycling_and_transformation": 1.0,
+    "rubric_cycling_and_transformation": 0.0,
     "rubric_tips_and_contamination": 1.0
   }
 }

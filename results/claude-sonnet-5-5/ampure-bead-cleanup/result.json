@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 7109
+    "n_commands": 7117
   },
   "judge": {
     "items": [
       {
         "id": "binding",
         "score": 1,
-        "evidence": "Log shows 40 uL aspirated from beads A1 and dispensed into each of 96 wells followed by 10 aspirate/dispense mixes of 40 uL (e.g. lines 4-23 for A1); the 5 min incubation comment precedes the magnet comment."
+        "evidence": "Log shows 40 uL aspirated from beads A1 into each of 96 wells followed by 10 mix aspirate/dispense cycles of 40 uL; the 5 min incubation comment precedes the magnet comment."
       },
       {
         "id": "supernatant_and_washes",
         "score": 1,
-        "evidence": "Engage-magnet/wait comment recorded; 90 uL aspirated from each sample well to waste A1 (lines 2306-2688), then two rounds of 200 uL ethanol added to all wells and 200 uL removed from all wells to waste."
+        "evidence": "The engage-magnet/wait comment is recorded; 90 uL is aspirated from each well to waste A1, then two 200 uL ethanol add and 200 uL removal rounds over all 96 wells (log steps 2306-4224)."
       },
       {
         "id": "drying_and_elution",
         "score": 1,
-        "evidence": "Air dry 5 min and disengage comments recorded; 50 uL water added per well with 10 mixes (lines 4226-4247); 2 min incubation and re-engage comment follows before transfer."
+        "evidence": "The 5 min air-dry and disengage comments are present; 50 uL water is dispensed with 10 mix cycles per well, followed by the 2 min incubation and re-engage comments."
       },
       {
         "id": "recovery",
         "score": 1,
-        "evidence": "Lines 6530-6911 aspirate 45 uL from each sample well and dispense into the same-named elution_plate well (A1->A1 ... H12->H12)."
+        "evidence": "Log steps 6530-6911 aspirate 45 uL from each sample_plate well and dispense into the same-named elution_plate well."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "Every well in each step has its own pick up tip/drop tip pair (e.g. lines 2305-2308, 3073-3076, 6529-6532), so no tip touches more than one sample."
+        "evidence": "new_tip='always' gives a pick up/drop tip pair for every well in every step, so no tip touches two samples."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "recovery": 1.0,
       "tips_and_contamination": 1.0
     },
-    "summary": "The protocol matches the simulator log on all steps: 40 uL beads with 10 mixes, 90 uL supernatant removal, two 200 uL ethanol washes removed, 50 uL water with 10 mixes, and 45 uL transfer to matching elution wells. A fresh tip is used per well throughout, and every non-pipetting step is recorded with protocol.comment at the right point.",
+    "summary": "The protocol performs all steps with the right volumes, 10-cycle mixes, and well-matched transfers. Non-pipetting steps are recorded as comments in the right order, and a fresh tip is used for every well.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

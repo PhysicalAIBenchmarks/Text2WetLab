@@ -10,27 +10,27 @@
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the specified labels; p20 left and p300 right with the correct tip racks in slots 10 and 11."
+        "evidence": "Reservoir in slot 1 and plate in slot 2 loaded with the required labels; p20 left with the 20 uL rack in slot 10, p300 right with the 300 uL rack in slot 11."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "Log shows 100 uL aspirated from reservoir A1 and dispensed into plate A1 through A12 with the P300, and no other wells touched."
+        "evidence": "Log shows 12 aspirates of 100 uL from reservoir A1, each dispensed into plate A1 through A12 in order with the p300; no other wells touched."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Each cycle in the log is pick up tip, aspirate, dispense, drop tip, so no pipetting without a tip and no tip held at the end."
+        "evidence": "Each transfer is bracketed by pick up tip and drop tip in the log, and the last action is a drop tip."
       },
       {
         "id": "robot_practice",
         "score": 1,
-        "evidence": "100 uL is within the P300 range, apiLevel 2.15 is valid, the simulation passed, and the blow_out at the well top is safe."
+        "evidence": "apiLevel 2.15 is within the allowed range, 100 uL is within the p300 range, and the simulation passed."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The protocol does only the requested transfer; the blow_out does not change the outcome and the comments and metadata are accurate."
+        "evidence": "The protocol does only the one requested transfer; the comment and metadata accurately describe it."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol meets the task: the log shows 100 uL moved from reservoir A1 to each of plate wells A1\u2013A12 with the P300, using a fresh tip each time. Labware, pipettes and tip handling are all correct.",
+    "summary": "The protocol matches the task: 100 uL from reservoir A1 to each of plate A1-A12 using the p300, with a fresh tip per well. The deck, tips, and API level are all valid, and the simulator log confirms the actions.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

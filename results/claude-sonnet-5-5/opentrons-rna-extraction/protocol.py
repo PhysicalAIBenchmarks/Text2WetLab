@@ -1,131 +1,137 @@
 from opentrons import protocol_api
 
-metadata = {'protocolName': 'In-house OT-2 magnetic-bead RNA extraction (48 samples)',
-            'apiLevel': '2.13'}
+metadata = {
+    'protocolName': 'In-house magnetic-bead SARS-CoV-2 RNA extraction (OT-2, 48 samples)',
+    'description': 'Gutierrez-Arroyo et al. 2021 PLOS ONE OT-2 in-house protocol',
+    'apiLevel': '2.13',
+}
 
-N_COLS = 6
-MAX = 190
+N_SAMPLES = 48
+SAMPLE_VOL = 250
+IPA_VOL = 250
+BEAD_VOL = 40
+WASH_VOL = 500
+ELUTION_VOL = 100
+SUP_VOL = SAMPLE_VOL + IPA_VOL + BEAD_VOL
 
 
-def run(protocol: protocol_api.ProtocolContext):
-    waste = protocol.load_labware('usascientific_96_wellplate_2.4ml_deep', 1)
-    tr200 = [protocol.load_labware('opentrons_96_filtertiprack_200ul', s) for s in (2, 3, 9)]
-    mag = protocol.load_module('magnetic module', 4)
+def run(ctx: protocol_api.ProtocolContext):
+    waste = ctx.load_labware('usascientific_96_wellplate_2.4ml_deep', 1, 'waste')
+    tips200 = [ctx.load_labware('opentrons_96_filtertiprack_200ul', s)
+               for s in (2, 3, 9)]
+    mag = ctx.load_module('magnetic module', 4)
     plate = mag.load_labware('usascientific_96_wellplate_2.4ml_deep')
-    temp = protocol.load_module('tempdeck', 6)
+    res = ctx.load_labware('nest_12_reservoir_15ml', 5)
+    temp = ctx.load_module('tempdeck', 6)
     elplate = temp.load_labware('thermo_96_wellplate_200ul')
-    res = protocol.load_labware('nest_12_reservoir_15ml', 5)
-    rack1 = protocol.load_labware('opentrons_24_tuberack_eppendorf_2ml_safelock_snapcap', 10)
-    rack2 = protocol.load_labware('opentrons_24_tuberack_eppendorf_2ml_safelock_snapcap', 7)
-    tr1000 = protocol.load_labware('opentrons_96_filtertiprack_1000ul', 11)
+    rack1 = ctx.load_labware(
+        'opentrons_24_tuberack_eppendorf_2ml_safelock_snapcap', 10)
+    rack2 = ctx.load_labware(
+        'opentrons_24_tuberack_eppendorf_2ml_safelock_snapcap', 7)
+    tips1000 = ctx.load_labware('opentrons_96_filtertiprack_1000ul', 11)
 
-    p1000 = protocol.load_instrument('p1000_single_gen2', 'left', tip_racks=[tr1000])
-    m300 = protocol.load_instrument('p300_multi_gen2', 'right', tip_racks=tr200)
+    p1000 = ctx.load_instrument('p1000_single_gen2', 'left',
+                                tip_racks=[tips1000])
+    m300 = ctx.load_instrument('p300_multi_gen2', 'right', tip_racks=tips200)
 
-    cols = [plate.rows()[0][2 * i] for i in range(N_COLS)]
-    wcols = [waste.rows()[0][2 * i] for i in range(N_COLS)]
-    ecols = [elplate.rows()[0][2 * i] for i in range(N_COLS)]
-    beads = res.rows()[0][1]
-    elbuf = res.rows()[0][3]
-    iso = [res.rows()[0][5], res.rows()[0][6]]
-    etoh = [res.rows()[0][8 + i] for i in range(4)]
-
-    def dispense_vol(src, dst, vol, top=True):
-        """Reagent dispense with a tip that never touches samples."""
-        n = -(-vol // MAX)
-        each = vol / n
-        for _ in range(n):
-            m300.aspirate(each, src)
-            m300.dispense(each, dst.top(-2))
-            m300.touch_tip(dst, v_offset=-2) if False else None
-
-    def remove(vol, i):
-        n = -(-vol // MAX)
-        each = vol / n
-        for _ in range(n):
-            m300.aspirate(each, cols[i].bottom(1.0), rate=0.3)
-            m300.dispense(each, wcols[i].top(-2))
-        m300.blow_out(wcols[i].top(-2))
-
-    # 1
-    mag.disengage()
     temp.start_set_temperature(4)
-    temp.await_temperature(4)
 
-    # 2 beads
-    m300.pick_up_tip()
-    for i in range(N_COLS):
-        m300.mix(3, 150, beads) if i == 0 else None
-        m300.aspirate(40, beads)
-        m300.dispense(40, cols[i].top(-2))
-    m300.drop_tip()
+    beads = res.wells()[1]
+    elbuf = res.wells()[3]
+    ipa = [res.wells()[5], res.wells()[6]]
+    etoh1 = [res.wells()[8], res.wells()[9]]   # wash 1
+    etoh2 = [res.wells()[10], res.wells()[11]]  # wash 2
 
-    # 3 isopropanol
-    m300.pick_up_tip()
-    for i in range(N_COLS):
-        dispense_vol(iso[i % 2], cols[i], 250)
-    m300.drop_tip()
+    cols = [plate.columns()[i] for i in (0, 2, 4, 6, 8, 10)]
+    ncols = N_SAMPLES // 8
+    sample_wells = [c[r] for c in [plate.columns()[i] for i in (0, 2, 4, 6, 8, 10)]
+                    for r in range(8)]
+    sample_tubes = rack1.wells() + rack2.wells()
+    top_cols = [plate.columns()[i][0] for i in (0, 2, 4, 6, 8, 10)]
+    waste_cols = [waste.columns()[i][0] for i in (0, 2, 4, 6, 8, 10)]
+    el_cols = [elplate.columns()[i][0] for i in (0, 2, 4, 6, 8, 10)]
 
-    # 4 samples
-    for s in range(48):
-        rack = rack1 if s < 24 else rack2
-        src = rack.wells()[s % 24]
-        dst = plate.rows()[s % 8][2 * (s // 8)]
+    def src(lst, i):
+        return lst[i // 3]  # 3 plate columns per reservoir well
+
+    def multi_transfer(src_well, dst, vol, per=200, **kw):
+        n = -(-vol // per)
+        each = vol / n
+        for _ in range(n):
+            m300.aspirate(each, src_well.bottom(2))
+            m300.dispense(each, dst)
+            m300.blow_out(dst)
+
+    def remove(i, vol, per=180):
+        n = -(-vol // per)
+        each = vol / n
+        m300.flow_rate.aspirate = 40
+        for _ in range(n):
+            m300.aspirate(each, top_cols[i].bottom(1))
+            m300.dispense(each, waste_cols[i].top(-2))
+            m300.blow_out(waste_cols[i].top(-2))
+        m300.flow_rate.aspirate = 92.86
+
+    # 1. samples (250 uL) into odd columns, magnet off
+    mag.disengage()
+    for tube, well in zip(sample_tubes, sample_wells):
         p1000.pick_up_tip()
-        p1000.aspirate(250, src.bottom(2))
-        p1000.dispense(250, dst)
-        p1000.mix(5, 400, dst)
-        p1000.blow_out(dst.top(-2))
+        p1000.aspirate(SAMPLE_VOL, tube.bottom(2))
+        p1000.dispense(SAMPLE_VOL, well.top(-2))
+        p1000.blow_out(well.top(-2))
         p1000.drop_tip()
 
-    # 5
-    protocol.delay(minutes=5)
-    # 6
+    # 2. isopropanol + beads, mix 5x
+    for i in range(ncols):
+        m300.pick_up_tip()
+        multi_transfer(src(ipa, i), top_cols[i].top(-2), IPA_VOL)
+        m300.mix(3, 150, beads.bottom(2))
+        m300.aspirate(BEAD_VOL, beads.bottom(2))
+        m300.dispense(BEAD_VOL, top_cols[i].top(-2))
+        m300.mix(5, 180, top_cols[i].bottom(2))
+        m300.blow_out(top_cols[i].top(-2))
+        m300.drop_tip()
+
+    ctx.delay(minutes=5, msg='Incubate 5 min at room temperature')
+
+    # 3. magnet 4 min, discard supernatant
     mag.engage()
-    protocol.delay(minutes=4)
-
-    # 7
-    for i in range(N_COLS):
+    ctx.delay(minutes=4, msg='Magnet on 4 min')
+    for i in range(ncols):
         m300.pick_up_tip()
-        remove(540, i)
+        remove(i, SUP_VOL)
         m300.drop_tip()
 
-    # 8, 9
-    for w in range(2):
-        m300.pick_up_tip()
-        for i in range(N_COLS):
-            dispense_vol(etoh[i % 4], cols[i], 500)
-        m300.drop_tip()
-        for i in range(N_COLS):
+    # 4. two ethanol washes
+    for ethanol in (etoh1, etoh2):
+        for i in range(ncols):
             m300.pick_up_tip()
-            remove(500, i)
+            multi_transfer(src(ethanol, i), top_cols[i].top(-2), WASH_VOL, per=170)
+            remove(i, WASH_VOL, per=170)
             m300.drop_tip()
 
-    # 10
-    protocol.delay(minutes=4)
+    # 5. air dry 4 min
+    ctx.delay(minutes=4, msg='Air dry 4 min')
 
-    # 11
+    # 6. elution
     mag.disengage()
-    m300.pick_up_tip()
-    for i in range(N_COLS):
-        dispense_vol(elbuf, cols[i], 100)
-    m300.drop_tip()
-    for i in range(N_COLS):
+    for i in range(ncols):
         m300.pick_up_tip()
-        m300.mix(10, 80, cols[i].bottom(1))
+        m300.aspirate(ELUTION_VOL, elbuf.bottom(2))
+        m300.dispense(ELUTION_VOL, top_cols[i].bottom(2))
+        m300.mix(10, 80, top_cols[i].bottom(2))
+        m300.blow_out(top_cols[i].top(-2))
         m300.drop_tip()
-
-    # 12
-    protocol.delay(seconds=30)
+    ctx.delay(seconds=30)
     mag.engage()
-    protocol.delay(seconds=90)
+    ctx.delay(seconds=90)
 
-    # 13
-    for i in range(N_COLS):
+    temp.await_temperature(4)
+    for i in range(ncols):
         m300.pick_up_tip()
-        m300.aspirate(80, cols[i].bottom(1.0), rate=0.3)
-        m300.dispense(80, ecols[i])
+        m300.flow_rate.aspirate = 30
+        m300.aspirate(ELUTION_VOL, top_cols[i].bottom(1))
+        m300.flow_rate.aspirate = 92.86
+        m300.dispense(ELUTION_VOL, el_cols[i].bottom(2))
         m300.drop_tip()
-
-    # 14
     mag.disengage()

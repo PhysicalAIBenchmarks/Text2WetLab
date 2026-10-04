@@ -10,27 +10,27 @@
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the specified labels; p20 left and p300 right with the correct tip racks in slots 10 and 11."
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the correct labels; p20 left, p300 right, with tip racks in slots 10 and 11."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "Log shows 12 aspirates of 100 uL from reservoir A1, each dispensed into plate A1 to A12 in order, using the p300; no other wells touched."
+        "evidence": "Log shows 12 aspirates of 100 uL from reservoir A1, each dispensed to plate A1 through A12 in turn, using the p300; no other wells touched."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Log step 1 picks up a tip before any aspirate, and step 26 drops it at the end."
+        "evidence": "Log shows a pick up tip first, then all pipetting, and a drop tip at the end."
       },
       {
         "id": "robot_practice",
         "score": 1,
-        "evidence": "100 uL is within the p300 range; apiLevel 2.15 is valid; the simulation passed."
+        "evidence": "100 uL is within p300 limits, apiLevel 2.15 is valid, and the simulation passed."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The protocol does exactly the single transfer requested; there are no false comments and the metadata is accurate."
+        "evidence": "The protocol does only the requested transfer; the metadata is accurate and there are no false comments."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol transfers 100 uL from reservoir A1 to each of plate wells A1-A12 with the p300, as the run log confirms. It uses one tip that is dropped at the end, and all rubric items pass.",
+    "summary": "The protocol transfers 100 uL from reservoir A1 to plate wells A1 to A12 with the p300, as the run log confirms. It uses one tip, drops it at the end, and meets all rubric items.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

@@ -12,4 +12,4 @@ def run(protocol: protocol_api.ProtocolContext):
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
     # Step 1: 100 uL reagent from reservoir A1 to plate A1, B1
-    p300.transfer(100, reservoir['A1'], [plate['A1'], plate['B1']], new_tip='always')
+    p300.transfer(100, reservoir['A1'], [plate['A1'], plate['B1']], new_tip='once')

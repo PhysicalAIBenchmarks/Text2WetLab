@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 19
+    "n_commands": 228
   },
   "judge": {
     "items": [
       {
         "id": "dna_addition",
         "score": 1,
-        "evidence": "Log lines 2-3: P20 aspirates 2 uL from plasmid_plate A1 and dispenses into tubes_1_5ml_1 A1."
+        "evidence": "Log lines 3-83: block set to 4 C with lid open, then 1 uL aspirated from each plasmid well A1-H1 and dispensed into the matching transformation_plate well."
       },
       {
         "id": "heat_shock",
         "score": 1,
-        "evidence": "protocol.comment 'Heat shock cells_rack 42\u00b0C 45 s, then transfer immediately to ice 2 min' is placed after DNA addition and before SOC."
+        "evidence": "Log 84-87: lid closed, 4 C for 30 min, 42 C for 30 s, then 4 C for 2 min, all on the thermocycler."
       },
       {
         "id": "soc_recovery",
         "score": 1,
-        "evidence": "Log lines 12-13: P300 moves 250 uL SOC into tube A1 after the heat shock comment; the 37\u00b0C 60 min 250 rpm incubation comment follows."
+        "evidence": "Log 90-169: 50 uL SOC from soc_reservoir A1 dispensed into each of A1-H1 after heat shock; log 170-171: lid closed, 37 C for 60 min."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "The P20 tip is dropped (line 10) before a new P300 tip is picked up (line 11) and dropped (line 14); no stock contamination."
+        "evidence": "Each of 8 P20 additions and 8 P300 additions has its own pick up and drop tip (log 4-83, 90-169); SOC is aspirated before the tip touches cells, and no tip is reused."
       },
       {
-        "id": "fidelity_to_task",
-        "score": 0,
-        "evidence": "The agent added p20.mix(3, 10) in the competent cells (log lines 4-9), which the task never asked for and which can reduce transformation efficiency."
+        "id": "fidelity_to_paper",
+        "score": 1,
+        "evidence": "Volumes (1/10/50 uL), times and temperatures match the paper's LV config. The 2 min post-shock 4 C step and 37 C lid setpoint are disclosed in comments and are reasonable choices; the metadata citation is accurate."
       }
     ],
     "scores": {
@@ -38,21 +38,21 @@
       "heat_shock": 1.0,
       "soc_recovery": 1.0,
       "tip_usage": 1.0,
-      "fidelity_to_task": 0.0
+      "fidelity_to_paper": 1.0
     },
-    "summary": "The protocol performs the DNA addition, heat shock and ice comment, SOC addition and incubation comment in the right order, with fresh tips that are dropped. It loses fidelity credit for an unrequested 3x pipette mix of the competent cells after DNA addition.",
+    "summary": "The run log shows a faithful LV APEX Protocol 1: 1 uL DNA into 10 uL cells at 4 C, 30 min at 4 C, 30 s at 42 C with the lid closed, 50 uL SOC, then 1 h at 37 C. Fresh tips were used throughout, and the added gentle mixing and 37 C lid setpoint are disclosed and reasonable.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {
-    "reward": 0.8,
+    "reward": 1.0,
     "sim_pass": 1.0,
     "lint_violations": 0.0,
     "hack_detected": 0.0,
-    "judge_mean": 0.8,
+    "judge_mean": 1.0,
     "rubric_dna_addition": 1.0,
     "rubric_heat_shock": 1.0,
     "rubric_soc_recovery": 1.0,
     "rubric_tip_usage": 1.0,
-    "rubric_fidelity_to_task": 0.0
+    "rubric_fidelity_to_paper": 1.0
   }
 }

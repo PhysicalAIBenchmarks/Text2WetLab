@@ -12,7 +12,7 @@ def run(protocol: protocol_api.ProtocolContext):
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
     p300.pick_up_tip()
-    for dest in ['A1', 'B1']:
+    for dest in ('A1', 'B1'):
         p300.aspirate(100, reservoir['A1'])
         p300.dispense(100, plate[dest])
     p300.drop_tip()

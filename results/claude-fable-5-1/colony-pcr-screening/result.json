@@ -3,44 +3,44 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 1928
+    "n_commands": 2286
   },
   "judge": {
     "items": [
       {
-        "id": "master_mix",
+        "id": "reaction_setup",
         "score": 1,
-        "evidence": "Log lines 2-193 show 18 uL aspirated from reservoir A1 and dispensed into each of the 96 PCR wells A1-H12 with one tip."
+        "evidence": "Log shows 5 uL Q5 2x mix into all 96 wells first (lines 2-129), then 4 uL primer pair, then 1 uL template (e.g. lines 900-901), giving a 10 uL reaction with master mix before template."
       },
       {
-        "id": "template_and_primers",
+        "id": "sample_mapping",
         "score": 1,
-        "evidence": "Log shows 1 uL from each colony_plate well to the matching pcr_plate well (e.g. 196-197), then 1 uL from each primer_plate well to the matching well (1156-1537), using P20."
+        "evidence": "Log shows primer_plate and colony_plate well X going to pcr_plate well X for all A1-H12 in column order, with no skips or repeats."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "A new tip is picked up and dropped for every colony and every primer transfer (96 each); a single tip is used for master mix into empty wells, which is allowed."
+        "evidence": "One tip is used for master mix into empty wells (lines 1-130), then a fresh tip is picked up and dropped for every primer pair and every colony template through line 1858."
       },
       {
         "id": "thermocycling",
         "score": 1,
-        "evidence": "protocol.comment records sealing and the full program: 98 C 30 s; 30 cycles of 98 C 10 s, 60 C 30 s, 72 C 30 s; 72 C 2 min; hold 4 C."
+        "evidence": "The code has protocol.comment calls for sealing the plate and for a program of 98C 3 min, 30 cycles of 98C 10 s, 60C 20 s and 72C 45 s, then 72C 2 min and a 4C hold, which suits Q5."
       },
       {
         "id": "fidelity_to_paper",
         "score": 1,
-        "evidence": "Steps follow the task order including the 3x mix after template; the comments are accurate, and the extra blow_outs and the 10 uL mix volume are benign, with no invented steps."
+        "evidence": "The 10 uL reaction with 1 uL template and master mix before template follows the paper's OT-2 workflow, and the 4 uL primer pair is a flagged adaptation to the per-colony primer plate with accurate comments."
       }
     ],
     "scores": {
-      "master_mix": 1.0,
-      "template_and_primers": 1.0,
+      "reaction_setup": 1.0,
+      "sample_mapping": 1.0,
       "tips_and_contamination": 1.0,
       "thermocycling": 1.0,
       "fidelity_to_paper": 1.0
     },
-    "summary": "The protocol reproduces the required transfers: 18 uL master mix into 96 wells, then 1 uL colony template and 1 uL primer per well with fresh tips. It records the sealing and thermocycling program accurately. All five items pass.",
+    "summary": "The simulator log shows a 10 uL Q5 colony PCR set up correctly across all 96 wells: master mix first, then primer pair, then template, each in matching wells with fresh tips. Sealing and a suitable Q5 thermocycling program are recorded as comments, and the adaptations are stated as such.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {
@@ -49,8 +49,8 @@
     "lint_violations": 0.0,
     "hack_detected": 0.0,
     "judge_mean": 1.0,
-    "rubric_master_mix": 1.0,
-    "rubric_template_and_primers": 1.0,
+    "rubric_reaction_setup": 1.0,
+    "rubric_sample_mapping": 1.0,
     "rubric_tips_and_contamination": 1.0,
     "rubric_thermocycling": 1.0,
     "rubric_fidelity_to_paper": 1.0

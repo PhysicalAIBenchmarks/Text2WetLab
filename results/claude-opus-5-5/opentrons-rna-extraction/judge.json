@@ -4,57 +4,57 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 1384
+    "n_commands": 1301
   },
   "judge": {
     "items": [
       {
         "id": "sample_handling",
         "score": 1,
-        "evidence": "Log lines 87-758 show 48 separate p1000 pick-up/drop cycles, each aspirating 250 uL from its own tube (slot 10 then slot 7) into its own well in columns 1,3,5,7,9,11. Elution is row-matched in the same columns of the elution plate, so each sample is traceable."
+        "evidence": "Log shows 48 separate p1000 tip pickups, each aspirating 250 uL from a distinct tube and dispensing into a distinct odd-column well (A1..H11), with a drop tip after each."
       },
       {
         "id": "binding_and_separation",
         "score": 1,
-        "evidence": "Order is 40 uL beads (lines 28-59), then 2x125 uL isopropanol (62-85), then 250 uL sample with 5x400 uL mix. Then delay 300 s, engage, delay 240 s (759-761), then 3x180 uL supernatant removal to slot 1 waste with fresh tips per column (762-809)."
+        "evidence": "Log shows 40 uL beads, then 2x125 uL isopropanol, then 250 uL samples with 5x400 uL mix, delay 300 s, engage, delay 240 s, then 3x180 uL per column removed to waste plate with the magnet engaged."
       },
       {
         "id": "washes_and_drying",
         "score": 1,
-        "evidence": "Two 500 uL washes (3x166.7 uL from A9/A10, then A11/A12) are each removed to waste at 3x166.7 uL with the magnet still engaged (811-981). Then delay 240 s, then disengage (982-983)."
+        "evidence": "Two rounds of 3x166.667 uL (500 uL) ethanol from A9-A12 are each removed to waste with the magnet engaged, then delay 240 s, then disengage before elution."
       },
       {
         "id": "elution_recovery",
-        "score": 1,
-        "evidence": "Magnet is disengaged (983), then 100 uL elution buffer from A4 is added and mixed 10x (985-1127). Then delay 30 s, engage, delay 90 s, then 80 uL is moved per column to the matching elution-plate wells on the 4 C tempdeck (1131-1153)."
+        "score": 0,
+        "evidence": "100 uL elution is added off-magnet and mixed, and the magnet is re-engaged after 30 s and held 90 s, but the log shows 100 uL (not about 80 uL) aspirated and dispensed to the elution plate at lines 1048-1069."
       },
       {
         "id": "fidelity_to_paper",
         "score": 1,
-        "evidence": "Steps and order match the paper and task: temp 4 C and magnet off first, then the full 14-step sequence, with magnet disengaged at the end. Reagents come from the specified reservoir columns, comments and metadata are accurate, and the only extra is a harmless bead mix in the reservoir."
+        "evidence": "Step order and reagents match the paper, with comments accurate and 4 C set on the temp module; the only extra is a bead pre-mix in the reservoir, which is minor."
       }
     ],
     "scores": {
       "sample_handling": 1.0,
       "binding_and_separation": 1.0,
       "washes_and_drying": 1.0,
-      "elution_recovery": 1.0,
+      "elution_recovery": 0.0,
       "fidelity_to_paper": 1.0
     },
-    "summary": "The run log shows all 48 samples handled with fresh tips, the correct reagent order and volumes, the correct incubation, magnet and drying timings, and 80 uL eluate recovered to the 4 C elution plate. No invented, missing or misleading steps were found, so every rubric item passes.",
-    "raw": "{\"items\": [{\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Log lines 87-758 show 48 separate p1000 pick-up/drop cycles, each aspirating 250 uL from its own tube (slot 10 then slot 7) into its own well in columns 1,3,5,7,9,11. Elution is row-matched in the same columns of the elution plate, so each sample is traceable.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Order is 40 uL beads (lines 28-59), then 2x125 uL isopropanol (62-85), then 250 uL sample with 5x400 uL mix. Then delay 300 s, engage, delay 240 s (759-761), then 3x180 uL supernatant removal to slot 1 waste with fresh tips per column (762-809).\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 uL washes (3x166.7 uL from A9/A10, then A11/A12) are each removed to waste at 3x166.7 uL with the magnet still engaged (811-981). Then delay 240 s, then disengage (982-983).\"}, {\"id\": \"elution_recovery\", \"score\": 1, \"evidence\": \"Magnet is disengaged (983), then 100 uL elution buffer from A4 is added and mixed 10x (985-1127). Then delay 30 s, engage, delay 90 s, then 80 uL is moved per column to the matching elution-plate wells on the 4 C tempdeck (1131-1153).\"}, {\"id\": \"fidelity_to_paper\", \"score\": 1, \"evidence\": \"Steps and order match the paper and task: temp 4 C and magnet off first, then the full 14-step sequence, with magnet disengaged at the end. Reagents come from the specified reservoir columns, comments and metadata are accurate, and the only extra is a harmless bead mix in the reservoir.\"}], \"summary\": \"The run log shows all 48 samples handled with fresh tips, the correct reagent order and volumes, the correct incubation, magnet and drying timings, and 80 uL eluate recovered to the 4 C elution plate. No invented, missing or misleading steps were found, so every rubric item passes.\"}"
+    "summary": "The protocol matches the paper's binding, magnet, wash and drying steps, and handles each of the 48 samples with its own tip and well. It fails elution recovery because it transfers 100 uL of eluate instead of about 80 uL, and the other four items are scored as passing.",
+    "raw": "{\"items\": [{\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Log shows 48 separate p1000 tip pickups, each aspirating 250 uL from a distinct tube and dispensing into a distinct odd-column well (A1..H11), with a drop tip after each.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Log shows 40 uL beads, then 2x125 uL isopropanol, then 250 uL samples with 5x400 uL mix, delay 300 s, engage, delay 240 s, then 3x180 uL per column removed to waste plate with the magnet engaged.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two rounds of 3x166.667 uL (500 uL) ethanol from A9-A12 are each removed to waste with the magnet engaged, then delay 240 s, then disengage before elution.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"100 uL elution is added off-magnet and mixed, and the magnet is re-engaged after 30 s and held 90 s, but the log shows 100 uL (not about 80 uL) aspirated and dispensed to the elution plate at lines 1048-1069.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 1, \"evidence\": \"Step order and reagents match the paper, with comments accurate and 4 C set on the temp module; the only extra is a bead pre-mix in the reservoir, which is minor.\"}], \"summary\": \"The protocol matches the paper's binding, magnet, wash and drying steps, and handles each of the 48 samples with its own tip and well. It fails elution recovery because it transfers 100 uL of eluate instead of about 80 uL, and the other four items are scored as passing.\"}"
   },
   "rewards": {
-    "reward": 1.0,
+    "reward": 0.8,
     "sim_pass": 1.0,
-    "judge_mean": 1.0,
+    "judge_mean": 0.8,
     "suspicious_code": 0.0,
     "judge_error": 0.0,
     "hack_detected": 0.0,
     "rubric_sample_handling": 1.0,
     "rubric_binding_and_separation": 1.0,
     "rubric_washes_and_drying": 1.0,
-    "rubric_elution_recovery": 1.0,
+    "rubric_elution_recovery": 0.0,
     "rubric_fidelity_to_paper": 1.0
   }
 }

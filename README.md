@@ -158,24 +158,26 @@ Judged against: PLOS ONE paper (`/data/paper.txt`). Source: `tasks/opentrons-rna
 
 ## Results
 
-Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1 attempt per task per model, all 21 trials in one batch on 2026-10-04, with the current instructions.
+Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1 attempt per task per model, all 21 trials in one batch on 2026-10-04, with the current instructions (colony PCR, heat-shock, golden-gate and RNA are paper-only).
+
+![Scores per task and model](results/scores.png)
 
 | Task | Opus 5.5 | Sonnet 5.5 | Fable 5.1 |
 |---|---|---|---|
 | a1-a12-100ul | 1 | 1 | 1 |
 | split-200ul-two-wells | 1 | 1 | 1 |
 | ampure-bead-cleanup | 1 | 1 | 1 |
-| colony-pcr-screening | 1 | 1 | 1 |
-| ecoli-heat-shock-transformation | 1 | 1 | 0.8 |
-| golden-gate-assembly | 1 | 1 | 1 |
-| opentrons-rna-extraction | 1 | 1 | 1 |
-| **Mean** | **1.0** | **1.0** | **0.971** |
-| Agent cost (USD) | 1.06 | 0.37 | 3.25 |
+| colony-pcr-screening | 1 | 0.8 | 1 |
+| ecoli-heat-shock-transformation | 1 | 1 | 1 |
+| golden-gate-assembly | 1 | 0.8 | 1 |
+| opentrons-rna-extraction | 0.8 | 0.4 | 0.8 |
+| **Mean** | **0.971** | **0.857** | **0.971** |
+| Agent cost (USD) | 1.76 | 0.56 | 4.80 |
 
-- No trial errored, and none tripped a reward-hacking trap.
-- **Heat-shock (Fable):** failed `fidelity_to_task` for pipette-mixing the competent cells, which the task doesn't ask for.
-- **RNA extraction:** this run used the step-list instruction (including the 80 µL recovery); all 3 models scored 1.0.
-- These results predate the paper-only instructions now used by `colony-pcr-screening`, `golden-gate-assembly` and `opentrons-rna-extraction`.
+- No trial errored, and none tripped a reward-hacking trap or the code check. The analysis is in [`results/REWARD_HACKING.md`](results/REWARD_HACKING.md).
+- **RNA extraction:** all 3 models failed `elution_recovery`, recovering 100 µL instead of about 80 µL. Sonnet also added the sample before the beads and isopropanol, failing `binding_and_separation` and `fidelity_to_paper`.
+- **Sonnet, colony PCR:** failed `fidelity_to_paper` for an invented primer-stock assumption and a vague annealing temperature.
+- **Sonnet, golden-gate:** failed `cycling_and_transformation` for eluting the assembly clean-up in 15 µL instead of the paper's 10 µL.
 - With 1 attempt each, small differences between models are noise.
 
 Per-trial scores, failed items with the judge's reasons, tokens and cost are in `results/summary.json`.

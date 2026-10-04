@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 12
+    "n_commands": 86
   },
   "judge": {
     "items": [
       {
         "id": "dna_addition",
         "score": 1,
-        "evidence": "Log lines 2-3: P20 aspirates 2 uL from plasmid_plate A1 and dispenses into tubes A1."
+        "evidence": "Log lines 2-34: block set to 4 C with lid open, then 1 uL aspirated from each plasmid_plate well A1-H1 and dispensed into the matching transformation_plate well."
       },
       {
         "id": "heat_shock",
         "score": 1,
-        "evidence": "The comment 'Heat shock cells_rack 42C 45 s, then transfer immediately to ice 2 min' is recorded after DNA addition and before SOC, with 42 C, 45 s, then ice 2 min in the right order."
+        "evidence": "Log 35-39: lid closed, block 4 C for 30 min, then 42 C for 30 s on the thermocycler, then back to 4 C."
       },
       {
         "id": "soc_recovery",
         "score": 1,
-        "evidence": "Log lines 6-7 add 250 uL SOC with the P300 after the heat shock comment, and the final comment records 37C 60 min 250 rpm incubation."
+        "evidence": "Log 42-72: 50 uL SOC dispensed into each of A1-H1 after heat shock. Log 73-75: lid closed, then 37 C for 60 min on the thermocycler."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "A new tip is used for the DNA (lines 1-4) and a different one for SOC (lines 5-8); each is dropped at the end and none touches stocks across steps."
+        "evidence": "Every aspirate is preceded by a pick up tip and followed by a drop tip, 8 tips on the P20 and 8 on the P300 (log 3-72). No tip is reused."
       },
       {
-        "id": "fidelity_to_task",
+        "id": "fidelity_to_paper",
         "score": 1,
-        "evidence": "Steps run in the specified order with the correct volumes and labware labels; the comments are accurate and nothing extra is added."
+        "evidence": "The step order, volumes (1/10/50 uL), temperatures and times match the paper's LV defaults. Comments are accurate and the choices are stated (lid at 42 C then 37 C, 4 C return before SOC)."
       }
     ],
     "scores": {
@@ -38,9 +38,9 @@
       "heat_shock": 1.0,
       "soc_recovery": 1.0,
       "tip_usage": 1.0,
-      "fidelity_to_task": 1.0
+      "fidelity_to_paper": 1.0
     },
-    "summary": "The protocol matches the log and task: 2 uL DNA with P20, heat shock comment, 250 uL SOC with P300, then the incubation comment. Tips are fresh per reagent and dropped, and nothing is missing or reordered.",
+    "summary": "The protocol matches the simulator log and the paper's LV Protocol 1 for all 8 plasmids: 1 uL DNA at 4 C, 30 min at 4 C, 30 s at 42 C, 50 uL SOC, then 1 h at 37 C. One fresh tip is used for each transfer, and the comments are accurate.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {
@@ -53,6 +53,6 @@
     "rubric_heat_shock": 1.0,
     "rubric_soc_recovery": 1.0,
     "rubric_tip_usage": 1.0,
-    "rubric_fidelity_to_task": 1.0
+    "rubric_fidelity_to_paper": 1.0
   }
 }

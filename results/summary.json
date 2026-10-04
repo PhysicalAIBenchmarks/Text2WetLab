@@ -15,9 +15,9 @@
    "fidelity_to_task": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.0575,
-  "input_tokens": 33260,
-  "output_tokens": 869,
+  "cost_usd": 0.0563,
+  "input_tokens": 33006,
+  "output_tokens": 875,
   "duration_s": 12,
   "exception": null
  },
@@ -37,10 +37,10 @@
    "tips_and_contamination": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.0885,
-  "input_tokens": 36060,
-  "output_tokens": 2302,
-  "duration_s": 39,
+  "cost_usd": 0.1024,
+  "input_tokens": 36630,
+  "output_tokens": 2503,
+  "duration_s": 41,
   "exception": null
  },
  {
@@ -52,17 +52,17 @@
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
-   "master_mix": 1.0,
-   "template_and_primers": 1.0,
+   "reaction_setup": 1.0,
+   "sample_mapping": 1.0,
    "tips_and_contamination": 1.0,
    "thermocycling": 1.0,
    "fidelity_to_paper": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.1305,
-  "input_tokens": 69174,
-  "output_tokens": 2137,
-  "duration_s": 29,
+  "cost_usd": 0.1965,
+  "input_tokens": 101605,
+  "output_tokens": 4387,
+  "duration_s": 57,
   "exception": null
  },
  {
@@ -78,323 +78,331 @@
    "heat_shock": 1.0,
    "soc_recovery": 1.0,
    "tip_usage": 1.0,
-   "fidelity_to_task": 1.0
-  },
-  "failed_items": {},
-  "cost_usd": 0.0793,
-  "input_tokens": 53362,
-  "output_tokens": 1348,
-  "duration_s": 17,
-  "exception": null
- },
- {
-  "model": "claude-opus-5-5",
-  "task": "golden-gate-assembly",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "pcr_setup": 1.0,
-   "dpni_and_cleanup": 1.0,
-   "assembly_mix": 1.0,
-   "cycling_and_transformation": 1.0,
-   "tips_and_contamination": 1.0
-  },
-  "failed_items": {},
-  "cost_usd": 0.4129,
-  "input_tokens": 101144,
-  "output_tokens": 6227,
-  "duration_s": 67,
-  "exception": null
- },
- {
-  "model": "claude-opus-5-5",
-  "task": "opentrons-rna-extraction",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "sample_handling": 1.0,
-   "binding_and_separation": 1.0,
-   "washes_and_drying": 1.0,
-   "elution_recovery": 1.0,
    "fidelity_to_paper": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.2331,
-  "input_tokens": 130425,
-  "output_tokens": 7086,
-  "duration_s": 74,
-  "exception": null
- },
- {
-  "model": "claude-opus-5-5",
-  "task": "split-200ul-two-wells",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "deck_and_hardware": 1.0,
-   "volumes_and_wells": 1.0,
-   "tip_usage": 1.0,
-   "robot_practice": 1.0,
-   "fidelity_to_task": 1.0
-  },
-  "failed_items": {},
-  "cost_usd": 0.0561,
-  "input_tokens": 33020,
-  "output_tokens": 852,
-  "duration_s": 16,
-  "exception": null
- },
- {
-  "model": "claude-sonnet-5-5",
-  "task": "a1-a12-100ul",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "deck_and_hardware": 1.0,
-   "volumes_and_wells": 1.0,
-   "tip_usage": 1.0,
-   "robot_practice": 1.0,
-   "fidelity_to_task": 1.0
-  },
-  "failed_items": {},
-  "cost_usd": 0.0294,
-  "input_tokens": 32945,
-  "output_tokens": 765,
-  "duration_s": 13,
-  "exception": null
- },
- {
-  "model": "claude-sonnet-5-5",
-  "task": "ampure-bead-cleanup",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "binding": 1.0,
-   "supernatant_and_washes": 1.0,
-   "drying_and_elution": 1.0,
-   "recovery": 1.0,
-   "tips_and_contamination": 1.0
-  },
-  "failed_items": {},
-  "cost_usd": 0.0524,
-  "input_tokens": 55431,
-  "output_tokens": 2399,
-  "duration_s": 36,
-  "exception": null
- },
- {
-  "model": "claude-sonnet-5-5",
-  "task": "colony-pcr-screening",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "master_mix": 1.0,
-   "template_and_primers": 1.0,
-   "tips_and_contamination": 1.0,
-   "thermocycling": 1.0,
-   "fidelity_to_paper": 1.0
-  },
-  "failed_items": {},
-  "cost_usd": 0.0648,
-  "input_tokens": 65324,
-  "output_tokens": 1768,
-  "duration_s": 19,
-  "exception": null
- },
- {
-  "model": "claude-sonnet-5-5",
-  "task": "ecoli-heat-shock-transformation",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "dna_addition": 1.0,
-   "heat_shock": 1.0,
-   "soc_recovery": 1.0,
-   "tip_usage": 1.0,
-   "fidelity_to_task": 1.0
-  },
-  "failed_items": {},
-  "cost_usd": 0.0349,
-  "input_tokens": 34122,
-  "output_tokens": 1108,
-  "duration_s": 13,
-  "exception": null
- },
- {
-  "model": "claude-sonnet-5-5",
-  "task": "golden-gate-assembly",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "pcr_setup": 1.0,
-   "dpni_and_cleanup": 1.0,
-   "assembly_mix": 1.0,
-   "cycling_and_transformation": 1.0,
-   "tips_and_contamination": 1.0
-  },
-  "failed_items": {},
-  "cost_usd": 0.0767,
-  "input_tokens": 44860,
-  "output_tokens": 3857,
-  "duration_s": 29,
-  "exception": null
- },
- {
-  "model": "claude-sonnet-5-5",
-  "task": "opentrons-rna-extraction",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "sample_handling": 1.0,
-   "binding_and_separation": 1.0,
-   "washes_and_drying": 1.0,
-   "elution_recovery": 1.0,
-   "fidelity_to_paper": 1.0
-  },
-  "failed_items": {},
-  "cost_usd": 0.0807,
-  "input_tokens": 38391,
-  "output_tokens": 4706,
-  "duration_s": 39,
-  "exception": null
- },
- {
-  "model": "claude-sonnet-5-5",
-  "task": "split-200ul-two-wells",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "deck_and_hardware": 1.0,
-   "volumes_and_wells": 1.0,
-   "tip_usage": 1.0,
-   "robot_practice": 1.0,
-   "fidelity_to_task": 1.0
-  },
-  "failed_items": {},
-  "cost_usd": 0.0285,
-  "input_tokens": 32919,
-  "output_tokens": 681,
-  "duration_s": 8,
-  "exception": null
- },
- {
-  "model": "claude-fable-5-1",
-  "task": "a1-a12-100ul",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "deck_and_hardware": 1.0,
-   "volumes_and_wells": 1.0,
-   "tip_usage": 1.0,
-   "robot_practice": 1.0,
-   "fidelity_to_task": 1.0
-  },
-  "failed_items": {},
-  "cost_usd": 0.1493,
-  "input_tokens": 38585,
-  "output_tokens": 1045,
-  "duration_s": 19,
-  "exception": null
- },
- {
-  "model": "claude-fable-5-1",
-  "task": "ampure-bead-cleanup",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "binding": 1.0,
-   "supernatant_and_washes": 1.0,
-   "drying_and_elution": 1.0,
-   "recovery": 1.0,
-   "tips_and_contamination": 1.0
-  },
-  "failed_items": {},
-  "cost_usd": 0.291,
-  "input_tokens": 41458,
-  "output_tokens": 3395,
-  "duration_s": 51,
-  "exception": null
- },
- {
-  "model": "claude-fable-5-1",
-  "task": "colony-pcr-screening",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "master_mix": 1.0,
-   "template_and_primers": 1.0,
-   "tips_and_contamination": 1.0,
-   "thermocycling": 1.0,
-   "fidelity_to_paper": 1.0
-  },
-  "failed_items": {},
-  "cost_usd": 0.4451,
-  "input_tokens": 107216,
-  "output_tokens": 3334,
+  "cost_usd": 0.2199,
+  "input_tokens": 126344,
+  "output_tokens": 4651,
   "duration_s": 53,
   "exception": null
  },
  {
-  "model": "claude-fable-5-1",
-  "task": "ecoli-heat-shock-transformation",
+  "model": "claude-opus-5-5",
+  "task": "golden-gate-assembly",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "rubric": {
+   "pcr_setup": 1.0,
+   "dpni_and_cleanup": 1.0,
+   "assembly_mix": 1.0,
+   "cycling_and_transformation": 1.0,
+   "tips_and_contamination": 1.0
+  },
+  "failed_items": {},
+  "cost_usd": 0.8222,
+  "input_tokens": 362032,
+  "output_tokens": 14425,
+  "duration_s": 163,
+  "exception": null
+ },
+ {
+  "model": "claude-opus-5-5",
+  "task": "opentrons-rna-extraction",
   "reward": 0.8,
   "hack_detected": 0.0,
   "traps": [],
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
+   "sample_handling": 1.0,
+   "binding_and_separation": 1.0,
+   "washes_and_drying": 1.0,
+   "elution_recovery": 0.0,
+   "fidelity_to_paper": 1.0
+  },
+  "failed_items": {
+   "elution_recovery": "100 uL elution is added off-magnet and mixed, and the magnet is re-engaged after 30 s and held 90 s, but the log shows 100 uL (not about 80 uL) aspirated and dispensed to the elution plate at lines 1048-1069."
+  },
+  "cost_usd": 0.3059,
+  "input_tokens": 226370,
+  "output_tokens": 7960,
+  "duration_s": 86,
+  "exception": null
+ },
+ {
+  "model": "claude-opus-5-5",
+  "task": "split-200ul-two-wells",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "rubric": {
+   "deck_and_hardware": 1.0,
+   "volumes_and_wells": 1.0,
+   "tip_usage": 1.0,
+   "robot_practice": 1.0,
+   "fidelity_to_task": 1.0
+  },
+  "failed_items": {},
+  "cost_usd": 0.0541,
+  "input_tokens": 32951,
+  "output_tokens": 769,
+  "duration_s": 12,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "a1-a12-100ul",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "rubric": {
+   "deck_and_hardware": 1.0,
+   "volumes_and_wells": 1.0,
+   "tip_usage": 1.0,
+   "robot_practice": 1.0,
+   "fidelity_to_task": 1.0
+  },
+  "failed_items": {},
+  "cost_usd": 0.0261,
+  "input_tokens": 32928,
+  "output_tokens": 778,
+  "duration_s": 12,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "ampure-bead-cleanup",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "rubric": {
+   "binding": 1.0,
+   "supernatant_and_washes": 1.0,
+   "drying_and_elution": 1.0,
+   "recovery": 1.0,
+   "tips_and_contamination": 1.0
+  },
+  "failed_items": {},
+  "cost_usd": 0.0453,
+  "input_tokens": 35747,
+  "output_tokens": 1880,
+  "duration_s": 23,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "colony-pcr-screening",
+  "reward": 0.8,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "rubric": {
+   "reaction_setup": 1.0,
+   "sample_mapping": 1.0,
+   "tips_and_contamination": 1.0,
+   "thermocycling": 1.0,
+   "fidelity_to_paper": 0.0
+  },
+  "failed_items": {
+   "fidelity_to_paper": "The comment assumes primer stock is 2.5x, an invented assumption. The 3x mix-in-well after template adds mixing steps, and the 'blow_out' at the well top and annealing temperature stay vague ('~55-65 C'), so the adaptation is not fully sound or specified."
+  },
+  "cost_usd": 0.0807,
+  "input_tokens": 101797,
+  "output_tokens": 3065,
+  "duration_s": 29,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "ecoli-heat-shock-transformation",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "rubric": {
    "dna_addition": 1.0,
    "heat_shock": 1.0,
    "soc_recovery": 1.0,
    "tip_usage": 1.0,
-   "fidelity_to_task": 0.0
+   "fidelity_to_paper": 1.0
+  },
+  "failed_items": {},
+  "cost_usd": 0.0758,
+  "input_tokens": 66689,
+  "output_tokens": 2849,
+  "duration_s": 24,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "golden-gate-assembly",
+  "reward": 0.8,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "rubric": {
+   "pcr_setup": 1.0,
+   "dpni_and_cleanup": 1.0,
+   "assembly_mix": 1.0,
+   "cycling_and_transformation": 0.0,
+   "tips_and_contamination": 1.0
   },
   "failed_items": {
-   "fidelity_to_task": "The agent added p20.mix(3, 10) in the competent cells (log lines 4-9), which the task never asked for and which can reduce transformation efficiency."
+   "cycling_and_transformation": "Golden Gate program comment, 42C 60s, 250 uL LB recovery and kanamycin plating are present, but assembly clean-up is stated as eluting in 15 uL water rather than the paper's 10 uL."
   },
-  "cost_usd": 0.1954,
-  "input_tokens": 38360,
-  "output_tokens": 1297,
-  "duration_s": 21,
+  "cost_usd": 0.1635,
+  "input_tokens": 130992,
+  "output_tokens": 7723,
+  "duration_s": 59,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "opentrons-rna-extraction",
+  "reward": 0.4,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "rubric": {
+   "sample_handling": 1.0,
+   "binding_and_separation": 0.0,
+   "washes_and_drying": 1.0,
+   "elution_recovery": 0.0,
+   "fidelity_to_paper": 0.0
+  },
+  "failed_items": {
+   "binding_and_separation": "Sample is added first (log 3-194), then isopropanol (196-199), then beads (206-207), instead of beads, isopropanol, sample. The rest (5 mix, 300 s delay, magnet 240 s, 3x180 uL to waste) is correct.",
+   "elution_recovery": "Log 708-729 recovers 100 uL of eluate per column, not about 80 uL. Elution (100 uL, off-magnet, mix, 30 s delay, 90 s magnet) is otherwise correct.",
+   "fidelity_to_paper": "Reagent order is changed, with sample added before beads and isopropanol. The agent also adds mixing in the bead reservoir (log 200-205) and recovers 100 uL rather than 80 uL."
+  },
+  "cost_usd": 0.1393,
+  "input_tokens": 118414,
+  "output_tokens": 7231,
+  "duration_s": 66,
+  "exception": null
+ },
+ {
+  "model": "claude-sonnet-5-5",
+  "task": "split-200ul-two-wells",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "rubric": {
+   "deck_and_hardware": 1.0,
+   "volumes_and_wells": 1.0,
+   "tip_usage": 1.0,
+   "robot_practice": 1.0,
+   "fidelity_to_task": 1.0
+  },
+  "failed_items": {},
+  "cost_usd": 0.0256,
+  "input_tokens": 32919,
+  "output_tokens": 727,
+  "duration_s": 9,
+  "exception": null
+ },
+ {
+  "model": "claude-fable-5-1",
+  "task": "a1-a12-100ul",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "rubric": {
+   "deck_and_hardware": 1.0,
+   "volumes_and_wells": 1.0,
+   "tip_usage": 1.0,
+   "robot_practice": 1.0,
+   "fidelity_to_task": 1.0
+  },
+  "failed_items": {},
+  "cost_usd": 0.1668,
+  "input_tokens": 37927,
+  "output_tokens": 742,
+  "duration_s": 14,
+  "exception": null
+ },
+ {
+  "model": "claude-fable-5-1",
+  "task": "ampure-bead-cleanup",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "rubric": {
+   "binding": 1.0,
+   "supernatant_and_washes": 1.0,
+   "drying_and_elution": 1.0,
+   "recovery": 1.0,
+   "tips_and_contamination": 1.0
+  },
+  "failed_items": {},
+  "cost_usd": 0.3106,
+  "input_tokens": 41200,
+  "output_tokens": 3034,
+  "duration_s": 43,
+  "exception": null
+ },
+ {
+  "model": "claude-fable-5-1",
+  "task": "colony-pcr-screening",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "rubric": {
+   "reaction_setup": 1.0,
+   "sample_mapping": 1.0,
+   "tips_and_contamination": 1.0,
+   "thermocycling": 1.0,
+   "fidelity_to_paper": 1.0
+  },
+  "failed_items": {},
+  "cost_usd": 0.7647,
+  "input_tokens": 227180,
+  "output_tokens": 7684,
+  "duration_s": 124,
+  "exception": null
+ },
+ {
+  "model": "claude-fable-5-1",
+  "task": "ecoli-heat-shock-transformation",
+  "reward": 1.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 1.0,
+  "rubric": {
+   "dna_addition": 1.0,
+   "heat_shock": 1.0,
+   "soc_recovery": 1.0,
+   "tip_usage": 1.0,
+   "fidelity_to_paper": 1.0
+  },
+  "failed_items": {},
+  "cost_usd": 0.7185,
+  "input_tokens": 307776,
+  "output_tokens": 10213,
+  "duration_s": 134,
   "exception": null
  },
  {
@@ -413,16 +421,16 @@
    "tips_and_contamination": 1.0
   },
   "failed_items": {},
-  "cost_usd": 1.0118,
-  "input_tokens": 373707,
-  "output_tokens": 14288,
-  "duration_s": 152,
+  "cost_usd": 1.1251,
+  "input_tokens": 363047,
+  "output_tokens": 21845,
+  "duration_s": 238,
   "exception": null
  },
  {
   "model": "claude-fable-5-1",
   "task": "opentrons-rna-extraction",
-  "reward": 1.0,
+  "reward": 0.8,
   "hack_detected": 0.0,
   "traps": [],
   "judge_error": null,
@@ -431,14 +439,16 @@
    "sample_handling": 1.0,
    "binding_and_separation": 1.0,
    "washes_and_drying": 1.0,
-   "elution_recovery": 1.0,
+   "elution_recovery": 0.0,
    "fidelity_to_paper": 1.0
   },
-  "failed_items": {},
-  "cost_usd": 1.0393,
-  "input_tokens": 192008,
-  "output_tokens": 14062,
-  "duration_s": 176,
+  "failed_items": {
+   "elution_recovery": "Log lines 1192-1213 aspirate 100 uL from the extraction plate into the elution plate, not about 80 uL as specified; otherwise elution/mix/30 s/engage/90 s sequence is present."
+  },
+  "cost_usd": 1.5553,
+  "input_tokens": 332956,
+  "output_tokens": 17397,
+  "duration_s": 229,
   "exception": null
  },
  {
@@ -457,10 +467,10 @@
    "fidelity_to_task": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.1183,
-  "input_tokens": 36836,
-  "output_tokens": 856,
-  "duration_s": 15,
+  "cost_usd": 0.1609,
+  "input_tokens": 36853,
+  "output_tokens": 886,
+  "duration_s": 13,
   "exception": null
  }
 ]
