@@ -174,6 +174,10 @@ Judged against: PLOS ONE paper (`/data/paper.txt`). Source: `tasks/harbor/opentr
 
 Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1 attempt per task per model, 21 trials on 2026-10-04, judged by `claude-sonnet-5-5`.
 
+![Mean score per model](assets/harbor_mean_scores.png)
+
+![Score per task and model](assets/harbor_task_heatmap.png)
+
 | Task | Opus 5.5 | Haiku 4.5 | Fable 5.1 |
 |---|---|---|---|
 | a1-a12-100ul | 1 | 1 | 1 |
@@ -187,6 +191,8 @@ Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1
 | Agent cost (USD) | 1.91 | 0.83 | 5.37 |
 
 With 1 attempt each, small differences between models are noise.
+
+![Cost vs score](assets/harbor_cost_vs_score.png)
 
 ### Per model
 
