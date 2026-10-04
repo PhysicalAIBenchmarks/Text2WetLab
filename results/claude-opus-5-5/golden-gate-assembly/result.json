@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 549
+    "n_commands": 742
   },
   "judge": {
     "items": [
       {
         "id": "pcr_setup",
         "score": 1,
-        "evidence": "Log 1-49 builds an 8x master mix (106 water, 40 buffer, 4 dNTP, 2 pol) and gives 19 uL mix + 2.5 uL each primer + 1 uL template per well (25 uL), with the correct primer and template wells per fragment."
+        "evidence": "Log 35-204: 19 uL master mix (13.25 water, 5 buffer, 0.5 dNTP, 0.25 pol per rxn) plus 1 uL template and 2.5 uL each primer into each well, which gives 25 uL with 0.1 uM primers and 0.5 ng template. Primer and template wells match the design table."
       },
       {
         "id": "dpni_and_cleanup",
         "score": 1,
-        "evidence": "Comments record 98 C 30 s, 34 cycles with the j5 annealing step, and 72 C 5 min; log 178-277 adds 19 uL water, 5 uL rCutSmart and 1 uL DpnI per well; comments give 37 C 30 min then 65 C 20 min, followed by a pause for Zymo clean-up."
+        "evidence": "Comments record 98 C 30 s, 34-36 cycles of 10 s at 98 C / 30 s gradient annealing / extension, and 72 C 5 min. Log 206-358 adds 19 uL water, 5 uL rCutSmart and 1 uL DpnI per well. Comments then give 37 C 30 min and 65 C 20 min, followed by a clean-up comment and a pause, in that order."
       },
       {
         "id": "assembly_mix",
         "score": 1,
-        "evidence": "Log 280-418 adds 7 uL water, 2 uL T4 buffer, fragments 3/2/3/2 uL and 1 uL enzyme mix to each of assembly_plate A1:D1, giving 20 uL each."
+        "evidence": "Log 360-509: each assembly well gets 7 uL water, 2 uL T4 buffer, fragments at 3/2/3/2 uL from the correct PCR wells, and 1 uL gg_enzyme with mixing, giving 20 uL."
       },
       {
         "id": "cycling_and_transformation",
         "score": 1,
-        "evidence": "Comments record a Golden Gate program of 30 cycles of 37/16 C, 60 C 5 min and a 4 C hold, then clean-up eluted in 10 uL; log 420-433 moves 5 uL into cells; 30 min on ice, 42 C 60 s, 250 uL LB+dextrose (log 436-443), 37 C 60 min and kanamycin plating are all recorded."
+        "evidence": "The Golden Gate program is recorded as 30 cycles of 37/16 C, then 60 C for 5 min, with the hold at 16 C rather than 4 C. This is a minor deviation, and the other steps are present. The 10 uL elution comment, 5 uL into cells (log 512-549), 30 min ice and 42 C 60 s heat shock, 250 uL LB (log 552-589), 37 C 60 min recovery and kanamycin plating are all there."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "Every pick_up_tip in the log is followed by a drop_tip, and the final drop is at line 444. Fresh tips are used per primer, template, fragment and assembly. One-tip multi-well dispenses are only for shared reagents."
+        "evidence": "Every pick_up_tip in the log is followed by a drop_tip, and a fresh tip is used for each template, primer, fragment and assembly. The single tip used for the master mix only aspirates from the master mix tube."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "cycling_and_transformation": 1.0,
       "tips_and_contamination": 1.0
     },
-    "summary": "The protocol builds 25 uL Q5 PCRs, DpnI digests, 20 uL Golden Gate mixes and transformations with correct volumes, wells and order, as the log confirms. Off-deck steps (PCR, incubations, clean-up, heat shock) are documented by comments and pauses, and tip handling is clean.",
+    "summary": "The protocol follows the paper's PCR, DpnI, Golden Gate and transformation workflow, and the simulator log matches the code. The one deviation is a 16 C hold instead of 4 C after the Golden Gate program, which I judged acceptable, so all items pass.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

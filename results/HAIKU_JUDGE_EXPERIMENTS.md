@@ -52,7 +52,7 @@ Each item scored in its own call (5 parallel calls per trial), following [AutoRu
 
 | Judge | Opus 5.5 | Sonnet 5.5 | Fable 5.1 |
 |---|---|---|---|
-| Sonnet 5.5, one call (README results) | 0.971 | 0.857 | 0.971 |
+| Sonnet 5.5, one call (earlier 21-trial run, commit df3d32c) | 0.971 | 0.857 | 0.971 |
 | Haiku 4.5, one call | 0.800 | 0.629 | 0.829 |
 | Haiku 4.5, one call per item | 0.400 | 0.429 | 0.514 |
 

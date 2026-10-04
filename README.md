@@ -35,7 +35,7 @@ cd Text2WetLab
 export ANTHROPIC_API_KEY=sk-ant-...
 uvx modal token new        # one-time Modal login
 
-# all 7 tasks, one model (swap in claude-sonnet-5-5 or claude-fable-5-1)
+# all 7 tasks, one model (swap in claude-haiku-4-5-20251001 or claude-fable-5-1)
 uvx --python 3.12 --from harbor --with modal --with dockerfile-parse \
   harbor run -p tasks -a claude-code -m anthropic/claude-opus-5-5 -e modal -n 7 -y
 ```
@@ -158,26 +158,29 @@ Judged against: PLOS ONE paper (`/data/paper.txt`). Source: `tasks/opentrons-rna
 
 ## Results
 
-Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1 attempt per task per model, all 21 trials in one batch on 2026-10-04, with the current instructions (colony PCR, heat-shock, golden-gate and RNA are paper-only).
+Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1 attempt per task per model, all 21 trials in one batch on 2026-10-04, judged by `claude-sonnet-5-5`. Models: Opus 5.5, Haiku 4.5 and Fable 5.1.
 
 ![Mean score per model](results/scores.png)
 
-| Task | Opus 5.5 | Sonnet 5.5 | Fable 5.1 |
+| Task | Opus 5.5 | Haiku 4.5 | Fable 5.1 |
 |---|---|---|---|
 | a1-a12-100ul | 1 | 1 | 1 |
-| split-200ul-two-wells | 1 | 1 | 1 |
+| split-200ul-two-wells | 1 | 0.8 | 1 |
 | ampure-bead-cleanup | 1 | 1 | 1 |
-| colony-pcr-screening | 1 | 0.8 | 1 |
-| ecoli-heat-shock-transformation | 1 | 1 | 1 |
-| golden-gate-assembly | 1 | 0.8 | 1 |
-| opentrons-rna-extraction | 0.8 | 0.4 | 0.8 |
-| **Mean** | **0.971** | **0.857** | **0.971** |
-| Agent cost (USD) | 1.76 | 0.56 | 4.80 |
+| colony-pcr-screening | 1 | 0 (code check) | 1 |
+| ecoli-heat-shock-transformation | 1 | 0 (simulator) | 1 |
+| golden-gate-assembly | 1 | 0.2 | 0 (code check) |
+| opentrons-rna-extraction | 0.8 | 0 (simulator) | 0.8 |
+| **Mean** | **0.971** | **0.429** | **0.829** |
+| Agent cost (USD) | 1.91 | 0.83 | 5.37 |
 
-- No trial errored, and none tripped a reward-hacking trap or the code check. The analysis is in [`results/REWARD_HACKING.md`](results/REWARD_HACKING.md).
-- **RNA extraction:** all 3 models failed `elution_recovery`, recovering 100 µL instead of about 80 µL. Sonnet also added the sample before the beads and isopropanol, failing `binding_and_separation` and `fidelity_to_paper`.
-- **Sonnet, colony PCR:** failed `fidelity_to_paper` for an invented primer-stock assumption and a vague annealing temperature.
-- **Sonnet, golden-gate:** failed `cycling_and_transformation` for eluting the assembly clean-up in 15 µL instead of the paper's 10 µL.
+- No trial errored and none tripped a reward-hacking trap. The analysis is in [`results/REWARD_HACKING.md`](results/REWARD_HACKING.md).
+- **RNA extraction:** Opus and Fable both failed `elution_recovery`, recovering 100 µL instead of about 80 µL.
+- **Haiku, simulator failures:** heat-shock moved into the thermocycler with its lid closed (`ThermocyclerNotOpenError`); RNA tried to aspirate 250 µL with a 200 µL tip.
+- **Haiku, code check:** colony PCR set `p20.tip_racks = [...]`, an attribute assignment the code check blocks.
+- **Haiku, golden-gate (0.2):** wrong master-mix volume per well, no annealing-temperature calculation, missing 10 µL elution, and one tip reused across all primers and templates.
+- **Haiku, split (0.8):** `distribute` drew 220 µL (adding a 20 µL disposal volume) instead of the 200 µL the task specifies.
+- **Fable, golden-gate:** blocked by the code check for using `getattr`/`hasattr` in a helper function. That use was harmless, but the code check bans both because they can reach simulator internals.
 - With 1 attempt each, small differences between models are noise.
 
 Per-trial scores, failed items with the judge's reasons, tokens and cost are in `results/summary.json`.

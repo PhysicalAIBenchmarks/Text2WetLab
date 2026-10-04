@@ -1,39 +1,42 @@
 """
-Colony PCR screening of 96 transformant colonies on the OT-2.
+Colony PCR screening of 96 transformants on the OT-2 (Slowpoke workflow,
+ACS Synth. Biol., doi:10.1021/acssynbio.5c00629, section 2.5 "Automated Colony PCR").
 
-Adapted from the Slowpoke OT-2 colony PCR workflow (ACS Synth. Biol.,
-doi:10.1021/acssynbio.5c00629). In the paper, 9 uL of a reaction mix
-(water + colony PCR primers + 2x PCR master mix) is dispensed into each
-reaction well, followed by 1 uL of colony template, giving a 10 uL reaction.
+Paper (OT-2 workflow): 9 uL of PCR master mix (2x polymerase mix + primers +
+water) is dispensed into each reaction well, then 1 uL of colony template is
+added -> 10 uL reactions, set up per the polymerase manufacturer's protocol,
+then thermocycled.
 
-Adaptation to this deck: the primers are not premixed with the master mix, but
-supplied as a separate primer pair per colony (primer_plate, same well as the
-colony). The 9 uL reaction mix is therefore assembled in the PCR well:
-    5 uL Q5 Hot Start 2x master mix  (-> 1x in 10 uL, per NEB's protocol)
-    4 uL primer pair                  (assumed to be supplied at 1.25 uM each
-                                       primer in water, i.e. 0.5 uM final each,
-                                       the NEB Q5 recommendation; the 4 uL also
-                                       replaces the water of the paper's mix)
-    1 uL colony template              (added last, as in the paper)
-  = 10 uL reaction
+Adaptation to the reagents on this deck (2x Q5 Hot Start master mix in a
+reservoir, and a separate primer pair per colony in primer_plate):
+  - 5.0 uL Q5 Hot Start 2x master mix  -> 1x final in 10 uL (NEB protocol)
+  - 4.0 uL primer pair (well-matched to the colony well), so that
+    master mix + primers = the paper's 9 uL "master mix" portion.
+    ASSUMPTION: the primer plate holds pre-diluted primer pairs (forward +
+    reverse at 1.25 uM each, in water) so 4 uL gives the NEB-recommended
+    0.5 uM of each primer in 10 uL; no separate water is needed.
+  - 1.0 uL colony template (paper's OT-2 value), added last, then mixed.
+All volumes are <= 20 uL, so the p20 single GEN2 is used throughout; the p300
+is loaded as part of the fixed deck but is not needed.
 """
 from opentrons import protocol_api
 
 metadata = {
-    'protocolName': 'Slowpoke colony PCR (OT-2) - 96 colonies, Q5 Hot Start',
+    'protocolName': 'Slowpoke colony PCR (OT-2) - Q5 Hot Start, per-colony primers',
     'author': 'Adapted from Slowpoke (ACS Synth. Biol. 2025)',
-    'description': 'Sets up 96 x 10 uL colony PCRs: 5 uL Q5 2x master mix + '
-                   '4 uL primer pair + 1 uL colony template per well.',
+    'description': '96 x 10 uL colony PCR set-up: 5 uL Q5 2x MM + 4 uL primer pair '
+                   '+ 1 uL colony template',
     'apiLevel': '2.15',
 }
 
-MASTER_MIX_VOL = 5.0   # uL of 2x Q5 Hot Start master mix -> 1x in 10 uL
-PRIMER_VOL = 4.0       # uL primer pair (9 uL "reaction mix" total with MM)
-COLONY_VOL = 1.0       # uL colony template (paper, OT-2 workflow)
-REACTION_VOL = MASTER_MIX_VOL + PRIMER_VOL + COLONY_VOL  # 10 uL
+MM_VOL = 5.0        # uL Q5 Hot Start 2x master mix per reaction
+PRIMER_VOL = 4.0    # uL primer pair per reaction
+TEMPLATE_VOL = 1.0  # uL colony template per reaction (paper, OT-2)
+REACTION_VOL = MM_VOL + PRIMER_VOL + TEMPLATE_VOL  # 10 uL (paper, OT-2)
 
 
 def run(protocol: protocol_api.ProtocolContext):
+    # ---- Deck (fixed) ----
     colony_plate = protocol.load_labware(
         'corning_96_wellplate_360ul_flat', 1, label='colony_plate')
     pcr_plate = protocol.load_labware(
@@ -46,81 +49,72 @@ def run(protocol: protocol_api.ProtocolContext):
     tips20 = protocol.load_labware('opentrons_96_tiprack_20ul', 10)
     tips300 = protocol.load_labware('opentrons_96_tiprack_300ul', 11)
 
-    # All volumes are 1-20 uL, so only the p20 is used; the p300 is loaded
-    # because it is mounted on the robot.
-    p20 = protocol.load_instrument('p20_single_gen2', 'left',
-                                   tip_racks=[tips20])
-    p300 = protocol.load_instrument('p300_single_gen2', 'right',  # noqa: F841
-                                    tip_racks=[tips300])
+    p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
+    p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])  # noqa: F841
 
-    master_mix = mm_res.wells()[0]
-    dests = pcr_plate.wells()          # A1..H12, column-wise
-    primers = primer_plate.wells()
-    colonies = colony_plate.wells()
-    n = 96
-
-    tips_used = {'n': 0}
+    tips_used = {'p20': 0}
 
     def pick_up():
-        if tips_used['n'] >= 96:
+        # Tips are unlimited: reset the rack once all 96 have been used.
+        if tips_used['p20'] == 96:
             p20.reset_tipracks()
-            tips_used['n'] = 0
+            tips_used['p20'] = 0
         p20.pick_up_tip()
-        tips_used['n'] += 1
+        tips_used['p20'] += 1
 
-    protocol.comment('Colony PCR setup: {} reactions of {} uL '
-                     '({} uL Q5 2x MM + {} uL primers + {} uL colony).'.format(
-                         n, REACTION_VOL, MASTER_MIX_VOL, PRIMER_VOL,
-                         COLONY_VOL))
-    protocol.comment('Keep Q5 Hot Start master mix, primers and PCR plate '
-                     'cold (on ice) until thermocycling.')
+    master_mix = mm_res.wells()[0]
+    dest_wells = pcr_plate.wells()          # A1..H1, A2..H2, ... (96 reactions)
+    primer_wells = primer_plate.wells()
+    colony_wells = colony_plate.wells()
 
-    # Step 1: master mix into every reaction well first (paper: the mix is
-    # dispensed first, colony template added after). One tip is reused since
-    # the destination wells are still empty (no contamination risk). Multi-
-    # dispense 3 x 5 uL per 15 uL aspiration plus a 1 uL disposal volume that
-    # is returned to the reservoir, for accurate dispensing of the viscous mix.
+    protocol.comment('Keep the Q5 Hot Start master mix and primers cold; the '
+                     'destination PCR plate should be on ice/cold block if possible.')
+
+    # ---- Step 1: Q5 2x master mix, 5 uL per well ----
+    # One tip for all wells (dispensing into empty wells, no contamination
+    # risk). Multi-dispense 3 wells (15 uL) per aspiration, within p20 capacity.
+    protocol.comment('Step 1: dispensing 5 uL Q5 Hot Start 2x master mix to each well.')
     pick_up()
-    for i in range(0, n, 3):
-        chunk = dests[i:i + 3]
-        p20.aspirate(MASTER_MIX_VOL * len(chunk) + 1, master_mix)
-        for d in chunk:
-            p20.dispense(MASTER_MIX_VOL, d.bottom(1))
+    per_asp = int(p20.max_volume // MM_VOL)  # 4 x 5 uL = 20 uL
+    per_asp = min(per_asp, 3)                # keep 5 uL headroom, 15 uL per trip
+    for i in range(0, len(dest_wells), per_asp):
+        chunk = dest_wells[i:i + per_asp]
+        p20.aspirate(MM_VOL * len(chunk), master_mix.bottom(1))
+        for w in chunk:
+            p20.dispense(MM_VOL, w.bottom(1))
         p20.blow_out(master_mix.top())
     p20.drop_tip()
 
-    # Step 2: primer pair specific to each colony (fresh tip each well, so
-    # primer pairs never cross-contaminate).
-    for src, d in zip(primers[:n], dests):
+    # ---- Step 2: primer pair, 4 uL per well (well-to-well, fresh tip) ----
+    # Together with step 1 this forms the paper's 9 uL reaction master mix.
+    protocol.comment('Step 2: adding 4 uL of the matching primer pair to each well.')
+    for src, dst in zip(primer_wells, dest_wells):
         pick_up()
-        p20.aspirate(PRIMER_VOL, src)
-        p20.dispense(PRIMER_VOL, d.bottom(1))
-        p20.blow_out(d.bottom(3))
+        p20.aspirate(PRIMER_VOL, src.bottom(1))
+        p20.dispense(PRIMER_VOL, dst.bottom(1))
+        p20.blow_out(dst.top(-2))
         p20.drop_tip()
 
-    # Step 3: 1 uL colony template last, mixed into the 9 uL reaction mix
-    # (fresh tip per colony).
-    for src, d in zip(colonies[:n], dests):
+    # ---- Step 3: colony template, 1 uL per well, then mix (fresh tip) ----
+    protocol.comment('Step 3: adding 1 uL colony template to each well and mixing.')
+    for src, dst in zip(colony_wells, dest_wells):
         pick_up()
-        p20.aspirate(COLONY_VOL, src)
-        p20.dispense(COLONY_VOL, d.bottom(1))
-        p20.mix(3, 5, d.bottom(1))
-        p20.blow_out(d.bottom(3))
+        p20.aspirate(TEMPLATE_VOL, src.bottom(1))
+        p20.dispense(TEMPLATE_VOL, dst.bottom(1))
+        p20.mix(3, 5, dst.bottom(1))
+        p20.blow_out(dst.top(-2))
         p20.drop_tip()
 
-    # Off-deck steps. The paper runs the plate in the Opentrons thermocycler
-    # module (or benchtop thermocyclers); no thermocycler is on this deck, so
-    # cycling is done off-deck. The paper follows the polymerase
-    # manufacturer's protocol, adjusting annealing temperature and extension
-    # time to the primers / amplicon size; the NEB Q5 Hot Start program is
-    # used here, with an extended initial denaturation to lyse the cells.
-    protocol.comment('Seal the PCR plate (user step), spin down briefly.')
-    protocol.comment('Transfer the sealed plate to a thermocycler (off-deck), '
-                     'lid 105 C, 10 uL reaction volume.')
-    protocol.comment('Thermocycling (Q5 Hot Start): 98 C 3 min (initial '
-                     'denaturation / colony lysis); 30 cycles of 98 C 10 s, '
-                     'annealing 50-72 C 20 s (Ta = primer Tm + 3 C, NEB Tm '
-                     'calculator; adjust to primers), 72 C 30 s/kb extension; '
-                     'final extension 72 C 2 min; hold 4 C.')
-    protocol.comment('Analyse the PCR products by agarose gel electrophoresis '
+    # ---- Off-deck steps ----
+    protocol.comment('MANUAL: seal the PCR plate (adhesive film), spin down briefly. '
+                     '(The paper requires the user to seal PCR plates.)')
+    protocol.comment('MANUAL: thermocycle off-deck (no thermocycler module on this deck; '
+                     'paper used the OT-2 thermocycler module or benchtop cyclers). '
+                     'Q5 Hot Start colony PCR program (NEB, adjusted for colony lysis), '
+                     'lid 105 C, 10 uL: 98 C 3 min (initial denaturation/cell lysis); '
+                     '30 cycles of 98 C 10 s, Ta (Tm+3 C, NEB Tm calculator; typically '
+                     '55-72 C) 20 s, 72 C 30 s/kb; final extension 72 C 2 min; hold 4 C. '
+                     'Adjust Ta and extension time to the primers and amplicon size, '
+                     'as stated in the paper.')
+    protocol.comment('MANUAL: analyse the PCR products by agarose gel electrophoresis '
                      'to identify colonies with the expected amplicon size.')

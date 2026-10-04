@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 26
+    "n_commands": 28
   },
   "judge": {
     "items": [
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the correct labels; p20 left, p300 right, with tip racks in slots 10 and 11."
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the right labels; p20 left and p300 right with 20 and 300 uL tip racks in slots 10 and 11."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "Log shows 12 aspirates of 100 uL from reservoir A1, each dispensed to plate A1 through A12 in turn, using the p300; no other wells touched."
+        "evidence": "Log shows 100 uL dispensed into each of A1-A12 with p300 from reservoir A1; the 220 uL aspirates include 20 uL disposal volume, and no other wells were touched."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Log shows a pick up tip first, then all pipetting, and a drop tip at the end."
+        "evidence": "Log starts with pick up tip, pipettes only with that tip, and ends with drop tip (line 20)."
       },
       {
         "id": "robot_practice",
         "score": 1,
-        "evidence": "100 uL is within p300 limits, apiLevel 2.15 is valid, and the simulation passed."
+        "evidence": "apiLevel 2.15 is valid; the 220 uL aspirates are within the 300 uL pipette limit."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The protocol does only the requested transfer; the metadata is accurate and there are no false comments."
+        "evidence": "The distribute call does exactly the requested 100 uL to A1-A12; the leftover disposal volume goes to the trash/liquid-handling, and the comments are accurate."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol transfers 100 uL from reservoir A1 to plate wells A1 to A12 with the p300, as the run log confirms. It uses one tip, drops it at the end, and meets all rubric items.",
+    "summary": "The protocol loads the required labware and pipettes and distributes 100 uL to each of A1-A12 with the p300. The tip is picked up and dropped correctly and nothing unsafe happens.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

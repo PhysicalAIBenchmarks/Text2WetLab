@@ -10,27 +10,27 @@
       {
         "id": "dna_addition",
         "score": 1,
-        "evidence": "Log lines 3-83: block set to 4 C with lid open, then 1 uL aspirated from each plasmid well A1-H1 and dispensed into the matching transformation_plate well."
+        "evidence": "Log lines 2-82: block set to 4 C with lid open, then for each well A1-H1 a 1 uL aspirate from plasmid_plate and dispense into the matching transformation_plate well."
       },
       {
         "id": "heat_shock",
         "score": 1,
-        "evidence": "Log 84-87: lid closed, 4 C for 30 min, 42 C for 30 s, then 4 C for 2 min, all on the thermocycler."
+        "evidence": "Log 83-86: lid closed, then 4 C for 30 min, 42 C for 30 s, and a 2 min return to 4 C, all on the thermocycler."
       },
       {
         "id": "soc_recovery",
         "score": 1,
-        "evidence": "Log 90-169: 50 uL SOC from soc_reservoir A1 dispensed into each of A1-H1 after heat shock; log 170-171: lid closed, 37 C for 60 min."
+        "evidence": "Log 88-167: 50 uL SOC dispensed into each of A1-H1 after the heat shock. Log 168-170: lid closed, then 37 C held for 60 min."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Each of 8 P20 additions and 8 P300 additions has its own pick up and drop tip (log 4-83, 90-169); SOC is aspirated before the tip touches cells, and no tip is reused."
+        "evidence": "Log shows a pick up and drop tip pair for each of the 8 plasmid transfers and each of the 8 SOC additions. No tip is reused across wells, and none is held at the end."
       },
       {
         "id": "fidelity_to_paper",
         "score": 1,
-        "evidence": "Volumes (1/10/50 uL), times and temperatures match the paper's LV config. The 2 min post-shock 4 C step and 37 C lid setpoint are disclosed in comments and are reasonable choices; the metadata citation is accurate."
+        "evidence": "The LV volumes (1/10/50 uL), 4 C 30 min, 42 C 30 s and 37 C 1 h all match the paper. The added mixing and the 2 min return to 4 C are flagged as CHOICE comments and are acceptable adaptations, and the citation is accurate."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "tip_usage": 1.0,
       "fidelity_to_paper": 1.0
     },
-    "summary": "The run log shows a faithful LV APEX Protocol 1: 1 uL DNA into 10 uL cells at 4 C, 30 min at 4 C, 30 s at 42 C with the lid closed, 50 uL SOC, then 1 h at 37 C. Fresh tips were used throughout, and the added gentle mixing and 37 C lid setpoint are disclosed and reasonable.",
+    "summary": "The simulator log shows 1 uL DNA added to each cell well at 4 C, then 4 C for 30 min, 42 C for 30 s, 50 uL SOC per well and 37 C for 1 h with a fresh tip every time. The only additions are gentle mixing and a short post-shock return to 4 C, both labelled as choices, so I scored every item as a pass.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

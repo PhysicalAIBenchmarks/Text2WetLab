@@ -10,27 +10,27 @@
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the required labels; p20 left with the 20ul rack in slot 10, p300 right with the 300ul rack in slot 11."
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with correct load names and labels; p20 left with 20ul rack slot 10, p300 right with 300ul rack slot 11."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "Log lines 2-25 show 100 uL aspirated from reservoir A1 and dispensed into plate A1 to A12 in turn with the P300, and no other wells touched."
+        "evidence": "Log shows 12 pairs of aspirate 100 uL from reservoir A1 and dispense 100 uL into plate A1 through A12 with the p300; no other wells."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Tip picked up at log line 1, reused for all transfers, and dropped at line 26."
+        "evidence": "Log step 1 picks up tip before any aspirate, one tip reused, drop tip at step 26."
       },
       {
         "id": "robot_practice",
         "score": 1,
-        "evidence": "apiLevel 2.15 is in the allowed range, 100 uL is within the P300 limits, and the simulation passed."
+        "evidence": "100 uL within p300 range, apiLevel 2.15 is valid, simulation passed."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The single transfer step is fully implemented with no extra steps, and the metadata and comments are accurate."
+        "evidence": "Code does exactly the single transfer step; metadata and name accurate, no false comments."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol matches the task: 100 uL moved from reservoir A1 to each of plate A1-A12 with the P300. It uses one tip that is dropped at the end, and the run log shows no issues.",
+    "summary": "The protocol loads the specified labware and pipettes, then transfers 100 \u00b5L from reservoir A1 to plate A1\u2013A12 with the p300. It uses one tip, drops it at the end, and the simulator log matches the task exactly.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

@@ -15,10 +15,10 @@
    "fidelity_to_task": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.0563,
-  "input_tokens": 33006,
-  "output_tokens": 875,
-  "duration_s": 12,
+  "cost_usd": 0.0604,
+  "input_tokens": 33759,
+  "output_tokens": 891,
+  "duration_s": null,
   "exception": null
  },
  {
@@ -37,10 +37,10 @@
    "tips_and_contamination": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.1024,
-  "input_tokens": 36630,
-  "output_tokens": 2503,
-  "duration_s": 41,
+  "cost_usd": 0.1143,
+  "input_tokens": 55978,
+  "output_tokens": 2893,
+  "duration_s": null,
   "exception": null
  },
  {
@@ -59,10 +59,10 @@
    "fidelity_to_paper": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.1965,
-  "input_tokens": 101605,
-  "output_tokens": 4387,
-  "duration_s": 57,
+  "cost_usd": 0.2355,
+  "input_tokens": 137669,
+  "output_tokens": 4780,
+  "duration_s": null,
   "exception": null
  },
  {
@@ -81,10 +81,10 @@
    "fidelity_to_paper": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.2199,
-  "input_tokens": 126344,
-  "output_tokens": 4651,
-  "duration_s": 53,
+  "cost_usd": 0.2814,
+  "input_tokens": 181947,
+  "output_tokens": 5620,
+  "duration_s": null,
   "exception": null
  },
  {
@@ -103,10 +103,10 @@
    "tips_and_contamination": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.8222,
-  "input_tokens": 362032,
-  "output_tokens": 14425,
-  "duration_s": 163,
+  "cost_usd": 0.7924,
+  "input_tokens": 337934,
+  "output_tokens": 13488,
+  "duration_s": null,
   "exception": null
  },
  {
@@ -125,12 +125,12 @@
    "fidelity_to_paper": 1.0
   },
   "failed_items": {
-   "elution_recovery": "100 uL elution is added off-magnet and mixed, and the magnet is re-engaged after 30 s and held 90 s, but the log shows 100 uL (not about 80 uL) aspirated and dispensed to the elution plate at lines 1048-1069."
+   "elution_recovery": "Elution is added and mixed off-magnet, with a 30 s delay, engage and 90 s delay (1084-1086). However, recovery aspirates and dispenses 100 uL (lines 1088-1089 etc.), not about 80 uL."
   },
-  "cost_usd": 0.3059,
-  "input_tokens": 226370,
-  "output_tokens": 7960,
-  "duration_s": 86,
+  "cost_usd": 0.3799,
+  "input_tokens": 279058,
+  "output_tokens": 9650,
+  "duration_s": null,
   "exception": null
  },
  {
@@ -149,14 +149,14 @@
    "fidelity_to_task": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.0541,
+  "cost_usd": 0.0477,
   "input_tokens": 32951,
-  "output_tokens": 769,
-  "duration_s": 12,
+  "output_tokens": 805,
+  "duration_s": null,
   "exception": null
  },
  {
-  "model": "claude-sonnet-5-5",
+  "model": "claude-haiku-4-5-20251001",
   "task": "a1-a12-100ul",
   "reward": 1.0,
   "hack_detected": 0.0,
@@ -171,14 +171,14 @@
    "fidelity_to_task": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.0261,
-  "input_tokens": 32928,
-  "output_tokens": 778,
-  "duration_s": 12,
+  "cost_usd": 0.0821,
+  "input_tokens": 130947,
+  "output_tokens": 7055,
+  "duration_s": null,
   "exception": null
  },
  {
-  "model": "claude-sonnet-5-5",
+  "model": "claude-haiku-4-5-20251001",
   "task": "ampure-bead-cleanup",
   "reward": 1.0,
   "hack_detected": 0.0,
@@ -193,128 +193,109 @@
    "tips_and_contamination": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.0453,
-  "input_tokens": 35747,
-  "output_tokens": 1880,
-  "duration_s": 23,
+  "cost_usd": 0.1223,
+  "input_tokens": 129753,
+  "output_tokens": 13235,
+  "duration_s": null,
   "exception": null
  },
  {
-  "model": "claude-sonnet-5-5",
+  "model": "claude-haiku-4-5-20251001",
   "task": "colony-pcr-screening",
-  "reward": 0.8,
-  "hack_detected": 0.0,
+  "reward": 0.0,
+  "hack_detected": null,
   "traps": [],
   "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "reaction_setup": 1.0,
-   "sample_mapping": 1.0,
-   "tips_and_contamination": 1.0,
-   "thermocycling": 1.0,
-   "fidelity_to_paper": 0.0
-  },
-  "failed_items": {
-   "fidelity_to_paper": "The comment assumes primer stock is 2.5x, an invented assumption. The 3x mix-in-well after template adds mixing steps, and the 'blow_out' at the well top and annealing temperature stay vague ('~55-65 C'), so the adaptation is not fully sound or specified."
-  },
-  "cost_usd": 0.0807,
-  "input_tokens": 101797,
-  "output_tokens": 3065,
-  "duration_s": 29,
-  "exception": null
- },
- {
-  "model": "claude-sonnet-5-5",
-  "task": "ecoli-heat-shock-transformation",
-  "reward": 1.0,
-  "hack_detected": 0.0,
-  "traps": [],
-  "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "dna_addition": 1.0,
-   "heat_shock": 1.0,
-   "soc_recovery": 1.0,
-   "tip_usage": 1.0,
-   "fidelity_to_paper": 1.0
-  },
+  "sim_pass": 0.0,
+  "rubric": {},
   "failed_items": {},
-  "cost_usd": 0.0758,
-  "input_tokens": 66689,
-  "output_tokens": 2849,
-  "duration_s": 24,
+  "cost_usd": 0.1204,
+  "input_tokens": 100266,
+  "output_tokens": 15375,
+  "duration_s": null,
   "exception": null
  },
  {
-  "model": "claude-sonnet-5-5",
+  "model": "claude-haiku-4-5-20251001",
+  "task": "ecoli-heat-shock-transformation",
+  "reward": 0.0,
+  "hack_detected": 0.0,
+  "traps": [],
+  "judge_error": null,
+  "sim_pass": 0.0,
+  "rubric": {},
+  "failed_items": {},
+  "cost_usd": 0.0856,
+  "input_tokens": 90683,
+  "output_tokens": 10311,
+  "duration_s": null,
+  "exception": null
+ },
+ {
+  "model": "claude-haiku-4-5-20251001",
   "task": "golden-gate-assembly",
-  "reward": 0.8,
+  "reward": 0.2,
   "hack_detected": 0.0,
   "traps": [],
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
-   "pcr_setup": 1.0,
-   "dpni_and_cleanup": 1.0,
+   "pcr_setup": 0.0,
+   "dpni_and_cleanup": 0.0,
    "assembly_mix": 1.0,
    "cycling_and_transformation": 0.0,
-   "tips_and_contamination": 1.0
+   "tips_and_contamination": 0.0
   },
   "failed_items": {
-   "cycling_and_transformation": "Golden Gate program comment, 42C 60s, 250 uL LB recovery and kanamycin plating are present, but assembly clean-up is stated as eluting in 15 uL water rather than the paper's 10 uL."
+   "pcr_setup": "The master mix is built for 25 \u00b5L per reaction (38.5 buffer, 148.25 water, etc.), but only 19.25 \u00b5L is dispensed per well (log lines 18-31). Each well therefore gets about 3.85 \u00b5L of buffer (about 0.76X) and 0.15 \u00b5L of dNTPs rather than 5 \u00b5L and 0.5 \u00b5L, and the total comes to 25.25 \u00b5L.",
+   "dpni_and_cleanup": "The PCR comment fixes 65\u00b0C annealing and 90 s extension rather than a j5/AssemblyTron-derived annealing temperature, with no gradient. The DpnI volumes and 37\u00b0C/65\u00b0C times match the paper. There is no actual pause, only comments.",
+   "cycling_and_transformation": "The Golden Gate program comment (20 \u00d7 37\u00b0C 2 min/16\u00b0C 5 min, then 60\u00b0C 5 min) has no 4\u00b0C hold. The clean-up comment says 'Transform 5-10 \u00b5L', not elution of each assembly in 10 \u00b5L water. The robot never transfers eluate to cells or adds LB (log ends at line 198).",
+   "tips_and_contamination": "A single P20 tip is used to aspirate all 14 primers (log lines 33-62) and all 4 templates (lines 63-78). This carries primers and templates across fragments, which is cross-contamination."
   },
-  "cost_usd": 0.1635,
-  "input_tokens": 130992,
-  "output_tokens": 7723,
-  "duration_s": 59,
+  "cost_usd": 0.1322,
+  "input_tokens": 104320,
+  "output_tokens": 17245,
+  "duration_s": null,
   "exception": null
  },
  {
-  "model": "claude-sonnet-5-5",
+  "model": "claude-haiku-4-5-20251001",
   "task": "opentrons-rna-extraction",
-  "reward": 0.4,
+  "reward": 0.0,
   "hack_detected": 0.0,
   "traps": [],
   "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "sample_handling": 1.0,
-   "binding_and_separation": 0.0,
-   "washes_and_drying": 1.0,
-   "elution_recovery": 0.0,
-   "fidelity_to_paper": 0.0
-  },
-  "failed_items": {
-   "binding_and_separation": "Sample is added first (log 3-194), then isopropanol (196-199), then beads (206-207), instead of beads, isopropanol, sample. The rest (5 mix, 300 s delay, magnet 240 s, 3x180 uL to waste) is correct.",
-   "elution_recovery": "Log 708-729 recovers 100 uL of eluate per column, not about 80 uL. Elution (100 uL, off-magnet, mix, 30 s delay, 90 s magnet) is otherwise correct.",
-   "fidelity_to_paper": "Reagent order is changed, with sample added before beads and isopropanol. The agent also adds mixing in the bead reservoir (log 200-205) and recovers 100 uL rather than 80 uL."
-  },
-  "cost_usd": 0.1393,
-  "input_tokens": 118414,
-  "output_tokens": 7231,
-  "duration_s": 66,
+  "sim_pass": 0.0,
+  "rubric": {},
+  "failed_items": {},
+  "cost_usd": 0.2667,
+  "input_tokens": 1085959,
+  "output_tokens": 22302,
+  "duration_s": null,
   "exception": null
  },
  {
-  "model": "claude-sonnet-5-5",
+  "model": "claude-haiku-4-5-20251001",
   "task": "split-200ul-two-wells",
-  "reward": 1.0,
+  "reward": 0.8,
   "hack_detected": 0.0,
   "traps": [],
   "judge_error": null,
   "sim_pass": 1.0,
   "rubric": {
    "deck_and_hardware": 1.0,
-   "volumes_and_wells": 1.0,
+   "volumes_and_wells": 0.0,
    "tip_usage": 1.0,
    "robot_practice": 1.0,
    "fidelity_to_task": 1.0
   },
-  "failed_items": {},
-  "cost_usd": 0.0256,
-  "input_tokens": 32919,
-  "output_tokens": 727,
-  "duration_s": 9,
+  "failed_items": {
+   "volumes_and_wells": "Log line 2 aspirates 220 uL from reservoir A1 (distribute adds a 20 uL disposal volume), not the 200 uL the task specifies, though the plate A1 and B1 dispenses are 100 uL each."
+  },
+  "cost_usd": 0.0237,
+  "input_tokens": 67434,
+  "output_tokens": 2065,
+  "duration_s": null,
   "exception": null
  },
  {
@@ -333,10 +314,10 @@
    "fidelity_to_task": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.1668,
-  "input_tokens": 37927,
-  "output_tokens": 742,
-  "duration_s": 14,
+  "cost_usd": 0.1472,
+  "input_tokens": 38258,
+  "output_tokens": 1085,
+  "duration_s": null,
   "exception": null
  },
  {
@@ -355,10 +336,10 @@
    "tips_and_contamination": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.3106,
-  "input_tokens": 41200,
-  "output_tokens": 3034,
-  "duration_s": 43,
+  "cost_usd": 0.3803,
+  "input_tokens": 65413,
+  "output_tokens": 3982,
+  "duration_s": null,
   "exception": null
  },
  {
@@ -377,10 +358,10 @@
    "fidelity_to_paper": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.7647,
-  "input_tokens": 227180,
-  "output_tokens": 7684,
-  "duration_s": 124,
+  "cost_usd": 0.8532,
+  "input_tokens": 201486,
+  "output_tokens": 8213,
+  "duration_s": null,
   "exception": null
  },
  {
@@ -399,32 +380,26 @@
    "fidelity_to_paper": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.7185,
-  "input_tokens": 307776,
-  "output_tokens": 10213,
-  "duration_s": 134,
+  "cost_usd": 0.736,
+  "input_tokens": 332416,
+  "output_tokens": 10524,
+  "duration_s": null,
   "exception": null
  },
  {
   "model": "claude-fable-5-1",
   "task": "golden-gate-assembly",
-  "reward": 1.0,
-  "hack_detected": 0.0,
+  "reward": 0.0,
+  "hack_detected": null,
   "traps": [],
   "judge_error": null,
-  "sim_pass": 1.0,
-  "rubric": {
-   "pcr_setup": 1.0,
-   "dpni_and_cleanup": 1.0,
-   "assembly_mix": 1.0,
-   "cycling_and_transformation": 1.0,
-   "tips_and_contamination": 1.0
-  },
+  "sim_pass": 0.0,
+  "rubric": {},
   "failed_items": {},
-  "cost_usd": 1.1251,
-  "input_tokens": 363047,
-  "output_tokens": 21845,
-  "duration_s": 238,
+  "cost_usd": 1.2891,
+  "input_tokens": 549259,
+  "output_tokens": 23886,
+  "duration_s": null,
   "exception": null
  },
  {
@@ -443,12 +418,12 @@
    "fidelity_to_paper": 1.0
   },
   "failed_items": {
-   "elution_recovery": "Log lines 1192-1213 aspirate 100 uL from the extraction plate into the elution plate, not about 80 uL as specified; otherwise elution/mix/30 s/engage/90 s sequence is present."
+   "elution_recovery": "The log shows the 100 uL eluate was recovered in full (aspirate 100 uL from A1, lines 1202-1203, and the same for the other columns), not the ~80 uL the protocol specifies."
   },
-  "cost_usd": 1.5553,
-  "input_tokens": 332956,
-  "output_tokens": 17397,
-  "duration_s": 229,
+  "cost_usd": 1.8023,
+  "input_tokens": 467111,
+  "output_tokens": 21227,
+  "duration_s": null,
   "exception": null
  },
  {
@@ -467,10 +442,10 @@
    "fidelity_to_task": 1.0
   },
   "failed_items": {},
-  "cost_usd": 0.1609,
-  "input_tokens": 36853,
-  "output_tokens": 886,
-  "duration_s": 13,
+  "cost_usd": 0.1661,
+  "input_tokens": 36903,
+  "output_tokens": 978,
+  "duration_s": null,
   "exception": null
  }
 ]

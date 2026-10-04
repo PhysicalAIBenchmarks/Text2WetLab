@@ -1,7 +1,7 @@
 {
   "lint": [
-    "line 194: name getattr",
-    "line 195: name hasattr"
+    "line 26: assignment to an attribute",
+    "line 27: assignment to an attribute"
   ],
   "error": "protocol uses something a protocol does not need and is not graded",
   "rewards": {

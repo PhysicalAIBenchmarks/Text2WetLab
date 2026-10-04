@@ -1,7 +1,7 @@
 from opentrons import protocol_api
 
 metadata = {
-    'protocolName': '100 uL from reservoir to A1-A12',
+    'protocolName': '100 uL from reservoir to plate A1-A12',
     'apiLevel': '2.15',
 }
 
@@ -15,11 +15,11 @@ def run(protocol: protocol_api.ProtocolContext):
     p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
-    src = reservoir.wells_by_name()['A1']
-    dests = [plate.wells_by_name()['A%d' % i] for i in range(1, 13)]
+    source = reservoir.wells_by_name()['A1']
+    dests = [plate.wells_by_name()['A{}'.format(i)] for i in range(1, 13)]
 
     p300.pick_up_tip()
     for d in dests:
-        p300.aspirate(100, src)
+        p300.aspirate(100, source)
         p300.dispense(100, d)
     p300.drop_tip()

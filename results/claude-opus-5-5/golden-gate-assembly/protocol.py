@@ -1,91 +1,29 @@
-"""AssemblyTron Golden Gate assembly of four chromoprotein expression plasmids.
+"""AssemblyTron Golden Gate assembly of four four-fragment chromoprotein plasmids.
 
-Reproduces the Golden Gate workflow of:
-  AssemblyTron: flexible automation of DNA assembly with Opentrons OT-2 lab robots
-  Synth. Biol. 2022, doi:10.1093/synbio/ysac032 (CC BY 4.0)
+Implements the Golden Gate workflow from "AssemblyTron: flexible automation of DNA
+assembly with Opentrons OT-2 lab robots" (Synth. Biol. 2022, ysac032) for the
+chromoprotein assemblies of Figure 3: seven fragment PCRs -> DpnI digestion of
+residual template -> column clean-up -> four 20 uL Golden Gate reactions ->
+transformation into E. coli TOP10.
 
-Four four-fragment pIDMv5K chromoprotein expression plasmids (tsPurple, YukonOFP,
-aeBlue, fuGFP) are built from seven PCR fragments: three shared backbone parts
-(fragments 2, 5 and 6) plus one chromoprotein part per assembly (1, 3, 4 and 7).
-
-Workflow (section 2.3/2.4 and 3.2 of the paper):
-  1. Build a Q5 PCR master mix and set up seven 25 uL PCRs from j5-designed
-     primers and linearized plasmid templates.
-  2. PAUSE - the operator seals the reactions and runs them on an external
-     gradient thermocycler (the OT-2 module has no gradient capability), then
-     returns them to the deck.
-  3. DpnI digestion of residual plasmid template, in place, in the PCR wells.
-  4. PAUSE - off-deck Zymo DNA Clean & Concentrator-5 clean-up of every
-     fragment (residual polymerase fills in the BsaI sticky ends), eluates
-     returned to their original wells.
-  5. Golden Gate assembly: a volume of each cleaned fragment proportional to
-     fragment length (roughly equimolar, assuming equal PCR yield) plus T4
-     ligase buffer and Golden Gate Enzyme Mix, in 20 uL reactions.
-  6. PAUSE - Golden Gate thermocycling, then clean-up/elution of the assemblies.
-  7. Transformation of the eluates into chemically competent E. coli TOP10,
-     with LB + 0.2% dextrose recovery medium added by the robot.
+Steps the OT-2 cannot do itself (sealing, gradient thermocycling, the Golden Gate
+thermocycler programme, Zymo column clean-ups, ice incubations, heat shock, 37 C
+recovery and plating) are announced with protocol.comment() at the point they happen
+and the deck is paused so the operator can perform them.
 """
+
+from opentrons import protocol_api
 
 metadata = {
     'protocolName': 'AssemblyTron Golden Gate - four chromoprotein plasmids',
-    'author': 'Generated from doi:10.1093/synbio/ysac032',
-    'description': 'Four four-fragment Golden Gate chromoprotein assemblies, '
-                   'from fragment PCR through transformation into E. coli TOP10.',
+    'author': 'AssemblyTron workflow (Synth. Biol. 2022, doi:10.1093/synbio/ysac032)',
+    'description': ('PCR of 7 fragments, DpnI digestion, 4x four-fragment Golden Gate '
+                    'assembly and transformation into E. coli TOP10.'),
     'apiLevel': '2.13',
 }
 
-# ---------------------------------------------------------------------------
-# Reaction parameters, taken from the paper (section 2.3) unless noted.
-# ---------------------------------------------------------------------------
-
-# PCRs are 25 uL with 0.1 uM primers and 0.5 ng linearized template.
-PCR_VOL = 25.0
-PRIMER_VOL = 2.5          # 2.5 uL of a 1 uM stock in 25 uL = 0.1 uM final
-TEMPLATE_VOL = 1.0        # 1 uL of 0.5 ng/uL = 0.5 ng template
-
-# Standard Q5 High-Fidelity set-up (NEB) at the paper's 25 uL scale. The paper
-# names the reagents but not their per-reaction volumes, so the manufacturer's
-# standard ratios are used: 1X Q5 buffer, 200 uM dNTPs, 0.02 U/uL polymerase.
-Q5_BUFFER_VOL = 5.0       # 5X buffer -> 1X
-DNTP_VOL = 0.5            # 10 mM dNTPs -> 200 uM each
-Q5_POL_VOL = 0.25
-MM_WATER_VOL = PCR_VOL - (Q5_BUFFER_VOL + DNTP_VOL + Q5_POL_VOL
-                          + 2 * PRIMER_VOL + TEMPLATE_VOL)   # 13.25 uL
-MM_PER_RXN = Q5_BUFFER_VOL + DNTP_VOL + Q5_POL_VOL + MM_WATER_VOL  # 19 uL
-MM_RXNS = 8               # 7 fragments + 1 reaction of excess for dead volume
-
-# DpnI digestion of residual template: 19 uL water, 5 uL rCutSmart, 1 uL DpnI
-# added to each finished PCR, 30 min at 37 C then 20 min at 65 C.
-DPNI_WATER_VOL = 19.0
-RCUTSMART_VOL = 5.0
-DPNI_VOL = 1.0
-
-# Golden Gate reactions are 20 uL. The paper specifies the fragment volumes
-# (proportional to fragment length, 10 uL of fragments in total) and the
-# reagents; the buffer/enzyme volumes are the standard NEB Golden Gate
-# Assembly Kit (BsaI-HFv2) amounts for a 20 uL reaction.
-GG_VOL = 20.0
-T4_BUFFER_VOL = 2.0       # 10X T4 DNA Ligase Buffer -> 1X
-GG_ENZYME_VOL = 1.0       # Golden Gate Enzyme Mix (BsaI-HFv2 + T4 ligase)
-
-# Transformation (section 2.3): assemblies are column-cleaned and eluted in
-# 10 uL water; 5 uL is transformed into 50 uL of TOP10 cells and the other
-# 5 uL is used for NanoDrop quantification. Recovery is in 250 uL of
-# LB + 0.2% (w/v) dextrose at 37 C for 60 min.
-ELUTION_VOL = 10.0
-DNA_INTO_CELLS_VOL = 5.0
-RECOVERY_MEDIUM_VOL = 250.0
-
-# Fragments are eluted in 20 uL after the clean-up step. The paper does not
-# give a fragment elution volume; 20 uL is chosen because fragments 2 and 6
-# each need 12 uL across the four assemblies, which 10 uL would not cover.
-FRAGMENT_ELUTION_VOL = 20.0
-
-# ---------------------------------------------------------------------------
-# The j5 / AssemblyTron fragment and assembly design.
-# ---------------------------------------------------------------------------
-
-# fragment number -> (pcr well, forward primer well, reverse primer well, template well)
+# --- Reaction design (fixed j5 / AssemblyTron output) -------------------------------
+# fragment -> (pcr_plate well, fwd primer well, rev primer well, template well)
 FRAGMENTS = {
     1: ('A1', 'A1', 'A2', 'A1'),   # tsPurple chromoprotein
     2: ('B1', 'B1', 'B2', 'A1'),   # backbone
@@ -95,36 +33,65 @@ FRAGMENTS = {
     6: ('F1', 'F1', 'F2', 'A1'),   # backbone
     7: ('G1', 'G1', 'G2', 'D1'),   # fuGFP chromoprotein
 }
-FRAGMENT_ORDER = [1, 2, 3, 4, 5, 6, 7]
 
-# Shared backbone parts, added to every assembly, with their length-proportional volumes.
-SHARED_PARTS = [(2, 3.0), (5, 2.0), (6, 3.0)]
+# assembly well -> list of (fragment, uL of cleaned fragment); volumes are proportional
+# to fragment length, which gives a roughly equimolar mix assuming equal PCR yields.
+ASSEMBLIES = {
+    'A1': [(2, 3.0), (5, 2.0), (6, 3.0), (1, 2.0)],   # tsPurple
+    'B1': [(2, 3.0), (5, 2.0), (6, 3.0), (3, 2.0)],   # YukonOFP
+    'C1': [(2, 3.0), (5, 2.0), (6, 3.0), (4, 2.0)],   # aeBlue
+    'D1': [(2, 3.0), (5, 2.0), (6, 3.0), (7, 2.0)],   # fuGFP
+}
 
-# assembly well -> (name, chromoprotein fragment, its volume, competent cell well)
-ASSEMBLIES = [
-    ('A1', 'tsPurple', 1, 2.0, 'A1'),
-    ('B1', 'YukonOFP', 3, 2.0, 'B1'),
-    ('C1', 'aeBlue',   4, 2.0, 'C1'),
-    ('D1', 'fuGFP',    7, 2.0, 'D1'),
-]
+# --- Volumes -----------------------------------------------------------------------
+# PCR: 25 uL Q5 reactions with 0.1 uM primers and 0.5 ng linearised template (paper,
+# Methods). Primers are 1 uM, so 2.5 uL of each gives 0.1 uM in 25 uL; template is
+# 0.5 ng/uL, so 1 uL gives 0.5 ng. The remaining 19 uL per reaction is master mix.
+PCR_RXN_VOL = 25.0
+PRIMER_VOL = 2.5
+TEMPLATE_VOL = 1.0
+MM_PER_RXN = 19.0
+# Standard Q5 composition per 25 uL reaction (NEB): 5 uL 5X Q5 buffer, 0.5 uL 10 mM
+# dNTPs (200 uM final), 0.25 uL Q5 polymerase, water to volume.
+MM_BUFFER_PER_RXN = 5.0
+MM_DNTP_PER_RXN = 0.5
+MM_POL_PER_RXN = 0.25
+MM_WATER_PER_RXN = MM_PER_RXN - MM_BUFFER_PER_RXN - MM_DNTP_PER_RXN - MM_POL_PER_RXN
+MM_RXNS = 8  # 7 fragments + 1 reaction of dead volume, as set up by the operator
 
-# Fragments (10 uL) + T4 buffer + enzyme leave this much water per reaction.
-GG_WATER_VOL = GG_VOL - (sum(v for _, v in SHARED_PARTS) + ASSEMBLIES[0][3]
-                         + T4_BUFFER_VOL + GG_ENZYME_VOL)   # 7 uL
+# DpnI digestion of residual template (paper, Methods): 19 uL water, 5 uL rCutSmart
+# Buffer and 1 uL DpnI are added to the 25 uL PCR, giving 50 uL.
+DPNI_WATER_VOL = 19.0
+DPNI_BUFFER_VOL = 5.0
+DPNI_ENZYME_VOL = 1.0
+
+# Golden Gate: 20 uL reactions. 10 uL of that is cleaned fragments (3+2+3+2), leaving
+# 2 uL 10X T4 DNA Ligase Buffer, 1 uL Golden Gate Enzyme Mix and 7 uL water.
+GG_RXN_VOL = 20.0
+GG_BUFFER_VOL = 2.0
+GG_ENZYME_VOL = 1.0
+GG_FRAGMENT_VOL = 10.0
+GG_WATER_VOL = GG_RXN_VOL - GG_BUFFER_VOL - GG_ENZYME_VOL - GG_FRAGMENT_VOL
+
+# Transformation (paper, Methods): the cleaned assembly is eluted in 10 uL water, of
+# which 5 uL is transformed into 50 uL of TOP10 cells and 5 uL kept for NanoDrop
+# quantification. Recovery is in 250 uL LB + 0.2% (w/v) dextrose.
+ASSEMBLY_ELUTION_VOL = 10.0
+TRANSFORM_DNA_VOL = 5.0
+RECOVERY_VOL = 250.0
+
+# The fragment clean-up elution volume is not given in the paper for fragments (only
+# the 10 uL used for final assemblies). Fragment 2 and fragment 6 are each needed at
+# 3 uL in all four assemblies (12 uL), so we elute fragments in 20 uL to leave a
+# workable excess over the 12 uL maximum draw.
+FRAGMENT_ELUTION_VOL = 20.0
 
 
-def run(protocol):
-    # -----------------------------------------------------------------------
-    # Deck
-    # -----------------------------------------------------------------------
-    tips20 = protocol.load_labware('opentrons_96_tiprack_20ul', 10)
-    tips300 = protocol.load_labware('opentrons_96_tiprack_300ul', 11)
-    p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
-    p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
-
-    tubes_50ml = protocol.load_labware(
+def run(protocol: protocol_api.ProtocolContext):
+    # --- Labware (loaded by the operator exactly as labelled) ----------------------
+    tubes_50ml_1 = protocol.load_labware(
         'opentrons_6_tuberack_falcon_50ml_conical', 1, label='tubes_50ml_1')
-    tubes_1_5ml = protocol.load_labware(
+    tubes_1_5ml_1 = protocol.load_labware(
         'opentrons_24_tuberack_eppendorf_1.5ml_safelock_snapcap', 2, label='tubes_1_5ml_1')
     primer_plate = protocol.load_labware(
         'corning_96_wellplate_360ul_flat', 3, label='primer_plate')
@@ -136,211 +103,213 @@ def run(protocol):
         'corning_96_wellplate_360ul_flat', 6, label='assembly_plate')
     cells_plate = protocol.load_labware(
         'corning_96_wellplate_360ul_flat', 7, label='cells_plate')
-    tubes_15ml = protocol.load_labware(
+    tubes_15ml_1 = protocol.load_labware(
         'opentrons_15_tuberack_falcon_15ml_conical', 8, label='tubes_15ml_1')
 
-    water = tubes_50ml['A1']
-    q5_buffer = tubes_1_5ml['A1']
-    dntp = tubes_1_5ml['B1']
-    q5_pol = tubes_1_5ml['C1']
-    pcr_mm = tubes_1_5ml['D1']
-    rcutsmart = tubes_1_5ml['A2']
-    dpni = tubes_1_5ml['B2']
-    t4_buffer = tubes_1_5ml['C2']
-    gg_enzyme = tubes_1_5ml['D2']
-    lb_dextrose = tubes_15ml['A1']
+    tiprack_20 = protocol.load_labware('opentrons_96_tiprack_20ul', 10)
+    tiprack_300 = protocol.load_labware('opentrons_96_tiprack_300ul', 11)
 
-    pcr_wells = [pcr_plate[FRAGMENTS[f][0]] for f in FRAGMENT_ORDER]
+    p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tiprack_20])
+    p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tiprack_300])
 
-    def pipette_for(volume):
-        """20 uL pipette handles 1-20 uL, 300 uL pipette handles 20-300 uL."""
-        return p20 if volume <= 20.0 else p300
+    # --- Reagent positions ---------------------------------------------------------
+    water = tubes_50ml_1['A1']
+    q5_buffer = tubes_1_5ml_1['A1']
+    dntp = tubes_1_5ml_1['B1']
+    q5_pol = tubes_1_5ml_1['C1']
+    pcr_mm = tubes_1_5ml_1['D1']          # empty, filled below
+    rcutsmart = tubes_1_5ml_1['A2']
+    dpni = tubes_1_5ml_1['B2']
+    t4_buffer = tubes_1_5ml_1['C2']
+    gg_enzyme = tubes_1_5ml_1['D2']
+    lb_dextrose = tubes_15ml_1['A1']
 
-    def fresh_tips():
-        """Tips are unlimited; the operator reloads racks at each pause."""
+    # Tips are unlimited; reset both racks between stages so a stage can never run dry.
+    def reset_tips():
         p20.reset_tipracks()
         p300.reset_tipracks()
 
-    # =======================================================================
-    # Step 1 - Q5 PCR master mix for 8 reactions (7 fragments + 1 excess)
-    # =======================================================================
-    protocol.comment(
-        'Step 1: building the Q5 PCR master mix for {} reactions in tubes_1_5ml_1 D1 '
-        '({} uL of 5X Q5 buffer, {} uL 10 mM dNTPs, {} uL Q5 polymerase, {} uL water).'
-        .format(MM_RXNS, Q5_BUFFER_VOL * MM_RXNS, DNTP_VOL * MM_RXNS,
-                Q5_POL_VOL * MM_RXNS, MM_WATER_VOL * MM_RXNS))
+    def pipette_for(volume):
+        """20 uL pipette for 1-20 uL, 300 uL pipette for 20-300 uL."""
+        return p20 if volume <= 20 else p300
 
-    # Water first, then buffer, then dNTPs, then the polymerase last.
-    p300.transfer(MM_WATER_VOL * MM_RXNS, water, pcr_mm, new_tip='once')
-    p300.transfer(Q5_BUFFER_VOL * MM_RXNS, q5_buffer, pcr_mm, new_tip='once')
-    p20.transfer(DNTP_VOL * MM_RXNS, dntp, pcr_mm, new_tip='once')
-    p20.transfer(Q5_POL_VOL * MM_RXNS, q5_pol, pcr_mm, new_tip='once')
+    def xfer(volume, source, dest, mix_after=None, blow_out_dest=True):
+        """Single transfer with a fresh tip, so no tip is ever carried between liquids."""
+        pip = pipette_for(volume)
+        pip.pick_up_tip()
+        pip.aspirate(volume, source)
+        pip.dispense(volume, dest)
+        if mix_after is not None:
+            # Never ask a pipette to mix more than it can hold.
+            pip.mix(mix_after[0], min(mix_after[1], pip.max_volume), dest)
+        if blow_out_dest:
+            pip.blow_out(dest.top())
+        pip.drop_tip()
 
+    # ==================================================================================
+    # Stage 1 - PCR master mix for 8 reactions in tubes_1_5ml_1 D1
+    # ==================================================================================
+    protocol.comment('STAGE 1: building the Q5 PCR master mix for {} reactions '
+                     'in tubes_1_5ml_1 D1.'.format(MM_RXNS))
+    xfer(MM_WATER_PER_RXN * MM_RXNS, water, pcr_mm, blow_out_dest=False)
+    xfer(MM_BUFFER_PER_RXN * MM_RXNS, q5_buffer, pcr_mm)
+    xfer(MM_DNTP_PER_RXN * MM_RXNS, dntp, pcr_mm)
+    # Polymerase is viscous and goes in last; the 152 uL master mix is then mixed with
+    # the 300 uL pipette, which can move enough volume to homogenise the whole tube.
+    xfer(MM_POL_PER_RXN * MM_RXNS, q5_pol, pcr_mm)
     p300.pick_up_tip()
-    p300.mix(8, 100.0, pcr_mm)   # gentle: the mix contains polymerase
+    p300.mix(8, 100, pcr_mm)
+    p300.blow_out(pcr_mm.top())
     p300.drop_tip()
 
-    # =======================================================================
-    # Step 2 - 25 uL PCRs: master mix, primers, template
-    # =======================================================================
-    protocol.comment(
-        'Step 2: setting up seven {} uL PCRs in pcr_plate A1:G1 '
-        '({} uL master mix + {} uL each primer (0.1 uM final) + {} uL template (0.5 ng)).'
-        .format(PCR_VOL, MM_PER_RXN, PRIMER_VOL, TEMPLATE_VOL))
+    # ==================================================================================
+    # Stage 2 - assemble the seven 25 uL PCRs in pcr_plate column 1
+    # ==================================================================================
+    protocol.comment('STAGE 2: setting up seven 25 uL Q5 PCRs in pcr_plate A1:G1 '
+                     '(0.1 uM each primer, 0.5 ng linearised template).')
+    reset_tips()
 
-    # Master mix: one tip, the source is clean and every destination is empty.
-    p20.transfer(MM_PER_RXN, pcr_mm, pcr_wells, new_tip='once')
+    # Master mix first: one tip is enough, each destination well is empty and clean.
+    p20.pick_up_tip()
+    for frag in sorted(FRAGMENTS):
+        pcr_well = FRAGMENTS[frag][0]
+        p20.aspirate(MM_PER_RXN, pcr_mm)
+        p20.dispense(MM_PER_RXN, pcr_plate[pcr_well])
+        p20.blow_out(pcr_plate[pcr_well].top())
+    p20.drop_tip()
 
-    # Primers and templates: a fresh tip per fragment, each source differs.
-    for frag in FRAGMENT_ORDER:
-        pcr_well, fwd, rev, template = FRAGMENTS[frag]
-        p20.transfer(PRIMER_VOL, primer_plate[fwd], pcr_plate[pcr_well], new_tip='always')
-        p20.transfer(PRIMER_VOL, primer_plate[rev], pcr_plate[pcr_well], new_tip='always')
-        # Templates are shared between fragments, so always use a fresh tip.
-        p20.transfer(TEMPLATE_VOL, template_plate[template], pcr_plate[pcr_well],
-                     new_tip='always', mix_after=(3, 15.0))
+    # Template, then primers, with a fresh tip for every DNA source.
+    for frag in sorted(FRAGMENTS):
+        pcr_well, fwd_well, rev_well, template_well = FRAGMENTS[frag]
+        dest = pcr_plate[pcr_well]
+        xfer(TEMPLATE_VOL, template_plate[template_well], dest)
+        xfer(PRIMER_VOL, primer_plate[fwd_well], dest)
+        xfer(PRIMER_VOL, primer_plate[rev_well], dest, mix_after=(5, 15))
+        protocol.comment(
+            'Fragment {}: pcr_plate {} = {} uL master mix + {} uL template ({}) + '
+            '{} uL fwd primer ({}) + {} uL rev primer ({}) = {} uL.'.format(
+                frag, pcr_well, MM_PER_RXN, TEMPLATE_VOL, template_well,
+                PRIMER_VOL, fwd_well, PRIMER_VOL, rev_well, PCR_RXN_VOL))
 
-    # =======================================================================
-    # Step 3 - OFF-DECK: gradient thermocycling
-    # =======================================================================
-    fresh_tips()
-    protocol.pause(
-        'Seal pcr_plate and move the seven reactions to the external gradient '
-        'thermocycler, following the AssemblyTron reactions_setup.txt tube placement. '
-        'Then return the reactions to pcr_plate A1:G1 and resume.')
-    protocol.comment(
-        'OFF-DECK: gradient PCR. 98 C 30 s; 34 cycles of [98 C 10 s, 30 s at the '
-        'j5/AssemblyTron optimal annealing temperature for that tube position, '
-        '72 C for the AssemblyTron-calculated extension time]; 72 C 5 min; hold 4 C. '
-        'The OT-2 thermocycler module has no gradient capability, so this step must be '
-        'run on a separate gradient thermocycler (e.g. Bio-Rad C1000). '
-        'Take a small sample of each reaction for gel electrophoresis to confirm '
-        'fragment sizes, then return pcr_plate to slot 5.')
+    # --- Manual step: gradient thermocycling (off-deck) -------------------------------
+    protocol.comment('MANUAL STEP: seal pcr_plate A1:G1, transfer the seven reactions '
+                     'to 100 uL PCR tubes in the external gradient thermocycler at the '
+                     'block positions given by the AssemblyTron reactions_setup file '
+                     '(the OT-2 thermocycler module has no gradient capability).')
+    protocol.comment('MANUAL STEP: run 30 s at 98 C; 34-36 cycles of 10 s at 98 C, 30 s '
+                     'at the AssemblyTron/j5 gradient annealing temperatures, and the '
+                     'AssemblyTron extension time at 72 C; then 5 min at 72 C.')
+    protocol.comment('MANUAL STEP: return the finished PCRs to their original wells in '
+                     'pcr_plate A1:G1, unseal, and resume.')
+    protocol.pause('Run the gradient PCR off-deck, then return the reactions to '
+                   'pcr_plate A1:G1 and resume.')
 
-    # =======================================================================
-    # Step 4 - DpnI digestion of residual plasmid template
-    # =======================================================================
-    protocol.comment(
-        'Step 4: DpnI digestion - adding {} uL water, {} uL rCutSmart Buffer and {} uL '
-        'DpnI to each PCR (50 uL final).'
-        .format(DPNI_WATER_VOL, RCUTSMART_VOL, DPNI_VOL))
+    # ==================================================================================
+    # Stage 3 - DpnI digestion of residual plasmid template
+    # ==================================================================================
+    protocol.comment('STAGE 3: DpnI digestion - adding {} uL water, {} uL rCutSmart '
+                     'Buffer and {} uL DpnI to each 25 uL PCR (50 uL total).'.format(
+                         DPNI_WATER_VOL, DPNI_BUFFER_VOL, DPNI_ENZYME_VOL))
+    reset_tips()
 
-    p20.transfer(DPNI_WATER_VOL, water, pcr_wells, new_tip='once')
-    p20.transfer(RCUTSMART_VOL, rcutsmart, pcr_wells, new_tip='once')
-    # DpnI last, with a fresh tip per well and mixing so the enzyme is not
-    # carried between reactions.
-    for well in pcr_wells:
-        p20.transfer(DPNI_VOL, dpni, well, new_tip='always', mix_after=(3, 20.0))
+    for frag in sorted(FRAGMENTS):
+        dest = pcr_plate[FRAGMENTS[frag][0]]
+        xfer(DPNI_WATER_VOL, water, dest)
+        xfer(DPNI_BUFFER_VOL, rcutsmart, dest)
+        xfer(DPNI_ENZYME_VOL, dpni, dest, mix_after=(5, 15))
 
-    # =======================================================================
-    # Step 5 - OFF-DECK: DpnI incubation and fragment clean-up
-    # =======================================================================
-    fresh_tips()
-    protocol.pause(
-        'Seal pcr_plate and incubate the DpnI digests off-deck, then clean up each '
-        'fragment and return the eluates to pcr_plate A1:G1 before resuming.')
-    protocol.comment(
-        'OFF-DECK: incubate pcr_plate A1:G1 at 37 C for 30 min, then inactivate DpnI '
-        'at 65 C for 20 min.')
-    protocol.comment(
-        'OFF-DECK: clean and concentrate all seven fragments on Zymo DNA Clean & '
-        'Concentrator-5 columns to remove the polymerase, which otherwise fills in the '
-        'BsaI sticky ends. Elute each fragment in {} uL nuclease-free water and return '
-        'it to its original well: fragment 1 -> A1, 2 -> B1, 3 -> C1, 4 -> D1, '
-        '5 -> E1, 6 -> F1, 7 -> G1.'.format(FRAGMENT_ELUTION_VOL))
+    protocol.comment('MANUAL STEP: seal pcr_plate A1:G1 and incubate the digests for '
+                     '30 min at 37 C, then deactivate DpnI for 20 min at 65 C.')
+    protocol.comment('MANUAL STEP: clean and concentrate each digested fragment on a '
+                     'Zymo DNA Clean and Concentrator-5 column to remove the polymerase, '
+                     'which otherwise fills in the BsaI sticky ends. Elute each fragment '
+                     'in {} uL molecular-grade water and return it to its own well in '
+                     'pcr_plate A1:G1.'.format(FRAGMENT_ELUTION_VOL))
+    protocol.pause('Digest with DpnI, column-clean each fragment, return the {} uL '
+                   'eluates to pcr_plate A1:G1 and resume.'.format(FRAGMENT_ELUTION_VOL))
 
-    # =======================================================================
-    # Step 6 - Golden Gate assembly reactions
-    # =======================================================================
-    protocol.comment(
-        'Step 6: setting up four {} uL Golden Gate reactions in assembly_plate A1:D1 '
-        '({} uL water + {} uL 10X T4 DNA Ligase Buffer + 10 uL of cleaned fragments '
-        '(volume proportional to fragment length) + {} uL Golden Gate Enzyme Mix).'
-        .format(GG_VOL, GG_WATER_VOL, T4_BUFFER_VOL, GG_ENZYME_VOL))
+    # ==================================================================================
+    # Stage 4 - four 20 uL Golden Gate assemblies
+    # ==================================================================================
+    protocol.comment('STAGE 4: setting up four 20 uL Golden Gate reactions in '
+                     'assembly_plate A1:D1.')
+    reset_tips()
 
-    assembly_wells = [assembly_plate[well] for well, _, _, _, _ in ASSEMBLIES]
+    # Water and buffer first, then the fragments, then the enzyme mix last so that
+    # BsaI-HFv2 and T4 ligase are only ever in a complete, buffered reaction.
+    for well in ['A1', 'B1', 'C1', 'D1']:
+        dest = assembly_plate[well]
+        xfer(GG_WATER_VOL, water, dest)
+        xfer(GG_BUFFER_VOL, t4_buffer, dest)
 
-    p20.transfer(GG_WATER_VOL, water, assembly_wells, new_tip='once')
-    p20.transfer(T4_BUFFER_VOL, t4_buffer, assembly_wells, new_tip='once')
+    for well in ['A1', 'B1', 'C1', 'D1']:
+        dest = assembly_plate[well]
+        for frag, volume in ASSEMBLIES[well]:
+            xfer(volume, pcr_plate[FRAGMENTS[frag][0]], dest)
+        protocol.comment(
+            'Assembly {}: {} uL water + {} uL 10X T4 ligase buffer + {} uL fragments '
+            '({}) + {} uL Golden Gate Enzyme Mix = {} uL.'.format(
+                well, GG_WATER_VOL, GG_BUFFER_VOL, GG_FRAGMENT_VOL,
+                ', '.join('frag {} at {} uL'.format(f, v) for f, v in ASSEMBLIES[well]),
+                GG_ENZYME_VOL, GG_RXN_VOL))
 
-    # Shared backbone fragments, then the chromoprotein that defines each assembly.
-    # A fresh tip per dispense: the tip enters wells that already hold other DNA.
-    for frag, volume in SHARED_PARTS:
-        source = pcr_plate[FRAGMENTS[frag][0]]
-        for well in assembly_wells:
-            p20.transfer(volume, source, well, new_tip='always')
+    for well in ['A1', 'B1', 'C1', 'D1']:
+        xfer(GG_ENZYME_VOL, gg_enzyme, assembly_plate[well], mix_after=(5, 15))
 
-    for well_name, name, frag, volume, _ in ASSEMBLIES:
-        p20.transfer(volume, pcr_plate[FRAGMENTS[frag][0]], assembly_plate[well_name],
-                     new_tip='always')
+    protocol.comment('MANUAL STEP: seal assembly_plate A1:D1 and run the Golden Gate '
+                     'programme (Engler et al.): 30 cycles of 1 min at 37 C and 1 min at '
+                     '16 C, then 5 min at 60 C, hold at 16 C. Reactions may be cycled in '
+                     'the Opentrons thermocycler module or an external thermocycler; the '
+                     'protocol pauses here either way, as the paper describes.')
+    protocol.comment('MANUAL STEP: clean and concentrate each 20 uL assembly on a Zymo '
+                     'DNA Clean and Concentrator-5 column, elute in {} uL '
+                     'molecular-grade water and return each eluate to its own well in '
+                     'assembly_plate A1:D1. Keep 5 uL of each for NanoDrop '
+                     'quantification; the robot transforms the other {} uL.'.format(
+                         ASSEMBLY_ELUTION_VOL, TRANSFORM_DNA_VOL))
+    protocol.pause('Thermocycle the Golden Gate reactions, column-clean them, return the '
+                   '{} uL eluates to assembly_plate A1:D1 and resume.'.format(
+                       ASSEMBLY_ELUTION_VOL))
 
-    # Enzyme mix last, mixing each reaction once it is complete.
-    for well in assembly_wells:
-        p20.transfer(GG_ENZYME_VOL, gg_enzyme, well, new_tip='always',
-                     mix_after=(5, 10.0))
+    # ==================================================================================
+    # Stage 5 - transformation into E. coli TOP10
+    # ==================================================================================
+    protocol.comment('STAGE 5: transforming {} uL of each cleaned assembly into 50 uL '
+                     'of chemically competent E. coli TOP10.'.format(TRANSFORM_DNA_VOL))
+    reset_tips()
 
-    # =======================================================================
-    # Step 7 - Golden Gate thermocycling and assembly clean-up
-    # =======================================================================
-    fresh_tips()
-    protocol.pause(
-        'Seal assembly_plate and run the Golden Gate cycling programme, then clean up '
-        'the assemblies and return the eluates to assembly_plate A1:D1 before resuming.')
-    protocol.comment(
-        'OFF-DECK (or on the Opentrons thermocycler module): Golden Gate cycling. '
-        '30 cycles of [37 C 1 min, 16 C 1 min]; 60 C 5 min; hold 4 C, lid 105 C. '
-        'The paper does not state the cycling parameters, so the standard NEB Golden '
-        'Gate Assembly Kit (BsaI-HFv2) programme for 4-6 fragment assemblies is used.')
-    protocol.comment(
-        'OFF-DECK: clean and concentrate each of the four assemblies on a Zymo DNA '
-        'Clean & Concentrator-5 column and elute in {} uL molecular grade water. '
-        'Return the eluates to assembly_plate A1:D1.'.format(ELUTION_VOL))
+    for well in ['A1', 'B1', 'C1', 'D1']:
+        # Cells are fragile: dispense gently and mix with a few slow, small strokes.
+        p20.pick_up_tip()
+        p20.aspirate(TRANSFORM_DNA_VOL, assembly_plate[well])
+        p20.dispense(TRANSFORM_DNA_VOL, cells_plate[well])
+        p20.mix(3, 10, cells_plate[well], rate=0.5)
+        p20.blow_out(cells_plate[well].top())
+        p20.drop_tip()
+        protocol.comment('Transformation {}: {} uL assembly {} into 50 uL TOP10 cells '
+                         'in cells_plate {}.'.format(well, TRANSFORM_DNA_VOL, well, well))
 
-    # =======================================================================
-    # Step 8 - Transformation into E. coli TOP10
-    # =======================================================================
-    protocol.comment(
-        'Step 8: adding {} uL of each cleaned assembly to {} uL of chemically '
-        'competent E. coli TOP10 in cells_plate A1:D1.'
-        .format(DNA_INTO_CELLS_VOL, 50.0))
+    protocol.comment('MANUAL STEP: incubate the four transformation mixes in '
+                     'cells_plate A1:D1 on ice for 30 min, heat shock at 42 C for 60 s, '
+                     'then return them to ice for 2 min before resuming.')
+    protocol.pause('Ice 30 min, heat shock 42 C for 60 s, back on ice, then return '
+                   'cells_plate to slot 7 and resume for the recovery medium.')
 
-    for assembly_well, name, _, _, cell_well in ASSEMBLIES:
-        protocol.comment('  {} assembly ({}) -> cells_plate {}'
-                         .format(name, assembly_well, cell_well))
-        # Dispense slowly and do not mix: competent cells are shear-sensitive.
-        p20.transfer(DNA_INTO_CELLS_VOL, assembly_plate[assembly_well],
-                     cells_plate[cell_well], new_tip='always')
+    protocol.comment('Adding {} uL LB + 0.2% (w/v) dextrose to each transformation for '
+                     'recovery.'.format(RECOVERY_VOL))
+    for well in ['A1', 'B1', 'C1', 'D1']:
+        p300.pick_up_tip()
+        p300.aspirate(RECOVERY_VOL, lb_dextrose)
+        p300.dispense(RECOVERY_VOL, cells_plate[well])
+        p300.mix(3, 100, cells_plate[well], rate=0.5)
+        p300.blow_out(cells_plate[well].top())
+        p300.drop_tip()
 
-    protocol.comment(
-        'OFF-DECK: use the remaining {} uL of each eluate to measure DNA concentration '
-        'on a NanoDrop-2000c for the transformation efficiency (CFU/ug) calculation.'
-        .format(ELUTION_VOL - DNA_INTO_CELLS_VOL))
-
-    fresh_tips()
-    protocol.pause(
-        'Transformation: incubate cells_plate A1:D1 on ice for 30 min, heat shock at '
-        '42 C for 60 s, return to ice for 2 min, then put cells_plate back in slot 7 '
-        'and resume so the robot can add the recovery medium.')
-    protocol.comment(
-        'OFF-DECK: 30 min on ice, 42 C heat shock for 60 s, then back on ice.')
-
-    # Recovery medium: LB + 0.2% (w/v) dextrose (catabolite repression).
-    protocol.comment(
-        'Step 9: adding {} uL LB + 0.2% (w/v) dextrose to each transformation.'
-        .format(RECOVERY_MEDIUM_VOL))
-    cell_wells = [cells_plate[cw] for _, _, _, _, cw in ASSEMBLIES]
-    p300.transfer(RECOVERY_MEDIUM_VOL, lb_dextrose, cell_wells, new_tip='once')
-
-    protocol.comment(
-        'OFF-DECK: recover the transformations at 37 C for 60 min with shaking.')
-    protocol.comment(
-        'OFF-DECK: plate 50-200 uL of each recovery, neat or as a 10x dilution '
-        'depending on the predicted assembly efficiency, on LB agar with 50 ug/mL '
-        'kanamycin; incubate at 37 C overnight.')
-    protocol.comment(
-        'OFF-DECK: count colonies, report CFU/ug of assembly DNA transformed, and '
-        'score chromoprotein expression (purple = tsPurple, orange = YukonOFP, '
-        'blue = aeBlue, green = fuGFP). Confirm assemblies by Sanger or whole-plasmid '
-        'sequencing.')
-
-    # No tip is left on either pipette at the end of the run.
+    protocol.comment('MANUAL STEP: recover the transformations at 37 C for 60 min with '
+                     'shaking.')
+    protocol.comment('MANUAL STEP: plate 50-200 uL of each recovery, or a 10x dilution, '
+                     'on LB agar with 50 ug/mL kanamycin and incubate overnight at 37 C. '
+                     'Score colonies for chromoprotein expression (tsPurple from A1, '
+                     'YukonOFP from B1, aeBlue from C1, fuGFP from D1).')
+    protocol.comment('Run complete: four Golden Gate chromoprotein assemblies '
+                     'transformed into E. coli TOP10.')

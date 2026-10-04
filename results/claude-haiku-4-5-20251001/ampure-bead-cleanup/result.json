@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 7109
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "binding",
+        "score": 1,
+        "evidence": "Log shows 40 uL bead aspirate/dispense into each of 96 wells followed by 10 mix cycles (20 uL); the 5 min incubation comment is recorded before the magnet comment."
+      },
+      {
+        "id": "supernatant_and_washes",
+        "score": 1,
+        "evidence": "Engage-magnet/5 min comment present; log shows 90 uL aspirated from each well to waste A1, then two rounds of 200 uL ethanol added and 200 uL removed to waste for all 96 wells."
+      },
+      {
+        "id": "drying_and_elution",
+        "score": 1,
+        "evidence": "Comments for 5 min air dry, disengage magnet, 2 min incubation and re-engage are present; 50 uL water added and mixed 10 times per well in the log."
+      },
+      {
+        "id": "recovery",
+        "score": 1,
+        "evidence": "Log shows 45 uL aspirated from each sample well and dispensed into the matching elution_plate well (A1->A1 ... H12->H12)."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "Every well in every step has its own pick up tip and drop tip in the log, so no tip touches two samples."
+      }
+    ],
+    "scores": {
+      "binding": 1.0,
+      "supernatant_and_washes": 1.0,
+      "drying_and_elution": 1.0,
+      "recovery": 1.0,
+      "tips_and_contamination": 1.0
+    },
+    "summary": "The protocol performs all 13 steps with correct volumes and well pairing, and records the non-simulated steps with protocol.comment. Each sample well gets its own tip in every step, so there is no cross-contamination.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_binding": 1.0,
+    "rubric_supernatant_and_washes": 1.0,
+    "rubric_drying_and_elution": 1.0,
+    "rubric_recovery": 1.0,
+    "rubric_tips_and_contamination": 1.0
+  }
+}
