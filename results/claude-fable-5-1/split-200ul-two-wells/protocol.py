@@ -3,7 +3,7 @@ from opentrons import protocol_api
 metadata = {
     'protocolName': 'Split 200 uL into two 100 uL wells',
     'author': 'Claude',
-    'description': 'Transfer 100 uL of reagent from reservoir A1 to plate wells A1 and B1',
+    'description': 'Transfer 100 uL reagent from reservoir A1 to plate wells A1 and B1',
     'apiLevel': '2.15',
 }
 
@@ -29,5 +29,3 @@ def run(protocol: protocol_api.ProtocolContext):
         p300.dispense(100, dest)
         p300.blow_out(dest.top())
         p300.drop_tip()
-
-    protocol.comment('Done: 100 uL reagent delivered to plate A1 and B1.')

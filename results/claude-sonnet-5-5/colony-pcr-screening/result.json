@@ -1,8 +1,9 @@
 {
   "lint": [],
+  "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 1926
+    "n_commands": 1731
   },
   "checks": [
     {
@@ -56,27 +57,27 @@
       {
         "id": "master_mix",
         "score": 1,
-        "evidence": "Loop aspirates 18 uL from mm_res A1 and dispenses into each of the 96 pcr_plate wells with p20 and one tip; end_state:pcr_plate passes."
+        "evidence": "Loop aspirates 18 \u00b5L from res['A1'] and dispenses into all 96 pcr wells with p20; end_state:pcr_plate passes."
       },
       {
         "id": "template_and_primers",
         "score": 1,
-        "evidence": "Steps 2 and 3 pair colony_plate and primer_plate wells to pcr_plate wells in order, 1 uL each with p20, with a 3x mix after the colony dispense; end-state checks pass."
+        "evidence": "Steps 2 and 3 transfer 1 \u00b5L from colony[name] and primers[name] to the matching pcr[name] with p20, with mix(3,10) after the colony dispense; end-state checks pass."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "pick_up and drop_tip occur inside each per-well loop in steps 2 and 3; the single tip in step 1 only touches empty wells; no_cross_contamination passes."
+        "evidence": "pick_up_tip/drop_tip inside each per-well loop for colony and primer steps; a single tip is used for master mix into empty wells; no_cross_contamination passes."
       },
       {
         "id": "thermocycling",
         "score": 1,
-        "evidence": "Step 4 protocol.comment records sealing and 98C 30 s; 30x[98C 10 s, 60C 30 s, 72C 30 s]; 72C 2 min; 4C hold."
+        "evidence": "protocol.comment records sealing and the full program: 98C 30 s; 30x(98C 10 s, 60C 30 s, 72C 30 s); 72C 2 min; 4C hold."
       },
       {
         "id": "fidelity_to_paper",
         "score": 1,
-        "evidence": "The protocol follows the task steps and quantities with accurate metadata and comments, and has no invented steps; the labware labels are correct."
+        "evidence": "The protocol follows the task steps in order with no invented steps, and the comments match what the code does."
       }
     ],
     "scores": {
@@ -86,7 +87,7 @@
       "thermocycling": 1.0,
       "fidelity_to_paper": 1.0
     },
-    "summary": "The protocol meets the task: 18 \u00b5L master mix into all 96 wells, 1 \u00b5L colony template with a 3x mix, and 1 \u00b5L primer pair, all with p20 and a fresh tip per sample. It records the thermocycling comment, and all measured checks passed.",
+    "summary": "The protocol dispenses 18 \u00b5L master mix, then 1 \u00b5L colony template (with 3 mixes) and 1 \u00b5L primers per well using fresh tips, and every simulator check passes. The thermocycling program is recorded as a comment, and the comments match the code.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
@@ -95,6 +96,7 @@
     "sim_pass": 1.0,
     "checks_frac": 1.0,
     "lint_violations": 0.0,
+    "hack_detected": 0.0,
     "deterministic_reward": 1.0,
     "judge_mean": 1.0,
     "critical_fail": 0.0,

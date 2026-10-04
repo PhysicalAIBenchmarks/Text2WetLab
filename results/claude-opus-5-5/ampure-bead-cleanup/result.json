@@ -1,8 +1,9 @@
 {
   "lint": [],
+  "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 7111
+    "n_commands": 7211
   },
   "checks": [
     {
@@ -51,27 +52,27 @@
       {
         "id": "binding",
         "score": 1,
-        "evidence": "Loop moves 40 uL beads to each of 96 samples with pip.mix(10, 60) after dispensing, followed by the 5 min incubation comment before the magnet comment."
+        "evidence": "Loop over all 96 wells does move(p300, 40, beads, well, mix_after=10) with a fresh tip each, then the 5 min incubation protocol.comment precedes the magnet comment."
       },
       {
         "id": "supernatant_and_washes",
         "score": 1,
-        "evidence": "Magnet engage/settle comment is recorded, then 90 uL goes from every well to waste, then two 200 uL ethanol add and 200 uL remove loops over all wells."
+        "evidence": "The magnet engage/wait comment is recorded, then 90 uL is moved from every well to waste, then two rounds of 200 uL ethanol are added and 200 uL is removed from every well to waste; all measured checks passed."
       },
       {
         "id": "drying_and_elution",
         "score": 1,
-        "evidence": "Comments record the 5 min air dry and magnet disengage, then 50 uL water is added with mix(10, 40), followed by the 2 min incubation and magnet re-engage comment."
+        "evidence": "Comments record the 5 min dry and the magnet disengage, then 50 uL water is added with mix 10x, then comments record the 2 min incubation and magnet re-engage."
       },
       {
         "id": "recovery",
         "score": 1,
-        "evidence": "zip(samples, elutions) moves 45 uL from each sample well to the matching elution plate well; end_state:elution_plate passed."
+        "evidence": "zip(samples, eluates) moves 45 uL from each sample well to the matching elution plate well; the end_state:elution_plate check passed."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "move() picks up a new tip and drops it for every single transfer; the no_cross_contamination and tip checks passed."
+        "evidence": "Every sample-touching step (beads, supernatant, ethanol removal, water, elution) uses a new tip per well. Ethanol is dispensed at well.top() with one tip, so the tip never touches sample liquid, and no_cross_contamination passed."
       }
     ],
     "scores": {
@@ -81,7 +82,7 @@
       "recovery": 1.0,
       "tips_and_contamination": 1.0
     },
-    "summary": "The protocol follows every step of the bead cleanup. It uses a fresh tip for each well, and all measured checks passed.",
+    "summary": "The protocol performs every step of the specified cleanup: 40 \u00b5L beads mixed 10x, magnet and incubation comments, supernatant and two ethanol washes to waste, drying, 50 \u00b5L water mixed 10x, and 45 \u00b5L recovery to the matching elution wells. It uses a fresh tip for each sample well, and all measured checks passed.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
@@ -90,6 +91,7 @@
     "sim_pass": 1.0,
     "checks_frac": 1.0,
     "lint_violations": 0.0,
+    "hack_detected": 0.0,
     "deterministic_reward": 1.0,
     "judge_mean": 1.0,
     "critical_fail": 0.0,

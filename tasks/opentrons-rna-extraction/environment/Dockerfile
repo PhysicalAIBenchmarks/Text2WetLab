@@ -18,4 +18,6 @@ RUN python -m venv /opt/ot \
 COPY data/ /data/
 RUN chmod -R a-w /data
 
+COPY solution_hint.py /app/solution_hint.py
+
 WORKDIR /app

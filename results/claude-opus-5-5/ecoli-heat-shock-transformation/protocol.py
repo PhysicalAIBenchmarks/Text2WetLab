@@ -20,16 +20,15 @@ def run(protocol: protocol_api.ProtocolContext):
 
     cells = tubes['A1']
 
-    # Step 1: 2 uL plasmid DNA into competent cells (fresh tip, gentle mix)
+    # 1. Plasmid DNA into competent cells (fresh tip, gentle mix)
     p20.transfer(2, plasmid_plate['A1'], cells, new_tip='always', mix_after=(3, 10))
 
-    # Step 2: heat shock (manual)
+    # 2. Heat shock (manual)
     protocol.comment('Heat shock cells_rack (tubes_1_5ml_1 A1) at 42°C for 45 s, '
                      'then transfer immediately to ice for 2 min.')
 
-    # Step 3: 250 uL SOC recovery medium
+    # 3. SOC recovery medium
     p300.transfer(250, soc_reservoir['A1'], cells, new_tip='always')
 
-    # Step 4: outgrowth (manual)
-    protocol.comment('Incubate cells_rack (tubes_1_5ml_1 A1) at 37°C for 60 min at 250 rpm '
-                     'for outgrowth recovery.')
+    # 4. Outgrowth (manual)
+    protocol.comment('Incubate cells_rack at 37°C for 60 min at 250 rpm for outgrowth recovery.')

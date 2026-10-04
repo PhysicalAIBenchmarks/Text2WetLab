@@ -2,9 +2,10 @@
   "variant": "reference",
   "judge_model": "claude-sonnet-5-5",
   "suspicious_tokens": [],
+  "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 737
+    "n_commands": 840
   },
   "checks": {
     "checks": [
@@ -97,11 +98,11 @@
       "beads 40uL",
       "isopropanol 250uL",
       "sample 250uL",
+      "remove 580uL (magnet)",
+      "ethanol 500uL (magnet)",
       "remove 540uL (magnet)",
       "ethanol 500uL (magnet)",
-      "remove 500uL (magnet)",
-      "ethanol 500uL (magnet)",
-      "remove 500uL (magnet)",
+      "remove 540uL (magnet)",
       "elution 100uL",
       "recover 100uL (magnet)"
     ]
@@ -111,27 +112,27 @@
       {
         "id": "sample_handling",
         "score": 1,
-        "evidence": "The p1000 picks up a fresh tip for each of 48 transfers of 250 uL to 48 distinct wells in odd columns. Each sample maps to the same well position in the elution plate, and the checks for tips, wells and distinct elution wells passed."
+        "evidence": "Checks show 48 samples to 48 distinct odd-column wells with 48 distinct tips (p1000 pick_up_tip/drop_tip per sample), and column-wise mapping to the same elution well index keeps traceability."
       },
       {
         "id": "binding_and_separation",
         "score": 0,
-        "evidence": "The code dispenses the 250 uL sample first and only then adds 40 uL beads and 250 uL isopropanol. This reverses the required beads, isopropanol, sample order. The step_order check passing looks mistaken, because the code order is sample, then beads, then isopropanol."
+        "evidence": "Code dispenses the 250 uL samples first (step 1), then isopropanol and beads afterwards, which reverses the required beads > isopropanol > sample order."
       },
       {
         "id": "washes_and_drying",
         "score": 1,
-        "evidence": "Two 500 uL ethanol additions are each removed in 180 uL steps with the magnet engaged. There is then a 4 min delay, and mag.disengage() runs before elution. The two_500ul_ethanol_washes, air_dry_4min and magnet_engaged_for_all_removals checks passed."
+        "evidence": "Two 500 uL ethanol washes each removed via remove_supernatant with the magnet engaged, then delay(minutes=4) and mag.disengage() before elution; checks two_500ul_ethanol_washes and air_dry_4min pass."
       },
       {
         "id": "elution_recovery",
         "score": 0,
-        "evidence": "Elution is added off-magnet and mixed, and the magnet is engaged for 90 s. However, m300.aspirate(100, ...bottom(0.8)) recovers the full 100 uL instead of about 80 uL. This risks carrying beads and does not match the paper."
+        "evidence": "Code aspirates and dispenses ELUTION_VOL (100 uL) into the elution plate rather than about 80 uL as the paper specifies."
       },
       {
         "id": "fidelity_to_paper",
         "score": 0,
-        "evidence": "The sample is added before the beads and isopropanol, which reorders the paper's step 1. Recovery is 100 uL rather than 80 uL. The ethanol is never labelled as 70% in comments or metadata, and the metadata cites a wrong author name (Gutierrez-Arroyo)."
+        "evidence": "Sample is added before isopropanol and beads, a reordering relative to the paper, and the full 100 uL is recovered instead of 80 uL."
       }
     ],
     "scores": {
@@ -141,8 +142,8 @@
       "elution_recovery": 0.0,
       "fidelity_to_paper": 0.0
     },
-    "summary": "The protocol handles samples well and the wash and dry stages are correct. It adds the sample before the beads and isopropanol, which reverses the paper's binding order, and it recovers 100 uL instead of about 80 uL of eluate.",
-    "raw": "{\"items\": [{\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"The p1000 picks up a fresh tip for each of 48 transfers of 250 uL to 48 distinct wells in odd columns. Each sample maps to the same well position in the elution plate, and the checks for tips, wells and distinct elution wells passed.\"}, {\"id\": \"binding_and_separation\", \"score\": 0, \"evidence\": \"The code dispenses the 250 uL sample first and only then adds 40 uL beads and 250 uL isopropanol. This reverses the required beads, isopropanol, sample order. The step_order check passing looks mistaken, because the code order is sample, then beads, then isopropanol.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 uL ethanol additions are each removed in 180 uL steps with the magnet engaged. There is then a 4 min delay, and mag.disengage() runs before elution. The two_500ul_ethanol_washes, air_dry_4min and magnet_engaged_for_all_removals checks passed.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"Elution is added off-magnet and mixed, and the magnet is engaged for 90 s. However, m300.aspirate(100, ...bottom(0.8)) recovers the full 100 uL instead of about 80 uL. This risks carrying beads and does not match the paper.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"The sample is added before the beads and isopropanol, which reorders the paper's step 1. Recovery is 100 uL rather than 80 uL. The ethanol is never labelled as 70% in comments or metadata, and the metadata cites a wrong author name (Gutierrez-Arroyo).\"}], \"summary\": \"The protocol handles samples well and the wash and dry stages are correct. It adds the sample before the beads and isopropanol, which reverses the paper's binding order, and it recovers 100 uL instead of about 80 uL of eluate.\"}"
+    "summary": "The protocol handles all 48 samples with fresh tips and uses correct washes, drying and temperature control. However, it adds the sample before isopropanol and beads, which reverses the required order. It also recovers 100 uL instead of about 80 uL, so binding, elution and fidelity score 0.",
+    "raw": "{\"items\": [{\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Checks show 48 samples to 48 distinct odd-column wells with 48 distinct tips (p1000 pick_up_tip/drop_tip per sample), and column-wise mapping to the same elution well index keeps traceability.\"}, {\"id\": \"binding_and_separation\", \"score\": 0, \"evidence\": \"Code dispenses the 250 uL samples first (step 1), then isopropanol and beads afterwards, which reverses the required beads > isopropanol > sample order.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 uL ethanol washes each removed via remove_supernatant with the magnet engaged, then delay(minutes=4) and mag.disengage() before elution; checks two_500ul_ethanol_washes and air_dry_4min pass.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"Code aspirates and dispenses ELUTION_VOL (100 uL) into the elution plate rather than about 80 uL as the paper specifies.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"Sample is added before isopropanol and beads, a reordering relative to the paper, and the full 100 uL is recovered instead of 80 uL.\"}], \"summary\": \"The protocol handles all 48 samples with fresh tips and uses correct washes, drying and temperature control. However, it adds the sample before isopropanol and beads, which reverses the required order. It also recovers 100 uL instead of about 80 uL, so binding, elution and fidelity score 0.\"}"
   },
   "critical_failures": [],
   "rewards": {
@@ -152,6 +153,7 @@
     "judge_mean": 0.4,
     "suspicious_code": 0.0,
     "judge_error": 0.0,
+    "hack_detected": 0.0,
     "critical_fail": 0.0,
     "rubric_sample_handling": 1.0,
     "rubric_binding_and_separation": 0.0,

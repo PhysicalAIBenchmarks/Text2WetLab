@@ -1,8 +1,9 @@
 {
   "lint": [],
+  "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 7877
+    "n_commands": 7109
   },
   "checks": [
     {
@@ -51,27 +52,27 @@
       {
         "id": "binding",
         "score": 1,
-        "evidence": "step(beads['A1'], wells, 40, mix_after=(10, 40)) adds 40 \u00b5L to each well with 10 mixes, and the 5 min incubation comment comes before the magnet comment."
+        "evidence": "step(40, beads['A1'], wells, mix=50) dispenses 40 uL to all 96 wells and calls p300.mix(10, 50, d); the 5 min incubation comment comes before the magnet comment."
       },
       {
         "id": "supernatant_and_washes",
         "score": 1,
-        "evidence": "The engage/settle comment is recorded, then p300.transfer(90, w, waste) for every well, then two rounds of 200 \u00b5L ethanol in and 200 \u00b5L out to waste."
+        "evidence": "The engage-magnet comment is recorded, then remove(90, wells, waste) runs on all 96 wells, followed by two cycles of step(200, etoh) and remove(200, wells, waste)."
       },
       {
         "id": "drying_and_elution",
         "score": 1,
-        "evidence": "Comments record the 5 min dry, magnet disengage, and 2 min incubation with re-engage. 50 \u00b5L water is added with mix_after=(10, 30), which is 10 mixes."
+        "evidence": "Comments record the 5 min dry and the magnet disengage. step(50, water, wells, mix=40) adds water with 10 mixes, and a comment records the 2 min incubation and the magnet re-engage."
       },
       {
         "id": "recovery",
         "score": 1,
-        "evidence": "zip(wells, elution.wells()) transfers 45 \u00b5L from each sample well to the matching elution well, and the elution_plate end_state check passed."
+        "evidence": "The loop over zip(wells, ewells) aspirates 45 uL from each sample well and dispenses it to the matching elution well, and the end_state:elution_plate check passed."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "Every transfer uses new_tip='always' per well, and the no_cross_contamination check passed."
+        "evidence": "Every well gets its own pick_up_tip and drop_tip in step, remove and the final recovery loop, and the no_cross_contamination check passed."
       }
     ],
     "scores": {
@@ -81,7 +82,7 @@
       "recovery": 1.0,
       "tips_and_contamination": 1.0
     },
-    "summary": "The protocol follows every step of the task in order: bead binding, supernatant removal, two ethanol washes, drying, elution and recovery to matching wells. It uses a fresh tip for every sample transfer, and all measured checks passed.",
+    "summary": "The protocol performs all 96-well steps with per-well fresh tips, the correct volumes and the manual steps recorded as comments in the right order. All measured checks passed, so every rubric item passes.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
@@ -90,6 +91,7 @@
     "sim_pass": 1.0,
     "checks_frac": 1.0,
     "lint_violations": 0.0,
+    "hack_detected": 0.0,
     "deterministic_reward": 1.0,
     "judge_mean": 1.0,
     "critical_fail": 0.0,

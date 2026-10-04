@@ -12,7 +12,7 @@ def run(protocol: protocol_api.ProtocolContext):
     p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
-    # 1. Plasmid DNA into cells
+    # 1. Plasmid DNA to cells
     p20.transfer(2, plasmid_plate['A1'], tubes['A1'], new_tip='always')
 
     # 2. Heat shock

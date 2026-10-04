@@ -1,8 +1,9 @@
 {
   "lint": [],
+  "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 48
+    "n_commands": 9
   },
   "checks": [
     {
@@ -38,7 +39,7 @@
     {
       "name": "end_state:plate",
       "pass": true,
-      "detail": ""
+      "detail": "expected volumes [100.0, 100.0], got [100.0, 100.0] (positions free)"
     }
   ],
   "judge": {
@@ -46,27 +47,27 @@
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the required labels; p20 left and p300 right with the correct tip racks in slots 10 and 11."
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the required labels; p20 left and p300 right with matching tip racks in slots 10 and 11."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "The loop over plate.rows()[0] (A1-A12) aspirates and dispenses 100 uL from reservoir A1 with p300; end_state:plate passed."
+        "evidence": "p300.transfer(100, reservoir['A1'], [plate['A1'], plate['B1']]) puts 100 \u00b5L in each well; end_state:plate check passed with [100, 100]."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Each iteration does pick_up_tip, aspirate, dispense, drop_tip; tip_before_aspirate and tip_dropped_at_end passed."
+        "evidence": "transfer with new_tip='always' picks up a tip for each destination and drops it at the end; tip_before_aspirate and tip_dropped_at_end passed."
       },
       {
         "id": "robot_practice",
         "score": 1,
-        "evidence": "100 uL is within p300 limits, apiLevel 2.15 is in the allowed range, and the simulator ran with no errors."
+        "evidence": "100 \u00b5L is within the p300 range, apiLevel 2.15 is valid, and the simulator ran with no errors."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The protocol does only the one required transfer; comments and metadata match the code."
+        "evidence": "The single transfer step is implemented exactly as specified. The comment and metadata match the code; 'fresh tip each' is accurate for new_tip='always'."
       }
     ],
     "scores": {
@@ -76,7 +77,7 @@
       "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol loads the specified labware and pipettes and transfers 100 uL from reservoir A1 to plate A1-A12 with the p300, using a fresh tip for each well. All measured checks passed and I found no issues.",
+    "summary": "The protocol loads the specified labware and does one p300 transfer of 100 \u00b5L from reservoir A1 to plate A1 and B1. All measured checks passed.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
@@ -85,6 +86,7 @@
     "sim_pass": 1.0,
     "checks_frac": 1.0,
     "lint_violations": 0.0,
+    "hack_detected": 0.0,
     "deterministic_reward": 1.0,
     "judge_mean": 1.0,
     "critical_fail": 0.0,

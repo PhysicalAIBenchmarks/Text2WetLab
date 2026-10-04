@@ -21,4 +21,6 @@ RUN python -m venv /opt/grader \
 COPY data/ /data/
 RUN chmod -R a-w /data
 
+COPY solution_hint.py /app/solution_hint.py
+
 WORKDIR /app

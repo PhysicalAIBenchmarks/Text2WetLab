@@ -1,5 +1,6 @@
 {
   "lint": [],
+  "traps": [],
   "simulation": {
     "ok": true,
     "n_commands": 12
@@ -56,22 +57,22 @@
       {
         "id": "heat_shock",
         "score": 1,
-        "evidence": "The comment records 42C 45 s then ice 2 min, placed after the DNA transfer and before the SOC step."
+        "evidence": "The comment 'Heat shock cells_rack 42C 45 s, then transfer immediately to ice 2 min' follows DNA addition and states 42 C, 45 s, then ice for 2 min in that order."
       },
       {
         "id": "soc_recovery",
         "score": 1,
-        "evidence": "p300.transfer(250, soc['A1'], tubes['A1']) comes after the heat shock comment, followed by a comment for 37C 60 min 250 rpm."
+        "evidence": "p300.transfer(250, soc['A1'], tubes['A1']) comes after the heat shock comment, and the final comment records incubation at 37C, 60 min, 250 rpm."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Each transfer uses new_tip='always' with its own pipette, tips are dropped, and tip_dropped_at_end and no_cross_contamination both passed."
+        "evidence": "new_tip='always' gives a fresh tip for the DNA and another for the SOC, transfer() drops each tip at the end, and the tip_dropped_at_end and no_cross_contamination checks passed."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "All four steps are present in order with accurate comments and metadata, nothing extra is added, and all measured checks passed."
+        "evidence": "All four steps are present in order with accurate comments and nothing extra added; the end_state checks passed."
       }
     ],
     "scores": {
@@ -81,7 +82,7 @@
       "tip_usage": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol performs the 2 \u00b5L DNA addition with the p20 and the 250 \u00b5L SOC addition with the p300, in the correct order. It records the heat shock and the outgrowth with accurate comments, uses fresh tips for each transfer, and passed every measured check.",
+    "summary": "The protocol performs the 2 uL DNA transfer with the p20 and the 250 uL SOC transfer with the p300, in the right order, with fresh tips. The heat shock and outgrowth steps are recorded as accurate comments, and all measured checks passed.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
@@ -90,6 +91,7 @@
     "sim_pass": 1.0,
     "checks_frac": 1.0,
     "lint_violations": 0.0,
+    "hack_detected": 0.0,
     "deterministic_reward": 1.0,
     "judge_mean": 1.0,
     "critical_fail": 0.0,

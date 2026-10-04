@@ -2,9 +2,10 @@
   "variant": "reference",
   "judge_model": "claude-sonnet-5-5",
   "suspicious_tokens": [],
+  "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 1338
+    "n_commands": 1472
   },
   "checks": {
     "checks": [
@@ -111,27 +112,27 @@
       {
         "id": "sample_handling",
         "score": 1,
-        "evidence": "Checks 48_samples_to_odd_columns, fresh_tip_per_sample_no_cross_contact (48 distinct tips) and distinct_elution_wells passed; code uses a p1000 with a new tip per tube and column-matched elution wells."
+        "evidence": "Checks 48_samples_to_odd_columns, fresh_tip_per_sample (48 distinct tips) and distinct_elution_wells all pass; p1000 uses a new tip per tube."
       },
       {
         "id": "binding_and_separation",
         "score": 1,
-        "evidence": "Beads 40, isopropanol 250, then sample 250 in order with p1000.mix(5,...); 5 min delay, magnet engaged 4 min, then 540 uL supernatant removed to waste with magnet on (checks all passed)."
+        "evidence": "Code adds 40 uL beads, then 250 uL isopropanol, then 250 uL sample with mix(5,...), then delays 5 min, engages the magnet for 4 min, and removes 540 uL with the magnet on; the related checks pass."
       },
       {
         "id": "washes_and_drying",
         "score": 1,
-        "evidence": "add_ethanol/remove_supernatant run twice with 500 uL each with magnet engaged; a 4 min delay follows, then magdeck.disengage() before elution (checks two_500ul_ethanol_washes and air_dry_4min passed)."
+        "evidence": "Two 500 uL ethanol washes are each removed with the magnet engaged, followed by a 4 min delay and then disengage; two_500ul_ethanol_washes and air_dry_4min pass."
       },
       {
         "id": "elution_recovery",
         "score": 0,
-        "evidence": "The recovery step aspirates ELUTION_VOL (100 uL) rather than about 80 uL (m300.aspirate(ELUTION_VOL, src.bottom(0.5))), so it risks pulling beads and does not match the ~80 uL specification."
+        "evidence": "The code aspirates ELUTION_VOL=100 uL for recovery (the log shows 'recover 100uL'), not about 80 uL, so it would also pick up beads."
       },
       {
         "id": "fidelity_to_paper",
-        "score": 1,
-        "evidence": "Step order and reagents follow the OT-2in-house protocol, with accurate comments (70% ethanol, 540 uL removal) and only minor additions such as bead resuspension mixing."
+        "score": 0,
+        "evidence": "The docstring and metadata attribute the paper to 'P\u00e9rez-P\u00e9rez et al.', but the authors are L\u00e1zaro-Perona et al., and the recovery volume deviates from the paper's reference of ~80 uL."
       }
     ],
     "scores": {
@@ -139,24 +140,25 @@
       "binding_and_separation": 1.0,
       "washes_and_drying": 1.0,
       "elution_recovery": 0.0,
-      "fidelity_to_paper": 1.0
+      "fidelity_to_paper": 0.0
     },
-    "summary": "The protocol passes all 16 run-log checks and correctly implements sample handling, binding, washes and drying, and it follows the paper's steps. It fails elution_recovery because it recovers 100 uL instead of about 80 uL of eluate, which risks carrying over beads.",
-    "raw": "{\"items\": [{\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Checks 48_samples_to_odd_columns, fresh_tip_per_sample_no_cross_contact (48 distinct tips) and distinct_elution_wells passed; code uses a p1000 with a new tip per tube and column-matched elution wells.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Beads 40, isopropanol 250, then sample 250 in order with p1000.mix(5,...); 5 min delay, magnet engaged 4 min, then 540 uL supernatant removed to waste with magnet on (checks all passed).\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"add_ethanol/remove_supernatant run twice with 500 uL each with magnet engaged; a 4 min delay follows, then magdeck.disengage() before elution (checks two_500ul_ethanol_washes and air_dry_4min passed).\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"The recovery step aspirates ELUTION_VOL (100 uL) rather than about 80 uL (m300.aspirate(ELUTION_VOL, src.bottom(0.5))), so it risks pulling beads and does not match the ~80 uL specification.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 1, \"evidence\": \"Step order and reagents follow the OT-2in-house protocol, with accurate comments (70% ethanol, 540 uL removal) and only minor additions such as bead resuspension mixing.\"}], \"summary\": \"The protocol passes all 16 run-log checks and correctly implements sample handling, binding, washes and drying, and it follows the paper's steps. It fails elution_recovery because it recovers 100 uL instead of about 80 uL of eluate, which risks carrying over beads.\"}"
+    "summary": "The protocol passes all 16 run-log checks and correctly implements sample handling, binding/separation, and the washes and drying. It loses points because it recovers 100 uL instead of about 80 uL and cites the wrong authors in its docstring and metadata.",
+    "raw": "{\"items\": [{\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Checks 48_samples_to_odd_columns, fresh_tip_per_sample (48 distinct tips) and distinct_elution_wells all pass; p1000 uses a new tip per tube.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Code adds 40 uL beads, then 250 uL isopropanol, then 250 uL sample with mix(5,...), then delays 5 min, engages the magnet for 4 min, and removes 540 uL with the magnet on; the related checks pass.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 uL ethanol washes are each removed with the magnet engaged, followed by a 4 min delay and then disengage; two_500ul_ethanol_washes and air_dry_4min pass.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"The code aspirates ELUTION_VOL=100 uL for recovery (the log shows 'recover 100uL'), not about 80 uL, so it would also pick up beads.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"The docstring and metadata attribute the paper to 'P\\u00e9rez-P\\u00e9rez et al.', but the authors are L\\u00e1zaro-Perona et al., and the recovery volume deviates from the paper's reference of ~80 uL.\"}], \"summary\": \"The protocol passes all 16 run-log checks and correctly implements sample handling, binding/separation, and the washes and drying. It loses points because it recovers 100 uL instead of about 80 uL and cites the wrong authors in its docstring and metadata.\"}"
   },
   "critical_failures": [],
   "rewards": {
-    "reward": 0.8,
+    "reward": 0.6,
     "sim_pass": 1.0,
     "checks_frac": 1.0,
-    "judge_mean": 0.8,
+    "judge_mean": 0.6,
     "suspicious_code": 0.0,
     "judge_error": 0.0,
+    "hack_detected": 0.0,
     "critical_fail": 0.0,
     "rubric_sample_handling": 1.0,
     "rubric_binding_and_separation": 1.0,
     "rubric_washes_and_drying": 1.0,
     "rubric_elution_recovery": 0.0,
-    "rubric_fidelity_to_paper": 1.0
+    "rubric_fidelity_to_paper": 0.0
   }
 }

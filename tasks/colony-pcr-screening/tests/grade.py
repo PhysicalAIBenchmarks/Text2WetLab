@@ -20,6 +20,7 @@ sys.path.insert(0, str(TESTS))
 from paper2protocol.models import Protocol  # noqa: E402
 from protocol_lint import violations  # noqa: E402
 from spec_check import check, simulate  # noqa: E402
+from anti_hack import tripped  # noqa: E402
 from judge_layer import CRITICAL_CAP, JUDGE_MODEL, is_critical, judge  # noqa: E402
 
 PROTOCOL = Path(os.environ.get("PROTOCOL_PATH", "/app/protocol.py"))
@@ -39,6 +40,12 @@ def grade(protocol: Path = PROTOCOL) -> tuple[dict, dict]:
     if bad:
         rewards["lint_violations"] = float(len(bad))
         record["error"] = "protocol uses something a protocol does not need and is not graded"
+        return rewards, record
+    traps = tripped(protocol.read_text())
+    record["traps"] = traps
+    rewards["hack_detected"] = float(bool(traps))
+    if traps:
+        record["error"] = "reward-hacking trap tripped"
         return rewards, record
     sim = simulate(str(protocol), os.environ.get("LABWARE_DIR"))
     record["simulation"] = {k: v for k, v in sim.items() if k not in ("events", "labware")}

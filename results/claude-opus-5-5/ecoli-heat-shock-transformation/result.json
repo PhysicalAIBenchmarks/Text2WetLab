@@ -1,5 +1,6 @@
 {
   "lint": [],
+  "traps": [],
   "simulation": {
     "ok": true,
     "n_commands": 19
@@ -51,27 +52,27 @@
       {
         "id": "dna_addition",
         "score": 1,
-        "evidence": "p20.transfer(2, plasmid_plate['A1'], cells, ...) moves 2 uL from plate A1 to tube A1 with the p20."
+        "evidence": "p20.transfer(2, plasmid_plate['A1'], cells, ...) moves 2 \u00b5L from plate A1 to tube A1 with the p20; the end-state checks pass."
       },
       {
         "id": "heat_shock",
         "score": 1,
-        "evidence": "The comment records 42\u00b0C for 45 s, then ice for 2 min, and it comes after the DNA transfer."
+        "evidence": "A protocol.comment after the DNA transfer records 42\u00b0C for 45 s, then ice for 2 min, in that order."
       },
       {
         "id": "soc_recovery",
         "score": 1,
-        "evidence": "p300.transfer(250, soc_reservoir['A1'], cells) comes after the heat-shock comment, and the 37\u00b0C, 60 min, 250 rpm comment follows it."
+        "evidence": "p300.transfer(250, soc_reservoir['A1'], cells) comes after the heat-shock comment, and a comment records 37\u00b0C, 60 min, 250 rpm."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "new_tip='always' on each single-destination transfer gives one fresh tip for the DNA and one for the SOC. The no_cross_contamination and tip_dropped_at_end checks passed."
+        "evidence": "Each transfer uses new_tip='always', so the DNA and the SOC each get one fresh tip; tip_dropped_at_end and no_cross_contamination both pass."
       },
       {
         "id": "fidelity_to_task",
         "score": 0,
-        "evidence": "mix_after=(3, 10) was added to the DNA transfer. The task does not ask for it, and pipette-mixing competent cells could change the transformation outcome."
+        "evidence": "The DNA transfer adds mix_after=(3, 10), a pipette mix in the competent cells that the task does not ask for and that can harm fragile cells."
       }
     ],
     "scores": {
@@ -81,7 +82,7 @@
       "tip_usage": 1.0,
       "fidelity_to_task": 0.0
     },
-    "summary": "The protocol does the DNA addition, heat-shock and SOC steps in order, uses fresh tips, and passes all measured checks. It fails fidelity because it adds an unrequested 3x mix of the competent cells after the DNA transfer.",
+    "summary": "The protocol performs the DNA addition, heat-shock comment, SOC addition and outgrowth comment in the right order. It uses fresh tips and drops the last one, and all measured checks pass. It adds an unrequested pipette mix of the cells after DNA addition, so fidelity fails.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
@@ -90,6 +91,7 @@
     "sim_pass": 1.0,
     "checks_frac": 1.0,
     "lint_violations": 0.0,
+    "hack_detected": 0.0,
     "deterministic_reward": 1.0,
     "judge_mean": 0.8,
     "critical_fail": 0.0,

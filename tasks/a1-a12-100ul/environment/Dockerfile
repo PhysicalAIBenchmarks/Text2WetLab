@@ -18,4 +18,6 @@ RUN python -m venv /opt/ot \
 RUN python -m venv /opt/grader \
     && /opt/grader/bin/pip install --no-cache-dir "pydantic>=2.13" anthropic==0.72.0
 
+COPY solution_hint.py /app/solution_hint.py
+
 WORKDIR /app

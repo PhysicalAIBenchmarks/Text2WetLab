@@ -9,40 +9,48 @@ def run(protocol: protocol_api.ProtocolContext):
     etoh = protocol.load_labware('nest_1_reservoir_195ml', 3, label='ethanol_reservoir')
     water = protocol.load_labware('nest_1_reservoir_195ml', 4, label='water_reservoir')
     waste = protocol.load_labware('nest_1_reservoir_195ml', 5, label='waste')
-    elution = protocol.load_labware('corning_96_wellplate_360ul_flat', 6, label='elution_plate')
-    t20 = protocol.load_labware('opentrons_96_tiprack_20ul', 10)
-    t300 = protocol.load_labware('opentrons_96_tiprack_300ul', 11)
-    protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[t20])
-    p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[t300])
+    elut = protocol.load_labware('corning_96_wellplate_360ul_flat', 6, label='elution_plate')
+    tr20 = protocol.load_labware('opentrons_96_tiprack_20ul', 10)
+    tr300 = protocol.load_labware('opentrons_96_tiprack_300ul', 11)
+    protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tr20])
+    p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tr300])
 
-    wells = sample.wells()
+    wells = [w for col in sample.columns() for w in col]
+    ewells = [w for col in elut.columns() for w in col]
 
-    def step(src, dsts, vol, **kw):
+    def step(vol, src, dsts, mix=None, drop_in=None):
         p300.reset_tipracks()
-        for d_idx, d in enumerate(dsts):
-            s = src if not isinstance(src, list) else src[d_idx]
-            p300.transfer(vol, s, d, new_tip='always', **kw)
+        for i, d in enumerate(dsts):
+            p300.pick_up_tip()
+            p300.aspirate(vol, src)
+            p300.dispense(vol, d)
+            if mix:
+                p300.mix(10, mix, d)
+            p300.drop_tip()
 
-    # 1
-    step(beads['A1'], wells, 40, mix_after=(10, 40))
+    def remove(vol, srcs, dst):
+        p300.reset_tipracks()
+        for s in srcs:
+            p300.pick_up_tip()
+            p300.aspirate(vol, s.bottom(1))
+            p300.dispense(vol, dst)
+            p300.drop_tip()
+
+    step(40, beads['A1'], wells, mix=50)
     protocol.comment('Incubate sample_plate 5 min at room temperature (beads bind DNA)')
     protocol.comment('Engage magnetic module; wait 5 min until solution clears')
-    # 4
-    p300.reset_tipracks()
-    for w in wells:
-        p300.transfer(90, w, waste['A1'], new_tip='always')
-    # 5-8
-    for _ in range(2):
-        step(etoh['A1'], wells, 200)
-        p300.reset_tipracks()
-        for w in wells:
-            p300.transfer(200, w, waste['A1'], new_tip='always')
+    remove(90, wells, waste['A1'])
+    step(200, etoh['A1'], wells)
+    remove(200, wells, waste['A1'])
+    step(200, etoh['A1'], wells)
+    remove(200, wells, waste['A1'])
     protocol.comment('Air dry beads 5 min at room temperature (magnet engaged); beads should appear matte not shiny')
     protocol.comment('Disengage magnetic module')
-    # 11
-    step(water['A1'], wells, 50, mix_after=(10, 30))
+    step(50, water['A1'], wells, mix=40)
     protocol.comment('Incubate sample_plate 2 min at room temperature; then re-engage magnetic module 5 min')
-    # 13
     p300.reset_tipracks()
-    for w, e in zip(wells, elution.wells()):
-        p300.transfer(45, w, e, new_tip='always')
+    for s, d in zip(wells, ewells):
+        p300.pick_up_tip()
+        p300.aspirate(45, s.bottom(1))
+        p300.dispense(45, d)
+        p300.drop_tip()

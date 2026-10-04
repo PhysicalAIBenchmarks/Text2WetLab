@@ -1,5 +1,6 @@
 {
   "lint": [],
+  "traps": [],
   "simulation": {
     "ok": true,
     "n_commands": 1926
@@ -56,27 +57,27 @@
       {
         "id": "master_mix",
         "score": 1,
-        "evidence": "Loop aspirates 18 uL from master_mix_reservoir A1 and dispenses into each of the 96 pcr_plate wells with p20; end_state:pcr_plate passes."
+        "evidence": "Loop aspirates 18 uL from reservoir A1 and dispenses into each of the 96 pcr_plate wells with the p20; end_state:pcr_plate check passed."
       },
       {
         "id": "template_and_primers",
         "score": 1,
-        "evidence": "Step 2 and step 3 loops move 1 uL from each colony/primer well to the matching pcr_plate well with p20, giving 20 uL; end-state checks pass."
+        "evidence": "Steps 2 and 3 zip colonies/primers to dest wells in order, with 1 uL aspirate/dispense by p20, plus mix(3,10) after colony addition; end-state checks pass."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "pick_up_p20() and drop_tip() are called per well in steps 2 and 3; the one tip in step 1 only serves master mix into empty wells; no_cross_contamination passes."
+        "evidence": "pick_up/drop_tip inside each per-well loop for colony and primer steps; single tip only for master mix into empty wells; no_cross_contamination passed."
       },
       {
         "id": "thermocycling",
         "score": 1,
-        "evidence": "Step 4 comment records sealing and 98C 30 s; [98C 10 s, 60C 30 s, 72C 30 s] x 30; 72C 2 min; hold 4C."
+        "evidence": "protocol.comment records seal and 98C 30 s; 30x[98C 10 s, 60C 30 s, 72C 30 s]; 72C 2 min; hold 4C."
       },
       {
         "id": "fidelity_to_paper",
         "score": 1,
-        "evidence": "Follows the specified steps in order, including the 3x mix after template; apiLevel 2.15 is allowed and the comments and metadata are accurate with no invented steps."
+        "evidence": "Protocol follows the task steps in order with accurate comments/metadata and no invented steps or false action claims."
       }
     ],
     "scores": {
@@ -86,7 +87,7 @@
       "thermocycling": 1.0,
       "fidelity_to_paper": 1.0
     },
-    "summary": "The protocol simulates cleanly and every measured check passes. It dispenses 18 uL master mix, then 1 uL template with a 3x mix and 1 uL primer per well, using a fresh tip per sample, and records the seal and thermocycling comment.",
+    "summary": "The protocol dispenses 18 \u00b5L master mix, then 1 \u00b5L colony template (mixed 3x) and 1 \u00b5L primer pair per well with the p20, using a fresh tip for each colony and primer. All measured checks passed, and the thermocycling program is recorded accurately as a comment.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
@@ -95,6 +96,7 @@
     "sim_pass": 1.0,
     "checks_frac": 1.0,
     "lint_violations": 0.0,
+    "hack_detected": 0.0,
     "deterministic_reward": 1.0,
     "judge_mean": 1.0,
     "critical_fail": 0.0,

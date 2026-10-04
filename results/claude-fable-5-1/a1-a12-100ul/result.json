@@ -1,8 +1,9 @@
 {
   "lint": [],
+  "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 49
+    "n_commands": 60
   },
   "checks": [
     {
@@ -46,27 +47,27 @@
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the correct load names and labels; p20 left, p300 right, with the correct tip racks in slots 10 and 11."
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the right load names and labels; p20 left and p300 right with the correct tip racks in slots 10 and 11."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "p300.transfer(100, reservoir['A1'], plate.rows()[0][:12]) moves 100 uL into A1-A12 only; end_state:plate check passed."
+        "evidence": "The loop over plate.rows_by_name()['A'] aspirates and dispenses 100 uL with p300 from reservoir A1 into each of A1-A12 and touches no other wells; end_state:plate passed."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "new_tip='always' picks up a fresh tip per well and drops it after each transfer; tip_before_aspirate and tip_dropped_at_end passed."
+        "evidence": "Each iteration calls pick_up_tip before aspirating and drop_tip at the end; the tip_before_aspirate and tip_dropped_at_end checks passed."
       },
       {
         "id": "robot_practice",
         "score": 1,
-        "evidence": "100 uL is within the p300 range; apiLevel 2.15 is valid; the simulator ran with no overdispense or empty-well errors."
+        "evidence": "100 uL is within p300 limits, apiLevel 2.15 is valid, and the blow_out at the destination top is safe; the simulator ran without errors."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The single transfer step is implemented exactly as specified, and the metadata is accurate."
+        "evidence": "The code does exactly the one requested transfer, and the comments and metadata match it; the extra blow_out does not change the outcome."
       }
     ],
     "scores": {
@@ -76,7 +77,7 @@
       "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol loads the specified deck and does one p300 transfer of 100 uL from reservoir A1 to plate A1-A12. All measured checks passed, and the tip handling is safe.",
+    "summary": "The protocol loads the specified labware correctly and transfers 100 uL with the p300 from reservoir A1 to plate A1-A12, using a fresh tip for each well. All measured checks passed and no rubric issues were found.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
@@ -85,6 +86,7 @@
     "sim_pass": 1.0,
     "checks_frac": 1.0,
     "lint_violations": 0.0,
+    "hack_detected": 0.0,
     "deterministic_reward": 1.0,
     "judge_mean": 1.0,
     "critical_fail": 0.0,

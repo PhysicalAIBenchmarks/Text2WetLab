@@ -2,7 +2,7 @@ from opentrons import protocol_api
 
 metadata = {
     'protocolName': 'Split 200 uL into two 100 uL wells',
-    'description': 'Transfer 100 uL of reagent from reservoir A1 to plate wells A1 and B1.',
+    'description': 'Transfer 100 uL of reagent from reservoir A1 to plate A1 and B1.',
     'apiLevel': '2.15',
 }
 
@@ -16,11 +16,5 @@ def run(protocol: protocol_api.ProtocolContext):
     p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
-    # Step 1: 100 uL reagent from reservoir A1 to plate A1, B1 (one tip, same reagent)
-    p300.distribute(
-        100,
-        reservoir['A1'],
-        [plate['A1'], plate['B1']],
-        disposal_volume=0,
-        new_tip='once',
-    )
+    # Step 1: 100 uL reagent from reservoir A1 into plate A1 and B1 (fresh tip each)
+    p300.transfer(100, reservoir['A1'], [plate['A1'], plate['B1']], new_tip='always')

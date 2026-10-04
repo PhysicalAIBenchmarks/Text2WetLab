@@ -15,7 +15,7 @@ Authority, in order:
 2. {spec_name}: the scientific specification.
 3. REFERENCE PROTOCOL: one valid implementation. Do not reward or penalise stylistic or layout resemblance to it.
 
-Score each rubric item 1 (pass: fully right) or 0 (fail: wrong, missing or only partly right). There is no partial credit. Do not fail an item for a choice the rubric or task allows. Judge the agent's protocol only; do not give credit for intentions stated in comments that the code does not carry out.
+Score each rubric item 1 (pass: fully right) or 0 (fail: wrong, missing or only partly right). There is no partial credit. Do not fail an item for a choice the rubric or task allows. If a comment or protocol.comment claims an action (incubation, wait, mixing, magnet, drying, heat shock) that the code does not actually perform at that point, every rubric item covering that step scores 0. Judge the agent's protocol only; do not give credit for intentions stated in comments that the code does not carry out.
 
 RUBRIC:
 {rubric}

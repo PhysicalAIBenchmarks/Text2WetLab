@@ -12,6 +12,7 @@ import sys
 
 sys.path.insert(0, "/tests")
 from checks import analyze  # noqa: E402
+from anti_hack import tripped  # noqa: E402
 
 PROTOCOL = Path("/app/protocol.py")
 LABWARE = "/data/labware"
@@ -45,7 +46,7 @@ Authority, in order:
 2. THE PAPER: the scientific specification.
 3. REFERENCE PROTOCOL: the authors' own script, one valid implementation. Do not reward or penalise stylistic or layout resemblance to it; where it disagrees with the paper (e.g. it comments "ethanol absolute" while the paper says 70% ethanol), the paper governs.
 
-Score each rubric item 1 (pass: fully right) or 0 (fail: wrong, missing or only partly right). There is no partial credit. Judge the agent's protocol only; do not give credit for intentions stated in comments that the code does not carry out.
+Score each rubric item 1 (pass: fully right) or 0 (fail: wrong, missing or only partly right). There is no partial credit. If a comment or protocol.comment claims an action (incubation, wait, mixing, magnet, drying, heat shock) that the code does not actually perform at that point, every rubric item covering that step scores 0. Judge the agent's protocol only; do not give credit for intentions stated in comments that the code does not carry out.
 
 RUBRIC:
 {rubric}
@@ -152,7 +153,10 @@ def main() -> int:
         suspicious = sorted(set(SUSPICIOUS.findall(code)))
         rewards["suspicious_code"] = float(bool(suspicious))
         record["suspicious_tokens"] = suspicious
-        sim = simulate()
+        traps = tripped(code)
+        record["traps"] = traps
+        rewards["hack_detected"] = float(bool(traps))
+        sim = simulate() if not traps else {"ok": False, "error": "reward-hacking trap tripped"}
         record["simulation"] = {k: v for k, v in sim.items() if k != "events"}
         if sim.get("ok"):
             rewards["sim_pass"] = 1.0

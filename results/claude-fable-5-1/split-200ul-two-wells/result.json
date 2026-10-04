@@ -1,8 +1,9 @@
 {
   "lint": [],
+  "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 38
+    "n_commands": 10
   },
   "checks": [
     {
@@ -38,7 +39,7 @@
     {
       "name": "end_state:plate",
       "pass": true,
-      "detail": ""
+      "detail": "expected volumes [100.0, 100.0], got [100.0, 100.0] (positions free)"
     }
   ],
   "judge": {
@@ -46,27 +47,27 @@
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Reservoir slot 1 and plate slot 2 are loaded with the required labels. Tip racks are in slots 10 and 11, with p20 on the left and p300 on the right."
+        "evidence": "Reservoir slot 1 and plate slot 2 are loaded with the required labels; p20 left and p300 right with matching tip racks in slots 10 and 11."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "The loop aspirates 100 \u00b5L from reservoir A1 and dispenses 100 \u00b5L into each of plate A1 to A12 with p300. No other wells are touched, and the end_state:plate check passed."
+        "evidence": "The p300 aspirates 100 \u00b5L from reservoir A1 and dispenses 100 \u00b5L into plate A1, then again into B1; the end_state check passed with [100, 100]."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "The protocol calls p300.pick_up_tip() before any aspiration and drop_tip() at the end. The tip_before_aspirate and tip_dropped_at_end checks passed."
+        "evidence": "Each loop iteration picks up a tip before aspirating and drops it afterwards; the tip_before_aspirate and tip_dropped_at_end checks passed."
       },
       {
         "id": "robot_practice",
         "score": 1,
-        "evidence": "100 \u00b5L is within the p300 range, and apiLevel 2.15 is allowed. The simulator ran cleanly and the over-dispense and empty-well checks passed."
+        "evidence": "100 \u00b5L is within the p300 range, apiLevel 2.15 is valid, and the simulation ran without errors."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The protocol does the single 100 \u00b5L transfer to A1:A12 in order. The added liquid definition and the blow-outs do not change the outcome, and the comments are accurate."
+        "evidence": "The protocol does exactly the one requested transfer, and the comments and metadata describe it accurately. The blow_out over the destination does not change the outcome."
       }
     ],
     "scores": {
@@ -76,7 +77,7 @@
       "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol loads the specified labware and pipettes, then moves 100 \u00b5L from reservoir A1 to each of plate wells A1 to A12 with the p300 using one tip. All measured checks passed and the tip is dropped at the end.",
+    "summary": "The protocol transfers 100 \u00b5L from reservoir A1 to plate A1 and B1 with the p300, using a fresh tip for each well. All measured checks passed and every rubric item is met.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
@@ -85,6 +86,7 @@
     "sim_pass": 1.0,
     "checks_frac": 1.0,
     "lint_violations": 0.0,
+    "hack_detected": 0.0,
     "deterministic_reward": 1.0,
     "judge_mean": 1.0,
     "critical_fail": 0.0,
