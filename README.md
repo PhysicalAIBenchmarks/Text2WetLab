@@ -24,7 +24,7 @@ eval/                  spec_check.py (the one checker), runlog.py (simulator -> 
                        ir_viz.py (2D), ir_mujoco.py (3D + physics tracking)
 sources/               what we collected, one folder per paper: record.json, pipeline/ (paper2protocol output), code/ (author scripts); master.csv
 assets/                examples/ (2D GIFs), examples3d/ (MP4, GIF, 12 frames each)
-docs/                  criteria.md (what is judged), risks.md, harbor-runbook.md, examples.md (gallery), agent-spec.md
+docs/                  task-sources.md (per task: NL, reference .py, paper PDF), criteria.md (what is judged), risks.md, harbor-runbook.md, examples.md (gallery), agent-spec.md
 manuscript/            arXiv write-up (placeholder)
 scripts/               reproduce.py, criteria_matrix.py, make_provenance_csv.py, deploy_hf.py
 PROVENANCE.csv         who first committed every task, reference, output, render and code file, with URLs

@@ -78,3 +78,11 @@ def test_every_path_a_task_readme_tells_you_to_run_exists():
 def test_nothing_is_left_in_the_old_collection_folders():
     assert not [d for d in ("ingestion", "references", "data") if (ROOT / d).exists()]
     assert all((ROOT / "sources" / s / "record.json").exists() for s in SLUGS)
+
+
+def test_the_task_sources_table_is_current():
+    import subprocess
+    import sys
+
+    r = subprocess.run([sys.executable, str(ROOT / "scripts/task_sources.py"), "--check"], capture_output=True, text=True)
+    assert r.returncode == 0, r.stderr
