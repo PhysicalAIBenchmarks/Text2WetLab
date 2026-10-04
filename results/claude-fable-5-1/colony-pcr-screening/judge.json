@@ -2,7 +2,7 @@
   "lint": [],
   "simulation": {
     "ok": true,
-    "n_commands": 1927
+    "n_commands": 1926
   },
   "checks": [
     {
@@ -54,75 +54,54 @@
   "judge": {
     "items": [
       {
-        "id": "deck_and_hardware",
-        "score": 1,
-        "evidence": "All four labware loaded with the specified load names, slots and labels; p20 left and p300 right with the correct tip racks in slots 10 and 11."
-      },
-      {
         "id": "master_mix",
         "score": 1,
-        "evidence": "Loop aspirates 18 \u00b5L from reservoir A1 and dispenses into each of the 96 pcr_plate wells; end_state:pcr_plate check passed. The p20 is used for 18 \u00b5L, which is within its range."
+        "evidence": "Loop aspirates 18 uL from master_mix_reservoir A1 and dispenses into each of the 96 pcr_plate wells with p20; end_state:pcr_plate passes."
       },
       {
-        "id": "template",
+        "id": "template_and_primers",
         "score": 1,
-        "evidence": "1 \u00b5L aspirated from each colony well and dispensed into the matching PCR well, then p20.mix(3, 10, dest); end-state checks passed."
-      },
-      {
-        "id": "primers",
-        "score": 1,
-        "evidence": "1 \u00b5L aspirated from each primer well and dispensed into the matching PCR well, giving 20 \u00b5L total; primer_plate end-state check passed."
+        "evidence": "Step 2 and step 3 loops move 1 uL from each colony/primer well to the matching pcr_plate well with p20, giving 20 uL; end-state checks pass."
       },
       {
         "id": "tips_and_contamination",
-        "score": 0.5,
-        "evidence": "Fresh tip per colony and per primer. One tip is reused for all 96 master mix dispenses, and it is dispensed with the tip not touching liquid, which is acceptable. The no_cross_contamination check passed."
+        "score": 1,
+        "evidence": "pick_up_p20() and drop_tip() are called per well in steps 2 and 3; the one tip in step 1 only serves master mix into empty wells; no_cross_contamination passes."
       },
       {
         "id": "thermocycling",
         "score": 1,
-        "evidence": "The step 4 comment records sealing and the full program: 98C 30 s; 30x [98C 10 s, 60C 30 s, 72C 30 s]; 72C 2 min; 4C hold."
-      },
-      {
-        "id": "robot_practice",
-        "score": 0.5,
-        "evidence": "The 1 \u00b5L steps use the p20 and the mix volume is 10 \u00b5L, which is sensible. Dispensing 18 \u00b5L into dry wells and blowing out at the top is fine. The mix is done in 19 \u00b5L, and a full 18 \u00b5L aspirate with a single p20 is near its limit. No flow rates or heights are set."
+        "evidence": "Step 4 comment records sealing and 98C 30 s; [98C 10 s, 60C 30 s, 72C 30 s] x 30; 72C 2 min; hold 4C."
       },
       {
         "id": "fidelity_to_paper",
         "score": 1,
-        "evidence": "The protocol follows the task order and quantities and invents nothing. The metadata and comments are accurate, and the 3x mix matches the task."
+        "evidence": "Follows the specified steps in order, including the 3x mix after template; apiLevel 2.15 is allowed and the comments and metadata are accurate with no invented steps."
       }
     ],
     "scores": {
-      "deck_and_hardware": 1.0,
       "master_mix": 1.0,
-      "template": 1.0,
-      "primers": 1.0,
-      "tips_and_contamination": 0.5,
+      "template_and_primers": 1.0,
+      "tips_and_contamination": 1.0,
       "thermocycling": 1.0,
-      "robot_practice": 0.5,
       "fidelity_to_paper": 1.0
     },
-    "summary": "The protocol meets the deck, volume and pairing requirements, and all measured checks passed. It uses fresh tips for each colony and primer addition and records the thermocycling program in a comment. Minor deductions are for reusing one tip for the master mix step and for not setting pipetting heights or flow rates.",
+    "summary": "The protocol simulates cleanly and every measured check passes. It dispenses 18 uL master mix, then 1 uL template with a 3x mix and 1 uL primer per well, using a fresh tip per sample, and records the seal and thermocycling comment.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
   "rewards": {
-    "reward": 0.875,
+    "reward": 1.0,
     "sim_pass": 1.0,
     "checks_frac": 1.0,
     "lint_violations": 0.0,
     "deterministic_reward": 1.0,
-    "judge_mean": 0.875,
+    "judge_mean": 1.0,
     "critical_fail": 0.0,
-    "rubric_deck_and_hardware": 1.0,
     "rubric_master_mix": 1.0,
-    "rubric_template": 1.0,
-    "rubric_primers": 1.0,
-    "rubric_tips_and_contamination": 0.5,
+    "rubric_template_and_primers": 1.0,
+    "rubric_tips_and_contamination": 1.0,
     "rubric_thermocycling": 1.0,
-    "rubric_robot_practice": 0.5,
     "rubric_fidelity_to_paper": 1.0
   }
 }

@@ -31,14 +31,10 @@ SAFE_ENV_KEYS = ["PATH", "HOME", "LANG", "LC_ALL"]
 SUSPICIOUS = re.compile(r"broker|_implementation|_core\b|\.commands\.|publish\(|monkey|__dict__|setattr\(")
 
 RUBRIC = [
-    ("deck_and_hardware", "Uses the specified slots, labware, modules and pipettes; temperature module set to 4 C for the elution plate."),
-    ("sample_handling", "All 48 samples, 250 uL each, one fresh tip per sample, one sample per well, no cross-contamination, sample identity traceable to its elution well."),
-    ("binding", "40 uL beads, 250 uL isopropanol, then 250 uL sample, in that order; mixed 5 times; 5 min incubation before the magnet."),
-    ("magnetic_separation", "Magnet engaged for ~4 min before the first supernatant removal; supernatant removed to waste with the magnet on and without disturbing the bead pellet."),
-    ("washes", "Two 500 uL 70% ethanol washes, each fully removed with the magnet engaged."),
-    ("drying", "About 4 min air-dry after the last wash, then magnet disengaged before elution."),
-    ("elution_recovery", "100 uL elution added off-magnet and mixed, magnet re-engaged ~90 s, ~80 uL recovered into a distinct well of the chilled elution plate."),
-    ("robot_practice", "Physically sensible for this OT-2: volumes within pipette limits (split where needed), enough tips, operator pauses where tips/reagents must be handled, sensible heights/flow rates."),
+    ("sample_handling", "All 48 samples, 250 uL each, one fresh tip per sample, one sample per well, no cross-contamination, and each sample traceable to its elution well."),
+    ("binding_and_separation", "40 uL beads, 250 uL isopropanol, then 250 uL sample in that order, mixed 5 times, 5 min incubation, magnet engaged about 4 min, then supernatant removed to waste with the magnet on."),
+    ("washes_and_drying", "Two 500 uL 70% ethanol washes, each fully removed with the magnet engaged, then about 4 min air-dry and the magnet disengaged before elution."),
+    ("elution_recovery", "100 uL elution added off-magnet and mixed, magnet re-engaged about 90 s, and about 80 uL recovered into a distinct well of the elution plate held at 4 C."),
     ("fidelity_to_paper", "No invented, missing or reordered steps relative to the paper; reagent identities and comments/metadata are accurate."),
 ]
 
@@ -49,7 +45,7 @@ Authority, in order:
 2. THE PAPER: the scientific specification.
 3. REFERENCE PROTOCOL: the authors' own script, one valid implementation. Do not reward or penalise stylistic or layout resemblance to it; where it disagrees with the paper (e.g. it comments "ethanol absolute" while the paper says 70% ethanol), the paper governs.
 
-Score each rubric item 0 (wrong or missing), 0.5 (partly right) or 1 (fully right). Judge the agent's protocol only; do not give credit for intentions stated in comments that the code does not carry out.
+Score each rubric item 1 (pass: fully right) or 0 (fail: wrong, missing or only partly right). There is no partial credit. Judge the agent's protocol only; do not give credit for intentions stated in comments that the code does not carry out.
 
 RUBRIC:
 {rubric}
@@ -73,7 +69,7 @@ RUBRIC:
 {protocol}
 
 You must call the submit_grades tool exactly once with your grades, in this shape:
-{{"items": [{{"id": "<rubric id>", "score": 0|0.5|1, "evidence": "<one sentence citing code or a check>"}}, ...], "summary": "<two sentences>"}}
+{{"items": [{{"id": "<rubric id>", "score": 0|1, "evidence": "<one sentence citing code or a check>"}}, ...], "summary": "<two sentences>"}}
 """
 
 
@@ -87,7 +83,7 @@ GRADE_TOOL = {
                 "type": "object",
                 "properties": {
                     "id": {"type": "string"},
-                    "score": {"type": "number", "enum": [0, 0.5, 1]},
+                    "score": {"type": "number", "enum": [0, 1]},
                     "evidence": {"type": "string"},
                 },
                 "required": ["id", "score", "evidence"],
@@ -134,7 +130,7 @@ def judge(context: dict) -> dict:
             data = calls[0] if calls else json.loads(re.search(r"\{.*\}", text, re.S).group(0))
             text = json.dumps(data)
             scores = {item["id"]: float(item["score"]) for item in data["items"]}
-            if set(scores) != {key for key, _ in RUBRIC} or any(s not in (0, 0.5, 1) for s in scores.values()):
+            if set(scores) != {key for key, _ in RUBRIC} or any(s not in (0, 1) for s in scores.values()):
                 raise ValueError(f"bad rubric scores: {scores}")
             return {"items": data["items"], "scores": scores, "summary": data.get("summary"), "raw": text}
         except Exception as exc:  # retry malformed or transient judge responses

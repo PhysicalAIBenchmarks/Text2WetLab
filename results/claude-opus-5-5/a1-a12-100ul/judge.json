@@ -2,7 +2,7 @@
   "lint": [],
   "simulation": {
     "ok": true,
-    "n_commands": 27
+    "n_commands": 38
   },
   "checks": [
     {
@@ -46,43 +46,37 @@
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Labware loaded in slots 1 and 2 with the required labels; p20 on left and p300 on right with matching tip racks in slots 10 and 11."
+        "evidence": "Reservoir slot 1 and plate slot 2 are loaded with the required labels. Tip racks are in slots 10 and 11, with p20 on the left and p300 on the right."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "p300.transfer(100, reservoir['A1'], plate A1..A12) puts 100 uL in each well; end_state:plate check passed."
-      },
-      {
-        "id": "pipette_choice",
-        "score": 1,
-        "evidence": "Uses p300 for 100 uL; the transfer is within the 20-300 uL range."
+        "evidence": "The loop aspirates 100 \u00b5L from reservoir A1 and dispenses 100 \u00b5L into each of plate A1 to A12 with p300. No other wells are touched, and the end_state:plate check passed."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "new_tip='once' uses a single tip for a single reagent; the tip_before_aspirate and tip_dropped_at_end checks passed."
+        "evidence": "The protocol calls p300.pick_up_tip() before any aspiration and drop_tip() at the end. The tip_before_aspirate and tip_dropped_at_end checks passed."
       },
       {
         "id": "robot_practice",
         "score": 1,
-        "evidence": "Uses the default transfer behavior, which is sensible. apiLevel 2.15 is in range and metadata has a protocolName, though it lacks an author or description."
+        "evidence": "100 \u00b5L is within the p300 range, and apiLevel 2.15 is allowed. The simulator ran cleanly and the over-dispense and empty-well checks passed."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "Only the single requested transfer is performed, with no extra steps, and the comments are accurate."
+        "evidence": "The protocol does the single 100 \u00b5L transfer to A1:A12 in order. The added liquid definition and the blow-outs do not change the outcome, and the comments are accurate."
       }
     ],
     "scores": {
       "deck_and_hardware": 1.0,
       "volumes_and_wells": 1.0,
-      "pipette_choice": 1.0,
       "tip_usage": 1.0,
       "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol performs the single 100 uL transfer from reservoir A1 to plate A1-A12 with the p300 and one tip. All measured checks passed and the task is followed faithfully.",
+    "summary": "The protocol loads the specified labware and pipettes, then moves 100 \u00b5L from reservoir A1 to each of plate wells A1 to A12 with the p300 using one tip. All measured checks passed and the tip is dropped at the end.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
@@ -96,7 +90,6 @@
     "critical_fail": 0.0,
     "rubric_deck_and_hardware": 1.0,
     "rubric_volumes_and_wells": 1.0,
-    "rubric_pipette_choice": 1.0,
     "rubric_tip_usage": 1.0,
     "rubric_robot_practice": 1.0,
     "rubric_fidelity_to_task": 1.0

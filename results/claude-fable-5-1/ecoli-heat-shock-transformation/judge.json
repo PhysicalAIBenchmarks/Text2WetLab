@@ -49,68 +49,54 @@
   "judge": {
     "items": [
       {
-        "id": "deck_and_hardware",
-        "score": 1,
-        "evidence": "All three labware loaded with the correct slots and labels; p20 left and p300 right with the correct tip racks in slots 10 and 11."
-      },
-      {
         "id": "dna_addition",
-        "score": 0.5,
-        "evidence": "Correctly moves 2 \u00b5L from plate A1 to tube A1 with the p20, but then runs p20.mix(3, 10, cells) and a blow_out in the competent cells, which is not gentle and was not requested."
+        "score": 1,
+        "evidence": "p20.aspirate(2, plasmid A1) then dispense(2, cells A1); end-state checks pass."
       },
       {
         "id": "heat_shock",
-        "score": 0.5,
-        "evidence": "Heat shock at 42 C for 45 s and 2 min on ice are recorded in order after DNA addition, as a comment plus a pause. The pause text lacks the 'then ice' detail only in the pause message, and the comment says 'cells_rack' rather than a tube."
+        "score": 1,
+        "evidence": "The comment 'Heat shock cells_rack 42 C 45 s, then transfer immediately to ice 2 min' comes after DNA addition and before SOC."
       },
       {
         "id": "soc_recovery",
         "score": 1,
-        "evidence": "p300 aspirates and dispenses 250 \u00b5L SOC into the tube after the heat shock, and the 37 C, 60 min, 250 rpm incubation comment follows."
+        "evidence": "p300 aspirates 250 from soc A1 and dispenses to cells; the 37 C 60 min 250 rpm outgrowth comment is recorded after."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "A fresh tip is used for the DNA and another for the SOC, each dropped afterwards; the no_cross_contamination and tip_dropped_at_end checks passed."
-      },
-      {
-        "id": "robot_practice",
-        "score": 0.5,
-        "evidence": "Volumes are within pipette limits and there is a pause for the manual heat-shock step, but the mix and blow_out in the cells are poor practice. The 250 \u00b5L SOC dispense is at default height with no tip-touch or flow-rate consideration."
+        "evidence": "The p20 and p300 each use their own fresh tip, both are dropped, and the no_cross_contamination and tip_dropped_at_end checks pass."
       },
       {
         "id": "fidelity_to_task",
-        "score": 0.5,
-        "evidence": "The protocol adds an unrequested mix step in the cells and blow-outs; the pause is also an addition, though a reasonable one. The step order is otherwise correct."
+        "score": 0,
+        "evidence": "It adds an unrequested p20.mix(3,10) in the competent cells, which pipette-mixes fragile cells, and an extra protocol.pause that is not in the spec."
       }
     ],
     "scores": {
-      "deck_and_hardware": 1.0,
-      "dna_addition": 0.5,
-      "heat_shock": 0.5,
+      "dna_addition": 1.0,
+      "heat_shock": 1.0,
       "soc_recovery": 1.0,
       "tip_usage": 1.0,
-      "robot_practice": 0.5,
-      "fidelity_to_task": 0.5
+      "fidelity_to_task": 0.0
     },
-    "summary": "The protocol meets the core spec: correct labware, pipettes, volumes, order and tip handling, and all measured checks pass. It loses points for an unrequested mix and blow-out in the competent cells, which is not gentle handling and adds a step the task did not ask for.",
+    "summary": "The core pipetting steps (2 \u00b5L DNA, 250 \u00b5L SOC), the tip handling and the heat-shock and outgrowth comments are all correct, and the measured checks pass. Fidelity fails because the protocol adds an unrequested mix in the competent cells and an extra pause.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
   "rewards": {
-    "reward": 0.7143,
+    "reward": 0.8,
     "sim_pass": 1.0,
     "checks_frac": 1.0,
     "lint_violations": 0.0,
     "deterministic_reward": 1.0,
-    "judge_mean": 0.7143,
+    "judge_mean": 0.8,
     "critical_fail": 0.0,
-    "rubric_deck_and_hardware": 1.0,
-    "rubric_dna_addition": 0.5,
-    "rubric_heat_shock": 0.5,
+    "rubric_dna_addition": 1.0,
+    "rubric_heat_shock": 1.0,
     "rubric_soc_recovery": 1.0,
     "rubric_tip_usage": 1.0,
-    "rubric_robot_practice": 0.5,
-    "rubric_fidelity_to_task": 0.5
+    "rubric_fidelity_to_task": 0.0
   }
 }

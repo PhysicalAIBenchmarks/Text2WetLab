@@ -15,7 +15,7 @@ Authority, in order:
 2. {spec_name}: the scientific specification.
 3. REFERENCE PROTOCOL: one valid implementation. Do not reward or penalise stylistic or layout resemblance to it.
 
-Score each rubric item 0 (wrong or missing), 0.5 (partly right) or 1 (fully right). Judge the agent's protocol only; do not give credit for intentions stated in comments that the code does not carry out.
+Score each rubric item 1 (pass: fully right) or 0 (fail: wrong, missing or only partly right). There is no partial credit. Do not fail an item for a choice the rubric or task allows. Judge the agent's protocol only; do not give credit for intentions stated in comments that the code does not carry out.
 
 RUBRIC:
 {rubric}
@@ -36,7 +36,7 @@ PASSED (opentrons_simulate completed without error)
 {protocol}
 
 You must call the submit_grades tool exactly once with your grades, in this shape:
-{{"items": [{{"id": "<rubric id>", "score": 0|0.5|1, "evidence": "<one sentence citing code or a check>"}}, ...], "summary": "<two sentences>"}}
+{{"items": [{{"id": "<rubric id>", "score": 0|1, "evidence": "<one sentence citing code or a check>"}}, ...], "summary": "<two sentences>"}}
 """
 
 GRADE_TOOL = {
@@ -49,7 +49,7 @@ GRADE_TOOL = {
                 "type": "object",
                 "properties": {
                     "id": {"type": "string"},
-                    "score": {"type": "number", "enum": [0, 0.5, 1]},
+                    "score": {"type": "number", "enum": [0, 1]},
                     "evidence": {"type": "string"},
                 },
                 "required": ["id", "score", "evidence"],
@@ -94,7 +94,7 @@ def judge(tests: Path, checks: list[dict], protocol: str, paper: Path) -> dict:
             text = "".join(b.text for b in message.content if b.type == "text")
             data = calls[0] if calls else json.loads(re.search(r"\{.*\}", text, re.S).group(0))
             scores = {item["id"]: float(item["score"]) for item in data["items"]}
-            if set(scores) != ids or any(s not in (0, 0.5, 1) for s in scores.values()):
+            if set(scores) != ids or any(s not in (0, 1) for s in scores.values()):
                 raise ValueError(f"bad rubric scores: {scores}")
             return {"items": data["items"], "scores": scores, "summary": data.get("summary")}
         except Exception as exc:  # retry malformed or transient judge responses

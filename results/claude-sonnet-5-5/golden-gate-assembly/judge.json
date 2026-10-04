@@ -2,7 +2,7 @@
   "lint": [],
   "simulation": {
     "ok": true,
-    "n_commands": 638
+    "n_commands": 519
   },
   "checks": [
     {
@@ -114,63 +114,39 @@
   "judge": {
     "items": [
       {
-        "id": "deck_and_hardware",
-        "score": 1,
-        "evidence": "All eight labware loaded with the specified slots and labels; p20 on the left with the slot 10 rack, p300 on the right with the slot 11 rack."
-      },
-      {
         "id": "pcr_setup",
         "score": 1,
-        "evidence": "Master mix volumes of 106/40/4/2 \u00b5L are correct, as are 19 \u00b5L mix, 2.5 \u00b5L of each primer and 1 \u00b5L template with the A1,A1,B1,C1,A1,A1,D1 mapping; end_state:pcr_plate passed."
+        "evidence": "Master mix 106/40/4/2 \u00b5L, 19 \u00b5L to A1:G1, 2.5 \u00b5L fwd/rev primers, 1 \u00b5L template from [A1,A1,B1,C1,A1,A1,D1], and mix 3x15, all correctly paired; end-state checks pass."
       },
       {
         "id": "dpni_and_cleanup",
         "score": 1,
-        "evidence": "Adds 19 \u00b5L water, 5 \u00b5L rCutSmart and 1 \u00b5L DpnI, then mixes 3x30 \u00b5L; comments record the 37/65 \u00b0C incubation and the Zymo clean-up/pause in order."
+        "evidence": "Adds 19 \u00b5L water, 5 \u00b5L rCutSmart, 1 \u00b5L DpnI, mixes 3x30, then comments record the 37/65\u00b0C incubation and Zymo cleanup in order."
       },
       {
         "id": "assembly_mix",
         "score": 1,
-        "evidence": "Assembly wells get 7 \u00b5L water, 2 \u00b5L T4 buffer, 3/2/3 \u00b5L backbone fragments (2, 5, 6), 2 \u00b5L fragments 1/3/4/7 and 1 \u00b5L enzyme mix; end_state:assembly_plate passed."
+        "evidence": "Assembly wells receive 7 \u00b5L water, 2 \u00b5L T4 buffer, 3/2/3 \u00b5L backbone fragments 2/5/6, 2 \u00b5L fragments 1/3/4/7 each, and 1 \u00b5L GG enzyme with 5x mix."
       },
       {
-        "id": "thermocycler_program",
+        "id": "cycling_and_transformation",
         "score": 1,
-        "evidence": "The comment records 30 x (37 \u00b0C 5 min, 16 \u00b0C 5 min), 60 \u00b0C 5 min, hold at 4 \u00b0C and an 85 \u00b0C lid; this matches the spec."
-      },
-      {
-        "id": "transformation",
-        "score": 1,
-        "evidence": "Transfers 5 \u00b5L of each assembly to cells A1:D1, comments on the ice/heat-shock steps, adds 250 \u00b5L LB+dextrose, and comments on recovery and plating."
+        "evidence": "Comments record 30x(37\u00b0C 5 min/16\u00b0C 5 min), 60\u00b0C, 4\u00b0C hold and cleanup; 5 \u00b5L transferred to cells A1:D1, ice/heat shock recorded, then 250 \u00b5L LB added and recovery/plating comments."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "Each xfer call issues a separate transfer() with a new tip per destination; the no_cross_contamination check passed."
-      },
-      {
-        "id": "robot_practice",
-        "score": 1,
-        "evidence": "Volumes of 20 \u00b5L or less go on p20 and larger ones on p300 via pip(); there are no overdispense or empty-aspirate failures, and manual steps are recorded as comments as the task specifies."
-      },
-      {
-        "id": "fidelity_to_paper",
-        "score": 1,
-        "evidence": "The step order matches the task and paper, and the comments are accurate; the 5x10 \u00b5L mix after the enzyme addition is a minor deviation from the reference."
+        "evidence": "Per-well fresh tips ('always') for primers, templates, fragments, enzyme, cells and LB; no_cross_contamination and tip checks pass."
       }
     ],
     "scores": {
-      "deck_and_hardware": 1.0,
       "pcr_setup": 1.0,
       "dpni_and_cleanup": 1.0,
       "assembly_mix": 1.0,
-      "thermocycler_program": 1.0,
-      "transformation": 1.0,
-      "tips_and_contamination": 1.0,
-      "robot_practice": 1.0,
-      "fidelity_to_paper": 1.0
+      "cycling_and_transformation": 1.0,
+      "tips_and_contamination": 1.0
     },
-    "summary": "The protocol follows the task steps in order with the correct labware, volumes and pipette choices. All measured checks passed, and the manual steps are recorded as comments.",
+    "summary": "The protocol follows every specified quantity and pairing, and the manual steps are recorded as comments in order. All measured checks pass and tips are changed appropriately.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
@@ -182,14 +158,10 @@
     "deterministic_reward": 1.0,
     "judge_mean": 1.0,
     "critical_fail": 0.0,
-    "rubric_deck_and_hardware": 1.0,
     "rubric_pcr_setup": 1.0,
     "rubric_dpni_and_cleanup": 1.0,
     "rubric_assembly_mix": 1.0,
-    "rubric_thermocycler_program": 1.0,
-    "rubric_transformation": 1.0,
-    "rubric_tips_and_contamination": 1.0,
-    "rubric_robot_practice": 1.0,
-    "rubric_fidelity_to_paper": 1.0
+    "rubric_cycling_and_transformation": 1.0,
+    "rubric_tips_and_contamination": 1.0
   }
 }

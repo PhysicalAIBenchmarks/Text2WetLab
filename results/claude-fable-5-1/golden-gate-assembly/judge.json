@@ -2,7 +2,7 @@
   "lint": [],
   "simulation": {
     "ok": true,
-    "n_commands": 668
+    "n_commands": 685
   },
   "checks": [
     {
@@ -114,63 +114,39 @@
   "judge": {
     "items": [
       {
-        "id": "deck_and_hardware",
-        "score": 1,
-        "evidence": "All eight labware loaded with the specified load names, slots and labels; p20 left and p300 right with tip racks in slots 10 and 11."
-      },
-      {
         "id": "pcr_setup",
         "score": 1,
-        "evidence": "Steps 1-10 use the specified volumes. Primers go A1-G1 and A2-G2 to pcr_plate A1-G1, and templates are A1,A1,B1,C1,A1,A1,D1; the end-state checks pass."
+        "evidence": "Master mix 106/40/4/2 \u00b5L, 19 \u00b5L to A1:G1, 2.5 \u00b5L fwd/rev primers paired A1..G1/A2..G2, 1 \u00b5L templates from A1,A1,B1,C1,A1,A1,D1 match the spec; end_state checks pass."
       },
       {
         "id": "dpni_and_cleanup",
         "score": 1,
-        "evidence": "The 19 uL water, 5 uL rCutSmart and 1 uL DpnI additions are made to A1:G1 and mixed. The 37/65 C incubation and the Zymo clean-up are recorded in comments with a pause, in the specified order."
+        "evidence": "Steps 12-15 add 19 \u00b5L water, 5 \u00b5L rCutSmart, 1 \u00b5L DpnI and mix at 30 \u00b5L; incubation and Zymo cleanup recorded in order with pauses."
       },
       {
         "id": "assembly_mix",
         "score": 1,
-        "evidence": "Each assembly gets 7 uL water, 2 uL buffer, 3/2/3 uL of fragments 2/5/6, 2 uL of fragments 1/3/4/7 and 1 uL enzyme mix, matching the task. The assembly_plate end-state check passes."
+        "evidence": "Assembly wells get 7 \u00b5L water, 2 \u00b5L T4 buffer, 3/2/3 \u00b5L of fragments 2/5/6, 2 \u00b5L of fragments 1/3/4/7 paired to A1:D1, and 1 \u00b5L enzyme mix with 5 mixes."
       },
       {
-        "id": "thermocycler_program",
+        "id": "cycling_and_transformation",
         "score": 1,
-        "evidence": "The Step 25 comment records 30 cycles of 37 C for 5 min then 16 C for 5 min, then 60 C for 5 min, a 4 C hold and an 85 C lid, followed by a pause."
-      },
-      {
-        "id": "transformation",
-        "score": 1,
-        "evidence": "5 uL of each assembly goes to cells_plate A1:D1. The ice, heat shock and recovery steps are recorded, and 250 uL LB+dextrose is added on the p300. The cells_plate end-state check passes."
+        "evidence": "Golden Gate program (30x 37/16\u00b0C, 60\u00b0C, 4\u00b0C) and cleanup are recorded in comments; 5 \u00b5L of each assembly goes to cells A1:D1, then 250 \u00b5L LB is added after the ice/heat-shock comment."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "The send() helper uses a new tip per transfer for primers, templates and fragments, and the no_cross_contamination check passes. Tips are reused only for single-source reagent distribution, as in the reference."
-      },
-      {
-        "id": "robot_practice",
-        "score": 1,
-        "evidence": "Volumes of 20 uL or less go on the p20 and larger ones on the p300. Pauses are added at the manual steps and no tip is left on the pipette. All checks pass."
-      },
-      {
-        "id": "fidelity_to_paper",
-        "score": 1,
-        "evidence": "The step order matches the task and the comments are accurate. The only differences are the 10 uL mix volume at step 24 and the extra pauses, both of which are reasonable."
+        "evidence": "deliver() picks up and drops a fresh tip for every destination and source; the no_cross_contamination and tip checks pass."
       }
     ],
     "scores": {
-      "deck_and_hardware": 1.0,
       "pcr_setup": 1.0,
       "dpni_and_cleanup": 1.0,
       "assembly_mix": 1.0,
-      "thermocycler_program": 1.0,
-      "transformation": 1.0,
-      "tips_and_contamination": 1.0,
-      "robot_practice": 1.0,
-      "fidelity_to_paper": 1.0
+      "cycling_and_transformation": 1.0,
+      "tips_and_contamination": 1.0
     },
-    "summary": "The protocol follows all 33 steps in order with the correct labware, volumes and pipette choices. All measured checks pass, and the manual steps are recorded in comments with operator pauses. I found no meaningful deviations.",
+    "summary": "The protocol follows every step's quantities, well pairings and order, and all measured checks pass. Manual steps are recorded with comments and pauses, and fresh tips are used throughout.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
@@ -182,14 +158,10 @@
     "deterministic_reward": 1.0,
     "judge_mean": 1.0,
     "critical_fail": 0.0,
-    "rubric_deck_and_hardware": 1.0,
     "rubric_pcr_setup": 1.0,
     "rubric_dpni_and_cleanup": 1.0,
     "rubric_assembly_mix": 1.0,
-    "rubric_thermocycler_program": 1.0,
-    "rubric_transformation": 1.0,
-    "rubric_tips_and_contamination": 1.0,
-    "rubric_robot_practice": 1.0,
-    "rubric_fidelity_to_paper": 1.0
+    "rubric_cycling_and_transformation": 1.0,
+    "rubric_tips_and_contamination": 1.0
   }
 }

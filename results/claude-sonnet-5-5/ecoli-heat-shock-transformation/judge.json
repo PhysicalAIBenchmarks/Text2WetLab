@@ -49,68 +49,54 @@
   "judge": {
     "items": [
       {
-        "id": "deck_and_hardware",
-        "score": 1,
-        "evidence": "All three labware loaded with exact load names, slots and labels; p20 left and p300 right with correct tip racks in slots 10/11."
-      },
-      {
         "id": "dna_addition",
         "score": 1,
-        "evidence": "p20.transfer(2, plasmid_plate['A1'], tubes['A1']) uses the 20 \u00b5L pipette; default transfer has no mixing, so cells are handled gently."
+        "evidence": "p20.transfer(2, plasmid_plate['A1'], tubes['A1']) uses the 20 uL pipette with the correct volume, source and destination."
       },
       {
         "id": "heat_shock",
-        "score": 0.5,
-        "evidence": "Comment records 42C 45 s then ice 2 min in the right order, but it is a single comment with no operator pause/instruction."
+        "score": 1,
+        "evidence": "The comment records 42C 45 s then ice 2 min, placed after the DNA transfer and before the SOC step."
       },
       {
         "id": "soc_recovery",
         "score": 1,
-        "evidence": "p300.transfer(250, soc['A1'], tubes['A1']) after heat shock comment, followed by comment for 37C 60 min 250 rpm incubation."
+        "evidence": "p300.transfer(250, soc['A1'], tubes['A1']) comes after the heat shock comment, followed by a comment for 37C 60 min 250 rpm."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "new_tip='always' gives a fresh tip for DNA and SOC; checks tip_dropped_at_end and no_cross_contamination pass."
-      },
-      {
-        "id": "robot_practice",
-        "score": 0.5,
-        "evidence": "Volumes are within pipette limits, but there is no protocol.pause for the manual heat shock/ice/incubation steps and no explicit height or flow-rate choices."
+        "evidence": "Each transfer uses new_tip='always' with its own pipette, tips are dropped, and tip_dropped_at_end and no_cross_contamination both passed."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "Steps are exactly the four specified, in order, with accurate comments; no invented steps."
+        "evidence": "All four steps are present in order with accurate comments and metadata, nothing extra is added, and all measured checks passed."
       }
     ],
     "scores": {
-      "deck_and_hardware": 1.0,
       "dna_addition": 1.0,
-      "heat_shock": 0.5,
+      "heat_shock": 1.0,
       "soc_recovery": 1.0,
       "tip_usage": 1.0,
-      "robot_practice": 0.5,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol correctly implements all pipetting steps with the right pipettes, fresh tips and all measured checks passing. It loses some credit because the manual heat-shock and incubation steps are only comments with no operator pause, and it sets no cell-specific handling heights or flow rates.",
+    "summary": "The protocol performs the 2 \u00b5L DNA addition with the p20 and the 250 \u00b5L SOC addition with the p300, in the correct order. It records the heat shock and the outgrowth with accurate comments, uses fresh tips for each transfer, and passed every measured check.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
   "rewards": {
-    "reward": 0.8571,
+    "reward": 1.0,
     "sim_pass": 1.0,
     "checks_frac": 1.0,
     "lint_violations": 0.0,
     "deterministic_reward": 1.0,
-    "judge_mean": 0.8571,
+    "judge_mean": 1.0,
     "critical_fail": 0.0,
-    "rubric_deck_and_hardware": 1.0,
     "rubric_dna_addition": 1.0,
-    "rubric_heat_shock": 0.5,
+    "rubric_heat_shock": 1.0,
     "rubric_soc_recovery": 1.0,
     "rubric_tip_usage": 1.0,
-    "rubric_robot_practice": 0.5,
     "rubric_fidelity_to_task": 1.0
   }
 }

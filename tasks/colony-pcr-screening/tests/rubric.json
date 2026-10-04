@@ -1,34 +1,22 @@
 [
  {
-  "id": "deck_and_hardware",
-  "text": "Loads the specified labware with the given labels/slots; suitable pipettes and tip racks."
- },
- {
   "id": "master_mix",
   "text": "18 uL Q5 2x master mix into each of the 96 PCR wells."
  },
  {
-  "id": "template",
-  "text": "1 uL colony template from each colony well into the matching PCR well, mixed ~3 times."
- },
- {
-  "id": "primers",
-  "text": "1 uL primer pair from each primer well into the matching PCR well; 20 uL final reaction."
+  "id": "template_and_primers",
+  "text": "1 uL colony template and 1 uL primer pair from each source well into the matching PCR well with the 20 uL pipette, giving 20 uL reactions."
  },
  {
   "id": "tips_and_contamination",
-  "text": "Fresh tip per colony and per primer pair; no cross-contamination between samples."
+  "text": "A fresh tip for every colony and every primer pair, and no cross-contamination between samples. Reusing one tip for master mix into empty wells passes."
  },
  {
   "id": "thermocycling",
-  "text": "Seal and thermocycling program (98 C 30 s; 30x [98 C 10 s, 60 C 30 s, 72 C 30 s]; 72 C 2 min; 4 C hold) recorded."
- },
- {
-  "id": "robot_practice",
-  "text": "Physically sensible: 1 uL steps on the 20 uL pipette, sensible heights/flow, order of additions sensible."
+  "text": "Seal and the thermocycling program (98 C 30 s; 30x [98 C 10 s, 60 C 30 s, 72 C 30 s]; 72 C 2 min; 4 C hold) recorded."
  },
  {
   "id": "fidelity_to_paper",
-  "text": "Consistent with the task text and with the Slowpoke paper's automated colony PCR where the task does not fix details; nothing invented; comments/metadata accurate."
+  "text": "Consistent with the task text and the Slowpoke paper; no missing or invented steps; comments and metadata are accurate."
  }
 ]

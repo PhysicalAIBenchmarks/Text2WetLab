@@ -61,7 +61,7 @@ The oracle "agent" just copies `solution/protocol.py`. Run it first to confirm t
 harbor run -p tasks -a oracle -y
 ```
 
-Expected: about 0.89 to 1.0 on every task (the LLM judge rarely gives the reference full marks).
+Expected: 1.0 on 6 tasks and 0.8 on RNA extraction (its reference script labels the ethanol "absolute" instead of 70%, so it fails `fidelity_to_paper`).
 
 ### 3. Run an agent on all 7 tasks
 
@@ -123,44 +123,43 @@ Rewards go from 0 to 1 and are capped at 0.3 when a critical check fails (see be
 1. **Lint.** `protocol_lint.py` rejects code that reaches into simulator internals. A lint failure scores 0.
 2. **Simulator gate.** `opentrons_simulate` runs the protocol. If it crashes, the reward is 0.
 3. **End-state checks.** `spec_check.py` compares the simulated deck against the task spec (`tests/ir.json`, `deck.json`, `checks.json`): labware in the right slots, the right contents in each well, and safety rules (tip use, no over-aspirating, no cross-contamination). The old pass/fail score is kept as `deterministic_reward`.
-4. **LLM judge.** `claude-sonnet-5-5` scores the task's `tests/rubric.json` (6 to 9 items) at 0, 0.5 or 1. It sees the instruction, the check results, the reference protocol and, for golden-gate and colony PCR, the paper. The reward is the mean of those scores.
+4. **LLM judge.** `claude-sonnet-5-5` scores the task's 5 items in `tests/rubric.json` as pass (1) or fail (0), with no partial credit, so each item is worth 20%. It sees the instruction, the check results, the reference protocol and, for golden-gate and colony PCR, the paper. The reward is the mean of those scores.
 5. **Critical cap.** If a labware, end-state or safety check fails, the reward is capped at 0.3.
 
 Paper text: golden-gate (AssemblyTron, CC BY) and colony PCR (Slowpoke, CC BY) ship `environment/data/paper.txt` at `/data`. Heat-shock's source (APEX, bioRxiv) is "all rights reserved", so it is not included. Ampure (code only), a1-a12 and split (handwritten) have no paper, so the judge scores them against the instruction.
 
-Validation: deliberately broken oracles scored 0.72 (ampure with incubation, magnet and drying steps removed, which still passes the end-state checks) and 0.3 (colony PCR reusing one tip across colonies, which trips the cap).
+Validation (earlier partial-credit rubric): deliberately broken oracles scored 0.72 (ampure with incubation, magnet and drying steps removed, which still passes the end-state checks) and 0.3 (colony PCR reusing one tip across colonies, which trips the cap).
 
 ### opentrons-rna-extraction (`tests/grade.py`)
 
 1. **Simulator gate.** `opentrons_simulate` (Opentrons 7.5.0) runs the protocol. If it crashes, the reward is 0.
 2. **Run-log checks.** `checks.py` runs 16 deterministic checks on the normalized log, covering volumes, step order, incubation, magnet and drying times, recovery, the 4 °C plate, and fresh tips with no cross-contact.
-3. **LLM judge.** `claude-sonnet-5-5` scores 9 rubric items at 0, 0.5 or 1. The reward is the mean of those scores.
+3. **LLM judge.** `claude-sonnet-5-5` scores 5 rubric items as pass (1) or fail (0), each worth 20%. The reward is the mean of those scores.
 4. **Critical cap.** If a critical check fails, the reward is capped at 0.3. The critical checks are sample count, step order, supernatant removal, the two ethanol washes, recovery, and cross-contamination.
 
-During development, the ground truth scored 0.94 and deliberately broken protocols scored 0 to 0.78.
+With binary scoring, the ground truth scores 0.8: it fails `fidelity_to_paper` because it labels the ethanol "absolute" instead of 70%.
 
 ## Results
 
-The Claude Code agent (`-a claude-code`) was run with Harbor in Modal sandboxes (`-e modal`), 1 attempt per task per model (pass@1), on 2026-10-04. All 7 tasks used the common grader. The oracle solutions scored 0.89 to 1.0.
+The Claude Code agent (`-a claude-code`) was run with Harbor in Modal sandboxes (`-e modal`), 1 attempt per task per model (pass@1), on 2026-10-04. All 7 tasks used the common grader with 5 pass/fail judge items (20% each). The oracle solutions scored 1.0 on 6 tasks and 0.8 on RNA extraction, where the authors' script labels the ethanol "absolute" but the paper says 70%.
 
 | Task | Opus 5.5 | Sonnet 5.5 | Fable 5.1 |
 |---|---|---|---|
-| a1-a12-100ul | 1.0 | 0.917 | 0.833 |
-| split-200ul-two-wells | 1.0 | 1.0 | 0.917 |
-| ampure-bead-cleanup | 0.944 | 0.889 | 1.0 |
-| colony-pcr-screening | 1.0 | 0.875 | 0.875 |
-| ecoli-heat-shock-transformation | 0.714 | 0.857 | 0.714 |
+| a1-a12-100ul | 1.0 | 1.0 | 1.0 |
+| split-200ul-two-wells | 1.0 | 1.0 | 1.0 |
+| ampure-bead-cleanup | 1.0 | 1.0 | 1.0 |
+| colony-pcr-screening | 1.0 | 1.0 | 1.0 |
+| ecoli-heat-shock-transformation | 0.8 | 1.0 | 0.8 |
 | golden-gate-assembly | 1.0 | 1.0 | 1.0 |
-| opentrons-rna-extraction | 0.889 | 0.833 | 0.833 |
-| **Mean** | **0.935** | **0.910** | **0.882** |
-| Agent cost (USD) | 1.25 | 0.41 | 3.69 |
+| opentrons-rna-extraction | 0.8 | 0.4 | 1.0 |
+| **Mean** | **0.943** | **0.914** | **0.971** |
+| Agent cost (USD) | 1.28 | 0.39 | 3.05 |
 
 What the results show:
-- **No trial errored or failed a deterministic or critical check.** All 21 protocols simulated and passed every end-state check, so every point lost came from the judge.
-- **The judge separates the models where the old pass/fail grader did not.** Common deductions were: mixing competent cells and having no operator pause in heat-shock; reusing one master-mix tip in colony PCR; recovering 100 µL instead of about 80 µL in RNA extraction; and aspiration heights near the beads in ampure.
-- **The judge is sometimes inconsistent.** It marked down fresh-tip-per-well in `a1-a12-100ul` as "wasteful" even though fresh tips are allowed. With 1 attempt and an LLM judge, differences of about 0.1 between models are within noise.
-
-The previous run (local Docker, 6 tasks graded deterministically) gave every model 1.0 on those 6 tasks.
+- **No trial errored or failed a deterministic or critical check.** Every point lost came from a failed judge item.
+- **Heat-shock (Opus, Fable):** failed `fidelity_to_task` for pipette-mixing the competent cells, which the task doesn't ask for.
+- **RNA extraction:** Opus and Sonnet failed `elution_recovery` for recovering 100 µL instead of about 80 µL. Sonnet also added the sample before the beads and isopropanol, so it failed `binding_and_separation` and `fidelity_to_paper` too. Fable passed all 5 items.
+- **The other 5 tasks didn't separate the models.** With 1 attempt per model and an LLM judge, treat differences between models as indicative only.
 
 Per-trial tokens, cost, duration and rubric scores are in `results/summary.json`. Each `results/<model>/<task>/` folder holds the graded `protocol.py`, `reward.json` and `judge.json`.
 

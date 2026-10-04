@@ -1,9 +1,8 @@
 from opentrons import protocol_api
 
 metadata = {
-    'protocolName': 'AMPure XP 0.8x cleanup of PCR products',
-    'author': 'OT-2',
-    'description': '0.8x AMPure XP bead cleanup of 50 uL PCR products, 2x 80% EtOH wash, elute in 50 uL water.',
+    'protocolName': 'AMPure XP 0.8x bead cleanup of PCR products',
+    'description': '0.8x AMPure XP cleanup of 50 uL PCR products, two 80% ethanol washes, elution in 50 uL water.',
 }
 requirements = {'robotType': 'OT-2', 'apiLevel': '2.15'}
 
@@ -21,66 +20,60 @@ def run(protocol: protocol_api.ProtocolContext):
     p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
-    samples = sample_plate.wells()  # A1..H12, column order
-    eluates = elution_plate.wells()
-    waste_well = waste['A1']
+    tip_counts = {p20: 0, p300: 0}
 
-    def new_tip(pip):
-        try:
-            pip.pick_up_tip()
-        except protocol_api.labware.OutOfTipsError:
+    def pick_up(pip):
+        # Unlimited tips: reset the rack once all 96 have been used
+        if tip_counts[pip] >= 96:
             pip.reset_tipracks()
-            pip.pick_up_tip()
+            tip_counts[pip] = 0
+        pip.pick_up_tip()
+        tip_counts[pip] += 1
 
     def move(pip, vol, src, dest, mix_after=None):
-        """Single-tip-per-transfer liquid move, optional post-dispense mix."""
-        new_tip(pip)
+        """Single-tip transfer of vol from src to dest, optional mix (reps, vol) after dispensing."""
+        pick_up(pip)
         pip.aspirate(vol, src)
         pip.dispense(vol, dest)
         if mix_after:
-            reps, mix_vol = mix_after
-            pip.mix(reps, mix_vol, dest)
+            pip.mix(mix_after[0], mix_after[1], dest)
         pip.drop_tip()
 
-    # 1. Add 40 uL beads (0.8x) and mix
-    protocol.comment('Adding 40 uL AMPure XP beads (0.8x) to each sample')
-    for s in samples:
-        move(p300, 40, beads['A1'], s, mix_after=(10, 60))
+    samples = sample_plate.wells()          # A1..H12
+    elutions = elution_plate.wells()        # A1..H12
+    waste_well = waste.wells_by_name()['A1']
 
-    # 2-3. Bind and magnet
+    # 1. Add 40 uL beads (0.8x) and mix
+    for w in samples:
+        move(p300, 40, beads['A1'], w, mix_after=(10, 60))
+
+    # 2-3. Bind and separate
     protocol.comment('Incubate sample_plate 5 min at room temperature (beads bind DNA)')
     protocol.comment('Engage magnetic module; wait 5 min until solution clears')
 
     # 4. Remove 90 uL supernatant
-    protocol.comment('Removing 90 uL supernatant to waste')
-    for s in samples:
-        move(p300, 90, s, waste_well)
+    for w in samples:
+        move(p300, 90, w, waste_well)
 
     # 5-8. Two 80% ethanol washes
-    for wash in (1, 2):
-        protocol.comment(f'Ethanol wash {wash}: adding 200 uL 80% ethanol')
-        new_tip(p300)  # one tip for adding clean ethanol to all wells (no contact with sample)
-        for s in samples:
-            p300.aspirate(200, ethanol['A1'])
-            p300.dispense(200, s.top())
-        p300.drop_tip()
-        protocol.comment(f'Ethanol wash {wash}: removing 200 uL ethanol to waste')
-        for s in samples:
-            move(p300, 200, s, waste_well)
+    for i in (1, 2):
+        for w in samples:
+            move(p300, 200, ethanol['A1'], w)
+        for w in samples:
+            move(p300, 200, w, waste_well)
+        protocol.comment('Ethanol wash {} complete'.format(i))
 
     # 9-10. Dry and release
     protocol.comment('Air dry beads 5 min at room temperature (magnet engaged); beads should appear matte not shiny')
     protocol.comment('Disengage magnetic module')
 
-    # 11. Elute in 50 uL water
-    protocol.comment('Adding 50 uL nuclease-free water and mixing to resuspend beads')
-    for s in samples:
-        move(p300, 50, water['A1'], s, mix_after=(10, 40))
+    # 11. Elute in 50 uL water and mix
+    for w in samples:
+        move(p300, 50, water['A1'], w, mix_after=(10, 40))
 
-    # 12. Incubate and magnet
+    # 12. Incubate and separate
     protocol.comment('Incubate sample_plate 2 min at room temperature; then re-engage magnetic module 5 min')
 
-    # 13. Transfer 45 uL eluate
-    protocol.comment('Transferring 45 uL cleaned DNA to elution_plate')
-    for s, e in zip(samples, eluates):
-        move(p300, 45, s, e)
+    # 13. Transfer 45 uL eluate to clean plate
+    for s, d in zip(samples, elutions):
+        move(p300, 45, s, d)

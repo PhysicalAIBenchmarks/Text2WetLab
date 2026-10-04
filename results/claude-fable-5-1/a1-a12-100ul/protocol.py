@@ -21,10 +21,10 @@ def run(protocol: protocol_api.ProtocolContext):
 
     # Step 1: 100 uL from reservoir A1 to plate A1..A12 (fresh tip per well)
     source = reservoir['A1']
-    destinations = plate.rows()[0]  # A1 to A12
+    destinations = plate.rows()[0]  # A1..A12
     for dest in destinations:
         p300.pick_up_tip()
         p300.aspirate(100, source)
         p300.dispense(100, dest)
-        p300.blow_out(dest.top())
         p300.drop_tip()
+    p300.reset_tipracks()

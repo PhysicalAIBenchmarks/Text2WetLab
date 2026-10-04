@@ -2,7 +2,7 @@
   "lint": [],
   "simulation": {
     "ok": true,
-    "n_commands": 10
+    "n_commands": 11
   },
   "checks": [
     {
@@ -46,59 +46,52 @@
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the required labels; p20 left and p300 right with the correct tip racks in slots 10 and 11."
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the required load names and labels; p20 left and p300 right with matching tip racks in slots 10 and 11."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "Aspirates 100 uL from reservoir A1 and dispenses 100 uL into plate A1, then 100 uL into B1; end_state check passed with [100, 100]."
-      },
-      {
-        "id": "pipette_choice",
-        "score": 1,
-        "evidence": "Uses p300 for the 100 uL volumes, which is within its 20-300 uL range."
+        "evidence": "The p300 aspirates 100 uL from reservoir A1 twice and dispenses 100 uL into plate A1 and then B1; the end_state check passed with [100, 100]."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "A tip is picked up before each aspirate and dropped after each dispense; the tip_before_aspirate and tip_dropped_at_end checks passed. A fresh tip per destination is sensible and safe, though not minimal."
+        "evidence": "Each loop iteration calls pick_up_tip before aspirating and drop_tip at the end; the tip_before_aspirate and tip_dropped_at_end checks passed."
       },
       {
         "id": "robot_practice",
-        "score": 0.5,
-        "evidence": "apiLevel 2.15 is in range and the metadata is clear. However, the blow_out at dest.top() after each dispense is unneeded, and the code uses default heights with no touch tip or similar."
+        "score": 1,
+        "evidence": "100 uL is within the p300 range, apiLevel 2.15 is valid, and the blow_out at the well top is safe; the simulation ran without error."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The code does only the one requested transfer, and its comments and metadata describe it accurately; the extra blow-out is a minor addition."
+        "evidence": "The code does the single transfer step as specified and the comments and metadata describe it accurately."
       }
     ],
     "scores": {
       "deck_and_hardware": 1.0,
       "volumes_and_wells": 1.0,
-      "pipette_choice": 1.0,
       "tip_usage": 1.0,
-      "robot_practice": 0.5,
+      "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol meets the task: correct labware, the p300 pipette, 100 uL to each of A1 and B1, and every measured check passed. The only minor point is an unnecessary blow-out after each dispense, along with a fresh tip for each destination well.",
+    "summary": "The protocol transfers 100 uL from reservoir A1 to plate A1 and B1 with the p300, using a fresh tip for each well. All measured checks passed and the rubric items are met.",
     "model": "claude-sonnet-5-5"
   },
   "critical_failures": [],
   "rewards": {
-    "reward": 0.9167,
+    "reward": 1.0,
     "sim_pass": 1.0,
     "checks_frac": 1.0,
     "lint_violations": 0.0,
     "deterministic_reward": 1.0,
-    "judge_mean": 0.9167,
+    "judge_mean": 1.0,
     "critical_fail": 0.0,
     "rubric_deck_and_hardware": 1.0,
     "rubric_volumes_and_wells": 1.0,
-    "rubric_pipette_choice": 1.0,
     "rubric_tip_usage": 1.0,
-    "rubric_robot_practice": 0.5,
+    "rubric_robot_practice": 1.0,
     "rubric_fidelity_to_task": 1.0
   }
 }
