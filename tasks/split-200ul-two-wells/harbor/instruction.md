@@ -27,6 +27,15 @@ Pipettes: `p20_single_gen2` on the **left** (tips `opentrons_96_tiprack_20ul`, s
 - `reservoir`: reagent, 10000 µL each.
 - `plate`: empty at the start (96-well destination plate).
 
+## The protocol to implement
+
+The task text above says what to do; these are the exact quantities, in order. Do them with the pipettes, in this order.
+
+1. Transfer 100 µL of reagent from `reservoir` (well A1) to `plate` wells A1, B1.
+
+Where a step lists several wells on both sides, they pair in order (A1 to A1, A2 to A2, and so on); one source well
+feeds every listed destination well. "Each" well means every well in the range given.
+
 ## Tools and constraints
 
 - Use OT-2 Python API `apiLevel` between `'2.2'` and `'2.15'`; Opentrons 7.5.0 is installed.

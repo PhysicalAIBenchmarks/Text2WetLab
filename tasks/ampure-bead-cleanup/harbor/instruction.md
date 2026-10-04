@@ -35,6 +35,27 @@ Pipettes: `p20_single_gen2` on the **left** (tips `opentrons_96_tiprack_20ul`, s
 - `waste` well A1: empty at the start (Liquid waste container).
 - `elution_plate`: empty at the start (Clean 96-well plate to receive eluate).
 
+## The protocol to implement
+
+The task text above says what to do; these are the exact quantities, in order. Do them with the pipettes, in this order.
+
+1. Transfer 40 µL of AMPure XP beads from `beads_reservoir` (well A1) to `sample_plate` wells A1:H12. Mix 10 times after dispensing.
+2. (Not simulated, record with `protocol.comment`) Incubate sample_plate 5 min at room temperature (beads bind DNA)
+3. (Not simulated, record with `protocol.comment`) Engage magnetic module; wait 5 min until solution clears
+4. Transfer 90 µL of supernatant from `sample_plate` wells A1:H12 to `waste` (well A1).
+5. Transfer 200 µL of ethanol 80pct from `ethanol_reservoir` (well A1) to `sample_plate` wells A1:H12.
+6. Transfer 200 µL of ethanol waste 1 from `sample_plate` wells A1:H12 to `waste` (well A1).
+7. Transfer 200 µL of ethanol 80pct from `ethanol_reservoir` (well A1) to `sample_plate` wells A1:H12.
+8. Transfer 200 µL of ethanol waste 2 from `sample_plate` wells A1:H12 to `waste` (well A1).
+9. (Not simulated, record with `protocol.comment`) Air dry beads 5 min at room temperature (magnet engaged); beads should appear matte not shiny
+10. (Not simulated, record with `protocol.comment`) Disengage magnetic module
+11. Transfer 50 µL of nuclease free water from `water_reservoir` (well A1) to `sample_plate` wells A1:H12. Mix 10 times after dispensing.
+12. (Not simulated, record with `protocol.comment`) Incubate sample_plate 2 min at room temperature; then re-engage magnetic module 5 min
+13. Transfer 45 µL of cleaned DNA from `sample_plate` wells A1:H12 to `elution_plate` wells A1:H12.
+
+Where a step lists several wells on both sides, they pair in order (A1 to A1, A2 to A2, and so on); one source well
+feeds every listed destination well. "Each" well means every well in the range given.
+
 ## Tools and constraints
 
 - Use OT-2 Python API `apiLevel` between `'2.2'` and `'2.15'`; Opentrons 7.5.0 is installed.

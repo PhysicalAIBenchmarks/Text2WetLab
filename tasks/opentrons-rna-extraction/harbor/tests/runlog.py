@@ -24,10 +24,18 @@ _comment = protocol_api.ProtocolContext.comment
 LOADNAMES: dict[str, str] = {}   # str(labware) as it appears in the run log -> the load name it was created from
 
 
+def _key(labware):
+    """'<label or display name> on <slot>', whatever the API level: str(labware) drops the slot from 2.14 on, and the
+    run log says 'on slot 2' there and 'on 2' before."""
+    slot = re.sub(r"^slot ", "", str(labware.parent))
+    name = labware.name if labware.name != labware.load_name else re.sub(r" on .*$", "", str(labware))
+    return f"{name} on {slot}"
+
+
 def _recording(original):
     def load_labware(self, load_name, *args, **kwargs):
         labware = original(self, load_name, *args, **kwargs)
-        LOADNAMES[str(labware)] = labware.load_name
+        LOADNAMES[_key(labware)] = labware.load_name
         return labware
     return load_labware
 
@@ -53,7 +61,7 @@ def parse(text: str, payload: dict) -> dict | None:
         event = {"kind": kind, "instrument": instrument}
         event["channels"] = 8 if "8-Channel" in instrument else 1
         if kind in {"aspirate", "dispense"}:
-            event.update(volume=float(match[1]), well=match[2], labware=match[3])
+            event.update(volume=float(match[1]), well=match[2], labware=re.sub(r" on slot ", " on ", match[3]))
         elif kind == "delay":
             event["seconds"] = int(match[1]) * 60 + float(match[2])
         elif kind == "temp":

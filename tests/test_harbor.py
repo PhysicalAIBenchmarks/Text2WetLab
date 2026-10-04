@@ -62,5 +62,5 @@ def test_no_attack_beats_the_split_task_grader(tmp_path):
     r = subprocess.run([sys.executable, str(ROOT / "scripts/harbor_adversarial.py"), "--tasks", "split-200ul-two-wells", "--out", str(out)],
                        capture_output=True, text=True, timeout=900)
     res = json.loads(out.read_text())["split-200ul-two-wells"]
-    assert res["control_reference_solution"]["reward"] == 1.0
-    assert [n for n, x in res.items() if n != "control_reference_solution" and x.get("reward") == 1.0] == [], r.stdout
+    assert [n for n, x in res.items() if n.startswith("control") and x.get("reward") != 1.0] == [], r.stdout     # incl. API 2.14 and 2.15
+    assert [n for n, x in res.items() if not n.startswith("control") and x.get("reward") == 1.0] == [], r.stdout

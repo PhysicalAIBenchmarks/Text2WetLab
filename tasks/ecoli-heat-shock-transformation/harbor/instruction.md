@@ -35,6 +35,18 @@ Pipettes: `p20_single_gen2` on the **left** (tips `opentrons_96_tiprack_20ul`, s
 - `tubes_1_5ml_1` well A1: competent cells, 50 µL each.
 - `soc_reservoir`: SOC medium, plenty (more than the protocol needs).
 
+## The protocol to implement
+
+The task text above says what to do; these are the exact quantities, in order. Do them with the pipettes, in this order.
+
+1. Transfer 2 µL of plasmid DNA from `plasmid_plate` wells A1 to `tubes_1_5ml_1` (well A1).
+2. (Not simulated, record with `protocol.comment`) Heat shock cells_rack 42°C 45 s, then transfer immediately to ice 2 min
+3. Transfer 250 µL of SOC medium from `soc_reservoir` (well A1) to `tubes_1_5ml_1` (well A1).
+4. (Not simulated, record with `protocol.comment`) Incubate cells_rack 37°C 60 min at 250 rpm for outgrowth recovery
+
+Where a step lists several wells on both sides, they pair in order (A1 to A1, A2 to A2, and so on); one source well
+feeds every listed destination well. "Each" well means every well in the range given.
+
 ## Tools and constraints
 
 - Use OT-2 Python API `apiLevel` between `'2.2'` and `'2.15'`; Opentrons 7.5.0 is installed.

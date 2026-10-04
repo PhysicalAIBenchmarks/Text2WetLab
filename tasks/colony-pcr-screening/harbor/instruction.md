@@ -31,6 +31,18 @@ Pipettes: `p20_single_gen2` on the **left** (tips `opentrons_96_tiprack_20ul`, s
 - `primer_plate` wells A1:H12: primer pairs, plenty (more than the protocol needs).
 - `pcr_plate`: empty at the start (Destination 96-well PCR plate (0.2 mL, semi-skirted)).
 
+## The protocol to implement
+
+The task text above says what to do; these are the exact quantities, in order. Do them with the pipettes, in this order.
+
+1. Transfer 18 µL of Q5 master mix 2x from `master_mix_reservoir` (well A1) to `pcr_plate` wells A1:H12.
+2. Transfer 1 µL of colony template from `colony_plate` wells A1:H12 to `pcr_plate` wells A1:H12. Mix 3 times after dispensing.
+3. Transfer 1 µL of primer pairs from `primer_plate` wells A1:H12 to `pcr_plate` wells A1:H12.
+4. (Not simulated, record with `protocol.comment`) Seal pcr_plate, thermocycle: 98°C 30 s; [98°C 10 s, 60°C 30 s, 72°C 30 s] × 30; 72°C 2 min; hold 4°C
+
+Where a step lists several wells on both sides, they pair in order (A1 to A1, A2 to A2, and so on); one source well
+feeds every listed destination well. "Each" well means every well in the range given.
+
 ## Tools and constraints
 
 - Use OT-2 Python API `apiLevel` between `'2.2'` and `'2.15'`; Opentrons 7.5.0 is installed.

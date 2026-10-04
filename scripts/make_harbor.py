@@ -97,6 +97,15 @@ Pipettes: `p20_single_gen2` on the **left** (tips `opentrons_96_tiprack_20ul`, s
 
 {contents}
 
+## The protocol to implement
+
+The task text above says what to do; these are the exact quantities, in order. Do them with the pipettes, in this order.
+
+{steps}
+
+Where a step lists several wells on both sides, they pair in order (A1 to A1, A2 to A2, and so on); one source well
+feeds every listed destination well. "Each" well means every well in the range given.
+
 ## Tools and constraints
 
 - Use OT-2 Python API `apiLevel` between `'2.2'` and `'2.15'`; Opentrons 7.5.0 is installed.
@@ -214,6 +223,29 @@ def contents_text(ir: Protocol, deck: dict) -> str:
     return "\n".join(lines)
 
 
+def _where(container: str, wells: list[str], deck: dict) -> str:
+    spec = deck["containers"][container]
+    if wells:
+        return f"`{spec['label']}` wells {', '.join(wells)}"
+    return f"`{spec['label']}`" + (f" (well {spec['well']})" if spec.get("well") else "")
+
+
+def steps_text(ir: Protocol, deck: dict) -> str:
+    out = []
+    for i, st in enumerate(ir.steps, 1):
+        if st.kind == "transfer":
+            what = st.reagent.replace("_", " ") if st.reagent else "liquid"
+            line = f"Transfer {st.volume_ul:g} µL of {what} from {_where(st.source, st.source_wells, deck)} to {_where(st.dest, st.dest_wells, deck)}."
+            if st.mix_cycles:
+                line += f" Mix {st.mix_cycles} times after dispensing."
+        elif st.kind == "mix":
+            line = f"Mix {_where(st.dest, st.dest_wells, deck)}, {st.mix_cycles or 3} cycles" + (f" at {st.volume_ul:g} µL." if st.volume_ul else ".")
+        else:
+            line = f"(Not simulated, record with `protocol.comment`) {st.action or st.note}"
+        out.append(f"{i}. {line}")
+    return "\n".join(out)
+
+
 def render_files(task: pathlib.Path) -> dict[str, str]:
     ir = Protocol.model_validate_json((task / "public/ir.json").read_text())
     meta = tomllib.loads((task / "task.toml").read_text())
@@ -226,7 +258,7 @@ def render_files(task: pathlib.Path) -> dict[str, str]:
         tubes = "\nTubes sit in the racks like this:\n\n| Tube | Rack label | Well |\n|---|---|---|\n" + "\n".join(
             f"| {n} | `{v['label']}` | {v['well']} |" for n, v in tube_rows) + "\n"
     files = {
-        "instruction.md": BRIEF.format(title=ir.title, nl=nl, slots=slots, tubes=tubes, contents=contents_text(ir, deck)),
+        "instruction.md": BRIEF.format(title=ir.title, nl=nl, slots=slots, tubes=tubes, contents=contents_text(ir, deck), steps=steps_text(ir, deck)),
         "task.toml": TASK_TOML.format(slug=task.name, description=ir.title.replace('"', "'"), source=meta["metadata"]["source"]),
         "environment/Dockerfile": DOCKERFILE,
         "solution/protocol.py": compile_ir(ir, deck),

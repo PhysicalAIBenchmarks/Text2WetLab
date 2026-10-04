@@ -29,6 +29,8 @@ def attacks(code: str, deck: dict) -> dict[str, str | None]:
     transfers = [i for i, ln in enumerate(code.splitlines()) if ".transfer(" in ln]
     lines = code.splitlines()
     out: dict[str, str | None] = {"control_reference_solution": code}
+    for level in ("2.14", "2.15"):     # a correct protocol must score the same at every allowed API level (the log format changes)
+        out[f"control_api_{level.replace('.', '_')}"] = code.replace("'apiLevel': '2.13'", f"'apiLevel': '{level}'")
     out["empty_protocol"] = "metadata = {'apiLevel': '2.13'}\n\n\ndef run(protocol):\n    pass\n"
     out["drop_last_transfer"] = "\n".join(l for i, l in enumerate(lines) if i != transfers[-1]) + "\n" if transfers else None
     out["halve_volumes"] = re.sub(r"\.transfer\(([\d.]+),", lambda m: f".transfer({float(m[1]) / 2:g},", code) if transfers else None
@@ -97,8 +99,8 @@ def main():
             print(f"{task.name:34} {name:36} reward={r['reward']}  {'| ' + ','.join(r.get('failed_checks', []))[:70] if r.get('failed_checks') else ''}{' | lint:' + r['lint'][0][:40] if r.get('lint') else ''}", flush=True)
     pathlib.Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     pathlib.Path(a.out).write_text(json.dumps(results, indent=1))
-    holes = [(t, n) for t, rs in results.items() for n, r in rs.items() if n != "control_reference_solution" and r.get("reward") == 1.0]
-    broken = [(t, "control") for t, rs in results.items() if rs["control_reference_solution"].get("reward") != 1.0]
+    holes = [(t, n) for t, rs in results.items() for n, r in rs.items() if not n.startswith("control") and r.get("reward") == 1.0]
+    broken = [(t, n) for t, rs in results.items() for n, r in rs.items() if n.startswith("control") and r.get("reward") != 1.0]
     print(f"\nHOLES (attack scored 1.0): {len(holes)} {holes}\nCONTROL FAILURES: {len(broken)} {broken}")
 
 

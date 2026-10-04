@@ -6,8 +6,20 @@
    "lint": [],
    "error": ""
   },
+  "control_api_2_14": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "control_api_2_15": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
   "empty_protocol": {
-   "reward": 0.375,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:reservoir",
     "deck_labware:plate"
@@ -16,7 +28,7 @@
    "error": ""
   },
   "drop_last_transfer": {
-   "reward": 0.4285,
+   "reward": 0.0,
    "failed_checks": [
     "end_state:plate"
    ],
@@ -24,7 +36,7 @@
    "error": ""
   },
   "halve_volumes": {
-   "reward": 0.4285,
+   "reward": 0.0,
    "failed_checks": [
     "end_state:plate"
    ],
@@ -32,7 +44,7 @@
    "error": ""
   },
   "double_volumes": {
-   "reward": 0.4285,
+   "reward": 0.0,
    "failed_checks": [
     "end_state:plate"
    ],
@@ -40,7 +52,7 @@
    "error": ""
   },
   "no_labels": {
-   "reward": 0.375,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:reservoir",
     "deck_labware:plate"
@@ -52,7 +64,7 @@
    "skipped": "does not apply to this task"
   },
   "reservoir_labelled_as_plate_kind": {
-   "reward": 0.375,
+   "reward": 0.125,
    "failed_checks": [
     "deck_labware:reservoir",
     "no_aspirate_from_empty_well"
@@ -61,7 +73,7 @@
    "error": ""
   },
   "wrong_slot": {
-   "reward": 0.4375,
+   "reward": 0.25,
    "failed_checks": [
     "deck_labware:reservoir"
    ],
@@ -75,7 +87,7 @@
    "error": "simulator gate failed"
   },
   "finish_holding_a_tip": {
-   "reward": 0.4285,
+   "reward": 0.25,
    "failed_checks": [
     "tip_dropped_at_end"
    ],
@@ -83,7 +95,7 @@
    "error": ""
   },
   "extra_liquid_into_target": {
-   "reward": 0.4285,
+   "reward": 0.0,
    "failed_checks": [
     "end_state:plate"
    ],
@@ -94,7 +106,7 @@
    "skipped": "does not apply to this task"
   },
   "comment_spoof_only": {
-   "reward": 0.375,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:reservoir",
     "deck_labware:plate"
@@ -154,8 +166,20 @@
    "lint": [],
    "error": ""
   },
+  "control_api_2_14": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "control_api_2_15": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
   "empty_protocol": {
-   "reward": 0.25,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:sample_plate",
     "deck_labware:beads_reservoir",
@@ -168,7 +192,7 @@
    "error": ""
   },
   "drop_last_transfer": {
-   "reward": 0.375,
+   "reward": 0.0,
    "failed_checks": [
     "end_state:sample_plate",
     "end_state:elution_plate"
@@ -177,7 +201,7 @@
    "error": ""
   },
   "halve_volumes": {
-   "reward": 0.375,
+   "reward": 0.0,
    "failed_checks": [
     "end_state:sample_plate",
     "end_state:elution_plate"
@@ -186,7 +210,7 @@
    "error": ""
   },
   "double_volumes": {
-   "reward": 0.3125,
+   "reward": 0.0,
    "failed_checks": [
     "no_aspirate_from_empty_well",
     "end_state:sample_plate",
@@ -196,7 +220,7 @@
    "error": ""
   },
   "no_labels": {
-   "reward": 0.2084,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:sample_plate",
     "deck_labware:beads_reservoir",
@@ -210,7 +234,7 @@
    "error": ""
   },
   "swap_two_labels": {
-   "reward": 0.4,
+   "reward": 0.25,
    "failed_checks": [
     "deck_labware:beads_reservoir",
     "deck_labware:ethanol_reservoir"
@@ -219,7 +243,7 @@
    "error": ""
   },
   "reservoir_labelled_as_plate_kind": {
-   "reward": 0.2917,
+   "reward": 0.0833,
    "failed_checks": [
     "deck_labware:beads_reservoir",
     "deck_labware:ethanol_reservoir",
@@ -231,7 +255,7 @@
    "error": ""
   },
   "wrong_slot": {
-   "reward": 0.375,
+   "reward": 0.125,
    "failed_checks": [
     "deck_labware:sample_plate",
     "no_aspirate_from_empty_well"
@@ -258,7 +282,7 @@
    "error": "simulator gate failed"
   },
   "share_one_tip_across_sources": {
-   "reward": 0.4375,
+   "reward": 0.25,
    "failed_checks": [
     "no_cross_contamination"
    ],
@@ -266,7 +290,7 @@
    "error": ""
   },
   "comment_spoof_only": {
-   "reward": 0.25,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:sample_plate",
     "deck_labware:beads_reservoir",
@@ -330,8 +354,20 @@
    "lint": [],
    "error": ""
   },
+  "control_api_2_14": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "control_api_2_15": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
   "empty_protocol": {
-   "reward": 0.3,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:colony_plate",
     "deck_labware:pcr_plate",
@@ -342,7 +378,7 @@
    "error": ""
   },
   "drop_last_transfer": {
-   "reward": 0.4445,
+   "reward": 0.3333,
    "failed_checks": [
     "end_state:pcr_plate"
    ],
@@ -350,7 +386,7 @@
    "error": ""
   },
   "halve_volumes": {
-   "reward": 0.4445,
+   "reward": 0.3333,
    "failed_checks": [
     "end_state:pcr_plate"
    ],
@@ -358,7 +394,7 @@
    "error": ""
   },
   "double_volumes": {
-   "reward": 0.4445,
+   "reward": 0.3333,
    "failed_checks": [
     "end_state:pcr_plate"
    ],
@@ -366,7 +402,7 @@
    "error": ""
   },
   "no_labels": {
-   "reward": 0.25,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:colony_plate",
     "deck_labware:pcr_plate",
@@ -378,7 +414,7 @@
    "error": ""
   },
   "swap_two_labels": {
-   "reward": 0.3333,
+   "reward": 0.0833,
    "failed_checks": [
     "deck_labware:colony_plate",
     "deck_labware:pcr_plate",
@@ -388,7 +424,7 @@
    "error": ""
   },
   "reservoir_labelled_as_plate_kind": {
-   "reward": 0.4,
+   "reward": 0.1875,
    "failed_checks": [
     "deck_labware:master_mix_reservoir",
     "no_aspirate_from_empty_well"
@@ -397,7 +433,7 @@
    "error": ""
   },
   "wrong_slot": {
-   "reward": 0.3889,
+   "reward": 0.1667,
    "failed_checks": [
     "deck_labware:colony_plate",
     "no_aspirate_from_empty_well"
@@ -412,7 +448,7 @@
    "error": "simulator gate failed"
   },
   "finish_holding_a_tip": {
-   "reward": 0.4445,
+   "reward": 0.25,
    "failed_checks": [
     "tip_dropped_at_end"
    ],
@@ -420,7 +456,7 @@
    "error": ""
   },
   "extra_liquid_into_target": {
-   "reward": 0.4445,
+   "reward": 0.3333,
    "failed_checks": [
     "end_state:pcr_plate"
    ],
@@ -428,7 +464,7 @@
    "error": ""
   },
   "share_one_tip_across_sources": {
-   "reward": 0.4445,
+   "reward": 0.25,
    "failed_checks": [
     "no_cross_contamination"
    ],
@@ -436,7 +472,7 @@
    "error": ""
   },
   "comment_spoof_only": {
-   "reward": 0.3,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:colony_plate",
     "deck_labware:pcr_plate",
@@ -498,8 +534,20 @@
    "lint": [],
    "error": ""
   },
+  "control_api_2_14": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "control_api_2_15": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
   "empty_protocol": {
-   "reward": 0.3333,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:plasmid_plate",
     "deck_labware:cells_rack",
@@ -509,7 +557,7 @@
    "error": ""
   },
   "drop_last_transfer": {
-   "reward": 0.4375,
+   "reward": 0.25,
    "failed_checks": [
     "end_state:cells_rack"
    ],
@@ -517,7 +565,7 @@
    "error": ""
   },
   "halve_volumes": {
-   "reward": 0.4375,
+   "reward": 0.25,
    "failed_checks": [
     "end_state:cells_rack"
    ],
@@ -525,7 +573,7 @@
    "error": ""
   },
   "double_volumes": {
-   "reward": 0.4375,
+   "reward": 0.25,
    "failed_checks": [
     "end_state:cells_rack"
    ],
@@ -533,7 +581,7 @@
    "error": ""
   },
   "no_labels": {
-   "reward": 0.2778,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:plasmid_plate",
     "deck_labware:cells_rack",
@@ -547,7 +595,7 @@
    "skipped": "does not apply to this task"
   },
   "reservoir_labelled_as_plate_kind": {
-   "reward": 0.3889,
+   "reward": 0.1667,
    "failed_checks": [
     "deck_labware:soc_reservoir",
     "no_aspirate_from_empty_well"
@@ -556,7 +604,7 @@
    "error": ""
   },
   "wrong_slot": {
-   "reward": 0.375,
+   "reward": 0.125,
    "failed_checks": [
     "deck_labware:plasmid_plate",
     "no_aspirate_from_empty_well"
@@ -571,7 +619,7 @@
    "error": "simulator gate failed"
   },
   "finish_holding_a_tip": {
-   "reward": 0.4375,
+   "reward": 0.25,
    "failed_checks": [
     "tip_dropped_at_end"
    ],
@@ -588,7 +636,7 @@
    "skipped": "does not apply to this task"
   },
   "comment_spoof_only": {
-   "reward": 0.3333,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:plasmid_plate",
     "deck_labware:cells_rack",
@@ -649,8 +697,20 @@
    "lint": [],
    "error": ""
   },
+  "control_api_2_14": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "control_api_2_15": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
   "empty_protocol": {
-   "reward": 0.1429,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:water",
     "deck_labware:q5_buffer",
@@ -672,7 +732,7 @@
    "error": ""
   },
   "drop_last_transfer": {
-   "reward": 0.4762,
+   "reward": 0.4667,
    "failed_checks": [
     "end_state:cells_plate"
    ],
@@ -680,7 +740,7 @@
    "error": ""
   },
   "halve_volumes": {
-   "reward": 0.3333,
+   "reward": 0.15,
    "failed_checks": [
     "no_aspirate_from_empty_well",
     "end_state:pcr_mm",
@@ -694,7 +754,7 @@
    "error": ""
   },
   "double_volumes": {
-   "reward": 0.3572,
+   "reward": 0.3,
    "failed_checks": [
     "end_state:pcr_mm",
     "end_state:primer_plate",
@@ -707,7 +767,7 @@
    "error": ""
   },
   "no_labels": {
-   "reward": 0.1191,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:water",
     "deck_labware:q5_buffer",
@@ -730,7 +790,7 @@
    "error": ""
   },
   "swap_two_labels": {
-   "reward": 0.4285,
+   "reward": 0.2167,
    "failed_checks": [
     "deck_labware:primer_plate",
     "deck_labware:template_plate",
@@ -743,7 +803,7 @@
    "skipped": "does not apply to this task"
   },
   "wrong_slot": {
-   "reward": 0.4524,
+   "reward": 0.2333,
    "failed_checks": [
     "deck_labware:water",
     "no_aspirate_from_empty_well"
@@ -758,7 +818,7 @@
    "error": "simulator gate failed"
   },
   "finish_holding_a_tip": {
-   "reward": 0.4762,
+   "reward": 0.25,
    "failed_checks": [
     "tip_dropped_at_end"
    ],
@@ -772,7 +832,7 @@
    "error": "simulator gate failed"
   },
   "share_one_tip_across_sources": {
-   "reward": 0.4762,
+   "reward": 0.25,
    "failed_checks": [
     "no_cross_contamination"
    ],
@@ -780,7 +840,7 @@
    "error": ""
   },
   "comment_spoof_only": {
-   "reward": 0.1429,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:water",
     "deck_labware:q5_buffer",
@@ -853,8 +913,20 @@
    "lint": [],
    "error": ""
   },
+  "control_api_2_14": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "control_api_2_15": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
   "empty_protocol": {
-   "reward": 0.375,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:reservoir",
     "deck_labware:plate"
@@ -863,7 +935,7 @@
    "error": ""
   },
   "drop_last_transfer": {
-   "reward": 0.4285,
+   "reward": 0.0,
    "failed_checks": [
     "end_state:plate"
    ],
@@ -871,7 +943,7 @@
    "error": ""
   },
   "halve_volumes": {
-   "reward": 0.4285,
+   "reward": 0.0,
    "failed_checks": [
     "end_state:plate"
    ],
@@ -879,7 +951,7 @@
    "error": ""
   },
   "double_volumes": {
-   "reward": 0.4285,
+   "reward": 0.0,
    "failed_checks": [
     "end_state:plate"
    ],
@@ -887,7 +959,7 @@
    "error": ""
   },
   "no_labels": {
-   "reward": 0.375,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:reservoir",
     "deck_labware:plate"
@@ -899,7 +971,7 @@
    "skipped": "does not apply to this task"
   },
   "reservoir_labelled_as_plate_kind": {
-   "reward": 0.375,
+   "reward": 0.125,
    "failed_checks": [
     "deck_labware:reservoir",
     "no_aspirate_from_empty_well"
@@ -908,7 +980,7 @@
    "error": ""
   },
   "wrong_slot": {
-   "reward": 0.4375,
+   "reward": 0.25,
    "failed_checks": [
     "deck_labware:reservoir"
    ],
@@ -922,7 +994,7 @@
    "error": "simulator gate failed"
   },
   "finish_holding_a_tip": {
-   "reward": 0.4285,
+   "reward": 0.25,
    "failed_checks": [
     "tip_dropped_at_end"
    ],
@@ -930,7 +1002,7 @@
    "error": ""
   },
   "extra_liquid_into_target": {
-   "reward": 0.4285,
+   "reward": 0.0,
    "failed_checks": [
     "end_state:plate"
    ],
@@ -941,7 +1013,7 @@
    "skipped": "does not apply to this task"
   },
   "comment_spoof_only": {
-   "reward": 0.375,
+   "reward": 0.0,
    "failed_checks": [
     "deck_labware:reservoir",
     "deck_labware:plate"
