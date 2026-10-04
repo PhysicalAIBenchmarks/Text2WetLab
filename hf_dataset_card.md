@@ -56,6 +56,13 @@ Simulator gate, generic rules (tip before aspirate, no overdispense, no draw fro
 end state derived from the IR. See `docs/criteria.md` for the evidence: 21 deliberately broken or alternative
 protocols, 0 misjudged.
 
+## Ingestion master table
+
+`ingestion/master.csv` has one row per (paper, experiment): 113 rows for 36 papers, with the PDF (URL, SHA-256, pages, licence,
+whether it may be redistributed), the codebase (repo, pinned commit, licence, Opentrons script counts, whether it simulates), the
+pipeline state of each experiment and its link to a benchmark task. PDFs and third-party code are not in this dataset; the table
+records where to fetch them and how to verify them.
+
 ## Provenance
 
 `PROVENANCE.csv` lists who first committed every task, reference, pipeline output, render and code file, with URLs.

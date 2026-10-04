@@ -1,0 +1,345 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "search",
+      "value": "Thermo Fisher Phire Plant Direct PCR Master Mix manual annealing extension 20 µL reaction"
+    },
+    {
+      "kind": "result",
+      "value": "https://tools.thermofisher.com/content/sfs/manuals/MAN0012959_Phire_Plant_Direct_PCR_MasterMixes_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://assets.fishersci.com/TFS-Assets/LSG/manuals/F-160_QR_TS_5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/F-170_QR_TS_5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://faculty.washington.edu/toby/PHIRE_plant_direct_pcr_kit_manual.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0013358_Phire_Plant_Direct_PCR_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://assets.fishersci.com/TFS-Assets/BID/Reference-Materials/direct-pcr-labaid.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/order/catalog/product/F160S"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/order/catalog/product/F160L"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12234509"
+    },
+    {
+      "kind": "search",
+      "value": "NEB Turbo Competent E. coli high efficiency transformation protocol heat shock 42C 30 seconds outgrowth SOC"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/protocols/high-efficiency-transformation-protocol-c2987?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/protocols/1/01/01/high-efficiency-transformation-protocol-c2984"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb-online.de/literatur/pdf/NEB_Competent_Cells.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/364678194_High_Efficiency_Transformation_Protocol_using_NEB_10-beta_Competent_E_coli_C3019H_v2"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.wiki/teams/5275/education/transformation-protocol.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/tools-and-resources/usage-guidelines/chemical-transformation-tips"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.org/mediawiki/2019/9/95/T--UCSC--transformation.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/high-efficiency-transformation-protocol-using-neb-irvcd66.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10202620"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6696251"
+    },
+    {
+      "kind": "search",
+      "value": "Lee 2015 Highly Characterized Yeast Toolkit Golden Gate assembly protocol BsaI T4 ligase 30 cycles 42 16 transformation"
+    },
+    {
+      "kind": "result",
+      "value": "https://openwetware.org/wiki/McClean:_Golden_Gate-Making_a_new_part"
+    },
+    {
+      "kind": "result",
+      "value": "https://openwetware.org/wiki/McClean:_Golden_Gate-_Making_a_multi-part_plasmid"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.jove.com/t/61993/rapid-assembly-multi-gene-constructs-using-modular-golden-gate"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.cell.com/star-protocols/fulltext/S2666-1667(26)00301-1"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2401.11746"
+    },
+    {
+      "kind": "result",
+      "value": "https://barricklab.org/twiki/bin/view/Lab/GoldenGateAssemblyProtocolsMainPage"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.earlham.ac.uk/articles/how-design-and-use-moclo-budding-yeast-part-1"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10006051"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9631204"
+    },
+    {
+      "kind": "result",
+      "value": "https://currentprotocols.onlinelibrary.wiley.com/doi/10.1002/cpz1.882"
+    },
+    {
+      "kind": "search",
+      "value": "Phire Plant Direct PCR Master Mix protocol colony direct PCR cycling conditions dilution protocol"
+    },
+    {
+      "kind": "result",
+      "value": "https://assets.fishersci.com/TFS-Assets/LSG/manuals/F-160_QR_TS_5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://tools.thermofisher.com/content/sfs/manuals/MAN0012959_Phire_Plant_Direct_PCR_MasterMixes_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://assets.fishersci.com/TFS-Assets/LSG/brochures/thermo-scientific-direct-pcr-brochure.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/order/catalog/product/F160L"
+    },
+    {
+      "kind": "result",
+      "value": "https://faculty.washington.edu/toby/PHIRE_plant_direct_pcr_kit_manual.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/profile/Houda_Kawas/post/Can-anyone-share-Direct-PCR-protocol-for-plants/attachment/59d63d2c79197b807799a05e/AS:418627128971265@1476819893779/download/poster_directpcr_from_plant_90x120.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0013358_Phire_Plant_Direct_PCR_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/mba-dtol-dna-barcoding-of-macroalgae-and-marine-pr-c4kbyusn.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10781457"
+    },
+    {
+      "kind": "search",
+      "value": "NEB Turbo Competent E. coli high efficiency transformation protocol heat shock 42C 30 seconds outgrowth SOC"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/protocols/high-efficiency-transformation-protocol-c2987?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/protocols/1/01/01/high-efficiency-transformation-protocol-c2984"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb-online.de/literatur/pdf/NEB_Competent_Cells.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/364678194_High_Efficiency_Transformation_Protocol_using_NEB_10-beta_Competent_E_coli_C3019H_v2"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.wiki/teams/5275/education/transformation-protocol.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/tools-and-resources/usage-guidelines/chemical-transformation-tips"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.org/mediawiki/2019/9/95/T--UCSC--transformation.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/high-efficiency-transformation-protocol-using-neb-irvcd66.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10202620"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6696251"
+    },
+    {
+      "kind": "search",
+      "value": "Thermo Fisher Phire Plant Direct PCR Master Mix manual annealing extension 20 µL reaction"
+    },
+    {
+      "kind": "result",
+      "value": "https://tools.thermofisher.com/content/sfs/manuals/MAN0012959_Phire_Plant_Direct_PCR_MasterMixes_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://assets.fishersci.com/TFS-Assets/LSG/manuals/F-160_QR_TS_5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/F-170_QR_TS_5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://faculty.washington.edu/toby/PHIRE_plant_direct_pcr_kit_manual.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0013358_Phire_Plant_Direct_PCR_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://assets.fishersci.com/TFS-Assets/BID/Reference-Materials/direct-pcr-labaid.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/order/catalog/product/F160S"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/order/catalog/product/F160L"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12234509"
+    },
+    {
+      "kind": "search",
+      "value": "Lee 2015 Highly Characterized Yeast Toolkit Golden Gate assembly protocol BsaI T4 ligase 30 cycles 42 16 transformation"
+    },
+    {
+      "kind": "result",
+      "value": "https://openwetware.org/wiki/McClean:_Golden_Gate-Making_a_new_part"
+    },
+    {
+      "kind": "result",
+      "value": "https://openwetware.org/wiki/McClean:_Golden_Gate-_Making_a_multi-part_plasmid"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.jove.com/t/61993/rapid-assembly-multi-gene-constructs-using-modular-golden-gate"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.cell.com/star-protocols/fulltext/S2666-1667(26)00301-1"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2401.11746"
+    },
+    {
+      "kind": "result",
+      "value": "https://barricklab.org/twiki/bin/view/Lab/GoldenGateAssemblyProtocolsMainPage"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.earlham.ac.uk/articles/how-design-and-use-moclo-budding-yeast-part-1"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10006051"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9631204"
+    },
+    {
+      "kind": "result",
+      "value": "https://currentprotocols.onlinelibrary.wiley.com/doi/10.1002/cpz1.882"
+    },
+    {
+      "kind": "search",
+      "value": "Phire Plant Direct PCR Master Mix protocol colony direct PCR cycling conditions dilution protocol"
+    },
+    {
+      "kind": "result",
+      "value": "https://assets.fishersci.com/TFS-Assets/LSG/manuals/F-160_QR_TS_5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://assets.fishersci.com/TFS-Assets/LSG/brochures/thermo-scientific-direct-pcr-brochure.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://tools.thermofisher.com/content/sfs/manuals/MAN0012959_Phire_Plant_Direct_PCR_MasterMixes_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/order/catalog/product/F160L"
+    },
+    {
+      "kind": "result",
+      "value": "https://faculty.washington.edu/toby/PHIRE_plant_direct_pcr_kit_manual.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0013358_Phire_Plant_Direct_PCR_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/profile/Houda_Kawas/post/Can-anyone-share-Direct-PCR-protocol-for-plants/attachment/59d63d2c79197b807799a05e/AS:418627128971265@1476819893779/download/poster_directpcr_from_plant_90x120.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/mba-dtol-dna-barcoding-of-macroalgae-and-marine-pr-c4kbyusn.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10781457"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://tools.thermofisher.com/content/sfs/manuals/MAN0012959_Phire_Plant_Direct_PCR_MasterMixes_UG.pdf"
+    }
+  ]
+}

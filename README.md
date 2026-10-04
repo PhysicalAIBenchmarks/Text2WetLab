@@ -25,7 +25,8 @@ eval/                  spec_check.py (the one checker), runlog.py (simulator -> 
 references/            author-published scripts, comparison only, each with upstream commit + licence
 data/pipeline_runs/    paper2protocol output: paper.json, exp<N>/protocol.json (the IR), protocol.txt (the NL)
 assets/                examples/ (2D GIFs), examples3d/ (MP4, GIF, 12 frames each)
-docs/                  criteria.md (what is judged, with evidence), examples.md (gallery), agent-spec.md
+ingestion/             every paper looked at: records, PDFs/code by hash, master.csv (one row per paper experiment)
+docs/                  criteria.md (what is judged), risks.md, harbor-runbook.md, examples.md (gallery), agent-spec.md
 manuscript/            arXiv write-up (placeholder)
 scripts/               reproduce.py, criteria_matrix.py, make_provenance_csv.py, deploy_hf.py
 PROVENANCE.csv         who first committed every task, reference, output, render and code file, with URLs

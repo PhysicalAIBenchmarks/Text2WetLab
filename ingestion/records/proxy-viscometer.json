@@ -1,0 +1,77 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.10"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/proxy-viscometer/Kedar-Materials-by-Design-Lab__Opentrons-ProxyViscometer",
+   "commit": "7ee24d70b7c47b5872646a2a79550d98e1403603",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 1,
+   "py_files": 1,
+   "redistributable": "no",
+   "repo": "Kedar-Materials-by-Design-Lab/Opentrons-ProxyViscometer",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 408,
+   "status": "cloned",
+   "url": "https://github.com/Kedar-Materials-by-Design-Lab/Opentrons-ProxyViscometer"
+  }
+ ],
+ "doi_primary": "10.1039/d2dd00126h",
+ "dois": [
+  "10.1039/d2dd00126h",
+  "10.1039/d4dd00368c"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "d2dd00126h; OT-2_ProxyViscometerProtocol.py",
+   "id": "viscometer-1",
+   "liquid_handling": "mostly",
+   "title": "Gravimetric dispense calibration/scaling analysis for Newtonian fluids 1500-12000 cP (2023)"
+  },
+  {
+   "evidence": "d4dd00368c; same repo",
+   "id": "viscometer-2",
+   "liquid_handling": "mostly",
+   "title": "Dispense-flow-rate sweep for ML viscosity regression 20-20000 cP (2025)"
+  }
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1039/d2dd00126h:\n  europepmc: no Europe PMC full text for this DOI\nDo",
+  "source": null
+ },
+ "journal": "Digital Discovery",
+ "note": "Identified with high confidence: Soh et al. Digital Discovery 2023 (Hippalgaonkar lab); repo named in README/paper. Mechanism is gravimetric dispense over fixed time, not aspiration timing.",
+ "open_access": true,
+ "origin": [
+  "other Claude session"
+ ],
+ "paper_licence": "cc by 3.0 (2023 paper); 2025 follow-up 10.1039/d4dd00368c is cc by-nc 3.0 (repo copy cc by)",
+ "pdf": {
+  "bytes": 1658744,
+  "licence": "cc by",
+  "note": "PDF is the Cambridge repository copy (RSC site returns 403 bot check). 2025 follow-up PDF cached at ~/.cache/text2wetlab-ingest/pdf/proxy-viscometer-2025.pdf (23 pp, Cambridge repository bitstream 64dbfa83-..., cc by accepted version; RSC version is NC)",
+  "pages": 8,
+  "redistributable": "yes",
+  "sha256": "df1cdfcf60f9da2ed6824aa837e32d51e88f79bb543fd00b793cd55763853229",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.repository.cam.ac.uk/bitstreams/b14ca825-6a2d-44b0-90bd-34b4bc62487d/download"
+   }
+  ],
+  "url": "https://www.repository.cam.ac.uk/bitstreams/b14ca825-6a2d-44b0-90bd-34b4bc62487d/download"
+ },
+ "pmcid": null,
+ "slug": "proxy-viscometer",
+ "title": "ProxyViscometer (Kedar lab): polymer viscosity by aspiration timing",
+ "year": "2023"
+}

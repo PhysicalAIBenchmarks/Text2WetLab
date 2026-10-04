@@ -1,0 +1,73 @@
+{
+ "code": [],
+ "doi_primary": "10.3791/63395",
+ "dois": [
+  "10.3791/63395"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "JoVE protocol section titles (video chapter \"Sample Intake, Heat Treatment, and Sample Assignment\"); full text not retrievable",
+   "id": "saliva-intake-heat-treatment",
+   "liquid_handling": "partly",
+   "title": "Sample intake, heat treatment and sample assignment (OT-2 plate preparation)"
+  },
+  {
+   "evidence": "Abstract: open-source liquid handling robots and thermocyclers; protocol text not retrievable",
+   "id": "automated-rtqpcr-setup",
+   "liquid_handling": "mostly",
+   "title": "Open-source robot multiplex RT-qPCR master-mix dispensing and sample transfer"
+  }
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.3791/63395:\n  europepmc: Server error '500 ' for url 'https://www.ebi",
+  "source": null
+ },
+ "journal": "",
+ "note": "JoVE page/PDF and PMC PDF bot-blocked (HTTP 403 / challenge page); not open access per Europe PMC; no code statement retrievable.",
+ "open_access": false,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC9199378?pdf=render"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9199378.1/PMC9199378.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9199378.2/PMC9199378.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9199378.3/PMC9199378.3.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC9199378&blobtype=pdf"
+   }
+  ]
+ },
+ "pmcid": "PMC9199378",
+ "slug": "sars-cov-2-rtqpcr-jove",
+ "title": "Efficient SARS-CoV-2 Quantitative Reverse Transcriptase PCR Saliva Diagnostic Strategy utilizing Open-Source Pipetting Robots",
+ "year": "2022"
+}

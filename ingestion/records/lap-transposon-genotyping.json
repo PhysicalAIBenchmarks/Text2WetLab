@@ -1,0 +1,111 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.14"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/lap-transposon-genotyping/BiocomputationLab__LAPrepository",
+   "commit": "f00729b83d0289291dd8e676bcd6dc8e80d1e1a8",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 18,
+   "py_files": 37,
+   "redistributable": "no",
+   "repo": "BiocomputationLab/LAPrepository",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 29616,
+   "status": "cloned",
+   "url": "https://github.com/BiocomputationLab/LAPrepository"
+  },
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/lap-transposon-genotyping/BiocomputationLab__tnatlas",
+   "commit": "ef1938ccfef3cc29c503d3770b7a176c2db1bb39",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 11,
+   "redistributable": "yes",
+   "repo": "BiocomputationLab/tnatlas",
+   "robot_mentions": [],
+   "size_kb": 19939,
+   "status": "cloned",
+   "url": "https://github.com/BiocomputationLab/tnatlas"
+  }
+ ],
+ "doi_primary": "10.1186/s44330-025-00054-3",
+ "dois": [
+  "10.1186/s44330-025-00054-3"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Materials and procedure step list; Fig. 1",
+   "id": "colony_picking_selective_media",
+   "liquid_handling": "partly",
+   "title": "Colony picking in selective media (step 1) and media dispensing/inoculation"
+  },
+  {
+   "evidence": "Materials and procedure steps 2-3; Fig. 1",
+   "id": "counter_selection_glycerol_stocks",
+   "liquid_handling": "mostly",
+   "title": "Counter-selection and glycerol stock pre-cultures on OT-2 (LAP scripts)"
+  },
+  {
+   "evidence": "Materials and procedure step 4; Fig. 2",
+   "id": "control_pcr_setup",
+   "liquid_handling": "mostly",
+   "title": "Control PCR sample preparation (Phire master mix, primer pairs PS3/PS4, PS5/PS6)"
+  },
+  {
+   "evidence": "Materials and procedure step 5-6; Fig. 3",
+   "id": "arbitrary_pcr1_pcr2_setup",
+   "liquid_handling": "mostly",
+   "title": "Arbitrary PCR 1 and 2 setup with thermocycler profile, then sequencing and annotation (tnatlas BLASTN)"
+  }
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 8,
+  "source": "europepmc:PMC7618916"
+ },
+ "journal": "",
+ "note": "repositories named in paper: LAPrepository, tnatlas (GitHub); scripts also at laprepo.com; workflow also on protocols.io 10.17504/protocols.io.kqdg394jzg25/v2 (not ingested)",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1111694,
+  "licence": "cc by",
+  "pages": 19,
+  "redistributable": "yes",
+  "sha256": "c3bbaa7f0e5b41fa18b9b358fd1037fedc6ab22457c7cd0af33f6972bfd0767e",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7618916?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7618916.1/PMC7618916.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7618916.1/PMC7618916.1.pdf"
+ },
+ "pmcid": "PMC7618916",
+ "slug": "lap-transposon-genotyping",
+ "title": "Automated workflow for genotyping individual transposon library variants",
+ "year": "2026"
+}

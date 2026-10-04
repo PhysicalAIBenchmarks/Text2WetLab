@@ -1,0 +1,54 @@
+{
+ "code": [],
+ "doi_primary": "10.1016/j.eimce.2022.05.001",
+ "dois": [
+  "10.1016/j.eimce.2022.05.001"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Results 3.2; Fig. 1B",
+   "id": "ot2-station-a",
+   "liquid_handling": "mostly",
+   "title": "OT-2 station A: lysis mix dispensing and extraction/reaction reagent dispensing"
+  },
+  {
+   "evidence": "Results 3.2; Fig. 1B",
+   "id": "ot2-station-b",
+   "liquid_handling": "mostly",
+   "title": "OT-2 station B: RNA extraction and 96-well RT-PCR plate preparation"
+  }
+ ],
+ "fulltext": {
+  "legends": 1,
+  "sections": 9,
+  "source": "europepmc:PMC9127703"
+ },
+ "journal": "",
+ "note": " Code: none stated; paper cites only opentrons.com. Elsevier PMC COVID-19 licence permits research re-use, not CC-BY, so redistributable left unknown.",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "Elsevier COVID-19 resource-centre permission (not a CC licence)",
+ "pdf": {
+  "bytes": 631508,
+  "licence": "Elsevier COVID-19 resource-centre permission (not a CC licence)",
+  "pages": 5,
+  "redistributable": "unknown",
+  "sha256": "314786e01f8b280d79d5ec73d06c86b345353c71b3bffa82e846898e05c0cf36",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": true,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9127703.1/PMC9127703.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9127703.1/PMC9127703.1.pdf"
+ },
+ "pmcid": "PMC9127703",
+ "slug": "covid-diagnostic-capacity-2022",
+ "title": "Optimization and adaptation of the diagnostic capacity for the performance of large volumes of SARS-CoV-2 RT-PCR",
+ "year": "2022"
+}

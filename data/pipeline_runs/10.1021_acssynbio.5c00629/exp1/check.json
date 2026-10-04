@@ -1,0 +1,17 @@
+[
+  {
+    "step": 37,
+    "severity": "error",
+    "message": "draws from plasmid_plate A1 before anything was put there"
+  },
+  {
+    "step": 41,
+    "severity": "error",
+    "message": "draws from yeast_cells_tube before anything was put there"
+  },
+  {
+    "step": 54,
+    "severity": "error",
+    "message": "withdraws more than yeast_tf_plate A1 holds (short by 75 µL)"
+  }
+]

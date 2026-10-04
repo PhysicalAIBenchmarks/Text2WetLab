@@ -15,14 +15,15 @@ from pathlib import Path
 
 REPO_ID = os.environ.get("HF_REPO_ID", "EvanOLeary/Text2WetLab")
 ROOT = Path(__file__).resolve().parent.parent
-INCLUDE = ["tasks", "eval", "manuscript", "assets", "docs", "PROVENANCE.csv", "LICENSE"]
+INCLUDE = ["tasks", "eval", "manuscript", "assets", "docs", "ingestion", "PROVENANCE.csv", "LICENSE"]
 HIDDEN = {"tests", "solution"}  # directories directly inside tasks/<task>/
 NOISE = {"__pycache__", ".DS_Store"}
+NEVER_PUBLISHED_SUFFIXES = (".pdf",)  # papers are fetched by URL and checked by SHA-256; licences differ per paper
 
 
 def _ignore(directory, names):
     rel = Path(directory).resolve().relative_to(ROOT).parts
-    skip = {n for n in names if n in NOISE or n.endswith(".pyc")}
+    skip = {n for n in names if n in NOISE or n.endswith(".pyc") or n.endswith(NEVER_PUBLISHED_SUFFIXES)}
     if len(rel) == 2 and rel[0] == "tasks":
         skip |= HIDDEN & set(names)
     return skip

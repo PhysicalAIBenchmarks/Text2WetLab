@@ -1,0 +1,123 @@
+[
+  {
+    "title": "YTK Level 1 TU assembly on OT-2 with colony PCR and yeast sfGFP flow cytometry",
+    "goal": "Validate automated Golden Gate assembly, transformation, plating and colony PCR of 19 promoter-sfGFP transcription units on the OT-2, and check promoter function in S. cerevisiae.",
+    "section_refs": [
+      "s2.4",
+      "s2.5",
+      "s2.6",
+      "s2.8"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3"
+    ],
+    "unresolved_refs": [
+      "PCR reactions set up 'according to the manufacturer's protocol'",
+      "E. coli transformation procedure not detailed (NEB competent cells, plasmid extraction not described)",
+      "Gating approach 'previously described'"
+    ],
+    "figure_refs": [
+      "Figure 2C",
+      "Figure 2D",
+      "Figure 2E"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "STK five-part Level 1 TU assembly on OT-2 with colony PCR and B. subtilis GFP assay",
+    "goal": "Show Slowpoke works with a second toolkit (SubtiToolKit) by assembling RBS/promoter/GFP TUs, screening by colony PCR, and measuring GFP expression in B. subtilis.",
+    "section_refs": [
+      "s2.4",
+      "s2.5",
+      "s2.7",
+      "s2.8"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3"
+    ],
+    "unresolved_refs": [
+      "PCR 'according to the manufacturer's protocol'",
+      "Plasmid extraction from E. coli not described",
+      "Gating approach 'previously described'"
+    ],
+    "figure_refs": [
+      "Figure 3D",
+      "Figure 3E",
+      "Figure S1"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "YTK TU assembly on Opentrons Flex with colony PCR and yeast sfGFP flow cytometry",
+    "goal": "Adapt and validate the Slowpoke workflow on the Flex platform using six YTK promoters and confirm function in yeast.",
+    "section_refs": [
+      "s2.4",
+      "s2.5",
+      "s2.6",
+      "s2.8"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3"
+    ],
+    "unresolved_refs": [
+      "PCR 'according to the manufacturer's protocol'",
+      "Gating approach 'previously described'",
+      "Plasmid extraction not described"
+    ],
+    "figure_refs": [
+      "Figure 4C",
+      "Figure 4D",
+      "Figure 4E",
+      "Figure S2"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "High-throughput 6-part YTK assembly of 62 plasmids on Flex with colony PCR",
+    "goal": "Test scalability of Slowpoke by assembling 62 six-part secretion constructs (endolysin/scFv) and verifying them by colony PCR (and Sanger sequencing).",
+    "section_refs": [
+      "s2.4",
+      "s2.5"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3"
+    ],
+    "unresolved_refs": [
+      "Sanger sequencing method not described",
+      "Plasmid purification/strain storage not described",
+      "PCR 'according to the manufacturer's protocol'"
+    ],
+    "figure_refs": [
+      "Figure 5C",
+      "Figure S3"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Large-scale colony PCR of 288 reactions on OT-2 for juxtracrine signaling plasmids",
+    "goal": "Demonstrate scaling of automated colony PCR setup to three 96-well plates screened by gel electrophoresis.",
+    "section_refs": [
+      "s2.5"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.3"
+    ],
+    "unresolved_refs": [
+      "Gel electrophoresis conditions not described",
+      "Details deferred to Table S4/Figure S4"
+    ],
+    "figure_refs": [
+      "Figure S4"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

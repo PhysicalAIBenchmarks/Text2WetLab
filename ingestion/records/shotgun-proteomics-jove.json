@@ -1,0 +1,107 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.8"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/shotgun-proteomics-jove/MaggieLam-Lab__StandardDigestion-Opentrons",
+   "commit": "e093564589fe7a5266585063dec9c1a57c5247c7",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 4,
+   "py_files": 4,
+   "redistributable": "yes",
+   "repo": "MaggieLam-Lab/StandardDigestion-Opentrons",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 33,
+   "status": "cloned",
+   "url": "https://github.com/MaggieLam-Lab/StandardDigestion-Opentrons"
+  }
+ ],
+ "doi_primary": "10.3791/63092",
+ "dois": [
+  "10.3791/63092"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Code repo README digestion_scripts; paper text not retrievable",
+   "id": "digestion-no-sp3",
+   "liquid_handling": "mostly",
+   "title": "Reduction, alkylation, digestion without SP3 (NoSP3_digestion.py)"
+  },
+  {
+   "evidence": "Code repo README",
+   "id": "digestion-sp3",
+   "liquid_handling": "mostly",
+   "title": "Reduction, alkylation, digestion with SP3 detergent removal (SP3_digestion.py)"
+  },
+  {
+   "evidence": "Code repo README",
+   "id": "sp3-peptide-cleanup",
+   "liquid_handling": "mostly",
+   "title": "Post-digestion SP3 peptide cleanup (SP3_peptide_cleanup.py)"
+  },
+  {
+   "evidence": "Code repo README misc_scripts",
+   "id": "bca-assay",
+   "liquid_handling": "mostly",
+   "title": "Total protein quantification by BCA assay (BCA_protocol.py)"
+  }
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.3791/63092:\n  europepmc: Server error '500 ' for url 'https://www.ebi",
+  "source": null
+ },
+ "journal": "",
+ "note": "Repo identified via web search (Lam lab, JoVE 63092 authors); JoVE page/PDF not retrievable (bot check), so not confirmed from paper text.",
+ "open_access": false,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC8986016?pdf=render"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8986016.1/PMC8986016.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8986016.2/PMC8986016.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8986016.3/PMC8986016.3.pdf"
+   },
+   {
+    "http": 520,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC8986016&blobtype=pdf"
+   }
+  ]
+ },
+ "pmcid": "PMC8986016",
+ "slug": "shotgun-proteomics-jove",
+ "title": "Shotgun Proteomics Sample Processing Automated by an Open-Source Lab Robot",
+ "year": "2021"
+}

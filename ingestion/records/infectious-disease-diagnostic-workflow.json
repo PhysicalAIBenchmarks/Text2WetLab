@@ -1,0 +1,54 @@
+{
+ "code": [],
+ "doi_primary": "10.3390/mi15060708",
+ "dois": [
+  "10.3390/mi15060708"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "s2.2, s2.6-2.7, s3.1; Fig. 3-4A",
+   "id": "rpa",
+   "liquid_handling": "mostly",
+   "title": "Automated RPA amplification of N. meningitidis ctrA (146 bp) on OT-One-S Hood with miniPCR mini8 thermal cycler"
+  },
+  {
+   "evidence": "s2.3-2.5, s2.7, s3.2; Fig. 4B",
+   "id": "vfm",
+   "liquid_handling": "mostly",
+   "title": "Automated enzymatic digestion, ssDNA generation and paper-array VFM hybridisation/signal enhancement detection"
+  }
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 17,
+  "source": "europepmc:PMC11205418"
+ },
+ "journal": "",
+ "note": " Code: Data Availability states original contributions are in the article, enquiries to corresponding author; no repository named. Scripts built with a SciLifeLab Nanobiotechnology in-house script generator (ref 20), not linked.",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2180549,
+  "licence": "cc by",
+  "pages": 14,
+  "redistributable": "yes",
+  "sha256": "a36808d9e433cd3a1d94a5b1abada3ee72024cfc3dc1aa82020a9a664c5e03fd",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": true,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11205418.1/PMC11205418.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11205418.1/PMC11205418.1.pdf"
+ },
+ "pmcid": "PMC11205418",
+ "slug": "infectious-disease-diagnostic-workflow",
+ "title": "An Automated Versatile Diagnostic Workflow for Infectious Disease Detection in Low-Resource Settings",
+ "year": "2024"
+}

@@ -1,0 +1,53 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/pioneer-ngs/Pioneer-Research-Labs__ngs_library_prep",
+   "commit": "343d3fb08477b09296c61fa4864a9a6b9efea1c5",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 6,
+   "redistributable": "no",
+   "repo": "Pioneer-Research-Labs/ngs_library_prep",
+   "robot_mentions": [],
+   "size_kb": 22676,
+   "status": "cloned",
+   "url": "https://github.com/Pioneer-Research-Labs/ngs_library_prep"
+  }
+ ],
+ "dois": [],
+ "experiments_hint": [
+  {
+   "evidence": "repo README + docs/LPM_USERGUIDE.md",
+   "id": "pioneer-1",
+   "liquid_handling": "mostly",
+   "title": "Lysis buffer addition / resuspension and sample consolidation across 96-well plates"
+  },
+  {
+   "evidence": "README",
+   "id": "pioneer-2",
+   "liquid_handling": "mostly",
+   "title": "Adapter PCR setup (same primers across samples)"
+  },
+  {
+   "evidence": "README scripts/adapter_to_index_PCR.ipynb",
+   "id": "pioneer-3",
+   "liquid_handling": "mostly",
+   "title": "Index PCR setup (per-sample primers, optional Exo1 dispense)"
+  }
+ ],
+ "journal": "",
+ "note": "Code only, NO paper found. Repo Pioneer-Research-Labs/ngs_library_prep (no licence file; PyLabRobot, Hamilton STARlet, 6 .py plus notebooks, 0 opentrons). grep for ampure/bead/magnet/clean in repo returned nothing, so AMPure bead cleanup is not in this repo; identification as the intended source is low confidence.",
+ "open_access": false,
+ "origin": [
+  "other Claude session"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "slug": "pioneer-ngs",
+ "title": "Automated Illumina NGS library prep on Hamilton STARlet with PyLabRobot (Pioneer Labs)",
+ "year": ""
+}

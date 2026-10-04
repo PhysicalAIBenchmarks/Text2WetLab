@@ -1,0 +1,80 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.4"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/actinomation/TennaAlexiadisMoeller__ActinoMation",
+   "commit": "da24c419c9b6a983890c45fc220fb69b031a370f",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 5,
+   "py_files": 22,
+   "redistributable": "yes",
+   "repo": "TennaAlexiadisMoeller/ActinoMation",
+   "robot_mentions": [],
+   "size_kb": 5097,
+   "status": "cloned",
+   "url": "https://github.com/TennaAlexiadisMoeller/ActinoMation"
+  }
+ ],
+ "doi_primary": "10.1016/j.synbio.2025.03.005",
+ "dois": [
+  "10.1016/j.synbio.2025.03.005"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "s3.1.1, s3.2.1, s3.3.1; Fig. 2-3",
+   "id": "heat-shock",
+   "liquid_handling": "mostly",
+   "title": "Automated heat shock transformation of chemically competent E. coli (OT-2, Jupyter-generated protocol)"
+  },
+  {
+   "evidence": "s2.3, s3.1.2, s3.3.2; Fig. 5-6",
+   "id": "conjugation",
+   "liquid_handling": "mostly",
+   "title": "Automated conjugation of Streptomyces spp. with E. coli ET12567 donors (plate-based, medium throughput)"
+  },
+  {
+   "evidence": "s2.4 (methods; PCR setup largely manual)",
+   "id": "colony-pcr",
+   "liquid_handling": "partly",
+   "title": "Colony PCR setup to verify transformants/exconjugants"
+  }
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 28,
+  "source": "europepmc:PMC11999424"
+ },
+ "journal": "",
+ "note": "no paper cited Code: only the ActinoMation GitHub repo is named (MIT). sources.json URL github.com/Kedar was a truncated string, not a repo. Supplementary: mmc1.pdf, mmc2.csv (no code).",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 5305155,
+  "licence": "cc by",
+  "pages": 10,
+  "redistributable": "yes",
+  "sha256": "4122f0d8fd633c45899bb5ff506d6dd9b1513b76209b492c7bdb433f2fdea979",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": true,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11999424.1/PMC11999424.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11999424.1/PMC11999424.1.pdf"
+ },
+ "pmcid": "PMC11999424",
+ "slug": "actinomation",
+ "title": "ActinoMation: A literate programming approach for medium-throughput robotic conjugation of Streptomyces spp",
+ "year": "2025"
+}

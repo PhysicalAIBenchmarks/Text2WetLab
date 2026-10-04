@@ -1,0 +1,106 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.16"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/apex/stracquadaniolab__apex-nf",
+   "commit": "4c2c429fec6111edbd872c02da1120a137fc5dea",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "AGPL-3.0",
+   "opentrons_py_files": 7,
+   "py_files": 9,
+   "redistributable": "no",
+   "repo": "stracquadaniolab/apex-nf",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 41709,
+   "status": "cloned",
+   "url": "https://github.com/stracquadaniolab/apex-nf"
+  }
+ ],
+ "doi_primary": "10.1101/2024.08.13.607171",
+ "dois": [
+  "10.1101/2024.08.13.607171"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Results 'Protocol 1'; assets/protocols/protocol-1-template.py",
+   "id": "apex-p1",
+   "liquid_handling": "mostly",
+   "title": "Protocol 1: Heat shock transformation (thermocycler)"
+  },
+  {
+   "evidence": "Results 'Protocol 2'; protocol-2-template.py",
+   "id": "apex-p2",
+   "liquid_handling": "mostly",
+   "title": "Protocol 2: Colony selection (spotting cells on agar plates)"
+  },
+  {
+   "evidence": "Results 'Protocol 3'; protocol-3-template.py",
+   "id": "apex-p3",
+   "liquid_handling": "mostly",
+   "title": "Protocol 3: Colony sampling (picking into culture plates)"
+  },
+  {
+   "evidence": "Results 'Protocol 4'; protocol-4-template.py",
+   "id": "apex-p4",
+   "liquid_handling": "mostly",
+   "title": "Protocol 4: Protein expression induction"
+  },
+  {
+   "evidence": "repo protocol-5-template.py (7 protocols in code; 4 core in paper text)",
+   "id": "apex-p5",
+   "liquid_handling": "mostly",
+   "title": "Protocol 5: Colony PCR sample preparation"
+  },
+  {
+   "evidence": "repo protocol-6-template.py",
+   "id": "apex-p6",
+   "liquid_handling": "mostly",
+   "title": "Protocol 6: SDS-PAGE sample preparation"
+  },
+  {
+   "evidence": "repo protocol-7-template.py",
+   "id": "apex-p7",
+   "liquid_handling": "mostly",
+   "title": "Protocol 7: OD600 reading sample preparation"
+  }
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 20,
+  "source": "biorxiv"
+ },
+ "journal": "bioRxiv (published ACS Synth. Biol., 10.1021/acssynbio.5c00189)",
+ "note": "Real repo is stracquadaniolab/apex-nf (named in paper; AGPL-3.0, Nextflow, 7 protocol templates, OT-2 API 2.16). bioRxiv XML endpoint returned 429; PDF v2 downloaded via bioRxiv full.pdf. bioRxiv licence cc_no so PDF not redistributable.",
+ "open_access": false,
+ "origin": [
+  "other Claude session"
+ ],
+ "paper_licence": "cc_no (bioRxiv: all rights reserved, no reuse without permission)",
+ "pdf": {
+  "bytes": 21481968,
+  "licence": "cc_no (bioRxiv: all rights reserved, no reuse without permission)",
+  "pages": 21,
+  "redistributable": "no",
+  "sha256": "4a0cbd8b44e06efa3585ae6365d371645fac3aeb72239be7226c74bde367f54f",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.biorxiv.org/content/10.1101/2024.08.13.607171v2.full.pdf"
+   }
+  ],
+  "url": "https://www.biorxiv.org/content/10.1101/2024.08.13.607171v2.full.pdf"
+ },
+ "pmcid": null,
+ "slug": "apex",
+ "title": "APEX: Automated Protein EXpression in Escherichia coli",
+ "year": "2024"
+}

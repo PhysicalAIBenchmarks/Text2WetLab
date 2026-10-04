@@ -1,0 +1,88 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.11"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/protein-crystallization-ot2/jbderoo__Opentrons2-Protein-Crystallization",
+   "commit": "8fd25de2f753d4135df677b9c8cf6ded39690244",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 3,
+   "py_files": 3,
+   "redistributable": "no",
+   "repo": "jbderoo/Opentrons2-Protein-Crystallization",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 51,
+   "status": "cloned",
+   "url": "https://github.com/jbderoo/Opentrons2-Protein-Crystallization"
+  }
+ ],
+ "doi_primary": "10.1016/j.slast.2025.100268",
+ "dois": [
+  "10.1016/j.slast.2025.100268"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Methods \"Script 1\"; Results Script 1; Figs 3-4",
+   "id": "script1_food_dye_gradient_sitting_drop",
+   "liquid_handling": "mostly",
+   "title": "Mock CrysChem 24-well sitting-drop plate with blue/red food-dye gradient (0-150 uL)"
+  },
+  {
+   "evidence": "Methods \"Script 2\"; Figs 5-6",
+   "id": "script2_hewl_24well_crystallization",
+   "liquid_handling": "mostly",
+   "title": "Hen egg white lysozyme 24-well sitting-drop crystallization, OT-2 vs human"
+  },
+  {
+   "evidence": "Methods \"Script 3\"; Fig. 7",
+   "id": "script3_cj_protein_crystallization",
+   "liquid_handling": "mostly",
+   "title": "CJ (CJ0420 variant) protein 24-well sitting-drop crystallization"
+  }
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 15,
+  "source": "europepmc:PMC12229254"
+ },
+ "journal": "",
+ "note": "Code on GitHub jbderoo/Opentrons2-Protein-Crystallization (no licence), three example scripts; Supplementary figures not fetched",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1161635,
+  "licence": "cc by",
+  "pages": 17,
+  "redistributable": "yes",
+  "sha256": "c58e2fc7a587d6d0c948a3660937a0e51f7b3cdc8e97a20c73f3272e013e9600",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12229254?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12229254.1/PMC12229254.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12229254.1/PMC12229254.1.pdf"
+ },
+ "pmcid": "PMC12229254",
+ "slug": "protein-crystallization-ot2",
+ "title": "Automation of protein crystallization scaleup via Opentrons-2 liquid handling",
+ "year": "2025"
+}

@@ -1,0 +1,392 @@
+{
+  "title": "Color-based cherry-picking of blue vs white E. coli DH5α colonies on X-gal plates with COPICK (OT-2)",
+  "containers": [
+    {
+      "name": "culture_637",
+      "kind": "tube_1.5ml",
+      "description": "Overnight culture of E. coli DH5α carrying pSEVA637 (white colonies)",
+      "assumed": true
+    },
+    {
+      "name": "culture_6819",
+      "kind": "tube_1.5ml",
+      "description": "Overnight culture of E. coli DH5α carrying pSEVA6819[gD] (blue colonies on X-gal)",
+      "assumed": true
+    },
+    {
+      "name": "culture_mix",
+      "kind": "tube_1.5ml",
+      "description": "50:50 mixture of the two cultures",
+      "assumed": false
+    },
+    {
+      "name": "LB_tube",
+      "kind": "tube_15ml",
+      "description": "Sterile LB broth for dilutions",
+      "assumed": true
+    },
+    {
+      "name": "dil1",
+      "kind": "tube_1.5ml",
+      "description": "Dilution tube 1 (1:100)",
+      "assumed": true
+    },
+    {
+      "name": "dil2",
+      "kind": "tube_1.5ml",
+      "description": "Dilution tube 2 (1:10^4)",
+      "assumed": true
+    },
+    {
+      "name": "dil3",
+      "kind": "tube_1.5ml",
+      "description": "Dilution tube 3 (1:10^6), used for plating",
+      "assumed": true
+    },
+    {
+      "name": "agar_xgal_tube",
+      "kind": "tube_50ml",
+      "description": "Molten LB agar with gentamicin and X-gal 50 µg/mL for the source plate",
+      "assumed": true
+    },
+    {
+      "name": "agar_dest_tube",
+      "kind": "tube_50ml",
+      "description": "Molten LB agar with gentamicin for the destination Omnitray",
+      "assumed": true
+    },
+    {
+      "name": "petri_source",
+      "kind": "reservoir",
+      "description": "Round 85-89 mm Petri dish with LB-agar + X-gal + gentamicin (modelled as a single-well reservoir; not a 96-well plate); sits on the transilluminator",
+      "assumed": true
+    },
+    {
+      "name": "omnitray_dest",
+      "kind": "reservoir",
+      "description": "Nunc Omnitray single-well plate with LB-agar + gentamicin receiving the 64 picked colonies",
+      "assumed": true
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "culture_637",
+      "wells": [],
+      "reagent": "E. coli DH5α pSEVA637 overnight culture",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "culture_6819",
+      "wells": [],
+      "reagent": "E. coli DH5α pSEVA6819[gD] overnight culture",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "LB_tube",
+      "wells": [],
+      "reagent": "LB broth",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "agar_xgal_tube",
+      "wells": [],
+      "reagent": "Molten LB agar + gentamicin 10 µg/mL + X-gal 50 µg/mL",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "agar_dest_tube",
+      "wells": [],
+      "reagent": "Molten LB agar + gentamicin 10 µg/mL",
+      "volume_ul": null,
+      "assumed": true
+    }
+  ],
+  "steps": [
+    {
+      "kind": "transfer",
+      "source": "agar_xgal_tube",
+      "source_wells": [],
+      "dest": "petri_source",
+      "dest_wells": [],
+      "volume_ul": 25000.0,
+      "reagent": "Molten LB agar + gentamicin + X-gal 50 µg/mL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "we prepared LB-agar plates supplemented with X-gal at 50 μg/mL",
+      "assumed": true,
+      "note": "About 25 mL per dish (Thermo X-gal/IPTG LB plate protocol). X-gal is mixed into the agar. Gentamicin 10 µg/mL is assumed from the SEVA numbering convention."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "petri_source",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Let the source plate solidify, then dry it with the lid ajar for about 15-30 min. Protect it from light and store it at 4 °C until use.",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Standard practice for X-gal plates."
+    },
+    {
+      "kind": "transfer",
+      "source": "agar_dest_tube",
+      "source_wells": [],
+      "dest": "omnitray_dest",
+      "dest_wells": [],
+      "volume_ul": 35000.0,
+      "reagent": "Molten LB agar + gentamicin",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "transferring them into a single-well plate (Nunc Omnitray, ThermoFisher Scientific)",
+      "assumed": true,
+      "note": "The paper does not state the Omnitray contents. LB-agar + gentamicin is assumed, at about the Omnitray working volume of 35 mL (Thermo catalog 242811). Allow it to solidify and dry."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_637",
+      "source_wells": [],
+      "dest": "culture_mix",
+      "dest_wells": [],
+      "volume_ul": 100.0,
+      "reagent": "E. coli DH5α pSEVA637 culture",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "inoculated them at proper dilution factor with a 50%–50% mixture of E. coli DH5α carrying two pSEVA plasmids",
+      "assumed": true,
+      "note": "1:1 by volume. The 100 µL volume is assumed."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_6819",
+      "source_wells": [],
+      "dest": "culture_mix",
+      "dest_wells": [],
+      "volume_ul": 100.0,
+      "reagent": "E. coli DH5α pSEVA6819[gD] culture",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "inoculated them at proper dilution factor with a 50%–50% mixture of E. coli DH5α carrying two pSEVA plasmids",
+      "assumed": true,
+      "note": "Mixed after dispense."
+    },
+    {
+      "kind": "transfer",
+      "source": "LB_tube",
+      "source_wells": [],
+      "dest": "dil1",
+      "dest_wells": [],
+      "volume_ul": 990.0,
+      "reagent": "LB broth",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "inoculated them at proper dilution factor",
+      "assumed": true,
+      "note": "The paper gives only 'proper dilution factor'. A 10^-6 serial dilution is assumed, aiming for about 100-300 colonies per plate."
+    },
+    {
+      "kind": "transfer",
+      "source": "LB_tube",
+      "source_wells": [],
+      "dest": "dil2",
+      "dest_wells": [],
+      "volume_ul": 990.0,
+      "reagent": "LB broth",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "inoculated them at proper dilution factor",
+      "assumed": true,
+      "note": "Assumed dilution scheme."
+    },
+    {
+      "kind": "transfer",
+      "source": "LB_tube",
+      "source_wells": [],
+      "dest": "dil3",
+      "dest_wells": [],
+      "volume_ul": 990.0,
+      "reagent": "LB broth",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "inoculated them at proper dilution factor",
+      "assumed": true,
+      "note": "Assumed dilution scheme."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_mix",
+      "source_wells": [],
+      "dest": "dil1",
+      "dest_wells": [],
+      "volume_ul": 10.0,
+      "reagent": "50:50 culture mix",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "inoculated them at proper dilution factor with a 50%–50% mixture",
+      "assumed": true,
+      "note": "1:100 dilution."
+    },
+    {
+      "kind": "transfer",
+      "source": "dil1",
+      "source_wells": [],
+      "dest": "dil2",
+      "dest_wells": [],
+      "volume_ul": 10.0,
+      "reagent": "Diluted culture",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "inoculated them at proper dilution factor",
+      "assumed": true,
+      "note": "1:10^4 cumulative."
+    },
+    {
+      "kind": "transfer",
+      "source": "dil2",
+      "source_wells": [],
+      "dest": "dil3",
+      "dest_wells": [],
+      "volume_ul": 10.0,
+      "reagent": "Diluted culture",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "inoculated them at proper dilution factor",
+      "assumed": true,
+      "note": "1:10^6 cumulative."
+    },
+    {
+      "kind": "transfer",
+      "source": "dil3",
+      "source_wells": [],
+      "dest": "petri_source",
+      "dest_wells": [],
+      "volume_ul": 200.0,
+      "reagent": "Diluted 50:50 E. coli culture",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "inoculated them at proper dilution factor with a 50%–50% mixture of E. coli DH5α carrying two pSEVA plasmids",
+      "assumed": true,
+      "note": "Spread over the whole surface with a sterile spreader. Aim for at least 64 non-border colonies."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "petri_source",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Spread the inoculum evenly, let it absorb, then incubate the source plate inverted at 37 °C for 16-20 h. Optionally hold it at 4 °C for a few hours to intensify the blue colour. Protect it from light.",
+      "source_quote": "",
+      "assumed": true,
+      "note": "The paper gives no incubation conditions for the E. coli test. 30 °C overnight is stated only for the P. putida test."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "petri_source",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Remove the lid and place the source plate on the transilluminator platform (up to 89 mm dishes). Place the Omnitray on the OT-2 deck. Check that the camera, the Raspberry Pi transilluminator and the OT-2 are connected to the master PC (USB, USB, Ethernet). Fix the camera exposure and white balance, and calibrate the pixel-to-mm factor.",
+      "source_quote": "Briefly, the robot positions the camera onto the transilluminator area and gather an image of the plate.",
+      "assumed": true,
+      "note": "Imaging settings are not given in the paper and are assumed."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "petri_source",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Start the orchestrator. It uploads the flag-loop protocol to the OT-2 via SSH. The robot homes and moves the camera to the acquisition point, then loops on the auxiliary flag .txt file. The orchestrator switches the white light on via SSH to the Raspberry Pi and captures an image with the USB camera.",
+      "source_quote": "The script sends instructions to OT-2 to allocate the camera in position, and then execute a while loop in which the content of an auxiliary.*txt file is recurrently inspected.",
+      "assumed": false,
+      "note": "Flag file name: flag_txt_file.txt (Figure 6 legend)."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "petri_source",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Segment the colonies with the Detectron 2 PanopticFPN model. Exclude colonies close to the plate border. Compute the mean HSV colour of each colony footprint and score each colony by dissimilarity to a blue reference colour sampled from a clearly blue colony under the same illumination, with colour weight only. Select the 64 most dissimilar colonies, ordered descending (white first, bluest last).",
+      "source_quote": "Colony color was retrieved by computing the pixel-average HSV color within the colony footprint.",
+      "assumed": true,
+      "note": "The reference RGB value, the dissimilarity metric and the weights are not given in the paper and are assumed. Pickable colonies are those 'not in close contact with the border of the Petri Dish'."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "petri_source",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Map the colony centroids to robot coordinates (offset to labware centre, scale to mm, rotate 90° anticlockwise). Write the *.csv file, upload it to the OT-2 via SSH/scp, and update the flag file to release the robot loop.",
+      "source_quote": "Finally, colony centers are parsed into a *csv file that will be uploaded to OT-2 via ssh for colony picking execution",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "petri_source",
+      "source_wells": [],
+      "dest": "omnitray_dest",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "colony biomass (64 selected colonies, one new P20 tip per colony)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "COPICK correctly executed a picking protocol where those colonies with best matching color (blue) were picked last (picking order is set by column), whereas the most different (white) were picked first.",
+      "assumed": true,
+      "note": "Biomass is picked, not a liquid, so no volume is given. The 64 colonies are touched with a P20 tip and deposited on the Omnitray in column-wise order, from the most dissimilar (white) to the bluest. A deposit grid of 8 rows x 8 columns at 9 mm pitch is assumed. Tip z-height and dip depth must be tuned on the robot."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "omnitray_dest",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate the Omnitray at 37 °C overnight to regrow the picked colonies, then check that the picking order matches the white-to-blue colour order.",
+      "source_quote": "As observed in Figure 7B, COPICK correctly executed a picking protocol",
+      "assumed": true,
+      "note": "The regrowth step is assumed. The paper reports an observed colour order (Figure 7B)."
+    }
+  ],
+  "assumptions": [
+    "Petri dish and Omnitray are not 96-well labware. Both are modelled as single-well 'reservoir' containers with no well addresses. Agar volumes are about 25 mL per dish (Thermo X-gal/IPTG LB plate protocol) and about 35 mL per Omnitray (Thermo catalog 242811).",
+    "Pouring agar and spreading cells are manual in practice. They are shown as transfers or manual steps for completeness.",
+    "The plating dilution is not specified ('proper dilution factor'). Assumed: 1:1 culture mix, then three serial 1:100 dilutions (10 µL into 990 µL LB) to 10^-6, then 200 µL spread. This aims for about 100-300 colonies, within the 12-453 range of the paper's raw-picking test. Plate spare dilutions if needed. At least 64 non-border colonies are required.",
+    "Culture volumes (100 µL each) and equal cell density of the two overnight cultures are assumed.",
+    "Gentamicin at about 10 µg/mL is assumed. It is inferred from the SEVA numbering convention (first digit 6 = gentamicin), from memory. The SEVA 2013 paper was seen only as a search snippet and did not confirm the plasmid markers. IPTG is not added, because the paper says only that colonies turn blue with X-gal.",
+    "X-gal at 50 µg/mL is stated in the paper. It is assumed to be mixed into the agar rather than spread on top.",
+    "Incubation at 37 °C for 16-20 h, with an optional 4 °C hold, is assumed. The paper gives no E. coli incubation conditions.",
+    "The destination Omnitray is assumed to contain LB-agar + gentamicin without X-gal. Its contents are not given in the paper.",
+    "Reference blue colour, dissimilarity metric (e.g. Euclidean distance in HSV or RGB) and weights (colour only, size and fluorescence weights 0) are assumed. The paper says only 'target RGB colour' and a weighted-sum score.",
+    "Picking motion parameters (P20, new tip per colony, tip z-height, dip depth) are assumed. The 8x8 deposit grid at 9 mm pitch, column-wise, is assumed. The paper states only the column-wise order.",
+    "Imaging settings (white channel, fixed exposure and white balance, pixel-to-mm calibration) are assumed. Hardware is as in s3.1 (Alvium 1800 U-500c camera, RGB LED transilluminator on a Raspberry Pi 4B).",
+    "Detectron 2 PanopticFPN weights and hyperparameters are not given in the paper. Any segmentation giving plate-centred centroids can substitute. Colonies near the plate border are excluded.",
+    "Orchestration (SSH, flag_txt_file.txt loop, CSV upload via scp) follows s3.2 and the Figure 6 legend.",
+    "Overnight regrowth of the picked colonies is an assumed verification step. Analysis of the colour order (Figure 7B) is not part of the protocol."
+  ]
+}

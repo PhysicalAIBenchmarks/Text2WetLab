@@ -1,0 +1,67 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/sidekick/rodolfokeesey__Liquid-Handler",
+   "commit": "f799c0fc02f25e881068667a643e6f726c8fddff",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "CERN-OHL-S-2.0",
+   "note": "GitHub reports NOASSERTION; license.txt is CERN-OHL-S v2 (strongly reciprocal, not in the permissive list so redistributable=no). Hardware repo (STL, PCB, Pico firmware); not Opentrons code.",
+   "opentrons_py_files": 0,
+   "py_files": 6,
+   "redistributable": "no",
+   "repo": "rodolfokeesey/Liquid-Handler",
+   "robot_mentions": [],
+   "size_kb": 76129,
+   "status": "cloned",
+   "url": "https://github.com/rodolfokeesey/Liquid-Handler"
+  }
+ ],
+ "doi_primary": "10.1016/j.ohx.2022.e00319",
+ "dois": [
+  "10.1016/j.ohx.2022.e00319"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Validation and characterization; Fig. 6, Table 1",
+   "id": "gravimetric",
+   "liquid_handling": "little",
+   "title": "Gravimetric accuracy/precision of Sidekick pumps (10 uL x20, 100 uL x11) and multi-channel dispensing into 96-well plate"
+  }
+ ],
+ "fulltext": {
+  "legends": 64,
+  "sections": 10,
+  "source": "europepmc:PMC9168727"
+ },
+ "journal": "",
+ "note": " Sidekick is a standalone 3D-printed dispenser, not an OT-2; little Opentrons relevance.",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 17482814,
+  "licence": "cc by",
+  "pages": 46,
+  "redistributable": "yes",
+  "sha256": "834f6ed11ae2582e3ccfc1d629735e62b70d232feec04133d0ba8d84e0b7b645",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": true,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9168727.1/PMC9168727.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9168727.1/PMC9168727.1.pdf"
+ },
+ "pmcid": "PMC9168727",
+ "slug": "sidekick",
+ "title": "Sidekick: A Low-Cost Open-Source 3D-printed liquid dispensing robot",
+ "year": "2022"
+}
