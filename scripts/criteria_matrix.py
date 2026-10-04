@@ -23,7 +23,7 @@ sys.path[:0] = [str(ROOT), str(ROOT / "eval")]
 from paper2protocol.models import Protocol  # noqa: E402
 from spec_check import check, error_kind, free_wells, simulate  # noqa: E402
 
-HARBOR = ROOT / "tasks/opentrons-rna-extraction"
+HARBOR = ROOT / "tasks/opentrons-rna-extraction/harbor"
 spec = importlib.util.spec_from_file_location("harbor_checks", HARBOR / "tests/checks.py")
 harbor_checks = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(harbor_checks)
@@ -82,7 +82,7 @@ A12 = {
 
 def eval_task(head, family, task):
     task_dir = ROOT / "tasks" / task
-    proto = Protocol.model_validate_json((task_dir / "ir.json").read_text())
+    proto = Protocol.model_validate_json((task_dir / "public/ir.json").read_text())
     free = free_wells(task_dir)
     rows = []
     for name, (body, truth) in family.items():

@@ -22,7 +22,7 @@ Harbor builds the environment and runs the agent (for example Claude Code) insid
 ## Layout
 
 ```
-tasks/opentrons-rna-extraction/
+tasks/opentrons-rna-extraction/harbor/
 ├── task.toml                 Harbor settings: timeouts, network allowlist, 4 CPU / 8 GB
 ├── instruction.md            The agent's task: deck layout, pipettes, reservoir map
 ├── environment/
@@ -51,13 +51,13 @@ pip install harbor            # or: uv tool install harbor
 export ANTHROPIC_API_KEY=sk-ant-...
 
 # 1. Sanity check: the oracle solution should score about 0.94
-harbor run -p tasks/opentrons-rna-extraction -a oracle
+harbor run -p tasks/opentrons-rna-extraction/harbor -a oracle
 
 # 2. Run an agent
-harbor run -p tasks/opentrons-rna-extraction -a claude-code -m anthropic/claude-opus-5-5
+harbor run -p tasks/opentrons-rna-extraction/harbor -a claude-code -m anthropic/claude-opus-5-5
 
 # Options: 3 attempts per task, 3 at a time, on Modal instead of local Docker
-harbor run -p tasks/opentrons-rna-extraction -a claude-code -m anthropic/claude-sonnet-5-5 -k 3 -n 3 -e modal
+harbor run -p tasks/opentrons-rna-extraction/harbor -a claude-code -m anthropic/claude-sonnet-5-5 -k 3 -n 3 -e modal
 ```
 
 Each trial writes the following to `/logs/verifier/`, which ends up in the Harbor job output:

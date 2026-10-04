@@ -1,7 +1,7 @@
 """
 Visualise any Protocol IR (paper2protocol schema) as a deck of labware that fills and empties.
 
-    python eval/ir_viz.py tasks/split-200ul-two-wells/ir.json -o assets/examples/L1.gif
+    python eval/ir_viz.py tasks/split-200ul-two-wells/public/ir.json -o assets/examples/L1.gif
     python eval/ir_viz.py data/pipeline_runs/<doi>/exp1/protocol.json -o assets/examples/paper.gif
     python eval/ir_viz.py --all          # every IR in the repo -> assets/examples/
 
@@ -139,7 +139,7 @@ def render(p: Protocol, out: pathlib.Path, fps=3, size=(1280, 720)):
 
 
 def find_irs():
-    found = sorted(ROOT.glob("tasks/*/ir.json")) + sorted(ROOT.glob("data/pipeline_runs/*/exp*/protocol.json"))
+    found = sorted(ROOT.glob("tasks/*/public/ir.json")) + sorted(ROOT.glob("data/pipeline_runs/*/exp*/protocol.json"))
     return found
 
 

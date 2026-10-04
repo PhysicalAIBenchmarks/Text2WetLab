@@ -5,7 +5,7 @@ Write PROVENANCE.csv: one row per task, reference file, pipeline output, render 
 
 "Discovered by" = the author of the first commit, on any branch, that added the path (git history
 cannot say how something was found; `candidate_source` is filled only when the DOI is listed in
-references/candidates.json). GitHub logins come from the commits API. Reference files are checked
+ingestion/candidates.json). GitHub logins come from the commits API. Reference files are checked
 byte for byte (git blob hash) against the upstream repo at the commit their README pins.
 
 Paths moved during the refactor, so the lookup tries every former location of a path (RULES) and
@@ -26,8 +26,13 @@ GH = f"https://github.com/{REPO}"
 
 # (current path or folder, a former path or folder). Applied repeatedly, so a path moved twice is found.
 L2_TASKS = ["ampure-bead-cleanup", "colony-pcr-screening", "ecoli-heat-shock-transformation", "golden-gate-assembly"]
+SPLIT = (  # public/private/harbor split: the files used to sit directly in the task folder
+    [(f"tasks/{t}/public", f"tasks/{t}") for t in ["split-200ul-two-wells", "a1-a12-100ul", "ampure-bead-cleanup", "colony-pcr-screening",
+                                                    "ecoli-heat-shock-transformation", "golden-gate-assembly", "opentrons-rna-extraction"]]
+    + [("tasks/opentrons-rna-extraction/harbor", "tasks/opentrons-rna-extraction"), ("tasks/split-200ul-two-wells/private", "tasks/split-200ul-two-wells")]
+)
 RULES = (
-    [("data/pipeline_runs", "out"), ("references", "ref"), ("manuscript", "paper"),
+    SPLIT + [("data/pipeline_runs", "out"), ("references", "ref"), ("manuscript", "paper"),
      ("tasks/split-200ul-two-wells", "tasks/serial-dilution-200ul"),
      ("tasks/serial-dilution-200ul", "tasks/L1/serial-dilution-200ul"),
      ("tasks/a1-a12-100ul", "tasks/L1/a1-a12-100ul"),
@@ -163,12 +168,9 @@ def add(**kw):
     rows.append(r)
 
 
-candidates = {}
-for src in (ROOT / "references/candidates.json", pathlib.Path.home() / "Desktop/Text2WetLab/ref/candidates.json"):
-    if src.exists():
-        for c in json.loads(src.read_text()):
-            candidates[(c.get("doi") or "").lower()] = "Amass BiomedCore sweep 2026-10-03 (candidates.json)"
-        break
+candidates = {}  # in-repo only, so a clean clone regenerates the same CSV
+for c in json.loads((ROOT / "ingestion/candidates.json").read_text()):
+    candidates[(c.get("doi") or "").lower()] = "Amass BiomedCore sweep 2026-10-03 (ingestion/candidates.json)"
 
 # ---- pipeline outputs ------------------------------------------------------------------
 RUNS = ROOT / "data/pipeline_runs"
@@ -188,7 +190,7 @@ for p in sorted(RUNS.glob("*/exp*/protocol.json")):
 # ---- tasks -----------------------------------------------------------------------------
 HULP = "10.1371/journal.pone.0246302"
 for d in sorted(p for p in (ROOT / "tasks").iterdir() if p.is_dir()):
-    ir = d / "ir.json"
+    ir = d / "public/ir.json"
     doi, exp, src, notes = "", "", "handwritten", ""
     if ir.exists():
         notes = f"{len(json.loads(ir.read_text())['steps'])} steps"
@@ -197,11 +199,11 @@ for d in sorted(p for p in (ROOT / "tasks").iterdir() if p.is_dir()):
             src = f"paper2protocol (byte-identical to data/pipeline_runs/{doi.replace('/', '_')}/{exp}/protocol.json)"
     else:
         src, doi = "Harbor task (not a paper2protocol IR)", HULP
-        notes = "hidden grader tests/ + solution/ inside the task folder"
+        notes = "hidden grader and oracle in harbor/ (never published)"
     add(record_id=f"task:{d.name}", record_type="task", path=str(d.relative_to(ROOT)), name=d.name, paper_doi=doi,
         experiment=exp, ir_source=src, candidate_source=candidates.get(doi.lower(), ""), notes=notes)
 
-harbor = "tasks/opentrons-rna-extraction"
+harbor = "tasks/opentrons-rna-extraction/harbor"
 hulp_local = ROOT / "references/hulp-rna-extraction/viral_rna_extraction_protocol.py"
 
 # ---- references ------------------------------------------------------------------------
@@ -242,8 +244,8 @@ for f in ("solution/protocol.py", "tests/reference_protocol.py"):
         ir_source="author script (re-saved)", upstream_repo=repo, upstream_commit=found[0][:7] if found else "",
         upstream_licence=licence(repo), verified_vs_upstream="identical apart from line endings" if same else "differs",
         notes="hidden grader/oracle file")
-p = ROOT / "tasks/split-200ul-two-wells/solution/protocol.py"
-add(record_id="task_file:tasks/split-200ul-two-wells/solution/protocol.py", record_type="task_file", path=str(p.relative_to(ROOT)),
+p = ROOT / "tasks/split-200ul-two-wells/private/solution/protocol.py"
+add(record_id="task_file:tasks/split-200ul-two-wells/private/solution/protocol.py", record_type="task_file", path=str(p.relative_to(ROOT)),
     name="solution/protocol.py", ir_source="handwritten", verified_vs_upstream="n/a", notes="hidden oracle file; no upstream")
 
 
@@ -253,7 +255,7 @@ def render_stem(ir):
     return parts[1] if parts[0] == "tasks" else f"paper-{parts[2].replace('.', '_')}-{parts[3]}"
 
 
-for ir in sorted(ROOT.glob("tasks/*/ir.json")) + sorted(RUNS.glob("*/exp*/protocol.json")):
+for ir in sorted(ROOT.glob("tasks/*/public/ir.json")) + sorted(RUNS.glob("*/exp*/protocol.json")):
     stem = render_stem(ir)
     from_paper = ir.name == "protocol.json"
     doi = json.loads((ir.parent.parent / "paper.json").read_text())["doi"] if from_paper else ""

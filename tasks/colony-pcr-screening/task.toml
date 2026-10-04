@@ -12,3 +12,13 @@ containers = 4
 
 [checks]
 free_wells = []
+
+[[source]]
+slug = "slowpoke"
+experiment = "exp5"
+relation = "inspired by (handwritten, numbers differ from the script)"
+
+[[source]]
+slug = "apex"
+experiment = "apex-p5"
+relation = "candidate real reference (APEX protocol 5, colony PCR sample prep); AGPL-3.0, cannot be vendored"

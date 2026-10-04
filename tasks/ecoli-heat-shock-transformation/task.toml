@@ -12,3 +12,8 @@ containers = 3
 
 [checks]
 free_wells = []
+
+[[source]]
+slug = "apex"
+experiment = "apex-p1"
+relation = "candidate real reference (APEX protocol 1); AGPL-3.0, cannot be vendored; the task itself is handwritten"

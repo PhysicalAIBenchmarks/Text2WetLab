@@ -29,7 +29,7 @@ import tempfile
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path[:0] = [str(ROOT), str(ROOT / "eval"), str(ROOT / "scripts")]
 OT = pathlib.Path(os.environ.get("OT_VENV", pathlib.Path.home() / "Desktop/ot-sim-venv"))
-HARBOR = ROOT / "tasks/opentrons-rna-extraction"
+HARBOR = ROOT / "tasks/opentrons-rna-extraction/harbor"
 
 
 def sha(data: bytes) -> str:
@@ -42,7 +42,7 @@ def stage_ir():
     from paper2protocol.render import render
 
     out = {}
-    for ir in sorted(ROOT.glob("tasks/*/ir.json")) + sorted(ROOT.glob("data/pipeline_runs/*/exp*/protocol.json")):
+    for ir in sorted(ROOT.glob("tasks/*/public/ir.json")) + sorted(ROOT.glob("data/pipeline_runs/*/exp*/protocol.json")):
         proto = Protocol.model_validate_json(ir.read_text())
         issues = [i.model_dump() for i in check(proto)]
         row = {"sha": sha(ir.read_bytes()), "steps": len(proto.steps), "check_issues": len(issues)}
@@ -71,11 +71,11 @@ def stage_simulate():
     from spec_check import simulate
 
     harbor_lab = str(HARBOR / "environment/data/labware")
-    jobs = [("tasks/split-200ul-two-wells/solution/protocol.py", None),
+    jobs = [("tasks/split-200ul-two-wells/private/solution/protocol.py", None),
             ("tests/fixtures/a1_a12/good_protocol.py", None),
             ("tests/fixtures/a1_a12/bad_protocol.py", None),
             ("references/hulp-rna-extraction/viral_rna_extraction_protocol.py", harbor_lab),
-            ("tasks/opentrons-rna-extraction/solution/protocol.py", harbor_lab)]
+            ("tasks/opentrons-rna-extraction/harbor/solution/protocol.py", harbor_lab)]
     jobs += [(str(p.relative_to(ROOT)), None) for p in sorted((ROOT / "references/dna-bot-ysaa010/scripts").glob("*.py"))]
     jobs += [(str(p.relative_to(ROOT)), str(ROOT / "references/botany-kiag066/labware")) for p in sorted((ROOT / "references/botany-kiag066/scripts").glob("*.py"))]
     jobs += [(str(p.relative_to(ROOT)), None) for p in sorted((ROOT / "references/transporter-screening-antibiotics11081129/scripts").glob("*.py"))]
@@ -104,7 +104,7 @@ def stage_simulate():
                             "events_sha": sha(json.dumps(j["events"], sort_keys=True).encode())}
             else:
                 out[rel] = {"ok": False, "why": classify(j["error"])}
-    h, s = "references/hulp-rna-extraction/viral_rna_extraction_protocol.py", "tasks/opentrons-rna-extraction/solution/protocol.py"
+    h, s = "references/hulp-rna-extraction/viral_rna_extraction_protocol.py", "tasks/opentrons-rna-extraction/harbor/solution/protocol.py"
     out["_harbor_solution_trace_equals_author_script_trace"] = bool(h in events and s in events and events[h] == events[s])
     return out
 
@@ -126,8 +126,8 @@ def stage_render():
     except Exception as e:  # missing optional dependency
         return {"skipped": f"{type(e).__name__}: {e}"}
     out = {}
-    for rel in ("tasks/split-200ul-two-wells/ir.json", "tasks/a1-a12-100ul/ir.json",
-                "tasks/ecoli-heat-shock-transformation/ir.json"):
+    for rel in ("tasks/split-200ul-two-wells/public/ir.json", "tasks/a1-a12-100ul/public/ir.json",
+                "tasks/ecoli-heat-shock-transformation/public/ir.json"):
         proto = Protocol.model_validate_json((ROOT / rel).read_text())
         row = {}
         with tempfile.TemporaryDirectory() as d:

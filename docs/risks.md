@@ -61,7 +61,7 @@ money; **Low** = annoying.
 | H5 | No local runtime | Docker is not installed on this Mac, so nothing can be run locally; Harbor itself is not installed | Medium |
 | H6 | Only one task is Harbor-runnable | The other six lack `environment/`, `solution/`, `tests/`, and their `task.toml` names fail Harbor's `org/name` rule | Medium |
 | H7 | Judge failures look like model failures | `grade.py` turns a blocked key or bad model id into reward 0 with `judge_error=1` | Medium |
-| H8 | Hidden grader is public | `tasks/opentrons-rna-extraction/tests` and `solution` are in the public GitHub repo, so a web-enabled model can read them | High |
+| H8 | Hidden grader is public | `tasks/opentrons-rna-extraction/harbor/tests` and `solution` are in the public GitHub repo, so a web-enabled model can read them | High |
 
 Runbook with exact commands and the unverified list: [`harbor-runbook.md`](harbor-runbook.md).
 

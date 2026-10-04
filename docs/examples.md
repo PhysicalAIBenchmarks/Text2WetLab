@@ -4,8 +4,8 @@ Every task and every pipeline output is drawn through the same two viewers. Anyt
 `Protocol` IR (`paper2protocol/models.py`) renders with one command.
 
 ```bash
-python eval/ir_viz.py tasks/a1-a12-100ul/ir.json -o out.gif      # 2D
-python eval/ir_mujoco.py tasks/a1-a12-100ul/ir.json -o out.mp4   # 3D + physics tracking; also writes out.gif and out_frames.png
+python eval/ir_viz.py tasks/a1-a12-100ul/public/ir.json -o out.gif      # 2D
+python eval/ir_mujoco.py tasks/a1-a12-100ul/public/ir.json -o out.mp4   # 3D + physics tracking; also writes out.gif and out_frames.png
 python eval/ir_viz.py --all && python eval/ir_mujoco.py --all    # every IR -> assets/examples/, assets/examples3d/
 ```
 
@@ -72,7 +72,7 @@ Collision rule: a lateral move whose tip passes below the rim of labware it cros
 first, so it never collides. `--no-lift` drives straight between work heights to show the check firing:
 
 ```bash
-python eval/ir_mujoco.py tasks/split-200ul-two-wells/ir.json --no-lift -o out.mp4
+python eval/ir_mujoco.py tasks/split-200ul-two-wells/public/ir.json --no-lift -o out.mp4
 ```
 
 ![No lift: collision flagged](../assets/examples3d/split-200ul-two-wells-NO-LIFT-collision.gif)

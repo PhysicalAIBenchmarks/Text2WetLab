@@ -14,7 +14,7 @@ FIXTURES = sorted((pathlib.Path(__file__).parent / "fixtures/events").glob("*.js
 
 def task(name):
     d = ROOT / "tasks" / name
-    return Protocol.model_validate_json((d / "ir.json").read_text()), free_wells(d)
+    return Protocol.model_validate_json((d / "public/ir.json").read_text()), free_wells(d)
 
 
 @pytest.mark.parametrize("path", FIXTURES, ids=lambda p: p.stem)
@@ -74,7 +74,7 @@ def test_eight_channel_events_touch_all_rows():
 
 def test_eval_runlog_is_identical_to_the_harbor_graders_copy():
     """The Harbor task ships its own runlog.py (it runs in Docker). Both must parse the log the same way."""
-    assert (ROOT / "eval/runlog.py").read_bytes() == (ROOT / "tasks/opentrons-rna-extraction/tests/runlog.py").read_bytes()
+    assert (ROOT / "eval/runlog.py").read_bytes() == (ROOT / "tasks/opentrons-rna-extraction/harbor/tests/runlog.py").read_bytes()
 
 
 def test_simulator_errors_are_recorded_by_type_never_by_their_random_message():

@@ -7,10 +7,13 @@ keywords = ["dna-assembly", "golden-gate"]
 
 [metadata]
 source = "paper2protocol"
-source_paper = "doi:10.1093/synbio/ysac032"
-source_experiment = "exp2"
 steps = 33
 containers = 15
 
 [checks]
 free_wells = []
+
+[[source]]
+slug = "assemblytron"
+experiment = "exp2"
+relation = "derived"

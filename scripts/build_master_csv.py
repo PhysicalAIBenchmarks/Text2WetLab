@@ -17,22 +17,30 @@ import argparse
 import csv
 import json
 import pathlib
+import tomllib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 RUNS = ROOT / "data/pipeline_runs"
 
 # How a paper relates to a benchmark task. "derived" = the task IR is byte-identical to that experiment's IR.
-TASKS = {
-    ("assemblytron", "exp2"): ("golden-gate-assembly", "derived"),
-    ("hulp-rna-extraction", "exp2"): ("opentrons-rna-extraction", "same paper (Harbor task)"),
-    ("slowpoke", "exp5"): ("colony-pcr-screening", "inspired by (handwritten, numbers differ from the script)"),
-    ("copick", "exp2"): ("colony-picking-96well", "dropped (vision-guided, not liquid handling)"),
-    ("apex", "apex-p1"): ("ecoli-heat-shock-transformation", "candidate real reference (APEX protocol 1) but the repo is AGPL-3.0, so it cannot be vendored; the task itself is handwritten"),
-    ("apex", "apex-p5"): ("colony-pcr-screening", "candidate real reference (APEX protocol 5, colony PCR sample prep); AGPL-3.0"),
-}
-PAPER_TASKS = {  # whole-paper relations
-    "pioneer-ngs": ("ampure-bead-cleanup", "claimed source, NOT supported: the repo has no AMPure step (Hamilton, PyLabRobot)"),
-}
+# The task folder is the authority: each tasks/<task>/task.toml lists its [[source]] (slug, experiment, relation).
+# An experiment can feed several tasks, so a key maps to a list.
+DROPPED = {("copick", "exp2"): [("colony-picking-96well", "dropped (vision-guided, not liquid handling)")]}
+
+
+def task_links():
+    exp, paper = {}, {}
+    for f in sorted((ROOT / "tasks").glob("*/task.toml")):
+        for s in tomllib.loads(f.read_text()).get("source", []):
+            if s.get("experiment"):
+                exp.setdefault((s["slug"], s["experiment"]), []).append((f.parent.name, s["relation"]))
+            else:
+                paper.setdefault(s["slug"], []).append((f.parent.name, s["relation"]))
+    for k, v in DROPPED.items():
+        exp.setdefault(k, []).extend(v)
+    return exp, paper
+
+
 RUNNABLE = {  # slug -> whether its code simulates on Harbor's stack (Opentrons 7.5.0), from scripts/reproduce.py
     "dna-bot": "no: needs removed Opentrons API v1", "botany": "no: needs API 2.20 and a runtime CSV",
     "transporter-screening": "no: needs a custom labware definition that is not in the repo",
@@ -118,6 +126,7 @@ def paper_cols(src, rec):
 def build_rows():
     sources = json.loads((ROOT / "ingestion/sources.json").read_text())
     rows = []
+    exp_links, paper_links = task_links()
     for src in sources:
         rec = load(ROOT / f"ingestion/records/{src['slug']}.json")
         base = {c: "" for c in COLS}
@@ -140,9 +149,10 @@ def build_rows():
             entries.append({"experiment_id": "", "experiment_source": "none: paper not yet split", "pipeline_state": "not_identified"})
         for e in entries:
             row = dict(base, **e)
-            task = TASKS.get((src["slug"], e["experiment_id"])) or PAPER_TASKS.get(src["slug"])
-            if task:
-                row["task_slug"], row["task_relation"] = task
+            links = exp_links.get((src["slug"], e["experiment_id"])) or paper_links.get(src["slug"]) or []
+            if links:
+                row["task_slug"] = " | ".join(t for t, _ in links)
+                row["task_relation"] = " | ".join(r for _, r in links)
             row["entry_id"] = f"{src['slug']}#{e['experiment_id']}" if e["experiment_id"] else src["slug"]
             rows.append(row)
     return rows

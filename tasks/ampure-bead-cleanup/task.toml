@@ -12,3 +12,7 @@ containers = 6
 
 [checks]
 free_wells = []
+
+[[source]]
+slug = "pioneer-ngs"
+relation = "claimed source, NOT supported: the repo has no AMPure step (Hamilton, PyLabRobot)"

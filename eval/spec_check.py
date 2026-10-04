@@ -196,12 +196,12 @@ def free_wells(task_dir) -> frozenset:
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[1].strip())
-    ap.add_argument("task", help="task folder containing ir.json")
+    ap.add_argument("task", help="task folder (reads public/ir.json and task.toml)")
     ap.add_argument("protocol")
     ap.add_argument("--labware")
     a = ap.parse_args()
     task = pathlib.Path(a.task)
-    proto = Protocol.model_validate_json((task / "ir.json").read_text())
+    proto = Protocol.model_validate_json((task / "public/ir.json").read_text())
     res = check(proto, simulate(a.protocol, a.labware), free_wells(task))
     for c in res["checks"]:
         print(f"{'PASS' if c['pass'] else 'FAIL'}  {c['name']:34} {c['detail']}")

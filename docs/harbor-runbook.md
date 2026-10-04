@@ -14,7 +14,7 @@ Sources:
 
 ## 1. Decision summary
 
-- Only `tasks/opentrons-rna-extraction/` is Harbor-runnable today. The other six tasks are not Harbor tasks (see section 7); they need a wrapper before Harbor can run them.
+- Only `tasks/opentrons-rna-extraction/harbor/` is Harbor-runnable today. The other six tasks are not Harbor tasks (see section 7); they need a wrapper before Harbor can run them.
 - Harbor does not need local Docker: the default is Docker, but `-e daytona|modal|e2b|runloop|vercel|...` run in cloud sandboxes. Recommended path from this Mac: Daytona or Modal (both support the task's network allowlist), with `harbor[daytona]` or `harbor[modal]` installed. Alternative: install Docker (Colima or Docker Desktop) and use the default environment, which is free of sandbox fees and the simplest to debug.
 - Setup cost: install Harbor (minutes, `uv tool install`), one sandbox account + key (Daytona/Modal), image build of about 1 GB (Dockerfile pulls apt, npm, pip; `build_timeout_sec = 1200`). No code changes needed for the RNA task.
 - Order of work: dry-run, then oracle (costs one judge call, about one Sonnet request), then one model trial with a budget cap, then more.
@@ -39,16 +39,16 @@ Load the key into the Harbor process without printing it. Either `export ANTHROP
 (a) Validate the task with the oracle (runs solution/solve.sh, then the verifier):
 
 ```bash
-harbor run -p tasks/opentrons-rna-extraction -a oracle                 # Docker
-harbor run -p tasks/opentrons-rna-extraction -a oracle -e daytona      # cloud
+harbor run -p tasks/opentrons-rna-extraction/harbor -a oracle                 # Docker
+harbor run -p tasks/opentrons-rna-extraction/harbor -a oracle -e daytona      # cloud
 ```
 
-Task README expects the oracle reward to be about 0.94. Its README uses an older layered path; in this repo the path is `tasks/opentrons-rna-extraction`.
+Task README expects the oracle reward to be about 0.94. The README path matches this repo (`tasks/opentrons-rna-extraction/harbor`).
 
 (b) Model agent (claude-code with a Claude model; model string is `provider/model`):
 
 ```bash
-harbor run -p tasks/opentrons-rna-extraction -a claude-code \
+harbor run -p tasks/opentrons-rna-extraction/harbor -a claude-code \
   -m anthropic/claude-sonnet-5-5 -e daytona \
   --ak max_turns=40 --ak max_budget_usd=3 -k 1 -n 1
 ```
@@ -67,7 +67,7 @@ Today `-p tasks` would find only one valid task (directories without `environmen
 (d) Dry-run, config echo, and reading results:
 
 ```bash
-harbor run -p tasks/opentrons-rna-extraction -a claude-code -m anthropic/claude-sonnet-5-5 --print-config
+harbor run -p tasks/opentrons-rna-extraction/harbor -a claude-code -m anthropic/claude-sonnet-5-5 --print-config
 harbor run ... --dry-run          # validates config and preflight; no trials. Verified to stop at the env preflight here.
 harbor view ./jobs                # web UI over trajectories
 harbor job resume <job_dir>       # resume an interrupted job
@@ -158,7 +158,7 @@ The task README reports a 27-trial sweep over 9 models; its per-trial cost is no
 1. `uv tool install "harbor[daytona]"` (or modal) succeeds; `harbor --version` prints.
 2. Decide the environment. Docker: install Colima/Docker Desktop and `docker info` works. Cloud: key exported in the Harbor shell only.
 3. `ANTHROPIC_API_KEY` exported in the same shell (or `--env-file`); never print it; confirm with a free `count_tokens` call, as done earlier.
-4. `harbor run -p tasks/opentrons-rna-extraction -a oracle <env flags> --dry-run` passes preflight.
+4. `harbor run -p tasks/opentrons-rna-extraction/harbor -a oracle <env flags> --dry-run` passes preflight.
 5. Set a spend cap on the Anthropic console key/workspace in addition to `--ak max_budget_usd`.
 6. Start with `-n 1 -k 1 -r 0`, then oracle, then one model trial.
 7. Check the judge model id `claude-sonnet-5-5` is available to the key (grade.py hard-codes it; a bad id gives `judge_error=1` and reward 0, not a crash).
@@ -175,7 +175,7 @@ Required by `Task.is_valid_dir` / loader (src: models/task/task.py):
 - Optional: `solution/solve.sh` (for oracle).
 
 Verified locally with Harbor's own `TaskConfig` parser:
-- `tasks/opentrons-rna-extraction/task.toml` parses; baseline = allowlist [api.anthropic.com, registry.npmjs.org]; verifier env keys = [ANTHROPIC_API_KEY].
+- `tasks/opentrons-rna-extraction/harbor/task.toml` parses; baseline = allowlist [api.anthropic.com, registry.npmjs.org]; verifier env keys = [ANTHROPIC_API_KEY].
 - `tasks/ecoli-heat-shock-transformation/task.toml` FAILS validation: `task.name` must be `org/name`, got `ecoli-heat-shock-transformation`. With the name fixed to `x/...`, the extra `[checks]` table and `[metadata]` did not fail.
 
 Our six other tasks (`a1-a12-100ul`, `ampure-bead-cleanup`, `colony-pcr-screening`, `ecoli-heat-shock-transformation`, `golden-gate-assembly`, `split-200ul-two-wells`; I inspected two of them) contain only `instruction.md`, `ir.json`, `assumptions.md`, `task.toml`. Missing:
@@ -186,7 +186,7 @@ Our six other tasks (`a1-a12-100ul`, `ampure-bead-cleanup`, `colony-pcr-screenin
 - Their `instruction.md` presumably does not say where to write the output, since the RNA task uses `/app/protocol.py`.
 The grader can be deterministic (no API key in the verifier) for the tasks that have `spec_check.py`. Not designed here.
 
-## 8. Findings specific to tasks/opentrons-rna-extraction/
+## 8. Findings specific to tasks/opentrons-rna-extraction/harbor/
 
 - Pins exist: `@anthropic-ai/claude-code@2.1.288`, `node@22.22.0` on npm and `anthropic==0.72.0` and `opentrons==7.5.0` on PyPI (checked with read-only registry queries). Dockerfile uses `python:3.10-slim-bookworm`; Opentrons 7.5.0 is a pure-Python wheel, matching our simulator requirement. Its dependencies (e.g. `pydantic<2`, numpy, jsonschema) building on arm64 Linux was not verified; a Mac arm64 Docker build will pull arm64 images, a cloud sandbox is usually amd64.
 - Harbor will see claude-code 2.1.288 already installed; it only reinstalls if the version Harbor requests differs. Harbor 0.23.0 may request a different or unpinned version, in which case it runs `npm install -g` inside the sandbox (registry.npmjs.org is allowlisted, which is why). Not verified.

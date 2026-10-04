@@ -13,7 +13,7 @@ def staged(tmp_path):
 
 def test_hidden_grader_and_oracle_files_are_never_published(tmp_path):
     files = staged(tmp_path)
-    bad = [f for f in files if f.startswith("tasks/") and ("/tests/" in f or "/solution/" in f)]
+    bad = [f for f in files if f.startswith("tasks/") and ("/private/" in f or "/harbor/" in f)]
     assert not bad, bad
 
 
@@ -24,9 +24,9 @@ def test_third_party_reference_scripts_are_never_published(tmp_path):
 
 def test_public_task_spec_and_provenance_are_published(tmp_path):
     files = set(staged(tmp_path))
-    assert {"README.md", "PROVENANCE.csv", "tasks/split-200ul-two-wells/instruction.md",
-            "tasks/split-200ul-two-wells/ir.json", "tasks/split-200ul-two-wells/task.toml"} <= files
-    assert "tasks/opentrons-rna-extraction/instruction.md" in files
+    assert {"README.md", "PROVENANCE.csv", "tasks/split-200ul-two-wells/public/instruction.md",
+            "tasks/split-200ul-two-wells/public/ir.json", "tasks/split-200ul-two-wells/task.toml"} <= files
+    assert "tasks/opentrons-rna-extraction/public/instruction.md" in files
 
 
 def test_master_csv_is_published_and_no_pdf_ever_is(tmp_path):

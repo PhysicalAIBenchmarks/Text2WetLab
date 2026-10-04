@@ -14,11 +14,11 @@ model's Python ──► opentrons_simulate (7.5.0) ──► events ──► e
 ## Layout
 
 ```
-tasks/<task>/          one flat folder per task, same files everywhere
-    instruction.md       the plain-English instruction (public)
-    ir.json              the decomposed spec (public)         assumptions.md  what the instruction leaves out
-    task.toml            name, source, steps, [checks] free_wells
-    solution/ tests/     hidden oracle and grader, never published (only some tasks have them)
+tasks/<task>/
+    task.toml            manifest: name, steps, [checks] free_wells, [[source]] = which paper and how it relates
+    public/              PUBLISHED: instruction.md (what a model is given), ir.json (the spec), assumptions.md
+    private/             never published: oracle solutions used by spec_check
+    harbor/              never published: a complete Harbor task (agent brief, Dockerfile, solution, grader), RNA task only
 paper2protocol/        paper -> experiments -> IR -> instructions (lLegon)
 eval/                  spec_check.py (the one checker), runlog.py (simulator -> events),
                        ir_viz.py (2D), ir_mujoco.py (3D + physics tracking)

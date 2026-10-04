@@ -3,7 +3,8 @@
     python scripts/deploy_hf.py --dry-run      # stage and list what would be published
 
 Publishing is an allowlist. Never published:
-  - tasks/<task>/tests/ and solution/   hidden grader and oracle files (contamination)
+  - tasks/<task>/private/ and harbor/   hidden grader, oracle and sandbox files (contamination)
+  - tasks/<task>/ publishes only task.toml and public/
   - references/                         third-party scripts, several without a licence
   - data/, .git, caches                 generated or internal
 """
@@ -16,7 +17,7 @@ from pathlib import Path
 REPO_ID = os.environ.get("HF_REPO_ID", "EvanOLeary/Text2WetLab")
 ROOT = Path(__file__).resolve().parent.parent
 INCLUDE = ["tasks", "eval", "manuscript", "assets", "docs", "ingestion", "PROVENANCE.csv", "LICENSE"]
-HIDDEN = {"tests", "solution"}  # directories directly inside tasks/<task>/
+HIDDEN = {"private", "harbor"}  # directories directly inside tasks/<task>/
 NOISE = {"__pycache__", ".DS_Store"}
 NEVER_PUBLISHED_SUFFIXES = (".pdf",)  # papers are fetched by URL and checked by SHA-256; licences differ per paper
 

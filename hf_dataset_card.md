@@ -27,8 +27,8 @@ loops all pass if the plate ends up right.
 
 ## Tasks
 
-One folder per task under `tasks/<task>/`: `instruction.md` (what the model is given), `ir.json` (the decomposed spec),
-`assumptions.md` (what the instruction leaves out), `task.toml`. Hidden oracles and graders are not published.
+One folder per task under `tasks/<task>/`: `public/instruction.md` (what the model is given), `public/ir.json` (the decomposed spec),
+`public/assumptions.md` (what the instruction leaves out), and `task.toml` (manifest and the paper each task came from). Hidden oracles and graders are not published.
 
 | Task | Steps | Source |
 |---|---:|---|
