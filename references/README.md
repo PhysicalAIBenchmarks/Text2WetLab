@@ -13,5 +13,5 @@ this folder) **and never published to the dataset** (`scripts/deploy_hf.py` is a
 | `hulp-rna-extraction/` | HULPopentrons/RNA_extraction_OT2opentrons | none declared | yes (1,895 commands) |
 
 Each folder's README pins the upstream commit. `PROVENANCE.csv` records, for every file, the upstream URL and
-whether its git blob hash matches upstream exactly (all 35 do). Files without a declared licence are for private
+whether its git blob hash matches upstream exactly (all 34 do). Files without a declared licence are for private
 comparison only: do not redistribute them without the authors' permission.
