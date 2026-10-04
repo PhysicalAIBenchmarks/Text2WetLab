@@ -62,7 +62,9 @@ def classify(err: str) -> str:
                        ("RUNTIME_PARAMETER", "needs a runtime-parameter CSV")):
         if key in err:
             return label
-    return err[-90:].replace("\n", " ")
+    from spec_check import error_kind
+
+    return error_kind(err)
 
 
 def stage_simulate():

@@ -60,6 +60,13 @@ def simulate(protocol: str, labware_dir: str | None = None, timeout: int = 600) 
         return {"ok": False, "error": (r.stderr.strip().splitlines() or ["runlog produced no output"])[-1]}
 
 
+def error_kind(err: str) -> str:
+    """The specific simulator error type, e.g. TipNotAttachedError. The raw message embeds a fresh UUID and
+    timestamp on every run, so it must never be stored or compared."""
+    kinds = re.findall(r"errorType='(\w+)'", err)
+    return kinds[-1] if kinds else (err.split(":")[0].strip() or "unknown")[:80]
+
+
 def is_stock(labware: str) -> bool:
     return any(w in labware.lower() for w in STOCK_WORDS)
 
@@ -141,7 +148,7 @@ def check(proto: Protocol, run: dict, free_wells: frozenset = frozenset()) -> di
         checks.append({"name": name, "pass": bool(ok), "detail": detail})
 
     if not run.get("ok"):
-        add("simulator_ran", False, run.get("error", "")[:140])
+        add("simulator_ran", False, error_kind(run.get("error", "")))
         return {"passed": False, "checks": checks}
     add("simulator_ran", True)
     events = run["events"]

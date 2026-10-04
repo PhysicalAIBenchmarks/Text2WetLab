@@ -21,7 +21,7 @@ import tempfile
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path[:0] = [str(ROOT), str(ROOT / "eval")]
 from paper2protocol.models import Protocol  # noqa: E402
-from spec_check import check, free_wells, simulate  # noqa: E402
+from spec_check import check, error_kind, free_wells, simulate  # noqa: E402
 
 HARBOR = ROOT / "tasks/opentrons-rna-extraction"
 spec = importlib.util.spec_from_file_location("harbor_checks", HARBOR / "tests/checks.py")
@@ -94,7 +94,7 @@ def eval_task(head, family, task):
         failed = [c["name"] for c in res["checks"] if not c["pass"]]
         detail = next((c["detail"] for c in res["checks"] if c["name"] == "simulator_ran" and not c["pass"]), "")
         rows.append({"mutant": name, "truth_valid": truth, "verdict_pass": res["passed"], "failed": failed,
-                     "sim_error": detail[:100]})
+                     "sim_error": detail})
     return rows
 
 
@@ -124,7 +124,7 @@ def run_rna(patches):
         f.write_text("".join(lines))
         out = simulate(str(f), str(HARBOR / "environment/data/labware"))
     if not out["ok"]:
-        return {"sim_ok": False, "detail": out["error"][-110:]}
+        return {"sim_ok": False, "detail": error_kind(out["error"])}
     res = harbor_checks.analyze(out["events"])
     failed = [c["name"] for c in res["checks"] if not c["pass"]]
     return {"sim_ok": True, "passed": res["checks_passed"], "total": res["checks_total"], "failed": failed,

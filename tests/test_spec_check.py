@@ -7,7 +7,7 @@ import pytest
 ROOT = pathlib.Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT / "eval"))
 from paper2protocol.models import Protocol  # noqa: E402
-from spec_check import check, free_wells, replay  # noqa: E402
+from spec_check import check, error_kind, free_wells, replay  # noqa: E402
 
 FIXTURES = sorted((pathlib.Path(__file__).parent / "fixtures/events").glob("*.json"))
 
@@ -75,3 +75,12 @@ def test_eight_channel_events_touch_all_rows():
 def test_eval_runlog_is_identical_to_the_harbor_graders_copy():
     """The Harbor task ships its own runlog.py (it runs in Docker). Both must parse the log the same way."""
     assert (ROOT / "eval/runlog.py").read_bytes() == (ROOT / "tasks/opentrons-rna-extraction/tests/runlog.py").read_bytes()
+
+
+def test_simulator_errors_are_recorded_by_type_never_by_their_random_message():
+    """The raw message holds a new UUID and timestamp each run; storing it broke byte-identical reports."""
+    a = ("ProtocolEngineExecuteError: [ErrorOccurrence(id='f190f402-8e71', createdAt=datetime(2026, 10, 4), errorType='ExceptionInProtocolError', "
+         "detail='...', errorType='TipNotAttachedError')]")
+    b = a.replace("f190f402-8e71", "0a1b2c3d-4e5f").replace("10, 4", "11, 9")
+    assert error_kind(a) == error_kind(b) == "TipNotAttachedError"
+    assert error_kind("RuntimeError: /x is not a directory") == "RuntimeError"
