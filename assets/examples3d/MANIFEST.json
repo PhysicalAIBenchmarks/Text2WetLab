@@ -1,0 +1,189 @@
+[
+ {
+  "render": "L1-a1-a12-100ul",
+  "experiment_id": "L1/a1-a12-100ul",
+  "ir": "tasks/L1/a1-a12-100ul/ir.json",
+  "ir_source": "handwritten",
+  "introduced_by": "45bf166",
+  "author": "nialloleary",
+  "title": "100 µL from a 1-well reservoir to wells A1 to A12",
+  "steps": 1,
+  "containers": 2,
+  "check_errors": 0,
+  "files": [
+   "L1-a1-a12-100ul.mp4",
+   "L1-a1-a12-100ul.gif",
+   "L1-a1-a12-100ul_frames.png"
+  ]
+ },
+ {
+  "render": "L1-example",
+  "experiment_id": "L1/example",
+  "ir": "tasks/L1/example/ir.json",
+  "ir_source": "handwritten",
+  "introduced_by": "8d5ce9b",
+  "author": "nialloleary",
+  "title": "Serial dilution 200 µL → 2 × 100 µL into plate",
+  "steps": 1,
+  "containers": 2,
+  "check_errors": 0,
+  "files": [
+   "L1-example.mp4",
+   "L1-example.gif",
+   "L1-example_frames.png"
+  ]
+ },
+ {
+  "render": "L1-serial-dilution-200ul",
+  "experiment_id": "L1/serial-dilution-200ul",
+  "ir": "tasks/L1/serial-dilution-200ul/ir.json",
+  "ir_source": "handwritten",
+  "introduced_by": "bceb079",
+  "author": "nialloleary",
+  "title": "Serial dilution 200 µL → 2 × 100 µL into plate",
+  "steps": 1,
+  "containers": 2,
+  "check_errors": 0,
+  "files": [
+   "L1-serial-dilution-200ul.mp4",
+   "L1-serial-dilution-200ul.gif",
+   "L1-serial-dilution-200ul_frames.png"
+  ]
+ },
+ {
+  "render": "L2-ampure-bead-cleanup",
+  "experiment_id": "L2/ampure-bead-cleanup",
+  "ir": "tasks/L2/ampure-bead-cleanup/ir.json",
+  "ir_source": "handwritten",
+  "introduced_by": "0ff033a",
+  "author": "nialloleary",
+  "title": "AMPure XP magnetic bead cleanup of PCR products",
+  "steps": 13,
+  "containers": 6,
+  "check_errors": 0,
+  "files": [
+   "L2-ampure-bead-cleanup.mp4",
+   "L2-ampure-bead-cleanup.gif",
+   "L2-ampure-bead-cleanup_frames.png"
+  ]
+ },
+ {
+  "render": "L2-colony-pcr-screening",
+  "experiment_id": "L2/colony-pcr-screening",
+  "ir": "tasks/L2/colony-pcr-screening/ir.json",
+  "ir_source": "handwritten",
+  "introduced_by": "0ff033a",
+  "author": "nialloleary",
+  "title": "Colony PCR screening with Q5 Hot Start master mix",
+  "steps": 4,
+  "containers": 4,
+  "check_errors": 0,
+  "files": [
+   "L2-colony-pcr-screening.mp4",
+   "L2-colony-pcr-screening.gif",
+   "L2-colony-pcr-screening_frames.png"
+  ]
+ },
+ {
+  "render": "L2-ecoli-heat-shock-transformation",
+  "experiment_id": "L2/ecoli-heat-shock-transformation",
+  "ir": "tasks/L2/ecoli-heat-shock-transformation/ir.json",
+  "ir_source": "handwritten",
+  "introduced_by": "0ff033a",
+  "author": "nialloleary",
+  "title": "E. coli heat shock transformation with SOC recovery",
+  "steps": 4,
+  "containers": 3,
+  "check_errors": 0,
+  "files": [
+   "L2-ecoli-heat-shock-transformation.mp4",
+   "L2-ecoli-heat-shock-transformation.gif",
+   "L2-ecoli-heat-shock-transformation_frames.png"
+  ]
+ },
+ {
+  "render": "L2-golden-gate-assembly",
+  "experiment_id": "L2/golden-gate-assembly",
+  "ir": "tasks/L2/golden-gate-assembly/ir.json",
+  "ir_source": "pipeline: doi:10.1093/synbio/ysac032#exp2 (source protocol.json untracked)",
+  "introduced_by": "0ff033a",
+  "author": "nialloleary",
+  "title": "Golden Gate assembly of four four-fragment chromoprotein expression plasmids with AssemblyTron on the OT-2",
+  "steps": 33,
+  "containers": 15,
+  "check_errors": 0,
+  "files": [
+   "L2-golden-gate-assembly.mp4",
+   "L2-golden-gate-assembly.gif",
+   "L2-golden-gate-assembly_frames.png"
+  ]
+ },
+ {
+  "render": "paper-10_1101_2024_09_14_613006-exp1",
+  "experiment_id": "doi:10.1101/2024.09.14.613006#exp1",
+  "ir": "out/10.1101_2024.09.14.613006/exp1/protocol.json",
+  "ir_source": "pipeline",
+  "introduced_by": "dd91b7c",
+  "author": "lLegon",
+  "title": "Yeast strain engineering and LC-HRMS detection of 4-DG and mycosporine-glycine (MG) in SC.L2, SC.L3, SC.L6 and SC.L26",
+  "steps": 56,
+  "containers": 30,
+  "check_errors": 0,
+  "files": [
+   "paper-10_1101_2024_09_14_613006-exp1.mp4",
+   "paper-10_1101_2024_09_14_613006-exp1.gif",
+   "paper-10_1101_2024_09_14_613006-exp1_frames.png"
+  ]
+ },
+ {
+  "render": "paper-10_1371_journal_pone_0246302-exp2",
+  "experiment_id": "doi:10.1371/journal.pone.0246302#exp2",
+  "ir": "out/10.1371_journal.pone.0246302/exp2/protocol.json",
+  "ir_source": "pipeline",
+  "introduced_by": "dd91b7c",
+  "author": "lLegon",
+  "title": "RNA extraction from SARS-CoV-2 positive nasopharyngeal swabs with MMkit, OT-2in-house and MMin-house protocols, followed by TaqMan 2019-nCoV RT-qPCR (88-sample batch layout)",
+  "steps": 91,
+  "containers": 44,
+  "check_errors": 0,
+  "files": [
+   "paper-10_1371_journal_pone_0246302-exp2.mp4",
+   "paper-10_1371_journal_pone_0246302-exp2.gif",
+   "paper-10_1371_journal_pone_0246302-exp2_frames.png"
+  ]
+ },
+ {
+  "render": "paper-10_64898_2026_03_26_714448-exp1",
+  "experiment_id": "doi:10.64898/2026.03.26.714448#exp1",
+  "ir": "out/10.64898_2026.03.26.714448/exp1/protocol.json",
+  "ir_source": "pipeline",
+  "introduced_by": "dd91b7c",
+  "author": "lLegon",
+  "title": "HRE-luciferase reporter assay after KDM2B siRNA knockdown in normoxia/hypoxia (U2OS, MDA-MB-231, HeLa; Figure 1B), scaled to 96-well plates",
+  "steps": 53,
+  "containers": 23,
+  "check_errors": 0,
+  "files": [
+   "paper-10_64898_2026_03_26_714448-exp1.mp4",
+   "paper-10_64898_2026_03_26_714448-exp1.gif",
+   "paper-10_64898_2026_03_26_714448-exp1_frames.png"
+  ]
+ },
+ {
+  "render": "L1-example-NO-LIFT-collision",
+  "experiment_id": "L1-example (variant)",
+  "ir": "see L1-example",
+  "ir_source": "same IR, --no-lift",
+  "introduced_by": "9aead4d",
+  "author": "nialloleary",
+  "title": "Forced collision demo: head drives at work height",
+  "steps": 0,
+  "containers": 0,
+  "check_errors": 0,
+  "files": [
+   "L1-example-NO-LIFT-collision.mp4",
+   "L1-example-NO-LIFT-collision.gif",
+   "L1-example-NO-LIFT-collision_frames.png"
+  ]
+ }
+]
