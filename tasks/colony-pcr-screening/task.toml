@@ -1,24 +1,29 @@
 schema_version = "1.4"
 
 [task]
-name = "colony-pcr-screening"
+name = "text2wetlab/colony-pcr-screening"
+version = "0.1.0"
 description = "Colony PCR screening with Q5 Hot Start master mix"
-keywords = ["pcr", "thermocycler"]
+authors = [{ name = "Text2WetLab" }]
+keywords = ["opentrons", "ot-2", "lab-automation", "protocol-generation"]
 
 [metadata]
 source = "handwritten"
-steps = 4
-containers = 4
+deck = "specified"
+grading = "simulator gate + end-state checks + Sonnet 5.5 rubric judge"
 
-[checks]
-free_wells = []
+[agent]
+timeout_sec = 1800.0
 
-[[source]]
-slug = "slowpoke"
-experiment = "exp5"
-relation = "inspired by (handwritten, numbers differ from the script)"
+[verifier]
+timeout_sec = 900.0
+env = { ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY}" }
 
-[[source]]
-slug = "apex"
-experiment = "apex-p5"
-relation = "candidate real reference (APEX protocol 5, colony PCR sample prep); AGPL-3.0, cannot be vendored"
+[environment]
+network_mode = "allowlist"
+allowed_hosts = ["api.anthropic.com", "registry.npmjs.org"]
+build_timeout_sec = 1200.0
+cpus = 4
+memory_mb = 8192
+storage_mb = 10240
+gpus = 0

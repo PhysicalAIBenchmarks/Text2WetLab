@@ -1,19 +1,29 @@
 schema_version = "1.4"
 
 [task]
-name = "ecoli-heat-shock-transformation"
+name = "text2wetlab/ecoli-heat-shock-transformation"
+version = "0.1.0"
 description = "E. coli heat shock transformation with SOC recovery"
-keywords = ["transformation", "heat-shock"]
+authors = [{ name = "Text2WetLab" }]
+keywords = ["opentrons", "ot-2", "lab-automation", "protocol-generation"]
 
 [metadata]
 source = "handwritten"
-steps = 4
-containers = 3
+deck = "specified"
+grading = "simulator gate + end-state checks + Sonnet 5.5 rubric judge"
 
-[checks]
-free_wells = []
+[agent]
+timeout_sec = 1800.0
 
-[[source]]
-slug = "apex"
-experiment = "apex-p1"
-relation = "candidate real reference (APEX protocol 1); AGPL-3.0, cannot be vendored; the task itself is handwritten"
+[verifier]
+timeout_sec = 900.0
+env = { ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY}" }
+
+[environment]
+network_mode = "allowlist"
+allowed_hosts = ["api.anthropic.com", "registry.npmjs.org"]
+build_timeout_sec = 1200.0
+cpus = 4
+memory_mb = 8192
+storage_mb = 10240
+gpus = 0
