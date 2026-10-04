@@ -1,107 +1,101 @@
-# Opentrons OT-2 viral RNA extraction (Harbor task)
+# Text2WetLab Harbor tasks (Opentrons OT-2)
 
-This is a [Harbor](https://github.com/laude-institute/harbor) benchmark task. An AI agent reads a paper and writes a working Opentrons OT-2 robot protocol. The protocol is then graded on what the simulated robot actually does.
+Seven [Harbor](https://github.com/laude-institute/harbor) benchmark tasks. In each one an AI agent writes an Opentrons OT-2 Python protocol to `/app/protocol.py`, and the protocol is graded on what the simulated robot actually does.
 
-- **Paper:** "Automated low-cost SARS-CoV-2 RNA extraction protocols", PLOS ONE 2021, [doi:10.1371/journal.pone.0246302](https://doi.org/10.1371/journal.pone.0246302)
-- **Goal:** implement the paper's in-house 48-sample magnetic-bead RNA extraction as `/app/protocol.py`
-- **Task name:** `opentrons/rna-extraction` (see `task.toml`)
+## Tasks
+
+| Task | What the agent must automate | Grader |
+|---|---|---|
+| `a1-a12-100ul` | 100 µL from a 1-well reservoir to wells A1 to A12 | Deterministic |
+| `split-200ul-two-wells` | Split 200 µL into two 100 µL wells | Deterministic |
+| `ampure-bead-cleanup` | AMPure XP magnetic bead cleanup of PCR products | Deterministic |
+| `colony-pcr-screening` | Colony PCR screening with Q5 Hot Start master mix | Deterministic |
+| `ecoli-heat-shock-transformation` | E. coli heat shock transformation with SOC recovery | Deterministic |
+| `golden-gate-assembly` | Golden Gate assembly of four four-fragment chromoprotein plasmids (AssemblyTron) | Deterministic |
+| `opentrons-rna-extraction` | 48-sample magnetic-bead SARS-CoV-2 RNA extraction from PLOS ONE 2021 ([doi:10.1371/journal.pone.0246302](https://doi.org/10.1371/journal.pone.0246302)) | Simulator, run-log checks and LLM judge |
 
 ## What is Harbor?
 
-Harbor is a framework for evaluating AI agents on tasks that run in sandboxes. Each task is a folder with four parts:
-
-| Part | Purpose |
-|---|---|
-| `instruction.md` | The prompt given to the agent |
-| `environment/` | The Docker image the agent works in |
-| `solution/` | A known-good answer, used by the `oracle` agent to check that the task is solvable |
-| `tests/` | The grader. It is copied in only after the agent finishes, so the agent never sees it |
-
-Harbor builds the environment and runs the agent (for example Claude Code) inside it. It then runs `tests/test.sh` and reads the reward from `/logs/verifier/reward.json`.
-
-## Layout
+Harbor is a framework for evaluating AI agents on tasks that run in sandboxes. Every task folder here has the same parts:
 
 ```
-tasks/opentrons-rna-extraction/
-├── task.toml                 Harbor settings: timeouts, network allowlist, 4 CPU / 8 GB
-├── instruction.md            The agent's task: deck layout, pipettes, reservoir map
-├── environment/
-│   ├── Dockerfile            python 3.10 + Claude Code + opentrons 7.5.0 (in /opt/ot)
-│   └── data/                 Mounted read-only at /data
-│       ├── paper.txt
-│       └── labware/thermo_96_wellplate_200ul.json   Custom labware definition
-├── solution/
-│   ├── protocol.py           Oracle solution
-│   └── solve.sh              Copies it to /app/protocol.py
-└── tests/                    Hidden from the agent
-    ├── test.sh               Entry point; runs grade.py
-    ├── grade.py              Simulator gate, checks, LLM judge, reward
-    ├── checks.py             16 deterministic checks on the simulator run log
-    ├── runlog.py             Runs opentrons_simulate and normalizes the command log
-    ├── reference_protocol.py The authors' protocol (ground truth, shown to the judge)
-    └── variant.json          Variant label used in grading records
+tasks/<task>/
+├── task.toml        Harbor settings: timeouts, network allowlist, 4 CPU / 8 GB
+├── instruction.md   The prompt given to the agent: deck, labware, pipettes, steps
+├── environment/     Dockerfile for the agent's sandbox (python 3.10, Claude Code, opentrons 7.5.0)
+│                    (opentrons-rna-extraction also ships data/: paper.txt and custom labware, mounted read-only at /data)
+├── solution/        protocol.py + solve.sh: the oracle answer, used to check the task is solvable
+└── tests/           The grader. It is copied in only after the agent finishes, so the agent never sees it
+    └── test.sh      Entry point; writes /logs/verifier/reward.json
 ```
+
+Harbor builds the environment and runs the agent inside it. It then runs `tests/test.sh` and reads the reward.
 
 ## How to run
 
-You need Docker (or another Harbor environment such as Modal), Python 3.12+ and an Anthropic API key. The key is used by the agent and by the LLM judge (`task.toml` passes `ANTHROPIC_API_KEY` to the verifier).
+You need Docker (or another Harbor environment such as Modal), Python 3.12+ and an Anthropic API key. Only `opentrons-rna-extraction` uses the key at grading time, for its LLM judge.
 
 ```bash
 pip install harbor            # or: uv tool install harbor
 export ANTHROPIC_API_KEY=sk-ant-...
 
-# 1. Sanity check: the oracle solution should score about 0.94
-harbor run -p tasks/opentrons-rna-extraction -a oracle
+# 1. Oracle check: should score 1.0 on the 6 deterministic tasks and about 0.94 on RNA extraction
+harbor run -p tasks -a oracle -y
 
-# 2. Run an agent
-harbor run -p tasks/opentrons-rna-extraction -a claude-code -m anthropic/claude-opus-5-5
+# 2. Run an agent on all 7 tasks (2 at a time)
+harbor run -p tasks -a claude-code -m anthropic/claude-sonnet-5-5 -n 2 -y
 
-# Options: 3 attempts per task, 3 at a time, on Modal instead of local Docker
-harbor run -p tasks/opentrons-rna-extraction -a claude-code -m anthropic/claude-sonnet-5-5 -k 3 -n 3 -e modal
+# Run one task, 3 attempts each, on Modal
+harbor run -p tasks/opentrons-rna-extraction -a claude-code -m anthropic/claude-opus-5-5 -k 3 -e modal -y
 ```
 
 Each trial writes the following to `/logs/verifier/`, which ends up in the Harbor job output:
 - `reward.json`: final reward and sub-scores
-- `judge.json`: full record with checks, judge scores and evidence
-- `events.json`: normalized simulator log
-- `protocol.py`: a copy of the agent's protocol
-
-To check a protocol by hand with the same simulator:
-
-```bash
-opentrons_simulate -L environment/data/labware solution/protocol.py
-```
+- `protocol.py`: a copy of the graded protocol
+- RNA task only: `judge.json` (checks, judge scores and evidence) and `events.json` (simulator log)
 
 ## How grading works
 
-`tests/grade.py` runs four stages:
+### The 6 deterministic tasks (`tests/grade.py`, no LLM)
 
-1. **Simulator gate.** `opentrons_simulate` (Opentrons 7.5.0) runs `/app/protocol.py`. If it crashes, times out or is missing, the reward is **0**.
-2. **Deterministic run-log checks** (`checks.py`). These 16 checks look at what the robot would physically do:
-   - `48_samples_to_odd_columns`, `step_order`
-   - `binding_volumes_40_250_250`, `mix_5x_after_sample`, `incubation_5min_before_magnet`
-   - `magnet_4min_before_first_removal`, `supernatant_removed_each_step`, `magnet_engaged_for_all_removals`
-   - `two_500ul_ethanol_washes`, `air_dry_4min`
-   - `elution_100ul`, `elution_off_magnet_then_90s_on`, `recover_70_100ul_one_well_each`
-   - `distinct_elution_wells`, `elution_plate_4C_before_recovery`, `fresh_tip_per_sample_no_cross_contact`
-3. **LLM judge** (`claude-sonnet-5-5`). The judge sees the paper, the reference protocol, the check results and the agent's code. It scores 9 rubric items at 0, 0.5 or 1: `deck_and_hardware`, `sample_handling`, `binding`, `magnetic_separation`, `washes`, `drying`, `elution_recovery`, `robot_practice` and `fidelity_to_paper`. **The reward is the mean of these 9 scores.**
-4. **Critical cap.** If any critical check fails, the reward is capped at **0.3**. The critical checks cover sample count and placement, step order, supernatant removal, the two ethanol washes, recovery, and cross-contamination.
+1. **Lint.** `protocol_lint.py` rejects code that reaches into simulator internals. A lint failure scores 0.
+2. **Simulator gate.** `opentrons_simulate` runs the protocol. If it crashes, the reward is 0.
+3. **End-state checks.** `spec_check.py` compares the simulated deck against the task spec (`tests/ir.json`, `deck.json`, `checks.json`). It checks that the right labware is in the right slot, that each well ends with the right contents, and that safety rules hold (tip use, no over-aspirating, and so on).
+4. **Reward.** 1.0 if every check passes. Otherwise up to 0.5 for the fraction of substantive checks that pass, halved again if a safety rule was broken.
 
-`reward.json` also reports `sim_pass`, `checks_frac`, `judge_mean`, `critical_fail`, `suspicious_code` (flags attempts to tamper with simulator internals), `judge_error` and one `rubric_<item>` score per rubric item.
+### opentrons-rna-extraction (`tests/grade.py`)
+
+1. **Simulator gate.** `opentrons_simulate` (Opentrons 7.5.0) runs the protocol. If it crashes, the reward is 0.
+2. **Run-log checks.** `checks.py` runs 16 deterministic checks on the normalized log, covering volumes, step order, incubation, magnet and drying times, recovery, the 4 °C plate, and fresh tips with no cross-contact.
+3. **LLM judge.** `claude-sonnet-5-5` scores 9 rubric items at 0, 0.5 or 1. The reward is the mean of those scores.
+4. **Critical cap.** If a critical check fails, the reward is capped at 0.3. The critical checks are sample count, step order, supernatant removal, the two ethanol washes, recovery, and cross-contamination.
+
+During development, the ground truth scored 0.94 and deliberately broken protocols scored 0 to 0.78.
 
 ## Results
 
-| Protocol / agent | Reward |
-|---|---|
-| Ground truth (oracle) | 0.94 |
-| Deliberately broken protocols | 0 to 0.78 |
-| 9-model Anthropic sweep (27 trials), lowest: Haiku 4.5 | 0.30 |
-| 9-model Anthropic sweep (27 trials), highest: Opus 5.5 and Fable 5.1 | 0.94 |
+The Claude Code agent was run with Harbor 0.23.0 on local Docker, 1 attempt per task per model (pass@1), on 2026-10-04. The oracle scored 1.0 on all 6 deterministic tasks.
 
-The broken protocols show that the grader catches real mistakes. The model sweep shows the task separates weaker and stronger models.
+| Task | Opus 5.5 | Sonnet 5.5 | Fable 5.1 |
+|---|---|---|---|
+| a1-a12-100ul | 1.0 | 1.0 | 1.0 |
+| split-200ul-two-wells | 1.0 | 1.0 | 1.0 |
+| ampure-bead-cleanup | 1.0 | 1.0 | 1.0 |
+| colony-pcr-screening | 1.0 | 1.0 | 1.0 |
+| ecoli-heat-shock-transformation | 1.0 | 1.0 | 1.0 |
+| golden-gate-assembly | 1.0 | 1.0 | 1.0 |
+| opentrons-rna-extraction | 0.889 | 0.944 | 0.944 |
+| **Mean** | **0.984** | **0.992** | **0.992** |
+| Agent cost (USD) | 1.16 | 0.37 | 2.83 |
+
+What the results show:
+- **The 6 deterministic tasks didn't separate the models.** Every model solved every one at the first attempt.
+- **RNA extraction:** all 3 models passed all 16 run-log checks and had no critical failures. The judge gave all of them half credit on `elution_recovery`, because each recovered the full 100 µL of eluate instead of about 80 µL. Opus also got half credit on `fidelity_to_paper` for a misattributed author name in the docstring and metadata.
+
+Per-trial tokens, cost and duration are in `results/summary.json`. Each `results/<model>/<task>/` folder holds the graded `protocol.py`, `reward.json` and, for the RNA task, `judge.json`.
 
 ## Notes
 
-- The agent's network is restricted to `api.anthropic.com` and `registry.npmjs.org`. The authors' published code is not reachable.
-- The agent must use OT-2 `apiLevel` 2.2 to 2.15 and the fixed deck described in `instruction.md`.
-- Reference protocol source: [HULPopentrons/RNA_extraction_OT2opentrons](https://github.com/HULPopentrons/RNA_extraction_OT2opentrons/blob/master/viral_rna_extraction_protocol.py).
+- The agent's network is restricted to `api.anthropic.com` and `registry.npmjs.org`.
+- The 6 deterministic tasks come from the `feat/ingestion` branch (`tasks/<task>/harbor/`).
+- RNA extraction reference protocol: [HULPopentrons/RNA_extraction_OT2opentrons](https://github.com/HULPopentrons/RNA_extraction_OT2opentrons/blob/master/viral_rna_extraction_protocol.py).
