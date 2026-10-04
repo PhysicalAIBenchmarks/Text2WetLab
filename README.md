@@ -19,31 +19,23 @@ L1 reference protocol — OT-2 Cartesian gantry sim (MuJoCo 3.x, headless, recor
 ## Structure
 
 ```
-ref/          Reference implementations (ground truth protocols)
-tasks/        Benchmark tasks — one folder per task: input.nl.txt, assumptions.md, ir.json
-  L1/         Layer 1: liquid handling (aspirate / dispense / tip management)
-  L2/         Layer 2: fine-grained (volumes, concentrations, scheduling)
-eval/         Evaluation harness (PyLabRobot + MuJoCo 3D sim + Gymnasium env)
-  ot2.xml             MuJoCo MJCF model of the OT-2 Cartesian gantry
-  wetlab_mujoco_env.py  Headless 3D sim — recordable, reward-shaped on T1–T6
-  wetlab_gym.py         Lightweight Gymnasium env (no MuJoCo dep)
-  trace_replay.py       Replays an opentrons_simulate log through WetLabEnv
-docs/
-  agent-spec.md       Pipeline spec, acceptance criteria AC1–AC7, risk register R1–R15
-  leaderboard.html    Self-contained leaderboard — runs eval entirely in-browser
-paper/        arXiv write-up (placeholder)
-paper2protocol/  bioRxiv paper -> liquid-handling instructions (front-end tool, with tests/)
-scripts/      deploy_hf.py (HF upload; run by CI on push to main)
-assets/
-  episode_mujoco.mp4  Reference L1 episode (3D MuJoCo)
-  episode_mujoco.gif  Animated GIF for README embed
-  urdf/               Robot URDFs for 3D simulation
-  stl/                Labware STL/OBJ models
+paper2protocol/  Paper -> experiments -> IR (Protocol) -> plain-English instructions (lLegon)
+tasks/           Benchmark tasks, one folder each, grouped by layer (see below)
+  L1/<task>/     input.nl.txt  ir.json  assumptions.md  [solution/ tests/]
+  L2/<task>/     same; the Harbor task also has instruction.md task.toml environment/
+                 solution/ and tests/ are hidden grader files and are never published
+eval/            Scoring and visualisation: ir_viz.py (2D), ir_mujoco.py (3D + physics tracking),
+                 trace_replay.py (opentrons_simulate log -> WetLabEnv), wetlab_gym.py, wetlab_mujoco_env.py
+ref/             Author-published scripts for comparison only; each has a README with upstream
+                 commit and licence. Never read by the pipeline, never published
+out/             Generated paper2protocol output only (paper.json, exp<N>/protocol.json ...)
+assets/          examples/ (2D GIFs), examples3d/ (3D MP4/GIF/frames)
+docs/            examples.md (gallery), agent-spec.md, paper2protocol-pipeline.md, leaderboard.html
+manuscript/      arXiv write-up (placeholder)
+scripts/         deploy_hf.py (allowlist upload), make_provenance_csv.py
+PROVENANCE.csv   Who first committed each task / reference / output / code file, with URLs
+tests/           pytest suite
 ```
-
-[Examples gallery](docs/examples.md): every example drawn through one interface (`eval/ir_viz.py`).
-
-[Harbor task: OT-2 RNA extraction](tasks/L2/opentrons-rna-extraction/README.md): agent writes a protocol from the paper, graded on the simulated run.
 
 ## Layers
 
@@ -51,6 +43,14 @@ assets/
 |---|---|---|
 | L1 | Liquid handling primitives — tip management, aspirate/dispense, volume flow | Opentrons OT-2 API v2 |
 | L2 | Fine-grained — concentration, dilution series, multi-instrument scheduling | Opentrons OT-2 / Flex |
+
+### L1 / L2 and V0 / V1 / V2
+
+Two separate scales, which earlier docs both called "L":
+
+- **Layer (L1, L2)** is how complex the *task* is. It names the folder under `tasks/`.
+- **Vagueness (V0, V1, V2)** is how much the plain-English *instruction* leaves out:
+  V0 fully specified, V1 volume only, V2 intent only. See the HuggingFace card.
 
 ## Evaluation criteria (all 6 must pass)
 

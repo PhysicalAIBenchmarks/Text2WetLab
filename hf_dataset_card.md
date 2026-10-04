@@ -44,11 +44,13 @@ generate a valid Opentrons Python API v2 protocol that passes all 6 evaluation c
 
 ## NL Vagueness Levels
 
+V0-V2 describe the instruction. The task folders `tasks/L1` and `tasks/L2` are a separate scale: task complexity (layers).
+
 | Level | Example |
 |---|---|
-| L0 (fully specified) | "Pick up a tip, aspirate 200µL from the reagent trough, dispense 100µL into A1 then 100µL into B1, throw the tip away." |
-| L1 (volume only) | "Move 200 microlitres from the reservoir into two wells on the plate." |
-| L2 (intent only) | "Aliquot the reagent into two wells." |
+| V0 (fully specified) | "Pick up a tip, aspirate 200µL from the reagent trough, dispense 100µL into A1 then 100µL into B1, throw the tip away." |
+| V1 (volume only) | "Move 200 microlitres from the reservoir into two wells on the plate." |
+| V2 (intent only) | "Aliquot the reagent into two wells." |
 
 ## Simulation
 

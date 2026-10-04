@@ -1,7 +1,7 @@
 """
 Visualise any Protocol IR (paper2protocol schema) as a deck of labware that fills and empties.
 
-    python eval/ir_viz.py tasks/L1/example/ir.json -o assets/examples/L1.gif
+    python eval/ir_viz.py tasks/L1/serial-dilution-200ul/ir.json -o assets/examples/L1.gif
     python eval/ir_viz.py out/<doi>/exp1/protocol.json -o assets/examples/paper.gif
     python eval/ir_viz.py --all          # every IR in the repo -> assets/examples/
 

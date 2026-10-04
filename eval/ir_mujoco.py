@@ -1,7 +1,7 @@
 """
 Headless 3D (MuJoCo) view of any Protocol IR, side by side with the 2D IR view.
 
-    python eval/ir_mujoco.py tasks/L1/example/ir.json -o assets/examples3d/L1-example.mp4
+    python eval/ir_mujoco.py tasks/L1/serial-dilution-200ul/ir.json -o assets/examples3d/L1-serial-dilution-200ul.mp4
     python eval/ir_mujoco.py --all          # every IR in the repo -> assets/examples3d/
 
 The scene is generated from the IR: one labware model per container on a virtual deck (one

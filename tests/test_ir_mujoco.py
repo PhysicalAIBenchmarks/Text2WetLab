@@ -2,8 +2,22 @@ import pathlib
 import sys
 
 import numpy as np
+import pytest
+
+mujoco = pytest.importorskip("mujoco")
 
 ROOT = pathlib.Path(__file__).parent.parent
+
+
+def _gl_available():
+    try:
+        mujoco.Renderer(mujoco.MjModel.from_xml_string("<mujoco/>"), 8, 8).close()
+        return True
+    except Exception:
+        return False
+
+
+pytestmark = pytest.mark.skipif(not _gl_available(), reason="no OpenGL context for MuJoCo offscreen rendering")
 sys.path.insert(0, str(ROOT / "eval"))
 from ir_mujoco import build_frames  # noqa: E402
 from paper2protocol.models import Protocol  # noqa: E402
@@ -24,7 +38,7 @@ def load(name):
 
 
 def test_lifted_travel_has_no_collisions_and_no_lift_does():
-    p = load("tasks/L1/example/ir.json")
+    p = load("tasks/L1/serial-dilution-200ul/ir.json")
     *_, lifted = build_frames(p)
     *_, dragged = build_frames(p, lift=False)
     assert lifted["collision"].sum() == 0

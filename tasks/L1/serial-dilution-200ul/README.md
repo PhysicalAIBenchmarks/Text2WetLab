@@ -7,8 +7,9 @@ One example, kept in separate stages so each can be scored on its own.
 | NL input | [`input.nl.txt`](input.nl.txt) |
 | What the NL leaves out | [`assumptions.md`](assumptions.md) |
 | IR (decomposed steps) | [`ir.json`](ir.json) |
-| Python (Opentrons API v2) | [`../../../ref/L1-serial-dilution-200ul-2x100ul/protocol_correct.py`](../../../ref/L1-serial-dilution-200ul-2x100ul/protocol_correct.py) |
+| Python (Opentrons API v2) | [`solution/protocol.py`](solution/protocol.py) |
 | Run log | [`run_log.txt`](run_log.txt) |
+| Checks | [`tests/`](tests/README.md) |
 | Visualisation | below |
 
 > "Move 200 microlitres from the reservoir into two wells on the plate."

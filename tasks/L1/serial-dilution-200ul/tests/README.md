@@ -37,11 +37,11 @@ Add explicit post-run assertions for T5/T6 when using the ChatterBox backend.
 
 ## Files
 
-- `protocol_correct.py` — reference Opentrons API v2 implementation  
-  Run with: `opentrons_simulate protocol_correct.py`
+- `../solution/protocol.py` — reference Opentrons API v2 implementation  
+  Run with: `opentrons_simulate ../solution/protocol.py`
 
 - `run_tests.py` — PyLabRobot test harness (all 6 criteria)  
-  Run with: `uv run python run_tests.py` (requires `pylabrobot>=0.2.2`)
+  Run with: `uv run python tasks/L1/serial-dilution-200ul/tests/run_tests.py` (requires `pylabrobot>=0.2.2`)
 
 ## Key insight: errors as mistranslations
 

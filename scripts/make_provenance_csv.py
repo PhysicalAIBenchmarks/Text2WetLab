@@ -24,7 +24,14 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 REPO = "PhysicalAIBenchmarks/Text2WetLab"
 GH = f"https://github.com/{REPO}"
 DEVIN = "origin/devin/1791063775-opentrons-rna-extraction-only"
-MOVED = {"tasks/L2/opentrons-rna-extraction": "tasks/opentrons-rna-extraction"}  # folder prefix -> where it was first added
+# current path (file or folder prefix) -> where git first saw it. Keeps the original discoverer after a move.
+MOVED = {
+    "tasks/L2/opentrons-rna-extraction": "tasks/opentrons-rna-extraction",
+    "ref/hulp-rna-extraction/viral_rna_extraction_protocol.py": "out/10.1371_journal.pone.0246302/viral_rna_extraction_protocol.py",
+    "tasks/L1/serial-dilution-200ul/solution/protocol.py": "ref/L1-serial-dilution-200ul-2x100ul/protocol_correct.py",
+    "tasks/L1/serial-dilution-200ul/tests/run_tests.py": "ref/L1-serial-dilution-200ul-2x100ul/run_tests.py",
+    "manuscript": "paper",
+}
 
 
 def origin_path(path):
@@ -112,7 +119,7 @@ def licence(repo):
 
 COLS = ["record_id", "record_type", "layer", "path", "name", "paper_doi", "paper_url", "experiment",
         "ir_source", "candidate_source", "discovered_by_git_author", "discovered_by_github_login",
-        "co_authors", "introduced_commit", "introduced_date", "branches_with_commit", "github_url", "loc",
+        "previous_path", "co_authors", "introduced_commit", "introduced_date", "branches_with_commit", "github_url", "loc",
         "sha256", "upstream_repo", "upstream_commit", "upstream_path", "upstream_url", "upstream_licence",
         "verified_vs_upstream", "notes"]
 rows = []
@@ -122,6 +129,7 @@ def add(**kw):
     r = {c: "" for c in COLS}
     r.update(kw)
     path = r["path"]
+    r["previous_path"] = origin_path(path) if origin_path(path) != path else ""
     c, an, d, co = introduced(path)
     if c:
         r.update(introduced_commit=c[:7], introduced_date=d, discovered_by_git_author=an,
@@ -184,7 +192,7 @@ for d in sorted(list((ROOT / "tasks").glob("L*/*"))):
 
 harbor = "tasks/L2/opentrons-rna-extraction"
 hulp = "viral_rna_extraction_protocol.py"
-hulp_local = ROOT / "out/10.1371_journal.pone.0246302" / hulp
+hulp_local = ROOT / "ref/hulp-rna-extraction" / hulp
 
 # ---- references ------------------------------------------------------------------------
 SETS = {"ref/dna-bot-ysaa010": ("BASIC-DNA-ASSEMBLY/DNA-BOT", "ae9aebbd5833752cad981ecf99a52a6c6e7202e2", "10.1093/synbio/ysaa010"),
@@ -217,7 +225,7 @@ if hulp_local.exists():
         upstream_commit=found[0][:7] if found else "", upstream_path=found[1] if found else "",
         upstream_url=f"https://github.com/{repo}/blob/{found[0][:7]}/{found[1]}" if found else "",
         upstream_licence=licence(repo), verified_vs_upstream="byte-identical" if found else "NO MATCH",
-        notes="stored under out/ (generated outputs); no upstream commit pinned in the repo")
+        notes="originally committed under out/ (generated outputs); upstream commit now pinned in ref/hulp-rna-extraction/README.md")
     for f in ("solution/protocol.py", "tests/reference_protocol.py"):
         p = ROOT / harbor / f
         if p.exists():
@@ -228,9 +236,11 @@ if hulp_local.exists():
                 verified_vs_upstream="identical apart from line endings" if same else "differs",
                 notes="hidden grader/oracle file")
 
-for p in sorted((ROOT / "ref/L1-serial-dilution-200ul-2x100ul").glob("*.py")):
-    add(record_id=f"ref:{p.relative_to(ROOT)}", record_type="reference", layer="L1", path=str(p.relative_to(ROOT)),
-        name=p.name, ir_source="handwritten (ours)", verified_vs_upstream="n/a", notes="no upstream")
+for f in ("solution/protocol.py", "tests/run_tests.py"):
+    p = ROOT / "tasks/L1/serial-dilution-200ul" / f
+    if p.exists():
+        add(record_id=f"l1:{f}", record_type="task_file", layer="L1", path=str(p.relative_to(ROOT)), name=f,
+            ir_source="handwritten (ours)", verified_vs_upstream="n/a", notes="hidden grader/oracle file; no upstream")
 
 # ---- code ------------------------------------------------------------------------------
 for pat in ("paper2protocol/*.py", "eval/*.py", "scripts/*.py", "tests/*.py", f"{harbor}/tests/*.py"):

@@ -66,7 +66,7 @@ destination wells fill. Liquid height uses a square root scale so small volumes 
 
 | Example | Steps | 3D (MP4) | Frames |
 |---|---|---|---|
-| 200 µL into two wells | 1 | [mp4](../assets/examples3d/L1-example.mp4) | [png](../assets/examples3d/L1-example_frames.png) |
+| 200 µL into two wells | 1 | [mp4](../assets/examples3d/L1-serial-dilution-200ul.mp4) | [png](../assets/examples3d/L1-serial-dilution-200ul_frames.png) |
 | 100 µL into A1-A12 | 1 | [mp4](../assets/examples3d/L1-a1-a12-100ul.mp4) | [png](../assets/examples3d/L1-a1-a12-100ul_frames.png) |
 | Yeast engineering + LC-HRMS | 56 | [mp4](../assets/examples3d/paper-10_1101_2024_09_14_613006-exp1.mp4) | [png](../assets/examples3d/paper-10_1101_2024_09_14_613006-exp1_frames.png) |
 | SARS-CoV-2 RNA extraction + RT-qPCR | 91 | [mp4](../assets/examples3d/paper-10_1371_journal_pone_0246302-exp2.mp4) | [png](../assets/examples3d/paper-10_1371_journal_pone_0246302-exp2_frames.png) |
@@ -119,10 +119,10 @@ collision. The default animation lifts first, so it never collides. `--no-lift` 
 between work heights to show the check firing (tip turns red, issue count climbs):
 
 ```bash
-python eval/ir_mujoco.py tasks/L1/example/ir.json --no-lift -o out.mp4
+python eval/ir_mujoco.py tasks/L1/serial-dilution-200ul/ir.json --no-lift -o out.mp4
 ```
 
-![No lift: collision flagged](../assets/examples3d/L1-example-NO-LIFT-collision.gif)
+![No lift: collision flagged](../assets/examples3d/L1-serial-dilution-200ul-NO-LIFT-collision.gif)
 
 Issues the checker finds in the paper protocols now show up in the strip, for example 4 in the
 yeast protocol, 7 in the RNA extraction one and 3 in the KDM2B one.
