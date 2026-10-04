@@ -1,0 +1,38 @@
+[
+ {
+  "id": "deck_and_hardware",
+  "text": "Loads the specified labware with the given labels/slots and modules; suitable pipettes and tip racks."
+ },
+ {
+  "id": "pcr_setup",
+  "text": "PCR reactions for each fragment set up as specified (j5 primers 0.1 uM, 0.5 ng template, 25 uL), correct pairing of primers/templates to wells."
+ },
+ {
+  "id": "dpni_and_cleanup",
+  "text": "DpnI digestion of template and fragment clean-up/concentration steps carried out or recorded in order."
+ },
+ {
+  "id": "assembly_mix",
+  "text": "Fragments combined in the specified (length-proportional) volumes per assembly with BsaI-HFv2, T4 ligase and buffer; volumes match the task."
+ },
+ {
+  "id": "thermocycler_program",
+  "text": "Golden Gate cycling program recorded/run as specified."
+ },
+ {
+  "id": "transformation",
+  "text": "Assemblies cleaned up and transformed into TOP10 competent cells as specified."
+ },
+ {
+  "id": "tips_and_contamination",
+  "text": "Fresh tips between different fragments/assemblies; no cross-contamination."
+ },
+ {
+  "id": "robot_practice",
+  "text": "Physically sensible: volumes within pipette limits, small volumes on the 20 uL pipette, operator pauses where manual steps are needed."
+ },
+ {
+  "id": "fidelity_to_paper",
+  "text": "Consistent with the AssemblyTron paper where the task does not fix details; no invented, missing or reordered steps; comments/metadata accurate."
+ }
+]

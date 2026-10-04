@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Deterministic grader for an IR task: lint, simulate /app/protocol.py, then check the end state against the IR.
+"""Grader for an IR task: lint, simulate /app/protocol.py, check the end state against the IR, then a rubric LLM judge.
+
+Reward = mean judge rubric score, capped at 0.3 if a critical end-state/safety check fails; 0 if lint or simulation fails.
+Original deterministic description:
 
 Reward: 1.0 if every check passes; otherwise up to 0.5 for the fraction of end-state checks right (halved if a safety rule
 was broken); 0 if the file fails the lint, the simulator fails, or nothing was written. There is no LLM judge, so a judge outage cannot zero a correct protocol.
@@ -17,6 +20,7 @@ sys.path.insert(0, str(TESTS))
 from paper2protocol.models import Protocol  # noqa: E402
 from protocol_lint import violations  # noqa: E402
 from spec_check import check, simulate  # noqa: E402
+from judge_layer import CRITICAL_CAP, JUDGE_MODEL, is_critical, judge  # noqa: E402
 
 PROTOCOL = Path(os.environ.get("PROTOCOL_PATH", "/app/protocol.py"))
 OUT = Path(os.environ.get("VERIFIER_OUT", "/logs/verifier"))
@@ -55,6 +59,21 @@ def grade(protocol: Path = PROTOCOL) -> tuple[dict, dict]:
     frac = sum(c["pass"] for c in substantive) / max(len(substantive), 1)
     rewards["reward"] = 1.0 if res["passed"] else round(0.5 * frac * (0.5 if safety_broken else 1.0), 4)
     record["checks"] = res["checks"]
+    rewards["deterministic_reward"] = rewards["reward"]
+    verdict = judge(TESTS, res["checks"], protocol.read_text(), Path("/data/paper.txt"))
+    record["judge"] = verdict | {"model": JUDGE_MODEL}
+    if "error" in verdict:
+        rewards["judge_error"] = 1.0
+        rewards["reward"] = 0.0
+        return rewards, record
+    mean = sum(verdict["scores"].values()) / len(verdict["scores"])
+    critical = sorted(c["name"] for c in res["checks"] if not c["pass"] and is_critical(c["name"]))
+    record["critical_failures"] = critical
+    rewards["judge_mean"] = round(mean, 4)
+    rewards["critical_fail"] = float(bool(critical))
+    rewards["reward"] = round(min(mean, CRITICAL_CAP) if critical else mean, 4)
+    for key, score in verdict["scores"].items():
+        rewards[f"rubric_{key}"] = score
     return rewards, record
 
 

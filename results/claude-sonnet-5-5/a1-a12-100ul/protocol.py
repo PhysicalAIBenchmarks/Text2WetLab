@@ -1,6 +1,6 @@
 from opentrons import protocol_api
 
-metadata = {'apiName': 'reservoir_to_row', 'apiLevel': '2.15'}
+metadata = {'protocolName': 'Reservoir to A1-A12', 'apiLevel': '2.15'}
 
 
 def run(protocol: protocol_api.ProtocolContext):
@@ -11,5 +11,4 @@ def run(protocol: protocol_api.ProtocolContext):
     protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
-    p300.transfer(100, reservoir['A1'], [plate.wells_by_name()['A%d' % i] for i in range(1, 13)],
-                  new_tip='always')
+    p300.transfer(100, reservoir['A1'], plate.rows()[0][:12], new_tip='always')

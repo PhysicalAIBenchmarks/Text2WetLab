@@ -16,6 +16,9 @@ RUN python -m venv /opt/ot \
     && opentrons_simulate --version
 
 RUN python -m venv /opt/grader \
-    && /opt/grader/bin/pip install --no-cache-dir "pydantic>=2.13"
+    && /opt/grader/bin/pip install --no-cache-dir "pydantic>=2.13" anthropic==0.72.0
+
+COPY data/ /data/
+RUN chmod -R a-w /data
 
 WORKDIR /app

@@ -1,6 +1,6 @@
 from opentrons import protocol_api
 
-metadata = {'apiName': 'split', 'apiLevel': '2.15'}
+metadata = {'apiName': 'Split 200 uL into two wells', 'apiLevel': '2.15'}
 
 
 def run(protocol: protocol_api.ProtocolContext):

@@ -1,6 +1,9 @@
 from opentrons import protocol_api
 
-metadata = {'protocolName': '100 uL reservoir to A1-A12', 'apiLevel': '2.15'}
+metadata = {
+    'protocolName': '100 uL from 1-well reservoir to plate A1-A12',
+    'apiLevel': '2.15',
+}
 
 
 def run(protocol: protocol_api.ProtocolContext):
@@ -8,13 +11,14 @@ def run(protocol: protocol_api.ProtocolContext):
     plate = protocol.load_labware('corning_96_wellplate_360ul_flat', 2, label='plate')
     tips20 = protocol.load_labware('opentrons_96_tiprack_20ul', 10)
     tips300 = protocol.load_labware('opentrons_96_tiprack_300ul', 11)
+
     p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
-    src = reservoir['A1']
-    p300.pick_up_tip()
-    for well in plate.rows()[0][:12]:
-        p300.aspirate(100, src)
-        p300.dispense(100, well)
-        p300.blow_out(well)
-    p300.drop_tip()
+    # 100 uL is in the p300 range; one source feeds all destinations
+    p300.transfer(
+        100,
+        reservoir['A1'],
+        [plate.wells_by_name()['A{}'.format(i)] for i in range(1, 13)],
+        new_tip='once',
+    )

@@ -10,13 +10,14 @@ keywords = ["opentrons", "ot-2", "lab-automation", "protocol-generation"]
 [metadata]
 source = "paper2protocol"
 deck = "specified"
-grading = "simulator + deterministic end-state checker (no LLM judge)"
+grading = "simulator gate + end-state checks + Sonnet 5.5 rubric judge"
 
 [agent]
 timeout_sec = 1800.0
 
 [verifier]
 timeout_sec = 900.0
+env = { ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY}" }
 
 [environment]
 network_mode = "allowlist"
