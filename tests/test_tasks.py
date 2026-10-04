@@ -10,7 +10,7 @@ from paper2protocol.models import Protocol
 ROOT = pathlib.Path(__file__).parent.parent
 TASKS = ROOT / "tasks"
 ALL = sorted(p for p in TASKS.iterdir() if p.is_dir())
-SLUGS = {s["slug"] for s in json.loads((ROOT / "ingestion/sources.json").read_text())}
+SLUGS = {s["slug"] for s in json.loads((ROOT / "sources/sources.json").read_text())}
 
 
 @pytest.mark.parametrize("task", ALL, ids=lambda p: p.name)
@@ -32,7 +32,7 @@ def test_every_task_is_split_into_public_private_harbor(task):
 @pytest.mark.parametrize("task", ALL, ids=lambda p: p.name)
 def test_a_task_says_where_it_came_from(task):
     """A handwritten task may still cite a paper it was inspired by or is claimed to come from, with the relation
-    spelled out; every other task must name its paper. Every cited slug must exist in ingestion/sources.json."""
+    spelled out; every other task must name its paper. Every cited slug must exist in sources/sources.json."""
     meta = tomllib.loads((task / "task.toml").read_text())
     links = meta.get("source", [])
     if meta["metadata"]["source"] != "handwritten":
@@ -73,3 +73,8 @@ def test_every_path_a_task_readme_tells_you_to_run_exists():
     for readme in TASKS.glob("*/harbor/README.md"):
         for path in re.findall(r"(?:-p|--path)\s+(tasks/[\w./-]+)", readme.read_text()):
             assert (ROOT / path).exists(), f"{readme.relative_to(ROOT)} runs {path}, which does not exist"
+
+
+def test_nothing_is_left_in_the_old_collection_folders():
+    assert not [d for d in ("ingestion", "references", "data") if (ROOT / d).exists()]
+    assert all((ROOT / "sources" / s / "record.json").exists() for s in SLUGS)

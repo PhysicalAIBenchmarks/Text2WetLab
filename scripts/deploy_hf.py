@@ -5,7 +5,7 @@
 Publishing is an allowlist. Never published:
   - tasks/<task>/private/ and harbor/   hidden grader, oracle and sandbox files (contamination)
   - tasks/<task>/ publishes only task.toml and public/
-  - references/                         third-party scripts, several without a licence
+  - sources/<slug>/code and pipeline   third-party scripts and paper full text (licences differ per paper)
   - data/, .git, caches                 generated or internal
 """
 import argparse
@@ -16,7 +16,7 @@ from pathlib import Path
 
 REPO_ID = os.environ.get("HF_REPO_ID", "EvanOLeary/Text2WetLab")
 ROOT = Path(__file__).resolve().parent.parent
-INCLUDE = ["tasks", "eval", "manuscript", "assets", "docs", "ingestion", "PROVENANCE.csv", "LICENSE"]
+INCLUDE = ["tasks", "eval", "manuscript", "assets", "docs", "sources", "PROVENANCE.csv", "LICENSE"]
 HIDDEN = {"private", "harbor"}  # directories directly inside tasks/<task>/
 NOISE = {"__pycache__", ".DS_Store"}
 NEVER_PUBLISHED_SUFFIXES = (".pdf",)  # papers are fetched by URL and checked by SHA-256; licences differ per paper
@@ -27,6 +27,8 @@ def _ignore(directory, names):
     skip = {n for n in names if n in NOISE or n.endswith(".pyc") or n.endswith(NEVER_PUBLISHED_SUFFIXES)}
     if len(rel) == 2 and rel[0] == "tasks":
         skip |= HIDDEN & set(names)
+    if len(rel) == 2 and rel[0] == "sources":
+        skip |= {"code", "pipeline"} & set(names)
     return skip
 
 

@@ -19,7 +19,7 @@ def test_hidden_grader_and_oracle_files_are_never_published(tmp_path):
 
 def test_third_party_reference_scripts_are_never_published(tmp_path):
     files = staged(tmp_path)
-    assert not [f for f in files if f.startswith(("references/", "data/", ".git"))]
+    assert not [f for f in files if f.startswith(".git") or "/code/" in f or "/pipeline/" in f]
 
 
 def test_public_task_spec_and_provenance_are_published(tmp_path):
@@ -31,5 +31,5 @@ def test_public_task_spec_and_provenance_are_published(tmp_path):
 
 def test_master_csv_is_published_and_no_pdf_ever_is(tmp_path):
     files = staged(tmp_path)
-    assert "ingestion/master.csv" in files and "ingestion/sources.json" in files
+    assert "sources/master.csv" in files and "sources/sources.json" in files
     assert not [f for f in files if f.lower().endswith(".pdf")]

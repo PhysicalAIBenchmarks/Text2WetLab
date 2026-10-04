@@ -2,7 +2,7 @@ import pathlib
 import re
 
 ROOT = pathlib.Path(__file__).parent.parent
-DOCS = [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md")), ROOT / "references/README.md", ROOT / "ingestion/README.md",
+DOCS = [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md")), ROOT / "sources/CODE.md", ROOT / "sources/README.md", ROOT / "paper2protocol/README.md",
         *sorted((ROOT / "tasks").glob("*/harbor/README.md"))]  # task READMEs hold the commands people actually run
 LINK = re.compile(r"\]\(([^)#\s]+)")
 
@@ -21,13 +21,13 @@ def test_every_relative_link_in_the_docs_resolves():
 def test_docs_do_not_mention_the_removed_layer_scheme():
     for doc in DOCS:
         text = doc.read_text()
-        assert "tasks/L1" not in text and "tasks/L2" not in text and "input.nl.txt" not in text, doc.relative_to(ROOT)
+        assert not any(old in text for old in ("tasks/L1", "tasks/L2", "input.nl.txt", "data/pipeline_runs", "references/", "ingestion/")), doc.relative_to(ROOT)
 
 
 def test_slowpoke_assembler_builds_both_protocols_without_a_gui_or_simulator():
     import importlib.util
 
-    spec = importlib.util.spec_from_file_location("slowpoke_assemble", ROOT / "references/slowpoke/assemble.py")
+    spec = importlib.util.spec_from_file_location("slowpoke_assemble", ROOT / "sources/slowpoke/code/assemble.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     colony, cloning = mod.build("colony_pcr.py"), mod.build("cloning.py")

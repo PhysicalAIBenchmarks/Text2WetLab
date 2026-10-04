@@ -1,6 +1,6 @@
 # Risks
 
-Written after ingesting 36 papers (31 PDFs, 36 codebases) into `ingestion/master.csv`. Each risk says what we saw,
+Written after ingesting 36 papers (31 PDFs, 36 codebases) into `sources/master.csv`. Each risk says what we saw,
 how bad it is, and what is already done about it. "Seen" means observed in this repo, not hypothetical.
 Open work is tracked as GitHub issues labelled `unmet-ask`.
 
@@ -11,7 +11,7 @@ money; **Low** = annoying.
 
 | # | Risk | Seen | Sev | Mitigation / state |
 |---|---|---|---|---|
-| L1 | Redistributing third-party code with no licence | 15 of 36 papers have at least one repository with no licence (BOTany, TransporterScreening, HULP, LAPrepository, OpenLC, ...). The public HF dataset already holds 41 `ref/` files, 24 of them unlicensed | High | `scripts/deploy_hf.py` is an allowlist and `references/` is never published. **Existing HF files are still live** (issue filed) |
+| L1 | Redistributing third-party code with no licence | 15 of 36 papers have at least one repository with no licence (BOTany, TransporterScreening, HULP, LAPrepository, OpenLC, ...). The public HF dataset already holds 41 `ref/` files, 24 of them unlicensed | High | `scripts/deploy_hf.py` is an allowlist and `sources/<slug>/code/` is never published. **Existing HF files are still live** (issue filed) |
 | L2 | Copyleft code in a permissively licensed benchmark | APEX `apex-nf` is AGPL-3.0, covid19clinic is GPL-3.0, sidekick is CERN-OHL-S | High | Recorded `redistributable = no`; never vendored. APEX is the best real reference for two tasks and is therefore unusable as shipped code |
 | L3 | PDFs are not ours to publish | 4 PDFs are `no` (CC BY-NC-ND, bioRxiv "cc_no", CC BY-NC); 2 are `unknown` (Elsevier COVID permission) | High | PDFs live only in a cache outside the repo; records keep URL + SHA-256 + licence; `deploy_hf.py` refuses any `.pdf`; a test enforces it |
 | L4 | The Harbor oracle is a copy of an unlicensed script | `solution/protocol.py` equals the HULP authors' script, upstream has no licence | High | Excluded from HF; **still in the public GitHub repo** (issue filed) |

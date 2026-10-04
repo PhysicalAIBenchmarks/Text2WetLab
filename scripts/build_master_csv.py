@@ -1,5 +1,5 @@
 """
-Build ingestion/master.csv: ONE ROW PER (PAPER, EXPERIMENT).
+Build sources/master.csv: ONE ROW PER (PAPER, EXPERIMENT).
 
     python scripts/build_master_csv.py [--out FILE]
 
@@ -7,8 +7,8 @@ A paper that splits into several liquid-handling workflows gets several rows, ea
 and task relation; the PDF and code columns repeat on every row of the paper, so any row is self-contained.
 
 Experiment source, in order of authority:
-  1. paper2protocol `identify`   data/pipeline_runs/<doi>/experiments.json   (ids exp1.. = list position + 1)
-  2. hand-read split             ingestion/records/<slug>.json -> experiments_hint
+  1. paper2protocol `identify`   sources/<slug>/pipeline/experiments.json   (ids exp1.. = list position + 1)
+  2. hand-read split             sources/<slug>/record.json -> experiments_hint
   3. none                        one row, experiment_id blank, pipeline_state "not_identified"
 
 Reads only committed files plus the record JSONs; never touches the network or an API.
@@ -20,7 +20,6 @@ import pathlib
 import tomllib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-RUNS = ROOT / "data/pipeline_runs"
 
 # How a paper relates to a benchmark task. "derived" = the task IR is byte-identical to that experiment's IR.
 # The task folder is the authority: each tasks/<task>/task.toml lists its [[source]] (slug, experiment, relation).
@@ -44,11 +43,11 @@ def task_links():
 RUNNABLE = {  # slug -> whether its code simulates on Harbor's stack (Opentrons 7.5.0), from scripts/reproduce.py
     "dna-bot": "no: needs removed Opentrons API v1", "botany": "no: needs API 2.20 and a runtime CSV",
     "transporter-screening": "no: needs a custom labware definition that is not in the repo",
-    "hulp-rna-extraction": "yes (1,895 commands)", "slowpoke": "yes, once references/slowpoke/assemble.py binds its CSVs",
+    "hulp-rna-extraction": "yes (1,895 commands)", "slowpoke": "yes, once sources/slowpoke/code/assemble.py binds its CSVs",
 }
-VENDORED = {"dna-bot": "references/dna-bot-ysaa010", "botany": "references/botany-kiag066",
-            "transporter-screening": "references/transporter-screening-antibiotics11081129",
-            "hulp-rna-extraction": "references/hulp-rna-extraction", "slowpoke": "references/slowpoke"}
+VENDORED = {"dna-bot": "sources/dna-bot/code", "botany": "sources/botany/code",
+            "transporter-screening": "sources/transporter-screening/code",
+            "hulp-rna-extraction": "sources/hulp-rna-extraction/code", "slowpoke": "sources/slowpoke/code"}
 
 COLS = ["entry_id", "slug", "doi", "other_dois", "title", "journal", "year", "origin",
         "experiment_id", "experiment_title", "experiment_goal", "figure_refs", "liquid_handling", "experiment_source",
@@ -64,13 +63,10 @@ def load(p):
     return json.loads(p.read_text()) if p.exists() else None
 
 
-def pipeline_experiments(dois):
-    for d in dois:
-        f = RUNS / d.replace("/", "_") / "experiments.json"
-        raw = load(f)
-        if raw is not None:
-            return d, (raw if isinstance(raw, list) else raw.get("experiments", [])), f.parent
-    return None, [], None
+def pipeline_experiments(slug):
+    f = ROOT / "sources" / slug / "pipeline/experiments.json"
+    raw = load(f)
+    return ((raw if isinstance(raw, list) else raw.get("experiments", [])), f.parent) if raw is not None else ([], None)
 
 
 def stage_info(run_dir, n):
@@ -124,14 +120,14 @@ def paper_cols(src, rec):
 
 
 def build_rows():
-    sources = json.loads((ROOT / "ingestion/sources.json").read_text())
+    sources = json.loads((ROOT / "sources/sources.json").read_text())
     rows = []
     exp_links, paper_links = task_links()
     for src in sources:
-        rec = load(ROOT / f"ingestion/records/{src['slug']}.json")
+        rec = load(ROOT / f"sources/{src['slug']}/record.json")
         base = {c: "" for c in COLS}
         base.update(paper_cols(src, rec), slug=src["slug"])
-        d, exps, run_dir = pipeline_experiments(src["dois"] + (rec or {}).get("dois", []))
+        exps, run_dir = pipeline_experiments(src["slug"])
         entries = []
         if exps:
             for i, e in enumerate(exps, 1):
@@ -160,7 +156,7 @@ def build_rows():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default=str(ROOT / "ingestion/master.csv"))
+    ap.add_argument("--out", default=str(ROOT / "sources/master.csv"))
     a = ap.parse_args()
     rows = build_rows()
     with open(a.out, "w", newline="") as f:

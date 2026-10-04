@@ -5,7 +5,7 @@ Write PROVENANCE.csv: one row per task, reference file, pipeline output, render 
 
 "Discovered by" = the author of the first commit, on any branch, that added the path (git history
 cannot say how something was found; `candidate_source` is filled only when the DOI is listed in
-ingestion/candidates.json). GitHub logins come from the commits API. Reference files are checked
+sources/candidates.json). GitHub logins come from the commits API. Reference files are checked
 byte for byte (git blob hash) against the upstream repo at the commit their README pins.
 
 Paths moved during the refactor, so the lookup tries every former location of a path (RULES) and
@@ -16,6 +16,7 @@ import argparse
 import csv
 import hashlib
 import json
+import re
 import pathlib
 import subprocess
 from urllib.parse import quote
@@ -26,13 +27,22 @@ GH = f"https://github.com/{REPO}"
 
 # (current path or folder, a former path or folder). Applied repeatedly, so a path moved twice is found.
 L2_TASKS = ["ampure-bead-cleanup", "colony-pcr-screening", "ecoli-heat-shock-transformation", "golden-gate-assembly"]
+# sources/<slug>/ layout: pipeline outputs used to be data/pipeline_runs/<doi>/, vendored code references/<name>/
+_VENDORED = {"dna-bot": "dna-bot-ysaa010", "botany": "botany-kiag066", "transporter-screening": "transporter-screening-antibiotics11081129",
+             "hulp-rna-extraction": "hulp-rna-extraction", "slowpoke": "slowpoke"}
+SOURCES_MOVE = (
+    [(f"sources/{pj.parent.parent.name}/pipeline", "data/pipeline_runs/" + re.sub(r"[^\w.-]+", "_", json.loads(pj.read_text())["doi"]))
+     for pj in sorted(ROOT.glob("sources/*/pipeline/paper.json"))]
+    + [(f"sources/{slug}/code", f"references/{old}") for slug, old in _VENDORED.items()]
+    + [("sources/master.csv", "ingestion/master.csv"), ("sources/sources.json", "ingestion/sources.json")]
+)
 SPLIT = (  # public/private/harbor split: the files used to sit directly in the task folder
     [(f"tasks/{t}/public", f"tasks/{t}") for t in ["split-200ul-two-wells", "a1-a12-100ul", "ampure-bead-cleanup", "colony-pcr-screening",
                                                     "ecoli-heat-shock-transformation", "golden-gate-assembly", "opentrons-rna-extraction"]]
     + [("tasks/opentrons-rna-extraction/harbor", "tasks/opentrons-rna-extraction"), ("tasks/split-200ul-two-wells/private", "tasks/split-200ul-two-wells")]
 )
 RULES = (
-    SPLIT + [("data/pipeline_runs", "out"), ("references", "ref"), ("manuscript", "paper"),
+    SOURCES_MOVE + SPLIT + [("data/pipeline_runs", "out"), ("references", "ref"), ("manuscript", "paper"),
      ("tasks/split-200ul-two-wells", "tasks/serial-dilution-200ul"),
      ("tasks/serial-dilution-200ul", "tasks/L1/serial-dilution-200ul"),
      ("tasks/a1-a12-100ul", "tasks/L1/a1-a12-100ul"),
@@ -169,15 +179,14 @@ def add(**kw):
 
 
 candidates = {}  # in-repo only, so a clean clone regenerates the same CSV
-for c in json.loads((ROOT / "ingestion/candidates.json").read_text()):
-    candidates[(c.get("doi") or "").lower()] = "Amass BiomedCore sweep 2026-10-03 (ingestion/candidates.json)"
+for c in json.loads((ROOT / "sources/candidates.json").read_text()):
+    candidates[(c.get("doi") or "").lower()] = "Amass BiomedCore sweep 2026-10-03 (sources/candidates.json)"
 
 # ---- pipeline outputs ------------------------------------------------------------------
-RUNS = ROOT / "data/pipeline_runs"
 pipeline = {}  # sha256 of protocol.json -> (doi, exp)
-for p in sorted(RUNS.glob("*/exp*/protocol.json")):
+for p in sorted(ROOT.glob("sources/*/pipeline/exp*/protocol.json")):
     pipeline[sha256(p)] = (json.loads((p.parent.parent / "paper.json").read_text())["doi"], p.parent.name)
-for p in sorted(RUNS.glob("*/exp*/protocol.json")):
+for p in sorted(ROOT.glob("sources/*/pipeline/exp*/protocol.json")):
     d = p.parent
     paper = json.loads((d.parent / "paper.json").read_text())
     crit = json.loads((d / "critic.json").read_text()).get("verdict", "") if (d / "critic.json").exists() else ""
@@ -196,7 +205,7 @@ for d in sorted(p for p in (ROOT / "tasks").iterdir() if p.is_dir()):
         notes = f"{len(json.loads(ir.read_text())['steps'])} steps"
         if sha256(ir) in pipeline:
             doi, exp = pipeline[sha256(ir)]
-            src = f"paper2protocol (byte-identical to data/pipeline_runs/{doi.replace('/', '_')}/{exp}/protocol.json)"
+            src = f"paper2protocol (byte-identical to the pipeline output of {doi}, {exp})"
     else:
         src, doi = "Harbor task (not a paper2protocol IR)", HULP
         notes = "hidden grader and oracle in harbor/ (never published)"
@@ -204,13 +213,13 @@ for d in sorted(p for p in (ROOT / "tasks").iterdir() if p.is_dir()):
         experiment=exp, ir_source=src, candidate_source=candidates.get(doi.lower(), ""), notes=notes)
 
 harbor = "tasks/opentrons-rna-extraction/harbor"
-hulp_local = ROOT / "references/hulp-rna-extraction/viral_rna_extraction_protocol.py"
+hulp_local = ROOT / "sources/hulp-rna-extraction/code/viral_rna_extraction_protocol.py"
 
 # ---- references ------------------------------------------------------------------------
-SETS = {"references/dna-bot-ysaa010": ("BASIC-DNA-ASSEMBLY/DNA-BOT", "ae9aebbd5833752cad981ecf99a52a6c6e7202e2", "10.1093/synbio/ysaa010"),
-        "references/botany-kiag066": ("cvoiniciuc/BOTany", "c7588d321a59b0d9078c288504e63598b0f60b5e", "10.1093/plphys/kiag066"),
-        "references/transporter-screening-antibiotics11081129": ("ljm176/TransporterScreening", "455fc2e569ad4a873ab415186a29e3e396e8cc4e", "10.3390/antibiotics11081129"),
-        "references/slowpoke": ("Tom-Ellis-Lab/Slowpoke", "62648d2bf390c28af061d68cee71075e27c251a6", "10.1021/acssynbio.5c00629")}
+SETS = {"sources/dna-bot/code": ("BASIC-DNA-ASSEMBLY/DNA-BOT", "ae9aebbd5833752cad981ecf99a52a6c6e7202e2", "10.1093/synbio/ysaa010"),
+        "sources/botany/code": ("cvoiniciuc/BOTany", "c7588d321a59b0d9078c288504e63598b0f60b5e", "10.1093/plphys/kiag066"),
+        "sources/transporter-screening/code": ("ljm176/TransporterScreening", "455fc2e569ad4a873ab415186a29e3e396e8cc4e", "10.3390/antibiotics11081129"),
+        "sources/slowpoke/code": ("Tom-Ellis-Lab/Slowpoke", "62648d2bf390c28af061d68cee71075e27c251a6", "10.1021/acssynbio.5c00629")}
 for base, (repo, commit, doi) in SETS.items():
     up = tree(repo, commit)
     for p in sorted(ROOT / f for f in git("ls-files", base).splitlines()):  # tracked files only, never stray caches
@@ -236,7 +245,7 @@ add(record_id=f"ref:{rel}", record_type="reference", path=rel, name=hulp_local.n
     upstream_path=found[1] if found else "",
     upstream_url=f"https://github.com/{repo}/blob/{found[0][:7]}/{found[1]}" if found else "",
     upstream_licence=licence(repo), verified_vs_upstream="byte-identical" if found else "NO MATCH",
-    notes="originally committed under out/ (generated outputs); upstream commit pinned in references/hulp-rna-extraction/README.md")
+    notes="originally committed under out/ (generated outputs); upstream commit pinned in sources/hulp-rna-extraction/code/README.md")
 for f in ("solution/protocol.py", "tests/reference_protocol.py"):
     p = ROOT / harbor / f
     same = p.read_bytes().replace(b"\r\n", b"\n") == hulp_local.read_bytes().replace(b"\r\n", b"\n")
@@ -252,10 +261,13 @@ add(record_id="task_file:tasks/split-200ul-two-wells/private/solution/protocol.p
 # ---- renders: experiment id + the IR each was drawn from -------------------------------
 def render_stem(ir):
     parts = ir.relative_to(ROOT).parts
-    return parts[1] if parts[0] == "tasks" else f"paper-{parts[2].replace('.', '_')}-{parts[3]}"
+    if parts[0] == "tasks":
+        return parts[1]
+    doi = json.loads((ir.parent.parent / "paper.json").read_text())["doi"]
+    return "paper-" + re.sub(r"[^\w]+", "_", doi) + "-" + ir.parent.name
 
 
-for ir in sorted(ROOT.glob("tasks/*/public/ir.json")) + sorted(RUNS.glob("*/exp*/protocol.json")):
+for ir in sorted(ROOT.glob("tasks/*/public/ir.json")) + sorted(ROOT.glob("sources/*/pipeline/exp*/protocol.json")):
     stem = render_stem(ir)
     from_paper = ir.name == "protocol.json"
     doi = json.loads((ir.parent.parent / "paper.json").read_text())["doi"] if from_paper else ""

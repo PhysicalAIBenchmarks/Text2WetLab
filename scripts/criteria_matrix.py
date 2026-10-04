@@ -99,7 +99,7 @@ def eval_task(head, family, task):
 
 
 # ---------------------------------------------------------------- RNA: HULP script mutants
-HULP = ROOT / "references/hulp-rna-extraction/viral_rna_extraction_protocol.py"
+HULP = ROOT / "sources/hulp-rna-extraction/code/viral_rna_extraction_protocol.py"
 RNA = {  # name -> list of (1-based line, old, new); the faults each target one named check
     "baseline":            [],
     "incubation_1min":     [(152, "protocol.delay(minutes=5)", "protocol.delay(minutes=1)")],

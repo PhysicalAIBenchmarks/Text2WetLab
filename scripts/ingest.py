@@ -1,9 +1,9 @@
 """
-Ingest one paper: metadata, PDF, full text, codebase. Writes ingestion/records/<slug>.json.
+Ingest one paper: metadata, PDF, full text, codebase. Writes sources/<slug>/record.json.
 
     python scripts/ingest.py <slug> [--doi DOI ...] [--pdf-url URL ...] [--code-url URL ...] [--no-pdf] [--no-code]
 
-`slug` is a key of ingestion/sources.json, or a new one if --doi/--title are given. The flags let a human or an
+`slug` is a key of sources/sources.json, or a new one if --doi/--title are given. The flags let a human or an
 agent add what automatic discovery missed (a publisher PDF link, a repository named in the paper) and re-run.
 
 PDFs and clones go to a cache OUTSIDE the repo ($INGEST_CACHE, default ~/.cache/text2wetlab-ingest) because
@@ -28,7 +28,11 @@ import httpx
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 CACHE = pathlib.Path(os.environ.get("INGEST_CACHE", pathlib.Path.home() / ".cache/text2wetlab-ingest"))
-RECORDS = ROOT / "ingestion/records"
+SOURCES = ROOT / "sources"
+
+
+def record_path(slug):
+    return SOURCES / slug / "record.json"
 HEADERS = {"User-Agent": "Mozilla/5.0 (text2wetlab ingestion; research)"}
 EPMC = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 MAX_REPO_KB = 300_000     # skip clones above ~300 MB
@@ -125,9 +129,9 @@ def pdf_pages(path):
 
 
 # ---------------------------------------------------------------- full text
-def fulltext_info(doi):
+def fulltext_info(doi, slug):
     """Section/legend counts from the pipeline's own ingest (JATS XML). No LLM."""
-    cached = ROOT / "data/pipeline_runs" / doi.replace("/", "_") / "paper.json"
+    cached = ROOT / "sources" / slug / "pipeline/paper.json"
     try:
         if cached.exists():
             p = json.loads(cached.read_text())
@@ -251,7 +255,7 @@ def main():
     ap.add_argument("--reanalyse", action="store_true", help="no network: re-run the code analysis on cached clones and update the record")
     a = ap.parse_args()
     if a.reanalyse:
-        path = RECORDS / f"{a.slug}.json"
+        path = record_path(a.slug)
         rec = json.loads(path.read_text())
         for c in rec.get("code", []):
             if c.get("cache_path"):
@@ -261,8 +265,8 @@ def main():
         path.write_text(json.dumps(rec, indent=1, ensure_ascii=False, sort_keys=True) + "\n")
         print(f"{a.slug}: re-analysed", [(c.get("repo"), c.get("opentrons_py_files")) for c in rec.get("code", [])])
         return
-    src = {s["slug"]: s for s in json.loads((ROOT / "ingestion/sources.json").read_text())}.get(a.slug, {"slug": a.slug, "dois": [], "origin": ["manual"], "known_code": [], "note": ""})
-    path = RECORDS / f"{a.slug}.json"
+    src = {s["slug"]: s for s in json.loads((ROOT / "sources/sources.json").read_text())}.get(a.slug, {"slug": a.slug, "dois": [], "origin": ["manual"], "known_code": [], "note": ""})
+    path = record_path(a.slug)
     prev = json.loads(path.read_text()) if path.exists() else {}
     dois = list(dict.fromkeys(a.doi + src["dois"] + prev.get("dois", [])))
     codes = list(dict.fromkeys(a.code_url + src["known_code"] + [c["url"] for c in prev.get("code", [])]))
@@ -283,7 +287,7 @@ def main():
         rec["paper_licence"] = meta.get("license") or ""
         rec["title"] = rec["title"] or meta.get("title", "")
         if dois:
-            rec["fulltext"] = fulltext_info(rec.get("doi_primary", dois[0]))
+            rec["fulltext"] = fulltext_info(rec.get("doi_primary", dois[0]), a.slug)
         if not a.no_pdf and dois:
             urls = pdf_candidates(http, rec.get("doi_primary", dois[0]), meta, pdf_extra)
             dest = CACHE / "pdf" / f"{a.slug}.pdf"
@@ -303,7 +307,7 @@ def main():
         rec["code"] = prev["code"]
     rec = merge_prev(rec, prev)
     rec.pop("note_set_by_flag", None)
-    RECORDS.mkdir(parents=True, exist_ok=True)
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(rec, indent=1, ensure_ascii=False, sort_keys=True) + "\n")
     pdf = rec.get("pdf", {})
     print(f"{a.slug}: pdf={pdf.get('status', 'skipped')} ({pdf.get('pages')} pages, redistributable={pdf.get('redistributable')}) "

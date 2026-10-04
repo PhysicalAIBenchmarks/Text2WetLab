@@ -42,7 +42,7 @@ def stage_ir():
     from paper2protocol.render import render
 
     out = {}
-    for ir in sorted(ROOT.glob("tasks/*/public/ir.json")) + sorted(ROOT.glob("data/pipeline_runs/*/exp*/protocol.json")):
+    for ir in sorted(ROOT.glob("tasks/*/public/ir.json")) + sorted(ROOT.glob("sources/*/pipeline/exp*/protocol.json")):
         proto = Protocol.model_validate_json(ir.read_text())
         issues = [i.model_dump() for i in check(proto)]
         row = {"sha": sha(ir.read_bytes()), "steps": len(proto.steps), "check_issues": len(issues)}
@@ -74,11 +74,11 @@ def stage_simulate():
     jobs = [("tasks/split-200ul-two-wells/private/solution/protocol.py", None),
             ("tests/fixtures/a1_a12/good_protocol.py", None),
             ("tests/fixtures/a1_a12/bad_protocol.py", None),
-            ("references/hulp-rna-extraction/viral_rna_extraction_protocol.py", harbor_lab),
+            ("sources/hulp-rna-extraction/code/viral_rna_extraction_protocol.py", harbor_lab),
             ("tasks/opentrons-rna-extraction/harbor/solution/protocol.py", harbor_lab)]
-    jobs += [(str(p.relative_to(ROOT)), None) for p in sorted((ROOT / "references/dna-bot-ysaa010/scripts").glob("*.py"))]
-    jobs += [(str(p.relative_to(ROOT)), str(ROOT / "references/botany-kiag066/labware")) for p in sorted((ROOT / "references/botany-kiag066/scripts").glob("*.py"))]
-    jobs += [(str(p.relative_to(ROOT)), None) for p in sorted((ROOT / "references/transporter-screening-antibiotics11081129/scripts").glob("*.py"))]
+    jobs += [(str(p.relative_to(ROOT)), None) for p in sorted((ROOT / "sources/dna-bot/code/scripts").glob("*.py"))]
+    jobs += [(str(p.relative_to(ROOT)), str(ROOT / "sources/botany/code/labware")) for p in sorted((ROOT / "sources/botany/code/scripts").glob("*.py"))]
+    jobs += [(str(p.relative_to(ROOT)), None) for p in sorted((ROOT / "sources/transporter-screening/code/scripts").glob("*.py"))]
     out, events = {}, {}
     for rel, lab in jobs:
         j = simulate(str(ROOT / rel), lab)
@@ -90,7 +90,7 @@ def stage_simulate():
             out[rel] = {"ok": False, "why": classify(j["error"])}
     import importlib.util
 
-    spec = importlib.util.spec_from_file_location("slowpoke_assemble", ROOT / "references/slowpoke/assemble.py")
+    spec = importlib.util.spec_from_file_location("slowpoke_assemble", ROOT / "sources/slowpoke/code/assemble.py")
     assemble = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(assemble)
     with tempfile.TemporaryDirectory() as d:  # the authors' generators, minus the GUI, bind the shipped CSVs into the templates
@@ -98,13 +98,13 @@ def stage_simulate():
             f = pathlib.Path(d, name)
             f.write_text(assemble.build(name))
             j = simulate(str(f), None)
-            rel = f"references/slowpoke (assembled) {name}"
+            rel = f"sources/slowpoke/code (assembled) {name}"
             if j["ok"]:
                 out[rel] = {"ok": True, "commands": j["n_commands"], "events": dict(sorted(collections.Counter(e["kind"] for e in j["events"]).items())),
                             "events_sha": sha(json.dumps(j["events"], sort_keys=True).encode())}
             else:
                 out[rel] = {"ok": False, "why": classify(j["error"])}
-    h, s = "references/hulp-rna-extraction/viral_rna_extraction_protocol.py", "tasks/opentrons-rna-extraction/harbor/solution/protocol.py"
+    h, s = "sources/hulp-rna-extraction/code/viral_rna_extraction_protocol.py", "tasks/opentrons-rna-extraction/harbor/solution/protocol.py"
     out["_harbor_solution_trace_equals_author_script_trace"] = bool(h in events and s in events and events[h] == events[s])
     return out
 

@@ -1,4 +1,4 @@
-"""paper2protocol CLI: search / list / convert."""
+"""paper2protocol CLI: search / list / assess / convert."""
 
 import argparse
 import json
@@ -12,16 +12,12 @@ from .critic import critique
 from .extract import extract
 from .identify import identify, verify_figure_refs
 from .ingest import fetch_paper, normalize_doi, search
+from .layout import ROOT_DEFAULT, pipeline_dir, safe, slug_for_doi
+from .readers import read_file
 from .models import Experiment, Paper
 from .render import render
 from .sources import SOURCES
 from .resolve import details_block, resolve
-
-
-def _out_dir(base: str, doi: str) -> Path:
-    d = Path(base) / re.sub(r"[^\w.-]+", "_", doi)
-    d.mkdir(parents=True, exist_ok=True)
-    return d
 
 
 def _dump(path: Path, obj) -> None:
@@ -30,15 +26,27 @@ def _dump(path: Path, obj) -> None:
 
 
 def load_paper(args) -> tuple[Paper, Path]:
-    doi = normalize_doi(args.doi, allow_lookup=True)
-    out = _out_dir(args.out, doi)
-    pj = out / "paper.json"
-    if pj.exists() and not args.xml and not args.refetch:
-        paper = Paper.model_validate_json(pj.read_text())
+    """One input (DOI, URL, title, or a .xml/.pdf/.md/.txt file) -> (Paper, <out>/<slug>/pipeline/)."""
+    if Path(args.paper).is_file():
+        doi = args.doi or ""
+        slug = args.slug or (slug_for_doi(args.out, doi) if doi else safe(Path(args.paper).stem))
+        out = pipeline_dir(args.out, slug)
+        pj = out / "paper.json"
+        if pj.exists() and not args.refetch:
+            paper = Paper.model_validate_json(pj.read_text())
+        else:
+            paper = read_file(args.paper, doi=doi)
+            _dump(pj, paper)
     else:
-        print(f"Fetching {doi} ...", file=sys.stderr)
-        paper = fetch_paper(doi, args.xml, args.source)
-        _dump(pj, paper)
+        doi = normalize_doi(args.paper, allow_lookup=True)
+        out = pipeline_dir(args.out, args.slug or slug_for_doi(args.out, doi))
+        pj = out / "paper.json"
+        if pj.exists() and not args.refetch:
+            paper = Paper.model_validate_json(pj.read_text())
+        else:
+            print(f"Fetching {doi} ...", file=sys.stderr)
+            paper = fetch_paper(doi, source=args.source)
+            _dump(pj, paper)
     print(f"{paper.title}\n  ({paper.source}, {len(paper.sections)} sections, {len(paper.legends)} figures)\n",
           file=sys.stderr)
     # TODO: restricted-research screen. Gate here, before experiments are identified;
@@ -64,6 +72,13 @@ def cmd_search(args):
 
 
 def cmd_list(args):
+    for one in args.paper:                      # several inputs: one block each, each into its own <slug>/pipeline/
+        if len(args.paper) > 1:
+            print(f"\n===== {one} =====")
+        _list_one(argparse.Namespace(**{**vars(args), "paper": one, "slug": args.slug if len(args.paper) == 1 else None}))
+
+
+def _list_one(args):
     paper, out = load_paper(args)
     exps = get_experiments(paper, out, args.refetch)
     for i, e in enumerate(exps, 1):
@@ -167,7 +182,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="paper2protocol", description=__doc__)
     ap.add_argument("--cache", choices=["use", "refresh", "off", "only"], default=llm.CACHE_MODE,
                     help="LLM response cache mode (default: use)")
-    ap.add_argument("--out", default="data/pipeline_runs", help="output directory (default: data/pipeline_runs/)")
+    ap.add_argument("--out", default=ROOT_DEFAULT, help="output root; each paper goes to <out>/<slug>/pipeline/ (default: sources/)")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     s = sub.add_parser("search", help="find papers by title/keywords (Europe PMC)")
@@ -180,10 +195,13 @@ def main(argv=None):
                           ("assess", cmd_assess, "check whether an experiment has enough detail to run"),
                           ("convert", cmd_convert, "assess, then convert one experiment to instructions")]:
         p = sub.add_parser(name, help=hlp)
-        p.add_argument("doi", help="DOI, doi.org link, publisher article URL, or article id/title")
+        inputs = "one or more inputs" if name == "list" else "one input"
+        p.add_argument("paper", nargs="+" if name == "list" else None,
+                       help=f"{inputs}: DOI, doi.org link, publisher URL, article id/title, or a .xml (JATS), .pdf, .md or .txt file")
         p.add_argument("--source", choices=[src.name for src in SOURCES],
                        help="fetch full text only from this source (default: try all that apply)")
-        p.add_argument("--xml", help="use a local JATS XML file instead of downloading")
+        p.add_argument("--doi", help="DOI to record for a file input (also finds its <slug> in sources.json)")
+        p.add_argument("--slug", help="output folder name under --out (default: from sources.json, else the file name or DOI)")
         p.add_argument("--refetch", action="store_true", help="ignore saved paper.json and experiments.json")
         if name in ("assess", "convert"):
             p.add_argument("--experiment", "-e", type=int, required=True, help="number from `list`")

@@ -116,7 +116,7 @@ An IR where 70% of steps rest on an assumption can pass bookkeeping and still be
 | `opentrons-rna-extraction` | yes | n/a | 16 checks + LLM judge |
 
 Real scripts that simulate here: the authors' HULP script (the RNA task's oracle) and the two Slowpoke OT-2 workflows
-(`references/slowpoke/`, MIT) once their shipped CSV inputs are bound. None of them has the numbers of a handwritten task:
+(`sources/slowpoke/code/`, MIT) once their shipped CSV inputs are bound. None of them has the numbers of a handwritten task:
 Slowpoke colony PCR is 9 uL mix + 1 uL colony per 10 uL reaction (the task says 18 + 1 + 1), and Slowpoke cloning is a
 different Golden Gate design from the AssemblyTron paper. Scripts that do not simulate: DNA-BOT (5) needs the removed
 Opentrons API v1, BOTany (8) needs API 2.20 and a runtime CSV, TransporterScreening (2) needs a labware definition that

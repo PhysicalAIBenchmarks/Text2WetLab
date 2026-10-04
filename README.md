@@ -19,13 +19,11 @@ tasks/<task>/
     public/              PUBLISHED: instruction.md (what a model is given), ir.json (the spec), assumptions.md
     private/             never published: oracle solutions used by spec_check
     harbor/              never published: a complete Harbor task (agent brief, Dockerfile, solution, grader), RNA task only
-paper2protocol/        paper -> experiments -> IR -> instructions (lLegon)
+paper2protocol/        PREPROCESSING tool: paper (DOI, XML, PDF, text) -> experiments -> IR + instructions (lLegon). Not the evaluator
 eval/                  spec_check.py (the one checker), runlog.py (simulator -> events),
                        ir_viz.py (2D), ir_mujoco.py (3D + physics tracking)
-references/            author-published scripts, comparison only, each with upstream commit + licence
-data/pipeline_runs/    paper2protocol output: paper.json, exp<N>/protocol.json (the IR), protocol.txt (the NL)
+sources/               what we collected, one folder per paper: record.json, pipeline/ (paper2protocol output), code/ (author scripts); master.csv
 assets/                examples/ (2D GIFs), examples3d/ (MP4, GIF, 12 frames each)
-ingestion/             every paper looked at: records, PDFs/code by hash, master.csv (one row per paper experiment)
 docs/                  criteria.md (what is judged), risks.md, harbor-runbook.md, examples.md (gallery), agent-spec.md
 manuscript/            arXiv write-up (placeholder)
 scripts/               reproduce.py, criteria_matrix.py, make_provenance_csv.py, deploy_hf.py
@@ -77,7 +75,7 @@ The LLM stages (paper -> IR) are not re-run: they need an API key and the respon
 
 ```bash
 uv run paper2protocol list 10.1093/synbio/ysac032         # experiments in a paper
-uv run paper2protocol convert 10.1093/synbio/ysac032 -e 2   # -> data/pipeline_runs/<doi>/exp2/
+uv run paper2protocol convert 10.1093/synbio/ysac032 -e 2   # -> sources/<slug>/pipeline/exp2/
 ```
 
 See [`docs/paper2protocol-pipeline.md`](docs/paper2protocol-pipeline.md). Needs `ANTHROPIC_API_KEY` in `.env`.

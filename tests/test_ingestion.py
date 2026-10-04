@@ -12,7 +12,7 @@ spec.loader.exec_module(bm)
 
 def test_every_source_paper_has_at_least_one_row_and_entry_ids_are_unique():
     rows = bm.build_rows()
-    sources = json.loads((ROOT / "ingestion/sources.json").read_text())
+    sources = json.loads((ROOT / "sources/sources.json").read_text())
     assert {s["slug"] for s in sources} <= {r["slug"] for r in rows}
     ids = [r["entry_id"] for r in rows]
     assert len(ids) == len(set(ids))
@@ -20,7 +20,7 @@ def test_every_source_paper_has_at_least_one_row_and_entry_ids_are_unique():
 
 def test_a_paper_that_splits_gets_one_row_per_experiment():
     rows = bm.build_rows()
-    for d in (ROOT / "data/pipeline_runs").glob("*/experiments.json"):
+    for d in (ROOT / "sources").glob("*/pipeline/experiments.json"):
         raw = json.loads(d.read_text())
         n = len(raw if isinstance(raw, list) else raw["experiments"])
         doi = json.loads((d.parent / "paper.json").read_text())["doi"]   # not the folder name: DOIs hold several slashes
@@ -32,16 +32,16 @@ def test_a_paper_that_splits_gets_one_row_per_experiment():
 def test_committed_master_csv_is_current():
     """Fails when records or pipeline outputs changed and nobody rebuilt the CSV."""
     fresh = bm.build_rows()
-    committed = list(csv.DictReader(open(ROOT / "ingestion/master.csv")))
+    committed = list(csv.DictReader(open(ROOT / "sources/master.csv")))
     assert [{k: str(r.get(k, "")) for k in bm.COLS} for r in fresh] == committed
 
 
 def test_nothing_machine_specific_or_third_party_is_committed():
-    text = (ROOT / "ingestion/master.csv").read_text()
+    text = (ROOT / "sources/master.csv").read_text()
     assert "/Users/" not in text and str(pathlib.Path.home()) not in text
     tracked = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True).stdout.splitlines()
     assert not [f for f in tracked if f.lower().endswith(".pdf")]
-    for r in csv.DictReader(open(ROOT / "ingestion/master.csv")):
+    for r in csv.DictReader(open(ROOT / "sources/master.csv")):
         assert r["pdf_cache_file"] == "" or r["pdf_cache_file"].startswith("pdf/")
 
 

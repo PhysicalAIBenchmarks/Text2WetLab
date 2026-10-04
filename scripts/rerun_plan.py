@@ -5,7 +5,7 @@ Dry-run plan for re-running the paper2protocol pipeline: what would run, how man
 
 SPENDS NOTHING. It never calls a generation endpoint. With --count it calls `messages.count_tokens`, which is free,
 on the real `identify` prompts. Everything for the later stages is an ENVELOPE built from the sizes of the pipeline
-outputs already in data/pipeline_runs, and is labelled as such. Run the real thing afterwards with the command it prints.
+outputs already in sources/*/pipeline, and is labelled as such. Run the real thing afterwards with the command it prints.
 
 Stages (paper2protocol/llm.py STAGES, all claude-sonnet-5-5):
   identify  paper -> experiments                     1 call per paper, no tools
@@ -22,7 +22,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-RUNS = ROOT / "data/pipeline_runs"
+RUNS = ROOT / "sources"
 # $ per million tokens, from the claude-api reference cached 2026-09-25. Batch is half price. Cache reads are 0.1x input.
 PRICE = {"claude-sonnet-5-5": {"in": 2.00, "out": 10.00, "cache_read": 0.20}}
 MODEL = "claude-sonnet-5-5"
@@ -34,7 +34,7 @@ def usd(tokens_in, tokens_out, p=PRICE[MODEL]):
 
 
 def papers_needing_identify():
-    rows = list(csv.DictReader(open(ROOT / "ingestion/master.csv")))
+    rows = list(csv.DictReader(open(ROOT / "sources/master.csv")))
     by = {}
     for r in rows:
         by.setdefault(r["slug"], []).append(r)
@@ -48,7 +48,7 @@ def measured_envelopes():
     from paper2protocol.models import Experiment, Paper
 
     inp, proto, suff, crit = [], [], [], []
-    for d in sorted(RUNS.glob("*/exp*/protocol.json")):
+    for d in sorted(RUNS.glob("*/pipeline/exp*/protocol.json")):
         exps = json.loads((d.parent.parent / "experiments.json").read_text())
         exps = exps if isinstance(exps, list) else exps["experiments"]
         n = int(d.parent.name[3:])
@@ -133,7 +133,7 @@ def main():
     print("\nNOT included (unverified, not in the pricing reference): per-use fees for the web_search and web_fetch server tools;")
     print("resolve allows up to 8 searches and 10 fetches per experiment (llm.WEB_TOOLS), so a per-search fee would scale with the experiment count.")
     print("\nTo run for real (this spends money; P2P_CACHE_MODE=use makes repeated calls free):")
-    print("   uv run paper2protocol list <doi>                 # identify, writes data/pipeline_runs/<doi>/experiments.json")
+    print("   uv run paper2protocol list <doi>                 # identify, writes sources/<slug>/pipeline/experiments.json")
     print("   uv run paper2protocol convert <doi> -e <n>       # resolve + extract + critic + check")
     print("   export P2P_WEB_SEARCH_MAX=8 P2P_WEB_FETCH_MAX=10  # per-call tool caps, lower them to cap spend")
 
