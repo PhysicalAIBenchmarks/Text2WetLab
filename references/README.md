@@ -11,7 +11,7 @@ this folder) **and never published to the dataset** (`scripts/deploy_hf.py` is a
 | `botany-kiag066/` | cvoiniciuc/BOTany | none declared | no: needs API 2.20 and a runtime CSV |
 | `transporter-screening-antibiotics11081129/` | ljm176/TransporterScreening | none declared | no: needs a labware definition that is not here |
 | `hulp-rna-extraction/` | HULPopentrons/RNA_extraction_OT2opentrons | none declared | yes (1,895 commands) |
-| `slowpoke/` | Tom-Ellis-Lab/Slowpoke | MIT | yes, once `assemble.py` binds the shipped CSVs (colony PCR 573 commands, cloning 575) |
+| `slowpoke/` | Tom-Ellis-Lab/Slowpoke | MIT | yes, once `assemble.py` binds the shipped CSVs (colony PCR 949 commands (573 pipetting events), cloning 735 (575)) |
 
 Each folder's README pins the upstream commit. `PROVENANCE.csv` records, for every file, the upstream URL and
 whether its git blob hash matches upstream exactly (all 45 do). Files without a declared licence are for private

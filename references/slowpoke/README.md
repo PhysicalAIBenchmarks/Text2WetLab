@@ -9,7 +9,7 @@
 - `Colony_PCR/` and `Cloning/` are the OT-2 workflow templates, their generators and their example CSV
   inputs, verbatim. `PROVENANCE.csv` records that each file is byte-identical to upstream.
 - `assemble.py` is ours: it binds the CSVs into the templates the same way the authors' generators do,
-  without the GUI. Both assembled protocols simulate on Opentrons 7.5.0 (colony PCR 573 commands, cloning 575).
+  without the GUI. Both assembled protocols simulate on Opentrons 7.5.0 (colony PCR 949 commands (573 pipetting events), cloning 735 (575)).
 
 What they do, from the simulator trace of the shipped example inputs:
 
