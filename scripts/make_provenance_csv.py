@@ -67,6 +67,9 @@ def git(*a):
     return run("git", *a)
 
 
+# Closed or unmerged pull requests hold commits that are on no branch (the first Harbor commit is one).
+git("fetch", "-q", "origin", "+refs/pull/*/head:refs/remotes/origin/pr/*")
+
 _intro = {}
 
 

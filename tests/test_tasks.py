@@ -25,3 +25,20 @@ def test_every_task_has_the_same_public_files(task):
 def test_no_layer_scheme_is_left():
     assert not [p.name for p in TASKS.iterdir() if p.name in ("L1", "L2")]
     assert not list(TASKS.glob("*/input.nl.txt"))
+
+
+def test_every_path_a_task_readme_tells_you_to_run_exists():
+    import re
+
+    for readme in TASKS.glob("*/README.md"):
+        for path in re.findall(r"(?:-p|--path)\s+(tasks/[\w./-]+)", readme.read_text()):
+            assert (TASKS.parent / path).exists(), f"{readme.relative_to(TASKS.parent)} runs {path}, which does not exist"
+
+
+def test_a_grader_that_reads_tests_instruction_md_gets_it():
+    """tests/grade.py hands the task text to the LLM judge from /tests/instruction.md and silently falls back to
+    '(see paper)' when it is missing. The file was dropped once between two of the author's commits."""
+    for task in ALL:
+        grade = task / "tests/grade.py"
+        if grade.exists() and "/tests/instruction.md" in grade.read_text():
+            assert (task / "tests/instruction.md").read_bytes() == (task / "instruction.md").read_bytes(), task.name

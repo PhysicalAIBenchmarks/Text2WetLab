@@ -2,7 +2,8 @@ import pathlib
 import re
 
 ROOT = pathlib.Path(__file__).parent.parent
-DOCS = [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md")), ROOT / "references/README.md"]
+DOCS = [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md")), ROOT / "references/README.md", ROOT / "ingestion/README.md",
+        *sorted((ROOT / "tasks").glob("*/README.md"))]  # task READMEs hold the commands people actually run
 LINK = re.compile(r"\]\(([^)#\s]+)")
 
 
@@ -20,7 +21,7 @@ def test_every_relative_link_in_the_docs_resolves():
 def test_docs_do_not_mention_the_removed_layer_scheme():
     for doc in DOCS:
         text = doc.read_text()
-        assert "tasks/L1" not in text and "tasks/L2" not in text and "input.nl.txt" not in text, doc.name
+        assert "tasks/L1" not in text and "tasks/L2" not in text and "input.nl.txt" not in text, doc.relative_to(ROOT)
 
 
 def test_slowpoke_assembler_builds_both_protocols_without_a_gui_or_simulator():
