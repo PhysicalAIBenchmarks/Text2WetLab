@@ -3,7 +3,7 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 13
+    "n_commands": 19
   },
   "judge": {
     "items": [
@@ -15,22 +15,22 @@
       {
         "id": "heat_shock",
         "score": 1,
-        "evidence": "Comment 'Heat shock cells_rack 42C for 45 s, then transfer immediately to ice for 2 min.' comes after the DNA transfer and before the SOC step."
+        "evidence": "protocol.comment 'Heat shock ... 42\u00b0C 45 s, then transfer immediately to ice 2 min' is placed after the DNA transfer and before SOC."
       },
       {
         "id": "soc_recovery",
         "score": 1,
-        "evidence": "Log lines 6-7: P300 moves 250 uL from soc_reservoir A1 to the tube. The final comment records 37C, 60 min, 250 rpm."
+        "evidence": "Log lines 12-13: P300 moves 250 uL from soc_reservoir A1 to tube A1 after the heat shock comment; the 37\u00b0C 60 min 250 rpm incubation comment follows."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Each transfer uses new_tip='always' with its own pipette, so DNA and SOC get separate tips. Both tips are dropped (lines 4 and 8) and no tip is held at the end."
+        "evidence": "Log shows P20 pick up/drop tip (lines 1, 10) and a separate P300 pick up/drop tip (lines 11, 14); no tip is held at the end."
       },
       {
         "id": "fidelity_to_task",
         "score": 0,
-        "evidence": "The agent added the comment 'Gently flick to mix, then incubate cells_rack on ice 30 min.' before heat shock. The task does not include this step, and it would change the outcome."
+        "evidence": "The agent added an unrequested mix_after=(3,10), shown as three aspirate/dispense cycles in tube A1 (log lines 4-9), which pipettes the competent cells and is not part of the specified protocol."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "tip_usage": 1.0,
       "fidelity_to_task": 0.0
     },
-    "summary": "The pipetting is correct: 2 uL DNA and 250 uL SOC, each with a fresh tip dropped afterwards. Heat shock and outgrowth are recorded in order. The protocol fails fidelity because it adds an unrequested 30 min ice incubation and flick-mixing comment before heat shock.",
+    "summary": "The core steps (2 uL DNA, heat shock comment, 250 uL SOC, incubation comment) are correct and in order, with fresh tips dropped properly. However, the agent added an unrequested 3x mix of the competent cells after DNA addition, which deviates from the specified protocol.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

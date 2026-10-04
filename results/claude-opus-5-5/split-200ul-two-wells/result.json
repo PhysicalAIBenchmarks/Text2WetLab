@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 7
+    "n_commands": 10
   },
   "judge": {
     "items": [
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the correct load names and labels; p20 left, p300 right with the correct tip racks in slots 10 and 11."
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the specified labels; p20 left, p300 right with the correct tip racks in slots 10 and 11."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "Log shows 100 \u00b5L aspirated from reservoir A1 and dispensed to plate A1, then 100 \u00b5L to B1, all with the P300; no other wells touched."
+        "evidence": "Log shows 100 \u00b5L aspirated from reservoir A1 and dispensed into plate A1, then 100 \u00b5L from A1 into B1, all with the p300; no other wells touched."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "The log shows a tip pickup first and a drop tip last, with one tip used for the whole transfer."
+        "evidence": "Each transfer is pick up tip, aspirate, dispense, drop tip; no pipetting without a tip, and no tip is held at the end."
       },
       {
         "id": "robot_practice",
         "score": 1,
-        "evidence": "100 \u00b5L is within the p300 range, apiLevel 2.15 is valid, and the simulation passed."
+        "evidence": "100 \u00b5L is within the p300 range, apiLevel 2.15 is valid, and the blow_out above the plate well is safe."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The single transfer step is done exactly as specified, and the metadata and comments match what the code does."
+        "evidence": "The code does the single required transfer step; comments and metadata match the actions (fresh tip per well is stated accurately)."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol matches the task: 100 \u00b5L goes from reservoir A1 to plate A1 and then to B1 using the p300 and a single tip. Labware labels, slots, tip handling and volumes all agree with the simulator log.",
+    "summary": "The protocol transfers 100 \u00b5L from reservoir A1 to plate A1 and B1 with the p300, using a fresh tip for each well. The labware, slots, labels and pipettes match the task, and the run log shows no problems.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

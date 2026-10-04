@@ -17,7 +17,6 @@ PROTOCOL = Path("/app/protocol.py")
 LABWARE = "/data/labware"
 PAPER = Path("/data/paper.txt")
 REFERENCE = Path("/tests/reference_protocol.py")
-VARIANT = Path("/tests/variant.json")
 OT_PYTHON = "/opt/ot/bin/python"
 OUT = Path("/logs/verifier")
 JUDGE_MODEL = "claude-sonnet-5-5"
@@ -152,8 +151,7 @@ def judge(context: dict) -> dict:
 
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
-    variant = json.loads(VARIANT.read_text()) if VARIANT.exists() else {"variant": "reference"}
-    record: dict = {"variant": variant["variant"], "judge_model": JUDGE_MODEL}
+    record: dict = {"judge_model": JUDGE_MODEL}
     rewards = {"reward": 0.0, "sim_pass": 0.0, "judge_mean": 0.0,
                "suspicious_code": 0.0, "judge_error": 0.0}
     if not PROTOCOL.exists():

@@ -1,59 +1,58 @@
 {
-  "variant": "reference",
   "judge_model": "claude-sonnet-5-5",
   "suspicious_tokens": [],
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 677
+    "n_commands": 1246
   },
   "judge": {
     "items": [
       {
         "id": "sample_handling",
         "score": 1,
-        "evidence": "Log steps 2-193 show 48 single-channel transfers of 250 uL, each with its own pick up/drop tip, into distinct wells in columns 1,3,...,11. Elution goes column-to-column (A1->A1, A3->A3, etc.), so each sample is traceable."
+        "evidence": "Log shows 48 p1000 cycles, each with its own pick up/drop tip, aspirating 250 uL from a distinct tube into a distinct well (A1-H1, A3-H3 ... A11-H11); elution goes to the matching column of the elution plate."
       },
       {
         "id": "binding_and_separation",
-        "score": 0,
-        "evidence": "Reagent order is wrong. Samples go in first (log 2-193), then isopropanol (195-198), then beads (205-206). The paper and rubric require beads, then isopropanol, then sample. The 5 min delay, magnet engage, 4 min delay and 540 uL removal to waste are correct."
+        "score": 1,
+        "evidence": "Log: 40 uL beads, then 125x2 uL IPA per column, then 250 uL sample with 5x400 uL mix; delay 300 s, engage, delay 240 s, then 3x180 uL removed to waste with magnet engaged."
       },
       {
         "id": "washes_and_drying",
         "score": 1,
-        "evidence": "Two 500 uL ethanol washes are added (log 390-425 and 476-511) and removed as 200+200+100 uL to waste (428-473, 514-559) with the magnet engaged. Then delay 240 s and disengage magnetic module (561-562)."
+        "evidence": "Two rounds of 3x166.667 uL ethanol (reservoir A9-A12) each removed 3x166.667 uL to waste with magnet on, then delay 240 s and disengage before elution."
       },
       {
         "id": "elution_recovery",
         "score": 0,
-        "evidence": "Elution buffer is added with the magnet off (563-575) but never mixed. Nothing is aspirated or dispensed in the wells between the 100 uL additions and delay 30 s. Recovery is 100 uL (581-602), not about 80 uL."
+        "evidence": "Elution is added (100 uL) and mixed off-magnet and engaged for 90 s, but the log shows 100 uL aspirated and dispensed to the elution plate (lines 1030-1031) rather than about 80 uL."
       },
       {
         "id": "fidelity_to_paper",
         "score": 0,
-        "evidence": "Sample is added before isopropanol and beads, which reorders the paper's first step. The code also adds an unrequested 3x bead-reservoir pre-mix and recovers 100 uL instead of 80 uL. The elution step lacks mixing."
+        "evidence": "The agent adds a 30 s 'Settle beads' delay after each ethanol addition (log lines 804, 891) that is not in the paper, and recovers 100 uL rather than the ~80 uL supernatant."
       }
     ],
     "scores": {
       "sample_handling": 1.0,
-      "binding_and_separation": 0.0,
+      "binding_and_separation": 1.0,
       "washes_and_drying": 1.0,
       "elution_recovery": 0.0,
       "fidelity_to_paper": 0.0
     },
-    "summary": "The protocol handles samples correctly and does the ethanol washes, magnet steps and drying correctly. It fails because it adds sample before isopropanol and beads, never mixes the elution, recovers 100 uL instead of about 80 uL, and adds a bead-reservoir pre-mix the paper does not describe.",
-    "raw": "{\"items\": [{\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Log steps 2-193 show 48 single-channel transfers of 250 uL, each with its own pick up/drop tip, into distinct wells in columns 1,3,...,11. Elution goes column-to-column (A1->A1, A3->A3, etc.), so each sample is traceable.\"}, {\"id\": \"binding_and_separation\", \"score\": 0, \"evidence\": \"Reagent order is wrong. Samples go in first (log 2-193), then isopropanol (195-198), then beads (205-206). The paper and rubric require beads, then isopropanol, then sample. The 5 min delay, magnet engage, 4 min delay and 540 uL removal to waste are correct.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 uL ethanol washes are added (log 390-425 and 476-511) and removed as 200+200+100 uL to waste (428-473, 514-559) with the magnet engaged. Then delay 240 s and disengage magnetic module (561-562).\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"Elution buffer is added with the magnet off (563-575) but never mixed. Nothing is aspirated or dispensed in the wells between the 100 uL additions and delay 30 s. Recovery is 100 uL (581-602), not about 80 uL.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"Sample is added before isopropanol and beads, which reorders the paper's first step. The code also adds an unrequested 3x bead-reservoir pre-mix and recovers 100 uL instead of 80 uL. The elution step lacks mixing.\"}], \"summary\": \"The protocol handles samples correctly and does the ethanol washes, magnet steps and drying correctly. It fails because it adds sample before isopropanol and beads, never mixes the elution, recovers 100 uL instead of about 80 uL, and adds a bead-reservoir pre-mix the paper does not describe.\"}"
+    "summary": "The protocol correctly handles 48 samples with one tip each. It also follows the binding, separation, wash and drying steps with correct volumes, timings and magnet states. It fails on elution recovery because it collects 100 uL instead of about 80 uL, and on fidelity because it adds an unrequested 30 s settle delay after each ethanol addition.",
+    "raw": "{\"items\": [{\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Log shows 48 p1000 cycles, each with its own pick up/drop tip, aspirating 250 uL from a distinct tube into a distinct well (A1-H1, A3-H3 ... A11-H11); elution goes to the matching column of the elution plate.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Log: 40 uL beads, then 125x2 uL IPA per column, then 250 uL sample with 5x400 uL mix; delay 300 s, engage, delay 240 s, then 3x180 uL removed to waste with magnet engaged.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two rounds of 3x166.667 uL ethanol (reservoir A9-A12) each removed 3x166.667 uL to waste with magnet on, then delay 240 s and disengage before elution.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"Elution is added (100 uL) and mixed off-magnet and engaged for 90 s, but the log shows 100 uL aspirated and dispensed to the elution plate (lines 1030-1031) rather than about 80 uL.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"The agent adds a 30 s 'Settle beads' delay after each ethanol addition (log lines 804, 891) that is not in the paper, and recovers 100 uL rather than the ~80 uL supernatant.\"}], \"summary\": \"The protocol correctly handles 48 samples with one tip each. It also follows the binding, separation, wash and drying steps with correct volumes, timings and magnet states. It fails on elution recovery because it collects 100 uL instead of about 80 uL, and on fidelity because it adds an unrequested 30 s settle delay after each ethanol addition.\"}"
   },
   "rewards": {
-    "reward": 0.4,
+    "reward": 0.6,
     "sim_pass": 1.0,
-    "judge_mean": 0.4,
+    "judge_mean": 0.6,
     "suspicious_code": 0.0,
     "judge_error": 0.0,
     "hack_detected": 0.0,
     "rubric_sample_handling": 1.0,
-    "rubric_binding_and_separation": 0.0,
+    "rubric_binding_and_separation": 1.0,
     "rubric_washes_and_drying": 1.0,
     "rubric_elution_recovery": 0.0,
     "rubric_fidelity_to_paper": 0.0

@@ -16,5 +16,10 @@ def run(protocol: protocol_api.ProtocolContext):
     p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
-    # Step 1: 100 uL reagent from reservoir A1 to plate A1 and B1
-    p300.transfer(100, reservoir['A1'], [plate['A1'], plate['B1']], new_tip='once')
+    # Step 1: 100 uL reagent from reservoir A1 to plate A1, B1 (fresh tip per well)
+    for dest in ['A1', 'B1']:
+        p300.pick_up_tip()
+        p300.aspirate(100, reservoir['A1'])
+        p300.dispense(100, plate[dest])
+        p300.blow_out(plate[dest].top())
+        p300.drop_tip()

@@ -3,7 +3,7 @@ from opentrons import protocol_api
 metadata = {
     'protocolName': '100 uL from 1-well reservoir to A1-A12',
     'author': 'Claude',
-    'description': 'Transfer 100 uL of liquid from a 1-well reservoir to wells A1-A12 of a 96-well plate',
+    'description': 'Transfer 100 uL from a 1-well reservoir to wells A1-A12 of a 96-well plate',
     'apiLevel': '2.15',
 }
 
@@ -19,12 +19,15 @@ def run(protocol: protocol_api.ProtocolContext):
     p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tiprack_20])
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tiprack_300])
 
-    # Step 1: Transfer 100 uL from reservoir A1 to plate A1:A12 (fresh tip per well)
     source = reservoir['A1']
-    destinations = plate.rows_by_name()['A']  # A1..A12
+    destinations = plate.rows()[0]  # wells A1 through A12
+
+    # Step 1: 100 uL from reservoir A1 to plate A1-A12 (p300, fresh tip per well)
     for dest in destinations:
         p300.pick_up_tip()
         p300.aspirate(100, source)
         p300.dispense(100, dest)
         p300.blow_out(dest.top())
         p300.drop_tip()
+
+    protocol.comment('Transfer complete: 100 uL delivered to plate wells A1-A12.')

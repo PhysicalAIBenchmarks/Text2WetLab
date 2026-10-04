@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 1731
+    "n_commands": 1827
   },
   "judge": {
     "items": [
       {
         "id": "master_mix",
         "score": 1,
-        "evidence": "Log lines 2-193 show 18 uL aspirated from reservoir A1 and dispensed into each of the 96 PCR wells, with a single tip."
+        "evidence": "Log lines 2-193 show 18 uL aspirated from reservoir A1 and dispensed into each of the 96 pcr_plate wells."
       },
       {
         "id": "template_and_primers",
         "score": 1,
-        "evidence": "Log shows 1 uL from each colony_plate well into the matching pcr_plate well (lines 196-1153) and 1 uL from each primer_plate well into the matching well (1156-1537), all with the p20, giving 20 uL."
+        "evidence": "Log shows 1 uL colony A1..H12 into matching pcr wells (with 3x mix), then 1 uL primer from matching wells, all with the P20."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "Each colony and each primer transfer has its own pick up tip and drop tip. The single master-mix tip only touched the reservoir and dispensed into empty wells."
+        "evidence": "Each colony and each primer transfer has its own pick up/drop tip in the log; the master mix uses one tip into empty wells, which is allowed."
       },
       {
         "id": "thermocycling",
         "score": 1,
-        "evidence": "The final protocol.comment records sealing and the full program: 98C 30 s; 30 cycles of 98C 10 s, 60C 30 s, 72C 30 s; 72C 2 min; 4C hold."
+        "evidence": "protocol.comment records sealing and the full program: 98C 30 s; 30x[98C 10 s, 60C 30 s, 72C 30 s]; 72C 2 min; hold 4C."
       },
       {
         "id": "fidelity_to_paper",
         "score": 1,
-        "evidence": "The steps follow the task order, including mixing 3x after the colony dispense. The comment is accurate and no steps are invented. Master-mix dispenses at top(-2) with blow-out are a harmless choice."
+        "evidence": "Steps and order match the task, the apiLevel 2.15 is in range, and the comments (single tip for master mix, mix 3x) match what the code does."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "thermocycling": 1.0,
       "fidelity_to_paper": 1.0
     },
-    "summary": "The protocol matches the log: 18 uL master mix into all 96 wells, then 1 uL colony with a 3x mix and 1 uL primer per well, each with a fresh tip. The thermocycling comment is present and accurate, so all items pass.",
+    "summary": "The protocol performs 18 \u00b5L master mix into 96 wells, 1 \u00b5L colony with 3x mix, and 1 \u00b5L primer, using fresh tips per sample as the log shows. The thermocycling comment is complete and nothing is invented or missing, so all items pass.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

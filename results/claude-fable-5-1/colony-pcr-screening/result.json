@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 1927
+    "n_commands": 2215
   },
   "judge": {
     "items": [
       {
         "id": "master_mix",
         "score": 1,
-        "evidence": "Log lines 2-193 show 96 aspirates of 18 uL from reservoir A1, each dispensed to a different pcr_plate well A1-H12."
+        "evidence": "Log lines 2-193 show 18 uL aspirated from reservoir A1 and dispensed into each of the 96 pcr_plate wells A1..H12 with the p20."
       },
       {
         "id": "template_and_primers",
         "score": 1,
-        "evidence": "Log shows 1 uL colony aspirate then dispense into the matching pcr_plate well, with 3x10 uL mix after, for all 96 wells. Then 1 uL primer from the matching primer well to the same pcr well, giving 20 uL."
+        "evidence": "Log shows 1 uL from each colony_plate well to the matching pcr_plate well (e.g. lines 196-197), then 1 uL from each primer_plate well to the matching well (lines 1156-1157), all with the P20."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "The code picks up a tip and drops it for each colony and for each primer pair (96 pick-ups per step in the log). The single tip for master mix into empty wells is allowed."
+        "evidence": "Every colony and primer transfer has its own pick up tip and drop tip (e.g. lines 195/204, 1155/1158); one tip is used only for master mix into empty wells."
       },
       {
         "id": "thermocycling",
         "score": 1,
-        "evidence": "The step 4 protocol.comment records sealing and the program: 98 C 30 s; 30x[98 C 10 s, 60 C 30 s, 72 C 30 s]; 72 C 2 min; 4 C hold."
+        "evidence": "Final protocol.comment records sealing and 98 C 30 s; 30x [98 C 10 s, 60 C 30 s, 72 C 30 s]; 72 C 2 min; 4 C hold."
       },
       {
         "id": "fidelity_to_paper",
         "score": 1,
-        "evidence": "Step order and volumes match the task, with no invented steps. The comments describe actions the code performs, and the metadata is accurate."
+        "evidence": "The order and volumes follow the task, with the 3x mix after template (lines 198-203) and accurate comments and metadata; the extra blow_out and touch_tip calls are minor and are not claimed as separate steps."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "thermocycling": 1.0,
       "fidelity_to_paper": 1.0
     },
-    "summary": "The protocol dispenses 18 uL master mix, then 1 uL colony template with a 3x mix and a fresh tip each, then 1 uL primer with a fresh tip each, to all 96 wells, as the simulator log confirms. The thermocycling program is recorded in a comment, and the comments and metadata accurately describe what the code does.",
+    "summary": "The protocol matches the simulator log for all steps: 18 uL master mix into 96 wells with one tip, 1 uL template with a 3x mix, and 1 uL primer, each with a fresh tip. The thermocycling comment is accurate and no invented steps are claimed, so all items pass.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

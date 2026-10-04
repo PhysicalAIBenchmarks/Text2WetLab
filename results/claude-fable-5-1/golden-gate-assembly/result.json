@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 661
+    "n_commands": 620
   },
   "judge": {
     "items": [
       {
         "id": "pcr_setup",
         "score": 1,
-        "evidence": "Log shows master mix 106/40/4/2 \u00b5L, 19 \u00b5L to A1:G1, 2.5 \u00b5L fwd and rev primers paired A1..G1/A2..G2, and 1 \u00b5L template from A1,A1,B1,C1,A1,A1,D1 to A1..G1 with 3x15 \u00b5L mixes."
+        "evidence": "Log lines 2-127 show 106/40/4/2 \u00b5L master mix, 19 \u00b5L per well A1:G1, 2.5 \u00b5L fwd/rev primers A1..G1/A2..G2 paired to the matching wells, and 1 \u00b5L templates from A1,A1,B1,C1,A1,A1,D1, then 3x15 \u00b5L mixes."
       },
       {
         "id": "dpni_and_cleanup",
         "score": 1,
-        "evidence": "Log has 19 \u00b5L water, 5 \u00b5L rCutSmart, 1 \u00b5L DpnI to each of A1:G1, then 3x30 \u00b5L mix. Code comments record the 37/65\u00b0C incubation and Zymo cleanup, followed by protocol.pause."
+        "evidence": "Log lines 186-288 add 19 \u00b5L water, 5 \u00b5L rCutSmart and 1 \u00b5L DpnI to A1:G1 and mix 3x30 \u00b5L. The 37/65 \u00b0C incubation and Zymo cleanup are recorded in order with protocol.comment, with protocol.pause calls."
       },
       {
         "id": "assembly_mix",
         "score": 1,
-        "evidence": "Log shows 7 \u00b5L water, 2 \u00b5L T4 buffer, 3 \u00b5L frag 2, 2 \u00b5L frag 5, 3 \u00b5L frag 6, 2 \u00b5L frags 1/3/4/7 to A1..D1, and 1 \u00b5L enzyme mix with 5x mix per well."
+        "evidence": "Log lines 290-428 add 7 \u00b5L water, 2 \u00b5L T4 buffer, 3 \u00b5L frag2, 2 \u00b5L frag5, 3 \u00b5L frag6, 2 \u00b5L frag 1/3/4/7 to A1:D1, and 1 \u00b5L enzyme mix with 5x mix, giving 20 \u00b5L."
       },
       {
         "id": "cycling_and_transformation",
         "score": 1,
-        "evidence": "The Golden Gate program (30x 37/16\u00b0C, 60\u00b0C, 4\u00b0C hold) and the cleanup are recorded via protocol.comment. The log then shows 5 \u00b5L from assembly A1:D1 to cells A1:D1 and 250 \u00b5L LB to each, with heat shock and recovery comments."
+        "evidence": "The Golden Gate program (30x 37/16 \u00b0C, 60 \u00b0C), the cleanup and the heat shock are recorded in comments with the specified parameters. The log then shows 5 \u00b5L assembly to cells_plate A1:D1 (lines 430-443) and 250 \u00b5L LB to each well (446-453)."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "The move helpers take a fresh tip per destination or pair, and the log shows a pick up and drop for each transfer. The shared master-mix tube and stocks are only aspirated with fresh tips, so there is no cross-contamination."
+        "evidence": "The log shows a fresh p20 tip for each primer, template, fragment and enzyme transfer and per-well mixes. Only shared-reagent distributions (master mix, water, buffers, LB) reuse one tip, as in the reference, and the run ends with no tip held."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "cycling_and_transformation": 1.0,
       "tips_and_contamination": 1.0
     },
-    "summary": "The agent's protocol matches the specified volumes, well pairings and order in the simulator log. Off-robot steps are recorded as comments and pauses, and fresh tips are used for every transfer.",
+    "summary": "The protocol simulates cleanly and its pipetting matches the specified volumes, wells and order for PCR, DpnI, assembly and transformation. Off-deck steps are recorded as comments and the tip handling avoids cross-contamination.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

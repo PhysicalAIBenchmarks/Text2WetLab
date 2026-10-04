@@ -16,16 +16,7 @@ def run(protocol: protocol_api.ProtocolContext):
     wells = [w for col in pcr.columns() for w in col]
     idx = [w.well_name for w in wells]
 
-    def pick():
-        if p20.has_tip:
-            return
-        try:
-            p20.pick_up_tip()
-        except protocol_api.labware.OutOfTipsError:
-            p20.reset_tipracks()
-            p20.pick_up_tip()
-
-    # 1. master mix (18 uL, 20 uL pipette); one tip, dispensed into empty wells without contact
+    # 1. master mix (single tip: reagent only, dispensed into empty wells)
     p20.pick_up_tip()
     for name in idx:
         p20.aspirate(18, res['A1'])
@@ -35,17 +26,18 @@ def run(protocol: protocol_api.ProtocolContext):
 
     # 2. colony template, fresh tip each, mix 3x after dispensing
     for name in idx:
-        pick()
+        if p20.tip_racks[0].next_tip() is None:
+            p20.reset_tipracks()
+        p20.pick_up_tip()
         p20.aspirate(1, colony[name])
         p20.dispense(1, pcr[name])
         p20.mix(3, 10, pcr[name])
         p20.drop_tip()
 
-    # 3. primer pairs, fresh tip each
+    # 3. primers, fresh tip each
     for name in idx:
-        pick()
-        p20.aspirate(1, primers[name])
-        p20.dispense(1, pcr[name])
-        p20.drop_tip()
+        if p20.tip_racks[0].next_tip() is None:
+            p20.reset_tipracks()
+        p20.transfer(1, primers[name], pcr[name], new_tip='always')
 
     protocol.comment('Seal pcr_plate, thermocycle: 98C 30 s; [98C 10 s, 60C 30 s, 72C 30 s] x 30; 72C 2 min; hold 4C')

@@ -10,17 +10,17 @@
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the required labels; p20 left, p300 right, with tip racks in slots 10 and 11."
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with correct labels; p20 left, p300 right, with tip racks in slots 10 and 11."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "The log shows 100 uL aspirated from reservoir A1 and dispensed into plate A1 through A12 with the p300, and no other wells touched."
+        "evidence": "Log shows 100 uL aspirated from reservoir A1 and dispensed into plate A1 through A12 with the p300, and no other wells touched."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Each aspirate/dispense pair is preceded by a pick up tip and followed by a drop tip (new_tip='always'). The last step ends with drop tip."
+        "evidence": "Each aspirate/dispense is preceded by a pick up tip and followed by a drop tip; the last step ends with drop tip (line 48)."
       },
       {
         "id": "robot_practice",
@@ -30,7 +30,7 @@
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The protocol does only the requested transfer, with no extra steps. The metadata name is accurate."
+        "evidence": "The single transfer step is fully done with no extra steps; metadata is accurate and there are no false comments."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol loads the required deck, uses the p300 and transfers 100 uL from reservoir A1 to plate wells A1 to A12 with a fresh tip each time. The simulator log matches the task and shows no safety issues.",
+    "summary": "The protocol transfers 100 uL from reservoir A1 to plate A1\u2013A12 with the p300, using a fresh tip per well and dropping each tip. All rubric items are satisfied.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 501
+    "n_commands": 495
   },
   "judge": {
     "items": [
       {
         "id": "pcr_setup",
         "score": 1,
-        "evidence": "Log shows 19 \u00b5L master mix to A1:G1, 2.5 \u00b5L fwd and rev primers pairing A1/A2\u2026G1/G2 to A1\u2026G1, and 1 \u00b5L template from A1,A1,B1,C1,A1,A1,D1 to A1:G1."
+        "evidence": "Log shows 19 \u00b5L mix, 2.5 \u00b5L fwd (A1-G1), 2.5 \u00b5L rev (A2-G2), 1 \u00b5L template from A1,A1,B1,C1,A1,A1,D1 into pcr_plate A1:G1, then 3x15 \u00b5L mix."
       },
       {
         "id": "dpni_and_cleanup",
         "score": 1,
-        "evidence": "Log shows 19 \u00b5L water, 5 \u00b5L rCutSmart and 1 \u00b5L DpnI added to A1:G1 and mixed 3x at 30 \u00b5L. Code comments record the 37/65\u00b0C incubation, and protocol.pause covers the Zymo clean-up."
+        "evidence": "Log shows 19 \u00b5L water, 5 \u00b5L rCutSmart, 1 \u00b5L DpnI into A1:G1 with 3x30 \u00b5L mix; code has comments and pauses for 37/65\u00b0C incubation and Zymo clean-up (elute 20 \u00b5L)."
       },
       {
         "id": "assembly_mix",
         "score": 1,
-        "evidence": "Log shows 7 \u00b5L water, 2 \u00b5L T4 buffer, 3/2/3 \u00b5L of frags 2/5/6, 2 \u00b5L inserts from A1/C1/D1/G1, and 1 \u00b5L enzyme mix into A1:D1 with a 5x mix after each."
+        "evidence": "Log shows 7 \u00b5L water, 2 \u00b5L T4 buffer, 3/2/3 \u00b5L of fragments 2/5/6, 2 \u00b5L of fragments 1,3,4,7 and 1 \u00b5L enzyme mix into A1:D1 with 5x mix after each."
       },
       {
         "id": "cycling_and_transformation",
         "score": 1,
-        "evidence": "Code has protocol.comment for the 30x 37/16\u00b0C cycling then 60\u00b0C, the Zymo clean-up, ice/heat shock and recovery. Log shows 5 \u00b5L assembly moved to cells A1:D1 and 250 \u00b5L LB added to each."
+        "evidence": "Golden Gate program (30x 37/16\u00b0C, 60\u00b0C) and Zymo clean-up recorded via comment and pause; 5 \u00b5L transferred to cells A1:D1, then 250 \u00b5L LB added, with ice/heat-shock/recovery comments."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "Log shows a fresh tip for each primer, template, insert, enzyme, transfer and LB addition. Single-tip multi-dispense is used only for one reagent into wells, as in the reference."
+        "evidence": "Fresh tip per primer, template and chromoprotein fragment and per assembly transfer (log pick-ups at 45-128, 339-354, 405-420); shared reagents use one tip per reagent, same as the reference."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "cycling_and_transformation": 1.0,
       "tips_and_contamination": 1.0
     },
-    "summary": "The protocol's simulator log matches the specified volumes, well pairings and step order for PCR, DpnI, assembly and transformation. Manual steps are recorded with comments and a pause. Fresh tips are used wherever different fragments or assemblies are handled.",
+    "summary": "The protocol simulates cleanly and its pipetting matches the specified volumes, wells and order for PCR setup, DpnI digestion, assembly, and transformation. The manual steps (thermocycling, clean-up, incubations) are recorded with comments and pauses, and tip handling matches the reference.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

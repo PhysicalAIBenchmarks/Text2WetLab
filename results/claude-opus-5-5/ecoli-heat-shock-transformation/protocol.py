@@ -3,8 +3,8 @@ from opentrons import protocol_api
 metadata = {
     'protocolName': 'E. coli heat shock transformation with SOC recovery',
     'description': 'Add 2 uL plasmid DNA to competent cells, heat shock 42C 45 s, add 250 uL SOC.',
-    'apiLevel': '2.15',
 }
+requirements = {'robotType': 'OT-2', 'apiLevel': '2.15'}
 
 
 def run(protocol: protocol_api.ProtocolContext):
@@ -19,15 +19,14 @@ def run(protocol: protocol_api.ProtocolContext):
 
     cells = tubes['A1']
 
-    # Step 1: plasmid DNA into competent cells (no pipette mixing; cells are fragile)
-    p20.transfer(2, plasmid_plate['A1'], cells, new_tip='always')
-    protocol.comment('Gently flick to mix, then incubate cells_rack on ice 30 min.')
+    # Step 1: 2 uL plasmid DNA into competent cells (fresh tip, gentle mix)
+    p20.transfer(2, plasmid_plate['A1'], cells, new_tip='always', mix_after=(3, 10))
 
     # Step 2: heat shock (manual)
-    protocol.comment('Heat shock cells_rack 42C for 45 s, then transfer immediately to ice for 2 min.')
+    protocol.comment('Heat shock cells_rack 42°C 45 s, then transfer immediately to ice 2 min')
 
-    # Step 3: SOC recovery medium
+    # Step 3: 250 uL SOC into the cells tube
     p300.transfer(250, soc_reservoir['A1'], cells, new_tip='always')
 
     # Step 4: outgrowth (manual)
-    protocol.comment('Incubate cells_rack at 37C for 60 min at 250 rpm for outgrowth recovery.')
+    protocol.comment('Incubate cells_rack 37°C 60 min at 250 rpm for outgrowth recovery')

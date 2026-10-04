@@ -1,7 +1,6 @@
 from opentrons import protocol_api
 
-metadata = {'protocolName': 'Heat shock transformation with SOC recovery'}
-requirements = {'robotType': 'OT-2', 'apiLevel': '2.15'}
+metadata = {'protocolName': 'Heat shock transformation with SOC recovery', 'apiLevel': '2.15'}
 
 
 def run(protocol: protocol_api.ProtocolContext):
@@ -13,20 +12,20 @@ def run(protocol: protocol_api.ProtocolContext):
     p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
-    # 1. plasmid DNA into cells
+    # 1. Plasmid DNA to cells
     p20.pick_up_tip()
     p20.aspirate(2, plasmid_plate['A1'])
     p20.dispense(2, tubes['A1'])
     p20.drop_tip()
 
-    # 2. heat shock
+    # 2. Heat shock
     protocol.comment('Heat shock cells_rack 42C 45 s, then transfer immediately to ice 2 min')
 
-    # 3. SOC
+    # 3. SOC medium
     p300.pick_up_tip()
     p300.aspirate(250, soc['A1'])
     p300.dispense(250, tubes['A1'])
     p300.drop_tip()
 
-    # 4. recovery
+    # 4. Recovery
     protocol.comment('Incubate cells_rack 37C 60 min at 250 rpm for outgrowth recovery')
