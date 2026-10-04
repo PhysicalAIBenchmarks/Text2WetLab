@@ -1,0 +1,42 @@
+{
+  "verdict": "minor_issues",
+  "summary": "The master-mix arithmetic is internally consistent (19 µL mix + 2.5 + 2.5 + 1 = 25 µL; 7+2+10+1 = 20 µL Golden Gate; 305 µL in the transformation well). The order of PCR, DpnI, Zymo cleanup, assembly, cleanup and transformation matches the paper, and the stated times, temperatures and volumes agree with it. The problems are mostly about executability: the length-proportional fragment volumes at the core of the method are only placeholders, one multi-source transfer is ambiguous, the gel verification is not specified, and the deck use of the thermocycler module is unclear.",
+  "issues": [
+    {
+      "step": 23,
+      "severity": "minor",
+      "issue": "One step transfers four different source wells (fragments 1, 3, 4, 7) to four destination wells with the phrase 'each well'. Executed literally, every assembly would receive all four chromoprotein genes, giving mixed plasmids. The one-to-one pairing is given only in the note.",
+      "suggestion": "Split into four explicit transfers (A1→A1, C1→B1, D1→C1, G1→D1), or state a one-to-one source→destination mapping in the step itself. Confirm the pairing against Figure 3B."
+    },
+    {
+      "step": 20,
+      "severity": "minor",
+      "issue": "The fragment addition volumes in steps 20-23 (3, 2, 3, 2 µL) are arbitrary placeholders and are not proportional to fragment length. The paper's method is length-proportional pooling for roughly equimolar mixes. Fragment concentrations after the 20 µL elution are unknown, so the actual molar ratios are undefined. The protocol as written cannot be run as-is.",
+      "suggestion": "Compute the volumes from the fragment lengths (Figure 3B / j5 design), aiming for about 0.05 pmol each and assuming equal PCR yield. Alternatively, specify the AssemblyTron CSV as the source of these volumes. Keep the total at 20 µL by adjusting the water in step 18."
+    },
+    {
+      "step": 11,
+      "severity": "minor",
+      "issue": "Figure 3A is a gel verification of each fragment, but the protocol only says 'take a sample for gel electrophoresis'. The sample volume, the gel (1% agarose in 1× TAE, GelRed, NEB 1 kb Plus ladder, iBright imaging) and the check of fragment sizes are not given. Removing an unspecified volume also changes the total volume in the later DpnI step.",
+      "suggestion": "Add a gel step with the paper's conditions and a stated sample volume (assumed). Adjust or note the effect on the DpnI additions in steps 12-14."
+    },
+    {
+      "step": 16,
+      "severity": "minor",
+      "issue": "The DpnI incubation is marked MANUAL on 'the thermocycler block', but the paper says AssemblyTron performs the DpnI digestion on the robot. It is unclear whether the pcr_plate is on the Opentrons thermocycler module, the same module that step 25 uses for assembly_plate. Two plates cannot occupy the single module at once, and no step removes the pcr_plate before the assembly runs.",
+      "suggestion": "Specify which thermocycler holds pcr_plate during the DpnI incubation. If the Opentrons module is used, run it as an automated program, and state where pcr_plate and assembly_plate sit during steps 16-25. Add a relocation step if needed."
+    },
+    {
+      "step": 24,
+      "severity": "minor",
+      "issue": "'Mix 5 times' gives no mixing volume, unlike the other mixing steps. The cold reaction components are also not described as being kept cold during setup.",
+      "suggestion": "Specify the mixing volume (for example 10 µL on a 20 µL reaction), and optionally note that enzyme mixes and the reaction setup are kept cold."
+    },
+    {
+      "step": 25,
+      "severity": "minor",
+      "issue": "The program takes the 5 min/5 min ×30 cycling from the NEB technical note, which uses a different reaction (25 µL with 500 U ligase and 15 U BsaI-HFv2). It is combined here with the E1601 kit mix and a 20 µL volume. The mixing of sources is acknowledged but is a minor inconsistency, and the 85°C lid is an unreferenced assumption.",
+      "suggestion": "State that the cycling is borrowed from the technical note, or use the E1601 manual's 1 min/1 min ×30 program with the kit. Justify or reference the lid temperature."
+    }
+  ]
+}

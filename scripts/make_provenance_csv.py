@@ -63,7 +63,7 @@ def introduced(path):
         return _intro[path]
     best = None
     for p in dict.fromkeys([path, origin_path(path)]):
-        for line in git("log", "--all", "--diff-filter=A", "--format=%H|%an|%cI", "--", p).splitlines():
+        for line in git("log", "--all", "--full-history", "--diff-filter=A", "--format=%H|%an|%cI", "--", p).splitlines():
             h, an, d = line.split("|", 2)
             if best is None or d < best[2]:
                 best = (h, an, d)
