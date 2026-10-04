@@ -1,0 +1,116 @@
+{
+  "lint": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 19
+  },
+  "checks": [
+    {
+      "name": "simulator_ran",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tip_before_aspirate",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_overdispense",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_aspirate_from_empty_well",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "tip_dropped_at_end",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no_cross_contamination",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "end_state:plasmid_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:cells_rack",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "judge": {
+    "items": [
+      {
+        "id": "deck_and_hardware",
+        "score": 1,
+        "evidence": "Labware loaded with exact labels/slots; p20 left and p300 right with correct tip racks in slots 10/11."
+      },
+      {
+        "id": "dna_addition",
+        "score": 0.5,
+        "evidence": "2 uL from plasmid A1 to tube A1 with p20, but mix_after=(3,10) mixes competent cells with 3 aspirate/dispense cycles, which is not the gentle, no-mixing approach and adds an unrequested step."
+      },
+      {
+        "id": "heat_shock",
+        "score": 0.5,
+        "evidence": "The comment records 42\u00b0C 45 s then ice 2 min in the correct order, but it is one combined comment, and the spec's comment text is copied verbatim. Acceptable but there is no operator pause for the manual step."
+      },
+      {
+        "id": "soc_recovery",
+        "score": 1,
+        "evidence": "p300.transfer(250, soc_reservoir['A1'], cells) after heat shock, followed by the 37\u00b0C 60 min 250 rpm comment."
+      },
+      {
+        "id": "tip_usage",
+        "score": 1,
+        "evidence": "new_tip='always' gives a fresh tip for DNA and for SOC; the tip is dropped after each transfer, and the contamination and tip-dropped checks pass."
+      },
+      {
+        "id": "robot_practice",
+        "score": 0.5,
+        "evidence": "Volumes are within limits, but the 3x mix_after with 10 uL in 52 uL of cells is slightly rough, and there is no protocol.pause for the manual heat shock and incubation."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 0.5,
+        "evidence": "The added mix_after step is not in the task; the step order is otherwise correct and the comments are accurate."
+      }
+    ],
+    "scores": {
+      "deck_and_hardware": 1.0,
+      "dna_addition": 0.5,
+      "heat_shock": 0.5,
+      "soc_recovery": 1.0,
+      "tip_usage": 1.0,
+      "robot_practice": 0.5,
+      "fidelity_to_task": 0.5
+    },
+    "summary": "The protocol simulates cleanly and all measured checks pass; deck setup, SOC step and tip handling are correct. It adds an unrequested mix after DNA addition to competent cells and has no operator pauses for the manual steps.",
+    "model": "claude-sonnet-5-5"
+  },
+  "critical_failures": [],
+  "rewards": {
+    "reward": 0.7143,
+    "sim_pass": 1.0,
+    "checks_frac": 1.0,
+    "lint_violations": 0.0,
+    "deterministic_reward": 1.0,
+    "judge_mean": 0.7143,
+    "critical_fail": 0.0,
+    "rubric_deck_and_hardware": 1.0,
+    "rubric_dna_addition": 0.5,
+    "rubric_heat_shock": 0.5,
+    "rubric_soc_recovery": 1.0,
+    "rubric_tip_usage": 1.0,
+    "rubric_robot_practice": 0.5,
+    "rubric_fidelity_to_task": 0.5
+  }
+}

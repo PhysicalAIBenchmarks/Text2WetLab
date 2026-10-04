@@ -1,0 +1,30 @@
+[
+ {
+  "id": "deck_and_hardware",
+  "text": "Loads the specified labware with the given labels/slots; suitable pipettes and tip racks."
+ },
+ {
+  "id": "dna_addition",
+  "text": "2 uL plasmid DNA from plasmid plate A1 into the competent-cell tube (A1), with the 20 uL pipette, gently (no vigorous mixing of competent cells)."
+ },
+ {
+  "id": "heat_shock",
+  "text": "Heat shock at 42 C for 45 s, then 2 min on ice, recorded in order after DNA addition."
+ },
+ {
+  "id": "soc_recovery",
+  "text": "250 uL SOC added to the tube after heat shock; 37 C, 60 min, 250 rpm outgrowth recorded."
+ },
+ {
+  "id": "tip_usage",
+  "text": "Fresh tip for DNA and for SOC; no contamination of cells or stocks; tip dropped at end."
+ },
+ {
+  "id": "robot_practice",
+  "text": "Physically sensible: volumes within pipette limits, sensible heights/flow rates for cells, operator pauses where manual steps are needed."
+ },
+ {
+  "id": "fidelity_to_task",
+  "text": "No invented, missing or reordered steps relative to the task text; comments and metadata accurate."
+ }
+]

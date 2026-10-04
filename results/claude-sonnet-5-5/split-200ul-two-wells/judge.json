@@ -1,0 +1,104 @@
+{
+  "lint": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 7
+  },
+  "checks": [
+    {
+      "name": "simulator_ran",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tip_before_aspirate",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_overdispense",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_aspirate_from_empty_well",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "tip_dropped_at_end",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no_cross_contamination",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "end_state:plate",
+      "pass": true,
+      "detail": "expected volumes [100.0, 100.0], got [100.0, 100.0] (positions free)"
+    }
+  ],
+  "judge": {
+    "items": [
+      {
+        "id": "deck_and_hardware",
+        "score": 1,
+        "evidence": "Loads reservoir slot 1 and plate slot 2 with the required labels, both pipettes, and tip racks in slots 10 and 11."
+      },
+      {
+        "id": "volumes_and_wells",
+        "score": 1,
+        "evidence": "p300.transfer(100, reservoir['A1'], [plate['A1'], plate['B1']]) gives 100 \u00b5L each; end_state check passed."
+      },
+      {
+        "id": "pipette_choice",
+        "score": 1,
+        "evidence": "Uses p300 for 100 \u00b5L, within its 20\u2013300 \u00b5L range."
+      },
+      {
+        "id": "tip_usage",
+        "score": 1,
+        "evidence": "transfer() defaults to one tip per source, picks up and drops it; tip_before_aspirate and tip_dropped_at_end checks passed."
+      },
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "apiLevel 2.15 is in range and metadata has an apiName; transfer() uses default heights and flow rates with no needless moves."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 1,
+        "evidence": "Only the single requested transfer is done, with no extra steps, and the metadata is accurate."
+      }
+    ],
+    "scores": {
+      "deck_and_hardware": 1.0,
+      "volumes_and_wells": 1.0,
+      "pipette_choice": 1.0,
+      "tip_usage": 1.0,
+      "robot_practice": 1.0,
+      "fidelity_to_task": 1.0
+    },
+    "summary": "The protocol does exactly the requested transfer with the correct labware, labels and pipette. All measured checks passed.",
+    "model": "claude-sonnet-5-5"
+  },
+  "critical_failures": [],
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "checks_frac": 1.0,
+    "lint_violations": 0.0,
+    "deterministic_reward": 1.0,
+    "judge_mean": 1.0,
+    "critical_fail": 0.0,
+    "rubric_deck_and_hardware": 1.0,
+    "rubric_volumes_and_wells": 1.0,
+    "rubric_pipette_choice": 1.0,
+    "rubric_tip_usage": 1.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_fidelity_to_task": 1.0
+  }
+}

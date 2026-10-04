@@ -1,0 +1,104 @@
+{
+  "lint": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 60
+  },
+  "checks": [
+    {
+      "name": "simulator_ran",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tip_before_aspirate",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_overdispense",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_aspirate_from_empty_well",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "tip_dropped_at_end",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no_cross_contamination",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "end_state:plate",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "judge": {
+    "items": [
+      {
+        "id": "deck_and_hardware",
+        "score": 1,
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the required labels; p20 left and p300 right with matching tip racks in slots 10 and 11."
+      },
+      {
+        "id": "volumes_and_wells",
+        "score": 1,
+        "evidence": "Loops over plate.rows()[0] (A1-A12), aspirating and dispensing 100 uL from reservoir A1; end_state:plate passed and nothing else is touched."
+      },
+      {
+        "id": "pipette_choice",
+        "score": 1,
+        "evidence": "Uses p300 for 100 uL in a single aspirate/dispense per well, within pipette limits."
+      },
+      {
+        "id": "tip_usage",
+        "score": 0.5,
+        "evidence": "A fresh tip per well is valid, with a tip always held and dropped, but it wastes 12 tips where one reused tip would do for a single reagent into empty wells."
+      },
+      {
+        "id": "robot_practice",
+        "score": 0.5,
+        "evidence": "apiLevel 2.15 is in range and metadata is clear, but a blow_out at dest.top() after each dispense is an extra move, and the tip never touches liquid for reservoir aspirations with default heights."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 1,
+        "evidence": "Performs only the single requested 100 uL transfer to A1-A12; comments and metadata are accurate."
+      }
+    ],
+    "scores": {
+      "deck_and_hardware": 1.0,
+      "volumes_and_wells": 1.0,
+      "pipette_choice": 1.0,
+      "tip_usage": 0.5,
+      "robot_practice": 0.5,
+      "fidelity_to_task": 1.0
+    },
+    "summary": "The protocol meets the task: 100 uL goes from reservoir A1 into each of plate A1-A12 with the p300, and all measured checks pass. Minor inefficiencies are the new tip for every well and the extra blow_out after each dispense.",
+    "model": "claude-sonnet-5-5"
+  },
+  "critical_failures": [],
+  "rewards": {
+    "reward": 0.8333,
+    "sim_pass": 1.0,
+    "checks_frac": 1.0,
+    "lint_violations": 0.0,
+    "deterministic_reward": 1.0,
+    "judge_mean": 0.8333,
+    "critical_fail": 0.0,
+    "rubric_deck_and_hardware": 1.0,
+    "rubric_volumes_and_wells": 1.0,
+    "rubric_pipette_choice": 1.0,
+    "rubric_tip_usage": 0.5,
+    "rubric_robot_practice": 0.5,
+    "rubric_fidelity_to_task": 1.0
+  }
+}

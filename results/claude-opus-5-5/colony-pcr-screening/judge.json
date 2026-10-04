@@ -1,0 +1,128 @@
+{
+  "lint": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 2022
+  },
+  "checks": [
+    {
+      "name": "simulator_ran",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tip_before_aspirate",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_overdispense",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_aspirate_from_empty_well",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "tip_dropped_at_end",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no_cross_contamination",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "end_state:colony_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:pcr_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:primer_plate",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "judge": {
+    "items": [
+      {
+        "id": "deck_and_hardware",
+        "score": 1,
+        "evidence": "All four labware are loaded with the required load names, slots and labels. p20 is on the left and p300 on the right, each with its tip rack, and apiLevel 2.15 is in range."
+      },
+      {
+        "id": "master_mix",
+        "score": 1,
+        "evidence": "Loops over all 96 pcr_plate wells, aspirating and dispensing 18 uL from reservoir A1 with the p20. The end_state:pcr_plate check passes."
+      },
+      {
+        "id": "template",
+        "score": 1,
+        "evidence": "Each colony well is transferred as 1 uL to the matching pcr_plate well, followed by p20.mix(3, 10, well). The end-state checks pass."
+      },
+      {
+        "id": "primers",
+        "score": 1,
+        "evidence": "1 uL is moved from each primer_plate well to the matching pcr_plate well, giving 20 uL final. The end_state:primer_plate and end_state:pcr_plate checks pass."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "Each colony and each primer pair gets its own pick_up/drop_tip. One tip is reused for master mix only, as in the reference. The no_cross_contamination check passes."
+      },
+      {
+        "id": "thermocycling",
+        "score": 1,
+        "evidence": "The Step 4 comment records sealing and the full program: 98C 30 s, 30 cycles of 98C 10 s / 60C 30 s / 72C 30 s, 72C 2 min, then a 4C hold."
+      },
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "The 1 uL steps use the p20 and a fresh tip each time. The 18 uL dispenses are at well.top(-2), with blow-outs, and the tip-rack reset is handled. The touch_tip after each master-mix dispense is slightly unnecessary but harmless."
+      },
+      {
+        "id": "fidelity_to_paper",
+        "score": 1,
+        "evidence": "The steps follow the task order and quantities. The comments and metadata match what the code does, and no extra reagents or steps are invented."
+      }
+    ],
+    "scores": {
+      "deck_and_hardware": 1.0,
+      "master_mix": 1.0,
+      "template": 1.0,
+      "primers": 1.0,
+      "tips_and_contamination": 1.0,
+      "thermocycling": 1.0,
+      "robot_practice": 1.0,
+      "fidelity_to_paper": 1.0
+    },
+    "summary": "The protocol simulates cleanly and every measured check passes. It follows the task order and quantities: 18 \u00b5L master mix, then 1 \u00b5L template with a 3x mix, then 1 \u00b5L primer. It uses a fresh tip per colony and per primer pair and records the thermocycling program in a comment.",
+    "model": "claude-sonnet-5-5"
+  },
+  "critical_failures": [],
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "checks_frac": 1.0,
+    "lint_violations": 0.0,
+    "deterministic_reward": 1.0,
+    "judge_mean": 1.0,
+    "critical_fail": 0.0,
+    "rubric_deck_and_hardware": 1.0,
+    "rubric_master_mix": 1.0,
+    "rubric_template": 1.0,
+    "rubric_primers": 1.0,
+    "rubric_tips_and_contamination": 1.0,
+    "rubric_thermocycling": 1.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_fidelity_to_paper": 1.0
+  }
+}
