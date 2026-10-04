@@ -1,0 +1,90 @@
+[
+  {
+    "title": "Servo motor angular linearity test (DF Robotics SER0044) versus NEMA 17 stepper",
+    "goal": "Characterize the non-linearity of commanded versus measured angle for candidate servo motors, to justify choosing NEMA 17 stepper motors.",
+    "section_refs": [
+      "s2.1"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "Angular resolution measured using a compass and a 3D printed shaft attachment; no detailed procedure given"
+    ],
+    "figure_refs": [
+      "Figure 4"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "Gravimetric accuracy and precision of 10 μL aliquots from each pump (Sidekick 1)",
+    "goal": "Measure the volume delivered per 10 μL dispense cycle by each of the four pumps by weighing dispensed deionized water.",
+    "section_refs": [
+      "s3",
+      "s4.1",
+      "s5"
+    ],
+    "shared_refs": [
+      "s2.1"
+    ],
+    "unresolved_refs": [
+      "Balance model and vial/collection details not specified for the first Sidekick test"
+    ],
+    "figure_refs": [
+      "Figure 61"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Gravimetric test of 100 μL aliquots and per-pump average volume (Sidekick 1)",
+    "goal": "Determine the average volume per dispense cycle for pumps 1-4 from 100 μL (10 cycles) dispenses of water, and assess pump precision against the ±15% tolerance.",
+    "section_refs": [
+      "s3",
+      "s4.1",
+      "s5"
+    ],
+    "shared_refs": [
+      "s2.1"
+    ],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 62",
+      "Table 1"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Gravimetric accuracy of 80-350 μL dispenses (Sidekick 2)",
+    "goal": "Evaluate volume accuracy and precision of the second Sidekick by dispensing five volumes (80-350 μL) of water into pre-weighed vials in triplicate and comparing with predicted mass.",
+    "section_refs": [
+      "s3",
+      "s4.1",
+      "s5"
+    ],
+    "shared_refs": [
+      "s2.1"
+    ],
+    "unresolved_refs": [
+      "Specific five volumes not listed in the paper; the figure for these data is not cited"
+    ],
+    "figure_refs": [],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Colorimetric acid/base and buffer capacity demonstration in 96-well plate",
+    "goal": "Demonstrate Sidekick dispensing by automated mixing of 72 solutions of HCl, NaOH, phosphate buffer and universal indicator to visualize buffer capacity.",
+    "section_refs": [
+      "s3",
+      "s4.1",
+      "s5"
+    ],
+    "shared_refs": [
+      "s2.1"
+    ],
+    "unresolved_refs": [
+      "Reservoir assignment of reagents to pumps and plate calibration/purge details not explicitly stated for this experiment"
+    ],
+    "figure_refs": [
+      "Figure 63"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

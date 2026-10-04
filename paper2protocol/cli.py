@@ -72,10 +72,21 @@ def cmd_search(args):
 
 
 def cmd_list(args):
+    failed = []
     for one in args.paper:                      # several inputs: one block each, each into its own <slug>/pipeline/
         if len(args.paper) > 1:
             print(f"\n===== {one} =====")
-        _list_one(argparse.Namespace(**{**vars(args), "paper": one, "slug": args.slug if len(args.paper) == 1 else None}))
+        try:
+            _list_one(argparse.Namespace(**{**vars(args), "paper": one, "slug": args.slug if len(args.paper) == 1 else None}))
+        except llm.LLMRefusal:
+            raise
+        except Exception as e:                  # one bad input must not lose the rest of the batch
+            if len(args.paper) == 1:
+                raise
+            failed.append(one)
+            print(f"!! {one}: {type(e).__name__}: {str(e)[:150]}", file=sys.stderr)
+    if failed:
+        sys.exit(f"{len(failed)} of {len(args.paper)} inputs failed: {', '.join(failed)}")
 
 
 def _list_one(args):

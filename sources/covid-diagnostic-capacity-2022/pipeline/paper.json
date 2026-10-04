@@ -1,0 +1,156 @@
+{
+  "doi": "10.1016/j.eimce.2022.05.001",
+  "title": "Optimization and adaptation of the diagnostic capacity for the performance of large volumes of SARS-CoV-2 RT-PCR☆",
+  "abstract": "IntroductionIn the present manuscript we describe the planning carried out in our hospital to adapt our diagnostic capability to perform large numbers of SARS-CoV-2 RT-PCR.MethodsThe analysis and prediction of workflow included the number of RT-PCR per week from the beginning of the pandemic, with a total of 31971 determinations. The planning phase was developed based on the different scenarios previously predicted.ResultsAccording to the predictions obtained, an automated custom solution was chosen, based on the use of the OT-2 open-source liquid-handling robots (Opentrons), to design a reproducible workflow that achieved a production capacity of 5640 samples/day, with a time of response of four hours per procedure.ConclusionsThe analysis and prediction of workflow, along with the use of the robotic platforms OT-2, provided a robust structure to deal with the high demand of determinations that this pandemic requires.",
+  "source": "europepmc:PMC9127703",
+  "sections": [
+    {
+      "id": "s1",
+      "heading": "Introduction",
+      "kind": "",
+      "text": "During the first wave of the pandemic, diagnostic capacity in hospitals using Reverse Transcription Polymerase Chain Reaction (RT-PCR) for SARS-CoV-2 was insufficient to cope with the huge demand. This was partly because the situation changed from RT-PCR being used as a clinical diagnostic tool to it being used as an epidemiological diagnostic tool.\nAt the beginning of September 2020, before the publication of the Sociedad Española de Enfermedades Infecciosas y Microbiología Clínica’s (SEIMC) [Spanish Society of Infectious Diseases and Clinical Microbiology] recommendations on the organisation of the diagnosis of SARS-CoV-21, we detected an increase in the number of samples for diagnosis by SARS-CoV-2 RT-PCR which, based on the Centers for Disease Control criteria2, coincided with a possible progression from scenario 2 (viral circulation with localised outbreaks) to scenario 3 (community transmission) in our health area. At that point, we began to optimise diagnostic decision-making by planning for possible evolving scenarios."
+    },
+    {
+      "id": "s2",
+      "heading": "Methods and practicalities",
+      "kind": "",
+      "text": ""
+    },
+    {
+      "id": "s2.1",
+      "heading": "Methods and practicalities > Analysis and prediction of workflow",
+      "kind": "",
+      "text": "The analysis included the number of weekly RT-PCR tests since the beginning of the pandemic and included 31,971 records. Considering the presence of a trend in this period, we calculated a prediction model using the Holt3 double exponential smoothing technique to forecast the number of samples expected for weeks 37–44 (September and October). We selected the model using the minimum Bayesian Information Criterion (BIC) and confirmation of the absence of residual autocorrelation using the Ljung-Box test4. The analysis was performed with the IBM SPSS v.21 (IBM, Armonk) statistical program."
+    },
+    {
+      "id": "s2.2",
+      "heading": "Methods and practicalities > Planning of the need for a progressive escalation of diagnostic capacity",
+      "kind": "",
+      "text": "The planning of the capacity and the available diagnostic options was proposed according to the possible scenarios based on the predictions made and the recommendations of the Innovative Genomics Institute SARS-CoV-2 Testing Consortium5."
+    },
+    {
+      "id": "s3",
+      "heading": "Results",
+      "kind": "",
+      "text": ""
+    },
+    {
+      "id": "s3.1",
+      "heading": "Results > Analysis and prediction of workflow",
+      "kind": "",
+      "text": "The prediction suggested three possible scenarios according to the mean values and confidence intervals (optimistic, likely and pessimistic). The values predicted by the model, together with their 95% CI, are shown in Table 1 and Fig. 1 A.Table 1Values forecast by the workflow prediction model for performing SARS-CoV-2 RT-PCR.Table 1WeekNumber of RT-PCRForecast (likely scenario)Lower confidence interval (optimistic scenario)Upper confidence interval (pessimistic scenario)Observed-predicted differences376,1546,5195,4537,586−365387,3787,3925,8758,909−14397,3078,2646,12810,400-957409,4489,1366,25912,0143124110,32510,0096,29113,726316429,54810,8816,24015,521−1,3334312,46811,7536,11517,3917154412,47812,6255,92119,330−147"
+    },
+    {
+      "id": "s3.2",
+      "heading": "Results > Design of the system",
+      "kind": "",
+      "text": "From the predictions obtained, we chose an automated and scalable solution based on the use of open-source OT-2 liquid handling robots (Opentrons) to configure a reproducible workflow for SARS-CoV-2 RT-PCR testing. This design permitted the optimisation of the number of robots used per line of work (Fig. 1B).\nIn the analytical phase, the workflow was automated and standardised using external software which guaranteed traceability at all times. The design of the analytical phase involved the use of manual and robotic processes according to the terms of time performance.\nThe inactivation process was carried out manually in a biosafety cabinet external to the OT-2 due to the great variety of sample vials received.\nThe automated process involved the commissioning of five working lanes with two OT-2 modules per line. The OT-2 were configured in asynchronous mode and were used progressively based on the demand for tests. In each lane, the first OT-2 (station A) was configured to automate two independent processes: the dispensing of the lysis mixture into the sample wells and the dispensing of both the reagents necessary for the extraction process and the reagent mixture. The second OT-2 (station B) was configured to perform the RNA extraction process and the preparation of the 96-well reaction plates. Reverse transcription and amplification processes were performed externally in QuantStudio 5 thermocyclers (Thermofisher Scientific). In this process, an intermediate program (in-house application programmed in VBA) connected to the traceability program and made it possible to program the same positions in the thermocycler software.\nIn the post-analytical phase, the results generated by the thermocyclers were exported back to the intermediate program and then transformed into a user-friendly table, which included an automatic interpretation of the results."
+    },
+    {
+      "id": "s3.3",
+      "heading": "Results > System performance",
+      "kind": "",
+      "text": "In terms of throughput, once the working times overlapped, 94 samples could be processed and validated every two hours per OT-2 lane, leading to a maximum throughput per lane of approximately 1,128 samples/day. The 5 OT-2 system (5 × station A, 5 × station B) working in parallel would yield a maximum throughput of 5,640 samples/day, above the estimate provided by the model.\nThis working protocol made it possible to process and validate the large volume of samples received from the health area every day in very little time. According to the method established for reporting results to the health area, 21.6% were reported within eight hours of being received by the laboratory, and 90% within 24 h."
+    },
+    {
+      "id": "s4",
+      "heading": "Discussion",
+      "kind": "",
+      "text": "From the analytical standpoint, the pandemic has brought two major problems to light: the diagnostic capacity of laboratories and another very significant logistics issue6, 7. To respond to this demand, most laboratories have relied on “closed” commercial platforms. These systems respond poorly both to large increases in demand, as they are not scalable, and to the need to include new tests. Additionally, in the event of a significant increase in demand, these systems can have logistics problems if there is a shortage in any part of the manufacturer’s reagent production supply chain8. However, open-source platforms such as OT-2 deliver big advantages over commercial platforms9, 10, particularly in their flexibility and rapid adaptation to diagnostic needs and adaptation to available reagents, as well as in terms of profitability11.\nNonetheless, establishing a reproducible workflow based on OT-2 involves a number of critical points. From the organisational standpoint, there is the need to integrate processes that are external to the OT-2. Sample inactivation is a step that could be easily integrated into the OT-2, although it proved impossible due to the variety of types of transport vials received. Another critical point is integration with the amplification systems, a problem we solved by using traceability software, which allowed the automatic programming of the thermocyclers. Analytically, a critical point is the extraction of RNA12, an aspect that can make the difference between using OT-2 as liquid dispensing systems and turning them into molecular diagnostic platforms. The adaptation of magnetic modules to the OT-2 made it possible to include this process in the workflow and to reduce the use of external equipment. Another critical point occurs in the post-analytical phase, with the review and validation of a large volume of results, which in our case was resolved by implementing a computer solution that facilitated and automated the process.\nDespite the improvement in processing large volumes of samples, and as is indicated in the results, we did not manage to report 100% of the samples within 24 h. The reason was that the samples were arriving in large volumes (in batches of more than 1,000), meaning that at times all five lanes were busy and samples were left awaiting processing. In addition, all the samples had to be correctly registered before they were processed to ensure traceability.\nDespite the foregoing, the workflow with the OT-2 enabled us to adapt to the expected scenario. By way of example, comparing our solution based on OT-2 modules to other commercial platforms, response times are slightly higher, 4 h compared to 3.5 h for the Cobas SARS-CoV-2 RT-PCR (Roche Diagnostics) or 2.5 h for the Panther Fusion SARS-CoV-2 RT-PCR (Hologic, Inc) (although it requires prior inactivation). However, diagnostic capacity is much more versatile; working at full capacity, the OT-2 modules enable 5,640 samples to be processed per day, compared to 1,440 and 1,150 with the Cobas and Panther platforms, respectively13, unless several platforms are used together.\nOur design supports the use of open PCR platforms, which are currently handling a significant proportion of the SARS-CoV-2 RT-PCR tests being processed in a number of hospitals and research centres14."
+    }
+  ],
+  "legends": [
+    {
+      "id": "fig0005",
+      "label": "Fig. 1",
+      "title": "",
+      "text": "A) Prediction of workflow. SampleCount: actual samples, Forecast: prediction (likely prediction).Adjusted: adjusted model, LowerCI: lower confidence interval (optimistic forecast), UpperCI: upper confidence interval (pessimistic forecast). B) Sample workflow based on OT-2 modules.A: laboratory computer system, B: traceability program, C: programming-validation program."
+    }
+  ],
+  "references": [
+    {
+      "id": "bib0005",
+      "label": "1",
+      "citation": "Garcia F. Melon S. Navarro D. Paño J.R. Galan J.C. Organización del diagnóstico de SARS-CoV-2 y estrategias de optimización Soc Esp Enferm Infecc Microbiol Clín 2020 https://seimc.org/contenidos/documentoscientificos/recomendaciones/seimc-rc-2020-COVID19-OrganizacionDiagnostico.pdf",
+      "doi": ""
+    },
+    {
+      "id": "bib0010",
+      "label": "2",
+      "citation": "CDC Centers for Diseases Control and Report COVID-19 pandemic planning scenarios https://www.cdc.gov/coronavirus/2019-ncov/hcp/planning-scenarios.html#table-1 2020",
+      "doi": ""
+    },
+    {
+      "id": "bib0015",
+      "label": "3",
+      "citation": "Holt CC Forecasting trends and seasonal by exponentially weighted averages Int J Forecast 20 2004 5 10 10.1016/j.ijforecast.2003.09.015",
+      "doi": "10.1016/j.ijforecast.2003.09.015"
+    },
+    {
+      "id": "bib0020",
+      "label": "4",
+      "citation": "Ljung G.M. Box GEP On a measure of lack of fit in time series models Biometrika 65 1978 297 303 10.1093/biomet/65.2.297",
+      "doi": "10.1093/biomet/65.2.297"
+    },
+    {
+      "id": "bib0025",
+      "label": "5",
+      "citation": "IGI Testing Consortium Blueprint for a pop-up SARS-CoV-2 testing lab Nat Biotechnol 38 2020 791 797 10.1038/s41587-020-0583-3 32555529",
+      "doi": "10.1038/s41587-020-0583-3"
+    },
+    {
+      "id": "bib0030",
+      "label": "6",
+      "citation": "Tromberg B.J. Schwetz T.A. Pérez-Stable E.J. Hodes R.J. Woychik R.P. Bright R.A. Rapid scaling up of Covid-19 diagnostic testing in the United States — the NIH RADx initiative N Engl J Med 383 2020 1071 1077 32706958 10.1056/NEJMsr2022263 PMC7493127",
+      "doi": "10.1056/NEJMsr2022263"
+    },
+    {
+      "id": "bib0035",
+      "label": "7",
+      "citation": "Organisation for Economic Co-operation and Development Testing for COVID-19: a way to lift confinement restrictions https://read.oecd-ilibrary.org/view/?ref=129_129658-l62d7lr66u&title=Testing-for-COVID-19-A-way-to-lift-confinement-restrictions 2020",
+      "doi": ""
+    },
+    {
+      "id": "bib0040",
+      "label": "8",
+      "citation": "Posteraro B. Marchetti S. Romano L. Santangelo R. Morandotti G.A. Clinical microbiology laboratory adaptation to COVID-19 emergency: experience at a large teaching hospital in Rome, Italy Clin Microbiol Infect 26 2020 1109 1111 32330569 10.1016/j.cmi.2020.04.016 PMC7172783",
+      "doi": "10.1016/j.cmi.2020.04.016"
+    },
+    {
+      "id": "bib0045",
+      "label": "9",
+      "citation": "Kenny H. 7 open hardware projects working to solve COVID-19. https://opensource.com/article/20/3/open-hardware-covid19 .",
+      "doi": ""
+    },
+    {
+      "id": "bib0050",
+      "label": "10",
+      "citation": "Murphy R.R. Gandudi V.B.M. Adams J. Applications of robots for COVID-19 response arXiv 2020 2008.06976",
+      "doi": ""
+    },
+    {
+      "id": "bib0055",
+      "label": "11",
+      "citation": "Opentrons Open-source Lab Automation, starting at $5.000 https://opentrons.com/ 2020",
+      "doi": ""
+    },
+    {
+      "id": "bib0060",
+      "label": "12",
+      "citation": "Villanueva-Cañas J.L. Gonzalez-Roca E. Unanue A.G. Titos E Yoldi MJM Gómez A.V. ROBOCOV: an affordable open-source robotic platform for COVID-19 testing by RT-qPCR bioRxiv 2020 https://www.biorxiv.org/content/10.1101/2020.06.11.140285v1",
+      "doi": ""
+    },
+    {
+      "id": "bib0065",
+      "label": "13",
+      "citation": "Craney A.R. Velu P.D. Satlin M.J. Fauntleroy K.A. Callan K. Comparison of two high-throughput reverse transcription-PCR systems for the detection of severe acute respiratory syndrome coronavirus 2 J Clin Microbiol 58 2020 10.1128/JCM.00890-20 e00890–920 PMC7383551 32381643",
+      "doi": "10.1128/JCM.00890-20"
+    },
+    {
+      "id": "bib0070",
+      "label": "14",
+      "citation": "Barfoot T. Burgner-Kahrs J. Diller E. Garg A. Goldenberg A. Making sense of the robotized pandemic response: a comparison of global and Canadian robot deployments and success factors arXiv 2020 2009:08577",
+      "doi": ""
+    }
+  ]
+}

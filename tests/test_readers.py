@@ -71,3 +71,14 @@ def test_a_file_input_writes_paper_json_under_its_slug(tmp_path, capsys):
     paper, out = cli.load_paper(args)
     assert out == tmp_path / "out/my_paper.txt".replace(".txt", "") / "pipeline" and (out / "paper.json").exists()
     assert paper.sections
+
+
+def test_a_failing_input_does_not_stop_the_rest_of_a_batch(tmp_path, monkeypatch, capsys):
+    good = tmp_path / "good.txt"
+    good.write_text(ARTICLE)
+    seen = []
+    monkeypatch.setattr(cli, "_list_one", lambda a: (seen.append(a.paper), (_ for _ in ()).throw(RuntimeError("no full text")) if a.paper == "bad.docx" else None)[1])
+    args = cli.argparse.Namespace(paper=["bad.docx", str(good)], slug=None)
+    with pytest.raises(SystemExit, match="1 of 2 inputs failed"):
+        cli.cmd_list(args)
+    assert seen == ["bad.docx", str(good)]
