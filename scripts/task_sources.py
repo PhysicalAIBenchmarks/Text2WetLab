@@ -1,6 +1,7 @@
-"""Write docs/task-sources.md: for every task, its plain-English instruction, the reference .py, and the paper's PDF.
+"""Write docs/task-sources.md and sources/task_sources.json: for every task, its plain-English instruction, the reference .py,
+and the paper's PDF. The .md is for reading, the .json for tools.
 
-    python scripts/task_sources.py [--check]      # --check fails if the committed file is stale
+    python scripts/task_sources.py [--check]      # --check fails if either committed file is stale
 
 Everything comes from the repo: tasks/<task>/task.toml [[source]] -> sources/<slug>/record.json (PDF URL, licence,
 code URLs). The only hand-written part is REF: which script is the reference for a task, because a repository
@@ -14,6 +15,7 @@ import tomllib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs/task-sources.md"
+OUT_JSON = ROOT / "sources/task_sources.json"
 # task -> (vendored script or None, why not / note)
 REF = {
     "opentrons-rna-extraction": ("sources/hulp-rna-extraction/code/viral_rna_extraction_protocol.py", "the oracle in `harbor/solution/` is this script, re-saved"),
@@ -62,6 +64,20 @@ def render() -> str:
             + "\n".join(rows) + "\n\n" + papers_table(feeds))
 
 
+def render_json() -> str:
+    """task -> [{source, title, doi, url}] from its [[source]] and sources/<slug>/record.json; no source -> handwritten."""
+    out = {}
+    for t in sorted((ROOT / "tasks").iterdir()):
+        srcs = []
+        for s in tomllib.loads((t / "task.toml").read_text()).get("source", []):
+            rec = json.loads((ROOT / f"sources/{s['slug']}/record.json").read_text())
+            doi = rec.get("doi_primary")
+            url = f"https://doi.org/{doi}" if doi else next((c["url"] for c in rec.get("code", []) if c.get("url")), None)
+            srcs.append({k: v for k, v in {"source": s["slug"], "title": rec.get("title"), "doi": doi, "url": url}.items() if v})
+        out[t.name] = list({s["source"]: s for s in srcs}.values()) or [{"source": "handwritten"}]
+    return json.dumps(out, indent=1, ensure_ascii=False) + "\n"
+
+
 def papers_table(feeds: dict) -> str:
     recs = [json.loads(f.read_text()) for f in sorted((ROOT / "sources").glob("*/record.json"))]
     out, n = [], collections.Counter()
@@ -91,8 +107,10 @@ def papers_table(feeds: dict) -> str:
 
 
 if __name__ == "__main__":
-    text = render()
+    outputs = {OUT: render(), OUT_JSON: render_json()}
     if "--check" in sys.argv:
-        sys.exit(0 if OUT.exists() and OUT.read_text() == text else "docs/task-sources.md is stale: run scripts/task_sources.py")
-    OUT.write_text(text)
-    print(text)
+        stale = [str(f.relative_to(ROOT)) for f, text in outputs.items() if not f.exists() or f.read_text() != text]
+        sys.exit(f"{', '.join(stale)} stale: run scripts/task_sources.py" if stale else 0)
+    for f, text in outputs.items():
+        f.write_text(text)
+    print(outputs[OUT])
