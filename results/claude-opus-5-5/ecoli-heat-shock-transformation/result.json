@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 19
+    "n_commands": 12
   },
   "judge": {
     "items": [
       {
         "id": "dna_addition",
         "score": 1,
-        "evidence": "Log lines 2-3: P20 aspirates 2 uL from plasmid_plate A1 and dispenses into tubes_1_5ml_1 A1."
+        "evidence": "Log steps 2-3: P20 aspirates 2 uL from plasmid_plate A1 and dispenses into tubes_1_5ml_1 A1."
       },
       {
         "id": "heat_shock",
         "score": 1,
-        "evidence": "protocol.comment 'Heat shock ... 42\u00b0C 45 s, then transfer immediately to ice 2 min' is placed after the DNA transfer and before SOC."
+        "evidence": "protocol.comment records 'Heat shock ... 42\u00b0C 45 s, then transfer immediately to ice 2 min' after the DNA transfer and before SOC."
       },
       {
         "id": "soc_recovery",
         "score": 1,
-        "evidence": "Log lines 12-13: P300 moves 250 uL from soc_reservoir A1 to tube A1 after the heat shock comment; the 37\u00b0C 60 min 250 rpm incubation comment follows."
+        "evidence": "Log steps 6-7: P300 moves 250 uL from soc_reservoir A1 to tube A1 after heat shock; the 37\u00b0C 60 min 250 rpm comment follows."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Log shows P20 pick up/drop tip (lines 1, 10) and a separate P300 pick up/drop tip (lines 11, 14); no tip is held at the end."
+        "evidence": "Separate tips for DNA (P20, steps 1-4) and SOC (P300, steps 5-8), each dropped; no contamination."
       },
       {
         "id": "fidelity_to_task",
-        "score": 0,
-        "evidence": "The agent added an unrequested mix_after=(3,10), shown as three aspirate/dispense cycles in tube A1 (log lines 4-9), which pipettes the competent cells and is not part of the specified protocol."
+        "score": 1,
+        "evidence": "All four steps in correct order, labware labels correct, apiLevel 2.15 allowed, comments match the actions."
       }
     ],
     "scores": {
@@ -38,21 +38,21 @@
       "heat_shock": 1.0,
       "soc_recovery": 1.0,
       "tip_usage": 1.0,
-      "fidelity_to_task": 0.0
+      "fidelity_to_task": 1.0
     },
-    "summary": "The core steps (2 uL DNA, heat shock comment, 250 uL SOC, incubation comment) are correct and in order, with fresh tips dropped properly. However, the agent added an unrequested 3x mix of the competent cells after DNA addition, which deviates from the specified protocol.",
+    "summary": "The protocol matches the run log and the task: 2 \u00b5L DNA with the P20, a heat-shock comment, 250 \u00b5L SOC with the P300, then an outgrowth comment. Each transfer used its own tip, which was dropped; nothing was missing, reordered or added.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {
-    "reward": 0.8,
+    "reward": 1.0,
     "sim_pass": 1.0,
     "lint_violations": 0.0,
     "hack_detected": 0.0,
-    "judge_mean": 0.8,
+    "judge_mean": 1.0,
     "rubric_dna_addition": 1.0,
     "rubric_heat_shock": 1.0,
     "rubric_soc_recovery": 1.0,
     "rubric_tip_usage": 1.0,
-    "rubric_fidelity_to_task": 0.0
+    "rubric_fidelity_to_task": 1.0
   }
 }

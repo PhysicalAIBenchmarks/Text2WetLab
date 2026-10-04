@@ -1,318 +1,259 @@
 """
-Magnetic-bead SARS-CoV-2 RNA extraction on the Opentrons OT-2 (48 samples).
+In-house OT-2 magnetic-bead SARS-CoV-2 RNA extraction, 48 samples.
 
-Implements the "OT-2 in-house" protocol of Lazaro-Perona et al., PLOS ONE 2021,
-doi:10.1371/journal.pone.0246302 (Methods, "OT-2 in-house protocol", Table 1):
+Implements the "OT-2 in-house" protocol of
+"Automated low-cost SARS-CoV-2 RNA extraction protocols", PLOS ONE 2021,
+doi:10.1371/journal.pone.0246302.
 
-  1. Per well: 40 uL magnetic beads + 250 uL isopropanol + 250 uL inactivated
-     sample. Mix by pipetting 5x, incubate 5 min at room temperature.
-  2. Engage the GEN1 magnetic module, 4 min.
-  3. Collect the supernatant and discard.
-  4. Add 500 uL 70 % ethanol, collect and discard.
-  5. Add 500 uL 70 % ethanol, collect and discard.
-  6. Air-dry 4 min.
-  7. Disengage the magnet, add 100 uL elution buffer.
-  8. After 30 s engage the magnet.
-  9. After 90 s collect the eluate into the 96-well elution plate (kept at 4 C).
+Deck
+  1      waste deep-well plate (removed supernatant / washes)
+  2,3,9  200 uL filter tips (p300 multi)
+  4      Magnetic Module GEN1 + usascientific 2.4 mL deep-well
+         (samples in odd columns 1,3,5,7,9,11)
+  5      nest 12-channel reservoir: col 2 beads, col 4 elution buffer,
+         cols 6-7 isopropanol, cols 9-12 70 % ethanol
+  6      Temperature Module GEN1 + thermo_96_wellplate_200ul (eluates, 4 C)
+  10     samples 1-24  (2 mL tubes)
+  7      samples 25-48 (2 mL tubes)
+  11     1000 uL filter tips (p1000 single)
 
-Deck layout (fixed by the operator):
-  1   waste deep-well plate          usascientific_96_wellplate_2.4ml_deep
-  2,3,9  200 uL filter tips           opentrons_96_filtertiprack_200ul
-  4   Magnetic Module GEN1 + sample/extraction deep-well plate
-  5   nest_12_reservoir_15ml: col 2 beads, col 4 elution buffer,
-      cols 6-7 isopropanol, cols 9-12 70 % ethanol
-  6   Temperature Module GEN1 + elution plate (thermo_96_wellplate_200ul)
-  10  samples 1-24   (2 mL tubes)     opentrons_24_tuberack_eppendorf_2ml_safelock_snapcap
-  7   samples 25-48  (2 mL tubes)
-  11  1000 uL filter tips             opentrons_96_filtertiprack_1000ul
+Tip policy
+  * every tip that aspirates from / mixes in a sample well is used for one
+    sample well only (one column of 8 wells with the multi-channel);
+  * reagent-only tips (beads, isopropanol, ethanol) dispense from above the
+    liquid and never aspirate from a sample well, so one tip is shared.
 
-Samples occupy the odd columns (1, 3, 5, 7, 9, 11) of the magnetic-module
-plate.  Each eluate is recovered into the same well position of the elution
-plate on the temperature module.
-
-Reagent loading guide (reservoir, slot 5), 48 samples:
-  beads      col 2       48 x 40 uL  = 1.9 mL   (load >= 3 mL)
-  elution    col 4       48 x 100 uL = 4.8 mL   (load >= 6 mL)
-  isoprop.   cols 6, 7   24 x 250 uL = 6.0 mL per column (load >= 7.5 mL each)
-  EtOH 70 %  cols 9-12   24 x 500 uL = 12 mL per column  (load >= 13.5 mL each)
+Tip budget (p300 multi, columns of 8 tips): beads 1 + isopropanol 1 +
+supernatant 6 + 2 washes x (1 + 6) + elution 6 + eluate 6 = 34 of 36.
+p1000: 48 tips, one per sample.
 """
 
 from opentrons import protocol_api
-from opentrons.types import Point
 
 metadata = {
-    'protocolName': 'SARS-CoV-2 magnetic-bead RNA extraction (48 samples, OT-2 in-house)',
-    'author': 'Implemented from Lazaro-Perona et al. 2021, PLOS ONE 16(2): e0246302',
-    'description': 'Mag-Bind TotalPure NGS beads / isopropanol binding, 2x 70 % '
-                   'ethanol wash, 100 uL elution; GEN1 magnetic module, 48 samples.',
-    'apiLevel': '2.9',
+    "protocolName": "OT-2 in-house magnetic-bead RNA extraction (48 samples)",
+    "author": "HULP OT-2 in-house protocol, re-implemented",
+    "description": "PLOS ONE 2021 doi:10.1371/journal.pone.0246302, OT-2 in-house",
+    "apiLevel": "2.13",
 }
 
-# --------------------------------------------------------------------------
-# Protocol parameters (paper values)
-# --------------------------------------------------------------------------
+# ---------------------------------------------------------------- settings --
 NUM_SAMPLES = 48
-SAMPLE_COLUMNS = ['1', '3', '5', '7', '9', '11']   # odd columns of the mag plate
+SAMPLE_COLUMNS = [0, 2, 4, 6, 8, 10]          # odd columns 1,3,5,7,9,11 (0-based)
 
-BEAD_VOL = 40           # uL magnetic beads per sample
-ISOPROPANOL_VOL = 250   # uL isopropanol per sample
-SAMPLE_VOL = 250        # uL inactivated sample per well
-BINDING_MIX_REPS = 5    # "mix by pipetting five times"
-BINDING_INCUBATION_MIN = 5
-MAGNET_BINDING_MIN = 4
-WASH_VOL = 500          # uL 70 % ethanol, two washes
-DRY_MIN = 4
-ELUTION_VOL = 100       # uL elution buffer
-ELUTION_MIX_REPS = 10   # resuspend the dried beads in the elution buffer
-ELUTION_RESUSPEND_SEC = 30
+BEAD_VOL = 40          # uL
+ISOPROP_VOL = 250      # uL
+SAMPLE_VOL = 250       # uL
+SUPERNATANT_VOL = 540  # uL (40 + 250 + 250)
+ETOH_VOL = 500         # uL per wash
+ELUTION_VOL = 100      # uL
+ELUATE_VOL = 80        # uL
+
+INCUBATION_MIN = 5
+MAGNET_MIN = 4
+AIRDRY_MIN = 4
+ELUTION_SOAK_SEC = 30
 ELUTION_MAGNET_SEC = 90
-ELUATE_VOL = 90         # uL recovered; ~10 uL is left over the bead pellet
-ELUTION_PLATE_TEMP_C = 4
 
-# Volume removed to waste: the full volume present plus a small excess so that
-# the well is left as dry as possible (the excess is just air in the tip).
-BINDING_TOTAL_VOL = BEAD_VOL + ISOPROPANOL_VOL + SAMPLE_VOL   # 540 uL
-SUPERNATANT_REMOVE_VOL = BINDING_TOTAL_VOL + 20               # 560 uL
-WASH_REMOVE_VOL = WASH_VOL + 20                               # 520 uL
+ELUTION_TEMP_C = 4
 
-# Beads pellet against the GEN1 magnets, which sit between the column pairs
-# (1|2, 3|4, ...).  For the odd columns used here the pellet forms on the
-# right-hand (+x) wall, so all aspirations from the pelleted plate are taken
-# from the left-hand side of the well, a little above the bottom.
-PELLET_AVOID_X_OFFSET = -2.0   # mm toward the wall opposite the pellet
-PELLET_AVOID_Z = 0.8           # mm above the well bottom
-ASPIRATE_SLOW_RATE = 40        # uL/s when drawing supernatant off a pellet
-P300_MAX_VOL = 200             # uL, 200 uL filter tips
+P300_MAX = 200  # 200 uL filter tips limit the p300 multi to 200 uL per stroke
 
-# Reservoir map (slot 5, nest_12_reservoir_15ml)
-BEAD_COL = '2'
-ELUTION_COL = '4'
-ISOPROPANOL_COLS = ['6', '7']          # 3 sample columns per reservoir column
-ETHANOL_WASH1_COLS = ['9', '10']       # 3 sample columns per reservoir column
-ETHANOL_WASH2_COLS = ['11', '12']
+
+def split_volume(total, max_vol=P300_MAX):
+    """Split *total* into equal strokes no larger than *max_vol*."""
+    n = int(-(-total // max_vol))  # ceil division
+    return [total / n] * n
 
 
 def run(protocol: protocol_api.ProtocolContext):
 
-    # ----------------------------------------------------------------------
-    # Labware, modules, pipettes
-    # ----------------------------------------------------------------------
+    # ---------------------------------------------------------- modules --
+    magdeck = protocol.load_module("magnetic module", "4")
+    tempdeck = protocol.load_module("tempdeck", "6")
+
+    # ---------------------------------------------------------- labware --
     waste_plate = protocol.load_labware(
-        'usascientific_96_wellplate_2.4ml_deep', '1', 'supernatant waste')
+        "usascientific_96_wellplate_2.4ml_deep", "1", "waste plate")
+    tips200 = [
+        protocol.load_labware("opentrons_96_filtertiprack_200ul", slot,
+                              "200 uL filter tips")
+        for slot in ("2", "3", "9")
+    ]
+    sample_plate = magdeck.load_labware(
+        "usascientific_96_wellplate_2.4ml_deep", "sample/extraction plate")
+    reservoir = protocol.load_labware("nest_12_reservoir_15ml", "5",
+                                      "reagent reservoir")
+    elution_plate = tempdeck.load_labware("thermo_96_wellplate_200ul",
+                                          "elution plate")
+    tuberack_1 = protocol.load_labware(
+        "opentrons_24_tuberack_eppendorf_2ml_safelock_snapcap", "10",
+        "samples 1-24")
+    tuberack_2 = protocol.load_labware(
+        "opentrons_24_tuberack_eppendorf_2ml_safelock_snapcap", "7",
+        "samples 25-48")
+    tips1000 = protocol.load_labware("opentrons_96_filtertiprack_1000ul",
+                                     "11", "1000 uL filter tips")
 
-    tips200 = [protocol.load_labware('opentrons_96_filtertiprack_200ul', s)
-               for s in ['2', '3', '9']]
-    tips1000 = [protocol.load_labware('opentrons_96_filtertiprack_1000ul', '11')]
-
-    mag_mod = protocol.load_module('magnetic module', '4')
-    mag_plate = mag_mod.load_labware(
-        'usascientific_96_wellplate_2.4ml_deep', 'extraction plate')
-
-    reservoir = protocol.load_labware('nest_12_reservoir_15ml', '5', 'reagents')
-
-    temp_mod = protocol.load_module('tempdeck', '6')
-    elution_plate = temp_mod.load_labware(
-        'thermo_96_wellplate_200ul', 'elution plate')
-
-    samples_1_24 = protocol.load_labware(
-        'opentrons_24_tuberack_eppendorf_2ml_safelock_snapcap', '10',
-        'samples 1-24')
-    samples_25_48 = protocol.load_labware(
-        'opentrons_24_tuberack_eppendorf_2ml_safelock_snapcap', '7',
-        'samples 25-48')
-
-    p1000 = protocol.load_instrument('p1000_single_gen2', 'left',
-                                     tip_racks=tips1000)
-    m300 = protocol.load_instrument('p300_multi_gen2', 'right',
+    # --------------------------------------------------------- pipettes --
+    p1000 = protocol.load_instrument("p1000_single_gen2", "left",
+                                     tip_racks=[tips1000])
+    m300 = protocol.load_instrument("p300_multi_gen2", "right",
                                     tip_racks=tips200)
 
-    # ----------------------------------------------------------------------
-    # Well bookkeeping
-    # ----------------------------------------------------------------------
-    # Multi-channel targets: the top (row A) well of each used column.
-    mag_cols = [mag_plate.columns_by_name()[c][0] for c in SAMPLE_COLUMNS]
-    waste_cols = [waste_plate.columns_by_name()[c][0] for c in SAMPLE_COLUMNS]
-    elution_cols = [elution_plate.columns_by_name()[c][0] for c in SAMPLE_COLUMNS]
+    # --------------------------------------------------------- reagents --
+    beads = [reservoir.wells_by_name()["A2"]]
+    elution_buffer = [reservoir.wells_by_name()["A4"]]
+    isopropanol = [reservoir.wells_by_name()[w] for w in ("A6", "A7")]
+    ethanol_wash1 = [reservoir.wells_by_name()[w] for w in ("A9", "A10")]
+    ethanol_wash2 = [reservoir.wells_by_name()[w] for w in ("A11", "A12")]
 
-    beads = reservoir.wells_by_name()['A' + BEAD_COL]
-    elution_buffer = reservoir.wells_by_name()['A' + ELUTION_COL]
+    # ------------------------------------------------- well bookkeeping --
+    # Multi-channel works on the top (A) well of each odd column.
+    sample_cols = [sample_plate.columns()[i][0] for i in SAMPLE_COLUMNS]
+    waste_cols = [waste_plate.columns()[i][0] for i in SAMPLE_COLUMNS]
+    elution_cols = [elution_plate.columns()[i][0] for i in SAMPLE_COLUMNS]
 
-    def reagent_for(col_index, reservoir_cols):
-        """Map the i-th sample column to one of two reservoir columns (3+3)."""
-        return reservoir.wells_by_name()['A' + reservoir_cols[col_index // 3]]
-
-    # Single-channel sample routing: tube racks are read column-wise
-    # (A1, B1, C1, D1, A2, ...) so samples 1-24 and 25-48 keep their numbering.
-    sample_tubes = samples_1_24.wells() + samples_25_48.wells()
+    # Single-channel: 48 individual sample wells, column by column
+    # (A1..H1, A3..H3, ..., A11..H11) -> samples 1..48.
     sample_wells = []
-    for c in SAMPLE_COLUMNS:
-        sample_wells += mag_plate.columns_by_name()[c]
-    sample_tubes = sample_tubes[:NUM_SAMPLES]
+    for i in SAMPLE_COLUMNS:
+        sample_wells.extend(sample_plate.columns()[i])
     sample_wells = sample_wells[:NUM_SAMPLES]
+    sample_tubes = (tuberack_1.wells() + tuberack_2.wells())[:NUM_SAMPLES]
 
-    def pellet_side(well):
-        """Aspiration point in a pelleted well, away from the bead pellet."""
-        return well.bottom(PELLET_AVOID_Z).move(Point(x=PELLET_AVOID_X_OFFSET))
+    # ----------------------------------------------------------- helpers --
+    def add_reagent(sources, volume, dests, per_source=None,
+                    mix_after=None, premix=None):
+        """Dispense *volume* of a reagent into every column of *dests*.
 
-    def split_volume(total, max_vol=P300_MAX_VOL):
-        """Split a volume into equal aliquots that fit a 200 uL tip."""
-        n = int(-(-total // max_vol))
-        return [total / n] * n
+        mix_after is None  -> one shared tip; it only aspirates from the
+                              reservoir and dispenses from above the liquid,
+                              so it never touches a sample well's contents.
+        mix_after=(n, vol) -> the tip mixes inside the sample wells, so a
+                              fresh tip is used for every column.
+        per_source: destination columns served per reservoir well.
+        premix=(n, vol):      mix the reservoir well before the first draw
+                              (resuspend beads).
+        """
+        if per_source is None:
+            per_source = len(dests)
+        shared_tip = mix_after is None
+        if shared_tip:
+            m300.pick_up_tip()
+        for idx, dest in enumerate(dests):
+            src = sources[min(idx // per_source, len(sources) - 1)]
+            if not shared_tip:
+                m300.pick_up_tip()
+            if premix is not None and idx == 0:
+                m300.mix(premix[0], premix[1], src.bottom(2))
+            for vol in split_volume(volume):
+                m300.aspirate(vol, src.bottom(2))
+                m300.dispense(vol, dest.top(-5))
+                m300.blow_out(dest.top(-5))
+            if mix_after is not None:
+                m300.mix(mix_after[0], mix_after[1], dest.bottom(1.5))
+                m300.blow_out(dest.top(-5))
+                m300.drop_tip()
+        if shared_tip:
+            m300.drop_tip()
 
-    def remove_to_waste(volume):
-        """Draw `volume` off the pelleted beads (magnet engaged) in every
-        sample column and send it to the matching waste column.  One tip
-        column per sample column, slow aspiration from the side opposite the
-        pellet."""
-        m300.flow_rate.aspirate = ASPIRATE_SLOW_RATE
-        for src, dst in zip(mag_cols, waste_cols):
+    def remove_to_waste(volume, aspirate_rate=50):
+        """Move *volume* from every sample column to its own waste column.
+
+        The caller has the magnet engaged.  Fresh tip for every column and
+        slow aspiration from near the bottom so the pelleted beads stay put.
+        """
+        default_rate = m300.flow_rate.aspirate
+        m300.flow_rate.aspirate = aspirate_rate
+        for src, dst in zip(sample_cols, waste_cols):
             m300.pick_up_tip()
             for vol in split_volume(volume):
-                m300.aspirate(vol, pellet_side(src))
+                m300.aspirate(vol, src.bottom(1))
                 m300.dispense(vol, dst.top(-5))
                 m300.blow_out(dst.top(-5))
             m300.drop_tip()
-        m300.flow_rate.aspirate = 94   # p300 multi GEN2 default
+        m300.flow_rate.aspirate = default_rate
 
-    def add_reagent_to_all(volume, source_for_col, dispense_top_offset=-5):
-        """Dispense `volume` into every sample column from the top of the
-        well (no contact with the well contents), reusing one tip column."""
-        m300.pick_up_tip()
-        for i, dst in enumerate(mag_cols):
-            src = source_for_col(i)
-            for vol in split_volume(volume):
-                m300.aspirate(vol, src.bottom(1))
-                m300.dispense(vol, dst.top(dispense_top_offset))
-                m300.blow_out(dst.top(dispense_top_offset))
-        m300.drop_tip()
+    def ethanol_wash(sources):
+        """Add 500 uL 70 % ethanol to each well, then remove it (magnet on)."""
+        protocol.comment("Adding 500 uL 70 % ethanol")
+        add_reagent(sources, ETOH_VOL, sample_cols, per_source=3)
+        protocol.comment("Removing ethanol to waste (magnet engaged)")
+        remove_to_waste(ETOH_VOL)
 
-    # ----------------------------------------------------------------------
-    # Start-up: magnet off, elution plate cooling to 4 C
-    # ----------------------------------------------------------------------
-    protocol.comment('Start: magnet disengaged, elution plate held at %d C'
-                     % ELUTION_PLATE_TEMP_C)
-    mag_mod.disengage()
-    temp_mod.set_temperature(ELUTION_PLATE_TEMP_C)
+    # ============================================================ steps ==
 
-    # ----------------------------------------------------------------------
-    # Step 1a: 40 uL magnetic beads per well
-    # ----------------------------------------------------------------------
-    protocol.comment('Step 1a: %d uL magnetic beads per well' % BEAD_VOL)
-    m300.pick_up_tip()
-    m300.mix(5, 150, beads.bottom(2))          # resuspend the bead slurry
-    m300.blow_out(beads.top(-5))
-    for dst in mag_cols:
-        m300.aspirate(BEAD_VOL, beads.bottom(1))
-        m300.dispense(BEAD_VOL, dst.bottom(5))
-        m300.blow_out(dst.bottom(5))
-        m300.touch_tip(dst, v_offset=-10)
-    m300.drop_tip()
+    # 1. Magnet off, elution plate to 4 C before anything is eluted.
+    magdeck.disengage()
+    tempdeck.set_temperature(ELUTION_TEMP_C)
 
-    # ----------------------------------------------------------------------
-    # Step 1b: 250 uL isopropanol per well
-    # ----------------------------------------------------------------------
-    protocol.comment('Step 1b: %d uL isopropanol per well' % ISOPROPANOL_VOL)
-    add_reagent_to_all(ISOPROPANOL_VOL,
-                       lambda i: reagent_for(i, ISOPROPANOL_COLS))
+    # 2. 40 uL magnetic beads (reservoir column 2) to every sample well.
+    protocol.comment("Step 2: adding 40 uL magnetic beads")
+    add_reagent(beads, BEAD_VOL, sample_cols, premix=(5, 150))
 
-    # ----------------------------------------------------------------------
-    # Step 1c: 250 uL inactivated sample per well, mix 5x, one tip per sample
-    # ----------------------------------------------------------------------
-    protocol.comment('Step 1c: %d uL inactivated sample per well, mix %dx'
-                     % (SAMPLE_VOL, BINDING_MIX_REPS))
-    p1000.flow_rate.aspirate = 150
-    p1000.flow_rate.dispense = 150
+    # 3. 250 uL isopropanol (reservoir columns 6-7), 3 sample columns each.
+    protocol.comment("Step 3: adding 250 uL isopropanol")
+    add_reagent(isopropanol, ISOPROP_VOL, sample_cols, per_source=3)
+
+    # 4. 250 uL of each sample, fresh tip per sample, mix 5x.
+    protocol.comment("Step 4: adding 250 uL sample, mixing 5x")
     for tube, well in zip(sample_tubes, sample_wells):
         p1000.pick_up_tip()
         p1000.aspirate(SAMPLE_VOL, tube.bottom(3))
         p1000.dispense(SAMPLE_VOL, well.bottom(5))
-        # mix the 540 uL bead/isopropanol/sample suspension 5 times
-        p1000.mix(BINDING_MIX_REPS, 400, well.bottom(3))
+        p1000.mix(5, 300, well.bottom(3))
         p1000.blow_out(well.top(-5))
-        p1000.touch_tip(well, v_offset=-10)
         p1000.drop_tip()
 
-    # ----------------------------------------------------------------------
-    # Step 1d: 5 min binding at room temperature
-    # ----------------------------------------------------------------------
-    protocol.comment('Step 1d: %d min binding incubation at room temperature'
-                     % BINDING_INCUBATION_MIN)
-    protocol.delay(minutes=BINDING_INCUBATION_MIN)
+    # 5. Incubate 5 min at room temperature.
+    protocol.comment("Step 5: 5 min incubation at room temperature")
+    protocol.delay(minutes=INCUBATION_MIN)
 
-    # ----------------------------------------------------------------------
-    # Step 2: engage the GEN1 magnetic module for 4 min
-    # ----------------------------------------------------------------------
-    protocol.comment('Step 2: engage magnet, %d min' % MAGNET_BINDING_MIN)
-    mag_mod.engage()      # labware-defined engage height for this deep-well plate
-    protocol.delay(minutes=MAGNET_BINDING_MIN)
+    # 6. Engage the magnet, wait 4 min.
+    protocol.comment("Step 6: magnet on, 4 min")
+    magdeck.engage()
+    protocol.delay(minutes=MAGNET_MIN)
 
-    # ----------------------------------------------------------------------
-    # Step 3: remove and discard the binding supernatant
-    # ----------------------------------------------------------------------
-    protocol.comment('Step 3: remove %d uL supernatant to waste' % BINDING_TOTAL_VOL)
-    remove_to_waste(SUPERNATANT_REMOVE_VOL)
+    # 7. Remove the supernatant (540 uL) to the waste plate.
+    protocol.comment("Step 7: removing 540 uL supernatant to waste")
+    remove_to_waste(SUPERNATANT_VOL)
 
-    # ----------------------------------------------------------------------
-    # Steps 4 and 5: two washes with 500 uL 70 % ethanol (magnet stays on)
-    # ----------------------------------------------------------------------
-    for wash_no, etoh_cols in enumerate([ETHANOL_WASH1_COLS, ETHANOL_WASH2_COLS], 1):
-        protocol.comment('Step %d: wash %d, add %d uL 70 %% ethanol'
-                         % (3 + wash_no, wash_no, WASH_VOL))
-        add_reagent_to_all(WASH_VOL, lambda i, cols=etoh_cols: reagent_for(i, cols))
-        protocol.comment('Step %d: wash %d, remove ethanol to waste'
-                         % (3 + wash_no, wash_no))
-        remove_to_waste(WASH_REMOVE_VOL)
+    # 8. First 500 uL 70 % ethanol wash (reservoir columns 9-10).
+    protocol.comment("Step 8: ethanol wash 1")
+    ethanol_wash(ethanol_wash1)
 
-    # ----------------------------------------------------------------------
-    # Step 6: air-dry the beads 4 min (magnet still engaged)
-    # ----------------------------------------------------------------------
-    protocol.comment('Step 6: air-dry beads %d min' % DRY_MIN)
-    protocol.delay(minutes=DRY_MIN)
+    # 9. Second 500 uL 70 % ethanol wash (reservoir columns 11-12).
+    protocol.comment("Step 9: ethanol wash 2")
+    ethanol_wash(ethanol_wash2)
 
-    # ----------------------------------------------------------------------
-    # Step 7: magnet off, 100 uL elution buffer, resuspend the beads
-    # ----------------------------------------------------------------------
-    protocol.comment('Step 7: disengage magnet, add %d uL elution buffer and '
-                     'resuspend beads' % ELUTION_VOL)
-    mag_mod.disengage()
-    for dst in mag_cols:
-        m300.pick_up_tip()
-        m300.aspirate(ELUTION_VOL, elution_buffer.bottom(1))
-        m300.dispense(ELUTION_VOL, dst.bottom(1))
-        # pellet is on the +x wall: dispense the mix stream onto it
-        m300.mix(ELUTION_MIX_REPS, 80,
-                 dst.bottom(1).move(Point(x=-PELLET_AVOID_X_OFFSET)))
-        m300.blow_out(dst.top(-10))
-        m300.touch_tip(dst, v_offset=-10)
-        m300.drop_tip()
+    # 10. Air-dry 4 min with the magnet engaged.
+    protocol.comment("Step 10: air-drying beads 4 min")
+    protocol.delay(minutes=AIRDRY_MIN)
 
-    # ----------------------------------------------------------------------
-    # Step 8: 30 s elution, then magnet on for 90 s
-    # ----------------------------------------------------------------------
-    protocol.comment('Step 8: %d s elution, then engage magnet %d s'
-                     % (ELUTION_RESUSPEND_SEC, ELUTION_MAGNET_SEC))
-    protocol.delay(seconds=ELUTION_RESUSPEND_SEC)
-    mag_mod.engage()
+    # 11. Magnet off, 100 uL elution buffer, resuspend beads by mixing.
+    protocol.comment("Step 11: magnet off, adding 100 uL elution buffer")
+    magdeck.disengage()
+    add_reagent(elution_buffer, ELUTION_VOL, sample_cols, mix_after=(10, 80))
+
+    # 12. 30 s, magnet on, 90 s.
+    protocol.comment("Step 12: 30 s, then magnet on for 90 s")
+    protocol.delay(seconds=ELUTION_SOAK_SEC)
+    magdeck.engage()
     protocol.delay(seconds=ELUTION_MAGNET_SEC)
 
-    # ----------------------------------------------------------------------
-    # Step 9: transfer the eluted RNA to the 4 C elution plate
-    # ----------------------------------------------------------------------
-    protocol.comment('Step 9: transfer %d uL eluate to the elution plate (%d C)'
-                     % (ELUATE_VOL, ELUTION_PLATE_TEMP_C))
-    m300.flow_rate.aspirate = 25
-    m300.flow_rate.dispense = 50
-    for src, dst in zip(mag_cols, elution_cols):
+    # 13. 80 uL eluate to the elution plate at 4 C (same well positions).
+    protocol.comment("Step 13: transferring 80 uL eluate to elution plate")
+    default_rate = m300.flow_rate.aspirate
+    m300.flow_rate.aspirate = 30
+    for src, dst in zip(sample_cols, elution_cols):
         m300.pick_up_tip()
-        m300.aspirate(ELUATE_VOL, pellet_side(src))
+        m300.aspirate(ELUATE_VOL, src.bottom(1))
         m300.dispense(ELUATE_VOL, dst.bottom(2))
         m300.blow_out(dst.top(-2))
-        m300.touch_tip(dst, v_offset=-2)
         m300.drop_tip()
-    m300.flow_rate.aspirate = 94
-    m300.flow_rate.dispense = 94
+    m300.flow_rate.aspirate = default_rate
 
-    mag_mod.disengage()
-    protocol.comment('Done. Eluates are in columns %s of the elution plate, '
-                     'held at %d C on the temperature module.'
-                     % (', '.join(SAMPLE_COLUMNS), ELUTION_PLATE_TEMP_C))
+    # 14. Magnet off at the end of the run.
+    magdeck.disengage()
+    protocol.comment("Extraction finished: eluates on the 4 C elution plate")

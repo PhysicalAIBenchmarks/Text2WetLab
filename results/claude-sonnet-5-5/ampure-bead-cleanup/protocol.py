@@ -18,27 +18,34 @@ def run(protocol: protocol_api.ProtocolContext):
     wells = [w for col in sp.columns() for w in col]
     ewells = [w for col in ep.columns() for w in col]
 
-    def move(vol, src, dsts, mix=0, mixvol=0, src_clear=None, to_waste=False):
+    def to_plate(vol, src, mix=None):
         p.reset_tipracks()
-        for i, d in enumerate(dsts):
+        for w in wells:
             p.pick_up_tip()
-            s = src[i] if isinstance(src, list) else src
-            p.aspirate(vol, s.bottom(src_clear) if src_clear else s)
-            p.dispense(vol, d.top(-2) if to_waste else d.bottom(2) if not mix else d.bottom(2))
+            p.aspirate(vol, src)
+            p.dispense(vol, w)
             if mix:
-                p.mix(mix, mixvol, d.bottom(2))
-            p.blow_out(d.top(-2))
+                p.mix(mix, 40, w)
             p.drop_tip()
 
-    move(40, beads['A1'], wells, mix=10, mixvol=60)
+    def from_plate(vol, dst_for):
+        p.reset_tipracks()
+        for i, w in enumerate(wells):
+            p.pick_up_tip()
+            p.aspirate(vol, w.bottom(1))
+            p.dispense(vol, dst_for(i))
+            p.drop_tip()
+
+    to_plate(40, beads['A1'], mix=10)
     protocol.comment('Incubate sample_plate 5 min at room temperature (beads bind DNA)')
     protocol.comment('Engage magnetic module; wait 5 min until solution clears')
-    move(90, wells, [waste['A1']] * 96, src_clear=0.7, to_waste=True)
-    for n in (1, 2):
-        move(200, etoh['A1'], wells)
-        move(200, wells, [waste['A1']] * 96, src_clear=0.7, to_waste=True)
+    from_plate(90, lambda i: waste['A1'])
+    to_plate(200, etoh['A1'])
+    from_plate(200, lambda i: waste['A1'])
+    to_plate(200, etoh['A1'])
+    from_plate(200, lambda i: waste['A1'])
     protocol.comment('Air dry beads 5 min at room temperature (magnet engaged); beads should appear matte not shiny')
     protocol.comment('Disengage magnetic module')
-    move(50, water['A1'], wells, mix=10, mixvol=30)
+    to_plate(50, water['A1'], mix=10)
     protocol.comment('Incubate sample_plate 2 min at room temperature; then re-engage magnetic module 5 min')
-    move(45, wells, ewells, src_clear=0.7)
+    from_plate(45, lambda i: ewells[i])

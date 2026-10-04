@@ -11,4 +11,8 @@ def run(protocol: protocol_api.ProtocolContext):
     protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
-    p300.transfer(100, reservoir['A1'], plate.rows()[0][:12], new_tip='always')
+    p300.pick_up_tip()
+    for i in range(12):
+        p300.aspirate(100, reservoir['A1'])
+        p300.dispense(100, plate.wells_by_name()['A%d' % (i + 1)])
+    p300.drop_tip()

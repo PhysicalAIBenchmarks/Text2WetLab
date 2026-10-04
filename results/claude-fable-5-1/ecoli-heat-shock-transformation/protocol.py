@@ -1,60 +1,44 @@
-"""E. coli heat shock transformation with SOC recovery."""
+from opentrons import protocol_api
 
 metadata = {
     'protocolName': 'E. coli heat shock transformation with SOC recovery',
-    'author': 'OT-2 protocol',
-    'description': 'Add 2 uL plasmid DNA to competent cells, heat shock at 42C for 45 s, '
-                   'then add 250 uL SOC medium for outgrowth recovery.',
+    'author': 'OT-2',
     'apiLevel': '2.15',
 }
 
 
-def run(protocol):
-    # ---------------- Labware ----------------
-    plasmid_plate = protocol.load_labware(
-        'corning_96_wellplate_360ul_flat', 1, label='plasmid_plate')
+def run(protocol: protocol_api.ProtocolContext):
+    # Labware
+    plasmid_plate = protocol.load_labware('corning_96_wellplate_360ul_flat', 1, label='plasmid_plate')
     tubes_1_5ml_1 = protocol.load_labware(
         'opentrons_24_tuberack_eppendorf_1.5ml_safelock_snapcap', 2, label='tubes_1_5ml_1')
-    soc_reservoir = protocol.load_labware(
-        'nest_1_reservoir_195ml', 3, label='soc_reservoir')
+    soc_reservoir = protocol.load_labware('nest_1_reservoir_195ml', 3, label='soc_reservoir')
 
-    tiprack_20 = protocol.load_labware('opentrons_96_tiprack_20ul', 10)
-    tiprack_300 = protocol.load_labware('opentrons_96_tiprack_300ul', 11)
+    tips20 = protocol.load_labware('opentrons_96_tiprack_20ul', 10)
+    tips300 = protocol.load_labware('opentrons_96_tiprack_300ul', 11)
 
-    # ---------------- Pipettes ----------------
-    p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tiprack_20])
-    p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tiprack_300])
+    p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
+    p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
-    # ---------------- Wells ----------------
-    plasmid_dna = plasmid_plate['A1']
-    cells_tube = tubes_1_5ml_1['A1']   # cells_rack: 50 uL competent cells
-    soc = soc_reservoir['A1']
+    cells_tube = tubes_1_5ml_1['A1']
 
-    # Step 1: 2 uL plasmid DNA -> competent cells (p20)
-    protocol.comment('Step 1: Transfer 2 uL plasmid DNA from plasmid_plate A1 to competent cells (tubes_1_5ml_1 A1).')
+    # Step 1: 2 uL plasmid DNA into competent cells
     p20.pick_up_tip()
-    p20.aspirate(2, plasmid_dna)
+    p20.aspirate(2, plasmid_plate['A1'])
     p20.dispense(2, cells_tube)
     p20.mix(3, 10, cells_tube)
     p20.blow_out(cells_tube.top())
     p20.drop_tip()
 
     # Step 2: heat shock (not simulated)
-    protocol.comment('Step 2 (manual, not simulated): '
-                     'Heat shock cells_rack at 42C for 45 s, then transfer immediately to ice for 2 min.')
-    protocol.pause('Perform heat shock of cells_rack (42C, 45 s), then place on ice 2 min. '
-                   'Return rack to slot 2 and resume.')
+    protocol.comment('Heat shock cells_rack 42°C 45 s, then transfer immediately to ice 2 min')
 
-    # Step 3: 250 uL SOC -> cells (p300)
-    protocol.comment('Step 3: Transfer 250 uL SOC medium from soc_reservoir A1 to tubes_1_5ml_1 A1.')
+    # Step 3: 250 uL SOC medium into cells
     p300.pick_up_tip()
-    p300.aspirate(250, soc)
+    p300.aspirate(250, soc_reservoir['A1'])
     p300.dispense(250, cells_tube)
     p300.blow_out(cells_tube.top())
     p300.drop_tip()
 
     # Step 4: outgrowth recovery (not simulated)
-    protocol.comment('Step 4 (manual, not simulated): Incubate cells_rack at 37C for 60 min at 250 rpm '
-                     'for outgrowth recovery.')
-
-    protocol.comment('Protocol complete. Final volume in tubes_1_5ml_1 A1: 302 uL (50 cells + 2 DNA + 250 SOC).')
+    protocol.comment('Incubate cells_rack 37°C 60 min at 250 rpm for outgrowth recovery')

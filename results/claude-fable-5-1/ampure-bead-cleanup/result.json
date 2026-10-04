@@ -10,27 +10,27 @@
       {
         "id": "binding",
         "score": 1,
-        "evidence": "Log shows 40 uL aspirated from beads A1 and dispensed into each of 96 wells, followed by 10 aspirate/dispense mix cycles of 70 uL; incubation comment is recorded before the magnet comment."
+        "evidence": "Log shows 40 uL beads aspirated from beads_reservoir A1 and dispensed into each of the 96 wells, followed by 10 mix cycles of 70 uL, and a protocol.comment for the 5 min incubation precedes the magnet comment."
       },
       {
         "id": "supernatant_and_washes",
         "score": 1,
-        "evidence": "Engage-magnet/wait comment precedes 96 x 90 uL supernatant removals to waste A1, then two rounds of 200 uL ethanol added and 200 uL removed to waste for every well."
+        "evidence": "The engage-magnet comment (wait 5 min) comes first, then log shows 90 uL aspirated from each of the 96 wells to waste A1, and two rounds of 200 uL ethanol added and each fully removed (200 uL) to waste."
       },
       {
         "id": "drying_and_elution",
         "score": 1,
-        "evidence": "Comments for 5 min air dry, magnet disengage, and 2 min incubation then re-engage are present; 50 uL water is added per well with 10 mix cycles in the log."
+        "evidence": "Comments record the 5 min dry, magnet disengage, 50 uL water added to each well with 10 mix cycles of 40 uL, then the 2 min incubation and magnet re-engage before the transfer."
       },
       {
         "id": "recovery",
         "score": 1,
-        "evidence": "Log lines 6530-6911 show 45 uL aspirated from each sample well and dispensed into the same-named elution_plate well (A1->A1 ... H12->H12)."
+        "evidence": "Log shows 45 uL aspirated from each sample_plate well and dispensed into the same-named elution_plate well, A1 through H12."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "Every well in supernatant removal, ethanol removal and elution gets its own pick up/drop tip pair in the log, with no tip reuse across samples."
+        "evidence": "Log shows pick up tip and drop tip around every single-well transfer in supernatant removal, both ethanol removals, and elution, so no tip touches two samples."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "recovery": 1.0,
       "tips_and_contamination": 1.0
     },
-    "summary": "The protocol performs all pipetting steps correctly per the simulator log, with correct volumes, 10x mixes, and well-to-well identity preservation. Manual steps (incubations, magnet, drying) are recorded as comments at the right points and a fresh tip is used for every well.",
+    "summary": "The simulator log shows every step done with correct volumes, well pairing and a fresh tip per sample. Incubation, magnet, and drying steps are recorded as protocol.comment calls at the right points, as the task requires.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

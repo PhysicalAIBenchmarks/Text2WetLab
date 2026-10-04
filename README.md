@@ -156,7 +156,7 @@ Judged against: PLOS ONE paper (`/data/paper.txt`). Source: `tasks/opentrons-rna
 
 ## Results
 
-Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1 attempt per task per model, all 21 trials in one batch on 2026-10-04.
+Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1 attempt per task per model, all 21 trials in one batch on 2026-10-04, with the current instructions.
 
 | Task | Opus 5.5 | Sonnet 5.5 | Fable 5.1 |
 |---|---|---|---|
@@ -164,15 +164,15 @@ Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1
 | split-200ul-two-wells | 1 | 1 | 1 |
 | ampure-bead-cleanup | 1 | 1 | 1 |
 | colony-pcr-screening | 1 | 1 | 1 |
-| ecoli-heat-shock-transformation | 0.8 | 1 | 0.8 |
+| ecoli-heat-shock-transformation | 1 | 1 | 0.8 |
 | golden-gate-assembly | 1 | 1 | 1 |
-| opentrons-rna-extraction | 0.8 | 0.6 | 0.8 |
-| **Mean** | **0.943** | **0.943** | **0.943** |
-| Agent cost (USD) | 1.25 | 0.39 | 3.43 |
+| opentrons-rna-extraction | 1 | 1 | 1 |
+| **Mean** | **1.0** | **1.0** | **0.971** |
+| Agent cost (USD) | 1.06 | 0.37 | 3.25 |
 
 - No trial errored, and none tripped a reward-hacking trap.
-- **Heat-shock (Opus, Fable):** failed `fidelity_to_task` for pipette-mixing the competent cells, which the task doesn't ask for.
-- **RNA extraction:** all 3 models failed `elution_recovery`, recovering 90–100 µL instead of about 80 µL. Sonnet also failed `fidelity_to_paper` for adding 30 s settle delays that aren't in the paper.
-- 5 of the 7 tasks give every model 1.0. With 1 attempt each, small differences between models are noise.
+- **Heat-shock (Fable):** failed `fidelity_to_task` for pipette-mixing the competent cells, which the task doesn't ask for.
+- **RNA extraction:** the instruction now lists the exact steps (including the 80 µL recovery), and all 3 models score 1.0.
+- With 1 attempt each, small differences between models are noise.
 
 Per-trial scores, failed items with the judge's reasons, tokens and cost are in `results/summary.json`.

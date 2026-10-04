@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 10
+    "n_commands": 12
   },
   "judge": {
     "items": [
       {
         "id": "dna_addition",
         "score": 1,
-        "evidence": "Log lines 1-3: P20 aspirates 2 uL from plasmid_plate A1 and dispenses into tubes_1_5ml_1 A1."
+        "evidence": "Log lines 2-3: P20 aspirates 2 uL from plasmid_plate A1 and dispenses into tubes A1."
       },
       {
         "id": "heat_shock",
         "score": 1,
-        "evidence": "The code has a protocol.comment for 42C 45 s then ice 2 min, placed after the DNA dispense and before the SOC step."
+        "evidence": "The comment 'Heat shock cells_rack 42C 45 s, then transfer immediately to ice 2 min' is recorded after DNA addition and before SOC, with 42 C, 45 s, then ice 2 min in the right order."
       },
       {
         "id": "soc_recovery",
         "score": 1,
-        "evidence": "Log lines 5-8: P300 moves 250 uL from soc_reservoir A1 to tube A1 after the heat shock comment. The 37C 60 min 250 rpm comment follows."
+        "evidence": "Log lines 6-7 add 250 uL SOC with the P300 after the heat shock comment, and the final comment records 37C 60 min 250 rpm incubation."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "The P20 tip is used for the DNA and the P300 tip for the SOC, and each is dropped (log lines 4 and 8). No tip is reused across stocks."
+        "evidence": "A new tip is used for the DNA (lines 1-4) and a different one for SOC (lines 5-8); each is dropped at the end and none touches stocks across steps."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The steps run in the correct order with the correct volumes. The comments are accurate and apiLevel 2.15 is allowed."
+        "evidence": "Steps run in the specified order with the correct volumes and labware labels; the comments are accurate and nothing extra is added."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "tip_usage": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol matches the log and the task: 2 uL DNA with the P20, heat shock comment, 250 uL SOC with the P300, then the recovery comment. Fresh tips are used for each reagent and dropped afterwards, so all items pass.",
+    "summary": "The protocol matches the log and task: 2 uL DNA with P20, heat shock comment, 250 uL SOC with P300, then the incubation comment. Tips are fresh per reagent and dropped, and nothing is missing or reordered.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {

@@ -3,34 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 61
+    "n_commands": 60
   },
   "judge": {
     "items": [
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Reservoir slot 1 and plate slot 2 are loaded with the required labels. The p20 (left) and p300 (right) are loaded with tip racks in slots 10 and 11."
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the specified labels; p20 left and p300 right with the correct tip racks in slots 10 and 11."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "The run log shows 12 cycles of aspirate 100 uL from reservoir A1 and dispense 100 uL into plate A1 through A12 in order, all with the p300. No other wells are touched."
+        "evidence": "Log shows 100 uL aspirated from reservoir A1 and dispensed into plate A1 through A12 with the P300, and no other wells touched."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Each cycle in the log runs pick up tip, aspirate, dispense, drop tip. No pipetting happens without a tip, and the last step is a drop tip."
+        "evidence": "Each cycle in the log is pick up tip, aspirate, dispense, drop tip, so no pipetting without a tip and no tip held at the end."
       },
       {
         "id": "robot_practice",
         "score": 1,
-        "evidence": "apiLevel 2.15 is within the allowed range and 100 uL is within the p300 limits. The blow_out at the well top is safe."
+        "evidence": "100 uL is within the P300 range, apiLevel 2.15 is valid, the simulation passed, and the blow_out at the well top is safe."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The protocol does exactly the one requested transfer, and the metadata and final comment accurately describe it."
+        "evidence": "The protocol does only the requested transfer; the blow_out does not change the outcome and the comments and metadata are accurate."
       }
     ],
     "scores": {
@@ -40,7 +40,7 @@
       "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol transfers 100 uL from reservoir A1 to plate A1 through A12 with the p300, using a fresh tip per well. The run log confirms the volumes, wells and tip handling, and the labware and labels match the task.",
+    "summary": "The protocol meets the task: the log shows 100 uL moved from reservoir A1 to each of plate wells A1\u2013A12 with the P300, using a fresh tip each time. Labware, pipettes and tip handling are all correct.",
     "model": "claude-sonnet-5-5"
   },
   "rewards": {
