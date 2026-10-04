@@ -1,0 +1,30 @@
+{
+ "task": "opentrons-rna-extraction",
+ "grader": "LLM judge + 16 checks",
+ "oracle": [
+  {
+   "job": "oracle-opentrons-rna-extraction",
+   "reward": 0.9444,
+   "sim_pass": 1.0,
+   "cost_usd": 0,
+   "failed": [
+    "fidelity_to_paper"
+   ],
+   "protocol": "/Users/nialloleary/Desktop/Text2WetLab-integration/results/harbor-jobs/oracle-opentrons-rna-extraction/harbor__fCLXsyx/verifier/protocol.py"
+  }
+ ],
+ "trials": [
+  {
+   "job": "agent-sonnet-5-5-opentrons-rna-extraction",
+   "reward": 0.8889,
+   "sim_pass": 1.0,
+   "cost_usd": 0.1278,
+   "failed": [
+    "elution_recovery",
+    "robot_practice"
+   ],
+   "protocol": "/Users/nialloleary/Desktop/Text2WetLab-integration/results/harbor-jobs/agent-sonnet-5-5-opentrons-rna-extraction/harbor__8XSK4Gm/verifier/protocol.py"
+  }
+ ],
+ "adversarial": {}
+}

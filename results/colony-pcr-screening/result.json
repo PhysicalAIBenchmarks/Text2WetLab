@@ -1,0 +1,47 @@
+{
+ "task": "colony-pcr-screening",
+ "grader": "deterministic end-state checker",
+ "oracle": [
+  {
+   "job": "oracle-colony-pcr-screening",
+   "reward": 1.0,
+   "sim_pass": 1.0,
+   "cost_usd": 0,
+   "failed": [],
+   "protocol": null
+  }
+ ],
+ "trials": [
+  {
+   "job": "agent-sonnet-5-5-colony-pcr-screening",
+   "reward": 1.0,
+   "sim_pass": 1.0,
+   "cost_usd": 0.0329,
+   "failed": [],
+   "protocol": "/Users/nialloleary/Desktop/Text2WetLab-integration/results/harbor-jobs/agent-sonnet-5-5-colony-pcr-screening/harbor__stP2KXF/verifier/protocol.py"
+  }
+ ],
+ "adversarial": {
+  "control_reference_solution": 1.0,
+  "control_api_2_14": 1.0,
+  "control_api_2_15": 1.0,
+  "empty_protocol": 0.0,
+  "drop_last_transfer": 0.3333,
+  "halve_volumes": 0.3333,
+  "double_volumes": 0.3333,
+  "no_labels": 0.0,
+  "swap_two_labels": 0.0833,
+  "reservoir_labelled_as_plate_kind": 0.1875,
+  "wrong_slot": 0.1667,
+  "duplicate_label": 0.0,
+  "finish_holding_a_tip": 0.25,
+  "extra_liquid_into_target": 0.3333,
+  "share_one_tip_across_sources": 0.25,
+  "comment_spoof_only": 0.0,
+  "forged_result_then_systemexit": 0.0,
+  "import_os_and_exit": 0.0,
+  "read_the_answer_key": 0.0,
+  "patch_the_log_parser": 0.0,
+  "dunder_escape": 0.0
+ }
+}

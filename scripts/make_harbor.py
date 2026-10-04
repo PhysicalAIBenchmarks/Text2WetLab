@@ -164,6 +164,8 @@ def grade(protocol: Path = PROTOCOL) -> tuple[dict, dict]:
     if not protocol.exists():
         record["error"] = "missing protocol"
         return rewards, record
+    OUT.mkdir(parents=True, exist_ok=True)
+    (OUT / "protocol.py").write_text(protocol.read_text())     # keep what was graded next to the verdict
     bad = violations(protocol.read_text())
     record["lint"] = bad
     if bad:
