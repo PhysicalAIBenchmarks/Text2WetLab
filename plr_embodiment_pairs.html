@@ -236,6 +236,56 @@ footer a:hover { color: var(--accent); }
 }
 .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ── Simulation assets table ── */
+.sim-section { margin-top: 60px; }
+.sim-table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+.sim-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 820px; }
+.sim-table th {
+  padding: 10px 14px; background: var(--surface);
+  color: var(--muted); font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .08em;
+  text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap;
+}
+.sim-table td {
+  padding: 9px 14px; border-bottom: 1px solid var(--border);
+  vertical-align: top; line-height: 1.4;
+}
+.sim-table tr:last-child td { border-bottom: none; }
+.sim-table tr:not(.sim-group-row):hover td { background: rgba(255,255,255,.02); }
+.sim-group-row td {
+  background: #0a0e1a; color: var(--muted);
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .1em; padding: 6px 14px; border-bottom: 1px solid var(--border);
+}
+.asset-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-family: 'JetBrains Mono', monospace;
+  color: var(--green); background: #0a2a1a; border: 1px solid #1a4a2a;
+  border-radius: 4px; padding: 2px 7px; text-decoration: none;
+  white-space: nowrap; margin: 2px 0; line-height: 1.5;
+}
+.asset-link:hover { border-color: var(--green); }
+.asset-link.amber { color: var(--amber); background: #1e1500; border-color: #4a3a00; }
+.asset-link.amber:hover { border-color: var(--amber); }
+.asset-link.cyan { color: var(--accent); background: #0a1a2a; border-color: #1a3a4a; }
+.asset-link.cyan:hover { border-color: var(--accent); }
+.asset-link.purple { color: var(--purple); background: #140a22; border-color: #3a1a4a; }
+.asset-link.purple:hover { border-color: var(--purple); }
+.asset-link.star { color: #fbbf24; background: #1a1200; border-color: #5a4500; }
+.asset-link.star:hover { border-color: #fbbf24; }
+.asset-none { color: #374151; font-size: 12px; }
+.asset-note { display: block; font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+.asset-cell { display: flex; flex-direction: column; gap: 2px; }
+.sim-legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: 11px; color: var(--muted); }
+.sim-callout {
+  margin-top: 14px; padding: 14px 16px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; font-size: 12px; color: var(--muted); line-height: 1.65;
+}
+.sim-callout a { color: var(--accent); text-decoration: none; }
+.sim-callout a:hover { text-decoration: underline; }
+.gap-cell { color: #4b5563; font-size: 11px; }
 </style>
 </head>
 <body>
@@ -708,6 +758,336 @@ footer a:hover { color: var(--accent); }
     </div>
   </div>
 </div>
+</div>
+
+<!-- ── SIMULATION & REFERENCE ASSETS ── -->
+<div class="sim-section">
+  <div class="section-label">
+    <span class="line"></span>
+    <h2>Simulation &amp; reference assets</h2>
+    <span class="line"></span>
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6">
+    What geometry and reference data exist for each PLR instrument?
+    URDF (.urdf/.xacro), MJCF (.xml), meshes (STL/DAE/OBJ), labware JSON, and public manuals.
+    Only public assets are listed. ⊘ = exists but requires vendor login or NDA.
+  </p>
+
+  <div class="sim-table-wrap">
+    <table class="sim-table">
+      <thead>
+        <tr>
+          <th style="min-width:180px">Machine</th>
+          <th>PLR tier</th>
+          <th>URDF / xacro</th>
+          <th>MJCF (.xml)</th>
+          <th>Meshes STL/DAE/OBJ</th>
+          <th>Ref JSON / labware</th>
+          <th>Manual / spec</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- ROBOT ARMS -->
+        <tr class="sim-group-row"><td colspan="7">Robot arms — best-covered category</td></tr>
+
+        <tr>
+          <td><span class="machine-tag cat-arm" style="color:#f97316;border-color:#3a1a00;font-size:11px">Brooks PreciseFlex 400</span></td>
+          <td><span class="plr-badge plr-full">Full v1</span></td>
+          <td class="asset-cell">
+            <a class="asset-link" href="https://github.com/RoboDrop/pf400_description" target="_blank">RoboDrop/pf400_description ↗</a>
+            <span class="asset-note">.urdf + .xacro + .srdf (MoveIt)</span>
+            <span class="asset-note">⚠ 3rd-party — documented approximations</span>
+          </td>
+          <td><span class="gap-cell">—</span></td>
+          <td class="asset-cell">
+            <a class="asset-link" href="https://github.com/RoboDrop/pf400_description" target="_blank">STL meshes (in pkg) ↗</a>
+            <span class="asset-note">Visual + collision geometry included</span>
+          </td>
+          <td><span class="gap-cell">—</span></td>
+          <td class="asset-cell">
+            <a class="asset-link cyan" href="https://www.brooksautomation.com/products/life-sciences/sample-management/precision-robotics/" target="_blank">Brooks product page ↗</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="machine-tag cat-arm" style="color:#f97316;border-color:#3a1a00;font-size:11px">UFACTORY xArm 6</span></td>
+          <td><span class="plr-badge plr-basic">Basic v1</span></td>
+          <td class="asset-cell">
+            <a class="asset-link" href="https://github.com/xArm-Developer/xarm_ros2" target="_blank">xArm-Developer/xarm_ros2 ↗</a>
+            <span class="asset-note">xarm_description/urdf/xarm6/xarm6.urdf.xacro</span>
+            <span class="asset-note">Official UFACTORY · ROS2 + Gazebo + MoveIt2</span>
+            <a class="asset-link amber" href="https://github.com/xArm-Developer/xarm_ros" target="_blank">xarm_ros (ROS1) ↗</a>
+          </td>
+          <td class="asset-cell">
+            <span class="gap-cell">—</span>
+            <span class="asset-note">Community conversions circulating; not in mujoco_menagerie</span>
+          </td>
+          <td class="asset-cell">
+            <a class="asset-link" href="https://github.com/xArm-Developer/xarm_ros2" target="_blank">STL + DAE meshes ↗</a>
+            <span class="asset-note">In xarm_description/meshes/ · visual + collision</span>
+          </td>
+          <td class="asset-cell">
+            <a class="asset-link cyan" href="https://github.com/xArm-Developer/xArm-Python-SDK" target="_blank">xArm-Python-SDK ↗</a>
+            <span class="asset-note">Joint config, DH params, JSON API schemas</span>
+          </td>
+          <td class="asset-cell">
+            <a class="asset-link cyan" href="https://www.ufactory.cc/download" target="_blank">xArm 6 User Manual ↗</a>
+            <span class="asset-note">PDF — freely downloadable from UFACTORY</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="machine-tag cat-arm" style="color:#f97316;border-color:#3a1a00;font-size:11px">Universal Robots UR3/UR5/UR10</span></td>
+          <td><span class="plr-badge plr-full">Full v1</span></td>
+          <td class="asset-cell">
+            <a class="asset-link" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description" target="_blank">UR_ROS2_Description ↗</a>
+            <span class="asset-note">urdf/ur.urdf.xacro · all models parameterised</span>
+            <span class="asset-note">Official Universal Robots · calibration-aware</span>
+            <a class="asset-link amber" href="https://github.com/ros-industrial/universal_robot" target="_blank">ros-industrial/universal_robot (ROS1) ↗</a>
+          </td>
+          <td class="asset-cell">
+            <a class="asset-link star" href="https://github.com/google-deepmind/mujoco_menagerie/tree/main/universal_robots_ur5e" target="_blank">mujoco_menagerie/ur5e ↗</a>
+            <a class="asset-link star" href="https://github.com/google-deepmind/mujoco_menagerie/tree/main/universal_robots_ur10e" target="_blank">mujoco_menagerie/ur10e ↗</a>
+            <span class="asset-note">Google DeepMind · validated against hardware</span>
+            <span class="asset-note">Includes actuator params, contact geometry</span>
+          </td>
+          <td class="asset-cell">
+            <a class="asset-link" href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description" target="_blank">STL + DAE (ROS2 pkg) ↗</a>
+            <a class="asset-link star" href="https://github.com/google-deepmind/mujoco_menagerie/tree/main/universal_robots_ur5e" target="_blank">OBJ meshes (menagerie) ↗</a>
+            <span class="asset-note">Production-quality, both visual + collision</span>
+          </td>
+          <td class="asset-cell">
+            <a class="asset-link cyan" href="https://www.universal-robots.com/articles/ur/interface-communication/real-time-data-exchange-rtde-guide/" target="_blank">RTDE interface guide ↗</a>
+            <span class="asset-note">Real-time data exchange schemas · JSON-compatible</span>
+            <a class="asset-link cyan" href="https://github.com/UniversalRobots/RTDE_Python_Client_Library" target="_blank">RTDE Python client ↗</a>
+          </td>
+          <td class="asset-cell">
+            <a class="asset-link cyan" href="https://www.universal-robots.com/download/" target="_blank">UR Technical Specs ↗</a>
+            <span class="asset-note">DH params, payload curves, reach diagrams — all public</span>
+          </td>
+        </tr>
+
+        <!-- LIQUID HANDLERS -->
+        <tr class="sim-group-row"><td colspan="7">Liquid handlers — significant gap</td></tr>
+
+        <tr>
+          <td><span class="machine-tag cat-liquid" style="color:var(--accent);border-color:#1a3a4a;font-size:11px">Opentrons OT-2</span></td>
+          <td><span class="plr-badge plr-basic">Mostly v1</span></td>
+          <td class="asset-cell">
+            <span class="gap-cell">—</span>
+            <span class="asset-note">No official URDF anywhere</span>
+          </td>
+          <td class="asset-cell">
+            <a class="asset-link star" href="https://github.com/PhysicalAIBenchmarks/opentrons-mujoco-viz" target="_blank">★ opentrons-mujoco-viz ↗</a>
+            <span class="asset-note">Only public OT-2 kinematic model in any format</span>
+            <span class="asset-note">Hand-authored ot2.xml from technical spec · Text2WetLab</span>
+          </td>
+          <td class="asset-cell">
+            <span class="gap-cell">—</span>
+            <span class="asset-note">No official mesh files; community Thingiverse STLs for deck (cosmetic only)</span>
+          </td>
+          <td class="asset-cell">
+            <a class="asset-link" href="https://github.com/Opentrons/opentrons/tree/edge/shared-data/labware" target="_blank">shared-data/labware ↗</a>
+            <span class="asset-note">Official JSON defs · wells, volumes, offsets</span>
+            <a class="asset-link cyan" href="https://github.com/Opentrons/opentrons/tree/edge/shared-data/deck" target="_blank">shared-data/deck ↗</a>
+            <span class="asset-note">OT-2 deck slot positions JSON</span>
+          </td>
+          <td class="asset-cell">
+            <a class="asset-link cyan" href="https://support.opentrons.com" target="_blank">Opentrons support docs ↗</a>
+            <span class="asset-note">OT-2 User Manual + Python API reference</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="machine-tag cat-liquid" style="color:var(--accent);border-color:#1a3a4a;font-size:11px">Opentrons Flex</span></td>
+          <td><span class="plr-badge plr-basic">Basic v1</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td class="asset-cell">
+            <a class="asset-link" href="https://github.com/Opentrons/opentrons/tree/edge/shared-data/labware" target="_blank">shared-data/labware ↗</a>
+            <span class="asset-note">Same JSON labware library covers Flex decks</span>
+            <a class="asset-link cyan" href="https://github.com/Opentrons/opentrons/tree/edge/shared-data/deck" target="_blank">shared-data/deck (Flex layout) ↗</a>
+          </td>
+          <td class="asset-cell">
+            <a class="asset-link cyan" href="https://support.opentrons.com" target="_blank">Opentrons Flex docs ↗</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="machine-tag cat-liquid" style="color:var(--accent);border-color:#1a3a4a;font-size:11px">Hamilton STAR / STARlet</span></td>
+          <td><span class="plr-badge plr-full">Full v0</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td class="asset-cell">
+            <a class="asset-link amber" href="https://github.com/PyLabRobot/pylabrobot/tree/main/pylabrobot/resources/hamilton" target="_blank">PLR Python resources ↗</a>
+            <span class="asset-note">Python-format well/rack definitions — no open JSON</span>
+            <span class="asset-note">Native format: .rck / .bpl (VENUS, proprietary)</span>
+          </td>
+          <td class="asset-cell">
+            <span class="gap-cell">⊘</span>
+            <span class="asset-note">Hamilton VENUS manual — licensed, via Hamilton support</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="machine-tag cat-liquid" style="color:var(--accent);border-color:#1a3a4a;font-size:11px">Tecan Freedom EVO</span></td>
+          <td><span class="plr-badge plr-legacy">Basic v0</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td class="asset-cell">
+            <span class="gap-cell">—</span>
+            <span class="asset-note">EVOware worklist .gwl format is proprietary text</span>
+          </td>
+          <td class="asset-cell">
+            <span class="gap-cell">⊘</span>
+            <span class="asset-note">Tecan EVO User Guide — licensed / restricted</span>
+          </td>
+        </tr>
+
+        <!-- READERS / PCR / IMAGING -->
+        <tr class="sim-group-row"><td colspan="7">Plate readers, PCR &amp; imaging — no sim assets exist</td></tr>
+
+        <tr>
+          <td><span class="machine-tag cat-reader" style="color:var(--purple);border-color:#2e1a4a;font-size:11px">BMG CLARIOstar</span></td>
+          <td><span class="plr-badge plr-full">Full v1</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td class="asset-cell">
+            <span class="gap-cell">—</span>
+            <span class="asset-note">Output: Neptune .nc / .xml (proprietary)</span>
+          </td>
+          <td class="asset-cell">
+            <span class="gap-cell">⊘</span>
+            <span class="asset-note">BMG LABTECH manuals — registration required</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="machine-tag cat-reader" style="color:var(--purple);border-color:#2e1a4a;font-size:11px">Tecan Spark</span></td>
+          <td><span class="plr-badge plr-full">Full v1</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td class="asset-cell"><span class="gap-cell">⊘</span></td>
+        </tr>
+
+        <tr>
+          <td><span class="machine-tag cat-pcr" style="color:var(--amber);border-color:#4a3a00;font-size:11px">Bio-Rad CFX Connect</span></td>
+          <td><span class="plr-badge plr-full">Full v1</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td class="asset-cell">
+            <span class="gap-cell">—</span>
+            <span class="asset-note">Output: .pcrd (proprietary XML-based)</span>
+          </td>
+          <td class="asset-cell"><span class="gap-cell">⊘</span></td>
+        </tr>
+
+        <tr>
+          <td><span class="machine-tag cat-pcr" style="color:var(--amber);border-color:#4a3a00;font-size:11px">Applied Bio QuantStudio</span></td>
+          <td><span class="plr-badge plr-full">Full v1</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td class="asset-cell"><span class="gap-cell">⊘</span></td>
+        </tr>
+
+        <tr>
+          <td><span class="machine-tag cat-imaging" style="color:var(--green);border-color:#0a3a1a;font-size:11px">Molecular Devices ImageXpress</span></td>
+          <td><span class="plr-badge plr-full">Full v1</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td class="asset-cell">
+            <span class="gap-cell">—</span>
+            <span class="asset-note">Output: .htd plate metadata (plate position/layout)</span>
+          </td>
+          <td class="asset-cell"><span class="gap-cell">⊘</span></td>
+        </tr>
+
+        <!-- PERIPHERALS -->
+        <tr class="sim-group-row"><td colspan="7">Peripherals &amp; incubators — no sim assets exist</td></tr>
+
+        <tr>
+          <td><span class="machine-tag" style="font-size:11px">Liconic STX</span></td>
+          <td><span class="plr-badge plr-full">Full v1</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td class="asset-cell"><span class="gap-cell">⊘</span></td>
+        </tr>
+
+        <tr>
+          <td><span class="machine-tag" style="font-size:11px">Thermo Cytomat 2/10</span></td>
+          <td><span class="plr-badge plr-full">Full v1</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td class="asset-cell"><span class="gap-cell">⊘</span></td>
+        </tr>
+
+        <tr>
+          <td><span class="machine-tag" style="font-size:11px">Formulatrix Mantis</span></td>
+          <td><span class="plr-badge plr-wip">WIP</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td><span class="gap-cell">—</span></td>
+          <td class="asset-cell"><span class="gap-cell">⊘</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sim-legend">
+    <span><a class="asset-link" style="pointer-events:none">link = public asset</a></span>
+    <span><a class="asset-link amber" style="pointer-events:none">amber = unofficial / community</a></span>
+    <span><a class="asset-link star" style="pointer-events:none">★ = notable / only known</a></span>
+    <span style="color:var(--muted)">⊘ = exists but licensed / restricted</span>
+    <span style="color:var(--muted)">— = no known asset</span>
+  </div>
+
+  <!-- Notable workcell note -->
+  <div class="gap-card" style="margin-top:14px">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+        <span class="machine-tag" style="color:var(--accent);border-color:#1a3a4a">AICell Lab digital-lab workcell</span>
+        <span style="font-size:11px;color:var(--muted);font-weight:600">NOTABLE — ROS URDF WORKCELL</span>
+      </div>
+      <div class="gap-reason">
+        <a href="https://github.com/cccoolll/digital-lab" target="_blank" style="color:var(--accent)">cccoolll/digital-lab ↗</a> — Closest public example of a full PLR-adjacent workcell with geometry:
+        Dorna arm URDF + generic plate incubator URDF + Squid microscope model, all in ROS.
+        Not PLR instruments by name, but same instrument class. Workcell URDF + STL assets are public.
+        AccelerationConsortium/<a href="https://github.com/AccelerationConsortium/matterix" target="_blank" style="color:var(--accent)">Matterix ↗</a>
+        covers chemistry SDL in Isaac Sim / USD format.
+      </div>
+    </div>
+  </div>
+
+  <div class="sim-callout">
+    <strong style="color:var(--text)">Coverage gap:</strong>
+    All PLR liquid handlers and peripherals have zero public URDF, MJCF, STL, or OBJ assets.
+    Only the three robot arm families (PreciseFlex, xArm 6, UR3/5/10) have any simulation geometry.
+    Universal Robots are uniquely well-served: UR5e and UR10e appear in Google DeepMind's
+    <a href="https://github.com/google-deepmind/mujoco_menagerie" target="_blank">mujoco_menagerie ↗</a>
+    with production-quality MJCF + OBJ meshes, contact geometry, and validated actuator parameters.
+    The <a href="https://github.com/PhysicalAIBenchmarks/opentrons-mujoco-viz" target="_blank">opentrons-mujoco-viz</a>
+    OT-2 MJCF (ot2.xml) remains the only public kinematic model for any PLR liquid handler —
+    hand-authored from the technical spec with no upstream geometry to convert from.
+    Opentrons does publish rich <a href="https://github.com/Opentrons/opentrons/tree/edge/shared-data/labware" target="_blank">labware definition JSON ↗</a>
+    (well positions, volumes, offsets) which are the most complete open reference for any liquid handler deck layout.
+  </div>
 </div>
 
 </main>
