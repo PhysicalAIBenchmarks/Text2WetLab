@@ -48,6 +48,14 @@ from paper2protocol.check import check, expand_wells  # noqa: E402
 from paper2protocol.models import CAPACITY_UL, Protocol  # noqa: E402
 from paper2protocol.render import step_line  # noqa: E402
 
+# Optional: use real OT-2 slot positions from the opentrons-mujoco-viz fork
+try:
+    from opentrons.visualization import SLOT_XY as _OT2_SLOT_XY  # noqa: E402
+    _HAS_OT2 = True
+except ImportError:
+    _HAS_OT2 = False
+    _OT2_SLOT_XY: dict = {}
+
 PITCH_X, PITCH_Y = 0.16, 0.12
 WELL_PITCH, WELL_R = 0.009, 0.0033
 LIQ = "0.18 0.62 1 0.95"
@@ -65,18 +73,31 @@ class Deck:
         self.p = p
         self.kinds = {c.name: c.kind for c in p.containers}
         n = len(p.containers)
-        self.cols = max(2, math.ceil(math.sqrt(n * 1.3)))
-        self.rows = math.ceil(n / self.cols)
-        self.W, self.H = self.cols * PITCH_X, self.rows * PITCH_Y
         self.origin = {}  # container -> world (x, y) of its centre
         self.top = {}     # container -> world z of its rim
         self.foot = {}    # container -> (half-x, half-y) footprint
         parts = []
-        for i, c in enumerate(p.containers):
-            x = -self.W / 2 + PITCH_X * (i % self.cols + 0.5)
-            y = self.H / 2 - PITCH_Y * (i // self.cols + 0.5)
-            self.origin[c.name] = (x, y)
-            parts.append(self._labware(i, c, x, y))
+        # Use real OT-2 slot positions when ≤12 containers and fork is available
+        self._ot2_mode = _HAS_OT2 and n <= 12
+        if self._ot2_mode:
+            slot_list = list(_OT2_SLOT_XY.values())  # slots 1–12 in order
+            xs = [x for x, y in slot_list]
+            ys = [y for x, y in slot_list]
+            self.W = (max(xs) - min(xs)) + PITCH_X
+            self.H = (max(ys) - min(ys)) + PITCH_Y
+            for i, c in enumerate(p.containers):
+                sx, sy = slot_list[i] if i < len(slot_list) else (0.0, 0.0)
+                self.origin[c.name] = (sx, sy)
+                parts.append(self._labware(i, c, sx, sy))
+        else:
+            self.cols = max(2, math.ceil(math.sqrt(n * 1.3)))
+            self.rows = math.ceil(n / self.cols)
+            self.W, self.H = self.cols * PITCH_X, self.rows * PITCH_Y
+            for i, c in enumerate(p.containers):
+                x = -self.W / 2 + PITCH_X * (i % self.cols + 0.5)
+                y = self.H / 2 - PITCH_Y * (i // self.cols + 0.5)
+                self.origin[c.name] = (x, y)
+                parts.append(self._labware(i, c, x, y))
         self.safe_z = max(self.top.values()) + SAFE_MARGIN
         xml = f"""<mujoco model="ir_deck">
   <option gravity="0 0 0"/>
@@ -104,6 +125,11 @@ class Deck:
         self.cam.lookat[:] = [0, -self.H * 0.05, 0.04]
         self.cam.azimuth, self.cam.elevation = 90, -52
         self.cam.distance = max(self.W, self.H * 1.6) * 0.95 + 0.12
+        # Close camera: 65% of wide distance, shallower angle — liquid fill colours legible
+        self.cam_close = mujoco.MjvCamera()
+        self.cam_close.lookat[:] = [0, -self.H * 0.05, 0.04]
+        self.cam_close.azimuth, self.cam_close.elevation = 180, -30
+        self.cam_close.distance = self.cam.distance * 0.65
         gid = lambda n: mujoco.mj_name2id(self.model, mujoco.mjtObj.mjOBJ_GEOM, n)
         self.tip_liq = gid("tip_liq")
         self.tip_body = gid("tip_body")
@@ -226,19 +252,24 @@ class Deck:
     def set_tip_color(self, bad):
         self.model.geom_rgba[self.tip_body] = [1, 0.1, 0.1, 1] if bad else [0.98, 0.75, 0.1, 1]
 
-    def frame(self):
+    def frame(self, close: bool = False):
         mujoco.mj_forward(self.model, self.data)
-        self.renderer.update_scene(self.data, self.cam)
+        self.renderer.update_scene(self.data, self.cam_close if close else self.cam)
         return self.renderer.render()
+
+    def focus_close_cam(self, xy: tuple[float, float]) -> None:
+        """Shift the close camera lookat to the given (x, y) position."""
+        self.cam_close.lookat[0] = xy[0]
+        self.cam_close.lookat[1] = xy[1]
 
 
 def segment(a, b, n):
     return [tuple(np.array(a) + (np.array(b) - np.array(a)) * (k + 1) / n) for k in range(n)]
 
 
-def build_frames(p: Protocol, pipette_max=1000.0, lift=True):
-    """Run the animation. Returns (deck, states, touched, issues, frames, track).
-    frames[k] = (3D image, step index, 2D phase); track = dict of per-frame arrays."""
+def build_frames(p: Protocol, pipette_max=1000.0, lift=True, close_cam=False):
+    """Run the animation. Returns (deck, states, touched, issues, frames, frames_close, track).
+    frames[k] = (3D image, step index, 2D phase); frames_close is [] when close_cam=False."""
     deck = Deck(p)
     states, touched = timeline(p)
     issues = {}
@@ -248,6 +279,7 @@ def build_frames(p: Protocol, pipette_max=1000.0, lift=True):
     safe = deck.safe_z
     pos = (0.0, 0.0, safe)
     out = []
+    out_close = []
     track = {k: [] for k in ("held", "z", "rim", "collision", "maxfill", "issues", "trips")}
     step_issues = {}  # issues known before the animation: checker + pipette capacity
     for i, s in enumerate(p.steps, 1):
@@ -266,7 +298,10 @@ def build_frames(p: Protocol, pipette_max=1000.0, lift=True):
         deck.place(head)
         if hit:
             state_["cum"] += 1
-        out.append((deck.frame(), step_i, 1 if (p_src >= 1 or p_dst > 0) else 0))
+        out.append((deck.frame(close=False), step_i, 1 if (p_src >= 1 or p_dst > 0) else 0))
+        if close_cam:
+            deck.focus_close_cam((head[0], head[1]))
+            out_close.append((deck.frame(close=True), step_i, 1 if (p_src >= 1 or p_dst > 0) else 0))
         track["held"].append(held * min(moved, pipette_max))  # a tip never holds more than one load
         track["z"].append(head[2])
         track["rim"].append(deck.under(head[0], head[1]))
@@ -322,7 +357,7 @@ def build_frames(p: Protocol, pipette_max=1000.0, lift=True):
         if lift:
             for q in segment((dx, dy, dz), (dx, dy, safe), 2):
                 emit(i, before, after, 1, 1, 0, src_k, dst_k, q, **tr)
-    return deck, states, touched, issues, out, {k: np.array(v) for k, v in track.items()}
+    return deck, states, touched, issues, out, out_close, {k: np.array(v) for k, v in track.items()}
 
 
 def label(img, text):
@@ -416,8 +451,62 @@ def strip_frame(base, boxes, track, k, i, n, pipette_max, width, legend):
     return np.concatenate([np.asarray(hud), img], axis=0)
 
 
-def render(p: Protocol, out_dir: pathlib.Path, name: str, fps=12, pipette_max=1000.0, lift=True):
-    deck, states, touched, issues, frames3d, track = build_frames(p, pipette_max, lift)
+def vlm_judge(mp4_path: pathlib.Path, out_path: pathlib.Path) -> None:
+    """Extract 5 evenly-spaced frames from mp4, send each to claude-haiku for QC grading."""
+    import os, base64, json as _json, tempfile
+    key = os.environ.get("ANTHROPIC_API_KEY")
+    if not key:
+        print(f"  [vlm-judge] ANTHROPIC_API_KEY not set — skipping {mp4_path.name}", file=sys.stderr)
+        return
+    try:
+        import anthropic
+    except ImportError:
+        print("  [vlm-judge] anthropic package not installed — skipping", file=sys.stderr)
+        return
+    reader = imageio.get_reader(str(mp4_path))
+    total = reader.count_frames()
+    pcts = [0, 25, 50, 75, 100]
+    idxs = [min(int(p / 100 * (total - 1)), total - 1) for p in pcts]
+    client = anthropic.Anthropic(api_key=key)
+    results = []
+    prompt = (
+        "Lab automation QC review. In this MuJoCo OT-2 simulation frame: "
+        "(1) Is the pipette arm visible and in a plausible position? "
+        "(2) Are labware items visible on the deck? "
+        "(3) Is liquid fill state colour-coded (blue→teal→amber→orange)? "
+        "(4) Any visual artifacts, clipping, or missing elements? "
+        "Score: PASS / WARN / FAIL + one-line reason."
+    )
+    with tempfile.TemporaryDirectory() as td:
+        for pct, idx in zip(pcts, idxs):
+            frame = reader.get_data(idx)
+            img_path = pathlib.Path(td) / f"frame_{pct}.png"
+            Image.fromarray(frame).save(img_path)
+            img_b64 = base64.standard_b64encode(img_path.read_bytes()).decode()
+            try:
+                resp = client.messages.create(
+                    model="claude-haiku-4-5-20251001",
+                    max_tokens=200,
+                    messages=[{"role": "user", "content": [
+                        {"type": "image", "source": {"type": "base64", "media_type": "image/png", "data": img_b64}},
+                        {"type": "text", "text": prompt},
+                    ]}],
+                )
+                text = resp.content[0].text
+                verdict = "PASS" if "PASS" in text else "FAIL" if "FAIL" in text else "WARN"
+                results.append({"frame_pct": pct, "verdict": verdict, "reason": text.strip()})
+            except Exception as e:
+                results.append({"frame_pct": pct, "verdict": "ERROR", "reason": str(e)})
+    reader.close()
+    out_path.write_text(_json.dumps(results, indent=2))
+    verdicts = [r["verdict"] for r in results]
+    print(f"  [vlm-judge] {out_path.name}: {verdicts}")
+
+
+def render(p: Protocol, out_dir: pathlib.Path, name: str, fps=12, pipette_max=1000.0, lift=True,
+           close_cam=False, run_vlm_judge=False):
+    deck, states, touched, issues, frames3d, frames3d_close, track = build_frames(
+        p, pipette_max, lift, close_cam=close_cam)
     kinds = deck.kinds
     n = len(p.steps)
     panels = {}
@@ -445,6 +534,20 @@ def render(p: Protocol, out_dir: pathlib.Path, name: str, fps=12, pipette_max=10
     imageio.mimsave(gif, small, duration=1000 * stride / fps, loop=0)
     png = out_dir / f"{name}_frames.png"
     Image.fromarray(contact_sheet(full)).save(png)
+
+    # Optional: close-camera mp4 (liquid fill detail)
+    if close_cam and frames3d_close:
+        full_close = []
+        for k, (img, i, phase) in enumerate(frames3d_close):
+            top = np.concatenate([panels[(i, phase)], label(img, "3D  close  MuJoCo")], axis=1)
+            full_close.append(np.concatenate([top, strip_frame(base, boxes, track, k, i, n, pipette_max, width, legend)], axis=0))
+        full_close += [full_close[-1]] * fps
+        mp4_close = out_dir / f"{name}_close.mp4"
+        imageio.mimsave(mp4_close, full_close, fps=fps, macro_block_size=1)
+
+    if run_vlm_judge:
+        vlm_judge(mp4, out_dir / f"{name}_vlm.json")
+
     summary = dict(frames=len(full), collisions=int(track["collision"].sum()),
                    max_tip_ul=float(track["held"].max()), max_fill_pct=float(track["maxfill"].max() * 100),
                    issues=int(track["issues"].max()))
@@ -465,11 +568,18 @@ if __name__ == "__main__":
     ap.add_argument("--all", action="store_true")
     ap.add_argument("--no-lift", action="store_true", help="travel at work height to trigger the collision check")
     ap.add_argument("--pipette-max", type=float, default=1000.0, help="pipette capacity in uL (default P1000)")
+    ap.add_argument("--close-cam", action="store_true",
+                    help="also render a _close.mp4 at 65%% distance / shallower angle for liquid fill detail")
+    ap.add_argument("--vlm-judge", action="store_true",
+                    help="after rendering, send 5 frames to claude-haiku for QC grading (needs ANTHROPIC_API_KEY)")
     a = ap.parse_args()
+    if _HAS_OT2 and a.all is False and a.ir:
+        print(f"[ir_mujoco] opentrons-mujoco-viz fork found — OT-2 slot positions active for ≤12 container protocols")
     jobs = [(src, ROOT / "assets/examples3d", name_for(src)) for src in find_irs()] if a.all else \
         [(pathlib.Path(a.ir), pathlib.Path(a.out or "ir3d.mp4").parent, pathlib.Path(a.out or "ir3d.mp4").stem)]
     for src, d, name in jobs:
         proto = Protocol.model_validate_json(src.read_text())
-        nfr, mp4, gif, png, info = render(proto, d, name, pipette_max=a.pipette_max, lift=not a.no_lift)
+        nfr, mp4, gif, png, info = render(proto, d, name, pipette_max=a.pipette_max, lift=not a.no_lift,
+                                           close_cam=a.close_cam, run_vlm_judge=a.vlm_judge)
         print(f"{src.relative_to(ROOT) if src.is_absolute() and ROOT in src.parents else src}: {nfr} frames -> {mp4.name} "
               f"({mp4.stat().st_size / 1e6:.1f} MB), {gif.name} ({gif.stat().st_size / 1e6:.1f} MB), {png.name}  {info}")

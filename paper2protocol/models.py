@@ -82,7 +82,18 @@ class Sufficiency(BaseModel):
 
 # ---------------------------------------------------------------- extract output
 
-ContainerKind = Literal["plate_96", "plate_96_deep", "tube_1.5ml", "tube_15ml", "tube_50ml", "reservoir", "waste"]
+ContainerKind = Literal[
+    # ── OT-2 / generic liquid handling ──────────────────────────────────────
+    "plate_96", "plate_96_deep",
+    "tube_1.5ml", "tube_15ml", "tube_50ml",
+    "reservoir", "waste",
+    # ── Non-OT / high-throughput ─────────────────────────────────────────────
+    "plate_384",          # 384-well microplate (Hamilton, Tecan, BMG, ImageXpress)
+    "plate_1536",         # 1536-well ultra-HTS plate
+    "micronic_tube_96",   # 96-position barcoded tube rack (Micronic/Azenta)
+    "vial",               # small chemistry vial, e.g. HPLC vial or 1 mL reactor vial (GLAS)
+    "deepwell_24",        # 24-well deep-well block
+]
 
 # Working capacity per well/tube in µL; enforced by check.py, not the LLM.
 CAPACITY_UL: dict[str, float | None] = {
@@ -93,6 +104,12 @@ CAPACITY_UL: dict[str, float | None] = {
     "tube_50ml": 50000,
     "reservoir": 290000,
     "waste": None,
+    # non-OT additions
+    "plate_384": 120,
+    "plate_1536": 10,
+    "micronic_tube_96": 1000,
+    "vial": 2000,
+    "deepwell_24": 10000,
 }
 
 
@@ -112,7 +129,35 @@ class Content(BaseModel):
 
 
 class Step(BaseModel):
-    kind: Literal["transfer", "mix", "manual"]
+    kind: Literal[
+        # ── OT-2 / generic liquid handling (existing) ────────────────────────
+        "transfer",       # pipette liquid from source to destination
+        "mix",            # mix in place
+        "manual",         # non-pipetting action (incubate, spin, seal, …)
+        # ── Plate reader ─────────────────────────────────────────────────────
+        "plate_reader_read",    # absorbance / fluorescence / luminescence read
+        "plate_reader_shake",   # shaking on plate reader
+        # ── Imager ───────────────────────────────────────────────────────────
+        "imager_acquire",       # high-content imaging acquisition (ImageXpress etc.)
+        # ── Storage / incubator ──────────────────────────────────────────────
+        "incubator_load",       # move plate into incubator / stacker
+        "incubator_unload",     # retrieve plate from incubator / stacker
+        "incubator_set_temp",   # set incubator temperature / CO2 / humidity
+        "storage_store",        # place plate/tube in automated storage (Liconic etc.)
+        "storage_retrieve",     # retrieve plate/tube from automated storage
+        # ── Centrifuge ───────────────────────────────────────────────────────
+        "centrifuge_spin",      # centrifuge step (rpm / rcf, duration)
+        # ── Robotic arm ──────────────────────────────────────────────────────
+        "robot_arm_move",       # plate/vial move by SCARA/6-axis arm (PreciseFlex, UR)
+        # ── Generic non-OT liquid handler ────────────────────────────────────
+        "liquid_handler_transfer",  # Hamilton / Tecan transfer (non-OT instrument)
+        "liquid_handler_mix",       # Hamilton / Tecan mix (non-OT instrument)
+        # ── Electroporation ──────────────────────────────────────────────────
+        "electroporation_pulse",    # electroporation event (BTX Gemini, custom)
+        # ── Sealing / desealing ──────────────────────────────────────────────
+        "plate_seal",         # apply adhesive / heat seal to plate
+        "plate_deseal",       # remove plate seal
+    ]
     # transfer: move volume_ul from source into EACH destination well/tube.
     # One source well feeds every dest; or equal-length lists pair up in order.
     source: str | None = Field(description="Source container name (transfer only)")
