@@ -3,7 +3,7 @@
 
     uv run python scripts/make_trailer.py --cut 2min   # results/trailer.mp4, under 2:00 (no challenge 3, scenes x0.8)
     uv run python scripts/make_trailer.py --cut 3min   # results/trailer_3min.mp4, all three challenges
-    add --renders DIR to point at the agent renders (default /tmp/t2wl_renders)
+    add --renders DIR to point at the agent renders (default /tmp/t2wl_renders, made by scripts/trailer_renders.py)
 
 Scores are from the committed results/<model>/<task>/reward.json, which is eval round R2 (graded rubric).
 Scene time splits go to results/<output>_timesplits.md.

@@ -11,7 +11,7 @@ The video panels are composited frame by frame from <render>.timeline.json (scri
 border and the event ticker turn red exactly while the erroneous robot events play.
 
 Inputs: --renders DIR with r7-ecoli-opus, gt-ecoli, r7-rna-opus, gt-rna, r5-rna-sonnet (.mp4 + .timeline.json),
-made with scripts/render_run.py from the protocols named in main(). Source PDFs are fetched from
+made by scripts/trailer_renders.py. Agent code panels are read from the eval-round commits with git show. Source PDFs are fetched from
 sources/<slug>/record.json and checked against its SHA-256; only redistributable (CC BY) papers are used.
 A scene-by-scene time split is written to results/trailer_errors_timesplits.md.
 Needs ffmpeg and poppler (pdftoppm, pdftotext).
@@ -432,6 +432,14 @@ def results_card(out, dur):
 
 # ── the three examples ────────────────────────────────────────────────────────────────────────────────────────
 
+def git_file(commit, path, tmp: Path) -> Path:
+    """A file as it was at an eval-round commit (R7 = 48836f1, R5 = 8beadb3)."""
+    out = tmp / f"{commit}-{path.replace('/', '_')}"
+    if not out.exists():
+        out.write_bytes(subprocess.run(["git", "-C", str(ROOT), "show", f"{commit}:{path}"], capture_output=True, check=True).stdout)
+    return out
+
+
 def ecoli_names(lw, well):
     for k, v in (("plasmid", "plasmid DNA"), ("tubes", "competent cells"), ("soc", "SOC medium")):
         if k in lw.lower():
@@ -491,7 +499,7 @@ def main():
     clip = panel_clip(ec_agent, 0, 6.33, 12, VBOX[2:], tmp / "ex1_agent.mp4", ecoli_names,
                       errors=[(1.4, 4.2, "ERROR: pipette-mixes competent cells 3 × 10 µL")], title="AI run · Opus 5.5 (R7)")
     add(lambda o, du: two_col(o, du, "Example 1 / 3  ·  AI code + robot run", "results/claude-opus-5-5/ecoli-heat-shock-transformation/protocol.py at R7 (48836f1)",
-                              lambda img, d: code_panel(d, L, "/tmp/r7/claude-opus-5-5/ecoli-heat-shock-transformation/protocol.py", 18, 29,
+                              lambda img, d: code_panel(d, L, git_file("48836f1", "results/claude-opus-5-5/ecoli-heat-shock-transformation/protocol.py", tmp), 18, 29,
                                                         [(23, 23, RED, "mix_after=(3, 10): not in the task")], "AI CODE  ·  Opus 5.5", AMBER),
                               lambda img, d: None, [dict(src=clip, box=VBOX)]),
         "ex1_code", 12, "Ex1 AI code (line 23 mix_after boxed red) | agent replay, red while it mixes the cells (1.5-4.0 s)")
@@ -534,7 +542,7 @@ def main():
     clip = panel_clip(rna_agent, 524.5, 537.7, 13, VBOX[2:], tmp / "ex2_agent.mp4", rna_names,
                       errors=[(527.1, 537.7, "ERROR: recovers 100 µL, beside the bead pellet")], title="AI run · Opus 5.5 (R7)")
     add(lambda o, du: two_col(o, du, "Example 2 / 3  ·  AI code + robot run", "All three models over-recover at R7: Opus 100 µL, Sonnet 100 µL, Fable 90 µL.",
-                              lambda img, d: code_panel(d, L, "/tmp/r7/claude-opus-5-5/opentrons-rna-extraction/protocol.py", 198, 210,
+                              lambda img, d: code_panel(d, L, git_file("48836f1", "results/claude-opus-5-5/opentrons-rna-extraction/protocol.py", tmp), 198, 210,
                                                         [(205, 206, RED, "ELUTION_VOL = 100: the whole elution")], "AI CODE  ·  Opus 5.5", AMBER),
                               lambda img, d: None, [dict(src=clip, box=VBOX)]),
         "ex2_code", 13, "Ex2 AI code (recover ELUTION_VOL=100 boxed red) | agent replay cued to recovery (t=527 s), red throughout")
@@ -575,7 +583,7 @@ def main():
     clip = panel_clip(ord_agent, 0, 9, 10, VBOX[2:], tmp / "ex3_agent.mp4", rna_names,
                       errors=[(1.0, 9, "ERROR: sample goes in first, before beads and isopropanol")], title="AI run · Sonnet 5.5 (R5)")
     add(lambda o, du: two_col(o, du, "Example 3 / 3  ·  AI code + robot run", "Sonnet 5.5 made this reordering in 4 of 5 binary-judge rounds (R3-R6). R5 shown.",
-                              lambda img, d: code_panel(d, L, "/tmp/r5/sonnet_rna.py", 63, 76,
+                              lambda img, d: code_panel(d, L, git_file("8beadb3", "results/claude-sonnet-5-5/opentrons-rna-extraction/protocol.py", tmp), 63, 76,
                                                         [(64, 69, RED, "samples first"), (72, 76, AMBER, "beads + isopropanol after")], "AI CODE  ·  Sonnet 5.5", AMBER),
                               lambda img, d: None, [dict(src=clip, box=VBOX)]),
         "ex3_code", 10, "Ex3 AI code (sample-first loop boxed red) | agent replay, red from the first sample transfer (1.2 s)")
