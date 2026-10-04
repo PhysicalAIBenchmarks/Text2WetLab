@@ -82,7 +82,7 @@ N_CHALLENGES = 3
 SCALE = 1.0  # every scene's length is multiplied by this (the 2min cut uses 0.8)
 
 
-def scene(out: Path, dur: float, bg: Image.Image, clips=(), fade=0.35):
+def scene(out: Path, dur: float, bg: Image.Image, clips=(), fade=0.35, fade_in=True):
     """bg image + clips overlaid. clip = dict(src, box=(x,y,w,h), speed=None|float, ss=0)."""
     dur = round(dur * SCALE, 2)
     png = out.with_suffix(".png")
@@ -102,7 +102,7 @@ def scene(out: Path, dur: float, bg: Image.Image, clips=(), fade=0.35):
                      f"pad={w}:{h}:(ow-iw)/2:(oh-ih)/2:color=0x07080d[c{i}]")
         chain.append(f"{last}[c{i}]overlay={x}:{y}:shortest=0[o{i}]")
         last = f"[o{i}]"
-    chain.append(f"{last}fade=t=in:st=0:d={fade},fade=t=out:st={dur - fade:.3f}:d={fade}[v]")
+    chain.append(f"{last}{f'fade=t=in:st=0:d={fade},' if fade_in else ''}fade=t=out:st={dur - fade:.3f}:d={fade}[v]")
     ff(*args, "-filter_complex", ";".join(chain), "-map", "[v]", "-t", f"{dur:.3f}", *ENC, str(out))
     png.unlink()
     return out
@@ -435,7 +435,7 @@ def cold_open(out, hist):
     d = ImageDraw.Draw(img)
     label(d, (40, H - 92), "Golden Gate Assembly  ·  33 steps  ·  Protocol IR replayed in MuJoCo", AMBER, 20)
     text(d, (50, H - 40), "AssemblyTron (Synthetic Biology 2023), ingested by paper2protocol", 15, MGREY)
-    return scene(out, 4, img, [dict(src=hist / "L2-golden-gate-assembly.mp4", box=(0, 0, W, H - 100), ss=6, speed=3)])
+    return scene(out, 4, img, [dict(src=hist / "L2-golden-gate-assembly.mp4", box=(0, 0, W, H - 100), ss=6, speed=3)], fade_in=False)  # first frame is not black
 
 
 def gap_card(out):
@@ -689,7 +689,7 @@ def main():
 
     lst = tmp / "concat.txt"
     lst.write_text("".join(f"file '{s}'\n" for s in segs))
-    ff("-f", "concat", "-safe", "0", "-i", str(lst), "-c", "copy", "-movflags", "+faststart", str(OUT))
+    ff("-f", "concat", "-safe", "0", "-i", str(lst), *ENC, "-movflags", "+faststart", str(OUT))  # one re-encode: clean timestamps for QuickTime
     d = duration(OUT)
     rows, t = [], 0.0
     for sg in segs:
