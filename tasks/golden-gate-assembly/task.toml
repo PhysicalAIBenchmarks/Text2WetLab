@@ -10,7 +10,7 @@ keywords = ["opentrons", "ot-2", "lab-automation", "protocol-generation"]
 [metadata]
 source = "paper2protocol"
 deck = "specified"
-grading = "simulator gate + end-state checks + Sonnet 5.5 rubric judge"
+grading = "simulator gate + Sonnet 5.5 rubric judge on the run log"
 
 [agent]
 timeout_sec = 1800.0

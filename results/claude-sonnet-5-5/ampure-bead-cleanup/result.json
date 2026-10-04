@@ -3,76 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 7109
+    "n_commands": 7877
   },
-  "checks": [
-    {
-      "name": "simulator_ran",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "tip_before_aspirate",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_overdispense",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_aspirate_from_empty_well",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "tip_dropped_at_end",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "no_cross_contamination",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "end_state:sample_plate",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "end_state:elution_plate",
-      "pass": true,
-      "detail": ""
-    }
-  ],
   "judge": {
     "items": [
       {
         "id": "binding",
         "score": 1,
-        "evidence": "step(40, beads['A1'], wells, mix=50) dispenses 40 uL to all 96 wells and calls p300.mix(10, 50, d); the 5 min incubation comment comes before the magnet comment."
+        "evidence": "Log shows a fresh tip per well, 40 uL beads aspirated from A1 of beads_reservoir and dispensed into each of 96 wells, then 10 mix cycles. The 'Incubate sample_plate 5 min' comment precedes the magnet comment."
       },
       {
         "id": "supernatant_and_washes",
         "score": 1,
-        "evidence": "The engage-magnet comment is recorded, then remove(90, wells, waste) runs on all 96 wells, followed by two cycles of step(200, etoh) and remove(200, wells, waste)."
+        "evidence": "The 'Engage magnetic module; wait 5 min' comment is present. The log shows 90 uL aspirated from each well to waste, then two rounds of 200 uL ethanol added and 200 uL removed to waste per well."
       },
       {
         "id": "drying_and_elution",
         "score": 1,
-        "evidence": "Comments record the 5 min dry and the magnet disengage. step(50, water, wells, mix=40) adds water with 10 mixes, and a comment records the 2 min incubation and the magnet re-engage."
+        "evidence": "Air-dry and 'Disengage magnetic module' comments appear in order. 50 uL water is added per well with 10 mix cycles of 40 uL. The comment 'Incubate 2 min; then re-engage magnetic module' follows."
       },
       {
         "id": "recovery",
         "score": 1,
-        "evidence": "The loop over zip(wells, ewells) aspirates 45 uL from each sample well and dispenses it to the matching elution well, and the end_state:elution_plate check passed."
+        "evidence": "Log lines 6530-6911 show 45 uL aspirated from each sample well and dispensed into the same well on elution_plate (A1->A1 through H12->H12)."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "Every well gets its own pick_up_tip and drop_tip in step, remove and the final recovery loop, and the no_cross_contamination check passed."
+        "evidence": "Every transfer uses new_tip='always'; the log shows a pick up and drop tip around each well for supernatant, ethanol removal and elution, with no cross-well tip reuse."
       }
     ],
     "scores": {
@@ -82,19 +40,15 @@
       "recovery": 1.0,
       "tips_and_contamination": 1.0
     },
-    "summary": "The protocol performs all 96-well steps with per-well fresh tips, the correct volumes and the manual steps recorded as comments in the right order. All measured checks passed, so every rubric item passes.",
+    "summary": "The protocol performs every step with correct volumes, wells and order, and records each manual step with protocol.comment. A fresh tip is used per well throughout, so all five rubric items pass.",
     "model": "claude-sonnet-5-5"
   },
-  "critical_failures": [],
   "rewards": {
     "reward": 1.0,
     "sim_pass": 1.0,
-    "checks_frac": 1.0,
     "lint_violations": 0.0,
     "hack_detected": 0.0,
-    "deterministic_reward": 1.0,
     "judge_mean": 1.0,
-    "critical_fail": 0.0,
     "rubric_binding": 1.0,
     "rubric_supernatant_and_washes": 1.0,
     "rubric_drying_and_elution": 1.0,

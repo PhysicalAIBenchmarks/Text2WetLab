@@ -14,21 +14,20 @@ def run(protocol: protocol_api.ProtocolContext):
 
     tips20 = protocol.load_labware('opentrons_96_tiprack_20ul', 10)
     tips300 = protocol.load_labware('opentrons_96_tiprack_300ul', 11)
-
     p20 = protocol.load_instrument('p20_single_gen2', 'left', tip_racks=[tips20])
     p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[tips300])
 
     cells = tubes['A1']
 
-    # 1. Plasmid DNA into competent cells (fresh tip, gentle mix)
-    p20.transfer(2, plasmid_plate['A1'], cells, new_tip='always', mix_after=(3, 10))
+    # Step 1: plasmid DNA into competent cells (no pipette mixing; cells are fragile)
+    p20.transfer(2, plasmid_plate['A1'], cells, new_tip='always')
+    protocol.comment('Gently flick to mix, then incubate cells_rack on ice 30 min.')
 
-    # 2. Heat shock (manual)
-    protocol.comment('Heat shock cells_rack (tubes_1_5ml_1 A1) at 42°C for 45 s, '
-                     'then transfer immediately to ice for 2 min.')
+    # Step 2: heat shock (manual)
+    protocol.comment('Heat shock cells_rack 42C for 45 s, then transfer immediately to ice for 2 min.')
 
-    # 3. SOC recovery medium
+    # Step 3: SOC recovery medium
     p300.transfer(250, soc_reservoir['A1'], cells, new_tip='always')
 
-    # 4. Outgrowth (manual)
-    protocol.comment('Incubate cells_rack at 37°C for 60 min at 250 rpm for outgrowth recovery.')
+    # Step 4: outgrowth (manual)
+    protocol.comment('Incubate cells_rack at 37C for 60 min at 250 rpm for outgrowth recovery.')

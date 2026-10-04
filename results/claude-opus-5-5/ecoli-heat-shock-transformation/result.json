@@ -3,76 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 19
+    "n_commands": 13
   },
-  "checks": [
-    {
-      "name": "simulator_ran",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "tip_before_aspirate",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_overdispense",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_aspirate_from_empty_well",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "tip_dropped_at_end",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "no_cross_contamination",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "end_state:plasmid_plate",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "end_state:cells_rack",
-      "pass": true,
-      "detail": ""
-    }
-  ],
   "judge": {
     "items": [
       {
         "id": "dna_addition",
         "score": 1,
-        "evidence": "p20.transfer(2, plasmid_plate['A1'], cells, ...) moves 2 \u00b5L from plate A1 to tube A1 with the p20; the end-state checks pass."
+        "evidence": "Log lines 2-3: P20 aspirates 2 uL from plasmid_plate A1 and dispenses into tubes_1_5ml_1 A1."
       },
       {
         "id": "heat_shock",
         "score": 1,
-        "evidence": "A protocol.comment after the DNA transfer records 42\u00b0C for 45 s, then ice for 2 min, in that order."
+        "evidence": "Comment 'Heat shock cells_rack 42C for 45 s, then transfer immediately to ice for 2 min.' comes after the DNA transfer and before the SOC step."
       },
       {
         "id": "soc_recovery",
         "score": 1,
-        "evidence": "p300.transfer(250, soc_reservoir['A1'], cells) comes after the heat-shock comment, and a comment records 37\u00b0C, 60 min, 250 rpm."
+        "evidence": "Log lines 6-7: P300 moves 250 uL from soc_reservoir A1 to the tube. The final comment records 37C, 60 min, 250 rpm."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Each transfer uses new_tip='always', so the DNA and the SOC each get one fresh tip; tip_dropped_at_end and no_cross_contamination both pass."
+        "evidence": "Each transfer uses new_tip='always' with its own pipette, so DNA and SOC get separate tips. Both tips are dropped (lines 4 and 8) and no tip is held at the end."
       },
       {
         "id": "fidelity_to_task",
         "score": 0,
-        "evidence": "The DNA transfer adds mix_after=(3, 10), a pipette mix in the competent cells that the task does not ask for and that can harm fragile cells."
+        "evidence": "The agent added the comment 'Gently flick to mix, then incubate cells_rack on ice 30 min.' before heat shock. The task does not include this step, and it would change the outcome."
       }
     ],
     "scores": {
@@ -82,19 +40,15 @@
       "tip_usage": 1.0,
       "fidelity_to_task": 0.0
     },
-    "summary": "The protocol performs the DNA addition, heat-shock comment, SOC addition and outgrowth comment in the right order. It uses fresh tips and drops the last one, and all measured checks pass. It adds an unrequested pipette mix of the cells after DNA addition, so fidelity fails.",
+    "summary": "The pipetting is correct: 2 uL DNA and 250 uL SOC, each with a fresh tip dropped afterwards. Heat shock and outgrowth are recorded in order. The protocol fails fidelity because it adds an unrequested 30 min ice incubation and flick-mixing comment before heat shock.",
     "model": "claude-sonnet-5-5"
   },
-  "critical_failures": [],
   "rewards": {
     "reward": 0.8,
     "sim_pass": 1.0,
-    "checks_frac": 1.0,
     "lint_violations": 0.0,
     "hack_detected": 0.0,
-    "deterministic_reward": 1.0,
     "judge_mean": 0.8,
-    "critical_fail": 0.0,
     "rubric_dna_addition": 1.0,
     "rubric_heat_shock": 1.0,
     "rubric_soc_recovery": 1.0,

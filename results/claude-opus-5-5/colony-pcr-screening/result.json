@@ -5,79 +5,32 @@
     "ok": true,
     "n_commands": 1926
   },
-  "checks": [
-    {
-      "name": "simulator_ran",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "tip_before_aspirate",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_overdispense",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_aspirate_from_empty_well",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "tip_dropped_at_end",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "no_cross_contamination",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "end_state:colony_plate",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "end_state:pcr_plate",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "end_state:primer_plate",
-      "pass": true,
-      "detail": ""
-    }
-  ],
   "judge": {
     "items": [
       {
         "id": "master_mix",
         "score": 1,
-        "evidence": "Loop aspirates 18 uL from reservoir A1 and dispenses into each of the 96 pcr_plate wells with the p20; end_state:pcr_plate check passed."
+        "evidence": "Log lines 2-193 show 18 uL aspirated from reservoir A1 and dispensed into each of the 96 pcr_plate wells with a single tip."
       },
       {
         "id": "template_and_primers",
         "score": 1,
-        "evidence": "Steps 2 and 3 zip colonies/primers to dest wells in order, with 1 uL aspirate/dispense by p20, plus mix(3,10) after colony addition; end-state checks pass."
+        "evidence": "Log shows 1 uL colony_plate well -> matching pcr_plate well (lines 196-1153) and 1 uL primer_plate well -> matching well (1156-1537), all with the p20, giving 20 uL."
       },
       {
         "id": "tips_and_contamination",
         "score": 1,
-        "evidence": "pick_up/drop_tip inside each per-well loop for colony and primer steps; single tip only for master mix into empty wells; no_cross_contamination passed."
+        "evidence": "Each colony and each primer transfer is bracketed by its own pick up tip and drop tip in the log; the master-mix tip is reused only for empty wells, which is allowed."
       },
       {
         "id": "thermocycling",
         "score": 1,
-        "evidence": "protocol.comment records seal and 98C 30 s; 30x[98C 10 s, 60C 30 s, 72C 30 s]; 72C 2 min; hold 4C."
+        "evidence": "The final protocol.comment records sealing and 98C 30 s; 30x[98C 10 s, 60C 30 s, 72C 30 s]; 72C 2 min; hold 4C."
       },
       {
         "id": "fidelity_to_paper",
         "score": 1,
-        "evidence": "Protocol follows the task steps in order with accurate comments/metadata and no invented steps or false action claims."
+        "evidence": "The steps follow the task order, including a 3x mix after the colony template, and the comments match the actions the code performs, with no invented steps."
       }
     ],
     "scores": {
@@ -87,19 +40,15 @@
       "thermocycling": 1.0,
       "fidelity_to_paper": 1.0
     },
-    "summary": "The protocol dispenses 18 \u00b5L master mix, then 1 \u00b5L colony template (mixed 3x) and 1 \u00b5L primer pair per well with the p20, using a fresh tip for each colony and primer. All measured checks passed, and the thermocycling program is recorded accurately as a comment.",
+    "summary": "The protocol matches the simulator log for all steps: 18 uL master mix into 96 wells, 1 uL colony template with 3x mix, and 1 uL primer mix, each on a fresh tip. The thermocycling comment is complete and the other comments and metadata are accurate.",
     "model": "claude-sonnet-5-5"
   },
-  "critical_failures": [],
   "rewards": {
     "reward": 1.0,
     "sim_pass": 1.0,
-    "checks_frac": 1.0,
     "lint_violations": 0.0,
     "hack_detected": 0.0,
-    "deterministic_reward": 1.0,
     "judge_mean": 1.0,
-    "critical_fail": 0.0,
     "rubric_master_mix": 1.0,
     "rubric_template_and_primers": 1.0,
     "rubric_tips_and_contamination": 1.0,

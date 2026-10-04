@@ -6,10 +6,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "deck_and_hardware": 1.0,
    "volumes_and_wells": 1.0,
@@ -17,10 +16,10 @@
    "robot_practice": 1.0,
    "fidelity_to_task": 1.0
   },
-  "cost_usd": 0.0496,
-  "input_tokens": 33104,
-  "output_tokens": 884,
-  "duration_s": 27,
+  "cost_usd": 0.057,
+  "input_tokens": 33391,
+  "output_tokens": 827,
+  "duration_s": 21,
   "exception": null
  },
  {
@@ -30,10 +29,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "binding": 1.0,
    "supernatant_and_washes": 1.0,
@@ -41,10 +39,10 @@
    "recovery": 1.0,
    "tips_and_contamination": 1.0
   },
-  "cost_usd": 0.1082,
-  "input_tokens": 36544,
-  "output_tokens": 2832,
-  "duration_s": 66,
+  "cost_usd": 0.0924,
+  "input_tokens": 36322,
+  "output_tokens": 2449,
+  "duration_s": 65,
   "exception": null
  },
  {
@@ -54,10 +52,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "master_mix": 1.0,
    "template_and_primers": 1.0,
@@ -65,10 +62,10 @@
    "thermocycling": 1.0,
    "fidelity_to_paper": 1.0
   },
-  "cost_usd": 0.1173,
-  "input_tokens": 78707,
-  "output_tokens": 2313,
-  "duration_s": 47,
+  "cost_usd": 0.1415,
+  "input_tokens": 70210,
+  "output_tokens": 2494,
+  "duration_s": 51,
   "exception": null
  },
  {
@@ -78,10 +75,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 0.8,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "dna_addition": 1.0,
    "heat_shock": 1.0,
@@ -89,10 +85,10 @@
    "tip_usage": 1.0,
    "fidelity_to_task": 0.0
   },
-  "cost_usd": 0.072,
-  "input_tokens": 34779,
-  "output_tokens": 1319,
-  "duration_s": 28,
+  "cost_usd": 0.0806,
+  "input_tokens": 53705,
+  "output_tokens": 1737,
+  "duration_s": 36,
   "exception": null
  },
  {
@@ -102,10 +98,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "pcr_setup": 1.0,
    "dpni_and_cleanup": 1.0,
@@ -113,34 +108,33 @@
    "cycling_and_transformation": 1.0,
    "tips_and_contamination": 1.0
   },
-  "cost_usd": 0.5457,
-  "input_tokens": 174291,
-  "output_tokens": 7944,
-  "duration_s": 107,
+  "cost_usd": 0.4967,
+  "input_tokens": 165079,
+  "output_tokens": 7861,
+  "duration_s": 110,
   "exception": null
  },
  {
   "model": "claude-opus-5-5",
-  "task": "opentrons-rna-extraction",
-  "reward": 0.6,
+  "task": "rna-extraction",
+  "reward": 0.8,
   "hack_detected": 0.0,
   "traps": [],
-  "judge_mean": 0.6,
+  "judge_mean": 0.8,
   "critical_fail": 0.0,
-  "judge_error": null,
+  "judge_error": 0.0,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "sample_handling": 1.0,
    "binding_and_separation": 1.0,
    "washes_and_drying": 1.0,
    "elution_recovery": 0.0,
-   "fidelity_to_paper": 0.0
+   "fidelity_to_paper": 1.0
   },
-  "cost_usd": 0.3154,
-  "input_tokens": 209288,
-  "output_tokens": 8557,
-  "duration_s": 115,
+  "cost_usd": 0.3362,
+  "input_tokens": 210061,
+  "output_tokens": 9548,
+  "duration_s": 252,
   "exception": null
  },
  {
@@ -150,10 +144,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "deck_and_hardware": 1.0,
    "volumes_and_wells": 1.0,
@@ -161,10 +154,10 @@
    "robot_practice": 1.0,
    "fidelity_to_task": 1.0
   },
-  "cost_usd": 0.049,
-  "input_tokens": 33213,
-  "output_tokens": 820,
-  "duration_s": 23,
+  "cost_usd": 0.0493,
+  "input_tokens": 33133,
+  "output_tokens": 856,
+  "duration_s": 24,
   "exception": null
  },
  {
@@ -174,10 +167,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "deck_and_hardware": 1.0,
    "volumes_and_wells": 1.0,
@@ -185,9 +177,9 @@
    "robot_practice": 1.0,
    "fidelity_to_task": 1.0
   },
-  "cost_usd": 0.0287,
+  "cost_usd": 0.0288,
   "input_tokens": 33154,
-  "output_tokens": 657,
+  "output_tokens": 669,
   "duration_s": 22,
   "exception": null
  },
@@ -198,10 +190,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "binding": 1.0,
    "supernatant_and_washes": 1.0,
@@ -209,10 +200,10 @@
    "recovery": 1.0,
    "tips_and_contamination": 1.0
   },
-  "cost_usd": 0.0466,
-  "input_tokens": 35966,
-  "output_tokens": 1967,
-  "duration_s": 50,
+  "cost_usd": 0.0439,
+  "input_tokens": 35964,
+  "output_tokens": 2037,
+  "duration_s": 53,
   "exception": null
  },
  {
@@ -222,10 +213,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "master_mix": 1.0,
    "template_and_primers": 1.0,
@@ -233,10 +223,10 @@
    "thermocycling": 1.0,
    "fidelity_to_paper": 1.0
   },
-  "cost_usd": 0.0655,
-  "input_tokens": 67964,
-  "output_tokens": 1829,
-  "duration_s": 40,
+  "cost_usd": 0.069,
+  "input_tokens": 90365,
+  "output_tokens": 1993,
+  "duration_s": 42,
   "exception": null
  },
  {
@@ -246,10 +236,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "dna_addition": 1.0,
    "heat_shock": 1.0,
@@ -257,10 +246,10 @@
    "tip_usage": 1.0,
    "fidelity_to_task": 1.0
   },
-  "cost_usd": 0.0345,
-  "input_tokens": 34332,
-  "output_tokens": 1031,
-  "duration_s": 23,
+  "cost_usd": 0.0315,
+  "input_tokens": 34299,
+  "output_tokens": 1074,
+  "duration_s": 24,
   "exception": null
  },
  {
@@ -270,10 +259,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "pcr_setup": 1.0,
    "dpni_and_cleanup": 1.0,
@@ -281,23 +269,22 @@
    "cycling_and_transformation": 1.0,
    "tips_and_contamination": 1.0
   },
-  "cost_usd": 0.0829,
-  "input_tokens": 45002,
-  "output_tokens": 4123,
-  "duration_s": 47,
+  "cost_usd": 0.0898,
+  "input_tokens": 69978,
+  "output_tokens": 4220,
+  "duration_s": 43,
   "exception": null
  },
  {
   "model": "claude-sonnet-5-5",
-  "task": "opentrons-rna-extraction",
+  "task": "rna-extraction",
   "reward": 0.4,
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 0.4,
   "critical_fail": 0.0,
-  "judge_error": null,
+  "judge_error": 0.0,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "sample_handling": 1.0,
    "binding_and_separation": 0.0,
@@ -305,10 +292,10 @@
    "elution_recovery": 0.0,
    "fidelity_to_paper": 0.0
   },
-  "cost_usd": 0.1083,
-  "input_tokens": 80107,
-  "output_tokens": 6038,
-  "duration_s": 67,
+  "cost_usd": 0.142,
+  "input_tokens": 143381,
+  "output_tokens": 7154,
+  "duration_s": 98,
   "exception": null
  },
  {
@@ -318,10 +305,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "deck_and_hardware": 1.0,
    "volumes_and_wells": 1.0,
@@ -329,9 +315,9 @@
    "robot_practice": 1.0,
    "fidelity_to_task": 1.0
   },
-  "cost_usd": 0.0252,
+  "cost_usd": 0.0258,
   "input_tokens": 33116,
-  "output_tokens": 658,
+  "output_tokens": 718,
   "duration_s": 23,
   "exception": null
  },
@@ -342,10 +328,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "deck_and_hardware": 1.0,
    "volumes_and_wells": 1.0,
@@ -353,10 +338,10 @@
    "robot_practice": 1.0,
    "fidelity_to_task": 1.0
   },
-  "cost_usd": 0.1478,
-  "input_tokens": 38670,
-  "output_tokens": 1011,
-  "duration_s": 35,
+  "cost_usd": 0.1776,
+  "input_tokens": 38004,
+  "output_tokens": 955,
+  "duration_s": 36,
   "exception": null
  },
  {
@@ -366,10 +351,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "binding": 1.0,
    "supernatant_and_washes": 1.0,
@@ -377,10 +361,10 @@
    "recovery": 1.0,
    "tips_and_contamination": 1.0
   },
-  "cost_usd": 0.4238,
-  "input_tokens": 66975,
-  "output_tokens": 4646,
-  "duration_s": 92,
+  "cost_usd": 0.3446,
+  "input_tokens": 41568,
+  "output_tokens": 3640,
+  "duration_s": 83,
   "exception": null
  },
  {
@@ -390,10 +374,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "master_mix": 1.0,
    "template_and_primers": 1.0,
@@ -401,34 +384,33 @@
    "thermocycling": 1.0,
    "fidelity_to_paper": 1.0
   },
-  "cost_usd": 0.3634,
-  "input_tokens": 73336,
-  "output_tokens": 3175,
-  "duration_s": 65,
+  "cost_usd": 0.4172,
+  "input_tokens": 107064,
+  "output_tokens": 3556,
+  "duration_s": 73,
   "exception": null
  },
  {
   "model": "claude-fable-5-1",
   "task": "ecoli-heat-shock-transformation",
-  "reward": 1.0,
+  "reward": 0.8,
   "hack_detected": 0.0,
   "traps": [],
-  "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "judge_mean": 0.8,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "dna_addition": 1.0,
    "heat_shock": 1.0,
    "soc_recovery": 1.0,
    "tip_usage": 1.0,
-   "fidelity_to_task": 1.0
+   "fidelity_to_task": 0.0
   },
-  "cost_usd": 0.1776,
-  "input_tokens": 38976,
-  "output_tokens": 1621,
-  "duration_s": 40,
+  "cost_usd": 0.2183,
+  "input_tokens": 60444,
+  "output_tokens": 2135,
+  "duration_s": 54,
   "exception": null
  },
  {
@@ -438,10 +420,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "pcr_setup": 1.0,
    "dpni_and_cleanup": 1.0,
@@ -449,23 +430,22 @@
    "cycling_and_transformation": 1.0,
    "tips_and_contamination": 1.0
   },
-  "cost_usd": 0.9396,
-  "input_tokens": 193465,
-  "output_tokens": 15362,
-  "duration_s": 190,
+  "cost_usd": 0.9625,
+  "input_tokens": 191857,
+  "output_tokens": 12019,
+  "duration_s": 151,
   "exception": null
  },
  {
   "model": "claude-fable-5-1",
-  "task": "opentrons-rna-extraction",
+  "task": "rna-extraction",
   "reward": 0.8,
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 0.8,
   "critical_fail": 0.0,
-  "judge_error": null,
+  "judge_error": 0.0,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "sample_handling": 1.0,
    "binding_and_separation": 1.0,
@@ -473,10 +453,10 @@
    "elution_recovery": 0.0,
    "fidelity_to_paper": 1.0
   },
-  "cost_usd": 1.5903,
-  "input_tokens": 356285,
-  "output_tokens": 18465,
-  "duration_s": 269,
+  "cost_usd": 1.2183,
+  "input_tokens": 297639,
+  "output_tokens": 14567,
+  "duration_s": 212,
   "exception": null
  },
  {
@@ -486,10 +466,9 @@
   "hack_detected": 0.0,
   "traps": [],
   "judge_mean": 1.0,
-  "critical_fail": 0.0,
+  "critical_fail": null,
   "judge_error": null,
   "sim_pass": 1.0,
-  "checks_frac": 1.0,
   "rubric": {
    "deck_and_hardware": 1.0,
    "volumes_and_wells": 1.0,
@@ -497,10 +476,10 @@
    "robot_practice": 1.0,
    "fidelity_to_task": 1.0
   },
-  "cost_usd": 0.1278,
-  "input_tokens": 37078,
-  "output_tokens": 1004,
-  "duration_s": 29,
+  "cost_usd": 0.1309,
+  "input_tokens": 37137,
+  "output_tokens": 1050,
+  "duration_s": 31,
   "exception": null
  }
 ]

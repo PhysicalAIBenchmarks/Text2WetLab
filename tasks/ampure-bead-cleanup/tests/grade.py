@@ -1,84 +1,72 @@
 #!/usr/bin/env python3
-"""Grader for an IR task: lint, simulate /app/protocol.py, check the end state against the IR, then a rubric LLM judge.
+"""Grader: lint, reward-hacking traps, simulate /app/protocol.py, then a rubric LLM judge that reads the simulator run log.
 
-Reward = mean judge rubric score, capped at 0.3 if a critical end-state/safety check fails; 0 if lint or simulation fails.
-Original deterministic description:
-
-Reward: 1.0 if every check passes; otherwise up to 0.5 for the fraction of end-state checks right (halved if a safety rule
-was broken); 0 if the file fails the lint, the simulator fails, or nothing was written. There is no LLM judge, so a judge outage cannot zero a correct protocol.
-Paths can be overridden for local runs: TESTS_DIR, PROTOCOL_PATH, VERIFIER_OUT, OT_PYTHON, RUNLOG.
+Reward = mean of 5 pass/fail judge items (20% each); 0 if lint, a trap or simulation fails.
+Paths can be overridden for local runs: TESTS_DIR, PROTOCOL_PATH, VERIFIER_OUT, OT_PYTHON, LABWARE_DIR.
 """
 import json
 import os
+import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 TESTS = Path(os.environ.get("TESTS_DIR", "/tests"))
-os.environ.setdefault("OT_PYTHON", "/opt/ot/bin/python")
-os.environ.setdefault("RUNLOG", str(TESTS / "runlog.py"))
+OT_PYTHON = os.environ.get("OT_PYTHON", "/opt/ot/bin/python")
 sys.path.insert(0, str(TESTS))
-from paper2protocol.models import Protocol  # noqa: E402
 from protocol_lint import violations  # noqa: E402
-from spec_check import check, simulate  # noqa: E402
 from anti_hack import tripped  # noqa: E402
-from judge_layer import CRITICAL_CAP, JUDGE_MODEL, is_critical, judge  # noqa: E402
+from judge_layer import JUDGE_MODEL, judge  # noqa: E402
 
 PROTOCOL = Path(os.environ.get("PROTOCOL_PATH", "/app/protocol.py"))
 OUT = Path(os.environ.get("VERIFIER_OUT", "/logs/verifier"))
 
 
+def simulate(protocol: Path, labware_dir: str | None = None, timeout: int = 600) -> dict:
+    with tempfile.TemporaryDirectory() as empty:
+        out = Path(empty, "result.json")      # a file, not stdout: a protocol can print a forged result and exit early
+        r = subprocess.run([OT_PYTHON, str(TESTS / "runlog.py"), str(protocol), labware_dir or empty, str(out)],
+                           capture_output=True, text=True, timeout=timeout)
+        if out.exists():
+            return json.loads(out.read_text())
+    return {"ok": False, "error": (r.stderr.strip().splitlines() or ["runlog produced no result"])[-1]}
+
+
 def grade(protocol: Path = PROTOCOL) -> tuple[dict, dict]:
-    rewards = {"reward": 0.0, "sim_pass": 0.0, "checks_frac": 0.0, "lint_violations": 0.0}
+    rewards = {"reward": 0.0, "sim_pass": 0.0, "lint_violations": 0.0}
     record: dict = {}
     if not protocol.exists():
         record["error"] = "missing protocol"
         return rewards, record
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "protocol.py").write_text(protocol.read_text())     # keep what was graded next to the verdict
-    bad = violations(protocol.read_text())
+    code = protocol.read_text()
+    (OUT / "protocol.py").write_text(code)     # keep what was graded next to the verdict
+    bad = violations(code)
     record["lint"] = bad
     if bad:
         rewards["lint_violations"] = float(len(bad))
         record["error"] = "protocol uses something a protocol does not need and is not graded"
         return rewards, record
-    traps = tripped(protocol.read_text())
+    traps = tripped(code)
     record["traps"] = traps
     rewards["hack_detected"] = float(bool(traps))
     if traps:
         record["error"] = "reward-hacking trap tripped"
         return rewards, record
-    sim = simulate(str(protocol), os.environ.get("LABWARE_DIR"))
+    sim = simulate(protocol, os.environ.get("LABWARE_DIR"))
     record["simulation"] = {k: v for k, v in sim.items() if k not in ("events", "labware")}
     if not sim.get("ok"):
         record["error"] = "simulator gate failed"
         return rewards, record
     rewards["sim_pass"] = 1.0
-    ir = Protocol.model_validate_json((TESTS / "ir.json").read_text())
-    deck = json.loads((TESTS / "deck.json").read_text())
-    free = frozenset(json.loads((TESTS / "checks.json").read_text())["free_wells"])
-    res = check(ir, sim, free, deck)
-    passed = sum(c["pass"] for c in res["checks"])
-    rewards["checks_frac"] = round(passed / len(res["checks"]), 4)
-    # Partial credit counts only the substantive checks (right labware in the right slot, right end state), so a protocol
-    # that does nothing scores 0 instead of passing the safety rules vacuously. Breaking a safety rule halves it.
-    substantive = [c for c in res["checks"] if c["name"].startswith(("deck_labware", "end_state"))]
-    safety_broken = any(not c["pass"] for c in res["checks"] if c not in substantive)
-    frac = sum(c["pass"] for c in substantive) / max(len(substantive), 1)
-    rewards["reward"] = 1.0 if res["passed"] else round(0.5 * frac * (0.5 if safety_broken else 1.0), 4)
-    record["checks"] = res["checks"]
-    rewards["deterministic_reward"] = rewards["reward"]
-    verdict = judge(TESTS, res["checks"], protocol.read_text(), Path("/data/paper.txt"))
+    (OUT / "events.json").write_text(json.dumps(sim["events"]))
+    verdict = judge(TESTS, sim["events"], code, Path("/data/paper.txt"))
     record["judge"] = verdict | {"model": JUDGE_MODEL}
     if "error" in verdict:
         rewards["judge_error"] = 1.0
-        rewards["reward"] = 0.0
         return rewards, record
     mean = sum(verdict["scores"].values()) / len(verdict["scores"])
-    critical = sorted(c["name"] for c in res["checks"] if not c["pass"] and is_critical(c["name"]))
-    record["critical_failures"] = critical
-    rewards["judge_mean"] = round(mean, 4)
-    rewards["critical_fail"] = float(bool(critical))
-    rewards["reward"] = round(min(mean, CRITICAL_CAP) if critical else mean, 4)
+    rewards["judge_mean"] = rewards["reward"] = round(mean, 4)
     for key, score in verdict["scores"].items():
         rewards[f"rubric_{key}"] = score
     return rewards, record

@@ -1,1 +1,1 @@
-{"reward": 1.0, "sim_pass": 1.0, "checks_frac": 1.0, "lint_violations": 0.0, "hack_detected": 0.0, "deterministic_reward": 1.0, "judge_mean": 1.0, "critical_fail": 0.0, "rubric_binding": 1.0, "rubric_supernatant_and_washes": 1.0, "rubric_drying_and_elution": 1.0, "rubric_recovery": 1.0, "rubric_tips_and_contamination": 1.0}
+{"reward": 1.0, "sim_pass": 1.0, "lint_violations": 0.0, "hack_detected": 0.0, "judge_mean": 1.0, "rubric_binding": 1.0, "rubric_supernatant_and_washes": 1.0, "rubric_drying_and_elution": 1.0, "rubric_recovery": 1.0, "rubric_tips_and_contamination": 1.0}

@@ -5,74 +5,32 @@
     "ok": true,
     "n_commands": 22
   },
-  "checks": [
-    {
-      "name": "simulator_ran",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "tip_before_aspirate",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_overdispense",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_aspirate_from_empty_well",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "tip_dropped_at_end",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "no_cross_contamination",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "end_state:plasmid_plate",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "end_state:cells_rack",
-      "pass": true,
-      "detail": ""
-    }
-  ],
   "judge": {
     "items": [
       {
         "id": "dna_addition",
         "score": 1,
-        "evidence": "p20 aspirates 2 uL from plasmid_plate A1 and dispenses into tubes_1_5ml_1 A1; end-state checks pass."
+        "evidence": "Log lines 2-3: P20 aspirates 2 uL from plasmid_plate A1 and dispenses 2 uL into tubes_1_5ml_1 A1."
       },
       {
         "id": "heat_shock",
         "score": 1,
-        "evidence": "The Step 2 comment records 42 C for 45 s then ice for 2 min, placed after DNA addition and before SOC."
+        "evidence": "Comment and pause text give 42 C for 45 s then ice for 2 min, in that order, after DNA addition and before SOC."
       },
       {
         "id": "soc_recovery",
         "score": 1,
-        "evidence": "p300 moves 250 uL from soc_reservoir A1 to the cells tube after the heat shock, and the Step 4 comment records 37 C, 60 min, 250 rpm."
+        "evidence": "Log lines 12-13: P300 moves 250 uL from soc_reservoir A1 to tube A1; the final comment records 37 C, 60 min, 250 rpm."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "p20 and p300 each pick up a fresh tip and drop it; tip_dropped_at_end and no_cross_contamination pass."
+        "evidence": "The P20 uses its own tip for the DNA and drops it (line 10); the P300 uses a new tip for the SOC and drops it (line 14)."
       },
       {
         "id": "fidelity_to_task",
-        "score": 1,
-        "evidence": "Steps are in the right order and the comments are accurate; the extra 3x10 uL mix and the pause do not change volumes or outcome, and all checks pass."
+        "score": 0,
+        "evidence": "The agent added a 3x10 uL mix of the competent cells (log lines 4-9) that the task does not ask for and that could harm cell viability. It also added a protocol.pause."
       }
     ],
     "scores": {
@@ -80,25 +38,21 @@
       "heat_shock": 1.0,
       "soc_recovery": 1.0,
       "tip_usage": 1.0,
-      "fidelity_to_task": 1.0
+      "fidelity_to_task": 0.0
     },
-    "summary": "The protocol performs the DNA addition, SOC addition, and the heat shock and outgrowth records in the correct order with fresh tips, and all measured checks pass. A small extra mix and a pause were added, which do not change the end state.",
+    "summary": "The DNA addition, heat shock record, SOC addition, outgrowth record and tip handling all match the task. The unrequested mix of the competent cells with the P20 (and the added pause) counts against fidelity.",
     "model": "claude-sonnet-5-5"
   },
-  "critical_failures": [],
   "rewards": {
-    "reward": 1.0,
+    "reward": 0.8,
     "sim_pass": 1.0,
-    "checks_frac": 1.0,
     "lint_violations": 0.0,
     "hack_detected": 0.0,
-    "deterministic_reward": 1.0,
-    "judge_mean": 1.0,
-    "critical_fail": 0.0,
+    "judge_mean": 0.8,
     "rubric_dna_addition": 1.0,
     "rubric_heat_shock": 1.0,
     "rubric_soc_recovery": 1.0,
     "rubric_tip_usage": 1.0,
-    "rubric_fidelity_to_task": 1.0
+    "rubric_fidelity_to_task": 0.0
   }
 }

@@ -3,71 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 10
+    "n_commands": 11
   },
-  "checks": [
-    {
-      "name": "simulator_ran",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "tip_before_aspirate",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_overdispense",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_aspirate_from_empty_well",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "tip_dropped_at_end",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "no_cross_contamination",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "end_state:plate",
-      "pass": true,
-      "detail": "expected volumes [100.0, 100.0], got [100.0, 100.0] (positions free)"
-    }
-  ],
   "judge": {
     "items": [
       {
         "id": "deck_and_hardware",
         "score": 1,
-        "evidence": "Reservoir slot 1 and plate slot 2 are loaded with the required labels; p20 left and p300 right with matching tip racks in slots 10 and 11."
+        "evidence": "Reservoir in slot 1 and plate in slot 2 are loaded with the required labels. The p20 (left) and p300 (right) pipettes use the specified tip racks in slots 10 and 11."
       },
       {
         "id": "volumes_and_wells",
         "score": 1,
-        "evidence": "The p300 aspirates 100 \u00b5L from reservoir A1 and dispenses 100 \u00b5L into plate A1, then again into B1; the end_state check passed with [100, 100]."
+        "evidence": "The run log shows 100 uL aspirated from reservoir A1 and dispensed into plate A1 (lines 2-3), then 100 uL into plate B1 (lines 6-7), all with the p300. No other wells were touched."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "Each loop iteration picks up a tip before aspirating and drops it afterwards; the tip_before_aspirate and tip_dropped_at_end checks passed."
+        "evidence": "Each transfer is preceded by pick up tip and ended with drop tip (log lines 1, 4, 5, 8), so no tip is held at the end."
       },
       {
         "id": "robot_practice",
         "score": 1,
-        "evidence": "100 \u00b5L is within the p300 range, apiLevel 2.15 is valid, and the simulation ran without errors."
+        "evidence": "100 uL is within the p300 range, apiLevel 2.15 is allowed, and the blow_out is at the destination well top, which is safe."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "The protocol does exactly the one requested transfer, and the comments and metadata describe it accurately. The blow_out over the destination does not change the outcome."
+        "evidence": "The protocol does only the single requested transfer and nothing else. The metadata and the final comment accurately describe it."
       }
     ],
     "scores": {
@@ -77,19 +40,15 @@
       "robot_practice": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol transfers 100 \u00b5L from reservoir A1 to plate A1 and B1 with the p300, using a fresh tip for each well. All measured checks passed and every rubric item is met.",
+    "summary": "The protocol loads the specified labware with the required labels and moves 100 uL from reservoir A1 to plate A1 and then to plate B1, using the p300 with a fresh tip each time. It simulates cleanly and every rubric item passes.",
     "model": "claude-sonnet-5-5"
   },
-  "critical_failures": [],
   "rewards": {
     "reward": 1.0,
     "sim_pass": 1.0,
-    "checks_frac": 1.0,
     "lint_violations": 0.0,
     "hack_detected": 0.0,
-    "deterministic_reward": 1.0,
     "judge_mean": 1.0,
-    "critical_fail": 0.0,
     "rubric_deck_and_hardware": 1.0,
     "rubric_volumes_and_wells": 1.0,
     "rubric_tip_usage": 1.0,

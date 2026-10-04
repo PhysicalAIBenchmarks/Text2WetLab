@@ -3,76 +3,34 @@
   "traps": [],
   "simulation": {
     "ok": true,
-    "n_commands": 12
+    "n_commands": 10
   },
-  "checks": [
-    {
-      "name": "simulator_ran",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "tip_before_aspirate",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_overdispense",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_aspirate_from_empty_well",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "tip_dropped_at_end",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "no_cross_contamination",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "end_state:plasmid_plate",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "end_state:cells_rack",
-      "pass": true,
-      "detail": ""
-    }
-  ],
   "judge": {
     "items": [
       {
         "id": "dna_addition",
         "score": 1,
-        "evidence": "p20.transfer(2, plasmid_plate['A1'], tubes['A1']) uses the 20 uL pipette with the correct volume, source and destination."
+        "evidence": "Log lines 1-3: P20 picks up a tip, aspirates 2 uL from plasmid_plate A1 and dispenses 2 uL into tubes_1_5ml_1 A1."
       },
       {
         "id": "heat_shock",
         "score": 1,
-        "evidence": "The comment 'Heat shock cells_rack 42C 45 s, then transfer immediately to ice 2 min' follows DNA addition and states 42 C, 45 s, then ice for 2 min in that order."
+        "evidence": "After the DNA step the code calls protocol.comment('Heat shock ... 42C 45 s, then transfer immediately to ice 2 min'), which records 42 C for 45 s and then ice for 2 min in the right order."
       },
       {
         "id": "soc_recovery",
         "score": 1,
-        "evidence": "p300.transfer(250, soc['A1'], tubes['A1']) comes after the heat shock comment, and the final comment records incubation at 37C, 60 min, 250 rpm."
+        "evidence": "Log lines 5-8: P300 moves 250 uL from soc_reservoir A1 to tube A1 after the heat shock comment, and the final comment records 37C, 60 min, 250 rpm."
       },
       {
         "id": "tip_usage",
         "score": 1,
-        "evidence": "new_tip='always' gives a fresh tip for the DNA and another for the SOC, transfer() drops each tip at the end, and the tip_dropped_at_end and no_cross_contamination checks passed."
+        "evidence": "Each step has its own pick_up_tip and drop_tip (log lines 1, 4, 5, 8): P20 for the DNA, P300 for the SOC, and no tip is held at the end."
       },
       {
         "id": "fidelity_to_task",
         "score": 1,
-        "evidence": "All four steps are present in order with accurate comments and nothing extra added; the end_state checks passed."
+        "evidence": "The four steps run in the specified order with the correct volumes and labware labels, nothing extra is added, and the comments match the task."
       }
     ],
     "scores": {
@@ -82,19 +40,15 @@
       "tip_usage": 1.0,
       "fidelity_to_task": 1.0
     },
-    "summary": "The protocol performs the 2 uL DNA transfer with the p20 and the 250 uL SOC transfer with the p300, in the right order, with fresh tips. The heat shock and outgrowth steps are recorded as accurate comments, and all measured checks passed.",
+    "summary": "The protocol follows the task: 2 uL DNA with the P20, a heat shock comment, 250 uL SOC with the P300, then a recovery comment. Each transfer uses its own tip, which is dropped afterwards, and the comments match the code.",
     "model": "claude-sonnet-5-5"
   },
-  "critical_failures": [],
   "rewards": {
     "reward": 1.0,
     "sim_pass": 1.0,
-    "checks_frac": 1.0,
     "lint_violations": 0.0,
     "hack_detected": 0.0,
-    "deterministic_reward": 1.0,
     "judge_mean": 1.0,
-    "critical_fail": 0.0,
     "rubric_dna_addition": 1.0,
     "rubric_heat_shock": 1.0,
     "rubric_soc_recovery": 1.0,

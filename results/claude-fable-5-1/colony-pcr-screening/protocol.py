@@ -1,29 +1,35 @@
-"""Colony PCR screening with Q5 Hot Start master mix (OT-2).
+"""Colony PCR screening with Q5 Hot Start 2x master mix (OT-2).
 
-Adapted from the Slowpoke colony PCR workflow (ACS Synth. Biol.,
-doi:10.1021/acssynbio.5c00629): dispense PCR master mix into a 96-well PCR
-plate, then add colony template and the matching primer pair to each well.
+Adapted from the Slowpoke colony PCR workflow (Golden Gate cloning and colony
+PCR on OT-2/Flex, ACS Synth. Biol., doi:10.1021/acssynbio.5c00629).
+
+Per PCR well (96 reactions, pcr_plate A1:H12):
+    18 uL Q5 Hot Start 2x master mix   (master_mix_reservoir A1)
+     1 uL colony template              (colony_plate, well-for-well)
+     1 uL primer pair                  (primer_plate, well-for-well)
+    -----
+    20 uL total, then seal and thermocycle off-deck.
 """
-
-from opentrons import protocol_api
 
 metadata = {
     'protocolName': 'Colony PCR screening with Q5 Hot Start master mix',
-    'author': 'Slowpoke-derived OT-2 protocol',
-    'description': ('18 uL Q5 Hot Start 2x master mix + 1 uL colony template '
-                    '+ 1 uL primer pair per well, 96 reactions'),
+    'author': 'Slowpoke-derived protocol',
+    'description': ('Dispense 18 uL Q5 HS 2x master mix, then 1 uL colony '
+                    'template and 1 uL primer pair per well of a 96-well '
+                    'PCR plate.'),
     'apiLevel': '2.15',
 }
 
 MASTER_MIX_VOL = 18   # uL per reaction
 TEMPLATE_VOL = 1      # uL per reaction
 PRIMER_VOL = 1        # uL per reaction
-TEMPLATE_MIX_REPS = 3
-TEMPLATE_MIX_VOL = 10  # uL, within the 19 uL present after template addition
+MIX_VOL = 10          # uL used when mixing after template addition
+MIX_REPS = 3
+N_REACTIONS = 96      # full plate, A1:H12
 
 
-def run(protocol: protocol_api.ProtocolContext):
-    # ---------------- Labware ----------------
+def run(protocol):
+    # ------------------------------------------------------------------ deck
     colony_plate = protocol.load_labware(
         'corning_96_wellplate_360ul_flat', 1, label='colony_plate')
     pcr_plate = protocol.load_labware(
@@ -36,57 +42,57 @@ def run(protocol: protocol_api.ProtocolContext):
     tips20 = protocol.load_labware('opentrons_96_tiprack_20ul', 10)
     tips300 = protocol.load_labware('opentrons_96_tiprack_300ul', 11)
 
-    # ---------------- Pipettes ----------------
     p20 = protocol.load_instrument(
         'p20_single_gen2', 'left', tip_racks=[tips20])
     p300 = protocol.load_instrument(  # noqa: F841 - loaded per deck setup
         'p300_single_gen2', 'right', tip_racks=[tips300])
 
-    master_mix = master_mix_reservoir['A1']
-    dest_wells = pcr_plate.wells()          # A1..H12, column-major
-    colony_wells = colony_plate.wells()
-    primer_wells = primer_plate.wells()
+    master_mix = master_mix_reservoir.wells_by_name()['A1']
+    pcr_wells = pcr_plate.wells()[:N_REACTIONS]
+    colony_wells = colony_plate.wells()[:N_REACTIONS]
+    primer_wells = primer_plate.wells()[:N_REACTIONS]
 
-    # ---------------- Step 1: master mix ----------------
-    # 18 uL is below the p300 minimum, so the p20 is used. The destination
-    # wells are empty, so one tip is used for the whole plate; dispensing is
-    # done just above the well bottom so the tip never touches dispensed mix.
-    protocol.comment('Step 1: 18 uL Q5 Hot Start 2x master mix to each '
-                     'pcr_plate well (A1:H12).')
+    # ---------------------------------------------- 1. master mix, 18 uL/well
+    # Master mix is the only liquid in the plate at this point, so a single
+    # tip can be reused for all 96 wells (dispensed from above the liquid so
+    # the tip never touches the destination).
+    protocol.comment('Step 1: 18 uL Q5 Hot Start 2x master mix -> pcr_plate '
+                     'A1:H12 (single tip).')
     p20.pick_up_tip()
-    for dest in dest_wells:
+    for dest in pcr_wells:
         p20.aspirate(MASTER_MIX_VOL, master_mix)
         p20.dispense(MASTER_MIX_VOL, dest.bottom(2))
-        p20.blow_out(dest.bottom(2))
+        p20.blow_out(dest.top())
     p20.drop_tip()
-    p20.reset_tipracks()
 
-    # ---------------- Step 2: colony template ----------------
-    # Fresh tip per well to avoid cross-contaminating colonies; mix 3x after
-    # dispensing to combine template with the master mix.
-    protocol.comment('Step 2: 1 uL colony template from colony_plate to the '
-                     'matching pcr_plate well, mixing 3x after dispensing.')
-    for src, dest in zip(colony_wells, dest_wells):
+    # ------------------------------------------ 2. colony template, 1 uL/well
+    # Fresh tip per colony; mix 3x after dispensing to disperse the template.
+    protocol.comment('Step 2: 1 uL colony template colony_plate -> pcr_plate, '
+                     'well-for-well, mix 3x after dispense (fresh tip each).')
+    p20.reset_tipracks()
+    for src, dest in zip(colony_wells, pcr_wells):
         p20.pick_up_tip()
         p20.aspirate(TEMPLATE_VOL, src)
         p20.dispense(TEMPLATE_VOL, dest)
-        p20.mix(TEMPLATE_MIX_REPS, TEMPLATE_MIX_VOL, dest)
-        p20.blow_out(dest.top(-2))
+        p20.mix(MIX_REPS, MIX_VOL, dest)
+        p20.blow_out(dest.top())
         p20.drop_tip()
-    p20.reset_tipracks()
 
-    # ---------------- Step 3: primer pairs ----------------
-    protocol.comment('Step 3: 1 uL primer pair from primer_plate to the '
-                     'matching pcr_plate well.')
-    for src, dest in zip(primer_wells, dest_wells):
+    # --------------------------------------------- 3. primer pairs, 1 uL/well
+    # Fresh tip per primer pair to avoid cross-contaminating primer stocks.
+    protocol.comment('Step 3: 1 uL primer pair primer_plate -> pcr_plate, '
+                     'well-for-well (fresh tip each).')
+    p20.reset_tipracks()
+    for src, dest in zip(primer_wells, pcr_wells):
         p20.pick_up_tip()
         p20.aspirate(PRIMER_VOL, src)
         p20.dispense(PRIMER_VOL, dest)
-        p20.blow_out(dest.top(-2))
+        p20.blow_out(dest.top())
         p20.drop_tip()
-    p20.reset_tipracks()
 
-    # ---------------- Step 4: off-deck thermocycling ----------------
-    protocol.comment('Step 4 (manual): seal pcr_plate and thermocycle: '
-                     '98 C 30 s; [98 C 10 s, 60 C 30 s, 72 C 30 s] x 30; '
-                     '72 C 2 min; hold at 4 C.')
+    # ------------------------------------------ 4. off-deck seal + thermocycle
+    protocol.comment('Step 4 (manual, off-deck): seal pcr_plate and run '
+                     'thermocycler program: 98 C 30 s; [98 C 10 s, 60 C 30 s, '
+                     '72 C 30 s] x 30 cycles; 72 C 2 min; hold at 4 C.')
+    protocol.comment('Final volume per PCR well: 20 uL '
+                     '(18 uL master mix + 1 uL template + 1 uL primers).')

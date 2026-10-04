@@ -1,4 +1,4 @@
-"""Rubric LLM judge added on top of the deterministic grader (same scheme as opentrons-rna-extraction)."""
+"""Rubric LLM judge that reads the protocol and the simulator run log."""
 from __future__ import annotations
 
 import json
@@ -6,12 +6,11 @@ import re
 from pathlib import Path
 
 JUDGE_MODEL = "claude-sonnet-5-5"
-CRITICAL_CAP = 0.3
 
 PROMPT = """You are grading an Opentrons OT-2 Python protocol written by an AI agent for the task below.
 
 Authority, in order:
-1. MEASURED CHECKS: computed by code from the Opentrons simulator's record of what the robot would physically do. Treat them as facts. If a check related to a rubric item failed, that item may not score 1 unless you cite specific code showing the check itself is mistaken.
+1. SIMULATOR RUN LOG: every robot action recorded by the Opentrons simulator, in order. This is what the robot would physically do. Treat it as fact and check volumes, wells, tips, order and delays against it rather than against your reading of the code.
 2. {spec_name}: the scientific specification.
 3. REFERENCE PROTOCOL: one valid implementation. Do not reward or penalise stylistic or layout resemblance to it.
 
@@ -29,14 +28,14 @@ RUBRIC:
 === SIMULATOR RESULT ===
 PASSED (opentrons_simulate completed without error)
 
-=== MEASURED CHECKS ===
-{checks}
+=== SIMULATOR RUN LOG ===
+{runlog}
 
 === AGENT PROTOCOL (/app/protocol.py) ===
 {protocol}
 
 You must call the submit_grades tool exactly once with your grades, in this shape:
-{{"items": [{{"id": "<rubric id>", "score": 0|1, "evidence": "<one sentence citing code or a check>"}}, ...], "summary": "<two sentences>"}}
+{{"items": [{{"id": "<rubric id>", "score": 0|1, "evidence": "<one sentence citing code or run-log lines>"}}, ...], "summary": "<two sentences>"}}
 """
 
 GRADE_TOOL = {
@@ -61,12 +60,25 @@ GRADE_TOOL = {
 }
 
 
-def is_critical(name: str) -> bool:
-    return name.startswith(("deck_labware", "end_state")) or name in {
-        "no_cross_contamination", "tip_before_aspirate", "no_aspirate_from_empty_well", "no_overdispense"}
+def runlog_text(events: list[dict]) -> str:
+    lines = []
+    for i, e in enumerate(events, 1):
+        kind, inst = e["kind"], re.sub(r" on .*", "", e.get("instrument", ""))
+        if kind in ("aspirate", "dispense", "air"):
+            prep = "into" if kind == "dispense" else "from"
+            lines.append(f"{i}. {inst}: {kind} {e['volume']:g} uL {prep} {e['well']} of {e['labware']}")
+        elif kind in ("pick", "drop"):
+            lines.append(f"{i}. {inst}: {'pick up tip' if kind == 'pick' else 'drop tip'}")
+        elif kind == "delay":
+            lines.append(f"{i}. delay {e['seconds']:g} s")
+        elif kind == "temp":
+            lines.append(f"{i}. temperature module set to {e['celsius']:g} C")
+        else:
+            lines.append(f"{i}. {kind} magnetic module")
+    return "\n".join(lines)
 
 
-def judge(tests: Path, checks: list[dict], protocol: str, paper: Path) -> dict:
+def judge(tests: Path, events: list[dict], protocol: str, paper: Path) -> dict:
     import anthropic
 
     rubric = json.loads((tests / "rubric.json").read_text())
@@ -77,7 +89,7 @@ def judge(tests: Path, checks: list[dict], protocol: str, paper: Path) -> dict:
         task=(tests / "instruction.md").read_text(),
         paper_block=f"\n=== PAPER (text extraction) ===\n{paper.read_text()}\n" if has_paper else "",
         reference=(tests / "reference_protocol.py").read_text(),
-        checks=json.dumps(checks, indent=1),
+        runlog=runlog_text(events),
         protocol=protocol,
     )
     ids = {r["id"] for r in rubric}
