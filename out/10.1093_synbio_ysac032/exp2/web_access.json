@@ -1,0 +1,301 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "fetch",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2677662/"
+    },
+    {
+      "kind": "search",
+      "value": "Golden Gate shuffling: a one-pot DNA shuffling method based on type IIS restriction enzymes Engler 2009 PLoS ONE"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0005553"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.semanticscholar.org/paper/Golden-Gate-Shuffling:-A-One-Pot-DNA-Shuffling-on-Engler-Gruetzner/91308e99646dcbb93bb1aabb6d58d037793a9d24"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/24422132_Golden_Gate_Shuffling_A_one-pot_DNA_shuffling_method_based_on_Type_IIS_restriction_enzymes"
+    },
+    {
+      "kind": "result",
+      "value": "http://connection.ebscohost.com/c/articles/55979992/golden-gate-shuffling-one-pot-dna-shuffling-method-based-type-iis-restriction-enzymes"
+    },
+    {
+      "kind": "result",
+      "value": "https://experiments.springernature.com/articles/10.1007/978-1-62703-764-8_9"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2677662/"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/protocol/10.1007/978-1-61779-065-2_11"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0238592"
+    },
+    {
+      "kind": "result",
+      "value": "https://wikis.mit.edu/confluence/download/attachments/97718554/golden%20gate%20protocol.pdf?api=v2"
+    },
+    {
+      "kind": "search",
+      "value": "NEB Golden Gate Assembly protocol BsaI-HFv2 T4 ligase buffer 37°C 5 min 16°C 5 min 30 cycles 60°C 5 min"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2677662/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2677662/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0005553"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0005553"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/-/media/nebus/files/manuals/manuale1601.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neosynbio.com/golden-gate-assembly"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb-online.fr/wp-content/uploads/NEB_Golden_Gate_Assembly.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://currentprotocols.onlinelibrary.wiley.com/doi/10.1002/cpz1.882"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb-online.de/wp-content/uploads/2019/01/CLO_BreakingThroughLimitsGoldenGate_TN_1901_HiRes.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://barricklab.org/twiki/bin/view/Lab/GoldenGateAssembly"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb-online.de/literatur/pdf/NEB_Golden_Gate_Assembly.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.talindrew.com/guides/golden-gate-assembly"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.wiki/teams/4947/wiki/golden-gate-assembly-protocol-for-using-nebridge-golden-gate-assembly-kit-bsai-hf-v2-e1601.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/nebinspired-blog/getting-started-with-golden-gate"
+    },
+    {
+      "kind": "search",
+      "value": "Zymo DNA Clean & Concentrator-5 instruction manual 5 volumes DNA Binding Buffer 200 µl DNA Wash Buffer 2 times elution 6-8 µl 1 minute"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_d4003t_d4003_d4004_d4013_d4014_dna_clean_concentrator_-5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_D4003T_D4003_D4004_D4013_D4014_DNA_Clean_Concentrator_-5_ver_1_2_1_LKN-SW__1.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.bioprocessonline.com/doc/dna-clean-concentrator-5-0001"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/dna-clean-concentrator-5-protocol-5jyl82q6l2wp/v1"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_d4005_d4006__d4033_d4034_dna_clean_concentrator-25_kit.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/Zymo-Research-DNA-Clean-Concentrator-14egnz5qg5dy/v1"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_d4066_d4067_zr-96_genomic_dna_clean_concentrator-5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_d5201_d5205_chip_dna_clean_concentrator_kit.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_d4080_select-a-size_dna_clean_concentrator.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/364686059_DNA_Clean_Concentrator-5_Protocol_v1"
+    },
+    {
+      "kind": "search",
+      "value": "NEB Q5 High-Fidelity DNA Polymerase PCR protocol 25 µl reaction extension 20-30 seconds/kb 72°C 98°C"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/protocols/pcr-using-q5-high-fidelity-dna-polymerase-m0491?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/pcr-using-q5-hot-start-high-fidelity-dna-polymeras-bfknjkve.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/-/media/nebus/files/manuals/manuale0555.pdf?rev=627d55764b62404e9bf1a0526034f173&hash=DFACB338D5D2B1F1799FABE40FFECBB5"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/protocols/protocol-for-q5-hot-start-high-fidelity-2x-master-mix-m0494?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.org/mediawiki/2018/a/a8/T--Toronto--_Exclusion_PCR.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/PCR-with-Q5-Polymerase-M0491-imsua5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.wiki/teams/4174/wiki/pcr-neb-q5-220707-1.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/PCR-Using-Q5-Hot-Start-High-Fidelity-DNA-Polymeras-imsunm.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/pcr-using-q5-hot-start-high-fidelity-dna-polymeras-bfknjkve.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.org/mediawiki/2017/a/ad/Q5_Hi_Fi_2X_Master_Mix_Protocol.pdf"
+    },
+    {
+      "kind": "search",
+      "value": "NEB Phusion High-Fidelity DNA Polymerase protocol extension 15-30 s/kb 72°C 98°C denaturation 25 µl reaction"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/protocols/pcr-protocol-m0530?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/-/media/nebus/files/manuals/manuale0553.pdf?rev=833f6fc6b804479596df3bd6093813c6&hash=60960470E50FB882F6D188CAD463D62A"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012393_Phusion_HighFidelity_DNAPolymerase_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/pcr-protocol-for-phusion-high-fidelity-dna-polymer-bdd3i28n.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://thetomwilliamslab.com/wp-content/uploads/2012/08/phusion-high-fidelity-polymerase.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://assets.fishersci.com/TFS-Assets/BID/Reference-Materials/phusion-dna-polymerases-labaid.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.org/mediawiki/2014/0/03/Protocol_for_Phusion_PCR.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/protocols/protocol-for-phusion-hot-start-flex-dna-polymerase-m0535"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/pcr-protocol-for-phusion-high-fidelity-dna-polymer-irrcd56.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ulab360.com/files/prod/manuals/201301/06/429815001.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://files.zymoresearch.com/protocols/_d4003t_d4003_d4004_d4013_d4014_dna_clean_concentrator_-5.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://files.zymoresearch.com/protocols/_d4003t_d4003_d4004_d4013_d4014_dna_clean_concentrator_-5.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://files.zymoresearch.com/protocols/_D4003T_D4003_D4004_D4013_D4014_DNA_Clean_Concentrator_-5_ver_1_2_1_LKN-SW__1.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://files.zymoresearch.com/protocols/_D4003T_D4003_D4004_D4013_D4014_DNA_Clean_Concentrator_-5_ver_1_2_1_LKN-SW__1.pdf"
+    },
+    {
+      "kind": "search",
+      "value": "Zymo DNA Clean & Concentrator-5 protocol \"2:1\" DNA Binding Buffer to sample, transfer to column, centrifuge 30 seconds, 200 µl wash buffer twice, elute 6 µl water"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_D4003T_D4003_D4004_D4013_D4014_DNA_Clean_Concentrator_-5_ver_1_2_1_LKN-SW__1.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/Zymo-Research-DNA-Clean-Concentrator-egbbbsn"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_d4003t_d4003_d4004_d4013_d4014_dna_clean_concentrator_-5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/dna-clean-concentrator-5-protocol-giubuew"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.bioscience.co.uk/resources/rna-clean-and-concentrator-5-protocol.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.bioprocessonline.com/doc/dna-clean-concentrator-5-0001"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11155811"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/Zymo-Research-DNA-Clean-Concentrator-egbbbsn.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_d4045_d4046_zymoclean_large_fragment_dna_recovery_kit.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_d4031_d4032_dna_clean_concentrator-500.pdf"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "verdict": "major_issues",
+  "summary": "The protocol follows the paper's workflow (plate, image, segment, score, CSV, pick) and flags its assumptions. However, it has several real problems. The core picking step (18) is encoded as a liquid transfer with no volume, which causes the automated error. The source plate is stored at 4 °C before plating and inoculation. The 200 µL spread plus the 1:10^6 dilution is likely to give far too few colonies. Pouring agar is modelled as P20/pipette transfers of 25-35 mL. The destination layout and the 64-colony count conflict with the paper's rules about plate geometry and pickable colonies.",
+  "issues": [
+    {
+      "step": 18,
+      "severity": "major",
+      "issue": "The picking step is encoded as a liquid transfer with no positive volume, which is the cause of the automated error. Colony picking is a touch/dip of the tip on the colony surface, not an aspirate/dispense. Also, the paper does not say whether biomass is deposited by dispensing or by touching the agar. The 8x8 grid at 9 mm pitch is assumed, but an 8x8 grid is plausible as a layout only if it fits within the Omnitray usable area, and the ordering needs to be explicit.",
+      "suggestion": "Represent the pick as a custom motion step. Per colony: pick up a new P20 tip, move to the CSV coordinate at a tuned z, touch the colony, move to the destination position, touch or dip into the agar, and discard the tip. If the tool needs a volume, add a small nominal aspirate/dispense (e.g. 1-2 µL of air or liquid) and state clearly that it is an assumption. Confirm the 9 mm pitch and the column-wise order fit the Omnitray footprint."
+    },
+    {
+      "step": 12,
+      "severity": "major",
+      "issue": "The dilution scheme gives very few cells per plate. The overnight culture is typically ~10^9 CFU/mL. After a 1:1 mix, a 10^-6 dilution gives ~10^3 CFU/mL, so 200 µL gives ~200 CFU only if the culture is ~10^9 CFU/mL. DH5α overnights vary, and the culture is not density-normalised. The protocol assumes equal cell density but never measures or adjusts it, so the colony count could fall below 64 non-border colonies, or the blue/white ratio could deviate from 50:50. The 200 µL volume on a 25 mL plate with no spreading step also leaves the plate wet.",
+      "suggestion": "Plate two or three dilutions (e.g. 10^-5, 10^-6, 10^-7) and pick the plate with 150-300 colonies. Optionally normalise cultures by OD600 before mixing. Reduce the plating volume to 100 µL or let the plate absorb the inoculum, and note that it is an assumption."
+    },
+    {
+      "step": 2,
+      "severity": "major",
+      "issue": "The X-gal plate is dried, protected from light, and stored at 4 °C until use. Step 12 then adds liquid culture to the plate. The order is fine, but the plate is not warmed to room temperature or 37 °C before plating, and drying 'with the lid ajar' on the bench risks contamination. Separately, pouring a 25 mL molten agar volume is a manual task, but steps 1 and 3 model it as an OT-2 pipette transfer.",
+      "suggestion": "Mark the pouring (steps 1 and 3) as MANUAL. Add a note to warm the plate to room temperature before plating, and dry it in a laminar flow hood."
+    },
+    {
+      "step": 1,
+      "severity": "major",
+      "issue": "Transferring 25,000 µL (and 35,000 µL in step 3) of molten agar is not feasible on an OT-2 with a P20 and the listed 1.5 mL/15 mL/50 mL labware. The agar also needs to stay molten, which a 50 mL tube on the deck does not do. The prompt also notes the plates are 'modelled as reservoirs', which hides this problem. In addition, step 1 and step 3 have no agar preparation step, so X-gal and gentamicin addition (to ~50 °C agar) is never described. Adding X-gal to the agar is also not stated in the paper.",
+      "suggestion": "Replace both steps with MANUAL pouring steps that include preparing LB-agar, cooling to ~50 °C, adding gentamicin and X-gal (dissolved in DMF), pouring, and solidifying. Remove the deck tube-to-plate transfers and the agar tubes from the deck."
+    },
+    {
+      "step": 3,
+      "severity": "minor",
+      "issue": "The destination Omnitray is filled with 35 mL of agar, which is the working volume given by the vendor, but the paper only says 'single-well plate'. The agar fill, the gentamicin and the omission of X-gal are all assumed. A full 35 mL fill also changes the plate surface height relative to the source plate, which matters for tip z calibration.",
+      "suggestion": "Keep it as assumed, but flag that the surface height must be calibrated on the OT-2, and mark the step MANUAL for pouring."
+    },
+    {
+      "step": 14,
+      "severity": "minor",
+      "issue": "The camera/transilluminator setup, white balance and pixel-to-mm calibration come after the plate is already prepared, which is acceptable, but the reference blue colour is only sampled in step 16 after the image is already acquired. The note says it should come from the same illumination, which implies a separate image or a first pass. There is no step to acquire the reference colony colour before scoring.",
+      "suggestion": "Add an explicit step after image capture to sample the mean colour of a clearly blue colony from the captured image, and then run the scoring. Alternatively, state that the reference is picked from a prior image under the same settings."
+    },
+    {
+      "step": 16,
+      "severity": "minor",
+      "issue": "The 64 most dissimilar colonies from a 50:50 mix of white and blue could include fewer than 64 white colonies, so the selection of 64 'most dissimilar' would run into blue ones. The paper says that the bluest were picked last, so the 64 includes both phenotypes, but the protocol does not state the expected split or check for it. Note also the paper says 'colonies exhibit a mixture of white and blue'.",
+      "suggestion": "State that the 64 selected will include both phenotypes and check that the plate has at least 64 non-border colonies with enough of each colour. Note this expected split as an assumption."
+    },
+    {
+      "step": 9,
+      "severity": "minor",
+      "issue": "The dilution steps (6-11) are written out of bench order: LB is added to the dilution tubes (6-8) before the mix is made, which is fine, but the mix in step 5 is only 'mixed 5 times' with a P20 on a 200 µL volume, which may not be adequate. A P20 cannot handle 100 µL or 990 µL volumes, and mixing 200 µL with a P20 is not possible.",
+      "suggestion": "Specify the pipette for each step: a P300/P1000 for 100 µL and 990 µL transfers and for mixing, and a P20 for 10 µL. If only a P20 is mounted (the camera is on the P20 arm), mark these dilution steps MANUAL."
+    },
+    {
+      "step": 19,
+      "severity": "minor",
+      "issue": "The regrowth step is an assumed verification that the paper does not report. Incubating overnight would also change colour intensity, so the white-to-blue order check relative to the picked order is not equivalent to the paper's observation. The destination plate has no X-gal, so blue cannot be checked on regrowth.",
+      "suggestion": "Either add X-gal to the destination plate, or say that colour is verified from the source image and that regrowth is only for viability."
+    }
+  ]
+}

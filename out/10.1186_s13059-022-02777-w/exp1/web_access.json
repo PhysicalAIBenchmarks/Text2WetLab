@@ -1,0 +1,397 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "search",
+      "value": "Hackflex low-cost Illumina Nextera Flex library construction protocol tagmentation volumes PCR cycles"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/357764451_Hackflex_low-cost_high-throughput_Illumina_Nextera_Flex_library_construction"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.microbiologyresearch.org/content/journal/mgen/10.1099/mgen.0.000744"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8914357/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/779215v1.full"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/779215v2.full"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/335999737_Hackflex_low_cost_Illumina_sequencing_library_construction_for_high_sample_counts"
+    },
+    {
+      "kind": "result",
+      "value": "https://protocols.hostmicrobe.org/hack-flex-zephyr"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/779215.full.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8914357/"
+    },
+    {
+      "kind": "search",
+      "value": "Hackflex low-cost Illumina Nextera Flex library construction protocol"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8914357/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/357764451_Hackflex_low-cost_high-throughput_Illumina_Nextera_Flex_library_construction"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/779215v2"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.microbiologyresearch.org/content/journal/mgen/10.1099/mgen.0.000744"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/335999737_Hackflex_low_cost_Illumina_sequencing_library_construction_for_high_sample_counts"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/779215v1"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.omicsdi.org/dataset/biostudies-literature/S-EPMC8914357"
+    },
+    {
+      "kind": "result",
+      "value": "https://academic.oup.com/ismecommun/article/4/1/ycae075/7684615"
+    },
+    {
+      "kind": "result",
+      "value": "https://protocols.hostmicrobe.org/flex"
+    },
+    {
+      "kind": "result",
+      "value": "https://protocols.hostmicrobe.org/hack-flex"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8914357/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8914357/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8914357/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8914357/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000107"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6346935/"
+    },
+    {
+      "kind": "search",
+      "value": "Oberacker Bio-On-Magnetic-Beads BOMB open platform high-throughput nucleic acid extraction PLoS Biology"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/327622866_Bio-On-Magnetic-Beads_BOMB_Open_platform_for_high-throughput_nucleic_acid_extraction_and_manipulation"
+    },
+    {
+      "kind": "result",
+      "value": "https://orca.cardiff.ac.uk/id/eprint/118958/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.semanticscholar.org/paper/Bio-On-Magnetic-Beads-(BOMB):-Open-platform-for-and-Oberacker-Stepper/9acb25bf5cba0ed7fb1f0c31f82a91ec751afa88"
+    },
+    {
+      "kind": "result",
+      "value": "https://kclpure.kcl.ac.uk/portal/en/publications/bio-on-magnetic-beads-bomb-open-platform-for-high-throughput-nucl/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.linkedin.com/in/dr-phil-oberacker-999442148/"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pbio.3000107&type=printable"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.plos.org/plosbiology/article?id=10.1371%2Fjournal.pbio.3000107"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/414516.full.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6343928/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6343928/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6343928/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pbio.3000107&type=printable"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pbio.3000107&type=printable"
+    },
+    {
+      "kind": "search",
+      "value": "BOMB protocol bacterial DNA extraction guanidine hydrochloride lysis buffer binding buffer 5 M GuHCl isopropanol wash buffer 1 wash buffer 2 silica-coated magnetic beads"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/414516v1.full.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://reich.hms.harvard.edu/sites/reich.hms.harvard.edu/files/inline-files/s41596-018-0050-5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/guanidine-based-dna-extraction-with-silica-coated-che7t3hn.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/guanidine-based-dna-extraction-with-silica-coated-che7t3hn.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6548253"
+    },
+    {
+      "kind": "result",
+      "value": "https://onlinelibrary.wiley.com/doi/full/10.1002/mbo3.1432"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12297425"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/low-cost-museum-dna-extraction-using-magnetic-bead-cuvxww7n.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://bomb.bio/wp-content/uploads/2018/09/6.1_BOMB_TNA_extraction_mammalian_GITC_v1.0.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6343928/"
+    },
+    {
+      "kind": "search",
+      "value": "Oberacker BOMB S1 Appendix protocol 1 DNA extraction from bacteria lysis buffer composition Tris EDTA Triton guanidine"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10077465"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10501776"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9605256"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8617839"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9277997"
+    },
+    {
+      "kind": "result",
+      "value": "https://geneticeducation.co.in/lysis-buffer-for-dna-extraction/"
+    },
+    {
+      "kind": "result",
+      "value": "https://cdn.gbiosciences.com/pdfs/protocol/BE-310_protocol.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12297425"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2020.04.05.026435v1.full.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://bomb.bio/wp-content/uploads/2018/09/6.1_BOMB_TNA_extraction_mammalian_GITC_v1.0.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://bomb.bio/wp-content/uploads/2018/09/6.1_BOMB_TNA_extraction_mammalian_GITC_v1.0.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://bomb.bio/protocols/"
+    },
+    {
+      "kind": "search",
+      "value": "Goldman 2022 Culture-enriched community profiling improves resolution of the vertebrate gut microbiota Mol Ecol Resour"
+    },
+    {
+      "kind": "result",
+      "value": "https://onlinelibrary.wiley.com/doi/epdf/10.1111/1755-0998.13456"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.asm.org/doi/abs/10.1128/mmbr.00128-25?af=R"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.nature.com/articles/s41587-025-02660-6"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/B9BEB4900D14E84ED2A14BE16F02DB41/S2977377624000176a.pdf/culturomics-bringing-culture-back-to-the-forefront-for-effective-gastrointestinal-bacterial-capture.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.nature.com/articles/s41467-024-55668-y"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4929786/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8096432/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4929786/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/27363992/"
+    },
+    {
+      "kind": "search",
+      "value": "Moeller lab RNAlater fecal culture YCFA starch Bifidobacterium selective media Bacteroides bile esculin BHIS recipe"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.asm.org/doi/pdf/10.1128/aem.62.12.4608-4613.1996"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC91699/"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.asm.org/doi/full/10.1128/cmr.00129-19"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/article/10.1007/s00284-023-03201-7"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10894057"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12377113"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11883422"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11229660"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9757403"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10314853"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://onlinelibrary.wiley.com/doi/epdf/10.1111/1755-0998.13456"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://onlinelibrary.wiley.com/doi/full/10.1111/1755-0998.13456"
+    },
+    {
+      "kind": "search",
+      "value": "Goldman Sanders Moeller culture-enriched community profiling vertebrate gut microbiota bioRxiv RNAlater YCFA BSM BBE BHIS media anaerobic chamber plated"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2022.04.11.487950v1.full"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/364319546_A_low-cost_genomics_workflow_enables_isolate_screening_and_strain-level_analyses_within_microbiomes"
+    },
+    {
+      "kind": "result",
+      "value": "https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02777-w"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.cambridge.org/core/journals/animal-nutriomics/article/culturomics-bringing-culture-back-to-the-forefront-for-effective-gastrointestinal-bacterial-capture/B9BEB4900D14E84ED2A14BE16F02DB41"
+    },
+    {
+      "kind": "result",
+      "value": "https://ouci.dntb.gov.ua/en/works/7A55nXr2/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.nature.com/articles/s41587-025-02660-6"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4929786/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7268277/"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/1706.01787"
+    }
+  ]
+}

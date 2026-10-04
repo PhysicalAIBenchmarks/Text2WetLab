@@ -1,0 +1,40 @@
+[
+  {
+    "title": "DNA-BOT automated BASIC assembly and transformation of 88 three-gene operon constructs, plated as spots on selective agar",
+    "goal": "Test whether DNA-BOT can assemble and transform 88 ten-part operon constructs in parallel in a single run, giving colonies for every construct with a low background of undigested backbone.",
+    "section_refs": [
+      "s2.2",
+      "s2.3"
+    ],
+    "shared_refs": [
+      "s2.1"
+    ],
+    "unresolved_refs": [
+      "DNA-BOT executed 'as described in detail within the Supplementary Data (DNA-BOT_instructions_v1.0.0)'",
+      "Heat shocks conducted 'according to the manufacturer's instructions'",
+      "Clip reaction master mix prepared manually, deck setup and calibration details in the Supplementary Data"
+    ],
+    "figure_refs": [
+      "Figure 3A",
+      "Figure 3B",
+      "Figure 2"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Flow cytometry of sfGFP, mCherry and BFP expression in picked colonies from DNA-BOT constructs",
+    "goal": "Quantify fluorescence of three biological replicates per construct, to assess assembly accuracy and the effect of promoter, RBS and gene order on operon expression.",
+    "section_refs": [
+      "s2.4"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "Data analyzed with FlowJo_V10 and 'subsequently processed as described in the main text'",
+      "Background correction and normalization details are not fully specified"
+    ],
+    "figure_refs": [
+      "Figure 3C"
+    ],
+    "liquid_handling": "partly"
+  }
+]

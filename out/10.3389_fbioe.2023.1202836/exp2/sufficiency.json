@@ -1,0 +1,77 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the strains, the X-gal concentration (50 µg/mL), the hardware, the workflow, the coordinate mapping, the 64-colony column-wise ordering and the destination plate (Nunc Omnitray). It leaves out the plating density, antibiotic, incubation, reference RGB value, dissimilarity metric and pick-motion parameters. None of these is critical to the ordering outcome, and each has a defensible default or can be set by the user.",
+  "gaps": [
+    {
+      "detail": "Dilution factor / colony density plated (paper says only 'proper dilution factor')",
+      "why_needed": "The plate needs at least 64 well-separated colonies, with a mix of white and blue, so that the colour ranking and picking can be tested. Over-crowded plates also cause merged-colony detection errors.",
+      "status": "assumable",
+      "resolution": "Mix the two overnight cultures 1:1 (the paper gives 50%-50%). Dilute and spread to give about 150-300 isolated colonies per plate, with a few spare plates at other dilutions. The paper's raw-picking test used 12-453 colonies per plate, so this density is within its tested range. Pick a plate with at least 64 non-border colonies.",
+      "source": "standard practice; range from s3.3"
+    },
+    {
+      "detail": "Antibiotic selection for pSEVA637 and pSEVA6819[gD] (identity and concentration), and whether IPTG was used",
+      "why_needed": "The plasmid-carrying strains need selection, and the blue colour needs lacZ-based X-gal cleavage.",
+      "status": "assumable",
+      "resolution": "The SEVA numbering convention gives the first digit as the resistance marker, with 6 meaning gentamicin. This is from memory; the SEVA 2013 paper was only returned as a search snippet and I did not confirm the numbering from it. Use gentamicin at about 10 µg/mL in LB-agar plus X-gal at 50 µg/mL, as stated in s3.3. Do not add IPTG unless you confirm it is needed. The paper does not mention it, and the plasmid is stated to turn blue with X-gal alone.",
+      "source": "standard practice; SEVA convention (https://academic.oup.com/nar/article/41/D1/D666/1060614, snippet only)"
+    },
+    {
+      "detail": "Agar plate preparation: volume per plate, plate diameter, and how X-gal was added (in the agar or spread on top)",
+      "why_needed": "Agar depth sets the colony height and the picking z-position. It also affects the image focus and the contrast of the blue colour.",
+      "status": "assumable",
+      "resolution": "Pour LB-agar with 50 µg/mL X-gal and the antibiotic into the agar, using about 25 mL per 85-89 mm round dish (the diameter range in s2.2). Dry the plates. The Thermo X-gal/IPTG LB plate protocol uses about 25 mL per dish. Protect the plates from light.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/BID/Methods-&-Protocols/75-preparation-of-x-gal-iptg-lb-agar-plates-for-blue-white-colony-screening.pdf"
+    },
+    {
+      "detail": "Incubation time and temperature for the E. coli DH5α plates",
+      "why_needed": "Colonies must be large enough to be detected and the blue colour must develop.",
+      "status": "assumable",
+      "resolution": "Incubate at 37 °C overnight (16-20 h), then optionally hold at 4 °C for a few hours to intensify the blue. The paper gives 30 °C overnight only for the P. putida fluorescence test.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Target reference RGB value for 'blueish' and the dissimilarity metric and score weighting used",
+      "why_needed": "The picking order depends on the reference colour and on how the distance is computed. The paper says only that the reference was an arbitrary blueish colour taken from the pSEVA6819[gD] strain. Colour is averaged in HSV inside each colony footprint, and a weighted sum of scores is used.",
+      "status": "assumable",
+      "resolution": "Sample the mean colour of a clearly blue colony from the same imaging setup and use it as the reference. Rank all colonies by distance to it, such as Euclidean distance in HSV or RGB. Use the colour weight alone (size and fluorescence weights set to 0). The 64 most dissimilar colonies are picked first, descending, and the bluest last, in column-wise order. The exact value does not change what the test measures, which is the ordering.",
+      "source": "s2.5, s3.3; standard practice"
+    },
+    {
+      "detail": "Destination plate preparation: contents of the Nunc Omnitray (agar or empty), agar type, and volume",
+      "why_needed": "The picked biomass has to be deposited into a defined medium so the transfer can be checked.",
+      "status": "assumable",
+      "resolution": "The Nunc Omnitray single-well plate has a working volume of about 35 mL. Fill it with LB-agar plus gentamicin (with or without X-gal) so that picked colonies can be re-grown and the blue/white identity checked. The paper says only 'single-well plate (Nunc Omnitray)'.",
+      "source": "https://www.thermofisher.com/order/catalog/product/242811"
+    },
+    {
+      "detail": "Picking motion parameters: tip type, dip depth and z-height above the agar, touch or aspirate action, tip use per colony, and the deposit pattern on the destination plate",
+      "why_needed": "These decide whether biomass is actually collected. Too deep risks hitting the plate or bending the tip, as the paper notes for border colonies.",
+      "status": "assumable",
+      "resolution": "Use a P20 pipette (Figure 5 legend) with a new tip per colony. Calibrate the z-height so the tip just touches the colony surface on the agar. The 64 deposit positions on the destination plate follow the column-wise order stated in s3.3. The exact parameters are not in the paper and must be tuned on the robot with the destination plate.",
+      "source": "standard practice; s3.3 and Figure 5 legend"
+    },
+    {
+      "detail": "Imaging settings: white-light intensity, camera exposure and gain, camera-to-plate position, and the pixel-to-mm factor",
+      "why_needed": "Colour averaging depends on the illumination, so the colours seen in imaging must match the reference colour.",
+      "status": "assumable",
+      "resolution": "Use the white channel of the RGB panel with the Alvium 1800 U-500c camera. Set a fixed exposure and fix the white balance. Calibrate the pixel-to-mm factor with a ruler or a known plate diameter on the transilluminator. The same illumination must be used for both the reference colour and the screening image.",
+      "source": "s3.1, s2.4, s2.5; standard practice"
+    },
+    {
+      "detail": "Colony detection model: trained Detectron2 PanopticFPN weights and the chosen hyperparameters (Optuna results)",
+      "why_needed": "The colony coordinates come from this model.",
+      "status": "assumable",
+      "resolution": "The paper gives the training procedure only in outline (200 images augmented to 3,000, 75/25 split, PQ/SQ optimisation, consensus of three weight sets). It does not give the final hyperparameters. The paper's own code and weights were not consulted, as instructed. Any colony segmentation that yields centroids in a plate-centred frame can stand in. The coordinate mapping is: pixel offset to labware centre, scaled to mm, then rotated 90° anticlockwise into the robot frame (s2.4). Exclude colonies touching the plate border.",
+      "source": "s2.1-s2.4"
+    },
+    {
+      "detail": "Orchestration and communication setup (OT-2 SSH, Raspberry Pi light control, flag-file loop, CSV upload)",
+      "why_needed": "The picking step has to wait for the coordinate file.",
+      "status": "resolved",
+      "resolution": "The OT-2 homes, moves the camera to the acquisition position and loops on flag_txt_file.txt. The orchestrator turns on white light via SSH to the Raspberry Pi and captures the image. It then runs the segmentation, scores and filters colonies, and writes a CSV of coordinates in mm. The CSV is uploaded by scp, the flag is updated, and the robot reads the CSV and picks.",
+      "source": "s3.2, s2.4, Figure 6 legend"
+    }
+  ],
+  "retrieved_details": "From the paper: strains E. coli DH5α with pSEVA637 (white) and pSEVA6819[gD] (blue with X-gal), mixed 50%-50%; LB-agar plus X-gal 50 µg/mL; 64 colonies chosen by dissimilarity to a blueish reference, picked in column-wise order (most different first, closest to blue last) into a Nunc Omnitray single-well plate (s3.3, Figure 7B). Colour is the mean HSV inside the colony footprint; scoring is a weighted sum (s2.5). Colonies close to the plate border are excluded as not pickable (s3.3). Hardware: OT-2 with a P20 pipette, an Alvium 1800 U-500c USB camera on the arm, and an RGB LED transilluminator driven by a Raspberry Pi 4B over SSH. Plates up to 89 mm are supported (s3.1). Retrieved externally: the Nunc OmniTray has a working volume of about 35 mL (https://www.thermofisher.com/order/catalog/product/242811). The Thermo X-gal/IPTG LB plate protocol uses about 25 mL of LB agar per dish (https://documents.thermofisher.com/TFS-Assets/BID/Methods-&-Protocols/75-preparation-of-x-gal-iptg-lb-agar-plates-for-blue-white-colony-screening.pdf). Typical IPTG/X-gal spreading volumes are given in https://goldbio.com/documents/1031/Blue%20White%20Screening%20of%20Bacterial%20Colonies%20using%20X-Gal%20and%20IPTG%20Plates.pdf. The SEVA 2013 paper (https://academic.oup.com/nar/article/41/D1/D666/1060614) was only seen as a search snippet and did not confirm the plasmid markers."
+}

@@ -1,0 +1,97 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "search",
+      "value": "Phire Plant Direct PCR Master Mix manual dilution protocol cycling 20 µL reaction primer 0.5 µM"
+    },
+    {
+      "kind": "result",
+      "value": "https://tools.thermofisher.com/content/sfs/manuals/MAN0012959_Phire_Plant_Direct_PCR_MasterMixes_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://assets.fishersci.com/TFS-Assets/LSG/manuals/F-160_QR_TS_5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/F-170_QR_TS_5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://faculty.washington.edu/toby/PHIRE_plant_direct_pcr_kit_manual.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.fishersci.com/shop/products/phire-plant-direct-pcr-mm/f160spm"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0013358_Phire_Plant_Direct_PCR_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/profile/Houda_Kawas/post/Can-anyone-share-Direct-PCR-protocol-for-plants/attachment/59d63d2c79197b807799a05e/AS:418627128971265@1476819893779/download/poster_directpcr_from_plant_90x120.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3490234/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/us/en/home/brands/thermo-scientific/molecular-biology/thermo-scientific-pcr/direct-pcr-master-mixes-thermo-scientific.html"
+    },
+    {
+      "kind": "search",
+      "value": "Phire Plant Direct PCR Master Mix user guide direct PCR protocol cycling"
+    },
+    {
+      "kind": "result",
+      "value": "https://assets.fishersci.com/TFS-Assets/LSG/manuals/F-160_QR_TS_5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://tools.thermofisher.com/content/sfs/manuals/MAN0012959_Phire_Plant_Direct_PCR_MasterMixes_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0013358_Phire_Plant_Direct_PCR_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://faculty.washington.edu/toby/PHIRE_plant_direct_pcr_kit_manual.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://assets.fishersci.com/TFS-Assets/LSG/brochures/thermo-scientific-direct-pcr-brochure.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/F-170_QR_TS_5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3490234/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/mba-dtol-dna-barcoding-of-macroalgae-and-marine-pr-c4kbyusn.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/profile/Houda_Kawas/post/Can-anyone-share-Direct-PCR-protocol-for-plants/attachment/59d63d2c79197b807799a05e/AS:418627128971265@1476819893779/download/poster_directpcr_from_plant_90x120.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.fishersci.com/shop/products/thermo-scientific-fermentas-phire-plant-direct-pcr-kit/F130WH"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://2019.igem.org/Team:Marburg/Colony_Picking"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://2019.igem.org/Team:Marburg/Colony_Picking"
+    }
+  ]
+}

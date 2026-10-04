@@ -1,0 +1,49 @@
+{
+  "verdict": "reject",
+  "summary": "s2.5 gives the OT-2 colony PCR master mix format (Phire Plant Direct, 9 µL master mix plus 1 µL colony template). It does not give the primers or amplicon sizes for the juxtracrine plasmids, the annealing and extension settings, how the colony templates were prepared, or the 288-reaction layout. The primer sequences and Table S4/Figure S4 are not in the supplied text, and the Marburg colony-picking page cited as ref 31 had no template-prep volumes. Guessing the primers and cycling would risk invalidating a gel readout, so this is rejected.",
+  "gaps": [
+    {
+      "detail": "Identity and sequences of colony PCR primers for the juxtracrine signaling plasmids, and the expected amplicon sizes",
+      "why_needed": "Primers set which locus is amplified, the expected band size on the gel, and the annealing temperature and extension time. Without them the gel cannot be interpreted.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Primer concentration in the master mix and the water, primer and 2× master mix volumes per reaction",
+      "why_needed": "Needed to build the 9 µL master mix dispensed per well on the OT-2.",
+      "status": "assumable",
+      "resolution": "Phire manual: 1× master mix (equal volume of 2× mix to the rest of the reaction) and 0.5 µM of each primer. In the 10 µL reaction this is 5 µL 2× mix, 0.5 µM of each primer and the remainder water, with 1 µL of template added to 9 µL master mix. The paper's Table S5 is not available to check this.",
+      "source": "https://assets.fishersci.com/TFS-Assets/LSG/manuals/F-160_QR_TS_5.pdf (Phire Plant Direct PCR Master Mix manual) and s2.5"
+    },
+    {
+      "detail": "Thermocycling program for the 288 reactions (initial denaturation, number of cycles, annealing temperature, extension time, final extension)",
+      "why_needed": "The paper says only 'according to the manufacturer's protocol' with adjustments for fragment size and primers. The adjusted values are not given.",
+      "status": "missing",
+      "resolution": "The manufacturer's manual gives a recommended extension at 72 °C of 20 s for amplicons ≤1 kb, and 20 s/kb above 1 kb. It also gives a 98 °C initial denaturation and says annealing temperatures are primer-dependent. The actual annealing temperature depends on the primers, which are unknown, so it cannot be set.",
+      "source": "https://assets.fishersci.com/TFS-Assets/LSG/manuals/F-160_QR_TS_5.pdf"
+    },
+    {
+      "detail": "Preparation of the colony template plate (what each colony is picked into, resuspension volume, any lysis or heat step, plate format)",
+      "why_needed": "s2.5 only says 1 µL was taken from 'colony template plates'. The amount of cells and the lysis status affect whether PCR works.",
+      "status": "missing",
+      "resolution": "Not found. The cited Marburg iGEM colony-picking page gave no volumes. Phire Plant Direct is designed for direct or dilution-buffer templates, but the dilution-buffer volume and any heating for bacterial colonies are not specified.",
+      "source": ""
+    },
+    {
+      "detail": "Number of thermocycler runs and the plate-to-thermocycler logistics for 288 reactions (three 96-well plates)",
+      "why_needed": "The OT-2 thermocycler module holds one plate, and s2.5 says additional benchtop cyclers were used 'as needed'. The scale-up layout is not described.",
+      "status": "assumable",
+      "resolution": "Run each of the three 96-well PCR plates in a separate thermocycler run or on three cyclers, using the same program. This does not change the readout.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Gel electrophoresis conditions (agarose %, buffer, stain, voltage and time, ladder, loading volume)",
+      "why_needed": "The 288 reactions are read out on gels. The paper defers this to Figure S4 and Table S4, which are not available.",
+      "status": "assumable",
+      "resolution": "The Phire master mix has loading dye, so products can be loaded directly. Use 1% agarose in TAE with a DNA stain, about 5 µL per lane and a 1 kb ladder, run at about 100 V for 30–45 min. These values are my assumption.",
+      "source": "standard practice; loading-dye statement from https://assets.fishersci.com/TFS-Assets/LSG/manuals/F-160_QR_TS_5.pdf"
+    }
+  ],
+  "retrieved_details": "Phire Plant Direct PCR Master Mix manual (https://assets.fishersci.com/TFS-Assets/LSG/manuals/F-160_QR_TS_5.pdf): 20 µL reaction is 10 µL 2× master mix, 0.5 µM of each primer and water, giving a 1× final concentration. The 2× mix contains a premixed gel loading dye, so PCR products can be loaded directly on a gel. Initial denaturation is at 98 °C. Extension is at 72 °C for 20 s for amplicons ≤1 kb and 20 s/kb above 1 kb. Annealing temperatures are primer-dependent, and two-step cycling is recommended for high-Tm primers. From the paper s2.5: OT-2 uses Phire Plant Direct master mix, 9 µL master mix per tube plus 1 µL colony template. The OT-2 thermocycler module is used, with extra benchtop cyclers as needed. Reaction volumes are in Table S5, which was not supplied."
+}

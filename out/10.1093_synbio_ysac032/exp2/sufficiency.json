@@ -1,0 +1,98 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the PCR, DpnI, cleanup and transformation conditions, but not the Golden Gate reaction composition, the cycling program, or the per-fragment annealing and extension settings. The Golden Gate conditions could be recovered from the cited Engler 2009 paper and NEB's Golden Gate manuals, and the cleanup steps from the Zymo protocol. The remaining gaps (fragment amounts, annealing temperatures, cycle number, DpnI units, cleanup elution volume, post-transformation details) have defensible standard defaults. Primer sequences are in the paper's own supplement, which I did not open. No gap would invalidate the transformation-efficiency or chromoprotein-accuracy readout.",
+  "gaps": [
+    {
+      "detail": "Golden Gate reaction composition (which Type IIS enzyme, ligase, buffer, units, total volume)",
+      "why_needed": "The enzyme and ligase amounts and the buffer decide whether digestion and ligation proceed efficiently. Section s3.2 only says the script is based on Engler et al. and mentions BsaI sites.",
+      "status": "resolved",
+      "resolution": "Engler 2009 (the cited reference) used 15 µl total in T4 ligase buffer with 2.5 U BsaI and 3 U T4 DNA ligase (Promega, 0.75 µl at 3 U/µl); the 10-plasmid reaction used 75 ng of each plasmid. The paper's mention of BsaI sites suggests BsaI was the enzyme. A modern equivalent is the NEB kit mix: 20 µl total with 2 µl 10X T4 DNA Ligase Buffer and 1 µl Golden Gate Enzyme Mix (BsaI-HFv2 + T4 ligase) for ≤10 inserts, water to volume.",
+      "source": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2677662/ ; https://www.neb.com/-/media/nebus/files/manuals/manuale1601.pdf"
+    },
+    {
+      "detail": "Golden Gate thermocycling program on the Opentrons thermocycler module",
+      "why_needed": "Cycle durations and temperatures determine assembly efficiency. The paper does not state them.",
+      "status": "resolved",
+      "resolution": "Engler 2009: 37°C 5 min then 16°C 5 min, repeated 50 times, then 50°C 5 min (final digest) and 80°C 5 min (heat inactivation). The NEB BsaI-HFv2 protocol is (37°C 5 min → 16°C 5 min) ×30, then 60°C 5 min. NEB's E1601 manual gives (37°C 1 min → 16°C 1 min) ×30 for 2–10 inserts. Suggested choice: the 5 min/5 min ×30 program with a 60°C 5 min final step, matching the paper's four-fragment, four-plasmid build with PCR-derived fragments.",
+      "source": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2677662/ ; https://www.neb.com/-/media/nebus/files/manuals/manuale1601.pdf ; https://www.neb-online.de/wp-content/uploads/2019/01/CLO_BreakingThroughLimitsGoldenGate_TN_1901_HiRes.pdf"
+    },
+    {
+      "detail": "DNA input per fragment and total Golden Gate reaction volume (the paper only says volume is proportional to fragment length)",
+      "why_needed": "Equimolar fragment ratios and total DNA load affect assembly yield. The paper does not give ng or pmol per fragment.",
+      "status": "assumable",
+      "resolution": "Use roughly equimolar amounts of about 0.05 pmol (about 50–75 ng for a ~2 kb piece) per fragment, with the pipetted volume scaled by fragment length, as the paper does. Run in a 20 µl reaction; NEB allows up to 25 µl if the DNA volume requires it. Assume similar PCR yields, as the paper does. Optionally check concentrations by NanoDrop.",
+      "source": "standard practice; NEB E1601 manual https://www.neb.com/-/media/nebus/files/manuals/manuale1601.pdf"
+    },
+    {
+      "detail": "PCR primer sequences, template plasmids and the fragment map (Figure 3B)",
+      "why_needed": "Fragments 1–7 (backbone parts, KanR, chromoprotein genes) cannot be amplified without the primer designs.",
+      "status": "resolved",
+      "resolution": "The paper states the j5-designed primers are in Table S1 and File S7, with plasmid details in Table S2 and File S8 (section s2.2). Templates: pIDMv5K-J23100-tsPurple-B1006, -YukonOFP-B1006, -aeBlue-B1006, -fuGFP-B1006. The supplement is the paper's own and was deliberately not opened here, so the sequences must be taken from it.",
+      "source": "section s2.2 (Table S1, File S7, Table S2)"
+    },
+    {
+      "detail": "PCR mix composition beyond the 0.1 µM primers and 0.5 ng template (polymerase choice, buffer, dNTPs, polymerase units)",
+      "why_needed": "Section s2.3 says Phusion or Q5 in 25 µl volumes but does not say which one was used for the Golden Gate fragments.",
+      "status": "resolved",
+      "resolution": "Q5 (NEB M0491), 25 µl: 5 µl 5X Q5 buffer, 0.5 µl 10 mM dNTPs (200 µM), 0.25 µl Q5 polymerase (0.02 U/µl, 0.5 U), template, water to volume. Phusion (NEB M0530), 20 µl: 4 µl 5X buffer, 200 µM dNTPs, 0.2 µl enzyme (0.02 U/µl), scaled to 25 µl. Use the paper's 0.1 µM primers and 0.5 ng linearized template instead of the NEB 0.5 µM primers. Cycling per the paper: 98°C 30 s; 34–36 cycles of 98°C 10 s, annealing 30 s, 72°C extension; final 72°C 5 min.",
+      "source": "https://www.neb.com/en/protocols/pcr-using-q5-high-fidelity-dna-polymerase-m0491?pdf=true ; https://www.neb.com/en/protocols/pcr-protocol-m0530?pdf=true"
+    },
+    {
+      "detail": "Per-fragment annealing temperatures and extension times ('as specified by AssemblyTron/j5'); cycle number (34 or 36)",
+      "why_needed": "The gradient algorithm that assigns annealing temperatures is not described in the supplied text. The extension time per fragment depends on amplicon length.",
+      "status": "assumable",
+      "resolution": "Set each fragment's annealing temperature from the primer Tm (j5 output or the NEB Tm calculator). Group fragments onto a linear gradient across thermocycler tubes, as in Figure 2B. Use extension of 20–30 s/kb for Q5 and 15–30 s/kb for Phusion, at 72°C. Use 34 cycles by default, or 36 if yields are low.",
+      "source": "standard practice; NEB Q5 and Phusion protocols (URLs above)"
+    },
+    {
+      "detail": "Restriction enzyme used to linearize template plasmids",
+      "why_needed": "The paper says 'restriction enzymes cutting outside of the desired amplicons' but does not name them.",
+      "status": "assumable",
+      "resolution": "Choose a single cutter outside each amplicon, based on the plasmid maps. It only improves PCR yield and is also removed by DpnI.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "DpnI digestion enzyme amount and buffer",
+      "why_needed": "The DpnI quantity is needed to remove template DNA before assembly.",
+      "status": "assumable",
+      "resolution": "Add 19 µl water, 5 µl rCutSmart and 1 µl DpnI (NEB) to each 25 µl PCR, giving 50 µl. Incubate 37°C for 30 min, then 65°C for 20 min (all stated in s2.3). Units not stated; assume the standard NEB 20 U/µl stock, so 1 µl = 20 U.",
+      "source": "section s2.3; NEB DpnI standard stock (not fetched)"
+    },
+    {
+      "detail": "Pre-assembly cleanup of PCR/DpnI products (Zymo DNA Clean & Concentrator-5) and elution volume",
+      "why_needed": "The paper says polymerase must be removed because it interferes with assembly, but gives no column procedure or elution volume for this step.",
+      "status": "resolved",
+      "resolution": "Zymo DCC-5 procedure: for PCR products, mix DNA Binding Buffer with sample 5:1 (e.g. 500 µl : 100 µl). Load on the Zymo-Spin column and spin 30 s. Wash twice with 200 µl DNA Wash Buffer, 30 s each. Add ≥6 µl water, wait 1 min, spin 30 s to elute. The paper used a 10 µl water elution for final assemblies. For fragment cleanup the elution volume is unstated; assume a fixed, equal volume for all fragments (about 10–25 µl) and return the tubes to the thermocycler deck.",
+      "source": "https://www.protocols.io/view/Zymo-Research-DNA-Clean-Concentrator-egbbbsn ; https://files.zymoresearch.com/protocols/_d4003t_d4003_d4004_d4013_d4014_dna_clean_concentrator_-5.pdf"
+    },
+    {
+      "detail": "Preparation of Hanahan chemically competent TOP10 cells",
+      "why_needed": "Transformation efficiency (~10^8 CFU/µg) is a headline outcome, so competence quality matters. The paper defers the preparation to Hanahan et al. 1991.",
+      "status": "assumable",
+      "resolution": "The Hanahan chapter is a paywalled book chapter and was not retrieved. The paper states in-house TOP10 cells with 8.47×10^8 CFU/µg pUC19. Use cells prepared by the Hanahan method, or commercial TOP10 cells of comparable efficiency (≥10^8 CFU/µg), and check efficiency with pUC19.",
+      "source": "section s2.1 / s2.3; standard practice"
+    },
+    {
+      "detail": "Transformation procedure details",
+      "why_needed": "Some steps are given and some are not.",
+      "status": "assumable",
+      "resolution": "Given in s2.3: add the 5 µl of the 10 µl Zymo eluate to 50 µl TOP10 cells (the other 5 µl goes to NanoDrop); 30 min on ice; 42°C for 60 s; recover at 37°C for 60 min with 250 µl LB + 0.2% dextrose; plate 50–200 µl (neat or a 10× dilution) on LB agar with kanamycin 50 µg/ml (the assembly carries a KanR gene); overnight at 37°C. Assumed: 2 min on ice after heat shock, shaking at ~250 rpm during recovery, standard LB-agar plating.",
+      "source": "section s2.3 and s2.1; standard practice"
+    },
+    {
+      "detail": "Chromoprotein scoring (how colonies are judged positive and for how long they are incubated)",
+      "why_needed": "The accuracy readout is the fraction of colonies showing the expected chromoprotein colour (>98% reported).",
+      "status": "assumable",
+      "resolution": "Count colonies on plates after overnight growth and score the fraction showing the expected colour (purple, orange, blue or green, per construct). Optionally leave plates at room temperature or 4°C longer so colour fully develops. Colonies were counted by hand, and CFU/µg is calculated from the NanoDrop-measured DNA.",
+      "source": "section s2.3 / s3.2; standard practice"
+    },
+    {
+      "detail": "OT-2 deck layout, labware, pipettes and thermocycler lid settings",
+      "why_needed": "Needed to execute the liquid handling and thermocycling.",
+      "status": "assumable",
+      "resolution": "The paper defers the deck layout to Tables S3/S4 and the AssemblyTron script, which were excluded here. Assume standard OT-2 P20/P300 pipettes, 100 µl PCR tubes in the thermocycler block, a heated lid (about 105°C for PCR), and the manual pause for cleanup. PCR is run manually on a Bio-Rad C100 gradient cycler, as stated.",
+      "source": "section s2.4; standard practice"
+    }
+  ],
+  "retrieved_details": "1) Engler et al. 2009 (the cited Golden Gate reference), https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2677662/: restriction-ligation in 15 µl ligation buffer (Promega) with 75 ng of each plasmid, 2.5 U BsaI (NEB) and 3 U T4 DNA ligase (Promega; 0.75 µl at 3 U/µl). Cycling: 37°C 2 or 5 min and 16°C 5 min, repeated 25–50 times, then 50°C 5 min and 80°C 5 min. This was run in a thermocycler, which was more efficient than continuous 37°C. Transformation was into 100 µl chemically competent cells, with 20–50 µl of a 1 ml outgrowth plated.\n2) NEB Golden Gate Assembly Kit BsaI-HFv2 (E1601) manual, https://www.neb.com/-/media/nebus/files/manuals/manuale1601.pdf: 20 µl total with 1X T4 DNA Ligase Buffer (2 µl of 10X), 75 ng destination vector (0.05 pmol), inserts at a 2:1 molar ratio if amplicons or 75 ng each if precloned, and 1 µl Golden Gate Enzyme Mix for ≤10 inserts (2 µl for >10). Program for 2–10 inserts: (37°C 1 min → 16°C 1 min) ×30, then 60°C 5 min.\n3) NEB technical note, https://www.neb-online.de/wp-content/uploads/2019/01/CLO_BreakingThroughLimitsGoldenGate_TN_1901_HiRes.pdf: 25 µl reaction with 2.5 µl 10X T4 ligase buffer, 500 U T4 ligase and 15 U BsaI-HFv2 for ≤10 fragments. Program: (5 min 37°C → 5 min 16°C) ×30 then 5 min 60°C (the note also describes a 55°C terminal soak). Purify the amplicons; carry-over polymerase lowers assembly performance.\n4) NEB Q5 protocol (M0491), https://www.neb.com/en/protocols/pcr-using-q5-high-fidelity-dna-polymerase-m0491?pdf=true: 25 µl reaction is 5 µl 5X buffer, 0.5 µl 10 mM dNTPs, 1.25 µl each 10 µM primer (the paper uses 0.1 µM instead), template, 0.25 µl Q5. Denature 98°C, extend at 72°C for 20–30 s/kb.\n5) NEB Phusion protocol (M0530), https://www.neb.com/en/protocols/pcr-protocol-m0530?pdf=true: initial denaturation 98°C 30 s; 25–35 cycles of 98°C 5–10 s, annealing 10–30 s, extension 72°C 15–30 s/kb; final extension 72°C 5–10 min.\n6) Zymo DNA Clean & Concentrator-5, https://www.protocols.io/view/Zymo-Research-DNA-Clean-Concentrator-egbbbsn and https://files.zymoresearch.com/protocols/_d4003t_d4003_d4004_d4013_d4014_dna_clean_concentrator_-5.pdf: binding buffer to sample 5:1 for PCR products; spin 30 s; wash 2×200 µl; elute with ≥6 µl water after 1 min at room temperature, spin 30 s. Spins at 10,000–16,000 ×g. Size range ~50 bp–23 kb.\n7) From the paper (s2.1, s2.3, s3.2): 25 µl PCRs with 0.1 µM primers and 0.5 ng linearized template; DpnI step is +19 µl water, +5 µl rCutSmart, +1 µl DpnI, 37°C 30 min then 65°C 20 min. Zymo cleanup removes polymerase before assembly; fragments return to the deck and volumes proportional to length are pooled. Final assembly is cleaned with Zymo and eluted in 10 µl water, 5 µl of which is transformed into 50 µl TOP10 cells. Transformation: 30 min ice, 42°C 60 s, 60 min at 37°C with 250 µl LB + 0.2% dextrose. Plate 50–200 µl on LB agar with kanamycin 50 µg/ml. Reported outcome: 300–800 colonies per assembly, ~10^4 CFU/µg, >98% correct by chromoprotein colour."
+}
