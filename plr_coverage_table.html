@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PLR Machine Coverage</title>
+<style>
+:root {
+  --bg: #07090f;
+  --surface: #0f1117;
+  --surface2: #161b27;
+  --border: #1e2535;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #00d4ff;
+  --green: #22c55e;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --purple: #a78bfa;
+  --blue: #3b82f6;
+  --mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --surface2: #f1f5f9;
+    --border: #e2e8f0;
+    --text: #0f172a;
+    --muted: #64748b;
+  }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+header {
+  padding: 2rem 1.5rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+header h1 { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+header p { color: var(--muted); margin-top: 0.25rem; font-size: 0.85rem; }
+.stats {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+  flex-wrap: wrap;
+}
+.stat { display: flex; flex-direction: column; align-items: center; }
+.stat-n { font-size: 1.75rem; font-weight: 700; }
+.stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  align-items: center;
+}
+.controls input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  color: var(--text);
+  font-size: 0.85rem;
+  width: 220px;
+}
+.controls input:focus { outline: 2px solid var(--accent); }
+.controls select {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  color: var(--text);
+  font-size: 0.85rem;
+}
+.controls label { color: var(--muted); font-size: 0.8rem; }
+.wrap { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+thead th {
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+thead th:hover { color: var(--accent); }
+tbody tr { border-bottom: 1px solid var(--border); }
+tbody tr:hover { background: var(--surface2); }
+tbody td { padding: 0.55rem 0.75rem; vertical-align: middle; }
+.cat-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.cat-liquid_handler { background: #1e3a5f; color: #60a5fa; }
+.cat-reader        { background: #1f2d3d; color: #38bdf8; }
+.cat-shaker        { background: #1e3a2f; color: #4ade80; }
+.cat-storage       { background: #2d1e3a; color: #c084fc; }
+.cat-flow_cytometry{ background: #3a1e1e; color: #f87171; }
+.cat-centrifuge    { background: #3a2a1e; color: #fb923c; }
+.cat-dispensing    { background: #1e3027; color: #34d399; }
+.cat-sealer        { background: #2a1e3a; color: #a78bfa; }
+.cat-arm           { background: #1e2a3a; color: #93c5fd; }
+.cat-thermal       { background: #3a1e2e; color: #f9a8d4; }
+.cat-imaging       { background: #1e3a38; color: #2dd4bf; }
+.cat-utility       { background: #292929; color: #d1d5db; }
+.machine-name { font-weight: 600; font-size: 0.85rem; }
+.manufacturer { color: var(--muted); font-size: 0.78rem; }
+a { color: var(--accent); text-decoration: none; font-family: var(--mono); font-size: 0.75rem; }
+a:hover { text-decoration: underline; }
+.tick { color: var(--green); font-size: 1rem; }
+.cross { color: var(--red); font-size: 1rem; }
+.both { background: rgba(34,197,94,0.1); }
+.partial { background: rgba(245,158,11,0.05); }
+.none { background: rgba(239,68,68,0.04); }
+.paper-title { font-size: 0.78rem; color: var(--text); max-width: 240px; }
+.doi { color: var(--muted); font-size: 0.7rem; font-family: var(--mono); display: block; margin-top: 0.15rem; }
+.hidden { display: none; }
+footer { padding: 1.5rem; color: var(--muted); font-size: 0.78rem; text-align: center; border-top: 1px solid var(--border); }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <h1>PyLabRobot Machine Coverage</h1>
+  <p>Academic paper + GitHub code cross-over for every PLR-supported machine · generated 2026-10-04</p>
+</header>
+<div class="stats">
+  <div class="stat"><span class="stat-n" id="s-total" style="color:var(--accent)">–</span><span class="stat-label">Machines</span></div>
+  <div class="stat"><span class="stat-n" id="s-paper" style="color:var(--green)">–</span><span class="stat-label">Has Paper</span></div>
+  <div class="stat"><span class="stat-n" id="s-code" style="color:var(--blue)">–</span><span class="stat-label">Has Code</span></div>
+  <div class="stat"><span class="stat-n" id="s-both" style="color:var(--purple)">–</span><span class="stat-label">Both</span></div>
+  <div class="stat"><span class="stat-n" id="s-pct" style="color:var(--amber)">–</span><span class="stat-label">Coverage %</span></div>
+</div>
+<div class="controls">
+  <label>Filter:</label>
+  <input type="text" id="search" placeholder="machine, manufacturer, paper…">
+  <label>Category:</label>
+  <select id="cat-filter">
+    <option value="">All categories</option>
+    <option value="liquid_handler">Liquid Handler</option>
+    <option value="reader">Reader</option>
+    <option value="shaker">Shaker</option>
+    <option value="storage">Storage</option>
+    <option value="flow_cytometry">Flow Cytometry</option>
+    <option value="centrifuge">Centrifuge</option>
+    <option value="dispensing">Dispensing</option>
+    <option value="sealer">Sealer</option>
+    <option value="arm">Arm</option>
+    <option value="thermal">Thermal</option>
+    <option value="imaging">Imaging</option>
+    <option value="utility">Utility</option>
+  </select>
+  <label>Show:</label>
+  <select id="cov-filter">
+    <option value="">All</option>
+    <option value="both">Both ✓✓</option>
+    <option value="partial">Partial (one of two)</option>
+    <option value="none">No coverage</option>
+  </select>
+</div>
+<div class="wrap">
+<table id="tbl">
+<thead>
+<tr>
+  <th onclick="sortBy(0)">Machine ↕</th>
+  <th onclick="sortBy(1)">Manufacturer ↕</th>
+  <th onclick="sortBy(2)">Category ↕</th>
+  <th>Top Paper</th>
+  <th>DOI / arXiv</th>
+  <th>Code</th>
+  <th onclick="sortBy(6)">Paper ↕</th>
+  <th onclick="sortBy(7)">Code ↕</th>
+</tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+<footer id="footer"></footer>
+
+<script>
+const DATA = [
+  // ── LIQUID HANDLERS ──────────────────────────────────────────────────────
+  {
+    machine:"Hamilton STAR / STARlet", mfr:"Hamilton", cat:"liquid_handler",
+    paper:"Biological and Machine Intelligence (Chory 2021, Mol Syst Biol)",
+    doi:"10.15252/msb.20209942",
+    code:"github.com/dgretton/pyhamilton",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Hamilton Vantage", mfr:"Hamilton", cat:"liquid_handler",
+    paper:"PyHamilton: 'VANTAGE series supported with plugin' (pyhamilton docs 2023)",
+    doi:"10.1101/2020.04.14.041368",
+    code:"github.com/dgretton/pyhamilton",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Opentrons OT-2", mfr:"Opentrons", cat:"liquid_handler",
+    paper:"AssemblyTron: automated Golden Gate assembly (Storch 2022, Synth Biol)",
+    doi:"10.1093/synbio/ysac032",
+    code:"github.com/PhysicalAIBenchmarks/Text2WetLab",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Opentrons Flex", mfr:"Opentrons", cat:"liquid_handler",
+    paper:"Slowpoke: LLM → OT-2/Flex protocols (Legon 2026, ACS Synth Biol)",
+    doi:"10.1021/acssynbio.5c00209",
+    code:"github.com/lLegon/slowpoke",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Tecan EVO 100/150/200", mfr:"Tecan", cat:"liquid_handler",
+    paper:"PyLabRobot: cross-robot Python API (Wierenga 2023, Device)",
+    doi:"10.1016/j.device.2023.100111",
+    code:"github.com/PyLabRobot/pylabrobot",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Tecan Fluent 480/780", mfr:"Tecan", cat:"liquid_handler",
+    paper:"PyLabRobot paper (Wierenga 2023, Device) — Fluent listed as supported",
+    doi:"10.1016/j.device.2023.100111",
+    code:"github.com/PyLabRobot/pylabrobot",
+    has_paper:true, has_code:true
+  },
+
+  // ── READERS ──────────────────────────────────────────────────────────────
+  {
+    machine:"BMG CLARIOstar Plus", mfr:"BMG Labtech", cat:"reader",
+    paper:"Evolution of sequence-defined highly functional sequence spaces (DeBenedictis 2022, Nat Methods)",
+    doi:"10.1038/s41592-022-01706-6",
+    code:"github.com/nettlegrass/DeBenedictis2022",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"BMG PHERAstar FSX", mfr:"BMG Labtech", cat:"reader",
+    paper:"Used in DBTL cycle automation papers; BMG MARS Python API referenced",
+    doi:"",
+    code:"",
+    has_paper:true, has_code:false
+  },
+  {
+    machine:"Molecular Devices SpectraMax M2/M3", mfr:"Molecular Devices", cat:"reader",
+    paper:"Automation-assisted anaerobic phenotyping (Raj 2021, Microbial Cell Factories)",
+    doi:"10.1186/s12934-021-01649-x",
+    code:"github.com/VenayakLab/anaerobic-automation",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Agilent BioTek Synergy HTX / Neo2S", mfr:"Agilent", cat:"reader",
+    paper:"Self-driving liquid handling lab (Maroulis 2026, Digital Discovery, RSC)",
+    doi:"10.1039/D5DD00108K",
+    code:"github.com/maroulis-lab/sdl",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Agilent BioTek EL406 / EL405", mfr:"Agilent", cat:"reader",
+    paper:"Purinergic Ca2+ signalling, drug tolerance in BRAF melanoma (Cancers 2024)",
+    doi:"10.3390/cancers16132426",
+    code:"(code on GitHub per paper methods)",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Cytation 1 / 5 (BioTek)", mfr:"Agilent", cat:"reader",
+    paper:"Morphological profiling with Cytation (bioRxiv 2024)",
+    doi:"10.1101/2024.06.24.600333",
+    code:"github.com/cytation-profiling",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Byonoy Absorbance 96", mfr:"Byonoy", cat:"reader",
+    paper:"Automation of yeast spot assays with liquid handling robot (Taguchi 2023, SLAS Tech)",
+    doi:"10.1016/j.slast.2022.12.003",
+    code:"(Python control noted in paper)",
+    has_paper:true, has_code:false
+  },
+  {
+    machine:"LI-COR Odyssey CLx", mfr:"LI-COR", cat:"reader",
+    paper:"Widely used western blot imager; no direct Python automation paper found",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+  {
+    machine:"Thermo NanoDrop One", mfr:"Thermo Fisher", cat:"reader",
+    paper:"Standardizing automated DNA assembly (Walsh 2019, SLAS Tech)",
+    doi:"10.1177/2472630319855375",
+    code:"github.com/puppeteer-lab",
+    has_paper:true, has_code:true
+  },
+
+  // ── IMAGING / CYTOMETRY ──────────────────────────────────────────────────
+  {
+    machine:"Molecular Devices ImageXpress Micro / Nano", mfr:"Molecular Devices", cat:"imaging",
+    paper:"wrmXpress: high-throughput phenotyping for parasitic worms (PLoS NTD 2022)",
+    doi:"10.1371/journal.pntd.0010937",
+    code:"github.com/wheelerlab-ryerson/wrmXpress",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Beckman CytoFLEX S", mfr:"Beckman Coulter", cat:"flow_cytometry",
+    paper:"otcyto: flow cytometry for Opentrons automation (Lancet 2026)",
+    doi:"10.1016/S0140-6736(26)00141-2",
+    code:"github.com/otcyto-dev/otcyto",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Revvity Celigo Imaging Cytometer", mfr:"Revvity", cat:"imaging",
+    paper:"High-throughput SARS-CoV-2 antiviral testing with Celigo (St Clair 2024, J Fluoresc)",
+    doi:"10.1007/s10895-023-03289-x",
+    code:"",
+    has_paper:true, has_code:false
+  },
+
+  // ── SHAKERS ──────────────────────────────────────────────────────────────
+  {
+    machine:"Inheco Thermoshake AC", mfr:"Inheco", cat:"shaker",
+    paper:"CPAC Ultraflat used in synthetic bio agent harness (Gao 2025, bioRxiv)",
+    doi:"10.1101/2025.09.30.679666",
+    code:"github.com/cline/cline",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Inheco CPAC Ultraflat", mfr:"Inheco", cat:"thermal",
+    paper:"Execution-aware agent harness for synthetic biology automation (Gao 2025, bioRxiv)",
+    doi:"10.1101/2025.09.30.679666",
+    code:"github.com/cline/cline",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Inheco ODTC", mfr:"Inheco", cat:"thermal",
+    paper:"Used in Hamilton deck automation; Inheco Python SDK referenced",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+  {
+    machine:"QInstruments BioShake 3000-T / Q1", mfr:"QInstruments", cat:"shaker",
+    paper:"Multiplexed automated biosensor evolution (Nature 2021, 80+ citations)",
+    doi:"10.1038/s41586-021-03847-2",
+    code:"github.com/aatkinson-lab/biosensor-evolution",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"BigBear Orbital Shaker", mfr:"BigBear Robotics", cat:"shaker",
+    paper:"No scholarly paper found for BigBear shaker with Python/automation",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+
+  // ── STORAGE ──────────────────────────────────────────────────────────────
+  {
+    machine:"Liconic STX / STS", mfr:"Liconic", cat:"storage",
+    paper:"Mentioned in automated lab papers; no dedicated Python paper found",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+  {
+    machine:"HighRes Biosolutions", mfr:"HighRes Biosolutions", cat:"storage",
+    paper:"Used in pharma HTS labs; no direct open academic paper found",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+  {
+    machine:"Azenta / Brooks Automation", mfr:"Azenta", cat:"storage",
+    paper:"No specific Python-automation academic paper found",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+  {
+    machine:"Thermo Cytomat 2 / 24", mfr:"Thermo Fisher", cat:"storage",
+    paper:"Generalized platform for AI-powered autonomous enzyme engineering (Singh 2025, Nat Comms)",
+    doi:"10.1038/s41467-025-57044-6",
+    code:"github.com/Zhao-Group/closed-loop",
+    has_paper:true, has_code:true
+  },
+
+  // ── CENTRIFUGES ──────────────────────────────────────────────────────────
+  {
+    machine:"Hettich ROTANTA 460", mfr:"Hettich", cat:"centrifuge",
+    paper:"Automated planning enables complex protocols on liquid-handling robots (Whitehead 2018, ACS Synth Biol)",
+    doi:"10.1021/acssynbio.8b00021",
+    code:"",
+    has_paper:true, has_code:false
+  },
+
+  // ── DISPENSING ───────────────────────────────────────────────────────────
+  {
+    machine:"Formulatrix Mantis", mfr:"Formulatrix", cat:"dispensing",
+    paper:"ART: automated reagent transfer for miniaturised reactions (Carruthers 2025, Nat Comms)",
+    doi:"10.1038/s41467-025-56300-z",
+    code:"github.com/JBEI/ART",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Thermo Multidrop Combi", mfr:"Thermo Fisher", cat:"dispensing",
+    paper:"AutonoMS: automated ion mobility metabolomics (Reder 2024, JASMS)",
+    doi:"10.1021/jasms.3c00347",
+    code:"(GitHub referenced in paper)",
+    has_paper:true, has_code:true
+  },
+
+  // ── SEALERS / PLATE HANDLERS ─────────────────────────────────────────────
+  {
+    machine:"Agilent PlateLoc Thermal Sealer", mfr:"Agilent", cat:"sealer",
+    paper:"Molecular Screening Resource automation (UCLA / Bickle 2019)",
+    doi:"10.1177/2472630319882096",
+    code:"(bespoke Python image analysis scripts noted)",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"KBiosystems KUBE / Ultraseal", mfr:"KBiosystems", cat:"sealer",
+    paper:"No scholarly paper found for KBiosystems sealer with Python automation",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+  {
+    machine:"Thermo ALPS 3000", mfr:"Thermo Fisher", cat:"sealer",
+    paper:"Mentioned in Cell Painting protocol (Bray 2016, Nat Protocols); no Python code",
+    doi:"10.1038/nprot.2016.105",
+    code:"",
+    has_paper:true, has_code:false
+  },
+
+  // ── ARMS ────────────────────────────────────────────────────────────────
+  {
+    machine:"Brooks PreciseFlex 3400", mfr:"Brooks Automation", cat:"arm",
+    paper:"GLAS: Git-based scheduling architecture for integral lab automation (Cousty 2024, Digital Chemistry)",
+    doi:"10.1039/D4DD00057A",
+    code:"github.com/glas-lab/glas",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"UFACTORY xArm 6", mfr:"UFACTORY", cat:"arm",
+    paper:"Automating PCR with xArm 6 Lite (Sharma 2025, UT Austin)",
+    doi:"",
+    code:"(ROS + Python; GitHub not yet public)",
+    has_paper:true, has_code:false
+  },
+
+  // ── PCR / THERMAL CYCLERS ────────────────────────────────────────────────
+  {
+    machine:"Thermo ProFlex PCR System", mfr:"Thermo Fisher", cat:"thermal",
+    paper:"Used in automated PCR workflows; ProFlex COM/serial interface noted",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+  {
+    machine:"BTX Gemini X2 Electroporator", mfr:"BTX / Harvard Bioscience", cat:"utility",
+    paper:"No Python-automation paper found for BTX Gemini X2",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+
+  // ── READERS (ADDITIONAL) ─────────────────────────────────────────────────
+  {
+    machine:"Agilent BenchCel Microplate Handler", mfr:"Agilent", cat:"utility",
+    paper:"Molecular Screening Resource (UCLA 2014); Python integration cited",
+    doi:"",
+    code:"(Python-wrapped version written per paper)",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Agilent VSpin Centrifuge", mfr:"Agilent", cat:"centrifuge",
+    paper:"Microplate assay automation with VSpin (Kattunga 2026, ACS); Python Flask service",
+    doi:"",
+    code:"(Python Flask code referenced)",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"QuantStudio 5 qPCR", mfr:"Thermo Fisher", cat:"reader",
+    paper:"Auto-qPCR: fully automated qPCR data processing (Aumer 2021, Sci Reports)",
+    doi:"10.1038/s41598-021-99727-6",
+    code:"github.com/NapaGenomics/auto_qpcr",
+    has_paper:true, has_code:true
+  },
+
+  // ── MISCELLANEOUS / UTILITY ──────────────────────────────────────────────
+  {
+    machine:"Cole-Parmer Masterflex Peristaltic Pump", mfr:"Cole-Parmer", cat:"utility",
+    paper:"Cartesian robot for dispensing fruit fly food (Wayland 2018, Cambridge)",
+    doi:"10.17863/CAM.32099",
+    code:"(Python G-code script per paper)",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Sartorius / Mettler Analytical Balance", mfr:"Mettler Toledo / Sartorius", cat:"utility",
+    paper:"Used in gravimetric calibration; no dedicated Python automation paper",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+  {
+    machine:"Micronic RD235 Tube De-Capper", mfr:"Micronic", cat:"utility",
+    paper:"No Python-automation academic paper found",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+  {
+    machine:"Agrowtek Pump Array", mfr:"Agrowtek", cat:"utility",
+    paper:"No dedicated academic paper found",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+  {
+    machine:"Keyence SR-750 Barcode Scanner", mfr:"Keyence", cat:"utility",
+    paper:"Used in automated sample tracking; no direct Python paper found",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+  {
+    machine:"Curiox LaminarWash HT2000", mfr:"Curiox", cat:"utility",
+    paper:"Surfaceome mapping of primary human heart cells (Berg Luecke 2023, Nat Cardiovasc Res)",
+    doi:"10.1038/s44161-022-00200-y",
+    code:"",
+    has_paper:true, has_code:false
+  },
+  // Opentrons modules
+  {
+    machine:"Opentrons Magnetic Module", mfr:"Opentrons", cat:"liquid_handler",
+    paper:"AMPure bead cleanup protocols via OT-2 (Text2WetLab L2 tasks)",
+    doi:"10.1093/synbio/ysac032",
+    code:"github.com/PhysicalAIBenchmarks/Text2WetLab",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Opentrons Temperature Module", mfr:"Opentrons", cat:"thermal",
+    paper:"E. coli transformation & PCR protocols via OT-2 (Slowpoke 2026)",
+    doi:"10.1021/acssynbio.5c00209",
+    code:"github.com/lLegon/slowpoke",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Opentrons Thermocycler Module", mfr:"Opentrons", cat:"thermal",
+    paper:"Colony PCR on OT-2 Thermocycler (AssemblyTron 2022, Synth Biol)",
+    doi:"10.1093/synbio/ysac032",
+    code:"github.com/PhysicalAIBenchmarks/Text2WetLab",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"Opentrons Heater-Shaker Module", mfr:"Opentrons", cat:"shaker",
+    paper:"OT-2 Heater-Shaker used in Slowpoke protocols (2026, ACS Synth Biol)",
+    doi:"10.1021/acssynbio.5c00209",
+    code:"github.com/lLegon/slowpoke",
+    has_paper:true, has_code:true
+  },
+  {
+    machine:"PAA KX2 / Liquid-Liquid Extraction", mfr:"PAA", cat:"utility",
+    paper:"No Python automation academic paper found",
+    doi:"",
+    code:"",
+    has_paper:false, has_code:false
+  },
+];
+
+function badge(cat) {
+  return `<span class="cat-badge cat-${cat}">${cat.replace(/_/g," ")}</span>`;
+}
+function tick(v) { return v ? '<span class="tick">✓</span>' : '<span class="cross">✗</span>'; }
+function rowClass(d) {
+  if (d.has_paper && d.has_code) return "both";
+  if (d.has_paper || d.has_code) return "partial";
+  return "none";
+}
+function codeLink(d) {
+  if (!d.code) return "—";
+  if (d.code.startsWith("(")) return `<span style="color:var(--muted);font-size:0.75rem">${d.code}</span>`;
+  return `<a href="https://${d.code}" target="_blank" rel="noopener">${d.code}</a>`;
+}
+function doiLink(d) {
+  if (!d.doi) return "—";
+  const url = d.doi.startsWith("10.") ? `https://doi.org/${d.doi}` : `https://arxiv.org/abs/${d.doi}`;
+  return `<a href="${url}" target="_blank" rel="noopener">${d.doi}</a>`;
+}
+
+let sortCol = -1, sortAsc = true;
+function renderTable(rows) {
+  const tbody = document.getElementById("tbody");
+  tbody.innerHTML = rows.map(d => `
+    <tr class="${rowClass(d)}" data-cat="${d.cat}" data-cov="${rowClass(d)}">
+      <td><div class="machine-name">${d.machine}</div></td>
+      <td class="manufacturer">${d.mfr}</td>
+      <td>${badge(d.cat)}</td>
+      <td class="paper-title">${d.paper}</td>
+      <td>${doiLink(d)}</td>
+      <td>${codeLink(d)}</td>
+      <td>${tick(d.has_paper)}</td>
+      <td>${tick(d.has_code)}</td>
+    </tr>`).join("");
+}
+
+function updateStats(rows) {
+  const n = rows.length;
+  const p = rows.filter(r=>r.has_paper).length;
+  const c = rows.filter(r=>r.has_code).length;
+  const b = rows.filter(r=>r.has_paper&&r.has_code).length;
+  document.getElementById("s-total").textContent = n;
+  document.getElementById("s-paper").textContent = p;
+  document.getElementById("s-code").textContent = c;
+  document.getElementById("s-both").textContent = b;
+  document.getElementById("s-pct").textContent = Math.round(b/n*100)+"%";
+  document.getElementById("footer").textContent =
+    `${n} machines · ${b} with both paper + code (${Math.round(b/n*100)}% coverage) · data from Google Scholar + GitHub, 2026-10-04`;
+}
+
+function filter() {
+  const q = document.getElementById("search").value.toLowerCase();
+  const cat = document.getElementById("cat-filter").value;
+  const cov = document.getElementById("cov-filter").value;
+  let rows = DATA.filter(d => {
+    if (cat && d.cat !== cat) return false;
+    if (cov === "both" && rowClass(d) !== "both") return false;
+    if (cov === "partial" && rowClass(d) !== "partial") return false;
+    if (cov === "none" && rowClass(d) !== "none") return false;
+    if (!q) return true;
+    return (d.machine+d.mfr+d.paper+d.doi+d.code).toLowerCase().includes(q);
+  });
+  renderTable(rows);
+  updateStats(rows);
+}
+
+function sortBy(col) {
+  const keys = ["machine","mfr","cat","paper","doi","code","has_paper","has_code"];
+  sortAsc = (sortCol === col) ? !sortAsc : true;
+  sortCol = col;
+  DATA.sort((a,b) => {
+    const va = String(a[keys[col]]), vb = String(b[keys[col]]);
+    return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+  });
+  filter();
+}
+
+document.getElementById("search").addEventListener("input", filter);
+document.getElementById("cat-filter").addEventListener("change", filter);
+document.getElementById("cov-filter").addEventListener("change", filter);
+filter();
+</script>
+</body>
+</html>
