@@ -19,7 +19,7 @@ uv run paper2protocol convert 10.64898/2026.03.26.714448 -e 1   # assess → ins
 `convert` runs `assess` first and stops if the verdict is `reject` (`--force` overrides,
 `--skip-assess` skips it, `--no-web` assesses without web research).
 
-Outputs go to `out/<doi>/`: `paper.json`, `experiments.json`, and `exp<N>/` with
+Outputs go to `data/pipeline_runs/<doi>/`: `paper.json`, `experiments.json`, and `exp<N>/` with
 `sufficiency.json`, `web_access.json`, `protocol.json`, `protocol.txt` (the deliverable), `check.json`, `critic.json`.
 
 The paper can be a DOI, a doi.org link or a publisher URL (e.g.

@@ -19,50 +19,56 @@ size_categories:
 
 # Text2WetLab
 
-**Natural language → wet lab robot protocol benchmark**
+**Plain-English lab instruction -> Opentrons OT-2 protocol, judged on what the simulated robot does.**
 
-Evaluates whether language models can translate plain-English lab instructions
-into correct, safe, executable liquid-handling protocols for the Opentrons OT-2.
+Given an instruction, a model writes an Opentrons Python protocol. The protocol is simulated on Opentrons 7.5.0 and
+judged on its end state and on generic safety rules, not on how it is written: `transfer()`, `distribute()` and explicit
+loops all pass if the plate ends up right.
 
-## Reference episode
+## Tasks
 
-![OT-2 reference episode](assets/episode_mujoco.gif)
+One folder per task under `tasks/<task>/`: `instruction.md` (what the model is given), `ir.json` (the decomposed spec),
+`assumptions.md` (what the instruction leaves out), `task.toml`. Hidden oracles and graders are not published.
 
-## Task
+| Task | Steps | Source |
+|---|---:|---|
+| `split-200ul-two-wells` | 1 | handwritten |
+| `a1-a12-100ul` | 1 | handwritten |
+| `ampure-bead-cleanup` | 13 | handwritten |
+| `colony-pcr-screening` | 4 | handwritten |
+| `ecoli-heat-shock-transformation` | 4 | handwritten |
+| `golden-gate-assembly` | 33 | paper2protocol (AssemblyTron) |
+| `opentrons-rna-extraction` | n/a | Harbor task (PLOS ONE 2021) |
 
-Given a natural language instruction (at varying levels of specificity),
-generate a valid Opentrons Python API v2 protocol that passes all 6 evaluation criteria:
+## Instruction vagueness
 
-| # | Criterion |
-|---|---|
-| T1 | Pick up tip before any aspirate |
-| T2 | Aspirate correct volume |
-| T3 | Two dispenses from single tip load |
-| T4 | Drop tip when finished |
-| T5 | No overdispense |
-| T6 | No over-capacity aspirate |
-
-## NL Vagueness Levels
-
-V0-V2 describe the instruction. The task folders `tasks/L1` and `tasks/L2` are a separate scale: task complexity (layers).
+How much the wording leaves out, independent of the task.
 
 | Level | Example |
 |---|---|
-| V0 (fully specified) | "Pick up a tip, aspirate 200µL from the reagent trough, dispense 100µL into A1 then 100µL into B1, throw the tip away." |
+| V0 (fully specified) | "Add 100 uL of liquid from a 1-well reservoir to wells A1->A12 in a 96-well plate." |
 | V1 (volume only) | "Move 200 microlitres from the reservoir into two wells on the plate." |
 | V2 (intent only) | "Aliquot the reagent into two wells." |
 
-## Simulation
+## What is judged
 
-Protocols are evaluated using PyLabRobot 0.2.2 (ChatterBox backend) with
-explicit volume assertions for T2–T6, and optionally `opentrons_simulate` for full validation.
+Simulator gate, generic rules (tip before aspirate, no overdispense, no draw from an empty well, tip dropped) and an
+end state derived from the IR. See `docs/criteria.md` for the evidence: 21 deliberately broken or alternative
+protocols, 0 misjudged.
+
+## Provenance
+
+`PROVENANCE.csv` lists who first committed every task, reference, pipeline output, render and code file, with URLs.
+
+## Reference episode
+
+![split-200ul-two-wells in 3D](assets/examples3d/split-200ul-two-wells.gif)
 
 ## Citation
 
-```
+```bibtex
 @misc{text2wetlab2026,
   title  = {Text2WetLab: A Benchmark for Natural Language to Wet Lab Protocol Translation},
-  author = {O'Leary, Evan},
   year   = {2026},
   url    = {https://github.com/PhysicalAIBenchmarks/Text2WetLab}
 }

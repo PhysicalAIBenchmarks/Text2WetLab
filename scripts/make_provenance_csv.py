@@ -1,14 +1,15 @@
 """
-Write PROVENANCE.csv: one row per task, reference file, pipeline output and code file.
+Write PROVENANCE.csv: one row per task, reference file, pipeline output, render and code file.
 
-    python scripts/make_provenance_csv.py [--extra-out DIR]
+    python scripts/make_provenance_csv.py [--out FILE]
 
-"Discovered by" = the author of the first commit, on any branch, that added the path (git
-history cannot say how something was found; `candidate_source` is filled only when the DOI is
-listed in ref/candidates.json). GitHub logins come from the commits API. Reference files are
-checked byte-for-byte (git blob hash) against the upstream repo at the commit their README
-pins. `--extra-out` points at another checkout's untracked out/ so task IRs can be matched to
-pipeline output that is not committed yet.
+"Discovered by" = the author of the first commit, on any branch, that added the path (git history
+cannot say how something was found; `candidate_source` is filled only when the DOI is listed in
+references/candidates.json). GitHub logins come from the commits API. Reference files are checked
+byte for byte (git blob hash) against the upstream repo at the commit their README pins.
+
+Paths moved during the refactor, so the lookup tries every former location of a path (RULES) and
+takes the earliest commit, which keeps the original discoverer.
 """
 
 import argparse
@@ -16,32 +17,44 @@ import csv
 import hashlib
 import json
 import pathlib
-import re
 import subprocess
 from urllib.parse import quote
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 REPO = "PhysicalAIBenchmarks/Text2WetLab"
 GH = f"https://github.com/{REPO}"
-DEVIN = "origin/devin/1791063775-opentrons-rna-extraction-only"
-# current path (file or folder prefix) -> where git first saw it. Keeps the original discoverer after a move.
-MOVED = {
-    "tasks/L2/opentrons-rna-extraction": "tasks/opentrons-rna-extraction",
-    "ref/hulp-rna-extraction/viral_rna_extraction_protocol.py": "out/10.1371_journal.pone.0246302/viral_rna_extraction_protocol.py",
-    "tasks/L1/serial-dilution-200ul/solution/protocol.py": "ref/L1-serial-dilution-200ul-2x100ul/protocol_correct.py",
-    "tasks/L1/serial-dilution-200ul/tests/run_tests.py": "ref/L1-serial-dilution-200ul-2x100ul/run_tests.py",
-    "manuscript": "paper",
-}
+
+# (current path or folder, a former path or folder). Applied repeatedly, so a path moved twice is found.
+L2_TASKS = ["ampure-bead-cleanup", "colony-pcr-screening", "ecoli-heat-shock-transformation", "golden-gate-assembly"]
+RULES = (
+    [("data/pipeline_runs", "out"), ("references", "ref"), ("manuscript", "paper"),
+     ("tasks/split-200ul-two-wells", "tasks/serial-dilution-200ul"),
+     ("tasks/serial-dilution-200ul", "tasks/L1/serial-dilution-200ul"),
+     ("tasks/a1-a12-100ul", "tasks/L1/a1-a12-100ul"),
+     ("tasks/opentrons-rna-extraction", "tasks/L2/opentrons-rna-extraction"),
+     ("tasks/L2/opentrons-rna-extraction", "tasks/opentrons-rna-extraction"),
+     ("references/hulp-rna-extraction/viral_rna_extraction_protocol.py", "out/10.1371_journal.pone.0246302/viral_rna_extraction_protocol.py"),
+     ("tasks/serial-dilution-200ul/solution/protocol.py", "ref/L1-serial-dilution-200ul-2x100ul/protocol_correct.py")]
+    + [(f"tasks/{t}", f"tasks/L2/{t}") for t in L2_TASKS]
+)
 
 
-def origin_path(path):
-    for new, old in MOVED.items():
-        if path == new or path.startswith(new + "/"):
-            return old + path[len(new):]
-    return path
+def history_paths(path):
+    """Every path `path` was ever known by, current first."""
+    seen, todo = [path], [path]
+    while todo:
+        p = todo.pop()
+        alts = [old + p[len(new):] for new, old in RULES if p == new or p.startswith(new + "/")]
+        if p.endswith("/instruction.md"):
+            alts.append(p[: -len("instruction.md")] + "input.nl.txt")
+        for a in alts:
+            if a not in seen:
+                seen.append(a)
+                todo.append(a)
+    return seen
+
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--extra-out", default=None)
 ap.add_argument("--out", default=None, help="output CSV (default: PROVENANCE.csv in the repo root)")
 args = ap.parse_args()
 
@@ -58,20 +71,21 @@ _intro = {}
 
 
 def introduced(path):
-    """(commit, git author, iso date, co-authors) of the earliest commit adding `path` on any branch."""
+    """(commit, author, iso date, co-authors, path at that commit) of the earliest commit adding `path`."""
     if path in _intro:
         return _intro[path]
     best = None
-    for p in dict.fromkeys([path, origin_path(path)]):
+    for p in history_paths(path):
+        # --full-history: after a rename inside a merge, default simplification prunes the side that added the old path
         for line in git("log", "--all", "--full-history", "--diff-filter=A", "--format=%H|%an|%cI", "--", p).splitlines():
             h, an, d = line.split("|", 2)
             if best is None or d < best[2]:
-                best = (h, an, d)
+                best = (h, an, d, p)
     if best is None:
-        _intro[path] = ("", "", "", "")
+        _intro[path] = ("", "", "", "", "")
         return _intro[path]
     co = git("log", "-1", "--format=%(trailers:key=Co-Authored-By,valueonly,separator=; )", best[0]).replace("\n", "")
-    _intro[path] = (best[0], best[1], best[2][:10], co)
+    _intro[path] = (best[0], best[1], best[2][:10], co, best[3])
     return _intro[path]
 
 
@@ -87,8 +101,7 @@ def login(sha):
 
 def branches(sha):
     if sha not in _branches:
-        names = [b.strip().replace("origin/", "") for b in git("branch", "-r", "--contains", sha).splitlines()
-                 if "HEAD" not in b]
+        names = [b.strip().replace("origin/", "") for b in git("branch", "-r", "--contains", sha).splitlines() if "HEAD" not in b]
         _branches[sha] = ", ".join(sorted(set(names)))
     return _branches[sha]
 
@@ -119,10 +132,10 @@ def licence(repo):
     return _lic[repo]
 
 
-COLS = ["record_id", "record_type", "layer", "path", "name", "paper_doi", "paper_url", "experiment",
-        "ir_source", "candidate_source", "discovered_by_git_author", "discovered_by_github_login",
-        "previous_path", "co_authors", "introduced_commit", "introduced_date", "branches_with_commit", "github_url", "loc",
-        "sha256", "upstream_repo", "upstream_commit", "upstream_path", "upstream_url", "upstream_licence",
+COLS = ["record_id", "record_type", "path", "previous_path", "name", "paper_doi", "paper_url", "experiment",
+        "ir_source", "candidate_source", "discovered_by_git_author", "discovered_by_github_login", "co_authors",
+        "introduced_commit", "introduced_date", "branches_with_commit", "github_url", "loc", "sha256",
+        "upstream_repo", "upstream_commit", "upstream_path", "upstream_url", "upstream_licence",
         "verified_vs_upstream", "notes"]
 rows = []
 
@@ -131,14 +144,13 @@ def add(**kw):
     r = {c: "" for c in COLS}
     r.update(kw)
     path = r["path"]
-    r["previous_path"] = origin_path(path) if origin_path(path) != path else ""
-    c, an, d, co = introduced(path)
+    c, an, d, co, found = introduced(path)
     if c:
-        r.update(introduced_commit=c[:7], introduced_date=d, discovered_by_git_author=an,
-                 discovered_by_github_login=login(c) or "(no GitHub account matched)", co_authors=co,
-                 branches_with_commit=branches(c),
-                 github_url=f"{GH}/blob/{c[:7]}/{quote(origin_path(path))}" if (ROOT / path).is_file() else
-                 f"{GH}/tree/{c[:7]}/{quote(origin_path(path))}")
+        is_file = (ROOT / path).is_file()
+        r.update(previous_path=found if found != path else "", introduced_commit=c[:7], introduced_date=d,
+                 discovered_by_git_author=an, discovered_by_github_login=login(c) or "(no GitHub account matched)",
+                 co_authors=co, branches_with_commit=branches(c),
+                 github_url=f"{GH}/{'blob' if is_file else 'tree'}/{c[:7]}/{quote(found)}")
     else:
         r["notes"] = (r["notes"] + " NOT IN GIT HISTORY (untracked)").strip()
     if r["paper_doi"]:
@@ -149,106 +161,111 @@ def add(**kw):
 
 
 candidates = {}
-cj = ROOT / "ref/candidates.json"
-for src in (cj, pathlib.Path.home() / "Desktop/Text2WetLab/ref/candidates.json"):
+for src in (ROOT / "references/candidates.json", pathlib.Path.home() / "Desktop/Text2WetLab/ref/candidates.json"):
     if src.exists():
         for c in json.loads(src.read_text()):
-            candidates[(c.get("doi") or "").lower()] = "Amass BiomedCore sweep 2026-10-03 (ref/candidates.json)"
+            candidates[(c.get("doi") or "").lower()] = "Amass BiomedCore sweep 2026-10-03 (candidates.json)"
         break
 
 # ---- pipeline outputs ------------------------------------------------------------------
-pipeline = {}
-out_roots = [ROOT / "out"] + ([pathlib.Path(args.extra_out)] if args.extra_out else [])
-for root in out_roots:
-    for p in sorted(root.glob("*/exp*/protocol.json")):
-        paper = json.loads((p.parent.parent / "paper.json").read_text())
-        pipeline[sha256(p)] = (paper["doi"], p.parent.name, root != ROOT / "out")
-for p in sorted((ROOT / "out").glob("*/exp*/protocol.json")):
+RUNS = ROOT / "data/pipeline_runs"
+pipeline = {}  # sha256 of protocol.json -> (doi, exp)
+for p in sorted(RUNS.glob("*/exp*/protocol.json")):
+    pipeline[sha256(p)] = (json.loads((p.parent.parent / "paper.json").read_text())["doi"], p.parent.name)
+for p in sorted(RUNS.glob("*/exp*/protocol.json")):
     d = p.parent
     paper = json.loads((d.parent / "paper.json").read_text())
     crit = json.loads((d / "critic.json").read_text()).get("verdict", "") if (d / "critic.json").exists() else ""
     suff = json.loads((d / "sufficiency.json").read_text()).get("verdict", "") if (d / "sufficiency.json").exists() else ""
-    n = len(json.loads(p.read_text())["steps"])
-    add(record_id=f"out:{paper['doi']}#{d.name}", record_type="pipeline_output", path=str(p.relative_to(ROOT)),
+    add(record_id=f"run:{paper['doi']}#{d.name}", record_type="pipeline_output", path=str(p.relative_to(ROOT)),
         name=paper["title"][:90], paper_doi=paper["doi"], experiment=d.name, ir_source="paper2protocol (LLM)",
-        candidate_source=candidates.get(paper["doi"].lower(), ""), notes=f"{n} steps; critic={crit}; sufficiency={suff}")
+        candidate_source=candidates.get(paper["doi"].lower(), ""),
+        notes=f"{len(json.loads(p.read_text())['steps'])} steps; critic={crit}; sufficiency={suff}")
 
 # ---- tasks -----------------------------------------------------------------------------
-for d in sorted(list((ROOT / "tasks").glob("L*/*"))):
-    rel = str(d.relative_to(ROOT))
-    layer = d.parent.name
+HULP = "10.1371/journal.pone.0246302"
+for d in sorted(p for p in (ROOT / "tasks").iterdir() if p.is_dir()):
     ir = d / "ir.json"
     doi, exp, src, notes = "", "", "handwritten", ""
     if ir.exists():
-        steps = len(json.loads(ir.read_text())["steps"])
-        notes = f"{steps} steps"
+        notes = f"{len(json.loads(ir.read_text())['steps'])} steps"
         if sha256(ir) in pipeline:
-            doi, exp, untracked = pipeline[sha256(ir)]
-            src = f"paper2protocol (byte-identical to out/{doi.replace('/', '_')}/{exp}/protocol.json)"
-            notes += "; source protocol.json " + ("untracked in another checkout" if untracked else "tracked")
+            doi, exp = pipeline[sha256(ir)]
+            src = f"paper2protocol (byte-identical to data/pipeline_runs/{doi.replace('/', '_')}/{exp}/protocol.json)"
     else:
-        src, doi = "Harbor task (not paper2protocol IR)", "10.1371/journal.pone.0246302"
+        src, doi = "Harbor task (not a paper2protocol IR)", HULP
         notes = "hidden grader tests/ + solution/ inside the task folder"
-    add(record_id=f"task:{rel[6:]}", record_type="task", layer=layer, path=rel, name=d.name, paper_doi=doi,
+    add(record_id=f"task:{d.name}", record_type="task", path=str(d.relative_to(ROOT)), name=d.name, paper_doi=doi,
         experiment=exp, ir_source=src, candidate_source=candidates.get(doi.lower(), ""), notes=notes)
 
-harbor = "tasks/L2/opentrons-rna-extraction"
-hulp = "viral_rna_extraction_protocol.py"
-hulp_local = ROOT / "ref/hulp-rna-extraction" / hulp
+harbor = "tasks/opentrons-rna-extraction"
+hulp_local = ROOT / "references/hulp-rna-extraction/viral_rna_extraction_protocol.py"
 
 # ---- references ------------------------------------------------------------------------
-SETS = {"ref/dna-bot-ysaa010": ("BASIC-DNA-ASSEMBLY/DNA-BOT", "ae9aebbd5833752cad981ecf99a52a6c6e7202e2", "10.1093/synbio/ysaa010"),
-        "ref/botany-kiag066": ("cvoiniciuc/BOTany", "c7588d321a59b0d9078c288504e63598b0f60b5e", "10.1093/plphys/kiag066"),
-        "ref/transporter-screening-antibiotics11081129": ("ljm176/TransporterScreening", "455fc2e569ad4a873ab415186a29e3e396e8cc4e", "10.3390/antibiotics11081129")}
+SETS = {"references/dna-bot-ysaa010": ("BASIC-DNA-ASSEMBLY/DNA-BOT", "ae9aebbd5833752cad981ecf99a52a6c6e7202e2", "10.1093/synbio/ysaa010"),
+        "references/botany-kiag066": ("cvoiniciuc/BOTany", "c7588d321a59b0d9078c288504e63598b0f60b5e", "10.1093/plphys/kiag066"),
+        "references/transporter-screening-antibiotics11081129": ("ljm176/TransporterScreening", "455fc2e569ad4a873ab415186a29e3e396e8cc4e", "10.3390/antibiotics11081129")}
 for base, (repo, commit, doi) in SETS.items():
     up = tree(repo, commit)
     for p in sorted((ROOT / base).rglob("*")):
-        if not p.is_file() or p.parent.name in ("",) or p.name in ("README.md", "COMPARISON.md", "REPO_README.md") and p.parent == ROOT / base:
+        if not p.is_file() or (p.name in ("README.md", "COMPARISON.md", "REPO_README.md") and p.parent == ROOT / base):
             continue
         rel = str(p.relative_to(ROOT))
-        blob = git("hash-object", rel)
-        hit = up.get(blob)
+        hit = up.get(git("hash-object", rel))
         add(record_id=f"ref:{rel}", record_type="reference", path=rel, name=p.name, paper_doi=doi, ir_source="author script",
             candidate_source=candidates.get(doi.lower(), ""), upstream_repo=repo, upstream_commit=commit[:7],
             upstream_path=hit or "", upstream_url=f"https://github.com/{repo}/blob/{commit[:7]}/{quote(hit)}" if hit else "",
             upstream_licence=licence(repo), verified_vs_upstream="byte-identical" if hit else "NO MATCH")
 
-if hulp_local.exists():
-    blob = git("hash-object", str(hulp_local.relative_to(ROOT)))
-    repo, found = "HULPopentrons/RNA_extraction_OT2opentrons", None
-    for c in json.loads(run("gh", "api", f"repos/{repo}/commits?per_page=30") or "[]"):
-        t = tree(repo, c["sha"])
-        if blob in t:
-            found = (c["sha"], t[blob])
-            break
-    rel = str(hulp_local.relative_to(ROOT))
-    add(record_id=f"ref:{rel}", record_type="reference", path=rel, name=hulp, paper_doi="10.1371/journal.pone.0246302",
-        ir_source="author script", candidate_source=candidates.get("10.1371/journal.pone.0246302", ""), upstream_repo=repo,
-        upstream_commit=found[0][:7] if found else "", upstream_path=found[1] if found else "",
-        upstream_url=f"https://github.com/{repo}/blob/{found[0][:7]}/{found[1]}" if found else "",
-        upstream_licence=licence(repo), verified_vs_upstream="byte-identical" if found else "NO MATCH",
-        notes="originally committed under out/ (generated outputs); upstream commit now pinned in ref/hulp-rna-extraction/README.md")
-    for f in ("solution/protocol.py", "tests/reference_protocol.py"):
-        p = ROOT / harbor / f
-        if p.exists():
-            same = p.read_bytes().replace(b"\r\n", b"\n") == hulp_local.read_bytes().replace(b"\r\n", b"\n")
-            add(record_id=f"harbor:{f}", record_type="task_file", layer="L2", path=f"{harbor}/{f}", name=f,
-                paper_doi="10.1371/journal.pone.0246302", ir_source="author script (re-saved)",
-                upstream_repo=repo, upstream_commit=found[0][:7] if found else "", upstream_licence=licence(repo),
-                verified_vs_upstream="identical apart from line endings" if same else "differs",
-                notes="hidden grader/oracle file")
+repo, found = "HULPopentrons/RNA_extraction_OT2opentrons", None
+blob = git("hash-object", str(hulp_local.relative_to(ROOT)))
+for c in json.loads(run("gh", "api", f"repos/{repo}/commits?per_page=30") or "[]"):
+    t = tree(repo, c["sha"])
+    if blob in t:
+        found = (c["sha"], t[blob])
+        break
+rel = str(hulp_local.relative_to(ROOT))
+add(record_id=f"ref:{rel}", record_type="reference", path=rel, name=hulp_local.name, paper_doi=HULP, ir_source="author script",
+    candidate_source=candidates.get(HULP, ""), upstream_repo=repo, upstream_commit=found[0][:7] if found else "",
+    upstream_path=found[1] if found else "",
+    upstream_url=f"https://github.com/{repo}/blob/{found[0][:7]}/{found[1]}" if found else "",
+    upstream_licence=licence(repo), verified_vs_upstream="byte-identical" if found else "NO MATCH",
+    notes="originally committed under out/ (generated outputs); upstream commit pinned in references/hulp-rna-extraction/README.md")
+for f in ("solution/protocol.py", "tests/reference_protocol.py"):
+    p = ROOT / harbor / f
+    same = p.read_bytes().replace(b"\r\n", b"\n") == hulp_local.read_bytes().replace(b"\r\n", b"\n")
+    add(record_id=f"task_file:{harbor}/{f}", record_type="task_file", path=f"{harbor}/{f}", name=f, paper_doi=HULP,
+        ir_source="author script (re-saved)", upstream_repo=repo, upstream_commit=found[0][:7] if found else "",
+        upstream_licence=licence(repo), verified_vs_upstream="identical apart from line endings" if same else "differs",
+        notes="hidden grader/oracle file")
+p = ROOT / "tasks/split-200ul-two-wells/solution/protocol.py"
+add(record_id="task_file:tasks/split-200ul-two-wells/solution/protocol.py", record_type="task_file", path=str(p.relative_to(ROOT)),
+    name="solution/protocol.py", ir_source="handwritten", verified_vs_upstream="n/a", notes="hidden oracle file; no upstream")
 
-for f in ("solution/protocol.py", "tests/run_tests.py"):
-    p = ROOT / "tasks/L1/serial-dilution-200ul" / f
-    if p.exists():
-        add(record_id=f"l1:{f}", record_type="task_file", layer="L1", path=str(p.relative_to(ROOT)), name=f,
-            ir_source="handwritten (ours)", verified_vs_upstream="n/a", notes="hidden grader/oracle file; no upstream")
+
+# ---- renders: experiment id + the IR each was drawn from -------------------------------
+def render_stem(ir):
+    parts = ir.relative_to(ROOT).parts
+    return parts[1] if parts[0] == "tasks" else f"paper-{parts[2].replace('.', '_')}-{parts[3]}"
+
+
+for ir in sorted(ROOT.glob("tasks/*/ir.json")) + sorted(RUNS.glob("*/exp*/protocol.json")):
+    stem = render_stem(ir)
+    from_paper = ir.name == "protocol.json"
+    doi = json.loads((ir.parent.parent / "paper.json").read_text())["doi"] if from_paper else ""
+    exp = ir.parent.name if from_paper else ""
+    for variant in (stem, f"{stem}-NO-LIFT-collision"):
+        mp4 = ROOT / f"assets/examples3d/{variant}.mp4"
+        if mp4.exists():
+            add(record_id=f"render:{variant}", record_type="render", path=str(mp4.relative_to(ROOT)),
+                name=f"doi:{doi}#{exp}" if from_paper else f"task:{ir.parent.name}", paper_doi=doi, experiment=exp,
+                ir_source=str(ir.relative_to(ROOT)),
+                notes="same IR, drives at work height (collision demo)" if "NO-LIFT" in variant else "")
 
 # ---- code ------------------------------------------------------------------------------
 for pat in ("paper2protocol/*.py", "eval/*.py", "scripts/*.py", "tests/*.py", f"{harbor}/tests/*.py"):
     for p in sorted(ROOT.glob(pat)):
-        add(record_id=f"code:{p.relative_to(ROOT)}", record_type="code", path=str(p.relative_to(ROOT)), name=p.name,
-            ir_source="handwritten/Claude-assisted", notes="")
+        add(record_id=f"code:{p.relative_to(ROOT)}", record_type="code", path=str(p.relative_to(ROOT)), name=p.name)
 
 OUT_CSV = pathlib.Path(args.out) if args.out else ROOT / "PROVENANCE.csv"
 with open(OUT_CSV, "w", newline="") as f:

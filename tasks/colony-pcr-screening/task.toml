@@ -1,0 +1,14 @@
+schema_version = "1.4"
+
+[task]
+name = "colony-pcr-screening"
+description = "Colony PCR screening with Q5 Hot Start master mix"
+keywords = ["pcr", "thermocycler"]
+
+[metadata]
+source = "handwritten"
+steps = 4
+containers = 4
+
+[checks]
+free_wells = []

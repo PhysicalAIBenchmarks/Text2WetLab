@@ -1,5 +1,8 @@
 # Opentrons Protocol Agent: Spec, Acceptance Criteria & Risks
 
+> **Status:** which of AC1-AC7 are implemented, and measured evidence for each, is in [`criteria.md`](criteria.md). The spec below is the design intent.
+
+
 ## Pipeline
 
 ```

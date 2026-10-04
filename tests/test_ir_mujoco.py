@@ -24,7 +24,7 @@ from paper2protocol.models import Protocol  # noqa: E402
 
 
 def test_a1_a12_renders_and_liquid_appears():
-    p = Protocol.model_validate_json((ROOT / "tasks/L1/a1-a12-100ul/ir.json").read_text())
+    p = Protocol.model_validate_json((ROOT / "tasks/a1-a12-100ul/ir.json").read_text())
     deck, states, touched, issues, frames, track = build_frames(p)
     first, last = frames[0][0], frames[-1][0]
     assert first.shape == last.shape == (540, 720, 3)
@@ -38,7 +38,7 @@ def load(name):
 
 
 def test_lifted_travel_has_no_collisions_and_no_lift_does():
-    p = load("tasks/L1/serial-dilution-200ul/ir.json")
+    p = load("tasks/split-200ul-two-wells/ir.json")
     *_, lifted = build_frames(p)
     *_, dragged = build_frames(p, lift=False)
     assert lifted["collision"].sum() == 0
@@ -47,7 +47,7 @@ def test_lifted_travel_has_no_collisions_and_no_lift_does():
 
 
 def test_tracker_flags_transfer_larger_than_one_pipette_load():
-    *_, track = build_frames(load("tasks/L1/a1-a12-100ul/ir.json"), pipette_max=300)
+    *_, track = build_frames(load("tasks/a1-a12-100ul/ir.json"), pipette_max=300)
     assert track["trips"].max() == 4          # 12 x 100 uL = 1200 uL = 4 loads of 300
     assert track["held"].max() <= 300         # the tip never holds more than one load
 

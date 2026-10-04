@@ -1,8 +1,8 @@
 """
 Visualise any Protocol IR (paper2protocol schema) as a deck of labware that fills and empties.
 
-    python eval/ir_viz.py tasks/L1/serial-dilution-200ul/ir.json -o assets/examples/L1.gif
-    python eval/ir_viz.py out/<doi>/exp1/protocol.json -o assets/examples/paper.gif
+    python eval/ir_viz.py tasks/split-200ul-two-wells/ir.json -o assets/examples/L1.gif
+    python eval/ir_viz.py data/pipeline_runs/<doi>/exp1/protocol.json -o assets/examples/paper.gif
     python eval/ir_viz.py --all          # every IR in the repo -> assets/examples/
 
 One panel per container: 96-well plates as 8x12 grids, tubes / reservoirs / waste as a
@@ -29,6 +29,7 @@ from matplotlib.colors import LinearSegmentedColormap  # noqa: E402
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from paper2protocol.check import check, expand_wells  # noqa: E402
+from paper2protocol.timeline import pairs, timeline  # noqa: E402
 from paper2protocol.models import CAPACITY_UL, Protocol  # noqa: E402
 from paper2protocol.render import step_line  # noqa: E402
 
@@ -36,53 +37,6 @@ BG, PANEL, TEXT = "#07070f", "#0c0c1a", "#8090c0"
 SRC, DST, BAD = "#ffa726", "#00d4ff", "#ff5252"
 MAX_PANELS_PER_ROW = 8
 MIN_COLS = 4  # keeps a 1-2 container deck from stretching panels across the frame
-
-
-def pairs(step, kinds):
-    """(source_well, dest_well) pairs for a transfer, same rules as check.py."""
-    srcs = expand_wells(step.source_wells, kinds[step.source])
-    dests = expand_wells(step.dest_wells, kinds[step.dest])
-    if len(srcs) == 1:
-        return [(srcs[0], d) for d in dests]
-    if len(srcs) == len(dests):
-        return list(zip(srcs, dests))
-    if len(dests) == 1:
-        return [(s, dests[0]) for s in srcs]
-    return []
-
-
-def timeline(p: Protocol):
-    """Volume snapshots: state[i] is the state after step i (state[0] = initial).
-    Each state maps (container, well) -> µL, or None for a stock with ample volume."""
-    kinds = {c.name: c.kind for c in p.containers}
-    vol: dict[tuple[str, str], float | None] = {}
-    for c in p.initial_contents:
-        if c.container not in kinds:
-            continue
-        for w in expand_wells(c.wells, kinds[c.container]):
-            prev = vol.get((c.container, w), 0.0)
-            vol[(c.container, w)] = None if c.volume_ul is None or prev is None else prev + c.volume_ul
-    states, touched = [dict(vol)], [([], [])]
-    for s in p.steps:
-        src_t, dst_t = [], []
-        try:
-            if s.kind == "transfer" and s.source in kinds and s.dest in kinds and s.volume_ul:
-                for sw, dw in pairs(s, kinds):
-                    cur = vol.get((s.source, sw))
-                    if cur is not None:
-                        vol[(s.source, sw)] = cur - s.volume_ul
-                    if kinds[s.dest] != "waste":
-                        cur = vol.get((s.dest, dw), 0.0)
-                        vol[(s.dest, dw)] = None if cur is None else cur + s.volume_ul
-                    src_t.append((s.source, sw))
-                    dst_t.append((s.dest, dw))
-            elif s.kind == "mix" and s.dest in kinds:
-                dst_t = [(s.dest, w) for w in expand_wells(s.dest_wells, kinds[s.dest])]
-        except ValueError:
-            pass  # bad well name; check() reports it
-        states.append(dict(vol))
-        touched.append((src_t, dst_t))
-    return states, touched
 
 
 FILL_CMAP = LinearSegmentedColormap.from_list(
@@ -185,15 +139,15 @@ def render(p: Protocol, out: pathlib.Path, fps=3, size=(1280, 720)):
 
 
 def find_irs():
-    found = sorted(ROOT.glob("tasks/**/ir.json")) + sorted(ROOT.glob("out/*/exp*/protocol.json"))
+    found = sorted(ROOT.glob("tasks/*/ir.json")) + sorted(ROOT.glob("data/pipeline_runs/*/exp*/protocol.json"))
     return found
 
 
 def name_for(path: pathlib.Path):
     rel = path.relative_to(ROOT)
     if rel.parts[0] == "tasks":
-        return "-".join(rel.parts[1:-1])
-    return f"paper-{rel.parts[1].replace('.', '_')}-{rel.parts[2]}"
+        return rel.parts[1]
+    return f"paper-{rel.parts[2].replace('.', '_')}-{rel.parts[3]}"
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 """
 Headless 3D (MuJoCo) view of any Protocol IR, side by side with the 2D IR view.
 
-    python eval/ir_mujoco.py tasks/L1/serial-dilution-200ul/ir.json -o assets/examples3d/L1-serial-dilution-200ul.mp4
+    python eval/ir_mujoco.py tasks/split-200ul-two-wells/ir.json -o assets/examples3d/split-200ul-two-wells.mp4
     python eval/ir_mujoco.py --all          # every IR in the repo -> assets/examples3d/
 
 The scene is generated from the IR: one labware model per container on a virtual deck (one
@@ -43,7 +43,8 @@ from PIL import Image, ImageDraw
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "eval"))
 sys.path.insert(0, str(ROOT))
-from ir_viz import LEGEND, draw, fill_rgb, find_irs, name_for, pairs, ratio, timeline  # noqa: E402
+from ir_viz import LEGEND, draw, fill_rgb, find_irs, name_for, ratio  # noqa: E402
+from paper2protocol.timeline import timeline  # noqa: E402
 from paper2protocol.check import check, expand_wells  # noqa: E402
 from paper2protocol.models import CAPACITY_UL, Protocol  # noqa: E402
 from paper2protocol.render import step_line  # noqa: E402

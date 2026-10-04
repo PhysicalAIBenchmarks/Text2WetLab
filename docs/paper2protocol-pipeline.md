@@ -64,7 +64,7 @@ publisher URL / article id / title without one (looked up in Europe PMC).
 | `--force` | convert even when resolve rejects; a warning banner is added to `protocol.txt` |
 | `--no-critic` | skip the critic |
 | `--cache use\|refresh\|off\|only` | LLM response cache mode (see [Cache](#llm-calls-and-the-cache)) |
-| `--out DIR` | output root (default `out/`) |
+| `--out DIR` | output root (default `data/pipeline_runs/`) |
 
 ## Stage by stage
 
@@ -87,7 +87,7 @@ the DOI, in order, and returns JATS XML from the first that succeeds:
 
 If none work, the error says so and suggests `--xml`. Paywalled journal articles that
 aren't in PMC fail here; a bioRxiv preprint of the same paper is often a workable substitute
-(see `out/10.1101_2025.08.21.671538/` for an example).
+(see `data/pipeline_runs/10.1101_2025.08.21.671538/` for an example).
 
 **Parsing.** `ingest.parse_jats` produces a `Paper`:
 
@@ -98,7 +98,7 @@ aren't in PMC fail here; a bioRxiv preprint of the same paper is often a workabl
   first so captions don't pollute section text.
 - `references`: citation text plus DOI where JATS provides one.
 
-Saved as `out/<doi>/paper.json` and reused on later runs unless `--refetch` or `--xml`.
+Saved as `data/pipeline_runs/<doi>/paper.json` and reused on later runs unless `--refetch` or `--xml`.
 
 ### 2. identify: `Paper` → experiments
 
@@ -266,8 +266,8 @@ Methods), so `guard.py` keeps the model away from them in three layers:
    Flags are printed as `!! LEAK FLAG`, stored in `web_access.json`, and an *opened* flagged
    URL adds a warning to `protocol.txt`.
 
-Author scripts kept for scoring live under `ref/` and are never on the pipeline's input
-path. Each `ref/*/README.md` records provenance, licence and which script corresponds to
+Author scripts kept for scoring live under `references/` and are never on the pipeline's input
+path. Each `references/*/README.md` records provenance, licence and which script corresponds to
 which experiment. Score against them after a run, and don't use them to tune prompts.
 
 ## LLM calls and the cache
@@ -302,7 +302,7 @@ inspected later.
 ## Output layout
 
 ```
-out/<doi with / → _>/
+data/pipeline_runs/<doi with / → _>/
 ├── paper.json           parsed paper (ingest)
 ├── experiments.json     experiment list (identify); fixes the -e numbering
 └── exp<N>/

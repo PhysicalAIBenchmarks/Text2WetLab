@@ -3,9 +3,9 @@
     python scripts/deploy_hf.py --dry-run      # stage and list what would be published
 
 Publishing is an allowlist. Never published:
-  - tasks/<level>/<task>/tests/ and solution/   hidden grader and oracle files (contamination)
-  - ref/                                        third-party scripts, several without a licence
-  - out/, .git, caches                          generated or internal
+  - tasks/<task>/tests/ and solution/   hidden grader and oracle files (contamination)
+  - references/                         third-party scripts, several without a licence
+  - data/, .git, caches                 generated or internal
 """
 import argparse
 import os
@@ -16,14 +16,14 @@ from pathlib import Path
 REPO_ID = os.environ.get("HF_REPO_ID", "EvanOLeary/Text2WetLab")
 ROOT = Path(__file__).resolve().parent.parent
 INCLUDE = ["tasks", "eval", "manuscript", "assets", "docs", "PROVENANCE.csv", "LICENSE"]
-HIDDEN = {"tests", "solution"}  # directories directly inside tasks/<level>/<task>/
+HIDDEN = {"tests", "solution"}  # directories directly inside tasks/<task>/
 NOISE = {"__pycache__", ".DS_Store"}
 
 
 def _ignore(directory, names):
     rel = Path(directory).resolve().relative_to(ROOT).parts
     skip = {n for n in names if n in NOISE or n.endswith(".pyc")}
-    if len(rel) == 3 and rel[0] == "tasks":
+    if len(rel) == 2 and rel[0] == "tasks":
         skip |= HIDDEN & set(names)
     return skip
 

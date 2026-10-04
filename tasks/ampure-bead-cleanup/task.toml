@@ -1,0 +1,14 @@
+schema_version = "1.4"
+
+[task]
+name = "ampure-bead-cleanup"
+description = "AMPure XP magnetic bead cleanup of PCR products"
+keywords = ["magnetic-beads", "cleanup"]
+
+[metadata]
+source = "handwritten"
+steps = 13
+containers = 6
+
+[checks]
+free_wells = []

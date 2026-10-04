@@ -1,5 +1,0 @@
-Picking up tip from A1 of Opentrons OT-2 96 Tip Rack 1000 µL on slot 1
-Aspirating 200.0 uL from A1 of Agilent 1 Well Reservoir 290 mL on slot 3 at 274.7 uL/sec
-Dispensing 100.0 uL into A1 of Corning 96 Well Plate 360 µL Flat on slot 2 at 274.7 uL/sec
-Dispensing 100.0 uL into B1 of Corning 96 Well Plate 360 µL Flat on slot 2 at 274.7 uL/sec
-Dropping tip into Trash Bin on slot 12

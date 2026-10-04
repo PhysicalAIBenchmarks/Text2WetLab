@@ -1,9 +1,6 @@
 .env
 .cache/
-__pycache__/
 .venv/
 __pycache__/
 *.pyc
 .DS_Store
-episode_mujoco.mp4
-reference_episode.mp4

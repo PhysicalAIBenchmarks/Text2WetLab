@@ -167,7 +167,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="paper2protocol", description=__doc__)
     ap.add_argument("--cache", choices=["use", "refresh", "off", "only"], default=llm.CACHE_MODE,
                     help="LLM response cache mode (default: use)")
-    ap.add_argument("--out", default="out", help="output directory (default: out/)")
+    ap.add_argument("--out", default="data/pipeline_runs", help="output directory (default: data/pipeline_runs/)")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     s = sub.add_parser("search", help="find papers by title/keywords (Europe PMC)")

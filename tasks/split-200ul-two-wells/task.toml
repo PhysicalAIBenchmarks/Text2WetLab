@@ -1,0 +1,15 @@
+schema_version = "1.4"
+
+[task]
+name = "split-200ul-two-wells"
+description = "Split 200 µL into two 100 µL wells"
+keywords = ["liquid-handling", "tip-management"]
+
+[metadata]
+source = "handwritten"
+vagueness = "V1"
+steps = 1
+containers = 2
+
+[checks]
+free_wells = ["plate"]

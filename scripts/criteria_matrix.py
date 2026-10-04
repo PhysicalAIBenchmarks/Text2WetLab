@@ -1,36 +1,29 @@
 """
-Criteria sensitivity matrix: push deliberately broken protocols through every criterion set and
-record which criteria catch which fault.
+Criteria sensitivity matrix: push deliberately broken protocols through the checker and record
+which criteria catch which fault, against ground truth ("is this a correct solution?").
 
     python scripts/criteria_matrix.py [--json out.json]
 
-Needs an Opentrons 7.5.0 environment on Python 3.10 (the Harbor image's stack):
-    uv venv --python 3.10 $OT_VENV && uv pip install --python $OT_VENV/bin/python \
-        opentrons==7.5.0 opentrons-shared-data==7.5.0 "pydantic<2"
-$OT_VENV defaults to ~/Desktop/ot-sim-venv. The scoring side needs numpy and gymnasium.
+Needs an Opentrons 7.5.0 environment on Python 3.10 (the Harbor image's stack), see eval/spec_check.py.
 
-Three families, each with ground truth ("is this a correct solution to the instruction?"):
-  L1   serial dilution   -> simulator gate, WetLabEnv errors, T1-T6, proposed end-state check E1
-  A12  100 uL into A1-A12 -> simulator gate, WetLabEnv errors, proposed end-state check E1
-  RNA  HULP extraction   -> simulator gate, Harbor checks.py (16 checks) + critical-check cap
+  split / a1-a12   eval/spec_check.py (generic rules + end state derived from the task's IR)
+  rna              the Harbor task's checks.py (16 checks) + critical-check cap, on mutants of the
+                   authors' script (the LLM judge is not run)
 """
 import argparse
 import importlib.util
 import json
-import os
 import pathlib
 import subprocess
 import sys
 import tempfile
 
-import numpy as np
-
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-OT = pathlib.Path(os.environ.get("OT_VENV", pathlib.Path.home() / "Desktop/ot-sim-venv"))
-sys.path.insert(0, str(ROOT / "eval"))
-from trace_replay import replay  # noqa: E402
+sys.path[:0] = [str(ROOT), str(ROOT / "eval")]
+from paper2protocol.models import Protocol  # noqa: E402
+from spec_check import check, free_wells, simulate  # noqa: E402
 
-HARBOR = ROOT / "tasks/L2/opentrons-rna-extraction"
+HARBOR = ROOT / "tasks/opentrons-rna-extraction"
 spec = importlib.util.spec_from_file_location("harbor_checks", HARBOR / "tests/checks.py")
 harbor_checks = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(harbor_checks)
@@ -39,20 +32,8 @@ CRITICAL = {"48_samples_to_odd_columns", "step_order", "supernatant_removed_each
             "fresh_tip_per_sample_no_cross_contact"}  # copied from tests/grade.py CRITICAL_CHECKS
 
 
-def simulate_text(src: str):
-    """(ok, run log text or last error line) from the opentrons_simulate CLI."""
-    with tempfile.TemporaryDirectory() as d:
-        f = pathlib.Path(d, "protocol.py")
-        f.write_text(src)
-        r = subprocess.run([str(OT / "bin/opentrons_simulate"), str(f)], capture_output=True, text=True, timeout=300)
-    if r.returncode:
-        err = (r.stderr.strip().splitlines() or ["(no stderr)"])[-1]
-        return False, err[:110]
-    return True, r.stdout
-
-
-# ---------------------------------------------------------------- L1: 200 uL -> two wells
-L1_HEAD = '''metadata = {"apiLevel": "2.16"}
+# ---------------------------------------------------------------- split: 200 uL -> two wells
+SPLIT_HEAD = '''metadata = {"apiLevel": "2.16"}
 def run(p):
     tr = p.load_labware("opentrons_96_tiprack_1000ul", 1)
     pl = p.load_labware("corning_96_wellplate_360ul_flat", 2)
@@ -60,7 +41,7 @@ def run(p):
     pip = p.load_instrument("p1000_single_gen2", "right", tip_racks=[tr])
 '''
 # name -> (body, is a correct solution?, expected end state)
-L1 = {
+SPLIT = {
     "correct":              ("pip.pick_up_tip(); pip.aspirate(200, rs['A1']); pip.dispense(100, pl['A1']); pip.dispense(100, pl['B1']); pip.drop_tip()", True),
     "other_two_wells":      ("pip.pick_up_tip(); pip.aspirate(200, rs['A1']); pip.dispense(100, pl['C5']); pip.dispense(100, pl['D7']); pip.drop_tip()", True),
     "transfer_api":         ("pip.transfer(100, rs['A1'], [pl['A1'], pl['B1']], new_tip='once')", True),
@@ -74,7 +55,7 @@ L1 = {
     "aspirate_from_plate":  ("pip.pick_up_tip(); pip.aspirate(200, pl['H12']); pip.dispense(100, pl['A1']); pip.dispense(100, pl['B1']); pip.drop_tip()", False),
 }
 
-# ---------------------------------------------------------------- A12: 100 uL -> A1..A12
+# ---------------------------------------------------------------- a1-a12: 100 uL -> A1..A12
 A12_HEAD = '''metadata = {"apiLevel": "2.16"}
 def run(p):
     tr = p.load_labware("opentrons_96_tiprack_300ul", 1)
@@ -99,41 +80,26 @@ A12 = {
 }
 
 
-def end_state_ok(r, family):
-    """Proposed criterion E1, the specified end state, with no tip left on.
-    L1 (wells not named in the instruction): exactly two wells hold 100 uL each.
-    A12 (wells named): A1..A12 hold 100 uL each and nothing else is filled."""
-    plate = r["plate_ul"]
-    if family == "L1":
-        ok = sorted(plate[plate > 0].tolist()) == [100.0, 100.0]
-    else:
-        want = np.zeros((8, 12))
-        want[0, :] = 100
-        ok = bool(np.allclose(plate, want))
-    return ok and not r["tip_attached"]
-
-
-def eval_family(head, family, name_, t_criteria):
+def eval_task(head, family, task):
+    task_dir = ROOT / "tasks" / task
+    proto = Protocol.model_validate_json((task_dir / "ir.json").read_text())
+    free = free_wells(task_dir)
     rows = []
     for name, (body, truth) in family.items():
         src = head + "    " + (body if "\n" in body else body.replace("; ", "\n    ")) + "\n"
-        ok, log = simulate_text(src)
-        row = {"mutant": name, "truth_valid": truth, "sim_ok": ok}
-        if not ok:
-            row.update(detail=log, current_pass=False, errors=[], t_failed=[], e1=None)
-        else:
-            r = replay(log)
-            errs = sorted({e for _, e in r["errors"]})
-            t_failed = [k for k, v in r["criteria"].items() if not v] if t_criteria else []
-            row.update(errors=errs, t_failed=t_failed, current_pass=not errs and not t_failed,
-                       e1=end_state_ok(r, name_), plate_total=float(r["plate_ul"].sum()),
-                       detail="")
-        rows.append(row)
+        with tempfile.TemporaryDirectory() as d:
+            f = pathlib.Path(d, "protocol.py")
+            f.write_text(src)
+            res = check(proto, simulate(str(f)), free)
+        failed = [c["name"] for c in res["checks"] if not c["pass"]]
+        detail = next((c["detail"] for c in res["checks"] if c["name"] == "simulator_ran" and not c["pass"]), "")
+        rows.append({"mutant": name, "truth_valid": truth, "verdict_pass": res["passed"], "failed": failed,
+                     "sim_error": detail[:100]})
     return rows
 
 
 # ---------------------------------------------------------------- RNA: HULP script mutants
-HULP = ROOT / "ref/hulp-rna-extraction/viral_rna_extraction_protocol.py"
+HULP = ROOT / "references/hulp-rna-extraction/viral_rna_extraction_protocol.py"
 RNA = {  # name -> list of (1-based line, old, new); the faults each target one named check
     "baseline":            [],
     "incubation_1min":     [(152, "protocol.delay(minutes=5)", "protocol.delay(minutes=1)")],
@@ -156,9 +122,7 @@ def run_rna(patches):
     with tempfile.TemporaryDirectory() as d:
         f = pathlib.Path(d, "protocol.py")
         f.write_text("".join(lines))
-        r = subprocess.run([str(OT / "bin/python"), str(HARBOR / "tests/runlog.py"), str(f),
-                            str(HARBOR / "environment/data/labware")], capture_output=True, text=True, timeout=600)
-    out = json.loads(r.stdout.strip().splitlines()[-1])
+        out = simulate(str(f), str(HARBOR / "environment/data/labware"))
     if not out["ok"]:
         return {"sim_ok": False, "detail": out["error"][-110:]}
     res = harbor_checks.analyze(out["events"])
@@ -168,8 +132,9 @@ def run_rna(patches):
 
 
 def run_all():
-    return {"L1": eval_family(L1_HEAD, L1, "L1", True), "A12": eval_family(A12_HEAD, A12, "A12", False),
-            "RNA": {k: run_rna(v) for k, v in RNA.items()}}
+    return {"split-200ul-two-wells": eval_task(SPLIT_HEAD, SPLIT, "split-200ul-two-wells"),
+            "a1-a12-100ul": eval_task(A12_HEAD, A12, "a1-a12-100ul"),
+            "rna-extraction": {k: run_rna(v) for k, v in RNA.items()}}
 
 
 def main():
@@ -177,17 +142,19 @@ def main():
     ap.add_argument("--json")
     a = ap.parse_args()
     out = run_all()
-    for fam in ("L1", "A12"):
-        print(f"\n== {fam}: current criteria vs ground truth  (E1 = proposed end-state check)")
-        print(f"{'mutant':22} {'valid?':6} {'sim':5} {'current':8} {'E1':5} outcome   errors / failed T / sim error")
-        for r in out[fam]:
-            cur = r["current_pass"]
-            outcome = ("ok" if cur == r["truth_valid"] else ("FALSE NEG" if r["truth_valid"] else "FALSE POS"))
-            e1 = "-" if r["e1"] is None else ("pass" if r["e1"] else "fail")
-            print(f"{r['mutant']:22} {str(r['truth_valid']):6} {'ok' if r['sim_ok'] else 'FAIL':5} "
-                  f"{'pass' if cur else 'fail':8} {e1:5} {outcome:9} {','.join(r['errors'] + r['t_failed']) or r['detail']}")
-    print("\n== RNA: Harbor checks.py on HULP-script mutants (deterministic part only; the LLM judge was not run)")
-    for k, r in out["RNA"].items():
+    wrong = 0
+    for task in ("split-200ul-two-wells", "a1-a12-100ul"):
+        print(f"\n== {task}: spec_check verdict vs ground truth")
+        print(f"{'mutant':22} {'valid?':6} {'verdict':8} outcome    failed checks")
+        for r in out[task]:
+            ok = r["verdict_pass"] == r["truth_valid"]
+            wrong += not ok
+            outcome = "ok" if ok else ("FALSE NEG" if r["truth_valid"] else "FALSE POS")
+            print(f"{r['mutant']:22} {str(r['truth_valid']):6} {'pass' if r['verdict_pass'] else 'fail':8} {outcome:10} "
+                  f"{', '.join(r['failed']) or '-'}{'  [' + r['sim_error'] + ']' if r['sim_error'] else ''}")
+    print(f"\nmisjudged protocols: {wrong}")
+    print("\n== rna-extraction: Harbor checks.py on mutants of the authors' script (deterministic part only)")
+    for k, r in out["rna-extraction"].items():
         if not r["sim_ok"]:
             print(f"{k:20} SIM FAIL {r['detail']}")
             continue

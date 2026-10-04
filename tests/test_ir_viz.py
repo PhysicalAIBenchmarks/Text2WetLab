@@ -21,7 +21,7 @@ def test_every_ir_in_the_repo_validates_and_has_a_timeline():
 
 
 def test_a1_a12_fills_row_a_with_100ul():
-    states, _ = timeline(load(ROOT / "tasks/L1/a1-a12-100ul/ir.json"))
+    states, _ = timeline(load(ROOT / "tasks/a1-a12-100ul/ir.json"))
     final = states[-1]
     assert [final[("plate", f"A{c}")] for c in range(1, 13)] == [100.0] * 12
     assert final[("reservoir", "")] == 10000 - 1200

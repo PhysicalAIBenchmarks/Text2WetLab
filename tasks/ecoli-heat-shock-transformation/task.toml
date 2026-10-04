@@ -1,0 +1,14 @@
+schema_version = "1.4"
+
+[task]
+name = "ecoli-heat-shock-transformation"
+description = "E. coli heat shock transformation with SOC recovery"
+keywords = ["transformation", "heat-shock"]
+
+[metadata]
+source = "handwritten"
+steps = 4
+containers = 3
+
+[checks]
+free_wells = []

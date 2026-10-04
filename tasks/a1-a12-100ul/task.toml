@@ -1,0 +1,15 @@
+schema_version = "1.4"
+
+[task]
+name = "a1-a12-100ul"
+description = "100 µL from a 1-well reservoir to wells A1 to A12"
+keywords = ["liquid-handling", "re-aspirate"]
+
+[metadata]
+source = "handwritten"
+vagueness = "V0"
+steps = 1
+containers = 2
+
+[checks]
+free_wells = []

@@ -1,0 +1,16 @@
+schema_version = "1.4"
+
+[task]
+name = "golden-gate-assembly"
+description = "Golden Gate assembly of four four-fragment chromoprotein expression plasmids with AssemblyTron on the OT-2"
+keywords = ["dna-assembly", "golden-gate"]
+
+[metadata]
+source = "paper2protocol"
+source_paper = "doi:10.1093/synbio/ysac032"
+source_experiment = "exp2"
+steps = 33
+containers = 15
+
+[checks]
+free_wells = []
