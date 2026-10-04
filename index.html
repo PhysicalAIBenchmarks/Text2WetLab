@@ -146,12 +146,14 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 .card.collision { border-color: #3a1a1a; }
 .card.collision:hover { border-color: #5c2a2a; }
 
+/* ── Video lazy-load ── */
 .video-wrap {
   position: relative;
   width: 100%;
   aspect-ratio: 16/9;
   background: #050709;
   overflow: hidden;
+  cursor: pointer;
 }
 .video-wrap video {
   width: 100%;
@@ -159,6 +161,26 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
   object-fit: cover;
   display: block;
 }
+/* play button overlay — hidden once video plays */
+.play-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5,7,9,.35);
+  transition: opacity .25s;
+  pointer-events: none;
+}
+.play-btn svg {
+  width: 44px; height: 44px;
+  opacity: .85;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.6));
+}
+.video-wrap.playing .play-btn { opacity: 0; }
+/* manual-play overlay: show when user explicitly paused */
+.video-wrap.paused .play-btn { opacity: 1; }
+
 .video-overlay {
   position: absolute;
   inset: 0;
@@ -271,9 +293,10 @@ footer a:hover { text-decoration: underline; }
   <div class="card l1">
     <div class="card-accent"></div>
     <div class="video-wrap">
-      <video autoplay loop muted playsinline>
-        <source src="assets/examples3d/L1-example.mp4" type="video/mp4"/>
+      <video preload="none" loop muted playsinline poster="assets/examples3d/L1-example_frames.png">
+        <source data-src="assets/examples3d/L1-example.mp4" type="video/mp4"/>
       </video>
+      <div class="play-btn"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" fill="rgba(0,0,0,.55)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><polygon points="19,14 37,24 19,34" fill="white"/></svg></div>
     </div>
     <div class="card-body">
       <div class="card-id">L1/example</div>
@@ -289,9 +312,10 @@ footer a:hover { text-decoration: underline; }
   <div class="card l1">
     <div class="card-accent"></div>
     <div class="video-wrap">
-      <video autoplay loop muted playsinline>
-        <source src="assets/examples3d/L1-serial-dilution-200ul.mp4" type="video/mp4"/>
+      <video preload="none" loop muted playsinline poster="assets/examples3d/L1-serial-dilution-200ul_frames.png">
+        <source data-src="assets/examples3d/L1-serial-dilution-200ul.mp4" type="video/mp4"/>
       </video>
+      <div class="play-btn"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" fill="rgba(0,0,0,.55)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><polygon points="19,14 37,24 19,34" fill="white"/></svg></div>
     </div>
     <div class="card-body">
       <div class="card-id">L1/serial-dilution-200ul</div>
@@ -307,9 +331,10 @@ footer a:hover { text-decoration: underline; }
   <div class="card l1">
     <div class="card-accent"></div>
     <div class="video-wrap">
-      <video autoplay loop muted playsinline>
-        <source src="assets/examples3d/L1-a1-a12-100ul.mp4" type="video/mp4"/>
+      <video preload="none" loop muted playsinline poster="assets/examples3d/L1-a1-a12-100ul_frames.png">
+        <source data-src="assets/examples3d/L1-a1-a12-100ul.mp4" type="video/mp4"/>
       </video>
+      <div class="play-btn"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" fill="rgba(0,0,0,.55)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><polygon points="19,14 37,24 19,34" fill="white"/></svg></div>
     </div>
     <div class="card-body">
       <div class="card-id">L1/a1-a12-100ul</div>
@@ -331,9 +356,10 @@ footer a:hover { text-decoration: underline; }
   <div class="card l2">
     <div class="card-accent"></div>
     <div class="video-wrap">
-      <video autoplay loop muted playsinline>
-        <source src="assets/examples3d/L2-ampure-bead-cleanup.mp4" type="video/mp4"/>
+      <video preload="none" loop muted playsinline poster="assets/examples3d/L2-ampure-bead-cleanup_frames.png">
+        <source data-src="assets/examples3d/L2-ampure-bead-cleanup.mp4" type="video/mp4"/>
       </video>
+      <div class="play-btn"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" fill="rgba(0,0,0,.55)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><polygon points="19,14 37,24 19,34" fill="white"/></svg></div>
     </div>
     <div class="card-body">
       <div class="card-id">L2/ampure-bead-cleanup</div>
@@ -349,9 +375,10 @@ footer a:hover { text-decoration: underline; }
   <div class="card l2">
     <div class="card-accent"></div>
     <div class="video-wrap">
-      <video autoplay loop muted playsinline>
-        <source src="assets/examples3d/L2-ecoli-heat-shock-transformation.mp4" type="video/mp4"/>
+      <video preload="none" loop muted playsinline poster="assets/examples3d/L2-ecoli-heat-shock-transformation_frames.png">
+        <source data-src="assets/examples3d/L2-ecoli-heat-shock-transformation.mp4" type="video/mp4"/>
       </video>
+      <div class="play-btn"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" fill="rgba(0,0,0,.55)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><polygon points="19,14 37,24 19,34" fill="white"/></svg></div>
     </div>
     <div class="card-body">
       <div class="card-id">L2/ecoli-heat-shock-transformation</div>
@@ -367,9 +394,10 @@ footer a:hover { text-decoration: underline; }
   <div class="card l2">
     <div class="card-accent"></div>
     <div class="video-wrap">
-      <video autoplay loop muted playsinline>
-        <source src="assets/examples3d/L2-colony-pcr-screening.mp4" type="video/mp4"/>
+      <video preload="none" loop muted playsinline poster="assets/examples3d/L2-colony-pcr-screening_frames.png">
+        <source data-src="assets/examples3d/L2-colony-pcr-screening.mp4" type="video/mp4"/>
       </video>
+      <div class="play-btn"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" fill="rgba(0,0,0,.55)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><polygon points="19,14 37,24 19,34" fill="white"/></svg></div>
     </div>
     <div class="card-body">
       <div class="card-id">L2/colony-pcr-screening</div>
@@ -385,9 +413,10 @@ footer a:hover { text-decoration: underline; }
   <div class="card l2">
     <div class="card-accent"></div>
     <div class="video-wrap">
-      <video autoplay loop muted playsinline>
-        <source src="assets/examples3d/L2-golden-gate-assembly.mp4" type="video/mp4"/>
+      <video preload="none" loop muted playsinline poster="assets/examples3d/L2-golden-gate-assembly_frames.png">
+        <source data-src="assets/examples3d/L2-golden-gate-assembly.mp4" type="video/mp4"/>
       </video>
+      <div class="play-btn"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" fill="rgba(0,0,0,.55)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><polygon points="19,14 37,24 19,34" fill="white"/></svg></div>
     </div>
     <div class="card-body">
       <div class="card-id">L2/golden-gate-assembly · AssemblyTron</div>
@@ -409,9 +438,10 @@ footer a:hover { text-decoration: underline; }
   <div class="card paper">
     <div class="card-accent"></div>
     <div class="video-wrap">
-      <video autoplay loop muted playsinline>
-        <source src="assets/examples3d/paper-10_1101_2024_09_14_613006-exp1.mp4" type="video/mp4"/>
+      <video preload="none" loop muted playsinline poster="assets/examples3d/paper-10_1101_2024_09_14_613006-exp1_frames.png">
+        <source data-src="assets/examples3d/paper-10_1101_2024_09_14_613006-exp1.mp4" type="video/mp4"/>
       </video>
+      <div class="play-btn"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" fill="rgba(0,0,0,.55)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><polygon points="19,14 37,24 19,34" fill="white"/></svg></div>
     </div>
     <div class="card-body">
       <div class="card-id">doi:10.1101/2024.09.14.613006 · exp1</div>
@@ -428,9 +458,10 @@ footer a:hover { text-decoration: underline; }
   <div class="card paper">
     <div class="card-accent"></div>
     <div class="video-wrap">
-      <video autoplay loop muted playsinline>
-        <source src="assets/examples3d/paper-10_1371_journal_pone_0246302-exp2.mp4" type="video/mp4"/>
+      <video preload="none" loop muted playsinline poster="assets/examples3d/paper-10_1371_journal_pone_0246302-exp2_frames.png">
+        <source data-src="assets/examples3d/paper-10_1371_journal_pone_0246302-exp2.mp4" type="video/mp4"/>
       </video>
+      <div class="play-btn"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" fill="rgba(0,0,0,.55)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><polygon points="19,14 37,24 19,34" fill="white"/></svg></div>
     </div>
     <div class="card-body">
       <div class="card-id">doi:10.1371/journal.pone.0246302 · exp2</div>
@@ -447,9 +478,10 @@ footer a:hover { text-decoration: underline; }
   <div class="card paper">
     <div class="card-accent"></div>
     <div class="video-wrap">
-      <video autoplay loop muted playsinline>
-        <source src="assets/examples3d/paper-10_64898_2026_03_26_714448-exp1.mp4" type="video/mp4"/>
+      <video preload="none" loop muted playsinline poster="assets/examples3d/paper-10_64898_2026_03_26_714448-exp1_frames.png">
+        <source data-src="assets/examples3d/paper-10_64898_2026_03_26_714448-exp1.mp4" type="video/mp4"/>
       </video>
+      <div class="play-btn"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" fill="rgba(0,0,0,.55)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><polygon points="19,14 37,24 19,34" fill="white"/></svg></div>
     </div>
     <div class="card-body">
       <div class="card-id">doi:10.64898/2026.03.26.714448 · exp1</div>
@@ -472,9 +504,10 @@ footer a:hover { text-decoration: underline; }
   <div class="card collision">
     <div class="card-accent"></div>
     <div class="video-wrap">
-      <video autoplay loop muted playsinline>
-        <source src="assets/examples3d/L1-example-NO-LIFT-collision.mp4" type="video/mp4"/>
+      <video preload="none" loop muted playsinline poster="assets/examples3d/L1-example-NO-LIFT-collision_frames.png">
+        <source data-src="assets/examples3d/L1-example-NO-LIFT-collision.mp4" type="video/mp4"/>
       </video>
+      <div class="play-btn"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" fill="rgba(0,0,0,.55)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><polygon points="19,14 37,24 19,34" fill="white"/></svg></div>
     </div>
     <div class="card-body">
       <div class="card-id">L1/example · --no-lift variant</div>
@@ -503,5 +536,44 @@ footer a:hover { text-decoration: underline; }
   </p>
 </footer>
 
+<script>
+// Lazy-load videos: show poster frame at rest, load+play on scroll into view.
+// Click toggles pause/resume once loaded.
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const wrap = entry.target;
+    const video = wrap.querySelector('video');
+    const source = video.querySelector('source[data-src]');
+    if (source) {
+      source.setAttribute('src', source.dataset.src);
+      source.removeAttribute('data-src');
+      video.load();
+    }
+    video.play().then(() => {
+      wrap.classList.add('playing');
+      wrap.classList.remove('paused');
+    }).catch(() => {});
+    observer.unobserve(wrap);
+  });
+}, { rootMargin: '180px' });
+
+document.querySelectorAll('.video-wrap').forEach(wrap => {
+  observer.observe(wrap);
+  wrap.addEventListener('click', () => {
+    const video = wrap.querySelector('video');
+    if (video.paused) {
+      video.play().then(() => {
+        wrap.classList.add('playing');
+        wrap.classList.remove('paused');
+      }).catch(() => {});
+    } else {
+      video.pause();
+      wrap.classList.remove('playing');
+      wrap.classList.add('paused');
+    }
+  });
+});
+</script>
 </body>
 </html>
