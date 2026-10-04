@@ -8,7 +8,7 @@ N. O'Leary · E. O'Leary · M. Alshehri · L. Sturdy
 
 **PhysicalAIBenchmarks** · 2026
 
-[Leaderboard](https://physicalaibenchmarks.github.io/Text2WetLab/leaderboard.html) · [Interactive results](docs/harbor-results/model_comparison.html) · [Trailer](results/trailer.mp4) · [Runbook](docs/harbor-runbook.md) · [PLR coverage](https://physicalaibenchmarks.github.io/Text2WetLab/plr_coverage_table.html)
+[**Preprint (PDF)**](docs/preprint/Text2WetLab_preprint.pdf) · [Leaderboard](https://physicalaibenchmarks.github.io/Text2WetLab/leaderboard.html) · [Interactive results](docs/harbor-results/model_comparison.html) · [Trailer](results/trailer.mp4) · [Runbook](docs/harbor-runbook.md) · [PLR coverage](https://physicalaibenchmarks.github.io/Text2WetLab/plr_coverage_table.html)
 
 <a href="results/trailer.mp4"><img src="assets/trailer_preview.gif" width="760" alt="Text2WetLab trailer preview"></a>
 
@@ -175,17 +175,17 @@ Fable ranks first on R4, but its lead rests on one judge item on one task (§5.4
 
 ### 5.2 Which layer decides the score
 
-<p align="center"><img src="docs/harbor-results/figures/fig4_grader_layers_light.png" width="100%" alt="Trials failed at each verifier layer, per round"></p>
+<p align="center"><img src="docs/preprint/figures/fig5_grader.png" width="100%" alt="Trial outcomes per round, pooled outcomes, and reward per round"></p>
 
-<p align="center"><sub><b>Figure 3.</b> Trials (of 21) failed at each verifier layer, per round. In 147 trials there were no trap trips, agent errors, simulator failures, deterministic-check failures or critical caps. Every trial that lost points lost them to a judge rubric item. R2's spike is its graded rubric scoring style points (tip waste, missing <code>protocol.pause</code>).</sub></p>
+<p align="center"><sub><b>Figure 3 | Which verifier layer decides the score.</b> <b>a,</b> Outcome of every trial per round (21 per round): full marks, or points lost to the LLM judge. <b>b,</b> All 147 trials pooled: 108 full marks, 39 lost points to the judge, none to the lint gate, a trap, the simulator, the deterministic checks or the critical cap. <b>c,</b> Mean reward per model in each round; the ranking changes with the verifier. R2's spike is its graded rubric scoring style points.</sub></p>
 
 Every model clears the mechanical layers, so on these tasks all of the benchmark's signal comes from the judge.
 
 ### 5.3 Error analysis
 
-<p align="center"><img src="docs/harbor-results/figures/fig5_error_types_light.png" width="100%" alt="Trials with each error type, by model, over the 5 binary-judge rounds"></p>
+<p align="center"><img src="docs/preprint/figures/fig4_errors.png" width="100%" alt="Points lost by error type: stacked bars per model and a pie of all lost points"></p>
 
-<p align="center"><sub><b>Figure 4.</b> Trials with each error type, out of the 5 binary-judge rounds (R3 to R7). Types are tagged by rule from the judge's written evidence (<code>docs/harbor-results/analysis/classify.py</code>). Hover any cell in <a href="docs/harbor-results/model_comparison.html">the interactive page</a> for the evidence.</sub></p>
+<p align="center"><sub><b>Figure 4 | Error analysis.</b> <b>a,</b> Reward points lost by each model over R3–R7, stacked by error type (35 available per model). <b>b,</b> Share of all 6.8 lost points by error type: 47% over-recovering the eluate, 16% wrong reagent order, 15% mixing competent cells. Each failed binary item is 0.2 points; types are tagged by rule from the judge's evidence (<code>docs/harbor-results/analysis/classify.py</code>). Per-trial evidence: <a href="docs/harbor-results/model_comparison.html">interactive page</a>.</sub></p>
 
 Three errors account for most lost points, and all three are biological:
 
@@ -195,20 +195,15 @@ Three errors account for most lost points, and all three are biological:
 
 Smaller errors: unrequested steps, pauses and delays (all models), and wrong paper authors in the protocol metadata (Opus 2/5, Sonnet 1/5).
 
-<p align="center"><img src="docs/harbor-results/figures/fig6_points_lost_per_task_light.png" width="100%" alt="Points lost per task and model, R3 to R7"></p>
+<p align="center"><img src="docs/preprint/figures/fig3_per_task.png" width="85%" alt="Mean reward per task and model, R3 to R7"></p>
 
-<p align="center"><sub><b>Figure 5.</b> Points lost per task (1 − mean reward, R3 to R7). Only RNA extraction and heat-shock transformation separate the models; the other five tasks score 1.0 for every model in every binary round.</sub></p>
+<p align="center"><sub><b>Figure 5 | Reward per task.</b> Mean reward per task and model, R3–R7. Only heat-shock transformation and RNA extraction separate the models; the other five score 1.0 for every model in every binary round.</sub></p>
 
 ### 5.4 Stability and cost
 
-<table>
-<tr>
-<td width="56%"><img src="docs/harbor-results/figures/fig2_reward_by_round_light.png" alt="Mean reward by round for each model"></td>
-<td width="44%"><img src="docs/harbor-results/figures/fig3_cost_per_trial_light.png" alt="Mean agent cost per trial by model"></td>
-</tr>
-</table>
+<p align="center"><img src="docs/preprint/figures/fig2_headline.png" width="100%" alt="Reward with SD, cost per trial, and cost vs reward"></p>
 
-<p align="center"><sub><b>Figure 6.</b> <b>Left:</b> mean reward per round. The ranking changes with the verifier, and on the R7 clean re-run all three models tie at 0.943. <b>Right:</b> mean agent cost per trial over R1 to R7: Fable $0.488, Opus $0.178, Sonnet $0.057, so Fable costs about 2.7× Opus and 8.5× Sonnet.</sub></p>
+<p align="center"><sub><b>Figure 6 | Reward and cost.</b> <b>a,</b> Mean reward on the 7 easy tasks, mean ± SD over R3–R7; diamonds mark R4 (Table 4). <b>b,</b> Mean agent cost per trial over R1–R7 (49 trials per model): Fable $0.488, Opus $0.178, Sonnet $0.057, so Fable costs about 2.7× Opus and 8.5× Sonnet. <b>c,</b> Cost of a 7-task run against its mean reward, one point per round. On the R7 clean re-run all three tie at 0.943.</sub></p>
 
 A model's RNA-extraction score moves by 0.2 (one judge item) between rounds, which is as large as the gaps between models. With one attempt each, Table 4's ranking is indicative only.
 
@@ -236,6 +231,8 @@ harbor run -p tasks -i '*-hard' -a claude-code -m anthropic/claude-sonnet-5-5 -e
 harbor run -p tasks/opentrons-rna-extraction-hard -a claude-code -m anthropic/claude-opus-5-5 -k 3 -e modal -y   # pass@k
 ```
 
+**Preprint:** [`docs/preprint/Text2WetLab_preprint.pdf`](docs/preprint/Text2WetLab_preprint.pdf) (7 pages; source `preprint.html`, figures from `make_figures.py`).
+
 **Expected oracle scores:** 1.0 on the 6 easy IR tasks. RNA extraction (both levels) scores about 0.69, because the authors' script labels the ethanol "absolute" instead of 70% and has a "Pause for 30 seconds" comment with no matching delay. The hard oracles have not yet been scored by the live judge.
 
 Each run writes `jobs/<job-name>/`, with `agent/` (transcript, tokens, cost) and `verifier/` (`reward.json`, `protocol.py`, `judge.json`) per trial. Rebuild the analysis in §5 with `docs/harbor-results/analysis/` and the trailer with `scripts/make_trailer.py`. Full guide: [`docs/harbor-runbook.md`](docs/harbor-runbook.md).
@@ -249,6 +246,10 @@ Each run writes `jobs/<job-name>/`, with `agent/` (transcript, tokens, cost) and
 <p align="center"><sub><b>Figure 7.</b> The trailer (<a href="results/trailer.mp4"><code>results/trailer.mp4</code></a>, 2:27): title, the reproducibility gap, the evaluation pipeline, an oracle run, the phantom-mix finding, Golden Gate and RNA extraction oracle renders, and the R4 results. Agent renders are Sonnet 5.5 runs. Storyboard: <a href="docs/VIDEO_STORYBOARD.md"><code>docs/VIDEO_STORYBOARD.md</code></a>.</sub></p>
 
 ### B. From paper to task
+
+<p align="center"><img src="docs/preprint/figures/fig6_corpus.png" width="100%" alt="Source corpus: papers by year, liquid handling per experiment, paper2protocol outcome"></p>
+
+<p align="center"><sub><b>Figure 8 | Source corpus.</b> <b>a,</b> Papers by year (n = 36). <b>b,</b> Experiments by share of liquid handling (n = 123). <b>c,</b> <code>paper2protocol</code> outcome per experiment: 29 converted to an IR, 21 rejected as under-specified.</sub></p>
 
 [`paper2protocol/`](paper2protocol/) turns a DOI, URL, title or PDF into liquid-handling instructions and a protocol IR. [`sources/`](sources/) holds one folder per paper (36 papers, 123 experiments in [`sources/master.csv`](sources/master.csv)); PDFs and author code stay in a cache outside the repo because licences differ.
 

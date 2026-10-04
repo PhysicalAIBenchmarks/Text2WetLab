@@ -61,7 +61,7 @@ The ranking changes nearly every round. R1 scores high because only RNA had a ju
 
 ![Cost per trial](figures/fig3_cost_per_trial_light.png)
 
-Mean over R1 to R7, 21 trials per model. Fable costs about 2.7× Opus and 8.5× Sonnet per trial, for the same R7 score.
+Mean over R1 to R7, 49 trials per model (7 rounds × 7 tasks). Fable costs about 2.7× Opus and 8.5× Sonnet per trial, for the same R7 score.
 
 ### 4. Harbor view: which grader layer caught each failure
 
