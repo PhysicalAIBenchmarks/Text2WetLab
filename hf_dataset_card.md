@@ -60,8 +60,8 @@ Text2WetLab evaluates whether large language model agents can translate plain-En
 - **100% simulator pass rate** — all 21 trials passed `opentrons_simulate`; structural correctness is solved for frontier models
 - **`robot_practice` is the universal weak point** — penalised in 11/21 trials (52%); encodes tacit wet-lab knowledge not explicit in task specs
 - **Phantom mix hallucination** — Opus 5.5 and Fable 5.1 added unrequested `mix_after` to competent cells in the E. coli transformation task (biologically harmful)
-- **Cross-contamination error** — Sonnet 5.5 and Fable 5.1 reused tips across colony DNA sources in colony PCR (invisible to deterministic grader)
-- **Elution volume error** — all models aspirated 100 µL instead of ~80 µL in the RNA extraction task (risks pellet carry-over in clinical SARS-CoV-2 diagnostics)
+- **Dispensing practice only the judge sees**: in colony PCR, every trial passed `no_cross_contamination`. Sonnet 5.5 and Fable 5.1 lost points for running all 96 master-mix dispenses from one tip without contact control, and for default heights on 1 µL additions.
+- **The reproducibility gap**: in RNA extraction, all models recovered 100 µL of eluate. The paper says only "collect the supernatant", while the authors' deposited OT-2 script recovers 80 µL. An agent that reads only the paper cannot recover that parameter.
 - **Sonnet 5.5 = best cost-efficiency** — 97.3% of Opus 5.5 performance at 33% cost
 
 ## Grading

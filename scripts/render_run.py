@@ -24,6 +24,9 @@ from spec_check import simulate  # noqa: E402
 VIZ_VENV = pathlib.Path(os.environ.get("VIZ_VENV", pathlib.Path.home() / "Desktop/viz-venv"))
 
 
+RENDERED = {"aspirate", "dispense", "pick", "drop", "delay", "engage", "disengage", "temp"}
+
+
 def fork_events(events: list[dict]) -> list[dict]:
     out = []
     for e in events:
@@ -56,11 +59,24 @@ def main():
     with tempfile.TemporaryDirectory() as d:
         ev = pathlib.Path(d, "events.json")
         ev.write_text(json.dumps(fork_events(sim["events"])))
-        code = ("import json,sys; from opentrons.visualization import render_protocol, WetLabScene; "
+        # Same loop as the fork's render_protocol (4 frames per event, 12 fps), but it also records the frame each
+        # event starts on, so <out>.timeline.json maps every simulator event to a time in the video.
+        code = ("import json,sys,imageio; from opentrons.visualization import WetLabScene; "
                 "WetLabScene.render.__defaults__ = ('free',); "      # apply_event renders with the default camera, which is black
-                "render_protocol(json.load(open(sys.argv[1])), sys.argv[2], camera='free', hud=True)")
-        subprocess.run([str(VIZ_VENV / "bin/python"), "-c", code, str(ev), a.out], check=True, capture_output=True, timeout=1800)
-    print(f"{len(sim['events'])} events -> {a.out}")
+                "evs=json.load(open(sys.argv[1]));\n"
+                "with WetLabScene() as s:\n"
+                "    fr=[s.render_with_hud('free')]; start=[]\n"
+                "    for e in evs:\n"
+                "        start.append(len(fr)); fr.extend(s.apply_event(e)); fr.extend(s.render_with_hud('free') for _ in range(3))\n"
+                "    imageio.mimsave(sys.argv[2], fr, fps=12)\n"
+                "json.dump(start, open(sys.argv[3],'w'))")
+        tl = pathlib.Path(d, "start.json")
+        subprocess.run([str(VIZ_VENV / "bin/python"), "-c", code, str(ev), a.out, str(tl)], check=True, capture_output=True, timeout=1800)
+        starts = json.loads(tl.read_text())
+    timeline = [{"t": round(f / 12, 3), **{k: e.get(k) for k in ("kind", "volume", "well", "labware", "seconds", "text")}}
+                for f, e in zip(starts, [e for e in sim["events"] if e["kind"] in RENDERED])]
+    pathlib.Path(a.out + ".timeline.json").write_text(json.dumps(timeline))
+    print(f"{len(sim['events'])} events -> {a.out} (+ .timeline.json)")
 
 
 if __name__ == "__main__":
