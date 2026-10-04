@@ -160,7 +160,7 @@ Judged against: PLOS ONE paper (`/data/paper.txt`). Source: `tasks/opentrons-rna
 
 Harbor's Claude Code agent (`-a claude-code`) in Modal sandboxes (`-e modal`), 1 attempt per task per model, all 21 trials in one batch on 2026-10-04, with the current instructions (colony PCR, heat-shock, golden-gate and RNA are paper-only).
 
-![Scores per task and model](results/scores.png)
+![Mean score per model](results/scores.png)
 
 | Task | Opus 5.5 | Sonnet 5.5 | Fable 5.1 |
 |---|---|---|---|
