@@ -10,7 +10,7 @@ Seven [Harbor](https://github.com/laude-institute/harbor) benchmark tasks. In ea
 | `split-200ul-two-wells` | Split 200 µL into two 100 µL wells | Simulator and LLM judge on the run log |
 | `ampure-bead-cleanup` | AMPure XP magnetic bead cleanup of PCR products | Simulator and LLM judge on the run log |
 | `colony-pcr-screening` | Colony PCR screening with Q5 Hot Start master mix | Simulator and LLM judge on the run log |
-| `ecoli-heat-shock-transformation` | E. coli heat shock transformation with SOC recovery | Simulator and LLM judge on the run log |
+| `ecoli-heat-shock-transformation` | Low-volume heat shock transformation of 8 plasmids on the thermocycler module, APEX Protocol 1 (bioRxiv, [doi:10.1101/2024.08.13.607171](https://doi.org/10.1101/2024.08.13.607171)) | Simulator and LLM judge on the run log |
 | `golden-gate-assembly` | Golden Gate assembly of four four-fragment chromoprotein plasmids (AssemblyTron) | Simulator and LLM judge on the run log |
 | `opentrons-rna-extraction` | 48-sample magnetic-bead SARS-CoV-2 RNA extraction from PLOS ONE 2021 ([doi:10.1371/journal.pone.0246302](https://doi.org/10.1371/journal.pone.0246302)) | Simulator and LLM judge on the run log |
 
@@ -105,15 +105,17 @@ Judged against: task text + Slowpoke paper (`/data/paper.txt`). Source: `tasks/c
 
 ### ecoli-heat-shock-transformation
 
-Judged against: task text (no paper). Source: `tasks/ecoli-heat-shock-transformation/tests/rubric.json`.
+Judged against: task text + APEX paper (`/data/paper.txt`). Source: `tasks/ecoli-heat-shock-transformation/tests/rubric.json`.
+
+APEX is bioRxiv "all rights reserved", so its text isn't in the repo. `environment/fetch_paper.py` downloads the pinned v1 while the image builds (with retries), and its sha256 is pinned in `tests/data_hashes.json`.
 
 | # | Item | Passes only if |
 |---|---|---|
-| 1 | `dna_addition` | 2 uL plasmid DNA from plasmid plate A1 into the competent-cell tube A1 with the 20 uL pipette. |
-| 2 | `heat_shock` | Heat shock at 42 C for 45 s, then 2 min on ice, recorded in that order after DNA addition. |
-| 3 | `soc_recovery` | 250 uL SOC added to the tube after the heat shock, and the 37 C, 60 min, 250 rpm outgrowth recorded. |
-| 4 | `tip_usage` | A fresh tip for the DNA and for the SOC, no contamination of cells or stocks, and the tip dropped at the end. |
-| 5 | `fidelity_to_task` | No missing or reordered steps and nothing added that would change the outcome; comments and metadata are accurate. |
+| 1 | `dna_addition` | 1 uL of each plasmid into the 10 uL of cells in the matching well for all 8 plasmids, with the thermocycler block at 4 C. |
+| 2 | `heat_shock` | On the thermocycler: 4 C for 30 min with DNA, then 42 C for 30 s, lid closed. |
+| 3 | `soc_recovery` | 50 uL SOC added to each transformation after the heat shock, then 37 C for 1 h on the thermocycler. |
+| 4 | `tip_usage` | Always pipettes with a tip and drops all tips; fresh tip per plasmid; no tip touches two transformations or goes back into a stock. |
+| 5 | `fidelity_to_paper` | The paper's method on the given deck, no missing, invented or reordered steps; values match the paper or a sound adaptation; accurate comments and metadata. |
 
 ### golden-gate-assembly
 

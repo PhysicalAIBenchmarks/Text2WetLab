@@ -1,22 +1,22 @@
 [
  {
   "id": "dna_addition",
-  "text": "2 uL plasmid DNA from plasmid plate A1 into the competent-cell tube A1 with the 20 uL pipette."
+  "text": "1 uL of each plasmid (the paper's low-volume configuration) into the 10 uL of competent cells in the matching transformation-plate well (plasmid A1 to cells A1 and so on) for all 8 plasmids, with the thermocycler block at 4 C while cells are handled."
  },
  {
   "id": "heat_shock",
-  "text": "Heat shock at 42 C for 45 s, then 2 min on ice, recorded in that order after DNA addition."
+  "text": "Run on the thermocycler module as in APEX Protocol 1: 4 C for 30 min with DNA, then 42 C for 30 s, lid closed (a short return to 4 C afterwards passes)."
  },
  {
   "id": "soc_recovery",
-  "text": "250 uL SOC added to the tube after the heat shock, and the 37 C, 60 min, 250 rpm outgrowth recorded."
+  "text": "50 uL SOC (low-volume configuration) added to each transformation after the heat shock, then recovery at 37 C for 1 h on the thermocycler module."
  },
  {
   "id": "tip_usage",
-  "text": "A fresh tip for the DNA and for the SOC, no contamination of cells or stocks, and the tip dropped at the end."
+  "text": "Never pipettes without a tip and drops every tip by the end. A fresh tip for every plasmid, and no tip that has touched one transformation touches another or goes back into a stock."
  },
  {
-  "id": "fidelity_to_task",
-  "text": "No missing or reordered steps and nothing added that would change the outcome; comments and metadata are accurate."
+  "id": "fidelity_to_paper",
+  "text": "Implements the paper's method on the given deck with no missing, invented or reordered steps; volumes, times, temperatures and reagents match the paper, or are a sound adaptation where the given deck or reagents force one; comments and metadata (including any citation) are accurate."
  }
 ]

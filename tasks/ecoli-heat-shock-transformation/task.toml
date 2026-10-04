@@ -3,12 +3,12 @@ schema_version = "1.4"
 [task]
 name = "text2wetlab/ecoli-heat-shock-transformation"
 version = "0.1.0"
-description = "E. coli heat shock transformation with SOC recovery"
+description = "APEX Protocol 1 (bioRxiv 2024): low-volume heat shock transformation of 8 plasmids on the OT-2 thermocycler, worked out from the paper"
 authors = [{ name = "Text2WetLab" }]
 keywords = ["opentrons", "ot-2", "lab-automation", "protocol-generation"]
 
 [metadata]
-source = "handwritten"
+source = "paper (doi:10.1101/2024.08.13.607171, fetched at build time)"
 deck = "specified"
 grading = "simulator gate + Sonnet 5.5 rubric judge on the run log"
 

@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+# Not redistributable: downloaded at image build time by environment/fetch_paper.py
+tasks/ecoli-heat-shock-transformation/environment/data/paper.txt

@@ -20,4 +20,12 @@ RUN python -m venv /opt/grader \
 
 COPY solution_hint.py /app/solution_hint.py
 
+# APEX (bioRxiv) may not be redistributed, so data/paper.txt is gitignored and fetched here when it is missing.
+# The version is pinned so the sha256 in tests/data_hashes.json stays valid.
+COPY data/ /data/
+COPY fetch_paper.py /tmp/fetch_paper.py
+RUN python /tmp/fetch_paper.py --doi 10.1101/2024.08.13.607171 --version 1 --out /data/paper.txt \
+    && rm -f /tmp/fetch_paper.py /data/.gitkeep \
+    && chmod -R a-w /data
+
 WORKDIR /app

@@ -1,8 +1,16 @@
-# E. coli heat shock transformation with SOC recovery
+# Automated heat shock transformation with APEX on the OT-2 thermocycler (from the paper)
 
-Transform competent E. coli with 2 µL plasmid DNA per tube, heat shock at 42°C for 45 seconds, then add 250 µL SOC medium to each tube.
+Implement **APEX Protocol 1, the heat shock transformation**, as described in the paper, for **8 plasmids** on the
+deck below. Use the transformation volumes the paper selected for its automated runs and run every temperature step on
+the thermocycler module.
 
 Write an Opentrons OT-2 Python protocol that does this, and save it as **`/app/protocol.py`**.
+
+## Source paper
+
+The method is in APEX: Automated Protein EXpression in Escherichia coli (Kasprzyk, Herrera and Stracquadanio,
+bioRxiv 2024, doi:10.1101/2024.08.13.607171). Its text is at **`/data/paper.txt`** (read-only). The deck and the
+starting contents below are fixed; everything else comes from the paper.
 
 ## The robot is set up like this (fixed)
 
@@ -10,50 +18,35 @@ The operator has loaded the deck as below. Load **each labware with its label**,
 
 ```python
 protocol.load_labware('<load name>', <slot>, label='<label>')
+tc = protocol.load_module('thermocycler')
+tc.load_labware('<load name>', label='<label>')
 ```
 
 | Slot | Labware (load name) | Label |
 |---|---|---|
-| 1 | `corning_96_wellplate_360ul_flat` | `plasmid_plate` |
-| 2 | `opentrons_24_tuberack_eppendorf_1.5ml_safelock_snapcap` | `tubes_1_5ml_1` |
-| 3 | `nest_1_reservoir_195ml` | `soc_reservoir` |
+| 1 | `biorad_96_wellplate_200ul_pcr` | `plasmid_plate` |
+| 2 | `nest_12_reservoir_15ml` | `soc_reservoir` |
+| 7, 8, 10, 11 | Thermocycler Module GEN1 (`'thermocycler'`) holding `biorad_96_wellplate_200ul_pcr` | `transformation_plate` |
 
-Tubes sit in the racks like this:
-
-| Tube | Rack label | Well |
-|---|---|---|
-| cells_rack | `tubes_1_5ml_1` | A1 |
-
-Pipettes: `p20_single_gen2` on the **left** (tips `opentrons_96_tiprack_20ul`, slot 10) and `p300_single_gen2` on the
-**right** (tips `opentrons_96_tiprack_300ul`, slot 11). Use the one that suits each volume (20 µL pipette: 1–20 µL;
+Pipettes: `p20_single_gen2` on the **left** (tips `opentrons_96_tiprack_20ul`, slot 4) and `p300_single_gen2` on the
+**right** (tips `opentrons_96_tiprack_300ul`, slot 5). Use the one that suits each volume (20 µL pipette: 1–20 µL;
 300 µL pipette: 20–300 µL). Tips are unlimited: call `pipette.reset_tipracks()` when you have used a rack.
 
 ## What is in the labware at the start
 
-- `plasmid_plate` wells A1: plasmid DNA, plenty (more than the protocol needs).
-- `tubes_1_5ml_1` well A1: competent cells, 50 µL each.
-- `soc_reservoir`: SOC medium, plenty (more than the protocol needs).
-
-## The protocol to implement
-
-The task text above says what to do; these are the exact quantities, in order. Do them with the pipettes, in this order.
-
-1. Transfer 2 µL of plasmid DNA from `plasmid_plate` wells A1 to `tubes_1_5ml_1` (well A1).
-2. (Not simulated, record with `protocol.comment`) Heat shock cells_rack 42°C 45 s, then transfer immediately to ice 2 min
-3. Transfer 250 µL of SOC medium from `soc_reservoir` (well A1) to `tubes_1_5ml_1` (well A1).
-4. (Not simulated, record with `protocol.comment`) Incubate cells_rack 37°C 60 min at 250 rpm for outgrowth recovery
-
-Where a step lists several wells on both sides, they pair in order (A1 to A1, A2 to A2, and so on); one source well
-feeds every listed destination well. "Each" well means every well in the range given.
+- `plasmid_plate` wells A1, B1, C1, D1, E1, F1, G1, H1: plasmids pEX01–pEX08 (in that order, 1.5 × 10⁻⁴ pmol/µL), 10 µL each.
+- `transformation_plate` wells A1, B1, C1, D1, E1, F1, G1, H1: chemically competent E. coli DH5α (made with the paper's
+  method), 10 µL each, loaded by the operator onto the pre-chilled thermocycler block. Transformation *n* uses plasmid
+  well *n* and cell well *n* (A1 to A1, and so on).
+- `soc_reservoir` well A1: SOC medium, plenty (more than the protocol needs).
 
 ## Tools and constraints
 
 - Use OT-2 Python API `apiLevel` between `'2.2'` and `'2.15'`; Opentrons 7.5.0 is installed.
-- Simulate with: `opentrons_simulate /app/protocol.py`. Your protocol must simulate without errors.
 - No internet access besides the model API.
-- Every well and tube must end holding exactly the volume the task implies, and the robot must never pipette
-  without a tip, dispense more than it holds, aspirate from an empty well or finish holding a tip.
-  `transfer()`, `distribute()` or your own loops are all fine.
-- Steps that are not pipetting (incubating, heat shock, thermocycling, sealing, magnet) cannot be simulated; record
-  each one with `protocol.comment('...')` at the point it happens.
-- Do not read or write outside `/app`, and do not try to change how the simulator reports its log.
+- The robot must never pipette without a tip, dispense more than it holds, aspirate from an empty well or finish
+  holding a tip. `transfer()`, `distribute()` or your own loops are all fine.
+- Work out the volumes, step order, times and temperatures from the paper. Where the paper leaves something open,
+  make a sound choice and say so in a comment.
+- Steps after recovery (spotting on agar, Protocol 2) are out of scope.
+- Do not read or write outside `/app`, and do not modify the installed `opentrons` package.

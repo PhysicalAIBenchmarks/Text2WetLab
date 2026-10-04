@@ -73,6 +73,8 @@ def runlog_text(events: list[dict]) -> str:
             lines.append(f"{i}. delay {e['seconds']:g} s")
         elif kind == "temp":
             lines.append(f"{i}. temperature module set to {e['celsius']:g} C")
+        elif kind == "thermocycler":
+            lines.append(f"{i}. {e['text']}")
         else:
             lines.append(f"{i}. {kind} magnetic module")
     return "\n".join(lines)
