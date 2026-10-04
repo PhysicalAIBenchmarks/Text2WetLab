@@ -1,0 +1,35 @@
+{
+ "level": "hard",
+ "core": [
+  {
+   "id": "robot_practice",
+   "text": "Sound OT-2 practice: a valid apiLevel and metadata; every volume handled by a pipette whose range covers it (nothing below its minimum or above its maximum); no well filled beyond its capacity; modules and labware used as intended; nothing physically unsafe or nonsensical (e.g. pipetting from or into the wrong labware, or needless extra handling that puts samples at risk)."
+  },
+  {
+   "id": "tips_and_contamination",
+   "text": "Never aspirates, dispenses or mixes without a tip attached, and drops every tip so that no tip is left on a pipette at the end of the run. A fresh tip whenever the pipette moves on to a different sample, template or stock that carryover would contaminate, and no cross-contamination of samples or reagent stocks. Fresh tips between different fragments, templates, primers and assemblies; one tip may dispense a shared reagent into several wells only if it never aspirates from them."
+  },
+  {
+   "id": "fidelity_to_paper",
+   "text": "All-or-nothing bonus for a fully faithful protocol: it implements the paper's method on the given deck with no missing, invented or reordered steps; volumes, times, temperatures and reagents match the paper, or are a sound adaptation where the given deck or reagents force one; and comments and metadata (including any citation) are accurate. Any deviation fails this item, even one already failed under another item."
+  }
+ ],
+ "task": [
+  {
+   "id": "pcr_setup",
+   "text": "Each of the 7 fragment PCRs follows the paper: 25 uL Q5 reactions with 0.1 uM of each primer and 0.5 ng linearized template, built from the reagents provided (for example via a master mix of buffer, dNTPs, polymerase and water), with each fragment's primer pair and template from the design table in that fragment's PCR well."
+  },
+  {
+   "id": "dpni_and_cleanup",
+   "text": "The gradient PCR is recorded with the paper's program (98 C 30 s; 34-36 cycles of 98 C 10 s, the AssemblyTron/j5 annealing temperature for 30 s, 72 C extension; 72 C 5 min), then DpnI digestion as in the paper (19 uL water, 5 uL rCutSmart and 1 uL DpnI per reaction; 37 C 30 min, then 65 C 20 min), then a pause for fragment clean-up and concentration before assembly, in that order."
+  },
+  {
+   "id": "assembly_mix",
+   "text": "Each of the four 20 uL Golden Gate reactions combines its fragments from the design table in the volumes given there with T4 DNA ligase buffer at 1x (2 uL of the 10x stock), the BsaI-HFv2 + T4 ligase enzyme mix and water to 20 uL, in its own assembly well. The paper does not give the enzyme volume, so any amount in line with the enzyme supplier's Golden Gate protocol (about 1-2 uL) passes."
+  },
+  {
+   "id": "cycling_and_transformation",
+   "text": "A Golden Gate program recorded for the assemblies (the paper does not give it, so any standard BsaI/T4 ligase program passes: repeated 37 C digestion and 16 C ligation steps, then a heat step and a 4 C hold), then, as in the paper, clean-up of each assembly eluted in 10 uL water, transformation of the eluate into TOP10 cells (30 min on ice, 42 C heat shock for 60 s, recovery in 250 uL LB + 0.2% dextrose at 37 C for 60 min) and plating on kanamycin LB agar."
+  }
+ ]
+}

@@ -10,8 +10,7 @@ This task comes from AssemblyTron: flexible automation of DNA assembly with Open
 
 ## The robot is set up like this (fixed)
 
-The operator has loaded the deck as below. Load **each labware with its label**, exactly as listed, because the
-grader finds your labware by label and checks that it is the labware named here:
+The operator has loaded the deck as below. Load **each labware with its label**, exactly as listed:
 
 ```python
 protocol.load_labware('<load name>', <slot>, label='<label>')
@@ -115,9 +114,8 @@ feeds every listed destination well. "Each" well means every well in the range g
 - Use OT-2 Python API `apiLevel` between `'2.2'` and `'2.15'`; Opentrons 7.5.0 is installed.
 - Simulate with: `opentrons_simulate /app/protocol.py`. Your protocol must simulate without errors.
 - No internet access besides the model API.
-- Grading runs your protocol in the simulator and checks the end state, then an LLM judge scores the protocol against a rubric. Every well and tube must end holding exactly the volume the
-  task implies, and the robot must never pipette without a tip, dispense more than it holds, aspirate from an empty
-  well or finish holding a tip. `transfer()`, `distribute()` or your own loops are all fine.
-- Steps that are not pipetting (incubating, heat shock, thermocycling, sealing, magnet) cannot be simulated and are
-  not graded; record them with `protocol.comment('...')` if you want them in the log.
+- Every well and tube must end holding exactly the volume the task implies, and the robot must never pipette
+  without a tip, dispense more than it holds, aspirate from an empty well or finish holding a tip. `transfer()`, `distribute()` or your own loops are all fine.
+- Steps that are not pipetting (incubating, heat shock, thermocycling, sealing, magnet) cannot be simulated; record
+  each one with `protocol.comment('...')` at the point it happens.
 - Do not read or write outside `/app`, and do not try to change how the simulator reports its log.

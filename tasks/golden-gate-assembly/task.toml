@@ -8,9 +8,10 @@ authors = [{ name = "Text2WetLab" }]
 keywords = ["opentrons", "ot-2", "lab-automation", "protocol-generation"]
 
 [metadata]
+level = "easy"
 source = "paper2protocol"
 deck = "specified"
-grading = "simulator gate + end-state checks + Sonnet 5.5 rubric judge"
+grading = "simulator gate + end-state checks + Sonnet 5.5 rubric judge (75% core: robot practice, tips/contamination, fidelity; 25% task-specific)"
 
 [agent]
 timeout_sec = 1800.0

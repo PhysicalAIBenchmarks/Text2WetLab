@@ -1,4 +1,13 @@
-"""Rubric LLM judge added on top of the deterministic grader (same scheme as opentrons-rna-extraction)."""
+"""Rubric LLM judge added on top of the deterministic grader (same scheme as opentrons-rna-extraction).
+
+tests/rubric.json holds {"level": "easy"|"hard", "core": [...], "task": [...]}. The three core items (robot practice,
+tips and contamination, fidelity) are in every task and share CORE_WEIGHT equally; the task-specific items share the
+rest. Every item is scored 1 or 0 by the judge.
+
+Levels: "easy" tasks give the agent the exact steps, so the task text is the specification and every end-state check
+is a hard fact. "hard" tasks give only the deck, the goal and the paper, so the paper is the specification; the
+end-state checks then describe one reference implementation and are evidence, not requirements.
+"""
 from __future__ import annotations
 
 import json
@@ -7,11 +16,13 @@ from pathlib import Path
 
 JUDGE_MODEL = "claude-sonnet-5-5"
 CRITICAL_CAP = 0.3
+CORE_WEIGHT = 0.75
+SAFETY_CHECKS = {"no_cross_contamination", "tip_before_aspirate", "no_aspirate_from_empty_well", "no_overdispense"}
 
 PROMPT = """You are grading an Opentrons OT-2 Python protocol written by an AI agent for the task below.
 
 Authority, in order:
-1. MEASURED CHECKS: computed by code from the Opentrons simulator's record of what the robot would physically do. Treat them as facts. If a check related to a rubric item failed, that item may not score 1 unless you cite specific code showing the check itself is mistaken.
+1. MEASURED CHECKS: computed by code from the Opentrons simulator's record of what the robot would physically do. Treat them as facts. If a check related to a rubric item failed, that item may not score 1 unless you cite specific code showing the check itself is mistaken.{end_state_note}
 2. {spec_name}: the scientific specification.
 3. REFERENCE PROTOCOL: one valid implementation. Do not reward or penalise stylistic or layout resemblance to it.
 
@@ -39,6 +50,12 @@ You must call the submit_grades tool exactly once with your grades, in this shap
 {{"items": [{{"id": "<rubric id>", "score": 0|1, "evidence": "<one sentence citing code or a check>"}}, ...], "summary": "<two sentences>"}}
 """
 
+HARD_END_STATE_NOTE = (
+    " Exception: this is a paper-level task, so the end_state:* checks compare against the reference protocol's"
+    " quantities, not against requirements. A failed end_state check is evidence to weigh, not a fact that fails an"
+    " item: pass the item if the agent's quantities are what the paper specifies, or a sound adaptation to the given"
+    " deck and reagents.")
+
 GRADE_TOOL = {
     "name": "submit_grades",
     "description": "Submit one score per rubric item and a short summary.",
@@ -61,26 +78,44 @@ GRADE_TOOL = {
 }
 
 
-def is_critical(name: str) -> bool:
-    return name.startswith(("deck_labware", "end_state")) or name in {
-        "no_cross_contamination", "tip_before_aspirate", "no_aspirate_from_empty_well", "no_overdispense"}
+def load_rubric(tests: Path) -> dict:
+    """The rubric with a weight on every item: core items share CORE_WEIGHT, task items share the rest."""
+    rubric = json.loads((tests / "rubric.json").read_text())
+    core, task = rubric["core"], rubric["task"]
+    items = [dict(r, group="core", weight=CORE_WEIGHT / len(core)) for r in core]
+    items += [dict(r, group="task", weight=(1 - CORE_WEIGHT) / len(task)) for r in task]
+    return {"level": rubric["level"], "items": items}
+
+
+def weighted_score(rubric: dict, scores: dict[str, float]) -> float:
+    return sum(item["weight"] * scores[item["id"]] for item in rubric["items"])
+
+
+def is_critical(name: str, level: str = "easy") -> bool:
+    """Checks that cap the reward when they fail. On hard tasks the end state is the agent's to work out from the
+    paper, so only the deck and the safety rules are critical there."""
+    if name.startswith("deck_labware") or name in SAFETY_CHECKS:
+        return True
+    return level == "easy" and name.startswith("end_state")
 
 
 def judge(tests: Path, checks: list[dict], protocol: str, paper: Path) -> dict:
     import anthropic
 
-    rubric = json.loads((tests / "rubric.json").read_text())
+    rubric = load_rubric(tests)
+    hard = rubric["level"] == "hard"
     has_paper = paper.exists()
     prompt = PROMPT.format(
-        spec_name="THE PAPER" if has_paper else "THE TASK TEXT",
-        rubric="\n".join(f"- {r['id']}: {r['text']}" for r in rubric),
+        end_state_note=HARD_END_STATE_NOTE if hard else "",
+        spec_name="THE PAPER" if hard else "THE TASK TEXT" + (" (the paper is background only)" if has_paper else ""),
+        rubric="\n".join(f"- {r['id']} ({r['weight']:.1%} of the reward): {r['text']}" for r in rubric["items"]),
         task=(tests / "instruction.md").read_text(),
         paper_block=f"\n=== PAPER (text extraction) ===\n{paper.read_text()}\n" if has_paper else "",
         reference=(tests / "reference_protocol.py").read_text(),
         checks=json.dumps(checks, indent=1),
         protocol=protocol,
     )
-    ids = {r["id"] for r in rubric}
+    ids = {r["id"] for r in rubric["items"]}
     client = anthropic.Anthropic()
     last_error = None
     for _ in range(3):
@@ -96,7 +131,9 @@ def judge(tests: Path, checks: list[dict], protocol: str, paper: Path) -> dict:
             scores = {item["id"]: float(item["score"]) for item in data["items"]}
             if set(scores) != ids or any(s not in (0, 1) for s in scores.values()):
                 raise ValueError(f"bad rubric scores: {scores}")
-            return {"items": data["items"], "scores": scores, "summary": data.get("summary")}
+            return {"items": data["items"], "scores": scores, "summary": data.get("summary"),
+                    "level": rubric["level"], "score": round(weighted_score(rubric, scores), 4),
+                    "weights": {r["id"]: round(r["weight"], 4) for r in rubric["items"]}}
         except Exception as exc:  # retry malformed or transient judge responses
             last_error = f"{type(exc).__name__}: {exc}"
     return {"error": last_error}

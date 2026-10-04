@@ -1,22 +1,31 @@
-[
- {
-  "id": "dna_addition",
-  "text": "2 uL plasmid DNA from plasmid plate A1 into the competent-cell tube A1 with the 20 uL pipette."
- },
- {
-  "id": "heat_shock",
-  "text": "Heat shock at 42 C for 45 s, then 2 min on ice, recorded in that order after DNA addition."
- },
- {
-  "id": "soc_recovery",
-  "text": "250 uL SOC added to the tube after the heat shock, and the 37 C, 60 min, 250 rpm outgrowth recorded."
- },
- {
-  "id": "tip_usage",
-  "text": "A fresh tip for the DNA and for the SOC, no contamination of cells or stocks, and the tip dropped at the end."
- },
- {
-  "id": "fidelity_to_task",
-  "text": "No missing or reordered steps and nothing added that would change the outcome; comments and metadata are accurate."
- }
-]
+{
+ "level": "easy",
+ "core": [
+  {
+   "id": "robot_practice",
+   "text": "Sound OT-2 practice: a valid apiLevel and metadata; every volume handled by a pipette whose range covers it (nothing below its minimum or above its maximum); no well filled beyond its capacity; modules and labware used as intended; nothing physically unsafe or nonsensical (e.g. pipetting from or into the wrong labware, or needless extra handling that puts samples at risk)."
+  },
+  {
+   "id": "tips_and_contamination",
+   "text": "Never aspirates, dispenses or mixes without a tip attached, and drops every tip so that no tip is left on a pipette at the end of the run. A fresh tip whenever the pipette moves on to a different sample, template or stock that carryover would contaminate, and no cross-contamination of samples or reagent stocks. A fresh tip for the DNA and for the SOC, so neither the cells nor the stocks are contaminated."
+  },
+  {
+   "id": "fidelity_to_task",
+   "text": "All-or-nothing bonus for a fully faithful protocol: every step in the task text is carried out (or recorded with protocol.comment where it cannot be simulated) in the given order with the given quantities and conditions, nothing is added that would change the outcome, and comments and metadata are accurate. Any deviation fails this item, even one already failed under another item."
+  }
+ ],
+ "task": [
+  {
+   "id": "dna_addition",
+   "text": "2 uL plasmid DNA from plasmid plate A1 into the competent-cell tube A1 with the 20 uL pipette."
+  },
+  {
+   "id": "heat_shock",
+   "text": "Heat shock at 42 C for 45 s, then 2 min on ice, recorded in that order after DNA addition."
+  },
+  {
+   "id": "soc_recovery",
+   "text": "250 uL SOC added to the tube after the heat shock, and the 37 C, 60 min, 250 rpm outgrowth recorded."
+  }
+ ]
+}

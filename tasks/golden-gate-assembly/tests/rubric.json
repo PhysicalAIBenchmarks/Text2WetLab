@@ -1,22 +1,35 @@
-[
- {
-  "id": "pcr_setup",
-  "text": "PCR reactions for each fragment set up as specified (primer and template amounts, reaction volume) with primers and templates paired to the correct wells."
- },
- {
-  "id": "dpni_and_cleanup",
-  "text": "DpnI digestion and the fragment clean-up and concentration steps carried out or recorded in order."
- },
- {
-  "id": "assembly_mix",
-  "text": "Fragments combined in the specified volumes for each assembly with BsaI-HFv2, T4 ligase and buffer, with volumes matching the task."
- },
- {
-  "id": "cycling_and_transformation",
-  "text": "Golden Gate cycling program run or recorded as specified, then assemblies transformed into TOP10 cells as specified."
- },
- {
-  "id": "tips_and_contamination",
-  "text": "Fresh tips between different fragments and assemblies, and no cross-contamination."
- }
-]
+{
+ "level": "easy",
+ "core": [
+  {
+   "id": "robot_practice",
+   "text": "Sound OT-2 practice: a valid apiLevel and metadata; every volume handled by a pipette whose range covers it (nothing below its minimum or above its maximum); no well filled beyond its capacity; modules and labware used as intended; nothing physically unsafe or nonsensical (e.g. pipetting from or into the wrong labware, or needless extra handling that puts samples at risk)."
+  },
+  {
+   "id": "tips_and_contamination",
+   "text": "Never aspirates, dispenses or mixes without a tip attached, and drops every tip so that no tip is left on a pipette at the end of the run. A fresh tip whenever the pipette moves on to a different sample, template or stock that carryover would contaminate, and no cross-contamination of samples or reagent stocks. Fresh tips between different fragments, templates, primers and assemblies; one tip may dispense a shared reagent into several wells only if it never aspirates from them."
+  },
+  {
+   "id": "fidelity_to_task",
+   "text": "All-or-nothing bonus for a fully faithful protocol: every step in the task text is carried out (or recorded with protocol.comment where it cannot be simulated) in the given order with the given quantities and conditions, nothing is added that would change the outcome, and comments and metadata are accurate. Any deviation fails this item, even one already failed under another item."
+  }
+ ],
+ "task": [
+  {
+   "id": "pcr_setup",
+   "text": "PCR reactions for each fragment set up as specified (master mix, primer and template amounts, reaction volume) with primers and templates paired to the correct wells."
+  },
+  {
+   "id": "dpni_and_cleanup",
+   "text": "DpnI digestion and the fragment clean-up and concentration steps carried out or recorded in order."
+  },
+  {
+   "id": "assembly_mix",
+   "text": "Fragments combined in the specified volumes for each assembly with water, T4 ligase buffer and the BsaI-HFv2 + T4 ligase enzyme mix, with volumes matching the task."
+  },
+  {
+   "id": "cycling_and_transformation",
+   "text": "Golden Gate cycling program run or recorded as specified, then assemblies transformed into TOP10 cells as specified."
+  }
+ ]
+}
