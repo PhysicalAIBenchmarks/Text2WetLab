@@ -88,6 +88,22 @@ def stage_simulate():
                         "events_sha": sha(json.dumps(j["events"], sort_keys=True).encode())}
         else:
             out[rel] = {"ok": False, "why": classify(j["error"])}
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location("slowpoke_assemble", ROOT / "references/slowpoke/assemble.py")
+    assemble = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(assemble)
+    with tempfile.TemporaryDirectory() as d:  # the authors' generators, minus the GUI, bind the shipped CSVs into the templates
+        for name in assemble.JOBS:
+            f = pathlib.Path(d, name)
+            f.write_text(assemble.build(name))
+            j = simulate(str(f), None)
+            rel = f"references/slowpoke (assembled) {name}"
+            if j["ok"]:
+                out[rel] = {"ok": True, "commands": j["n_commands"], "events": dict(sorted(collections.Counter(e["kind"] for e in j["events"]).items())),
+                            "events_sha": sha(json.dumps(j["events"], sort_keys=True).encode())}
+            else:
+                out[rel] = {"ok": False, "why": classify(j["error"])}
     h, s = "references/hulp-rna-extraction/viral_rna_extraction_protocol.py", "tasks/opentrons-rna-extraction/solution/protocol.py"
     out["_harbor_solution_trace_equals_author_script_trace"] = bool(h in events and s in events and events[h] == events[s])
     return out

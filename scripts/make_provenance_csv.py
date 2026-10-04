@@ -204,11 +204,12 @@ hulp_local = ROOT / "references/hulp-rna-extraction/viral_rna_extraction_protoco
 # ---- references ------------------------------------------------------------------------
 SETS = {"references/dna-bot-ysaa010": ("BASIC-DNA-ASSEMBLY/DNA-BOT", "ae9aebbd5833752cad981ecf99a52a6c6e7202e2", "10.1093/synbio/ysaa010"),
         "references/botany-kiag066": ("cvoiniciuc/BOTany", "c7588d321a59b0d9078c288504e63598b0f60b5e", "10.1093/plphys/kiag066"),
-        "references/transporter-screening-antibiotics11081129": ("ljm176/TransporterScreening", "455fc2e569ad4a873ab415186a29e3e396e8cc4e", "10.3390/antibiotics11081129")}
+        "references/transporter-screening-antibiotics11081129": ("ljm176/TransporterScreening", "455fc2e569ad4a873ab415186a29e3e396e8cc4e", "10.3390/antibiotics11081129"),
+        "references/slowpoke": ("Tom-Ellis-Lab/Slowpoke", "62648d2bf390c28af061d68cee71075e27c251a6", "10.1021/acssynbio.5c00629")}
 for base, (repo, commit, doi) in SETS.items():
     up = tree(repo, commit)
     for p in sorted((ROOT / base).rglob("*")):
-        if not p.is_file() or (p.name in ("README.md", "COMPARISON.md", "REPO_README.md") and p.parent == ROOT / base):
+        if not p.is_file() or (p.name in ("README.md", "COMPARISON.md", "REPO_README.md", "assemble.py") and p.parent == ROOT / base):
             continue
         rel = str(p.relative_to(ROOT))
         hit = up.get(git("hash-object", rel))

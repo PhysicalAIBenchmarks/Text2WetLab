@@ -115,9 +115,12 @@ An IR where 70% of steps rest on an assumption can pass bookkeeping and still be
 | `ecoli-heat-shock-transformation` | yes | would map (one plate, one tube rack, one reservoir) | none, and no reference solution to run |
 | `opentrons-rna-extraction` | yes | n/a | 16 checks + LLM judge |
 
-References that could supply a solution do not simulate here: DNA-BOT (5 scripts) needs the removed Opentrons
-API v1, BOTany (8) needs API 2.20 and a runtime CSV, TransporterScreening (2) needs a custom labware
-definition that is not in the repo.
+Real scripts that simulate here: the authors' HULP script (the RNA task's oracle) and the two Slowpoke OT-2 workflows
+(`references/slowpoke/`, MIT) once their shipped CSV inputs are bound. None of them has the numbers of a handwritten task:
+Slowpoke colony PCR is 9 uL mix + 1 uL colony per 10 uL reaction (the task says 18 + 1 + 1), and Slowpoke cloning is a
+different Golden Gate design from the AssemblyTron paper. Scripts that do not simulate: DNA-BOT (5) needs the removed
+Opentrons API v1, BOTany (8) needs API 2.20 and a runtime CSV, TransporterScreening (2) needs a labware definition that
+is not in the repo.
 
 ## Known limits
 
