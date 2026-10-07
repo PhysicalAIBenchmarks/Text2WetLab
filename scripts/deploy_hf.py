@@ -57,6 +57,9 @@ def results_markdown() -> str:
     for r in sorted(d["rows"], key=lambda r: -(r["all"] or 0)):
         lines.append(f"| {r['name']} | {fmt(r['all'])} | {fmt(r['answered'])} ({r['n_answered']}) | {fmt(r['common'])} | "
                      f"{fmt(r['easy'])} | {fmt(r['hard'])} | {r['refusals']} | ${r['cost']:.2f} |")
+    if d.get("n_provisional"):
+        lines += ["", f"{d['n_provisional']} of these scores are provisional until a re-judge with the audited verifier "
+                  f"(reasons in `results/runs/{d['run']}/PROVISIONAL.json`; marked † on the leaderboard)."]
     return "\n".join(lines)
 
 
