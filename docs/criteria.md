@@ -11,7 +11,7 @@ see the README). Nothing here depends on an LLM except the one item marked as no
 | Simulator gate | `eval/spec_check.py` -> `simulator_ran` | the protocol runs on Opentrons 7.5.0 at all (real tip, volume and labware errors) | any protocol |
 | Generic rules | `eval/spec_check.py` | tip before aspirate, no overdispense, no draw from an empty non-stock well, tip dropped at the end | any protocol with an IR |
 | End state | `eval/spec_check.py` + `paper2protocol/timeline.py` | every mapped container holds what the IR says when the run ends | tasks whose containers map to unique labware (3 of 7 today: `split-200ul-two-wells`, `a1-a12-100ul`, `ecoli-heat-shock-transformation`) |
-| Harbor checks | `tasks/opentrons-rna-extraction/harbor/tests/checks.py` | 16 measured facts about the RNA extraction (volumes, order, timings, magnet, temperature, tips) plus a 0.3 reward cap if a critical one fails | that task |
+| Harbor checks | `tasks/opentrons-rna-extraction/tests/checks.py` | 16 measured facts about the RNA extraction (volumes, order, timings, magnet, temperature, tips) plus a 0.3 reward cap if a critical one fails | that task |
 | Harbor LLM judge | `tests/grade.py` | 9 rubric items scored 0 / 0.5 / 1 by a model | that task. **Not run in this repo** (needs an API key) |
 | IR bookkeeping | `paper2protocol/check.py` | the IR itself: volumes drawn exist, wells fit capacity, pairing is valid | every IR |
 | IR review | `paper2protocol/critic.py`, `resolve.py` | the IR against the paper text; whether the paper has enough detail | pipeline outputs |

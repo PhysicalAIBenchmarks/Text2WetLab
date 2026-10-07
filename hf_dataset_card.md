@@ -1,7 +1,7 @@
 ---
 language:
 - en
-license: apache-2.0
+license: mit
 task_categories:
 - text-generation
 - translation
@@ -31,7 +31,7 @@ Text2WetLab evaluates whether large language model agents can translate plain-En
 
 ## Reference episode — MuJoCo 3D physics render
 
-![OT-2 reference episode](assets/episode_mujoco.gif)
+![OT-2 trailer preview](assets/trailer_preview.gif)
 
 ## Results (pass@1, 2026-10-04)
 
