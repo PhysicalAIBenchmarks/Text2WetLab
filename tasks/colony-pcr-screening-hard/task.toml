@@ -34,8 +34,10 @@ gpus = 0
 [checks]
 free_wells = []
 # The ground truth (from the easy task) is a 20 uL reaction; the paper's OT-2 workflow is 10 uL and the deck gives no
-# primer concentration, so the paper does not determine the PCR plate's volumes. The rubric judges the reaction.
-not_from_paper = ["pcr_plate"]
+# primer concentration, so the paper does not determine the PCR plate's exact volumes. What it does fix is checked
+# instead: every well gets master mix, its primers and its colony, all wells alike, and a reaction no smaller than the
+# paper's OT-2 one (9 uL mix + 1 uL colony = 10 uL) nor larger than a standard Q5 reaction (25 uL). The rubric judges the rest.
+not_from_paper = { pcr_plate = [10, 25] }
 
 [[metadata.papers]]
 slug = "slowpoke"

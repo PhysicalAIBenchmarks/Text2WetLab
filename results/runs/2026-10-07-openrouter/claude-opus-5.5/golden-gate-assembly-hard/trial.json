@@ -14,5 +14,6 @@
  "input_tokens": 0,
  "output_tokens": 0,
  "started_at": "2026-10-07T01:12:04.721732Z",
- "finished_at": "2026-10-07T01:13:12.873896Z"
+ "finished_at": "2026-10-07T01:13:12.873896Z",
+ "cache_tokens": 0
 }

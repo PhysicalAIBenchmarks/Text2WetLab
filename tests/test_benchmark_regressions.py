@@ -132,3 +132,32 @@ def test_easy_rna_rubric_holds_the_80ul_the_brief_states():
     rubric = json.loads((ROOT / "tasks/opentrons-rna-extraction/tests/rubric.json").read_text())
     text = next(i["text"] for i in rubric["task"] if i["id"] == "elution_recovery")
     assert "Recovering the whole 100 uL fails this item" in text and "Transfer 80 uL of eluate" in text
+
+
+def lint():
+    spec = importlib.util.spec_from_file_location("protocol_lint", ROOT / "eval/protocol_lint.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.violations
+
+
+def test_documented_pipette_settings_pass_the_lint_gate():
+    # DeepSeek V4 Pro's a1-a12-100ul protocol set p20.tip_racks = [...] and scored 0 for it (documented Opentrons API)
+    ok = """metadata = {'apiLevel': '2.15'}
+def run(protocol):
+    p300 = protocol.load_instrument('p300_single_gen2', 'right', tip_racks=[])
+    p300.tip_racks = [protocol.load_labware('opentrons_96_tiprack_300ul', 11)]
+    p300.starting_tip = p300.tip_racks[0]['A1']
+    p300.default_speed = 300
+    p300.flow_rate.aspirate = 50
+    p300.well_bottom_clearance.dispense = 2
+"""
+    assert lint()(ok) == []
+
+
+def test_patching_the_api_is_still_refused():
+    for bad in ["from opentrons import protocol_api\nprotocol_api.InstrumentContext.tip_racks = None\n",
+                "from opentrons import protocol_api\nprotocol_api.ProtocolContext.comment = None\n",
+                "def run(protocol):\n    protocol.comment = print\n",
+                "def run(protocol):\n    p = protocol.load_instrument('p300_single_gen2', 'right')\n    p.aspirate = None\n"]:
+        assert any("assignment to an attribute" in v for v in lint()(bad)), bad

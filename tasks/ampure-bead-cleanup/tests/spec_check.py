@@ -88,6 +88,7 @@ class State:
     wells: dict = field(default_factory=dict)      # (labware, well) -> uL
     errors: list = field(default_factory=list)     # (event index, code)
     aspirations: int = 0
+    fed: dict = field(default_factory=dict)        # (labware, well) -> labware it received liquid from
 
 
 def wells_of(event, loadnames=None) -> list[str]:
@@ -101,14 +102,15 @@ def replay(events: list[dict], initial: dict | None = None, ample: frozenset = f
     """Apply atomic events in order. `initial` = {(labware, well): uL} for non-stock wells; `ample` = (labware, well)
     pairs the IR declares as stocks with unlimited volume (aspirating from them is never an error and is not counted)."""
     st = State(wells=dict(initial or {}))
+    drawn = set()                                  # labware the current tip has aspirated from
     for i, e in enumerate(events):
         kind = e["kind"]
         if kind == "pick":
             if st.tip:
                 st.errors.append((i, "already_has_tip"))
-            st.tip, st.held = True, 0.0
+            st.tip, st.held, drawn = True, 0.0, set()
         elif kind == "drop":
-            st.tip, st.held = False, 0.0
+            st.tip, st.held, drawn = False, 0.0, set()
         elif kind in ("aspirate", "dispense"):
             vol = e["volume"]
             if not st.tip:
@@ -125,20 +127,24 @@ def replay(events: list[dict], initial: dict | None = None, ample: frozenset = f
                             break
                         st.wells[(e["labware"], w)] -= vol
                 st.held += vol
+                drawn.add(e["labware"])
             else:
                 if vol > st.held + 1e-9:
                     st.errors.append((i, "overdispense"))
                 for w in wells_of(e, loadnames):
                     st.wells[(e["labware"], w)] = st.wells.get((e["labware"], w), 0.0) + vol
+                    st.fed.setdefault((e["labware"], w), set()).update(drawn - {e["labware"]})
                 st.held = max(st.held - vol, 0.0)
     return st
 
 
 def cross_contamination(events: list[dict]) -> list:
     """(event index, well) where one tip carries liquid between wells it should not. A tip may go back to wells it
-    dispensed into (mixing) and to the one well it started from (multi-dispense). Once it has mixed in a well (drawn
-    from a well it dispensed into), it carries that well's contents: dispensing into any other well, or drawing from
-    any other well (the stock included), is contamination until a fresh tip."""
+    dispensed into (mixing) and to the one well it started from (multi-dispense). Once it has mixed in a destination
+    (drawn from a well it dispensed into that was not one of its sources), it carries that well's contents: dispensing
+    into any other well, or drawing from any other well (the stock included), is contamination until a fresh tip.
+    Mixing in a source before drawing from it (resuspending a colony or beads) carries nothing the transfer is not
+    meant to move."""
     bad, sources, own, carried = [], set(), set(), set()
     for i, e in enumerate(events):
         if e["kind"] in ("pick", "drop"):
@@ -152,9 +158,9 @@ def cross_contamination(events: list[dict]) -> list:
             key = (e["labware"], e["well"])
             if (sources and key not in sources and key not in own) or carried - {key}:
                 bad.append((i, key[1]))
-            if key in own:
+            if key in own and key not in sources:   # mixing in a destination
                 carried.add(key)
-            else:
+            elif key not in own:
                 sources.add(key)
     return bad
 
@@ -216,9 +222,11 @@ def _deck_mapping(proto, run, deck, add):
 
 
 def check(proto: Protocol, run: dict, free_wells: frozenset = frozenset(), deck: dict | None = None,
-          not_from_paper: frozenset = frozenset()) -> dict:
+          not_from_paper: dict | frozenset = frozenset()) -> dict:
     """Verdict for one simulated run against an IR. `run` is simulate()'s result; `deck` pins every container to a labware."""
     checks = []
+    if not isinstance(not_from_paper, dict):
+        not_from_paper = {c: None for c in not_from_paper}
 
     def add(name, ok, detail=""):
         checks.append({"name": name, "pass": bool(ok), "detail": detail})
@@ -262,12 +270,15 @@ def check(proto: Protocol, run: dict, free_wells: frozenset = frozenset(), deck:
     for cname, lab in mapping.items():
         if kinds[cname] in ("reservoir", "waste"):
             continue
-        if cname in not_from_paper:  # paper-only task whose paper does not fix this container's volumes: rubric only
-            na.append(f"end_state:{cname} (the source paper does not determine these volumes; judged by the rubric)")
-            continue
         want = {(tube_well[cname] if w == "" and tube_well.get(cname) else w): v for (cn, w), v in final.items() if cn == cname and v}
         only = tube_well.get(cname)        # tubes share a rack: look at this tube's well only
         got = {w: round(v, 6) for (lb, w), v in st.wells.items() if lb == lab and v > 1e-9 and (lb, w) not in ample and (only is None or w == only)}
+        if cname in not_from_paper:  # the paper does not fix these volumes: judge what it does fix
+            add(f"composition:{cname}", *_composition(cname, lab, want, got, st.fed, proto, mapping,
+                                                      not_from_paper[cname],
+                                                      cname in free_wells))
+            na.append(f"end_state:{cname} (the source paper does not determine the exact volumes; composition checked instead)")
+            continue
         if cname in free_wells:  # the instruction does not name the wells: judge the volumes, not the positions
             ok = sorted(round(v, 6) for v in want.values()) == sorted(got.values())
             add(f"end_state:{cname}", ok, f"expected volumes {sorted(want.values())}, got {sorted(got.values())} (positions free)")
@@ -280,12 +291,35 @@ def check(proto: Protocol, run: dict, free_wells: frozenset = frozenset(), deck:
             "aspirations": st.aspirations}
 
 
-def not_from_paper(task_dir) -> frozenset:
-    """Containers whose end state the task's source paper does not determine, from task.toml [checks]."""
+def _composition(cname, lab, want, got, fed, proto, mapping, volume_range, free) -> tuple[bool, str]:
+    """For a container whose exact volumes the paper does not fix: the same wells are filled (any wells if positions
+    are free), each from every source container the IR sends there, the wells the IR fills equally hold equal volumes,
+    and each volume is inside the range the paper supports."""
+    problems = []
+    if free and len(got) != len(want) or not free and set(got) != set(want):
+        problems.append(f"filled {len(got)} wells, expected {len(want)}" + ("" if free else f" ({sorted(set(want) ^ set(got))[:4]} differ)"))
+    need = {mapping[s.source] for s in proto.steps if s.kind == "transfer" and s.dest == cname and s.source in mapping}
+    short = sorted(w for w in got if need - fed.get((lab, w), set()))
+    if short:
+        problems.append(f"{len(short)} wells lack an input, e.g. {short[0]} has none from {sorted(need - fed.get((lab, short[0]), set()))}")
+    if len(set(want.values())) == 1 and len(set(got.values())) > 1:
+        problems.append(f"unequal volumes {sorted(set(got.values()))[:4]}")
+    if volume_range:
+        lo, hi = volume_range
+        off = sorted(v for v in set(got.values()) if not lo - 1e-6 <= v <= hi + 1e-6)
+        if off:
+            problems.append(f"volumes {off[:3]} outside the {lo:g}-{hi:g} uL the paper supports")
+    return not problems, "; ".join(problems)
+
+
+def not_from_paper(task_dir) -> dict:
+    """Containers whose exact end state the task's source paper does not determine, from task.toml [checks]:
+    {container: (min uL, max uL) the paper supports, or None}. A list of names (no range) is accepted too."""
     import tomllib
 
     f = pathlib.Path(task_dir) / "task.toml"
-    return frozenset(tomllib.loads(f.read_text()).get("checks", {}).get("not_from_paper", [])) if f.exists() else frozenset()
+    nfp = tomllib.loads(f.read_text()).get("checks", {}).get("not_from_paper", []) if f.exists() else []
+    return {c: None for c in nfp} if isinstance(nfp, list) else {c: tuple(r) if r else None for c, r in nfp.items()}
 
 
 def free_wells(task_dir) -> frozenset:

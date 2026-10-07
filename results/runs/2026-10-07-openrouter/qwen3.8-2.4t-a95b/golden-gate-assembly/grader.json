@@ -1,0 +1,235 @@
+{
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 491
+ },
+ "not_applicable": [],
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": false,
+   "detail": "[(379, 'D2'), (380, 'B1'), (381, 'B1')]"
+  },
+  {
+   "name": "end_state:water",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:q5_buffer",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:dntp",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:q5_pol",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:pcr_mm",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:primer_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:template_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:pcr_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:rcutsmart",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:dpni",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:t4_buffer",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:gg_enzyme",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:assembly_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:cells_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:lb_dextrose",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "Valid apiLevel 2.13, pipettes match volume ranges, labware loaded with correct labels, and the end-state checks pass.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 0,
+    "evidence": "Measured check no_cross_contamination failed at (379,'D2') etc. Step 24 uses new_tip='once' with mix_after=(5,15), so the tip that mixed in assembly wells goes back into the gg_enzyme stock D2.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "fidelity_to_task",
+    "score": 0,
+    "evidence": "Step 24 reuses one tip with mix_after, which contaminates the enzyme stock and so deviates from a clean implementation. The mix volume of 15 \u00b5L is also arbitrary for 20 \u00b5L reactions.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "pcr_setup",
+    "score": 1,
+    "evidence": "Master mix 106/40/4/2 \u00b5L, 19 \u00b5L per well, 2.5 \u00b5L primers and 1 \u00b5L template paired as A1,A1,B1,C1,A1,A1,D1 with fresh tips each.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "dpni_and_cleanup",
+    "score": 1,
+    "evidence": "Steps 12-15 add 19 \u00b5L water, 5 \u00b5L rCutSmart and 1 \u00b5L DpnI, then mix; the incubation and Zymo cleanup are recorded with protocol.comment in order.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "assembly_mix",
+    "score": 1,
+    "evidence": "Assembly volumes are 7 \u00b5L water, 2 \u00b5L buffer, 3/2/3 \u00b5L backbone fragments, 2 \u00b5L chromoprotein fragments and 1 \u00b5L enzyme, matching the task.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "cycling_and_transformation",
+    "score": 1,
+    "evidence": "Golden Gate program, cleanup, 5 \u00b5L transfer to cells, 250 \u00b5L LB, and the ice/heat shock/recovery steps are all recorded or performed in order.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 0.0,
+   "fidelity_to_task": 0.0,
+   "pcr_setup": 1.0,
+   "dpni_and_cleanup": 1.0,
+   "assembly_mix": 1.0,
+   "cycling_and_transformation": 1.0
+  },
+  "summary": "The protocol simulates and gets nearly all quantities and orders right. However, step 24 uses one tip with mix_after across all assembly wells, which contaminates the enzyme stock (the measured contamination check failed), so the tips and fidelity items fail.",
+  "level": "easy",
+  "score": 0.5,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_task": 0.25,
+   "pcr_setup": 0.0625,
+   "dpni_and_cleanup": 0.0625,
+   "assembly_mix": 0.0625,
+   "cycling_and_transformation": 0.0625
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [
+  "no_cross_contamination"
+ ],
+ "rewards": {
+  "reward": 0.3,
+  "sim_pass": 1.0,
+  "checks_frac": 0.9524,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 0.25,
+  "judge_score": 0.5,
+  "critical_fail": 1.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 0.0,
+  "rubric_fidelity_to_task": 0.0,
+  "rubric_pcr_setup": 1.0,
+  "rubric_dpni_and_cleanup": 1.0,
+  "rubric_assembly_mix": 1.0,
+  "rubric_cycling_and_transformation": 1.0
+ }
+}

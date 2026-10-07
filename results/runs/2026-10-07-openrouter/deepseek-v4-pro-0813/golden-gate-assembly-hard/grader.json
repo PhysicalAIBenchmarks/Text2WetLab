@@ -1,0 +1,235 @@
+{
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 493
+ },
+ "not_applicable": [],
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": false,
+   "detail": "[(363, 'D2'), (364, 'B1'), (365, 'B1')]"
+  },
+  {
+   "name": "end_state:water",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:q5_buffer",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:dntp",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:q5_pol",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:pcr_mm",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:primer_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:template_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:pcr_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:rcutsmart",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:dpni",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:t4_buffer",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:gg_enzyme",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:assembly_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:cells_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:lb_dextrose",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "Valid apiLevel 2.13; p20 used for \u226419 \u00b5L, p300 for 106/40/250 \u00b5L and 30 \u00b5L mixes; no overfill (cells well 50+5+250 \u00b5L <360); simulator and over-dispense/empty-well checks pass.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 0,
+    "evidence": "no_cross_contamination failed at (363,'D2'),(364,'B1'),(365,'B1'): p20.transfer(1.0, gg_enzyme, assembly_wells, new_tip='once', mix_after=(3,15.0)) re-aspirates enzyme stock with a tip that has mixed in assembly wells.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "fidelity_to_paper",
+    "score": 1,
+    "evidence": "Volumes, temperatures, times and reagents (25 \u00b5L Q5, 19/5/1 \u00b5L DpnI, 37/65 \u00b0C, 20 \u00b5L GG, 250 \u00b5L LB, 42 \u00b0C 60 s) match the paper and design table; the contamination flaw is a tip-handling issue rather than a method deviation.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "pcr_setup",
+    "score": 1,
+    "evidence": "Master mix 13.25 water+5 buffer+0.5 dNTP+0.25 pol per rxn, 19 \u00b5L dispensed, plus 2.5 \u00b5L each primer and 1 \u00b5L template per TEMPLATE_WELLS mapping = 25 \u00b5L at 0.1 \u00b5M primers, 0.5 ng template.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "dpni_and_cleanup",
+    "score": 1,
+    "evidence": "Comment records 98 \u00b0C 30 s, 34 cycles with j5 annealing 30 s, 72 \u00b0C 5 min; then 19 \u00b5L water, 5 \u00b5L rCutSmart, 1 \u00b5L DpnI, 37 \u00b0C 30 min/65 \u00b0C 20 min comment, then cleanup pause, in order.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "assembly_mix",
+    "score": 1,
+    "evidence": "Each assembly well gets 7 \u00b5L water, 2 \u00b5L T4 buffer, frag2 3, frag5 2, frag6 3, own chromo fragment 2 \u00b5L, and 1 \u00b5L GG enzyme = 20 \u00b5L, in its own well.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "cycling_and_transformation",
+    "score": 1,
+    "evidence": "Comments record GG program (30\u00d737/16 \u00b0C, 60 \u00b0C, 4 \u00b0C hold), cleanup eluted in 10 \u00b5L, 5 \u00b5L transferred to TOP10 wells, ice 30 min, 42 \u00b0C 60 s, 250 \u00b5L LB+dextrose, 37 \u00b0C 60 min, kanamycin plating.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 0.0,
+   "fidelity_to_paper": 1.0,
+   "pcr_setup": 1.0,
+   "dpni_and_cleanup": 1.0,
+   "assembly_mix": 1.0,
+   "cycling_and_transformation": 1.0
+  },
+  "summary": "The protocol matches the paper's quantities and workflow, and the PCR, DpnI, assembly and transformation items are correct. Tips and contamination fails because the shared Golden Gate enzyme transfer uses one tip with mix_after, which re-aspirated the stock after the tip had mixed in assembly wells. The measured no_cross_contamination check failed on this.",
+  "level": "hard",
+  "score": 0.75,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_paper": 0.25,
+   "pcr_setup": 0.0625,
+   "dpni_and_cleanup": 0.0625,
+   "assembly_mix": 0.0625,
+   "cycling_and_transformation": 0.0625
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [
+  "no_cross_contamination"
+ ],
+ "rewards": {
+  "reward": 0.3,
+  "sim_pass": 1.0,
+  "checks_frac": 0.9524,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 0.25,
+  "judge_score": 0.75,
+  "critical_fail": 1.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 0.0,
+  "rubric_fidelity_to_paper": 1.0,
+  "rubric_pcr_setup": 1.0,
+  "rubric_dpni_and_cleanup": 1.0,
+  "rubric_assembly_mix": 1.0,
+  "rubric_cycling_and_transformation": 1.0
+ }
+}

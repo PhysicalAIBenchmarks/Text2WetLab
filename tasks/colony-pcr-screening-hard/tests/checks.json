@@ -1,1 +1,1 @@
-{"free_wells": [], "not_from_paper": ["pcr_plate"]}
+{"free_wells": [], "not_from_paper": {"pcr_plate": [10, 25]}}

@@ -1,8 +1,0 @@
-{
- "_about": "Scores in this run that a re-judge with the current verifier may change. Each was judged with a rubric line or check evidence that the paper-only audit (tests/test_hard_tasks.py) later ruled out, or with fewer than three judge votes. The stored grades are kept as graded; scripts/regrade_jobs.py --judge --all refreshes them.",
- "claude-sonnet-5.5/opentrons-rna-extraction-hard": "Marked down for recovering the whole 100 uL eluate; the paper says only 'collect the supernatant', the 80 uL is in the authors' code. Rubric fixed since.",
- "gpt-6.1-sol/opentrons-rna-extraction-hard": "Marked down for recovering the whole 100 uL eluate; the paper says only 'collect the supernatant', the 80 uL is in the authors' code. Rubric fixed since.",
- "claude-sonnet-5.5/colony-pcr-screening-hard": "The judge saw a failed end-state check against a 20 uL ground truth the paper does not support (check removed since), and its two votes split 1-1.",
- "gpt-6.1-sol/colony-pcr-screening-hard": "The judge saw a failed end-state check against a 20 uL ground truth the paper does not support (check removed since).",
- "claude-sonnet-5.5/ecoli-heat-shock-transformation-hard": "Only 1 of 3 judge votes returned (network outage during the regrade)."
-}

@@ -17,6 +17,8 @@ import sys
 import tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+# attacks whose result is a valid protocol for that task, so full marks are right
+VALID = {("colony-pcr-screening-hard", "halve_volumes"): "9 uL mix + 0.5 + 0.5 = 10 uL, the paper's OT-2 reaction volume"}
 OT_VENV = pathlib.Path(os.environ.get("OT_VENV", ROOT / ".venv-ot"))
 
 
@@ -116,12 +118,14 @@ def main():
                 continue
             results[task.name][name] = run_one(task, name, mutated, pathlib.Path(data_for.get(task.name, h / "environment/data")))
             r = results[task.name][name]
+            if (task.name, name) in VALID:
+                r["valid"] = VALID[(task.name, name)]
             print(f"{task.name:34} {name:36} reward={r['reward']}  {'| ' + ','.join(r.get('failed_checks', []))[:70] if r.get('failed_checks') else ''}{' | lint:' + r['lint'][0][:40] if r.get('lint') else ''}", flush=True)
     pathlib.Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     pathlib.Path(a.out).write_text(json.dumps(results, indent=1))
-    holes = [(t, n) for t, rs in results.items() for n, r in rs.items() if not n.startswith("control") and r.get("reward") == 1.0]
-    broken = [(t, n) for t, rs in results.items() for n, r in rs.items() if n.startswith("control") and r.get("reward") != 1.0]
-    print(f"\nHOLES (attack scored 1.0): {len(holes)} {holes}\nCONTROL FAILURES: {len(broken)} {broken}")
+    holes = [(t, n) for t, rs in results.items() for n, r in rs.items() if not n.startswith("control") and r.get("reward") == 1.0 and not r.get("valid")]
+    broken = [(t, n) for t, rs in results.items() for n, r in rs.items() if (n.startswith("control") or r.get("valid")) and r.get("reward") != 1.0]
+    print(f"\nHOLES (attack scored 1.0): {len(holes)} {holes}\nCONTROL FAILURES (incl. valid variants): {len(broken)} {broken}")
 
 
 if __name__ == "__main__":

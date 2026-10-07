@@ -1,6 +1,7 @@
 """Regrade saved Harbor trials with the current graders, without re-running any agent.
 
     python scripts/regrade_jobs.py JOB_DIR [JOB_DIR ...] [--judge [--all]] [--data TASK=DIR ...] [--out DIR] [--workers N]
+                                   [--only results/runs/<run>/PROVISIONAL.json]
 
 Each trial's graded protocol (verifier/protocol.py) goes back through tasks/<task>/tests/grade.py outside Docker.
 Without --judge only the deterministic layers run (SKIP_JUDGE=1, free). With --judge the LLM judge runs too, but only for
@@ -45,9 +46,17 @@ def main():
     ap.add_argument("--data", nargs="*", default=[])
     ap.add_argument("--out", type=pathlib.Path)
     ap.add_argument("--workers", type=int, default=4, help="trials graded at once")
+    ap.add_argument("--only", type=pathlib.Path, help="PROVISIONAL.json of a run: regrade only the <model>/<task> it lists")
     a = ap.parse_args()
     data_for = dict(x.split("=", 1) for x in a.data)
     trials = [(job, f) for job in a.jobs for f in sorted(job.glob("*/result.json"))]
+    if a.only:
+        wanted = {k for k in json.loads(a.only.read_text()) if not k.startswith("_")}
+        def key(f):
+            t = json.loads(f.read_text())
+            return f'{t["config"]["agent"]["model_name"].split("/")[-1]}/{t["task_name"].split("/")[-1]}'
+        trials = [(job, f) for job, f in trials if key(f) in wanted]
+        print(f"regrading {len(trials)} of the {len(wanted)} listed trials", file=sys.stderr)
 
     def regrade(job_and_file) -> dict:
         job, f = job_and_file

@@ -42,5 +42,6 @@
   "rubric_supernatant_and_washes": 1.0,
   "rubric_drying_and_elution": 1.0,
   "rubric_recovery": 1.0
- }
+ },
+ "cache_tokens": 68689
 }

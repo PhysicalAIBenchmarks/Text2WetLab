@@ -1,0 +1,31 @@
+{
+ "task": "golden-gate-assembly-hard",
+ "model": "qwen/qwen3.8-2.4t-a95b",
+ "agent": "claude-code",
+ "via": "openrouter",
+ "rewards": {
+  "reward": 0.3,
+  "sim_pass": 1.0,
+  "checks_frac": 0.8571,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 0.2167,
+  "judge_score": 0.5,
+  "critical_fail": 1.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 0.0,
+  "rubric_fidelity_to_paper": 0.0,
+  "rubric_pcr_setup": 1.0,
+  "rubric_dpni_and_cleanup": 1.0,
+  "rubric_assembly_mix": 1.0,
+  "rubric_cycling_and_transformation": 1.0
+ },
+ "exception": null,
+ "cost_usd": 0.300086,
+ "input_tokens": 369155,
+ "output_tokens": 18728,
+ "started_at": "2026-10-07T17:42:48.552099Z",
+ "finished_at": "2026-10-07T17:52:15.296183Z",
+ "cache_tokens": 314624,
+ "claude_code_cost_usd": 0.898167
+}

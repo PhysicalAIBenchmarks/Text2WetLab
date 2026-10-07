@@ -17,6 +17,7 @@ RISK_GROUPS = {  # check name prefix -> the risk it guards against
     "simulator_ran": "protocol runs in the simulator",
     "deck_labware": "right labware, label and slot (fixed deck)",
     "end_state": "end-state volumes match the IR ground truth",
+    "composition": "where the paper fixes no exact volumes: every well gets each input, equal volumes, in the paper's range",
     "tip_before_aspirate": "never pipettes without a tip",
     "no_overdispense": "never dispenses more than it holds",
     "no_aspirate_from_empty_well": "never aspirates from an empty well",

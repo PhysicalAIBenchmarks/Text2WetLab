@@ -1,0 +1,137 @@
+{
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 61
+ },
+ "not_applicable": [],
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "end_state:plate",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "apiLevel 2.15 is valid, 100 uL is handled by the p300, and the labware use is sensible. All measured checks passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 1,
+    "evidence": "Each transfer uses new_tip='always', which picks up and drops a tip every time. The tip_before_aspirate, tip_dropped_at_end and no_cross_contamination checks all passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "fidelity_to_task",
+    "score": 1,
+    "evidence": "The protocol does the single 100 uL transfer from reservoir A1 to plate A1:A12 in order, with the specified labware and labels. A fresh tip per well is allowed, and the comment is accurate.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "deck_and_hardware",
+    "score": 1,
+    "evidence": "The reservoir is in slot 1 and the plate in slot 2, both with the specified labels. The p20 is on the left with the 20 uL rack in slot 10, and the p300 is on the right with the 300 uL rack in slot 11.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "volumes_and_wells",
+    "score": 1,
+    "evidence": "The code transfers 100 uL with p300 from reservoir A1 to each of plate A1-A12 and touches no other wells. The end_state:plate check passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 1.0,
+   "fidelity_to_task": 1.0,
+   "deck_and_hardware": 1.0,
+   "volumes_and_wells": 1.0
+  },
+  "summary": "The protocol transfers 100 uL from reservoir A1 to plate wells A1-A12 with the p300, using a fresh tip for each well. All measured checks passed and I found no deviations from the task.",
+  "level": "easy",
+  "score": 1.0,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_task": 0.25,
+   "deck_and_hardware": 0.125,
+   "volumes_and_wells": 0.125
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [],
+ "rewards": {
+  "reward": 1.0,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 1.0,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_task": 1.0,
+  "rubric_deck_and_hardware": 1.0,
+  "rubric_volumes_and_wells": 1.0
+ }
+}

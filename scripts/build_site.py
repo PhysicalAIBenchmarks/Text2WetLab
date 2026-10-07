@@ -16,9 +16,9 @@ import shutil
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 REPO = "https://github.com/PhysicalAIBenchmarks/Text2WetLab"
 PAGES = ["index.html", "plr_coverage_table.html", "plr_embodiment_pairs.html", "docs/demo.html", "docs/preprint/preprint.html"]
-ORDER = ["claude-sonnet-5.5", "claude-opus-5.5", "claude-fable-5.1", "gpt-6.1-sol"]
+ORDER = ["claude-sonnet-5.5", "claude-opus-5.5", "claude-fable-5.1", "gpt-6.1-sol", "qwen3.8-2.4t-a95b", "deepseek-v4-pro-0813"]
 NAME = {"claude-sonnet-5.5": "Claude Sonnet 5.5", "claude-opus-5.5": "Claude Opus 5.5", "claude-fable-5.1": "Claude Fable 5.1",
-        "gpt-6.1-sol": "GPT-6.1 Sol"}
+        "gpt-6.1-sol": "GPT-6.1 Sol", "qwen3.8-2.4t-a95b": "Qwen3.8-2.4T-A95B", "deepseek-v4-pro-0813": "DeepSeek V4 Pro"}
 LOCAL_REF = re.compile(r'(?:src|href|poster|data-src)=["\']([^"\'#?]+)')
 
 

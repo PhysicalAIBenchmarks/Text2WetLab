@@ -40,5 +40,6 @@
   "rubric_dna_addition": 1.0,
   "rubric_heat_shock": 1.0,
   "rubric_soc_recovery": 1.0
- }
+ },
+ "cache_tokens": 68100
 }

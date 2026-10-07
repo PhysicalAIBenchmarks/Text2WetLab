@@ -1,0 +1,236 @@
+{
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 549
+ },
+ "not_applicable": [],
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "end_state:water",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:q5_buffer",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:dntp",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:q5_pol",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:pcr_mm",
+   "pass": false,
+   "detail": "expected {'D1': 19.0}, got {'D1': 12.0}"
+  },
+  {
+   "name": "end_state:primer_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:template_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:pcr_plate",
+   "pass": false,
+   "detail": "expected {'A1': 48.0, 'B1': 38.0, 'C1': 48.0, 'D1': 48.0, 'E1': 42.0, 'F1': 38.0, 'G1': 48.0}, got {'A1': 48.0, 'B1': 37.0, 'C1': 48.0, 'D1': 48.0, 'E1': 41.0, 'F1': 37.0, 'G1': 48.0}"
+  },
+  {
+   "name": "end_state:rcutsmart",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:dpni",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:t4_buffer",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:gg_enzyme",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:assembly_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:cells_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:lb_dextrose",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "Valid apiLevel 2.13 and metadata. Every volume is within its pipette's range (p20 for \u226420 \u00b5L, p300 for 40, 106, 250 \u00b5L and the 30 \u00b5L mixes), and no well is overfilled (cells wells hold 305 \u00b5L of 360).",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 1,
+    "evidence": "The tip_before_aspirate, tip_dropped_at_end and no_cross_contamination checks all passed. Fresh tips are used per primer, template and fragment transfer, and shared reagents are dispensed with distribute using one tip.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "fidelity_to_task",
+    "score": 0,
+    "evidence": "The pcr_mm end_state check failed (D1 holds 12 \u00b5L instead of 19 \u00b5L). p20.distribute(19, ...) used a disposal volume that discarded master mix. Step 24 also mixes at 15 \u00b5L, which differs from the reference.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "pcr_setup",
+    "score": 0,
+    "evidence": "Each PCR well receives the correct 19 \u00b5L mix, 2.5 \u00b5L primers and 1 \u00b5L template. However, the end_state:pcr_mm check failed (12 vs 19 \u00b5L) because p20.distribute(19, pcr_mm, pcr_wells) discarded master mix.",
+    "votes": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "id": "dpni_and_cleanup",
+    "score": 1,
+    "evidence": "Steps 12-14 add 19 \u00b5L water, 5 \u00b5L rCutSmart and 1 \u00b5L DpnI. The 3x30 \u00b5L mix, incubation comment and Zymo cleanup comment are in order, and the DpnI volumes match.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "assembly_mix",
+    "score": 0,
+    "evidence": "The end_state:pcr_plate check failed (B1, E1 and F1 are 1 \u00b5L low). p20.distribute of fragments 2, 5 and 6 with a disposal volume wasted fragment, so the assembly step does not match the task's volumes.",
+    "votes": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "id": "cycling_and_transformation",
+    "score": 1,
+    "evidence": "Step 25 records the Golden Gate program (30 cycles of 37/16\u00b0C, 60\u00b0C, 4\u00b0C hold) via comment. Step 27 transfers 5 \u00b5L to the cells, followed by the ice/heat-shock comment and 250 \u00b5L LB. The cells_plate end_state check passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 1.0,
+   "fidelity_to_task": 0.0,
+   "pcr_setup": 0.0,
+   "dpni_and_cleanup": 1.0,
+   "assembly_mix": 0.0,
+   "cycling_and_transformation": 1.0
+  },
+  "summary": "The protocol simulates cleanly with correct tip handling, and the manual steps are recorded as comments. However, p20.distribute() used a disposal volume that discarded master mix and fragment volume, which failed the pcr_mm and pcr_plate end-state checks. That fails the PCR setup, assembly mix and fidelity items.",
+  "level": "easy",
+  "score": 0.625,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_task": 0.25,
+   "pcr_setup": 0.0625,
+   "dpni_and_cleanup": 0.0625,
+   "assembly_mix": 0.0625,
+   "cycling_and_transformation": 0.0625
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [
+  "end_state:pcr_mm",
+  "end_state:pcr_plate"
+ ],
+ "rewards": {
+  "reward": 0.3,
+  "sim_pass": 1.0,
+  "checks_frac": 0.9048,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 0.4333,
+  "judge_score": 0.625,
+  "critical_fail": 1.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_task": 0.0,
+  "rubric_pcr_setup": 0.0,
+  "rubric_dpni_and_cleanup": 1.0,
+  "rubric_assembly_mix": 0.0,
+  "rubric_cycling_and_transformation": 1.0
+ }
+}

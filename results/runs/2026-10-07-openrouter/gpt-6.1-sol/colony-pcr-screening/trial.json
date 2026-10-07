@@ -20,9 +20,11 @@
   "rubric_thermocycling": 1.0
  },
  "exception": null,
- "cost_usd": 0.195742,
+ "cost_usd": 0.06404,
  "input_tokens": 73235,
  "output_tokens": 2375,
  "started_at": "2026-10-07T14:01:31.749158Z",
- "finished_at": "2026-10-07T14:03:25.377114Z"
+ "finished_at": "2026-10-07T14:03:25.377114Z",
+ "cache_tokens": 55884,
+ "claude_code_cost_usd": 0.195742
 }

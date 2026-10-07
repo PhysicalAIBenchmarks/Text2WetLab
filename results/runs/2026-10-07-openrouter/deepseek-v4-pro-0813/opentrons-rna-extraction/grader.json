@@ -1,0 +1,241 @@
+{
+ "variant": "reference",
+ "judge_model": "claude-sonnet-5-5",
+ "suspicious_tokens": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 1324
+ },
+ "checks": {
+  "checks": [
+   {
+    "name": "48_samples_to_odd_columns",
+    "pass": true,
+    "detail": "48 tubes -> 48 wells, odd columns only: True"
+   },
+   {
+    "name": "step_order",
+    "pass": true,
+    "detail": "expected per well: beads > isopropanol > sample > remove > ethanol > remove > ethanol > remove > elution > recover"
+   },
+   {
+    "name": "binding_volumes_40_250_250",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "mix_5x_after_sample",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "incubation_5min_before_magnet",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "magnet_4min_before_first_removal",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "supernatant_removed_each_step",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "magnet_engaged_for_all_removals",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "two_500ul_ethanol_washes",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "air_dry_4min",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "elution_100ul",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "elution_off_magnet_then_90s_on",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "recover_70_100ul_one_well_each",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "distinct_elution_wells",
+    "pass": true,
+    "detail": "48 distinct elution wells"
+   },
+   {
+    "name": "elution_plate_4C_before_recovery",
+    "pass": true,
+    "detail": "temperatures set: [(0.0, 4.0)]"
+   },
+   {
+    "name": "fresh_tip_per_sample_no_cross_contact",
+    "pass": true,
+    "detail": "48 distinct tips for 48 sample transfers; violations: []"
+   },
+   {
+    "name": "reservoir_columns_within_15ml",
+    "pass": false,
+    "detail": "uL drawn per reservoir column: 2: 1920, 4: 4800, 6: 6000, 7: 6000, 9: 16000, 10: 16000, 11: 8000, 12: 8000"
+   },
+   {
+    "name": "recover_about_80ul",
+    "pass": true,
+    "detail": "70-90 uL of the 100 uL eluate, as the task's step 13 says; 48/48 sample wells"
+   }
+  ],
+  "checks_passed": 17,
+  "checks_total": 18,
+  "total_delay_min": 15.0,
+  "example_well": "A1",
+  "example_sequence": [
+   "beads 40uL",
+   "isopropanol 250uL",
+   "sample 250uL",
+   "remove 540uL (magnet)",
+   "ethanol 500uL (magnet)",
+   "remove 500uL (magnet)",
+   "ethanol 500uL (magnet)",
+   "remove 500uL (magnet)",
+   "elution 100uL",
+   "recover 80uL (magnet)"
+  ]
+ },
+ "critical_failures": [
+  "reservoir_columns_within_15ml"
+ ],
+ "judge": {
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 0,
+    "evidence": "Check reservoir_columns_within_15ml failed: ethanol columns 9 and 10 are each drawn 16000 uL (ethanol[i % 4] sends two columns of wash volume to each), exceeding the 15 mL well capacity.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 1,
+    "evidence": "fresh_tip_per_sample_no_cross_contact passed (48 distinct tips, no violations); p1000 uses a new tip per sample, p300 uses a fresh tip per column for removals, and every tip is dropped.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "fidelity_to_task",
+    "score": 1,
+    "evidence": "All 14 steps are in order with correct volumes, delays (5 min, 4 min, 4 min, 30 s, 90 s), magnet states and 4 C setting, and comments match the code.",
+    "votes": [
+     1,
+     0,
+     1
+    ]
+   },
+   {
+    "id": "sample_handling",
+    "score": 1,
+    "evidence": "48_samples_to_odd_columns and distinct_elution_wells passed; tubes_10 + tubes_7 map one-to-one to the 48 odd-column wells.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "binding_and_separation",
+    "score": 1,
+    "evidence": "The code adds 40 uL beads, 250 uL isopropanol, then 250 uL sample with a 5x mix, a 5 min delay, the magnet engaged for 4 min, and removal of 540 uL with the magnet on; the related checks passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "washes_and_drying",
+    "score": 1,
+    "evidence": "Two 500 uL ethanol washes are each removed with the magnet engaged, followed by a 4 min delay with the magnet still engaged and then a disengage before elution; two_500ul_ethanol_washes and air_dry_4min passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "elution_recovery",
+    "score": 1,
+    "evidence": "The code disengages, adds 100 uL, mixes, waits 30 s, engages for 90 s, then transfers 80 uL to a distinct well; recover_about_80ul passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 0.0,
+   "tips_and_contamination": 1.0,
+   "fidelity_to_task": 1.0,
+   "sample_handling": 1.0,
+   "binding_and_separation": 1.0,
+   "washes_and_drying": 1.0,
+   "elution_recovery": 1.0
+  },
+  "summary": "The protocol follows every step with correct volumes, timings, magnet states and per-sample tip handling, and all but one run-log check passed. It loses robot_practice because the ethanol reservoir columns 9 and 10 are each drawn 16 mL, over the 15 mL well capacity.",
+  "raw": "[{\"items\": [{\"id\": \"robot_practice\", \"score\": 0, \"evidence\": \"Check reservoir_columns_within_15ml failed: ethanol columns 9 and 10 are each drawn 16000 uL (ethanol[i % 4] sends two columns of wash volume to each), exceeding the 15 mL well capacity.\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"fresh_tip_per_sample_no_cross_contact passed (48 distinct tips, no violations); p1000 uses a new tip per sample, p300 uses a fresh tip per column for removals, and every tip is dropped.\"}, {\"id\": \"fidelity_to_task\", \"score\": 1, \"evidence\": \"All 14 steps are in order with correct volumes, delays (5 min, 4 min, 4 min, 30 s, 90 s), magnet states and 4 C setting, and comments match the code.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"48_samples_to_odd_columns and distinct_elution_wells passed; tubes_10 + tubes_7 map one-to-one to the 48 odd-column wells.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"The code adds 40 uL beads, 250 uL isopropanol, then 250 uL sample with a 5x mix, a 5 min delay, the magnet engaged for 4 min, and removal of 540 uL with the magnet on; the related checks passed.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 uL ethanol washes are each removed with the magnet engaged, followed by a 4 min delay with the magnet still engaged and then a disengage before elution; two_500ul_ethanol_washes and air_dry_4min passed.\"}, {\"id\": \"elution_recovery\", \"score\": 1, \"evidence\": \"The code disengages, adds 100 uL, mixes, waits 30 s, engages for 90 s, then transfers 80 uL to a distinct well; recover_about_80ul passed.\"}], \"summary\": \"The protocol follows every step with correct volumes, timings, magnet states and per-sample tip handling, and all but one run-log check passed. It loses robot_practice because the ethanol reservoir columns 9 and 10 are each drawn 16 mL, over the 15 mL well capacity.\"}, {\"items\": [{\"id\": \"robot_practice\", \"score\": 0, \"evidence\": \"The failed check reservoir_columns_within_15ml shows columns 9 and 10 each drawn 16000 \\u00b5L (ethanol[i % 4] sends 2 columns of washes to A9 and A10), exceeding the 15 mL well capacity.\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"Check fresh_tip_per_sample_no_cross_contact passes (48 distinct tips); p1000 uses a fresh tip per sample, p300 uses a fresh tip per column for supernatant removal, elution mixing and recovery, and all tips are dropped.\"}, {\"id\": \"fidelity_to_task\", \"score\": 0, \"evidence\": \"Ethanol is planned so that reservoir columns 9 and 10 are asked for 16 mL each, more than the well can hold, so the specified reagent supply is not actually deliverable.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Checks 48_samples_to_odd_columns and distinct_elution_wells pass; code zips tubes_10+tubes_7 to the 48 wells in odd columns 1,3,...,11.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Code adds 40 \\u00b5L beads, 250 \\u00b5L isopropanol, then 250 \\u00b5L sample with mix(5, 250), delay 5 min, engage, delay 4 min, then removes 2x270 \\u00b5L to waste; the related run-log checks all pass.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two washes of 2x250 \\u00b5L ethanol in and 2x250 \\u00b5L out with the magnet engaged, then a 4 min delay and mag_module.disengage() before elution; checks two_500ul_ethanol_washes and air_dry_4min pass.\"}, {\"id\": \"elution_recovery\", \"score\": 1, \"evidence\": \"100 \\u00b5L elution is added after disengage and mixed, with a 30 s wait, engage and 90 s wait; then transfer(80) to a distinct elution well, and recover_about_80ul passes.\"}], \"summary\": \"The protocol follows the extraction steps and gets the sample mapping, tip handling, binding, washes and elution right. It fails robot_practice and fidelity because the ethanol distribution draws 16 mL from reservoir columns 9 and 10, above the 15 mL well capacity (the reservoir_columns_within_15ml check failed).\"}, {\"items\": [{\"id\": \"robot_practice\", \"score\": 0, \"evidence\": \"Check reservoir_columns_within_15ml failed: ethanol columns 9 and 10 are drawn 16000 \\u00b5L each (ethanol[i % 4] reused for columns 1/5 and 3/7 in both washes), exceeding the 15 mL well capacity.\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"fresh_tip_per_sample_no_cross_contact passed (48 distinct tips); p1000 gets a new tip per sample, and reagent tips never aspirate from sample wells; all tips dropped.\"}, {\"id\": \"fidelity_to_task\", \"score\": 1, \"evidence\": \"All 14 steps are in order with the right volumes and timings (5 min, 4 min, 2x500 \\u00b5L ethanol, 4 min dry, 100 \\u00b5L elution, 30 s + 90 s, 80 \\u00b5L recovery, final disengage); the reservoir overdraw is a practice issue, not a deviation from the stated steps.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"48_samples_to_odd_columns passed; tubes_10 + tubes_7 map one-to-one onto odd-column wells, and each eluate goes to its own elution well.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Code adds beads 40, isopropanol 250, then 250 \\u00b5L sample with mix(5, 250), delay 5 min, engage + 4 min, then removes 2x270 \\u00b5L to waste with magnet on; the matching checks passed.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two washes of 2x250 \\u00b5L ethanol added and 2x250 \\u00b5L removed with the magnet engaged, then 4 min delay with magnet still on, then disengage before elution.\"}, {\"id\": \"elution_recovery\", \"score\": 1, \"evidence\": \"Disengage, add 100 \\u00b5L, mix 10x80, delay 30 s, engage, delay 90 s, transfer 80 \\u00b5L to a distinct well of the 4 \\u00b0C elution plate (recover_about_80ul passed).\"}], \"summary\": \"The protocol follows the specified steps, volumes and timings and handles tips correctly. It fails robot_practice because the ethanol distribution draws 16 mL from reservoir columns 9 and 10, above the 15 mL well capacity.\"}]",
+  "level": "easy",
+  "score": 0.75,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_task": 0.25,
+   "sample_handling": 0.0625,
+   "binding_and_separation": 0.0625,
+   "washes_and_drying": 0.0625,
+   "elution_recovery": 0.0625
+  },
+  "model": "anthropic/claude-sonnet-5.5",
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "rewards": {
+  "reward": 0.3,
+  "sim_pass": 1.0,
+  "checks_frac": 0.9444,
+  "judge_score": 0.75,
+  "suspicious_code": 0.0,
+  "judge_error": 0.0,
+  "hack_detected": 0.0,
+  "critical_fail": 1.0,
+  "deterministic_reward": 0.4722,
+  "rubric_robot_practice": 0.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_task": 1.0,
+  "rubric_sample_handling": 1.0,
+  "rubric_binding_and_separation": 1.0,
+  "rubric_washes_and_drying": 1.0,
+  "rubric_elution_recovery": 1.0
+ }
+}

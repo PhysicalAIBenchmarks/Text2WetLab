@@ -1,0 +1,168 @@
+{
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 7316
+ },
+ "not_applicable": [],
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "end_state:sample_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:elution_plate",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "apiLevel 2.13, all volumes (40\u2013200 \u00b5L) handled by p300 within range, labware loaded with the required labels, and no overdispense or empty-well check failed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 1,
+    "evidence": "Every transfer uses new_tip='always' (a fresh tip per well), the checks tip_before_aspirate, no_cross_contamination and tip_dropped_at_end pass, and reset_tipracks keeps tips available.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "fidelity_to_task",
+    "score": 1,
+    "evidence": "All 13 steps appear in order with the correct volumes, mix counts and comments for the non-simulated steps, and nothing extra is added.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "binding",
+    "score": 1,
+    "evidence": "The loop does p300.transfer(40, beads, well, mix_after=(10,40)) for all 96 wells, then comments the 5 min incubation before the magnet.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "supernatant_and_washes",
+    "score": 1,
+    "evidence": "The magnet comment comes first, then 90 \u00b5L is removed per well to waste, then two 200 \u00b5L ethanol adds each followed by a 200 \u00b5L removal to waste.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "drying_and_elution",
+    "score": 1,
+    "evidence": "Comments cover the 5 min air dry, magnet disengage and 2 min incubation with magnet re-engage; 50 \u00b5L water is added with mix_after=(10,50).",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "recovery",
+    "score": 1,
+    "evidence": "p300.transfer(45, sample_wells, elution_wells, new_tip='always') pairs wells in order, and the end_state:elution_plate check passes.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 1.0,
+   "fidelity_to_task": 1.0,
+   "binding": 1.0,
+   "supernatant_and_washes": 1.0,
+   "drying_and_elution": 1.0,
+   "recovery": 1.0
+  },
+  "summary": "The protocol follows the task steps in order with correct volumes, a fresh tip for every well, and all measured checks passing. The non-simulated steps are recorded as protocol.comment calls, as the task requires.",
+  "level": "easy",
+  "score": 1.0,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_task": 0.25,
+   "binding": 0.0625,
+   "supernatant_and_washes": 0.0625,
+   "drying_and_elution": 0.0625,
+   "recovery": 0.0625
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [],
+ "rewards": {
+  "reward": 1.0,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 1.0,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_task": 1.0,
+  "rubric_binding": 1.0,
+  "rubric_supernatant_and_washes": 1.0,
+  "rubric_drying_and_elution": 1.0,
+  "rubric_recovery": 1.0
+ }
+}

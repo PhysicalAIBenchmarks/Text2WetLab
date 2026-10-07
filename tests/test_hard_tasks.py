@@ -73,7 +73,9 @@ def test_every_graded_volume_is_in_the_paper_or_brief_or_derived_from_them(task)
 
 def test_colony_hard_does_not_grade_the_reaction_volume_the_paper_does_not_fix():
     # ground truth 18 uL master mix + 1 + 1 = 20 uL; the paper's OT-2 reaction is 9 uL mix + 1 uL colony
-    assert "pcr_plate" in json.loads((ROOT / "tasks/colony-pcr-screening-hard/tests/checks.json").read_text())["not_from_paper"]
+    nfp = json.loads((ROOT / "tasks/colony-pcr-screening-hard/tests/checks.json").read_text())["not_from_paper"]
+    quoted("colony-pcr-screening-hard", "9 μL of this master mix")
+    assert nfp["pcr_plate"] == [9 + 1, 25]   # from the paper's OT-2 reaction up to a standard 25 uL Q5 reaction
     assert "not_from_paper" not in json.loads((ROOT / "tasks/colony-pcr-screening/tests/checks.json").read_text())
 
 

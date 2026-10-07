@@ -1,0 +1,109 @@
+{
+ "deepseek/deepseek-v4-pro-0813": {
+  "completion": "0.00000198",
+  "input_cache_read": "0.000000022",
+  "overrides": [
+   {
+    "completion": "0.00000198",
+    "input_cache_read": "0.000000022",
+    "prompt": "0.00000066",
+    "utc_days": [
+     "saturday",
+     "sunday"
+    ]
+   },
+   {
+    "completion": "0.00000198",
+    "input_cache_read": "0.000000022",
+    "prompt": "0.00000066",
+    "utc_days": [
+     "monday",
+     "tuesday",
+     "wednesday",
+     "thursday",
+     "friday"
+    ],
+    "utc_end": 100,
+    "utc_start": 0
+   },
+   {
+    "completion": "0.00000396",
+    "input_cache_read": "0.000000044",
+    "prompt": "0.00000132",
+    "utc_days": [
+     "monday",
+     "tuesday",
+     "wednesday",
+     "thursday",
+     "friday"
+    ],
+    "utc_end": 400,
+    "utc_start": 100
+   },
+   {
+    "completion": "0.00000198",
+    "input_cache_read": "0.000000022",
+    "prompt": "0.00000066",
+    "utc_days": [
+     "monday",
+     "tuesday",
+     "wednesday",
+     "thursday",
+     "friday"
+    ],
+    "utc_end": 600,
+    "utc_start": 400
+   },
+   {
+    "completion": "0.00000396",
+    "input_cache_read": "0.000000044",
+    "prompt": "0.00000132",
+    "utc_days": [
+     "monday",
+     "tuesday",
+     "wednesday",
+     "thursday",
+     "friday"
+    ],
+    "utc_end": 1000,
+    "utc_start": 600
+   },
+   {
+    "completion": "0.00000198",
+    "input_cache_read": "0.000000022",
+    "prompt": "0.00000066",
+    "utc_days": [
+     "monday",
+     "tuesday",
+     "wednesday",
+     "thursday",
+     "friday"
+    ],
+    "utc_end": 0,
+    "utc_start": 1000
+   }
+  ],
+  "prompt": "0.00000066"
+ },
+ "openai/gpt-6.1-sol": {
+  "completion": "0.00001",
+  "input_cache_read": "0.0000001",
+  "input_cache_write": "0.0000025",
+  "overrides": [
+   {
+    "completion": "0.000015",
+    "input_cache_read": "0.0000002",
+    "input_cache_write": "0.000005",
+    "min_prompt_tokens": 272000,
+    "prompt": "0.000004"
+   }
+  ],
+  "prompt": "0.000002",
+  "web_search": "0.01"
+ },
+ "qwen/qwen3.8-2.4t-a95b": {
+  "completion": "0.000006",
+  "input_cache_read": "0.00000025",
+  "prompt": "0.000002"
+ }
+}

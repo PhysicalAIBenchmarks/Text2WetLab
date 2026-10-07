@@ -5,6 +5,9 @@
   "ok": true,
   "n_commands": 2280
  },
+ "not_applicable": [
+  "end_state:pcr_plate (the source paper does not determine the exact volumes; composition checked instead)"
+ ],
  "checks": [
   {
    "name": "simulator_ran",
@@ -42,9 +45,9 @@
    "detail": ""
   },
   {
-   "name": "end_state:pcr_plate",
-   "pass": false,
-   "detail": "expected {'A1': 20.0, 'A2': 20.0, 'A3': 20.0, 'A4': 20.0, 'A5': 20.0, 'A6': 20.0, 'A7': 20.0, 'A8': 20.0, 'A9': 20.0, 'A10': 20.0, 'A11': 20.0, 'A12': 20.0, 'B1': 20.0, 'B2': 20.0, 'B3': 20.0, 'B4': 20.0, 'B5': 20.0, 'B6': 20.0, 'B7': 20.0, 'B8': 20.0, 'B9': 20.0, 'B10': 20.0, 'B11': 20.0, 'B12': 20.0, 'C1': 20.0, 'C2': 20.0, 'C3': 20.0, 'C4': 20.0, 'C5': 20.0, 'C6': 20.0, 'C7': 20.0, 'C8': 20.0, 'C9': 20.0, 'C10': 20.0, 'C11': 20.0, 'C12': 20.0, 'D1': 20.0, 'D2': 20.0, 'D3': 20.0, 'D4': 20.0, 'D5': 20.0, 'D6': 20.0, 'D7': 20.0, 'D8': 20.0, 'D9': 20.0, 'D10': 20.0, 'D11': 20.0, 'D12': 20.0, 'E1': 20.0, 'E2': 20.0, 'E3': 20.0, 'E4': 20.0, 'E5': 20.0, 'E6': 20.0, 'E7': 20.0, 'E8': 20.0, 'E9': 20.0, 'E10': 20.0, 'E11': 20.0, 'E12': 20.0, 'F1': 20.0, 'F2': 20.0, 'F3': 20.0, 'F4': 20.0, 'F5': 20.0, 'F6': 20.0, 'F7': 20.0, 'F8': 20.0, 'F9': 20.0, 'F10': 20.0, 'F11': 20.0, 'F12': 20.0, 'G1': 20.0, 'G2': 20.0, 'G3': 20.0, 'G4': 20.0, 'G5': 20.0, 'G6': 20.0, 'G7': 20.0, 'G8': 20.0, 'G9': 20.0, 'G10': 20.0, 'G11': 20.0, 'G12': 20.0, 'H1': 20.0, 'H2': 20.0, 'H3': 20.0, 'H4': 20.0, 'H5': 20.0, 'H6': 20.0, 'H7': 20.0, 'H8': 20.0, 'H9': 20.0, 'H10': 20.0, 'H11': 20.0, 'H12': 20.0}, got {'A1': 10.0, 'B1': 10.0, 'C1': 10.0, 'D1': 10.0, 'E1': 10.0, 'F1': 10.0, 'G1': 10.0, 'H1': 10.0, 'A2': 10.0, 'B2': 10.0, 'C2': 10.0, 'D2': 10.0, 'E2': 10.0, 'F2': 10.0, 'G2': 10.0, 'H2': 10.0, 'A3': 10.0, 'B3': 10.0, 'C3': 10.0, 'D3': 10.0, 'E3': 10.0, 'F3': 10.0, 'G3': 10.0, 'H3': 10.0, 'A4': 10.0, 'B4': 10.0, 'C4': 10.0, 'D4': 10.0, 'E4': 10.0, 'F4': 10.0, 'G4': 10.0, 'H4': 10.0, 'A5': 10.0, 'B5': 10.0, 'C5': 10.0, 'D5': 10.0, 'E5': 10.0, 'F5': 10.0, 'G5': 10.0, 'H5': 10.0, 'A6': 10.0, 'B6': 10.0, 'C6': 10.0, 'D6': 10.0, 'E6': 10.0, 'F6': 10.0, 'G6': 10.0, 'H6': 10.0, 'A7': 10.0, 'B7': 10.0, 'C7': 10.0, 'D7': 10.0, 'E7': 10.0, 'F7': 10.0, 'G7': 10.0, 'H7': 10.0, 'A8': 10.0, 'B8': 10.0, 'C8': 10.0, 'D8': 10.0, 'E8': 10.0, 'F8': 10.0, 'G8': 10.0, 'H8': 10.0, 'A9': 10.0, 'B9': 10.0, 'C9': 10.0, 'D9': 10.0, 'E9': 10.0, 'F9': 10.0, 'G9': 10.0, 'H9': 10.0, 'A10': 10.0, 'B10': 10.0, 'C10': 10.0, 'D10': 10.0, 'E10': 10.0, 'F10': 10.0, 'G10': 10.0, 'H10': 10.0, 'A11': 10.0, 'B11': 10.0, 'C11': 10.0, 'D11': 10.0, 'E11': 10.0, 'F11': 10.0, 'G11': 10.0, 'H11': 10.0, 'A12': 10.0, 'B12': 10.0, 'C12': 10.0, 'D12': 10.0, 'E12': 10.0, 'F12': 10.0, 'G12': 10.0, 'H12': 10.0}"
+   "name": "composition:pcr_plate",
+   "pass": true,
+   "detail": ""
   },
   {
    "name": "end_state:primer_plate",
@@ -58,8 +61,9 @@
    {
     "id": "robot_practice",
     "score": 1,
-    "evidence": "apiLevel 2.15; all transfers are 1\u201315 \u00b5L on the p20; the 10 \u00b5L final volume is far below well capacity; labware is used as intended; the simulator passed.",
+    "evidence": "apiLevel 2.15; all volumes (1\u201315 \u00b5L aspirates, 5/4/1 \u00b5L dispenses) are handled by the p20; the 10 \u00b5L final volume is well within well capacity; all measured checks pass.",
     "votes": [
+     1,
      1,
      1
     ]
@@ -67,8 +71,9 @@
    {
     "id": "tips_and_contamination",
     "score": 1,
-    "evidence": "One tip is used for master mix into empty wells without touching them; a fresh tip is used for every primer pair and every colony; tip_before_aspirate, no_cross_contamination and tip_dropped_at_end all pass.",
+    "evidence": "One tip for master mix dispensed with no well contact, then a fresh tip per primer pair and per colony; every tip is dropped (tip_dropped_at_end and no_cross_contamination pass).",
     "votes": [
+     1,
      1,
      1
     ]
@@ -76,17 +81,19 @@
    {
     "id": "fidelity_to_paper",
     "score": 0,
-    "evidence": "Thermocycling is only a comment with an annealing range (55-65 C) and 20-30 s/kb rather than a definite program. The 3 min initial denaturation and the assumed pre-diluted 4 uL primer are also unspecified adaptations.",
+    "evidence": "The thermocycling comment leaves annealing as a range (55-65 C) and extension as 20-30 s/kb rather than a committed program. Primer is added before template and a 4 \u00b5L primer volume assumes a pre-diluted stock, so I cannot call it fully faithful.",
     "votes": [
-     1,
+     0,
+     0,
      0
     ]
    },
    {
     "id": "reaction_setup",
     "score": 1,
-    "evidence": "MM_VOL=5, PRIMER_VOL=4, TEMPLATE_VOL=1 gives a 10 \u00b5L reaction with 1x master mix. Master mix goes in first, then primer, then 1 \u00b5L template.",
+    "evidence": "Each well gets 5 \u00b5L 2x Q5 (1x in 10 \u00b5L), 4 \u00b5L of its primer pair and 1 \u00b5L template; master mix goes in first and template last, as in the paper.",
     "votes": [
+     1,
      1,
      1
     ]
@@ -94,8 +101,9 @@
    {
     "id": "sample_mapping",
     "score": 1,
-    "evidence": "zip(primer_plate.wells(), dest) and zip(colony_plate.wells(), dest) map each source well to the same-position PCR well, covering all 96 once.",
+    "evidence": "zip(primer_plate.wells(), dest) and zip(colony_plate.wells(), dest) map A1\u2192A1 through H12\u2192H12 for all 96 wells, each used once.",
     "votes": [
+     1,
      1,
      1
     ]
@@ -103,8 +111,9 @@
    {
     "id": "thermocycling",
     "score": 1,
-    "evidence": "Comments record plate sealing and 98 C initial denaturation, 30 cycles of 98 C/annealing/72 C, a 72 C 2 min final extension and a 4 C hold, which suit Q5.",
+    "evidence": "Comments record plate sealing and a program of 98 C initial denaturation, 30 cycles of denature/anneal/extend, 72 C 2 min final extension and a 4 C hold, suited to Q5.",
     "votes": [
+     1,
      1,
      1
     ]
@@ -118,7 +127,7 @@
    "sample_mapping": 1.0,
    "thermocycling": 1.0
   },
-  "summary": "The protocol builds 10 \u00b5L reactions in the paper's order (master mix, then primer, then template), uses fresh tips per sample, and maps all 96 wells correctly. It also records sealing and a Q5-appropriate cycling program, so all items pass. The thermocycling annealing temperature is only given as a range, which is a minor looseness.",
+  "summary": "The protocol builds correct 10 \u00b5L reactions with sound tip handling and a 1:1 well mapping, and all measured checks pass. Fidelity is failed because the cycling program is stated as ranges and not committed values, and the primer-before-template order and the assumed pre-diluted primer stock are small departures.",
   "level": "hard",
   "score": 0.75,
   "weights": {
@@ -130,17 +139,17 @@
    "thermocycling": 0.0833
   },
   "provider": "openrouter",
-  "votes": 2,
-  "failed_votes": 1
+  "votes": 3,
+  "failed_votes": 0
  },
  "critical_failures": [],
  "rewards": {
   "reward": 0.75,
   "sim_pass": 1.0,
-  "checks_frac": 0.8889,
+  "checks_frac": 1.0,
   "lint_violations": 0.0,
   "hack_detected": 0.0,
-  "deterministic_reward": 0.3333,
+  "deterministic_reward": 1.0,
   "judge_score": 0.75,
   "critical_fail": 0.0,
   "rubric_robot_practice": 1.0,

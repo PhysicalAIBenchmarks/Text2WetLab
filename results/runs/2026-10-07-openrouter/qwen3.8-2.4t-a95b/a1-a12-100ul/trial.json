@@ -1,0 +1,29 @@
+{
+ "task": "a1-a12-100ul",
+ "model": "qwen/qwen3.8-2.4t-a95b",
+ "agent": "claude-code",
+ "via": "openrouter",
+ "rewards": {
+  "reward": 1.0,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 1.0,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_task": 1.0,
+  "rubric_deck_and_hardware": 1.0,
+  "rubric_volumes_and_wells": 1.0
+ },
+ "exception": null,
+ "cost_usd": 0.03441,
+ "input_tokens": 51291,
+ "output_tokens": 1182,
+ "started_at": "2026-10-07T17:52:15.318212Z",
+ "finished_at": "2026-10-07T17:53:20.229231Z",
+ "cache_tokens": 43008,
+ "claude_code_cost_usd": 0.092469
+}

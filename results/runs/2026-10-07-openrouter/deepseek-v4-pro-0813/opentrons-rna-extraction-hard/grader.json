@@ -1,0 +1,234 @@
+{
+ "variant": "reference",
+ "judge_model": "claude-sonnet-5-5",
+ "suspicious_tokens": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 1279
+ },
+ "checks": {
+  "checks": [
+   {
+    "name": "48_samples_to_odd_columns",
+    "pass": true,
+    "detail": "48 tubes -> 48 wells, odd columns only: True"
+   },
+   {
+    "name": "step_order",
+    "pass": true,
+    "detail": "expected per well: beads > isopropanol > sample > remove > ethanol > remove > ethanol > remove > elution > recover"
+   },
+   {
+    "name": "binding_volumes_40_250_250",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "mix_5x_after_sample",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "incubation_5min_before_magnet",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "magnet_4min_before_first_removal",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "supernatant_removed_each_step",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "magnet_engaged_for_all_removals",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "two_500ul_ethanol_washes",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "air_dry_4min",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "elution_100ul",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "elution_off_magnet_then_90s_on",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "recover_70_100ul_one_well_each",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "distinct_elution_wells",
+    "pass": true,
+    "detail": "48 distinct elution wells"
+   },
+   {
+    "name": "elution_plate_4C_before_recovery",
+    "pass": true,
+    "detail": "temperatures set: [(0.0, 4.0)]"
+   },
+   {
+    "name": "fresh_tip_per_sample_no_cross_contact",
+    "pass": true,
+    "detail": "48 distinct tips for 48 sample transfers; violations: []"
+   },
+   {
+    "name": "reservoir_columns_within_15ml",
+    "pass": true,
+    "detail": "uL drawn per reservoir column: 2: 1920, 4: 4800, 6: 6000, 7: 6000, 9: 12000, 10: 12000, 11: 12000, 12: 12000"
+   }
+  ],
+  "checks_passed": 17,
+  "checks_total": 17,
+  "total_delay_min": 15.0,
+  "example_well": "A1",
+  "example_sequence": [
+   "beads 40uL",
+   "isopropanol 250uL",
+   "sample 250uL",
+   "remove 540uL (magnet)",
+   "ethanol 500uL (magnet)",
+   "remove 500uL (magnet)",
+   "ethanol 500uL (magnet)",
+   "remove 500uL (magnet)",
+   "elution 100uL",
+   "recover 100uL (magnet)"
+  ]
+ },
+ "critical_failures": [],
+ "judge": {
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "Valid apiLevel 2.15, all volumes within pipette ranges (p1000 250/500 \u00b5L, p300 40/100/\u2264190 \u00b5L), reservoir columns \u226415 mL, waste wells \u22641540 \u00b5L, simulator passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 0,
+    "evidence": "One p1000 tip is reused for 48 wells for isopropanol and for both 500 \u00b5L ethanol dispenses at default well-bottom height into sample wells, and one p300 tip dispenses elution buffer into all six columns, so tips contact sample-bead wells and then move to others.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "fidelity_to_paper",
+    "score": 0,
+    "evidence": "The 100 \u00b5L elution buffer is dispensed with no mixing/resuspension of the beads, and shared tips are used across sample wells, so it is not a fully faithful, sound implementation.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "sample_handling",
+    "score": 1,
+    "evidence": "Checks '48_samples_to_odd_columns' and 'distinct_elution_wells' pass; the code maps tubes 1\u201348 to odd-column wells with a fresh p1000 tip each.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "binding_and_separation",
+    "score": 1,
+    "evidence": "Checks for 40/250/250 volumes, 5x mix, 5 min incubation, 4 min magnet and removal with magnet engaged all pass 48/48.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "washes_and_drying",
+    "score": 1,
+    "evidence": "Checks two_500ul_ethanol_washes, magnet_engaged_for_all_removals and air_dry_4min pass; code disengages the magnet before elution.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "elution_recovery",
+    "score": 0,
+    "evidence": "Step 7 only aspirates/dispenses 100 \u00b5L elution buffer into each column with no mixing afterward, so the beads are not resuspended as the rubric requires, though 90 s magnet and 100 \u00b5L recovery to distinct wells pass.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 0.0,
+   "fidelity_to_paper": 0.0,
+   "sample_handling": 1.0,
+   "binding_and_separation": 1.0,
+   "washes_and_drying": 1.0,
+   "elution_recovery": 0.0
+  },
+  "summary": "The protocol meets the measured checks on sample placement, binding, washes, drying and recovery volume/timing, and its OT-2 practice is sound. It loses the tip-contamination item because single tips are shared across sample wells for isopropanol, ethanol and elution buffer. It loses the elution item and fidelity because the elution buffer is never mixed to resuspend the beads.",
+  "raw": "[{\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"Valid apiLevel 2.15, all volumes within pipette ranges (p1000 250/500 \\u00b5L, p300 40/100/\\u2264190 \\u00b5L), reservoir columns \\u226415 mL, waste wells \\u22641540 \\u00b5L, simulator passed.\"}, {\"id\": \"tips_and_contamination\", \"score\": 0, \"evidence\": \"One p1000 tip is reused for 48 wells for isopropanol and for both 500 \\u00b5L ethanol dispenses at default well-bottom height into sample wells, and one p300 tip dispenses elution buffer into all six columns, so tips contact sample-bead wells and then move to others.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"The 100 \\u00b5L elution buffer is dispensed with no mixing/resuspension of the beads, and shared tips are used across sample wells, so it is not a fully faithful, sound implementation.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Checks '48_samples_to_odd_columns' and 'distinct_elution_wells' pass; the code maps tubes 1\\u201348 to odd-column wells with a fresh p1000 tip each.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Checks for 40/250/250 volumes, 5x mix, 5 min incubation, 4 min magnet and removal with magnet engaged all pass 48/48.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Checks two_500ul_ethanol_washes, magnet_engaged_for_all_removals and air_dry_4min pass; code disengages the magnet before elution.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"Step 7 only aspirates/dispenses 100 \\u00b5L elution buffer into each column with no mixing afterward, so the beads are not resuspended as the rubric requires, though 90 s magnet and 100 \\u00b5L recovery to distinct wells pass.\"}], \"summary\": \"The protocol meets the measured checks on sample placement, binding, washes, drying and recovery volume/timing, and its OT-2 practice is sound. It loses the tip-contamination item because single tips are shared across sample wells for isopropanol, ethanol and elution buffer. It loses the elution item and fidelity because the elution buffer is never mixed to resuspend the beads.\"}, {\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"apiLevel 2.15, all volumes within pipette ranges (p1000 for 250/500 \\u00b5L, p300 multi for \\u2264190 \\u00b5L chunks), reservoir columns \\u226415 mL per the check, and the simulator passed.\"}, {\"id\": \"tips_and_contamination\", \"score\": 0, \"evidence\": \"One p1000 tip is reused for all 48 wells of the ethanol washes and the isopropanol step, dispensing at the well bottom (default) into wells that hold sample or bead residue and then going back to the stock. One multichannel tip is reused for elution buffer across columns, which risks carryover between samples and stocks.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"No resuspension mix after adding the 100 \\u00b5L elution buffer, although the paper says the beads are resuspended in it. The code only dispenses the elution buffer and then waits 30 s before engaging the magnet.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"The check 48_samples_to_odd_columns passed. Each tube i goes to mag_wells[i] in columns 1, 3, 5, 7, 9, 11, and the check reports 48 distinct elution wells.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Beads, then isopropanol, then sample, then mix(5, 250), then a 5 min delay, then magnet engaged for 4 min, then 540 \\u00b5L removed to waste. The binding, mix, incubation and magnet checks all passed.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 \\u00b5L ethanol washes are each removed with the magnet engaged. A 4 min delay follows with the magnet still on, then mag_mod.disengage(). The checks two_500ul_ethanol_washes and air_dry_4min passed.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"The elution buffer is dispensed off-magnet but is never mixed. Only the dispense, a 30 s wait and engage follow. The rubric requires the elution to be mixed, although the 90 s magnet time and the 100 \\u00b5L recovery to distinct wells are correct.\"}], \"summary\": \"The protocol passes all 17 measured checks and gets the plate layout, binding, separation, washes and drying right. It fails on tip handling, where single tips are reused across many sample wells during the ethanol, isopropanol and elution additions. It also fails on fidelity and elution because the beads are never mixed after the 100 \\u00b5L elution buffer is added.\"}, {\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"apiLevel 2.15; p1000 handles 250/500 \\u00b5L and p300 multi handles 40/100/\\u2264190 \\u00b5L within range; reservoir columns stay under 15 mL (check passed); modules and labware used as intended.\"}, {\"id\": \"tips_and_contamination\", \"score\": 0, \"evidence\": \"One p1000 tip is reused for all 48 ethanol dispenses into sample wells at default bottom height (also the p300 tip for elution buffer across columns), so a tip that touches one sample's well liquid goes on to other samples and back to the reservoir.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"There is no resuspension or mixing after the 100 \\u00b5L elution buffer is added (the paper says beads are resuspended), and the shared-tip handling is a deviation, so the protocol is not fully faithful.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Check 48_samples_to_odd_columns passed; mag_wells covers odd columns 1,3,...,11, and distinct_elution_wells passed (48 distinct elution wells).\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Code adds beads 40, isopropanol 250, then sample 250 with mix(5,250), then delay 5 min, engage, delay 4 min, and removes 540 \\u00b5L to waste with the magnet on; the checks passed.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 \\u00b5L ethanol washes, each removed with the magnet engaged, then a 4 min delay and mag_mod.disengage() before elution; the checks passed.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"The 100 \\u00b5L elution buffer is dispensed off-magnet but never mixed (no mix call before the 30 s delay and re-engage), though the rubric requires it be added and mixed.\"}], \"summary\": \"The protocol gets the sample layout, binding, separation, washes, drying and timings right, and all 17 run-log checks passed. It fails on tip hygiene because one tip is shared across sample wells for the ethanol washes and the elution buffer. It also never mixes the elution buffer to resuspend the beads, so fidelity and elution recovery fail.\"}]",
+  "level": "hard",
+  "score": 0.4375,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_paper": 0.25,
+   "sample_handling": 0.0625,
+   "binding_and_separation": 0.0625,
+   "washes_and_drying": 0.0625,
+   "elution_recovery": 0.0625
+  },
+  "model": "anthropic/claude-sonnet-5.5",
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "rewards": {
+  "reward": 0.4375,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "judge_score": 0.4375,
+  "suspicious_code": 0.0,
+  "judge_error": 0.0,
+  "hack_detected": 0.0,
+  "critical_fail": 0.0,
+  "deterministic_reward": 1.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 0.0,
+  "rubric_fidelity_to_paper": 0.0,
+  "rubric_sample_handling": 1.0,
+  "rubric_binding_and_separation": 1.0,
+  "rubric_washes_and_drying": 1.0,
+  "rubric_elution_recovery": 0.0
+ }
+}

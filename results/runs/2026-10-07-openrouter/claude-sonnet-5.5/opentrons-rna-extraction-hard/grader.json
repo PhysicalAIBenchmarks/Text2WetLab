@@ -118,7 +118,7 @@
    {
     "id": "robot_practice",
     "score": 1,
-    "evidence": "apiLevel 2.13; all volumes within p300 multi (40, 125, ~167, 180, 100) and p1000 (250, mix 400) ranges; wells under capacity; reservoir columns within 15 mL per check; simulator passed.",
+    "evidence": "apiLevel 2.13; p1000 handles 250 uL and mix 400, p300 multi handles volumes \u2264200 uL via chunks (180 uL for 540 uL, 167 uL for 500 uL); wells stay under 2.4 mL and reservoir columns within 15 mL (check passed); 34 tip columns fit in the 36 available.",
     "votes": [
      1,
      1,
@@ -128,7 +128,7 @@
    {
     "id": "tips_and_contamination",
     "score": 1,
-    "evidence": "Check fresh_tip_per_sample_no_cross_contact passed (48 distinct tips); every pick_up_tip is followed by drop_tip; reagent dispensed at col.top without touching sample liquid; fresh tips for removal, elution and recovery.",
+    "evidence": "Every pipetting action has a tip and every tip is dropped; check 'fresh_tip_per_sample_no_cross_contact' passed with 48 distinct tips; removals and elution recovery use a fresh tip per column; shared reagent tips only dispense at well top(-2) before sample contact.",
     "votes": [
      1,
      1,
@@ -137,18 +137,18 @@
    },
    {
     "id": "fidelity_to_paper",
-    "score": 0,
-    "evidence": "Recovers 100 \u00b5L (p300m.aspirate(ELUTION_VOL...) in recovery loop) rather than ~80 \u00b5L, aspirating the full eluate near beads at 0.8 mm; also adds unspecified bead premix and elution mixing, so it is not fully faithful.",
+    "score": 1,
+    "evidence": "Order and numbers match the paper: 40 uL beads, 250 uL IPA, 250 uL sample, mix 5x, 5 min, magnet 4 min, two 500 uL ethanol washes, 4 min dry, elute 100 uL, 30 s, magnet 90 s, recover; metadata citation is accurate and all 17 checks passed.",
     "votes": [
-     0,
-     0,
-     0
+     1,
+     1,
+     1
     ]
    },
    {
     "id": "sample_handling",
     "score": 1,
-    "evidence": "Check 48_samples_to_odd_columns passed; sources zip to sample_wells built from odd columns 1,3,5,7,9,11; each sample maps to its own well and elution well.",
+    "evidence": "Checks '48_samples_to_odd_columns' and 'distinct_elution_wells' passed; sources rack1+rack2 map one-to-one onto odd-column wells with a fresh p1000 tip each.",
     "votes": [
      1,
      1,
@@ -158,7 +158,7 @@
    {
     "id": "binding_and_separation",
     "score": 1,
-    "evidence": "Beads 40, IPA 2x125, sample 250 with p1000.mix(5,...), delay 5 min, mag.engage + 4 min delay, remove 540 \u00b5L to waste; checks binding_volumes, mix_5x, incubation, magnet_4min all passed.",
+    "evidence": "Checks binding_volumes_40_250_250, mix_5x_after_sample, incubation_5min_before_magnet, magnet_4min_before_first_removal all passed; mag.engage() then 4 min delay then remove_liquid(540) to waste.",
     "votes": [
      1,
      1,
@@ -168,7 +168,7 @@
    {
     "id": "washes_and_drying",
     "score": 1,
-    "evidence": "Two 500 \u00b5L ethanol washes each removed via remove_liquid with magnet engaged, then 4 min delay and mag.disengage() before elution; checks two_500ul_ethanol_washes and air_dry_4min passed.",
+    "evidence": "Checks two_500ul_ethanol_washes, magnet_engaged_for_all_removals and air_dry_4min passed; magnet stays engaged through both washes and the 4 min delay, then mag.disengage() before elution.",
     "votes": [
      1,
      1,
@@ -177,28 +177,28 @@
    },
    {
     "id": "elution_recovery",
-    "score": 0,
-    "evidence": "Elution 100 \u00b5L off-magnet with mix, 30 s, magnet 90 s are correct, but recovery aspirates and dispenses ELUTION_VOL=100 \u00b5L rather than about 80 \u00b5L.",
+    "score": 1,
+    "evidence": "Checks elution_100ul, elution_off_magnet_then_90s_on, recover_70_100ul_one_well_each and elution_plate_4C_before_recovery passed; 100 uL recovered to its own well of the elution plate.",
     "votes": [
-     0,
-     0,
-     0
+     1,
+     1,
+     1
     ]
    }
   ],
   "scores": {
    "robot_practice": 1.0,
    "tips_and_contamination": 1.0,
-   "fidelity_to_paper": 0.0,
+   "fidelity_to_paper": 1.0,
    "sample_handling": 1.0,
    "binding_and_separation": 1.0,
    "washes_and_drying": 1.0,
-   "elution_recovery": 0.0
+   "elution_recovery": 1.0
   },
-  "summary": "The protocol follows the binding, wash, dry and elution sequence with correct volumes, timings, magnet use and per-sample tips, and every simulator check passed. It recovers the full 100 \u00b5L eluate instead of about 80 \u00b5L, so elution_recovery and fidelity_to_paper score 0.",
-  "raw": "[{\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"apiLevel 2.13; all volumes within p300 multi (40, 125, ~167, 180, 100) and p1000 (250, mix 400) ranges; wells under capacity; reservoir columns within 15 mL per check; simulator passed.\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"Check fresh_tip_per_sample_no_cross_contact passed (48 distinct tips); every pick_up_tip is followed by drop_tip; reagent dispensed at col.top without touching sample liquid; fresh tips for removal, elution and recovery.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"Recovers 100 \\u00b5L (p300m.aspirate(ELUTION_VOL...) in recovery loop) rather than ~80 \\u00b5L, aspirating the full eluate near beads at 0.8 mm; also adds unspecified bead premix and elution mixing, so it is not fully faithful.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Check 48_samples_to_odd_columns passed; sources zip to sample_wells built from odd columns 1,3,5,7,9,11; each sample maps to its own well and elution well.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Beads 40, IPA 2x125, sample 250 with p1000.mix(5,...), delay 5 min, mag.engage + 4 min delay, remove 540 \\u00b5L to waste; checks binding_volumes, mix_5x, incubation, magnet_4min all passed.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 \\u00b5L ethanol washes each removed via remove_liquid with magnet engaged, then 4 min delay and mag.disengage() before elution; checks two_500ul_ethanol_washes and air_dry_4min passed.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"Elution 100 \\u00b5L off-magnet with mix, 30 s, magnet 90 s are correct, but recovery aspirates and dispenses ELUTION_VOL=100 \\u00b5L rather than about 80 \\u00b5L.\"}], \"summary\": \"The protocol follows the binding, wash, dry and elution sequence with correct volumes, timings, magnet use and per-sample tips, and every simulator check passed. It recovers the full 100 \\u00b5L eluate instead of about 80 \\u00b5L, so elution_recovery and fidelity_to_paper score 0.\"}, {\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"apiLevel 2.13; all volumes within pipette ranges (40/180/167/100 \\u00b5L on p300 multi, 250 \\u00b5L on p1000); waste wells max 1540 \\u00b5L of 2400, reservoir draws within the 15 mL checks; simulator passed.\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"Check fresh_tip_per_sample passed with 48 distinct tips; every pick_up_tip is followed by drop_tip; shared tips for beads/IPA/ethanol dispense only into empty wells or at the well top and do not touch samples.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"Recovery step aspirates 100 \\u00b5L (ELUTION_VOL) from the 100 \\u00b5L elution well instead of the paper's 80 \\u00b5L, so the protocol deviates from the paper.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Check 48_samples_to_odd_columns passed; 48 tubes to 48 distinct wells in columns 1,3,5,7,9,11, each recovered to a distinct elution well.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Beads 40, IPA 250, sample 250 in order, p1000.mix(5, 400), 5 min delay, mag.engage then 4 min delay, then 540 \\u00b5L removed to waste; checks binding_volumes, mix_5x, incubation, magnet_4min passed.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 \\u00b5L ethanol washes each removed with magnet engaged (checks two_500ul_ethanol_washes, magnet_engaged_for_all_removals), 4 min delay, then mag.disengage() before elution.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"Elution of 100 \\u00b5L is added off-magnet and mixed, with a 30 s wait and a 90 s magnet delay, but the recovery aspirates and dispenses 100 \\u00b5L rather than about 80 \\u00b5L.\"}], \"summary\": \"The protocol passes all 17 run-log checks, and its binding, wash, drying and tip handling are sound. It recovers 100 \\u00b5L of eluate where the paper calls for about 80 \\u00b5L, so elution_recovery and fidelity_to_paper fail.\"}, {\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"apiLevel 2.13, all volumes within pipette ranges (p1000 250/400 \\u00b5L, p300 multi \\u2264180 \\u00b5L chunks), reservoir columns \\u226412 mL and waste wells \\u22641.54 mL; modules used correctly and simulator passed.\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"Fresh p1000 tip per sample (check: 48 distinct tips, no violations), fresh multi tip per column for supernatant removal and elution recovery, reagent-only tips dispense at well tops, and every tip is dropped.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"Recovers 100 \\u00b5L (`ELUTION_VOL`) of eluate rather than about 80 \\u00b5L, which risks bead carryover and departs from the intended recovery; this is a deviation, so the all-or-nothing item fails.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Check 48_samples_to_odd_columns passed; sources = rack1.wells()+rack2.wells() map to odd-column wells of the sample plate, one per well, with distinct elution wells.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Beads 40, then isopropanol 250, then sample 250 with mix(5,400), delay 5 min, mag.engage + 4 min delay, then 540 \\u00b5L removed to waste with the magnet on; all checks passed.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 \\u00b5L ethanol washes, each removed with new tips while engaged, then a 4 min delay and mag.disengage() before elution; checks two_500ul_ethanol_washes and air_dry_4min passed.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"100 \\u00b5L elution is added off magnet, mixed, and a 90 s magnet delay follows, but the code aspirates 100 \\u00b5L for recovery instead of about 80 \\u00b5L, so it risks bead carryover.\"}], \"summary\": \"The protocol follows the paper's step order closely, passes all 17 run-log checks, and handles tips and volumes soundly. It recovers 100 \\u00b5L of eluate instead of about 80 \\u00b5L, which fails elution_recovery and the all-or-nothing fidelity item.\"}]",
+  "summary": "The protocol passed all 17 measured run-log checks, and the code matches the paper's steps, volumes, timings and tip handling. I found no deviation or unsafe practice, so every item scores 1.",
+  "raw": "[{\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"apiLevel 2.13; p1000 handles 250 uL and mix 400, p300 multi handles volumes \\u2264200 uL via chunks (180 uL for 540 uL, 167 uL for 500 uL); wells stay under 2.4 mL and reservoir columns within 15 mL (check passed); 34 tip columns fit in the 36 available.\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"Every pipetting action has a tip and every tip is dropped; check 'fresh_tip_per_sample_no_cross_contact' passed with 48 distinct tips; removals and elution recovery use a fresh tip per column; shared reagent tips only dispense at well top(-2) before sample contact.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 1, \"evidence\": \"Order and numbers match the paper: 40 uL beads, 250 uL IPA, 250 uL sample, mix 5x, 5 min, magnet 4 min, two 500 uL ethanol washes, 4 min dry, elute 100 uL, 30 s, magnet 90 s, recover; metadata citation is accurate and all 17 checks passed.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Checks '48_samples_to_odd_columns' and 'distinct_elution_wells' passed; sources rack1+rack2 map one-to-one onto odd-column wells with a fresh p1000 tip each.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Checks binding_volumes_40_250_250, mix_5x_after_sample, incubation_5min_before_magnet, magnet_4min_before_first_removal all passed; mag.engage() then 4 min delay then remove_liquid(540) to waste.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Checks two_500ul_ethanol_washes, magnet_engaged_for_all_removals and air_dry_4min passed; magnet stays engaged through both washes and the 4 min delay, then mag.disengage() before elution.\"}, {\"id\": \"elution_recovery\", \"score\": 1, \"evidence\": \"Checks elution_100ul, elution_off_magnet_then_90s_on, recover_70_100ul_one_well_each and elution_plate_4C_before_recovery passed; 100 uL recovered to its own well of the elution plate.\"}], \"summary\": \"The protocol passed all 17 measured run-log checks, and the code matches the paper's steps, volumes, timings and tip handling. I found no deviation or unsafe practice, so every item scores 1.\"}, {\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"apiLevel 2.13; all volumes in range (40 \\u00b5L and 166.7 \\u00b5L on the p300 multi, 250 \\u00b5L and 400 \\u00b5L mix on the p1000); the 540 \\u00b5L well load fits the deep well; reservoir columns stay within 15 mL (check passed); magnet and temperature module used correctly.\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"The check 'fresh_tip_per_sample_no_cross_contact' passed with 48 distinct tips; the p1000 gets a new tip per sample; the multi uses a new tip per column for every removal and elution; reagent dispenses at top(-2) share one tip; every step ends in drop_tip.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 1, \"evidence\": \"The step order, volumes (40/250/250), 5\\u00d7 mix, 5 min incubation, 4 min magnet, two 500 \\u00b5L ethanol washes, 4 min dry, 100 \\u00b5L elution, 30 s off-magnet then 90 s on-magnet, recovery at 4 \\u00b0C and the citation all match the paper; all 17 checks passed.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"The checks '48_samples_to_odd_columns' and 'distinct_elution_wells' passed; sources rack1+rack2 map one-to-one onto odd-column wells, 250 \\u00b5L each, with one distinct elution well per sample.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"The code adds beads, then isopropanol, then sample, with mix(5,400); then delay(5 min), mag.engage(), delay(4 min) and remove_liquid(540) to waste; the checks binding_volumes_40_250_250, mix_5x, incubation and magnet_4min all passed.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"The loop runs two 500 \\u00b5L ethanol washes, each followed by remove_liquid(500) with the magnet engaged; then delay(4 min) and mag.disengage(); the checks two_500ul_ethanol_washes and air_dry_4min passed.\"}, {\"id\": \"elution_recovery\", \"score\": 1, \"evidence\": \"100 \\u00b5L elution is added with the magnet off and mixed 5\\u00d7; the code then waits 30 s, engages the magnet and waits 90 s, then aspirates 100 \\u00b5L into a distinct well of the 4 \\u00b0C elution plate; the checks elution_100ul, elution_off_magnet_then_90s_on and recover_70_100ul passed.\"}], \"summary\": \"The protocol passed the simulator and all 17 measured run-log checks. I found no deviation from the paper, no tip-handling fault and no unsafe practice, so every item scores 1.\"}, {\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"apiLevel 2.13; volumes are split into \\u2264200 \\u00b5L chunks for the p300 multi, p1000 handles 250 \\u00b5L, waste wells peak around 1.5 mL (limit 2.4 mL), and reservoir columns stay under 15 mL (check passed).\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"The check 'fresh_tip_per_sample_no_cross_contact' passed with 48 distinct tips. Every pick_up_tip is followed by a drop_tip. Shared tips are used only for reagent dispensing into empty or top-dispensed wells, and the removal and elution steps use a fresh tip per column.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 1, \"evidence\": \"All 17 run-log checks passed, and the order and volumes match the paper (40 beads, 250 IPA, 250 sample, 5 min, 4 min magnet, 2\\u00d7500 EtOH, 4 min dry, 100 elution, 30 s, 90 s, recovery). The elution mixing and bead pre-mix are small sensible additions.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Checks '48_samples_to_odd_columns' and 'distinct_elution_wells' passed. The code zips 48 tube wells to sample_wells in odd columns and maps each column to its own elution column.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Beads, then isopropanol, then sample are added in that order, followed by p1000.mix(5, 400), a 5 min delay, mag.engage() with a 4 min delay, and removal of 540 \\u00b5L to waste with the magnet on. Checks binding_volumes, mix_5x, incubation_5min and magnet_4min passed.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"The code runs two 500 \\u00b5L ethanol washes, each removed with the magnet engaged, then delays 4 min and calls mag.disengage() before elution. Checks two_500ul_ethanol_washes and air_dry_4min passed.\"}, {\"id\": \"elution_recovery\", \"score\": 1, \"evidence\": \"Elution buffer (100 \\u00b5L) is added with the magnet off and mixed, followed by a 30 s wait, engage, and a 90 s wait. The full 100 \\u00b5L is then recovered to its own elution well; checks elution_100ul, elution_off_magnet_then_90s_on, recover_70_100ul and elution_plate_4C passed.\"}], \"summary\": \"The protocol passed all 17 measured run-log checks and matches the paper's step order, volumes and timings. Tips are handled safely, and the only additions are minor mixing steps.\"}]",
   "level": "hard",
-  "score": 0.6875,
+  "score": 1.0,
   "weights": {
    "robot_practice": 0.25,
    "tips_and_contamination": 0.25,
@@ -214,10 +214,10 @@
   "failed_votes": 0
  },
  "rewards": {
-  "reward": 0.6875,
+  "reward": 1.0,
   "sim_pass": 1.0,
   "checks_frac": 1.0,
-  "judge_score": 0.6875,
+  "judge_score": 1.0,
   "suspicious_code": 0.0,
   "judge_error": 0.0,
   "hack_detected": 0.0,
@@ -225,10 +225,10 @@
   "deterministic_reward": 1.0,
   "rubric_robot_practice": 1.0,
   "rubric_tips_and_contamination": 1.0,
-  "rubric_fidelity_to_paper": 0.0,
+  "rubric_fidelity_to_paper": 1.0,
   "rubric_sample_handling": 1.0,
   "rubric_binding_and_separation": 1.0,
   "rubric_washes_and_drying": 1.0,
-  "rubric_elution_recovery": 0.0
+  "rubric_elution_recovery": 1.0
  }
 }

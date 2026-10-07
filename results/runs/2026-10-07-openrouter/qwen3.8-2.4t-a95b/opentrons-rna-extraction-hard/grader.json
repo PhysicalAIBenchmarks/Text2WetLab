@@ -1,0 +1,234 @@
+{
+ "variant": "reference",
+ "judge_model": "claude-sonnet-5-5",
+ "suspicious_tokens": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 1333
+ },
+ "checks": {
+  "checks": [
+   {
+    "name": "48_samples_to_odd_columns",
+    "pass": true,
+    "detail": "48 tubes -> 48 wells, odd columns only: True"
+   },
+   {
+    "name": "step_order",
+    "pass": true,
+    "detail": "expected per well: beads > isopropanol > sample > remove > ethanol > remove > ethanol > remove > elution > recover"
+   },
+   {
+    "name": "binding_volumes_40_250_250",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "mix_5x_after_sample",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "incubation_5min_before_magnet",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "magnet_4min_before_first_removal",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "supernatant_removed_each_step",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "magnet_engaged_for_all_removals",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "two_500ul_ethanol_washes",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "air_dry_4min",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "elution_100ul",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "elution_off_magnet_then_90s_on",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "recover_70_100ul_one_well_each",
+    "pass": true,
+    "detail": "48/48 sample wells"
+   },
+   {
+    "name": "distinct_elution_wells",
+    "pass": true,
+    "detail": "48 distinct elution wells"
+   },
+   {
+    "name": "elution_plate_4C_before_recovery",
+    "pass": true,
+    "detail": "temperatures set: [(0.0, 4.0), (900.0, 4.0)]"
+   },
+   {
+    "name": "fresh_tip_per_sample_no_cross_contact",
+    "pass": true,
+    "detail": "48 distinct tips for 48 sample transfers; violations: []"
+   },
+   {
+    "name": "reservoir_columns_within_15ml",
+    "pass": true,
+    "detail": "uL drawn per reservoir column: 2: 1920, 4: 4800, 6: 6000, 7: 6000, 9: 12000, 10: 12000, 11: 12000, 12: 12000"
+   }
+  ],
+  "checks_passed": 17,
+  "checks_total": 17,
+  "total_delay_min": 15.0,
+  "example_well": "A1",
+  "example_sequence": [
+   "beads 40uL",
+   "isopropanol 250uL",
+   "sample 250uL",
+   "remove 500uL (magnet)",
+   "ethanol 500uL (magnet)",
+   "remove 500uL (magnet)",
+   "ethanol 500uL (magnet)",
+   "remove 500uL (magnet)",
+   "elution 100uL",
+   "recover 100uL (magnet)"
+  ]
+ },
+ "critical_failures": [],
+ "judge": {
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "apiLevel 2.13, all volumes within pipette ranges (multi chunks \u2264200 \u00b5L, p1000 250 \u00b5L), wells within capacity, reservoir draws within 15 mL per measured check.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 1,
+    "evidence": "Check fresh_tip_per_sample_no_cross_contact passed with 48 distinct tips; every tip is dropped and a fresh tip is used per column or per sample.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "fidelity_to_paper",
+    "score": 0,
+    "evidence": "No mixing after elution buffer addition, and only 500 \u00b5L of the 540 \u00b5L supernatant is removed, leaving about 40 \u00b5L. Both are deviations or additions, and this item is all-or-nothing.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "sample_handling",
+    "score": 1,
+    "evidence": "Check 48_samples_to_odd_columns passed. sample_routes pairs each tube with its own well in columns 1,3,5,7,9,11, and each eluate goes to a distinct elution well.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "binding_and_separation",
+    "score": 1,
+    "evidence": "Beads 40, isopropanol 250, then sample 250 \u00b5L, mixed 5x, 5 min delay, magnet engaged with a 4 min delay, then removal to the waste plate with the magnet on. The measured checks all passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "washes_and_drying",
+    "score": 1,
+    "evidence": "Two 500 \u00b5L ethanol washes, each added and removed with the magnet engaged. Then a 4 min delay before magdeck.disengage(). Checks two_500ul_ethanol_washes and air_dry_4min passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "elution_recovery",
+    "score": 0,
+    "evidence": "Elution buffer is dispensed with the magnet off but never mixed. There is only a 30 s delay, then the magnet is engaged, so the rubric's 'added off-magnet and mixed' is not met, although recovery of 100 \u00b5L to distinct wells is fine.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 1.0,
+   "fidelity_to_paper": 0.0,
+   "sample_handling": 1.0,
+   "binding_and_separation": 1.0,
+   "washes_and_drying": 1.0,
+   "elution_recovery": 0.0
+  },
+  "summary": "The protocol passes all 17 measured checks. Sample placement, binding, washes and drying, tip handling and recovery to distinct elution wells are correct. It fails elution_recovery because the elution buffer is never mixed. It fails fidelity_to_paper because that mixing is missing and about 40 \u00b5L of supernatant is left behind at each removal.",
+  "raw": "[{\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"apiLevel 2.13, all volumes within pipette ranges (multi chunks \\u2264200 \\u00b5L, p1000 250 \\u00b5L), wells within capacity, reservoir draws within 15 mL per measured check.\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"Check fresh_tip_per_sample_no_cross_contact passed with 48 distinct tips; every tip is dropped and a fresh tip is used per column or per sample.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"No mixing after elution buffer addition, and only 500 \\u00b5L of the 540 \\u00b5L supernatant is removed, leaving about 40 \\u00b5L. Both are deviations or additions, and this item is all-or-nothing.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Check 48_samples_to_odd_columns passed. sample_routes pairs each tube with its own well in columns 1,3,5,7,9,11, and each eluate goes to a distinct elution well.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Beads 40, isopropanol 250, then sample 250 \\u00b5L, mixed 5x, 5 min delay, magnet engaged with a 4 min delay, then removal to the waste plate with the magnet on. The measured checks all passed.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 \\u00b5L ethanol washes, each added and removed with the magnet engaged. Then a 4 min delay before magdeck.disengage(). Checks two_500ul_ethanol_washes and air_dry_4min passed.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"Elution buffer is dispensed with the magnet off but never mixed. There is only a 30 s delay, then the magnet is engaged, so the rubric's 'added off-magnet and mixed' is not met, although recovery of 100 \\u00b5L to distinct wells is fine.\"}], \"summary\": \"The protocol passes all 17 measured checks. Sample placement, binding, washes and drying, tip handling and recovery to distinct elution wells are correct. It fails elution_recovery because the elution buffer is never mixed. It fails fidelity_to_paper because that mixing is missing and about 40 \\u00b5L of supernatant is left behind at each removal.\"}, {\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"apiLevel 2.13; all volumes within pipette ranges (p1000 250 \\u00b5L, multi \\u2264200 \\u00b5L chunks, 40 \\u00b5L beads); 17/17 checks passed and reservoir columns stay within 15 mL.\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"Check fresh_tip_per_sample_no_cross_contact passed with 48 distinct tips; every pick_up_tip is paired with drop_tip and per-column fresh tips are used for sample-contacting steps.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"The beads are never resuspended or mixed after the 100 \\u00b5L elution buffer is added (only a delay, then the magnet engages), which departs from the paper's 'beads are resuspended in 100 \\u00b5L of elution buffer'.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Check 48_samples_to_odd_columns passed. The p1000 moves each 250 \\u00b5L sample into its own well of columns 1,3,5,7,9,11 with a fresh tip and a distinct elution well per sample.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Checks binding_volumes_40_250_250, mix_5x_after_sample, incubation_5min, magnet_4min and magnet_engaged_for_all_removals all passed; the order is beads, isopropanol, sample.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Checks two_500ul_ethanol_washes and air_dry_4min passed; the removals are done with the magnet engaged, then magdeck.disengage() is called before elution.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"Elution buffer is dispensed with the magnet off but never mixed. The rubric requires it to be added off-magnet and mixed, and the code only waits 30 s before engaging.\"}], \"summary\": \"The protocol passed all 17 measured run-log checks and handles binding, separation, washes, drying and recovery of the eluate to distinct 4 \\u00b0C wells correctly. It fails the elution step and fidelity because the beads are never mixed or resuspended after the 100 \\u00b5L of elution buffer is added.\"}, {\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"apiLevel 2.13, p1000 handles 250 \\u00b5L, p300 multi splits into \\u2264200 \\u00b5L aspirations, wells hold \\u2264540 \\u00b5L, reservoir columns within 15 mL (check passed), modules used correctly.\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"Check fresh_tip_per_sample_no_cross_contact passed (48 distinct tips); every pickup is followed by drop_tip, and shared-reagent tips are reused only for reagent dispensing.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"The paper says the beads are resuspended in 100 \\u00b5L elution buffer, but the code only dispenses the buffer (dispense_to_column) with no mixing, so the beads are never resuspended.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Check 48_samples_to_odd_columns passed; sample_routes zips tubes to odd-column wells with a fresh p1000 tip each, and elution wells are distinct.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Beads 40, isopropanol 250 and sample 250 added in that order, p1000.mix(5, 250), 5 min delay, engage with 4 min delay, then 500 \\u00b5L removed to waste; the checks passed.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 \\u00b5L ethanol washes, each added and removed with the magnet engaged, then a 4 min delay with the magnet on and disengage before elution; checks passed.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"The 100 \\u00b5L elution buffer is added off-magnet but never mixed (no mix call after dispense_to_column in step 7), though 90 s magnet and a 100 \\u00b5L recovery to distinct wells on the 4 \\u00b0C plate do pass.\"}], \"summary\": \"The protocol passes all 17 measured checks and handles tips, binding and washes correctly. It never mixes or resuspends the beads after adding the elution buffer, so elution_recovery and fidelity_to_paper fail.\"}]",
+  "level": "hard",
+  "score": 0.6875,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_paper": 0.25,
+   "sample_handling": 0.0625,
+   "binding_and_separation": 0.0625,
+   "washes_and_drying": 0.0625,
+   "elution_recovery": 0.0625
+  },
+  "model": "anthropic/claude-sonnet-5.5",
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "rewards": {
+  "reward": 0.6875,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "judge_score": 0.6875,
+  "suspicious_code": 0.0,
+  "judge_error": 0.0,
+  "hack_detected": 0.0,
+  "critical_fail": 0.0,
+  "deterministic_reward": 1.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_paper": 0.0,
+  "rubric_sample_handling": 1.0,
+  "rubric_binding_and_separation": 1.0,
+  "rubric_washes_and_drying": 1.0,
+  "rubric_elution_recovery": 0.0
+ }
+}
