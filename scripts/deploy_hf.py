@@ -52,10 +52,10 @@ def results_markdown() -> str:
              "[leaderboard](https://physicalaibenchmarks.github.io/Text2WetLab/leaderboard.html), "
              f"[report](https://github.com/PhysicalAIBenchmarks/Text2WetLab/blob/main/results/runs/{d['run']}/REPORT.md).",
              "",
-             f"| Model | Mean, refusals as 0 | Mean, tasks answered | Mean, {d['n_common']} tasks all answered | Easy | Hard | Refusals | Agent cost |",
-             "|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|"]
-    for r in sorted(d["rows"], key=lambda r: -(r["all"] or 0)):
-        lines.append(f"| {r['name']} | {fmt(r['all'])} | {fmt(r['answered'])} ({r['n_answered']}) | {fmt(r['common'])} | "
+             f"| Model | **Mean, {d['n_common']} tasks all answered** | Mean, all tasks answered | Easy | Paper-only | Refused, not scored | Agent cost |",
+             "|---|:---:|:---:|:---:|:---:|:---:|:---:|"]
+    for r in sorted(d["rows"], key=lambda r: -(r["common"] or 0)):   # refused tasks are not scored
+        lines.append(f"| {r['name']} | **{fmt(r['common'])}** | {fmt(r['answered'])} ({r['n_answered']}) | "
                      f"{fmt(r['easy'])} | {fmt(r['hard'])} | {r['refusals']} | ${r['cost']:.2f} |")
     if d.get("n_provisional"):
         lines += ["", f"{d['n_provisional']} of these scores are provisional until a re-judge with the audited verifier "

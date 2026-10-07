@@ -39,8 +39,9 @@ protocol or paper says. It has 11 tasks in the [Harbor](https://github.com/harbo
 
 <!-- RESULTS -->
 
-Opus 5.5 and Fable 5.1 refused some standard cloning prompts (Anthropic's biosecurity filter), which is why the
-ranking depends on how a refusal is counted. No model failed the simulator or a reward-hacking trap; the points are
+Refused tasks are not scored: a refusal is the provider's safety policy, not a protocol. Models are ranked on the
+tasks every model answered; Opus 5.5 and Fable 5.1 refused some standard cloning prompts (Anthropic's biosecurity
+filter), and those are reported, not scored. No model failed the simulator or a reward-hacking trap; the points are
 lost to the rubric, mostly for inventing steps or quantities that the paper does not support.
 
 ## What is in this dataset

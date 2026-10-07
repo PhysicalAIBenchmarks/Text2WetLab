@@ -53,5 +53,6 @@ def test_no_grader_or_solution_file_is_staged_for_any_task(tmp_path):
 def test_the_card_carries_the_latest_results_and_one_licence(tmp_path):
     staged(tmp_path)
     card = (tmp_path / "README.md").read_text()
-    assert deploy.RESULTS_MARKER not in card and "| GPT-6.1 Sol |" in card and "Mean, refusals as 0" in card
+    assert deploy.RESULTS_MARKER not in card and "| GPT-6.1 Sol |" in card and "tasks all answered" in card
+    assert "refusals as 0" not in card and "Refused, not scored" in card
     assert "license: mit" in card and "Apache" not in card
