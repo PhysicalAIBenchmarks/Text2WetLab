@@ -22,7 +22,7 @@ import tomllib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 # How a paper relates to a benchmark task. "derived" = the task IR is byte-identical to that experiment's IR.
-# The task folder is the authority: each tasks/<task>/task.toml lists its [[source]] (slug, experiment, relation).
+# The task folder is the authority: each tasks/<task>/task.toml lists its [[metadata.papers]] (slug, experiment, relation).
 # An experiment can feed several tasks, so a key maps to a list.
 DROPPED = {("copick", "exp2"): [("colony-picking-96well", "dropped (vision-guided, not liquid handling)")]}
 
@@ -30,7 +30,7 @@ DROPPED = {("copick", "exp2"): [("colony-picking-96well", "dropped (vision-guide
 def task_links():
     exp, paper = {}, {}
     for f in sorted((ROOT / "tasks").glob("*/task.toml")):
-        for s in tomllib.loads(f.read_text()).get("source", []):
+        for s in tomllib.loads(f.read_text())["metadata"].get("papers", []):
             if s.get("experiment"):
                 exp.setdefault((s["slug"], s["experiment"]), []).append((f.parent.name, s["relation"]))
             else:

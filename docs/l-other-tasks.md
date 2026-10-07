@@ -1,6 +1,6 @@
 # L_other: non-Opentrons task candidates
 
-Tasks whose source paper drives a machine other than an Opentrons OT-2. They sit beside the OT-2 tasks of #36 (`tasks/<task>/` with `public/`, `private/`, `harbor/` and a `task.toml` whose `[[source]]` names the paper). Papers go under `sources/<slug>/` exactly as in #36.
+Tasks whose source paper drives a machine other than an Opentrons OT-2. They sit beside the OT-2 tasks (`tasks/<task>/` is a Harbor task with `public/` and `private/` beside it, and a `task.toml` whose `[[metadata.papers]]` names the paper). Papers go under `sources/<slug>/` exactly as in #36.
 
 Run 2026-10-04. **Licence was not used to filter**: all 12 candidate papers were ingested (`scripts/ingest.py`) and run through `paper2protocol list`. Licence stays in each `record.json` as the `redistributable` flag, and each new slug's `pipeline/paper.json` (verbatim text) is gitignored, as #36 does for non-CC papers. Nothing is published: this is a local branch, and `master.csv` now has rows for these papers, so check it before any HuggingFace deploy.
 

@@ -34,7 +34,7 @@ gpus = 0
 [checks]
 free_wells = []
 
-[[source]]
+[[metadata.papers]]
 slug = "assemblytron"
 experiment = "exp2"
 relation = "derived"

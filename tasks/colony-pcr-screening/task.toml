@@ -34,12 +34,12 @@ gpus = 0
 [checks]
 free_wells = []
 
-[[source]]
+[[metadata.papers]]
 slug = "slowpoke"
 experiment = "exp5"
 relation = "inspired by (handwritten, numbers differ from the script)"
 
-[[source]]
+[[metadata.papers]]
 slug = "apex"
 experiment = "apex-p5"
 relation = "candidate real reference (APEX protocol 5, colony PCR sample prep); AGPL-3.0, cannot be vendored"

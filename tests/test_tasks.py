@@ -40,9 +40,9 @@ def test_a_task_says_where_it_came_from(task):
     """A handwritten task may still cite a paper it was inspired by or is claimed to come from, with the relation
     spelled out; every other task must name its paper. Every cited slug must exist in sources/sources.json."""
     meta = tomllib.loads((task / "task.toml").read_text())
-    links = meta.get("source", [])
+    links = meta["metadata"].get("papers", [])   # not [[source]]: Harbor reserves a top-level "source" string
     if meta["metadata"]["source"] != "handwritten":
-        assert links, f"{task.name} is not handwritten and has no [[source]]"
+        assert links, f"{task.name} is not handwritten and has no [[metadata.papers]]"
     for s in links:
         assert s["slug"] in SLUGS and s["relation"], f"{task.name}: {s}"
 
@@ -92,3 +92,10 @@ def test_the_task_sources_table_is_current():
 
     r = subprocess.run([sys.executable, str(ROOT / "scripts/task_sources.py"), "--check"], capture_output=True, text=True)
     assert r.returncode == 0, r.stderr
+
+
+@pytest.mark.parametrize("task", ALL, ids=lambda p: p.name)
+def test_harbor_accepts_the_task(task):
+    """Harbor validates task.toml strictly; a top-level [[source]] once made 9 of 11 tasks unloadable."""
+    harbor_task = pytest.importorskip("harbor.models.task.task", reason="CI runs this with harbor installed")
+    assert harbor_task.Task(task).name == f"text2wetlab/{task.name}"

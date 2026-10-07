@@ -31,7 +31,7 @@ memory_mb = 8192
 storage_mb = 10240
 gpus = 0
 
-[[source]]
+[[metadata.papers]]
 slug = "hulp-rna-extraction"
 experiment = "exp2"
 relation = "same paper (Harbor task)"

@@ -34,7 +34,7 @@ gpus = 0
 [checks]
 free_wells = []
 
-[[source]]
+[[metadata.papers]]
 slug = "apex"
 experiment = "apex-p1"
 relation = "the paper the agent is given (APEX protocol 1, fetched at build time)"

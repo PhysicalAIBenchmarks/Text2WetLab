@@ -34,6 +34,6 @@ gpus = 0
 [checks]
 free_wells = []
 
-[[source]]
+[[metadata.papers]]
 slug = "pioneer-ngs"
 relation = "claimed source, NOT supported: the repo has no AMPure step (Hamilton, PyLabRobot)"

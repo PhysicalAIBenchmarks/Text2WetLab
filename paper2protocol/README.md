@@ -17,7 +17,7 @@ Nothing here judges a robot's behaviour; that is `eval/`.
 
 Everything after `readers.py` only sees a `Paper`, so a new input kind is one function and one suffix.
 Where it sits in the repo: `sources/` holds what we collect, `paper2protocol/` processes it, `tasks/<task>/public/`
-holds what becomes a task (a task's `[[source]]` in `task.toml` names its paper), `eval/` judges a model's answer.
+holds what becomes a task (a task's `[[metadata.papers]]` in `task.toml` names its paper), `eval/` judges a model's answer.
 
 Design: `docs/superpowers/specs/2026-10-03-paper2protocol-design.md`
 
