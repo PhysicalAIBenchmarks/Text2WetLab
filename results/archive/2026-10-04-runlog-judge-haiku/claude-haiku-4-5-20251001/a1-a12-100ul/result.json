@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 28
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "deck_and_hardware",
+        "score": 1,
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the right labels; p20 left and p300 right with 20 and 300 uL tip racks in slots 10 and 11."
+      },
+      {
+        "id": "volumes_and_wells",
+        "score": 1,
+        "evidence": "Log shows 100 uL dispensed into each of A1-A12 with p300 from reservoir A1; the 220 uL aspirates include 20 uL disposal volume, and no other wells were touched."
+      },
+      {
+        "id": "tip_usage",
+        "score": 1,
+        "evidence": "Log starts with pick up tip, pipettes only with that tip, and ends with drop tip (line 20)."
+      },
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "apiLevel 2.15 is valid; the 220 uL aspirates are within the 300 uL pipette limit."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 1,
+        "evidence": "The distribute call does exactly the requested 100 uL to A1-A12; the leftover disposal volume goes to the trash/liquid-handling, and the comments are accurate."
+      }
+    ],
+    "scores": {
+      "deck_and_hardware": 1.0,
+      "volumes_and_wells": 1.0,
+      "tip_usage": 1.0,
+      "robot_practice": 1.0,
+      "fidelity_to_task": 1.0
+    },
+    "summary": "The protocol loads the required labware and pipettes and distributes 100 uL to each of A1-A12 with the p300. The tip is picked up and dropped correctly and nothing unsafe happens.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_deck_and_hardware": 1.0,
+    "rubric_volumes_and_wells": 1.0,
+    "rubric_tip_usage": 1.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_fidelity_to_task": 1.0
+  }
+}

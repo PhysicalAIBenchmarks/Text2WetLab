@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 23
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "dna_addition",
+        "score": 1,
+        "evidence": "Log lines 1-3: P20 picks up a tip, aspirates 2 uL from plasmid_plate A1 and dispenses into tubes_1_5ml_1 A1."
+      },
+      {
+        "id": "heat_shock",
+        "score": 1,
+        "evidence": "Step 2 comment records heat shock at 42C for 45 s, then ice for 2 min, placed after DNA addition and before SOC."
+      },
+      {
+        "id": "soc_recovery",
+        "score": 1,
+        "evidence": "Log lines 12-13: P300 aspirates 250 uL from soc_reservoir A1 and dispenses into the tube after the heat-shock comment; Step 4 comment records 37C, 60 min, 250 rpm."
+      },
+      {
+        "id": "tip_usage",
+        "score": 1,
+        "evidence": "The P20 tip is used for the DNA and dropped (line 10); a new P300 tip is used for the SOC and dropped (line 14)."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 0,
+        "evidence": "The agent added a 3x10 uL pipette mix (log lines 4-9) in the competent cells plus blow-outs, none of which the task specifies and which could affect cell viability."
+      }
+    ],
+    "scores": {
+      "dna_addition": 1.0,
+      "heat_shock": 1.0,
+      "soc_recovery": 1.0,
+      "tip_usage": 1.0,
+      "fidelity_to_task": 0.0
+    },
+    "summary": "The DNA addition, heat shock record, SOC addition with outgrowth record, and tip handling all match the task and the log. Fidelity fails because the agent added unrequested mixing steps (3x10 uL) in the competent cells, which are not in the task and could harm cell viability.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 0.8,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 0.8,
+    "rubric_dna_addition": 1.0,
+    "rubric_heat_shock": 1.0,
+    "rubric_soc_recovery": 1.0,
+    "rubric_tip_usage": 1.0,
+    "rubric_fidelity_to_task": 0.0
+  }
+}

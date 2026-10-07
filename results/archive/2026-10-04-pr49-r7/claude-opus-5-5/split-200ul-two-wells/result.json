@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 10
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "deck_and_hardware",
+        "score": 1,
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the specified labels; p20 left, p300 right with the correct tip racks in slots 10 and 11."
+      },
+      {
+        "id": "volumes_and_wells",
+        "score": 1,
+        "evidence": "Log shows 100 \u00b5L aspirated from reservoir A1 and dispensed into plate A1, then 100 \u00b5L from A1 into B1, all with the p300; no other wells touched."
+      },
+      {
+        "id": "tip_usage",
+        "score": 1,
+        "evidence": "Each transfer is pick up tip, aspirate, dispense, drop tip; no pipetting without a tip, and no tip is held at the end."
+      },
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "100 \u00b5L is within the p300 range, apiLevel 2.15 is valid, and the blow_out above the plate well is safe."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 1,
+        "evidence": "The code does the single required transfer step; comments and metadata match the actions (fresh tip per well is stated accurately)."
+      }
+    ],
+    "scores": {
+      "deck_and_hardware": 1.0,
+      "volumes_and_wells": 1.0,
+      "tip_usage": 1.0,
+      "robot_practice": 1.0,
+      "fidelity_to_task": 1.0
+    },
+    "summary": "The protocol transfers 100 \u00b5L from reservoir A1 to plate A1 and B1 with the p300, using a fresh tip for each well. The labware, slots, labels and pipettes match the task, and the run log shows no problems.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_deck_and_hardware": 1.0,
+    "rubric_volumes_and_wells": 1.0,
+    "rubric_tip_usage": 1.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_fidelity_to_task": 1.0
+  }
+}

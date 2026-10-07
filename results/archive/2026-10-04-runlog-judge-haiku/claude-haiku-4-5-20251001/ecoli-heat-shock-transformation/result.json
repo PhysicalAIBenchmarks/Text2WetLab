@@ -1,0 +1,16 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": false,
+    "error": "ProtocolEngineExecuteError: [ErrorOccurrence(id='e0633761-c690-4de6-864d-c83fadb24730', createdAt=datetime.datetime(2026, 10, 4, 13, 17, 47, 946304, tzinfo=datetime.timezone.utc), errorCode='4000', errorType='ExceptionInProtocolError', detail='ProtocolCommandFailedError [line 37]: Error 4000 GENERAL_ERROR (ProtocolCommandFailedError): ThermocyclerNotOpenError: Thermocycler must be open when moving to labware inside it.', errorInfo={}, wrappedErrors=[ErrorOccurrence(id='e0633761-c690-4de6-864d-c83fadb24730', createdAt=datetime.datetime(2026, 10, 4, 13, 17, 47, 946304, tzinfo=datetime.timezone.utc), errorCode='4000', errorType='ProtocolCommandFailedError', detail='ThermocyclerNotOpenError: Thermocycler must be open when moving to labware inside it.', errorInfo={}, wrappedErrors=[ErrorOccurrence(id='eaa91f39-4c4a-4acd-b17e-a5ef107a8eb1', createdAt=datetime.datetime(2026, 10, 4, 13, 17, 47, 943886, tzinfo=datetime.timezone.utc), errorCode='4000', errorType='ThermocyclerNotOpenError', detail='Thermocycler must be open when moving to labware inside it.', errorInfo={}, wrappedErrors=[])])])]",
+    "traceback": "Traceback (most recent call last):\n  File \"/tests/runlog.py\", line 81, in main\n    runlog, _ = simulate.simulate(\n  File \"/opt/ot/lib/python3.10/site-packages/opentrons/simulate.py\", line 570, in simulate\n    return _run_file_pe(\n  File \"/opt/ot/lib/python3.10/site-packages/opentrons/simulate.py\", line 940, in _run_file_pe\n    return asyncio.run(run(protocol_source))\n  File \"/usr/local/lib/python3.10/asyncio/runners.py\", line 44, in run\n    return loop.run_until_complete(main)\n  File \"/usr/local/lib/python3.10/asyncio/base_events.py\", line 649, in run_until_complete\n    return future.result()\n  File \"/opt/ot/lib/python3.10/site-packages/opentrons/simulate.py\", line 928, in run\n    raise entrypoint_util.ProtocolEngineExecuteError(\nopentrons.util.entrypoint_util.ProtocolEngineExecuteError: [ErrorOccurrence(id='e0633761-c690-4de6-864d-c83fadb24730', createdAt=datetime.datetime(2026, 10, 4, 13, 17, 47, 946304, tzinfo=datetime.timezone.utc), errorCode='4000', errorType='ExceptionInProtocolError', detail='ProtocolCommandFailedError [line 37]: Error 4000 GENERAL_ERROR (ProtocolCommandFailedError): ThermocyclerNotOpenError: Thermocycler must be open when moving to labware inside it.', errorInfo={}, wrappedErrors=[ErrorOccurrence(id='e0633761-c690-4de6-864d-c83fadb24730', createdAt=datetime.datetime(2026, 10, 4, 13, 17, 47, 946304, tzinfo=datetime.timezone.utc), errorCode='4000', errorType='ProtocolCommandFailedError', detail='ThermocyclerNotOpenError: Thermocycler must be open when moving to labware inside it.', errorInfo={}, wrappedErrors=[ErrorOccurrence(id='eaa91f39-4c4a-4acd-b17e-a5ef107a8eb1', createdAt=datetime.datetime(2026, 10, 4, 13, 17, 47, 943886, tzinfo=datetime.timezone.utc), errorCode='4000', errorType='ThermocyclerNotOpenError', detail='Thermocycler must be open when moving to labware inside it.', errorInfo={}, wrappedErrors=[])])])]\n"
+  },
+  "error": "simulator gate failed",
+  "rewards": {
+    "reward": 0.0,
+    "sim_pass": 0.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0
+  }
+}

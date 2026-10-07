@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 1801
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "reaction_setup",
+        "score": 1,
+        "evidence": "Log steps 1-129 dispense 5 uL master mix into all 96 wells, steps 132-513 add 4 uL primer pair, and steps 516-1473 add 1 uL colony template last, giving a 10 uL reaction."
+      },
+      {
+        "id": "sample_mapping",
+        "score": 1,
+        "evidence": "Each primer_plate well (A1, B1, ... H12) is dispensed into the same pcr_plate well, and the same one-to-one mapping holds for colony_plate; no well is skipped or repeated."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "One tip is used for master mix into empty wells and dropped (log 130), then a fresh tip is used for every primer transfer and every colony transfer, each followed by drop tip, and none is left on the pipette."
+      },
+      {
+        "id": "thermocycling",
+        "score": 1,
+        "evidence": "Comments record sealing the plate and a Q5 program: 98 C 3 min, 30 cycles of 98 C 10 s, Ta 20 s and 72 C 30 s/kb, final extension 72 C 2 min, then a 4 C hold; the annealing temperature is given by the Tm+3 rule (55-72 C) rather than a single number."
+      },
+      {
+        "id": "fidelity_to_paper",
+        "score": 1,
+        "evidence": "The protocol follows the paper's OT-2 workflow (9 uL master mix portion plus 1 uL template, 10 uL reaction, master mix before template, manual sealing and thermocycling), adapts to Q5 and per-colony primers with the assumption stated, and has an accurate citation."
+      }
+    ],
+    "scores": {
+      "reaction_setup": 1.0,
+      "sample_mapping": 1.0,
+      "tips_and_contamination": 1.0,
+      "thermocycling": 1.0,
+      "fidelity_to_paper": 1.0
+    },
+    "summary": "The protocol sets up 96 reactions of 5 uL Q5 2x master mix, 4 uL matched primer pair and 1 uL colony template. The run log shows correct well mapping and a fresh tip for each primer and colony transfer. The sealing and Q5 thermocycling comments are reasonable and match the paper, though the annealing temperature is given as a rule (Tm+3 C) instead of a single value.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_reaction_setup": 1.0,
+    "rubric_sample_mapping": 1.0,
+    "rubric_tips_and_contamination": 1.0,
+    "rubric_thermocycling": 1.0,
+    "rubric_fidelity_to_paper": 1.0
+  }
+}

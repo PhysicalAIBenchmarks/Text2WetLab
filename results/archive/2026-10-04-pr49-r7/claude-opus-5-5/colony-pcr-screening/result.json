@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 1926
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "master_mix",
+        "score": 1,
+        "evidence": "Log lines 2-193 show 96 aspirates of 18 uL from reservoir A1, each dispensed into a distinct pcr_plate well, all with one tip."
+      },
+      {
+        "id": "template_and_primers",
+        "score": 1,
+        "evidence": "Log shows 1 uL from each colony_plate well to the matching pcr_plate well (lines 196-1153), then 1 uL from each primer_plate well to the matching pcr_plate well (1156-1537), all with the P20."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "Each colony and each primer transfer is preceded by its own pick up tip and followed by drop tip; only the master mix reuses a single tip, which is allowed."
+      },
+      {
+        "id": "thermocycling",
+        "score": 1,
+        "evidence": "protocol.comment records sealing and 98C 30 s; 30x[98C 10 s, 60C 30 s, 72C 30 s]; 72C 2 min; hold 4C."
+      },
+      {
+        "id": "fidelity_to_paper",
+        "score": 1,
+        "evidence": "Steps and volumes match the task, including a 3x mix after the template; the comments are accurate and no steps are invented."
+      }
+    ],
+    "scores": {
+      "master_mix": 1.0,
+      "template_and_primers": 1.0,
+      "tips_and_contamination": 1.0,
+      "thermocycling": 1.0,
+      "fidelity_to_paper": 1.0
+    },
+    "summary": "The protocol dispenses 18 uL master mix to all 96 wells, then adds 1 uL colony template with a 3x mix and 1 uL primer to each matching well. Fresh tips are used for every template and primer, and the seal and thermocycling program is recorded as a comment, so all items pass.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_master_mix": 1.0,
+    "rubric_template_and_primers": 1.0,
+    "rubric_tips_and_contamination": 1.0,
+    "rubric_thermocycling": 1.0,
+    "rubric_fidelity_to_paper": 1.0
+  }
+}

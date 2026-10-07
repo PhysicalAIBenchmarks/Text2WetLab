@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 7
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "deck_and_hardware",
+        "score": 1,
+        "evidence": "Reservoir in slot 1 and plate in slot 2 loaded with the required labels; p20 left with the 20 uL rack in slot 10 and p300 right with the 300 uL rack in slot 11."
+      },
+      {
+        "id": "volumes_and_wells",
+        "score": 1,
+        "evidence": "Log shows 100 uL aspirated from reservoir A1 and dispensed into plate A1, then 100 uL aspirated and dispensed into B1, using the P300. No other wells were touched."
+      },
+      {
+        "id": "tip_usage",
+        "score": 1,
+        "evidence": "The log shows pick up tip first and drop tip last, with all pipetting in between."
+      },
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "100 uL is within the p300 range, apiLevel 2.15 is valid, and the simulation passed."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 1,
+        "evidence": "The single transfer step is performed as specified, with no extra steps, and the comments and metadata are accurate."
+      }
+    ],
+    "scores": {
+      "deck_and_hardware": 1.0,
+      "volumes_and_wells": 1.0,
+      "tip_usage": 1.0,
+      "robot_practice": 1.0,
+      "fidelity_to_task": 1.0
+    },
+    "summary": "The protocol matches the task: it loads the specified labware and moves 100 uL from reservoir A1 to plate A1 and B1 with the P300. Tip handling is correct, and the simulator log shows nothing extra or unsafe.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_deck_and_hardware": 1.0,
+    "rubric_volumes_and_wells": 1.0,
+    "rubric_tip_usage": 1.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_fidelity_to_task": 1.0
+  }
+}

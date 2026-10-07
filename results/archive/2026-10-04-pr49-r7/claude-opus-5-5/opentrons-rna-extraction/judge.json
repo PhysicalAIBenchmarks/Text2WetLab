@@ -1,0 +1,60 @@
+{
+  "judge_model": "claude-sonnet-5-5",
+  "suspicious_tokens": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 1490
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "sample_handling",
+        "score": 1,
+        "evidence": "Log shows 48 separate p1000 pick-up/drop cycles, each aspirating 250 uL from a distinct tube into a distinct well (A1..H1, A3..H3 ... H11). The traceability comments map each sample to its elution-plate well (columns 1-6)."
+      },
+      {
+        "id": "binding_and_separation",
+        "score": 1,
+        "evidence": "Log lines 30-71 add 40 uL beads, lines 74-109 add 250 uL isopropanol (2x125), then 250 uL sample with five 400 uL mixes. These are followed by delay 300 s, engage, delay 240 s, and supernatant removal to waste (180+180+200 uL) with the magnet on."
+      },
+      {
+        "id": "washes_and_drying",
+        "score": 1,
+        "evidence": "Two ethanol additions of 3x166.7 uL (A9/A10, then A11/A12) are each removed to waste with the magnet engaged (lines 891-1041). Then delay 240 s, then disengage magnetic module (line 1043)."
+      },
+      {
+        "id": "elution_recovery",
+        "score": 0,
+        "evidence": "Elution is added at 100 uL off-magnet and mixed 5x, with delay 30 s, engage and delay 90 s. But the recovery step aspirates 100 uL (lines 1132-1152), not about 80 uL, so it also risks carrying beads over."
+      },
+      {
+        "id": "fidelity_to_paper",
+        "score": 1,
+        "evidence": "Step order matches the paper (beads, isopropanol, sample, 5 min, magnet 4 min, two 70% ethanol washes, 4 min dry, elution, 30 s, 90 s). Reagent names and comments are accurate, and the temperature module is set to 4 C."
+      }
+    ],
+    "scores": {
+      "sample_handling": 1.0,
+      "binding_and_separation": 1.0,
+      "washes_and_drying": 1.0,
+      "elution_recovery": 0.0,
+      "fidelity_to_paper": 1.0
+    },
+    "summary": "The protocol faithfully follows binding, magnet, wash, dry and elution timing with correct per-sample tip handling and traceable elution wells. It fails the elution recovery item because it recovers 100 uL rather than about 80 uL of eluate.",
+    "raw": "{\"items\": [{\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Log shows 48 separate p1000 pick-up/drop cycles, each aspirating 250 uL from a distinct tube into a distinct well (A1..H1, A3..H3 ... H11). The traceability comments map each sample to its elution-plate well (columns 1-6).\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Log lines 30-71 add 40 uL beads, lines 74-109 add 250 uL isopropanol (2x125), then 250 uL sample with five 400 uL mixes. These are followed by delay 300 s, engage, delay 240 s, and supernatant removal to waste (180+180+200 uL) with the magnet on.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two ethanol additions of 3x166.7 uL (A9/A10, then A11/A12) are each removed to waste with the magnet engaged (lines 891-1041). Then delay 240 s, then disengage magnetic module (line 1043).\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"Elution is added at 100 uL off-magnet and mixed 5x, with delay 30 s, engage and delay 90 s. But the recovery step aspirates 100 uL (lines 1132-1152), not about 80 uL, so it also risks carrying beads over.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 1, \"evidence\": \"Step order matches the paper (beads, isopropanol, sample, 5 min, magnet 4 min, two 70% ethanol washes, 4 min dry, elution, 30 s, 90 s). Reagent names and comments are accurate, and the temperature module is set to 4 C.\"}], \"summary\": \"The protocol faithfully follows binding, magnet, wash, dry and elution timing with correct per-sample tip handling and traceable elution wells. It fails the elution recovery item because it recovers 100 uL rather than about 80 uL of eluate.\"}"
+  },
+  "rewards": {
+    "reward": 0.8,
+    "sim_pass": 1.0,
+    "judge_mean": 0.8,
+    "suspicious_code": 0.0,
+    "judge_error": 0.0,
+    "hack_detected": 0.0,
+    "rubric_sample_handling": 1.0,
+    "rubric_binding_and_separation": 1.0,
+    "rubric_washes_and_drying": 1.0,
+    "rubric_elution_recovery": 0.0,
+    "rubric_fidelity_to_paper": 1.0
+  }
+}

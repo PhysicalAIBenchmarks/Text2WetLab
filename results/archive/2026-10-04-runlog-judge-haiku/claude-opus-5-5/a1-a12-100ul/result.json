@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 26
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "deck_and_hardware",
+        "score": 1,
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with correct load names and labels; p20 left with 20ul rack slot 10, p300 right with 300ul rack slot 11."
+      },
+      {
+        "id": "volumes_and_wells",
+        "score": 1,
+        "evidence": "Log shows 12 pairs of aspirate 100 uL from reservoir A1 and dispense 100 uL into plate A1 through A12 with the p300; no other wells."
+      },
+      {
+        "id": "tip_usage",
+        "score": 1,
+        "evidence": "Log step 1 picks up tip before any aspirate, one tip reused, drop tip at step 26."
+      },
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "100 uL within p300 range, apiLevel 2.15 is valid, simulation passed."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 1,
+        "evidence": "Code does exactly the single transfer step; metadata and name accurate, no false comments."
+      }
+    ],
+    "scores": {
+      "deck_and_hardware": 1.0,
+      "volumes_and_wells": 1.0,
+      "tip_usage": 1.0,
+      "robot_practice": 1.0,
+      "fidelity_to_task": 1.0
+    },
+    "summary": "The protocol loads the specified labware and pipettes, then transfers 100 \u00b5L from reservoir A1 to plate A1\u2013A12 with the p300. It uses one tip, drops it at the end, and the simulator log matches the task exactly.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_deck_and_hardware": 1.0,
+    "rubric_volumes_and_wells": 1.0,
+    "rubric_tip_usage": 1.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_fidelity_to_task": 1.0
+  }
+}

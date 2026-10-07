@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 1827
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "master_mix",
+        "score": 1,
+        "evidence": "Log lines 2-193 show 18 uL aspirated from reservoir A1 and dispensed into each of the 96 pcr_plate wells."
+      },
+      {
+        "id": "template_and_primers",
+        "score": 1,
+        "evidence": "Log shows 1 uL colony A1..H12 into matching pcr wells (with 3x mix), then 1 uL primer from matching wells, all with the P20."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "Each colony and each primer transfer has its own pick up/drop tip in the log; the master mix uses one tip into empty wells, which is allowed."
+      },
+      {
+        "id": "thermocycling",
+        "score": 1,
+        "evidence": "protocol.comment records sealing and the full program: 98C 30 s; 30x[98C 10 s, 60C 30 s, 72C 30 s]; 72C 2 min; hold 4C."
+      },
+      {
+        "id": "fidelity_to_paper",
+        "score": 1,
+        "evidence": "Steps and order match the task, the apiLevel 2.15 is in range, and the comments (single tip for master mix, mix 3x) match what the code does."
+      }
+    ],
+    "scores": {
+      "master_mix": 1.0,
+      "template_and_primers": 1.0,
+      "tips_and_contamination": 1.0,
+      "thermocycling": 1.0,
+      "fidelity_to_paper": 1.0
+    },
+    "summary": "The protocol performs 18 \u00b5L master mix into 96 wells, 1 \u00b5L colony with 3x mix, and 1 \u00b5L primer, using fresh tips per sample as the log shows. The thermocycling comment is complete and nothing is invented or missing, so all items pass.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_master_mix": 1.0,
+    "rubric_template_and_primers": 1.0,
+    "rubric_tips_and_contamination": 1.0,
+    "rubric_thermocycling": 1.0,
+    "rubric_fidelity_to_paper": 1.0
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 10
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "deck_and_hardware",
+        "score": 1,
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with the required labels; p20 left and p300 right with tip racks in slots 10 and 11."
+      },
+      {
+        "id": "volumes_and_wells",
+        "score": 1,
+        "evidence": "Log shows 100 uL aspirated from reservoir A1 and dispensed into plate A1, then 100 uL aspirated from reservoir A1 and dispensed into plate B1, using the p300 only."
+      },
+      {
+        "id": "tip_usage",
+        "score": 1,
+        "evidence": "Each aspirate/dispense is preceded by a pick up tip and followed by a drop tip. No tip is held at the end."
+      },
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "100 uL is within the p300 range, apiLevel 2.15 is valid, and the simulation passed. The blow_out is at the top of the destination well and is safe."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 1,
+        "evidence": "The protocol performs exactly the requested split of 100 uL into each of A1 and B1. Comments and metadata match what the code does."
+      }
+    ],
+    "scores": {
+      "deck_and_hardware": 1.0,
+      "volumes_and_wells": 1.0,
+      "tip_usage": 1.0,
+      "robot_practice": 1.0,
+      "fidelity_to_task": 1.0
+    },
+    "summary": "The protocol transfers 100 \u00b5L from reservoir A1 to plate A1 and then to plate B1 with the p300, using a fresh tip for each, as the run log confirms. Deck setup, tip handling and API level are all valid, and no extra wells are touched.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_deck_and_hardware": 1.0,
+    "rubric_volumes_and_wells": 1.0,
+    "rubric_tip_usage": 1.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_fidelity_to_task": 1.0
+  }
+}

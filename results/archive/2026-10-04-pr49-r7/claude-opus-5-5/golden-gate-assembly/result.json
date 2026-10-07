@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 495
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "pcr_setup",
+        "score": 1,
+        "evidence": "Log shows 19 \u00b5L mix, 2.5 \u00b5L fwd (A1-G1), 2.5 \u00b5L rev (A2-G2), 1 \u00b5L template from A1,A1,B1,C1,A1,A1,D1 into pcr_plate A1:G1, then 3x15 \u00b5L mix."
+      },
+      {
+        "id": "dpni_and_cleanup",
+        "score": 1,
+        "evidence": "Log shows 19 \u00b5L water, 5 \u00b5L rCutSmart, 1 \u00b5L DpnI into A1:G1 with 3x30 \u00b5L mix; code has comments and pauses for 37/65\u00b0C incubation and Zymo clean-up (elute 20 \u00b5L)."
+      },
+      {
+        "id": "assembly_mix",
+        "score": 1,
+        "evidence": "Log shows 7 \u00b5L water, 2 \u00b5L T4 buffer, 3/2/3 \u00b5L of fragments 2/5/6, 2 \u00b5L of fragments 1,3,4,7 and 1 \u00b5L enzyme mix into A1:D1 with 5x mix after each."
+      },
+      {
+        "id": "cycling_and_transformation",
+        "score": 1,
+        "evidence": "Golden Gate program (30x 37/16\u00b0C, 60\u00b0C) and Zymo clean-up recorded via comment and pause; 5 \u00b5L transferred to cells A1:D1, then 250 \u00b5L LB added, with ice/heat-shock/recovery comments."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "Fresh tip per primer, template and chromoprotein fragment and per assembly transfer (log pick-ups at 45-128, 339-354, 405-420); shared reagents use one tip per reagent, same as the reference."
+      }
+    ],
+    "scores": {
+      "pcr_setup": 1.0,
+      "dpni_and_cleanup": 1.0,
+      "assembly_mix": 1.0,
+      "cycling_and_transformation": 1.0,
+      "tips_and_contamination": 1.0
+    },
+    "summary": "The protocol simulates cleanly and its pipetting matches the specified volumes, wells and order for PCR setup, DpnI digestion, assembly, and transformation. The manual steps (thermocycling, clean-up, incubations) are recorded with comments and pauses, and tip handling matches the reference.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_pcr_setup": 1.0,
+    "rubric_dpni_and_cleanup": 1.0,
+    "rubric_assembly_mix": 1.0,
+    "rubric_cycling_and_transformation": 1.0,
+    "rubric_tips_and_contamination": 1.0
+  }
+}
