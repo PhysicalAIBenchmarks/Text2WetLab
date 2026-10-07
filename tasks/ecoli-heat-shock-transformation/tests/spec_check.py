@@ -39,7 +39,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))   # a Harbor te
 from paper2protocol.models import Protocol  # noqa: E402
 from paper2protocol.timeline import timeline  # noqa: E402
 
-OT_VENV = pathlib.Path(os.environ.get("OT_VENV", pathlib.Path.home() / "Desktop/ot-sim-venv"))
+OT_VENV = pathlib.Path(os.environ.get("OT_VENV", pathlib.Path(__file__).resolve().parent.parent / ".venv-ot"))  # scripts/setup_ot_venv.sh
 ROWS = "ABCDEFGH"
 KIND_WORDS = {  # IR container kind -> words in the Opentrons labware display name
     "plate_96_deep": ("deep",),

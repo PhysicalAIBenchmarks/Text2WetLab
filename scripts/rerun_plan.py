@@ -96,7 +96,7 @@ def count_identify(need, env_file):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--count", action="store_true", help="count real identify tokens via the free count_tokens endpoint")
-    ap.add_argument("--env", default=str(pathlib.Path.home() / "Desktop/Text2WetLab/.env"))
+    ap.add_argument("--env", default=str(ROOT / ".env"))
     a = ap.parse_args()
     rows, by, need = papers_needing_identify()
     env = measured_envelopes()

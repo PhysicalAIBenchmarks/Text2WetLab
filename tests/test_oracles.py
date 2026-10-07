@@ -11,7 +11,7 @@ import pytest
 
 ROOT = pathlib.Path(__file__).parent.parent
 TASKS = sorted(p for p in (ROOT / "tasks").iterdir() if (p / "tests/grade.py").exists())
-OT = pathlib.Path(os.environ.get("OT_VENV", pathlib.Path.home() / "Desktop/ot-sim-venv")) / "bin/python"
+OT = pathlib.Path(os.environ.get("OT_VENV", ROOT / ".venv-ot")) / "bin/python"
 
 
 @pytest.mark.skipif(not OT.exists(), reason="needs the Opentrons 7.5 simulator venv (set OT_VENV)")

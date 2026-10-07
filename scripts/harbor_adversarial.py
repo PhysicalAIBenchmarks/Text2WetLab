@@ -16,7 +16,7 @@ import sys
 import tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-OT_VENV = pathlib.Path(os.environ.get("OT_VENV", pathlib.Path.home() / "Desktop/ot-sim-venv"))
+OT_VENV = pathlib.Path(os.environ.get("OT_VENV", ROOT / ".venv-ot"))
 
 
 def labels(code):

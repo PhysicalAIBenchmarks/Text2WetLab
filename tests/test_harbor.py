@@ -13,7 +13,7 @@ from spec_check import cross_contamination  # noqa: E402
 
 TASKS = ROOT / "tasks"
 IR_TASKS = sorted(p for p in TASKS.iterdir() if (p / "public/ir.json").exists())
-OT = pathlib.Path(os.environ.get("OT_VENV", pathlib.Path.home() / "Desktop/ot-sim-venv")) / "bin/python"
+OT = pathlib.Path(os.environ.get("OT_VENV", ROOT / ".venv-ot")) / "bin/python"
 
 
 def test_ir_derived_task_files_are_current():

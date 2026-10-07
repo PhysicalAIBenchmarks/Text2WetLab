@@ -28,7 +28,7 @@ import tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path[:0] = [str(ROOT), str(ROOT / "eval"), str(ROOT / "scripts")]
-OT = pathlib.Path(os.environ.get("OT_VENV", pathlib.Path.home() / "Desktop/ot-sim-venv"))
+OT = pathlib.Path(os.environ.get("OT_VENV", ROOT / ".venv-ot"))
 HARBOR = ROOT / "tasks/opentrons-rna-extraction"
 
 

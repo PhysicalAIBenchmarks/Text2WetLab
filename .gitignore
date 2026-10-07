@@ -30,3 +30,7 @@ sources/auto-qpcr/pipeline/paper.json
 sources/uc2-hi2/pipeline/paper.json
 # Exported Claude Code session transcripts
 /20[0-9][0-9]-*-this-session-is-being-continued-*
+# Local simulator / renderer venvs and secrets
+.venv-ot/
+.venv-viz/
+.env

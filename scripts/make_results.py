@@ -24,7 +24,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 R = ROOT / "results"
 PY = sys.executable
-OT_ENV = dict(os.environ, OT_VENV=os.environ.get("OT_VENV", str(pathlib.Path.home() / "Desktop/ot-sim-venv")))
+OT_ENV = dict(os.environ, OT_VENV=os.environ.get("OT_VENV", str(ROOT / ".venv-ot")))
 
 
 def jobs(pattern):

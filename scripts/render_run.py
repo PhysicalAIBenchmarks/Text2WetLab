@@ -21,7 +21,7 @@ sys.path.insert(0, str(ROOT / "eval"))
 sys.path.insert(0, str(ROOT))
 from spec_check import simulate  # noqa: E402
 
-VIZ_VENV = pathlib.Path(os.environ.get("VIZ_VENV", pathlib.Path.home() / "Desktop/viz-venv"))
+VIZ_VENV = pathlib.Path(os.environ.get("VIZ_VENV", ROOT / ".venv-viz"))
 
 
 RENDERED = {"aspirate", "dispense", "pick", "drop", "delay", "engage", "disengage", "temp"}
