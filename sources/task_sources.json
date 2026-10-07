@@ -1,0 +1,95 @@
+{
+ "a1-a12-100ul": [
+  {
+   "source": "handwritten"
+  }
+ ],
+ "ampure-bead-cleanup": [
+  {
+   "source": "pioneer-ngs",
+   "title": "Automated Illumina NGS library prep on Hamilton STARlet with PyLabRobot (Pioneer Labs)",
+   "url": "https://github.com/Pioneer-Research-Labs/ngs_library_prep"
+  }
+ ],
+ "colony-pcr-screening": [
+  {
+   "source": "slowpoke",
+   "title": "Slowpoke: Golden Gate cloning and colony PCR on OT-2/Flex",
+   "doi": "10.1021/acssynbio.5c00629",
+   "url": "https://doi.org/10.1021/acssynbio.5c00629"
+  },
+  {
+   "source": "apex",
+   "title": "APEX: Automated Protein EXpression in Escherichia coli",
+   "doi": "10.1101/2024.08.13.607171",
+   "url": "https://doi.org/10.1101/2024.08.13.607171"
+  }
+ ],
+ "colony-pcr-screening-hard": [
+  {
+   "source": "slowpoke",
+   "title": "Slowpoke: Golden Gate cloning and colony PCR on OT-2/Flex",
+   "doi": "10.1021/acssynbio.5c00629",
+   "url": "https://doi.org/10.1021/acssynbio.5c00629"
+  },
+  {
+   "source": "apex",
+   "title": "APEX: Automated Protein EXpression in Escherichia coli",
+   "doi": "10.1101/2024.08.13.607171",
+   "url": "https://doi.org/10.1101/2024.08.13.607171"
+  }
+ ],
+ "ecoli-heat-shock-transformation": [
+  {
+   "source": "apex",
+   "title": "APEX: Automated Protein EXpression in Escherichia coli",
+   "doi": "10.1101/2024.08.13.607171",
+   "url": "https://doi.org/10.1101/2024.08.13.607171"
+  }
+ ],
+ "ecoli-heat-shock-transformation-hard": [
+  {
+   "source": "apex",
+   "title": "APEX: Automated Protein EXpression in Escherichia coli",
+   "doi": "10.1101/2024.08.13.607171",
+   "url": "https://doi.org/10.1101/2024.08.13.607171"
+  }
+ ],
+ "golden-gate-assembly": [
+  {
+   "source": "assemblytron",
+   "title": "AssemblyTron: flexible automation of DNA assembly with Opentrons OT-2 lab robots",
+   "doi": "10.1093/synbio/ysac032",
+   "url": "https://doi.org/10.1093/synbio/ysac032"
+  }
+ ],
+ "golden-gate-assembly-hard": [
+  {
+   "source": "assemblytron",
+   "title": "AssemblyTron: flexible automation of DNA assembly with Opentrons OT-2 lab robots",
+   "doi": "10.1093/synbio/ysac032",
+   "url": "https://doi.org/10.1093/synbio/ysac032"
+  }
+ ],
+ "opentrons-rna-extraction": [
+  {
+   "source": "hulp-rna-extraction",
+   "title": "Automated low-cost SARS-CoV-2 RNA extraction protocols",
+   "doi": "10.1371/journal.pone.0246302",
+   "url": "https://doi.org/10.1371/journal.pone.0246302"
+  }
+ ],
+ "opentrons-rna-extraction-hard": [
+  {
+   "source": "hulp-rna-extraction",
+   "title": "Automated low-cost SARS-CoV-2 RNA extraction protocols",
+   "doi": "10.1371/journal.pone.0246302",
+   "url": "https://doi.org/10.1371/journal.pone.0246302"
+  }
+ ],
+ "split-200ul-two-wells": [
+  {
+   "source": "handwritten"
+  }
+ ]
+}

@@ -1,0 +1,154 @@
+{
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 208
+ },
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "end_state:plasmid_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:transformation_plate",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "apiLevel 2.15, 1 \u00b5L on p20 and 50 \u00b5L on p300, wells within capacity, correct labware, all simulator checks passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 1,
+    "evidence": "pick_up/drop_tip per well for both DNA and SOC loops; tip_before_aspirate, tip_dropped_at_end and no_cross_contamination checks pass.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "fidelity_to_paper",
+    "score": 0,
+    "evidence": "Adds steps the paper does not describe (p20.mix 3x5 \u00b5L on competent cells, p300.mix 3x30 \u00b5L, blow_outs) and an arbitrary 45 C lid setting, so it is not a fully faithful implementation.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "dna_addition",
+    "score": 1,
+    "evidence": "Block set to 4 C with lid open, then p20 moves 1 \u00b5L from plasmid well n to cell well n with a fresh tip for all 8 wells.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "heat_shock",
+    "score": 1,
+    "evidence": "close_lid, then set_block_temperature 4 C for 30 min, 42 C for 30 s, and 4 C for 2 min on the thermocycler.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "soc_recovery",
+    "score": 1,
+    "evidence": "50 \u00b5L SOC added per well with p300 after the shock, then lid closed and 37 C held for 60 min on the thermocycler.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 1.0,
+   "fidelity_to_paper": 0.0,
+   "dna_addition": 1.0,
+   "heat_shock": 1.0,
+   "soc_recovery": 1.0
+  },
+  "summary": "The protocol runs correctly in the simulator and gets the DNA addition, heat shock and SOC recovery volumes, times and temperatures right, with good tip handling. It fails fidelity because it adds mixing and blow-out steps and a 45 C lid temperature that the paper does not specify.",
+  "level": "hard",
+  "score": 0.75,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_paper": 0.25,
+   "dna_addition": 0.0833,
+   "heat_shock": 0.0833,
+   "soc_recovery": 0.0833
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [],
+ "rewards": {
+  "reward": 0.75,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 0.75,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_paper": 0.0,
+  "rubric_dna_addition": 1.0,
+  "rubric_heat_shock": 1.0,
+  "rubric_soc_recovery": 1.0
+ }
+}

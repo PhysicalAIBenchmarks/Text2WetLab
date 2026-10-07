@@ -1,0 +1,78 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.0",
+    "2.5",
+    "2.8"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/moeller-hackflex/CUMoellerLab__Moeller_Opentrons_protocol_library",
+   "commit": "6414b59063d561d5696b7989c3ae664924f0ed06",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 19,
+   "py_files": 19,
+   "redistributable": "yes",
+   "repo": "CUMoellerLab/Moeller_Opentrons_protocol_library",
+   "robot_mentions": [
+    "Flex"
+   ],
+   "size_kb": 4230,
+   "status": "cloned",
+   "url": "https://github.com/CUMoellerLab/Moeller_Opentrons_protocol_library"
+  }
+ ],
+ "doi_primary": "10.1186/s13059-022-02777-w",
+ "dois": [
+  "10.1186/s13059-022-02777-w"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "pipeline experiments.json; s5.2-s5.4, Figs 1-4; protocols in GitHub library",
+   "id": "exp1",
+   "liquid_handling": "mostly",
+   "title": "High-throughput isolate cultivation, automated DNA extraction, Hackflex library prep and whole-genome sequencing of Pan gut isolates"
+  },
+  {
+   "evidence": "pipeline experiments.json; s5.1, kit-based, not on OT-2",
+   "id": "exp2",
+   "liquid_handling": "little",
+   "title": "Metagenome sequencing of wild chimpanzee and bonobo fecal samples"
+  }
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 31,
+  "source": "europepmc:PMC9558970"
+ },
+ "journal": "Genome Biology",
+ "note": "rejected by sufficiency (leak guard); has .bats tests | PDF via PMC open-data S3 (publisher site shows bot check, not circumvented). Tests/*.bats (5 files: Extraction, Hackflex, Library_Prep, Misc, Quantification) only run opentrons_simulate on each protocol and assert exit status 0: simulation smoke tests, no output/volume assertions. robot_mentions 'Flex' is a regex false positive (substring 'flex').",
+ "open_access": true,
+ "origin": [
+  "other Claude session"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1892899,
+  "licence": "cc by",
+  "pages": 17,
+  "redistributable": "yes",
+  "sha256": "1f710adf0cd12645810ee20a8ee6f5321c11dffdd192f9d82f17b706c22cd878",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": true,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9558970.1/PMC9558970.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9558970.1/PMC9558970.1.pdf"
+ },
+ "pmcid": "PMC9558970",
+ "slug": "moeller-hackflex",
+ "title": "Moeller lab microbiome DNA extraction and Hackflex library prep",
+ "year": "2022"
+}

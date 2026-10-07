@@ -14,7 +14,7 @@ DOI = "10.1371/journal.pone.0246302"
 
 
 def test_list_and_convert_from_cache(tmp_path, monkeypatch, capsys):
-    out = tmp_path / "out" / DOI.replace("/", "_")
+    out = tmp_path / "out" / DOI.replace("/", "_") / "pipeline"
     out.mkdir(parents=True)
     shutil.copy(FIX / "paper.json", out / "paper.json")
     monkeypatch.setattr(llm, "CACHE_DIR", FIX / "llm_cache")
@@ -35,7 +35,7 @@ def test_list_and_convert_from_cache(tmp_path, monkeypatch, capsys):
 def test_convert_stops_on_reject(tmp_path, monkeypatch):
     from paper2protocol.models import Gap, Sufficiency
 
-    out = tmp_path / "out" / DOI.replace("/", "_")
+    out = tmp_path / "out" / DOI.replace("/", "_") / "pipeline"
     out.mkdir(parents=True)
     shutil.copy(FIX / "paper.json", out / "paper.json")
     monkeypatch.setattr(llm, "CACHE_DIR", FIX / "llm_cache")

@@ -1,0 +1,70 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the core workflow for the antibiotic-free LB baseline: plate prep, the 3 µL glycerol-culture droplet, 297 µL LB, 37 °C, 225 rpm, 20-min imaging and the G-to-OD conversion constants. The remaining gaps are minor or standard-practice defaults, such as the LB recipe, overnight duration and run length, and none of them undermines the measured outcome. My research was partial: the web-tool limit was reached after the first searches, so I could not fetch the Enzyscreen plate-cleaning/UV instructions or the full calibration page. The Enzyscreen specification pages were found only as search-result snippets, not fetched in full.",
+  "gaps": [
+    {
+      "detail": "Composition of 'Lucia Broth' (LB) and its sterilisation",
+      "why_needed": "The medium is used for the overnight cultures and the assay, and it sets the baseline growth.",
+      "status": "assumable",
+      "resolution": "Assume standard Luria-Bertani broth (10 g/L tryptone, 5 g/L yeast extract, 10 g/L NaCl), autoclaved, with no antibiotic. The paper calls it 'Lucia Broth', which is almost certainly a typo for Luria.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Overnight pre-culture details: how much glycerol stock was transferred, the deep-well plate format, shaking speed and duration",
+      "why_needed": "These determine the cell density in the frozen droplet and so the starting inoculum.",
+      "status": "assumable",
+      "resolution": "Inoculate 1 mL LB per well in a 96 deep-well plate from the glycerol-stock library, using a pin or replicator or a few µL. Grow about 16 h at 37 °C with shaking (about 200–250 rpm), sealed with a gas-permeable seal. The paper states only 1 mL LB, 37 °C, overnight and agitation. The effective seeding is about a 1:2 dilution of the overnight culture in glycerol, then 3 µL into 300 µL final volume, a ~1:200 dilution of the saturated culture.",
+      "source": "standard practice; the dilution factors are derived from s4"
+    },
+    {
+      "detail": "Handling of the frozen pre-inoculated plates before the assay (thawing, mixing)",
+      "why_needed": "The 3 µL frozen droplet must be resuspended when the LB is added.",
+      "status": "assumable",
+      "resolution": "Bring the plate out of -20 °C storage and add 297 µL LB per well, so the droplet thaws and dissolves in the medium. The paper does not describe a separate thaw or mix step; the robot dispensing and the Growth Profiler shaking at 225 rpm are the only agitation it describes. Seal with the CR1396b sandwich cover.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Assay run duration, which sets the window for AUC",
+      "why_needed": "AUC and growth rate depend on the time window analysed.",
+      "status": "assumable",
+      "resolution": "The paper gives only the 20-min imaging interval. Run until all wells reach stationary phase, about 24 h at 37 °C and 225 rpm, and apply the same window to all strains for AUC. Enzyscreen states the 96-half-deepwell plate is designed for about 300 µL culture volume at 225 rpm/50 mm orbit.",
+      "source": "standard practice; Enzyscreen https://www.enzyscreen.com/article/technical-specifications/"
+    },
+    {
+      "detail": "Blank wells used to calculate G_Blank, and the plate layout of 447 strains over 5 plates (wild-type and blank positions)",
+      "why_needed": "G_Blank is needed for the G-to-OD conversion, and the WT position is needed for Figure 2A.",
+      "status": "assumable",
+      "resolution": "Include uninoculated LB wells (or take G_Blank from the first image / the empty-LB value), and include WT wells in the library plates (the WT position is marked in Fig. 2). The library is derived from the Keio collection (refs 21, 22), but the exact layout is not given in the text. Use the manufacturer's software to compute G values.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Plate sterilisation/reuse between runs ('washing and UV in accordance with the manufacturer's instructions')",
+      "why_needed": "Reused plates must be free of contamination and residue, otherwise the baseline growth is affected.",
+      "status": "assumable",
+      "resolution": "The Enzyscreen instructions could not be retrieved in this session. Use fresh gamma-sterilised CR1496c plates (Enzyscreen lists them as sterilised by gamma irradiation), or wash reused plates thoroughly with water/detergent, rinse, dry, and UV-sterilise in a biosafety cabinet. The cycle time is not given in the paper.",
+      "source": "https://www.enzyscreen.com/product/polystyrene-transparent-square-96-half-deepwell-microplates-CR1496c/ ; standard practice"
+    },
+    {
+      "detail": "G-value to OD600 calibration ('in accordance with the manufacturer's instructions')",
+      "why_needed": "Needed to convert the Growth Profiler G values to OD600 for growth curves, rate and AUC.",
+      "status": "resolved",
+      "resolution": "The paper gives the fitted constants a = 0.0158 and b = 0.9854 in OD600 = a*(G - G_Blank)^b, so the standard curve need not be redone. Enzyscreen's calibration procedure, seen only in a search-result snippet, is to make a dilution series of a cell suspension (about OD 32 stock, diluted to OD 1.6) in wells of a plate and fit a power curve to the green values.",
+      "source": "s4; https://www.enzyscreen.com/strain-calibration/"
+    },
+    {
+      "detail": "Instrument settings",
+      "why_needed": "Temperature, shaking and imaging interval set the growth conditions.",
+      "status": "resolved",
+      "resolution": "Growth Profiler 960 at 37 °C and 225 rpm, with images every 20 min. Plates are CR1496c with CR1396b sandwich covers. Each well holds 300 µL, which is the manufacturer's recommended culture volume. Library in duplicate across the 10 plate positions.",
+      "source": "s4; https://www.enzyscreen.com/product/polystyrene-transparent-square-96-half-deepwell-microplates-CR1496c/"
+    },
+    {
+      "detail": "OT-2 liquid-handling parameters (aspirate/dispense speeds, tip handling, mixing)",
+      "why_needed": "Needed for accurate delivery of 3 µL of culture and 297 µL of LB.",
+      "status": "assumable",
+      "resolution": "Use a 20 µL multichannel pipette for the 3 µL culture-glycerol droplet and a 300 µL multichannel pipette for the 297 µL LB. Use default speeds, dispense the droplet at the well bottom, and use a fresh tip per transfer. The paper's scripts were deliberately not consulted.",
+      "source": "standard practice; s4"
+    }
+  ],
+  "retrieved_details": "From s4: overnight culture of the library in 1 mL LB in deep-well plates at 37 °C with agitation. Mix each overnight culture with 1 mL 50% glycerol. Dispense a 3 µL droplet of the mixture into the bottom of each well of a CR1496c polystyrene plate. Store at -20 °C for up to 3 weeks, or at -80 °C for longer. Start the assay by adding 297 µL LB (no antibiotic for the baseline) and sealing with a CR1396b sandwich cover. Run in the Growth Profiler 960 at 37 °C and 225 rpm, with images every 20 min. Five plates make up the library, run in duplicate. Convert G values with OD600 = 0.0158*(G - G_Blank)^0.9854. Fit growth with R Growthcurver to get r and AUC. Exclude a replicate with no growth when the other grows, as this was judged a missed inoculation. Enzyscreen facts: CR1496c is a 96-half-deepwell polystyrene plate, recommended culture volume 0.3 mL, gamma-sterilised (https://www.enzyscreen.com/product/polystyrene-transparent-square-96-half-deepwell-microplates-CR1496c/). Growth Profiler specs list 300 µL cultures at 50 mm/225 rpm for 96-half-deepwell plates (https://www.enzyscreen.com/article/technical-specifications/). CR1396b sandwich cover has 0.8 mm holes (https://www.enzyscreen.com/product/universal-sandwich-cover-for-96-well-mtps-stackable/). Enzyscreen strain-calibration page: dilution series of a cell suspension fitted with a three-term power curve (https://www.enzyscreen.com/strain-calibration/)."
+}

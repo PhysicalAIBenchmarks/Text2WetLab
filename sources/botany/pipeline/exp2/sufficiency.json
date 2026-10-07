@@ -1,0 +1,63 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the competent-cell preparation, plating, antibiotic and X-gal/IPTG details, and the Golden Gate master-mix composition. It defers the transformation steps (volumes, heat-shock program, recovery medium) to Supplementary Method S4, which I did not use. These and the Golden Gate cycling program are not given, but standard defaults are defensible and do not change what is measured (colonies per plate and blue fraction). I was unable to retrieve the full main-text Results and the Mix&Go comparison description because the web tool limit was reached.",
+  "gaps": [
+    {
+      "detail": "Golden Gate thermocycling program (digest/ligation cycles, cycle number, final digest and heat-inactivation step)",
+      "why_needed": "Assembly efficiency sets the blue (empty-vector) fraction and the number of white colonies. The Methods give only the ligase temperature (22°C for Thermo, 16°C for NEB), not the full program.",
+      "status": "assumable",
+      "resolution": "Use 30 cycles of 37°C for 3 min and 16°C (NEB ligase) or 22°C (Thermo ligase) for 4 min. Follow with 37°C for 5 min and 65°C for 5 min to inactivate the enzyme. The Thermo FastDigest Eco31I manual supports 37°C digestion (5 min is enough for plasmids) and 65°C for 5 min thermal inactivation. It does not give a cycling program.",
+      "source": "https://assets.fishersci.com/TFS-Assets/LSG/manuals/MAN0012440_FastDigest_Eco31I_50uL_UG.pdf ; standard practice (Engler et al. 2008/2014)"
+    },
+    {
+      "detail": "Concentration or amount of each MoClo part DNA (backbone, promoter, CDS, terminator), given only as 1 µL each; identity of the eight assemblies and of the L1/LM constructs",
+      "why_needed": "Part stoichiometry and amount affect assembly success and the blue fraction. The part identities are needed to reproduce the specific constructs.",
+      "status": "assumable",
+      "resolution": "Use roughly equimolar parts at about 20-40 fmol each (about 50-100 ng for a plasmid part). Any set of eight Plant MoClo L1/LM assemblies gives a valid test of transformation. The exact constructs are not needed to measure colony number and blue fraction.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Volume of competent cells per transformation (paper states only 50-100 µL stock aliquots and PCR-tube format)",
+      "why_needed": "Cell:DNA ratio and thermocycler heat-transfer in PCR tubes affect colony yield.",
+      "status": "assumable",
+      "resolution": "Use 50 µL of thawed competent cells (OD600 200-250 in 85 mM CaCl2/15% glycerol) per PCR tube, thawed on ice or a cold block.",
+      "source": "standard practice; s4.4 (aliquot size)"
+    },
+    {
+      "detail": "Volume of Golden Gate reaction added to the cells (the whole 10 µL reaction or an aliquot)",
+      "why_needed": "Sets DNA mass per transformation, and so colony counts. The paper reports about 30-160 colonies per 50 µL plated.",
+      "status": "assumable",
+      "resolution": "Add 2-5 µL of the unpurified 10 µL Golden Gate reaction to 50 µL cells and mix gently. This is an assumption; the paper does not state the volume.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Heat-shock conditions on the on-deck thermocycler: pre-chill on ice, temperature, duration, post-shock cooling, lid setting",
+      "why_needed": "Heat shock is the critical step for CaCl2-competent cell transformation. The paper only says the thermocycler 'heat shocks, cools' and aids recovery, with the details in Supplementary Method S4.",
+      "status": "assumable",
+      "resolution": "Incubate cells with DNA at 4°C for 20-30 min. Heat shock at 42°C for 30-45 s, then return to 4°C for 2 min. Zymo's own heat-shock/outgrowth FAQ for Mix&Go cells gives ice for 5-10 min, 42°C for 45 s, and 37°C for 60 min with shaking at 200-300 rpm. Use the thermocycler lid at the instrument default, or off.",
+      "source": "https://www.zymoresearch.com/products/mix-and-go-e-coli-transformation-kit (FAQ); standard practice"
+    },
+    {
+      "detail": "Recovery ('nutrient-rich') medium identity, volume, and incubation temperature",
+      "why_needed": "The medium and volume determine outgrowth and the number of cells plated. The paper states only about 1 h on-deck incubation, followed by plating of 50 µL.",
+      "status": "assumable",
+      "resolution": "Add 200-450 µL SOC (or low-salt LB) per tube, using about 9 volumes per volume of cells as in the Zymo FAQ (450 µL for 50 µL cells). Incubate at 37°C for 60 min (the paper's 'an hour', on-deck). Shake at 200-300 rpm if possible; an on-deck module may not allow shaking. Plate 50 µL from the recovered culture.",
+      "source": "s4.4 (1 h on-deck incubation, 50 µL plated); https://www.zymoresearch.com/products/mix-and-go-e-coli-transformation-kit (FAQ)"
+    },
+    {
+      "detail": "Mix&Go! (Zymo) comparison conditions (kit version, cell strain, DNA input, whether heat shock was omitted, plating volume)",
+      "why_needed": "The paper compares Shock&Go with the commercial kit without describing how the Mix&Go! cells were run.",
+      "status": "assumable",
+      "resolution": "Use the manufacturer's procedure. Make Mix&Go cells from the same strain (TOP10F') with the T3001/T3002 buffers. Aliquot 0.1-0.2 mL of cells, add DNA, and spread directly onto plates. There is no heat shock or outgrowth. Use the same DNA volume and plating as the Shock&Go arm for a fair comparison. The paper does not state these conditions.",
+      "source": "https://files.zymoresearch.com/protocols/_t3001_t3002_mix_go_e._coli_transformation_kit_buffer_set.pdf ; https://ardimed.com/storage/media/216/t30011.PDF"
+    },
+    {
+      "detail": "Plate pre-warming and colony counting/blue-white scoring (incubation after 37°C overnight, counting criteria)",
+      "why_needed": "Blue fraction is measured by scoring blue vs white colonies.",
+      "status": "assumable",
+      "resolution": "Pre-warm plates to 37°C. Spread the 50 µL culture together with 10 µL X-gal (20 mg/mL in DMSO) and 30 µL 100 mM IPTG on 60 mm low-salt LB agar plates. Incubate overnight at 37°C. Count blue and white colonies, using a short 4°C incubation if blue colour is faint. Report blue % = blue/total.",
+      "source": "s4.4; standard practice"
+    }
+  ],
+  "retrieved_details": "From the paper itself: (s4.3) Golden Gate 10 µL reaction = 1 µL each of 4 MoClo parts (backbone, promoter, CDS, terminator) + 6 µL master mix (1 µL 10 mM ATP, 1 µL 10× FastDigest buffer, 0.5 µL FastDigest Eco31I or BpiI, 0.5 µL T4 ligase, 3 µL water). Thermo T4 ligase EL0012 is run at 22°C and NEB M0202 at 16°C. (s4.4) TOP10F' competent cells were prepared in-house. Culture was grown in low-salt LB at 37°C and 250 rpm to OD600 0.4, then chilled on ice for 30 min. Cells were washed in 0.1 M MgCl2, then 0.1 M CaCl2 (≥20 min on ice), and finally resuspended in 85 mM CaCl2 with 15% glycerol to OD600 200-250. Aliquots of 50-100 µL were snap-frozen and stored at −80°C. Efficiency was about 10^6 colonies/µg pUC19. After OT-2 outgrowth (about 1 h on-deck incubation, per the paper's Results text in the bioRxiv PDF), 50 µL was plated on 60 mm low-salt LB agar plates with 50 µg/mL carbenicillin (L1) or spectinomycin (LM). For blue/white screening, 10 µL X-gal (20 mg/mL in DMSO) and 30 µL IPTG (100 mM in water) were spread per plate. Plates were incubated overnight at 37°C. Per the Results text, the on-deck thermocycler performs heat shock, cooling and recovery-medium addition; tubes are capped manually. Eight assemblies of 4-9 kb gave about 30-160 colonies per 50 µL plated. Shock&Go was reported more efficient than the commercial Mix&Go kit (https://www.biorxiv.org/content/biorxiv/early/2025/08/22/2025.08.21.671538.full.pdf, search snippet). Supplementary Method S4 was not used. External sources: Thermo FastDigest Eco31I manual (https://assets.fishersci.com/TFS-Assets/LSG/manuals/MAN0012440_FastDigest_Eco31I_50uL_UG.pdf): 37°C, 5 min digestion, 65°C 5 min inactivation, 0.5 mM ATP needed for T4 ligase. Zymo Mix&Go manual (https://files.zymoresearch.com/protocols/_t3001_t3002_mix_go_e._coli_transformation_kit_buffer_set.pdf): grow cells to OD600 0.4-0.6 in ZymoBroth/SOB, ice for 10 min, pellet at 1,600-2,500 ×g for 10 min, wash in 1X Wash Buffer, resuspend in 1X Competent Buffer, aliquot 0.1-0.2 mL, add DNA and spread directly (no heat shock). Zymo FAQ (https://www.zymoresearch.com/products/mix-and-go-e-coli-transformation-kit): optional heat-shock/outgrowth is ice for 5-10 min, 42°C for 45 s, SOC 450 µL (for 50 µL cells), 37°C for 60 min at 200-300 rpm, then plate on pre-warmed plates."
+}

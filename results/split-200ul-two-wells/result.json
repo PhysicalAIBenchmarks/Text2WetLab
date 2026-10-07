@@ -1,0 +1,43 @@
+{
+ "task": "split-200ul-two-wells",
+ "grader": "deterministic end-state checker",
+ "oracle": [],
+ "trials": [
+  {
+   "job": "agent-sonnet-5-5-split-200ul-two-wells",
+   "reward": 1.0,
+   "sim_pass": 1.0,
+   "cost_usd": 0.0276,
+   "failed": [],
+   "protocol": "/Users/nialloleary/Desktop/Text2WetLab-integration/results/harbor-jobs/agent-sonnet-5-5-split-200ul-two-wells/harbor__sDY6BVF/verifier/protocol.py"
+  }
+ ],
+ "adversarial": {
+  "control_reference_solution": 1.0,
+  "control_api_2_14": 1.0,
+  "control_api_2_15": 1.0,
+  "empty_protocol": 0.0,
+  "drop_last_transfer": 0.0,
+  "halve_volumes": 0.0,
+  "double_volumes": 0.0,
+  "no_labels": 0.0,
+  "swap_two_labels": null,
+  "reservoir_labelled_as_plate_kind": 0.125,
+  "wrong_slot": 0.25,
+  "duplicate_label": 0.0,
+  "finish_holding_a_tip": 0.25,
+  "extra_liquid_into_target": 0.0,
+  "share_one_tip_across_sources": null,
+  "comment_spoof_only": 0.0,
+  "forged_result_then_systemexit": 0.0,
+  "import_os_and_exit": 0.0,
+  "read_the_answer_key": 0.0,
+  "patch_the_log_parser": 0.0,
+  "dunder_escape": 0.0
+ },
+ "best_trial": {
+  "job": "agent-sonnet-5-5-split-200ul-two-wells",
+  "reward": 1.0,
+  "cost_usd": 0.0276
+ }
+}

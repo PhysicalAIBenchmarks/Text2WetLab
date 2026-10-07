@@ -1,0 +1,48 @@
+{
+  "verdict": "major_issues",
+  "summary": "Most volumes and calculations check out: bead mix 9328/352 µL, master mix 233.75/46.75/467.5 µL for 34 reactions, positive control dilution to 25 copies/µL, and the 20 µL mix + 5 µL eluate layout. The main defect is a bench-order error in circuit 1: the elution plate is filled after the KingFisher run it is needed for. Circuit 1 is also under-specified, since the bead master mix is never prepared and the wash plates are not defined. There are also some minor practical concerns about well fill and mixing.",
+  "issues": [
+    {
+      "step": 9,
+      "severity": "major",
+      "issue": "The elution plate for circuit 1 is filled after the KingFisher run in step 8. The note itself says it must be done before the run. The step 8 run needs a filled elution plate, and step 8 also seals and stores the eluate, so an empty plate would be run.",
+      "suggestion": "Move the elution buffer dispense to before step 8, ideally right after step 7, so that all plates are ready before the manual KingFisher load and run."
+    },
+    {
+      "step": 8,
+      "severity": "major",
+      "issue": "The circuit 1 wash plates are not defined or filled. The step only says to prepare them per the kit manual, and there is no explicit liquid-handling step for wash 1, wash 2 or the tip comb plate. Circuit 1 therefore cannot be executed as written, and the 50 µL elution volume in step 9 is an unverified guess.",
+      "suggestion": "Add explicit wash plate fill steps with volumes taken from the MagMAX Pathogen RNA/DNA high-volume KingFisher Flex protocol. Verify the elution volume against that manual, or flag both clearly as unverified inputs required before running."
+    },
+    {
+      "step": 6,
+      "severity": "minor",
+      "issue": "The MagMAX Pathogen Bead Master Mix is listed as a stock tube 'prepared per kit manual', but no step prepares it. The tube volume is not scaled to 16 wells × 260 µL plus overage (≈4.2 mL).",
+      "suggestion": "Add a preparation step (or a MANUAL step) for the bead master mix, with volumes scaled to 16 wells plus overage and checked against the kit manual. Remix the beads before dispensing."
+    },
+    {
+      "step": 1,
+      "severity": "minor",
+      "issue": "Adding 950 µL of lysis reagent to 950 µL of sample gives 1900 µL in a ~2 mL deep-well. This leaves almost no headspace, and pipette mixing with 500 µL in step 2 risks overflow or aerosol. Only 860 µL per well is needed, so such a large volume is unnecessary.",
+      "suggestion": "Use smaller equal aliquots, for example 500 µL sample + 500 µL Cobas omni Lysis Reagent, which still exceeds the 860 µL needed. Alternatively, keep the samples in their original tubes. Keep the 1:1 ratio."
+    },
+    {
+      "step": 11,
+      "severity": "minor",
+      "issue": "The viscous bead mix (~9.7 mL) is 'mixed 5 times' with no mix volume given, which is inadequate to homogenize and resuspend magnetic beads. The beads settle while the mix waits for step 19, and the note says to remix periodically but no remix step exists.",
+      "suggestion": "Vortex or invert the Binding Beads before use. Specify the mix volume and repetitions, or mix manually. Add a re-mix of mvp_bead_mix_tube immediately before step 19 and periodically during the dispense."
+    },
+    {
+      "step": 13,
+      "severity": "minor",
+      "issue": "No mixing is specified after combining ethanol and water to make 80% ethanol, so the solution may not be homogeneous when dispensed in step 15. The 20 mL total gives little margin over the 16 mL needed, given evaporation and dead volume.",
+      "suggestion": "Add a mix step (or manual inversion) after step 13 and consider a modest overage."
+    },
+    {
+      "step": 3,
+      "severity": "minor",
+      "issue": "The swab_lysate_plate is sealed in step 3 but there is no unsealing step before steps 4 and 17. The sealed eluate plates in steps 8 and 21 likewise have no unsealing step before the transfers in steps 31 and 32.",
+      "suggestion": "Add explicit unseal or pierce instructions before the transfers."
+    }
+  ]
+}

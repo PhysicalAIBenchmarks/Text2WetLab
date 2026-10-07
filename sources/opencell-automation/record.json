@@ -1,0 +1,111 @@
+{
+  "code": [
+    {
+      "api_levels": [],
+      "archived": false,
+      "cache_path": "~/.cache/text2wetlab-ingest/code/opencell-automation/czbiohub-sf__2021-opencell-microscopy-automation",
+      "commit": "04887a795f3be4c245a83af86b7cf7b639bcc20a",
+      "default_branch": "master",
+      "host": "github.com",
+      "licence": "unclear",
+      "opentrons_py_files": 0,
+      "py_files": 29,
+      "redistributable": "no",
+      "repo": "czbiohub-sf/2021-opencell-microscopy-automation",
+      "robot_mentions": [],
+      "size_kb": 31810,
+      "status": "cloned",
+      "url": "https://github.com/czbiohub-sf/2021-opencell-microscopy-automation"
+    },
+    {
+      "api_levels": [],
+      "archived": false,
+      "cache_path": "~/.cache/text2wetlab-ingest/code/opencell-automation/czbiohub-sf__2024-accs-pub",
+      "commit": "d3aeae8ba04b475de6c8dc12429f121d1f635c52",
+      "default_branch": "main",
+      "host": "github.com",
+      "licence": "none",
+      "opentrons_py_files": 0,
+      "py_files": 23,
+      "redistributable": "no",
+      "repo": "czbiohub-sf/2024-accs-pub",
+      "robot_mentions": [],
+      "size_kb": 193620,
+      "status": "cloned",
+      "url": "https://github.com/czbiohub-sf/2024-accs-pub"
+    }
+  ],
+  "doi_primary": "10.1093/pnasnexus/pgaf385",
+  "dois": [
+    "10.1093/pnasnexus/pgaf385"
+  ],
+  "fulltext": {
+    "legends": 5,
+    "sections": 46,
+    "source": "europepmc:PMC12750449"
+  },
+  "journal": "",
+  "note": "PDF is the bioRxiv preprint, not the published version. Code: two GitHub repos named (2024-accs-pub has the ACCS code; 2021-opencell-microscopy-automation). opentrons_py_files=0 by the scanner even though ACCS wraps the Opentrons API; check manually",
+  "open_access": true,
+  "origin": [
+    "Amass BiomedCore search (2026-10-03)"
+  ],
+  "paper_licence": "cc by",
+  "pdf": {
+    "bytes": 5537852,
+    "licence": "cc by-nc-nd (bioRxiv preprint v1; published version is CC BY)",
+    "pages": 12,
+    "redistributable": "no",
+    "sha256": "e1eaf3cc6002f5471ef52b8ca9160f54ba05d4d406befc5b320eed202d4a3892",
+    "status": "downloaded",
+    "tried": [
+      {
+        "http": 200,
+        "manual": true,
+        "ok": true,
+        "url": "https://www.biorxiv.org/content/10.1101/2024.12.27.629034v1.full.pdf"
+      },
+      {
+        "note": "Published PDF (OUP, PMC, EuropePMC) 403 bot-blocked; used bioRxiv preprint 10.1101/2024.12.27.629034 (licence cc_by_nc_nd per bioRxiv API)",
+        "ok": true
+      }
+    ],
+    "url": "https://www.biorxiv.org/content/10.1101/2024.12.27.629034v1.full.pdf"
+  },
+  "pmcid": "PMC12750449",
+  "slug": "opencell-automation",
+  "title": "Open-source cell culture automation system with integrated cell counting for passaging microplate cultures",
+  "year": "2025",
+  "experiments_hint": [
+    {
+      "id": "accs_cci_normalization_passaging",
+      "title": "ACCS automated passaging of HEK293T in 96-well plates with CCI cell counting and density-normalised reseeding (cci_normalization)",
+      "liquid_handling": "mostly",
+      "evidence": "Results \"Operator workflow\"; Methods \"ACCS automated passaging protocol\"; Fig. 1, Fig. 3"
+    },
+    {
+      "id": "cci_counting_performance_dilution_series",
+      "title": "CCI counting characterisation: dilution series of HEK293T measured by CCI vs flow cytometry",
+      "liquid_handling": "partly",
+      "evidence": "Methods \"Procedure for CCI counting performance measurements\"; Fig. 2A"
+    },
+    {
+      "id": "challenge_plate_flow_cytometry_seeding_test",
+      "title": "Seeding density control from spatially randomised Challenge Plate, output counted by flow cytometry (12.5k cells/well)",
+      "liquid_handling": "mostly",
+      "evidence": "Methods \"Challenge plate\", \"Procedure for flow cytometry-based seeding accuracy tests\"; Fig. 2B"
+    },
+    {
+      "id": "atp_assay_manual_vs_accs_seeding",
+      "title": "Comparative seeding accuracy ACCS vs human by ATP luminescence assay",
+      "liquid_handling": "mostly",
+      "evidence": "Methods \"Procedure for comparative seeding accuracy tests by ATP assay\""
+    },
+    {
+      "id": "glass_bottom_imaging_plate_seeding",
+      "title": "Seeding fibronectin-coated glass-bottom plates for OpenCell imaging pipeline",
+      "liquid_handling": "partly",
+      "evidence": "Results \"Outcomes in a practical scenario\"; Methods \"Live cell imaging preparation\""
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "verdict": "reject",
+  "summary": "The paper names the reagents (Phire Green Hot Start II master mix, primer pairs PS3/PS4 and PS5/PS6, KT2440 and pBLAM1-2 controls) and gives the plate layout. It does not give the primer sequences (Table 1 is not in the text and I could not retrieve the SEVA standard sequences) or the template amount, primer concentration, annealing temperature or cycle number. The vendor manual supplies generic Phire defaults, but the annealing temperature depends on the primer sequences, so the primer gap blocks a reliable run.",
+  "gaps": [
+    {
+      "detail": "Sequences of primers PS3, PS4, PS5 and PS6 (Table 1 is not in the provided text)",
+      "why_needed": "The primers must be ordered and their Tm known to set the annealing temperature. Without them the PCR cannot be performed or its band sizes verified.",
+      "status": "missing",
+      "resolution": "The PS3/PS4/PS5/PS6 sequences were not retrieved. The cited references (pBLAM1-x, Martínez-García 2014) give only primer names and expected amplicon sizes, and their sequences are in tables or supplements (e.g. pBLAM1-x Table S3). A search for the SEVA sequences did not return them, and further searching stopped when the tool limit was reached.",
+      "source": ""
+    },
+    {
+      "detail": "Colony-PCR template preparation: volume or amount of cell material per reaction, volume of water in the template plate, and how long cells are held in water",
+      "why_needed": "Colony PCR is sensitive to excess material. The paper says too much colony material inhibits the reaction and gives no or faint bands. Template dose affects band intensity and false negatives.",
+      "status": "assumable",
+      "resolution": "Cells from the counter-selected wells are transferred into a plate of molecular-grade water, and that water is used as template. Assume about 1 µL of cell suspension per 20 µL reaction. Reduce it if the bands are faint, as the paper advises. The water volume per well is not given. Assume about 50–100 µL, to be matched to the OT-2 variables file.",
+      "source": "standard practice; s2.3 and s2.4"
+    },
+    {
+      "detail": "PCR reaction volume, master mix and primer amounts, and water",
+      "why_needed": "Needed to set up the reactions on the liquid handler.",
+      "status": "resolved",
+      "resolution": "Use 2X Phire Hot Start II master mix (Phire Green version for control PCRs). For a 20 µL reaction: 10 µL 2X master mix, primers to 0.5 µM each (range 0.2–1.0 µM), template, and water to 20 µL. The master mix gives 1.5 mM MgCl2 and 200 µM of each dNTP. The paper does not state the reaction volume it actually used, so 20 µL is a manual default.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0013122_Phire_Green_HotStartII_PCR_MasterMix_1000x50_UG.pdf"
+    },
+    {
+      "detail": "Thermocycler program for colony PCR (denaturation, annealing temperature, extension, cycle number)",
+      "why_needed": "Needed for specific amplification of the 2964 bp (or 2494 bp) and 665 bp products from the plasmid backbone.",
+      "status": "assumable",
+      "resolution": "From the Phire manual: initial denaturation 98 °C for 30 s (assume 2–5 min for colony lysis), then 25–35 cycles (assume 30–35) of 98 °C for 5 s, annealing, and 72 °C extension at 10–15 s/kb. That is about 30–45 s for the ~3 kb PS3/PS4 product and 10 s for the 665 bp PS5/PS6 product. Anneal 5 s at Tm+3 °C of the lower-Tm primer if the primers are longer than 20 nt, or at the lower Tm if 20 nt or shorter. Finish with 72 °C for 1 min, then hold at 4 °C. The exact annealing temperature cannot be set until the primer sequences are known. A gradient is advised.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0013122_Phire_Green_HotStartII_PCR_MasterMix_1000x50_UG.pdf; standard practice"
+    },
+    {
+      "detail": "Expected size of the PS3/PS4 positive-control band",
+      "why_needed": "Used to judge whether a band indicates spurious backbone integration.",
+      "status": "assumable",
+      "resolution": "The text says 2964 bp but the Fig. 2 legend says 2494 bp for PS3/PS4. PS5/PS6 is 665 bp in both places, and 665 bp is confirmed by Martínez-García 2014. The 2964 vs 2494 discrepancy cannot be resolved without the plasmid map. Rely on the pBLAM1-2 positive-control lane run on the same gel to define the band.",
+      "source": "s2.3, Fig. 2 legend; https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2014.00046/full"
+    },
+    {
+      "detail": "Agarose gel electrophoresis conditions (agarose %, buffer, voltage, stain, volume loaded)",
+      "why_needed": "Needed to resolve and read the bands. The paper states only that agarose gels were run with GeneRuler 1 kb Plus ladder.",
+      "status": "assumable",
+      "resolution": "Assume 1% agarose in TAE with a DNA stain, run at about 100 V for 30–45 min, and load about 5 µL of product plus ladder. Phire Green master mix already contains loading dye.",
+      "source": "standard practice; s2.4 (Fig. 2, GeneRuler 1kb plus)"
+    },
+    {
+      "detail": "Preparation of the transposon variants (conjugation, plating, Step 1 colony picking), growth and counter-selection before the PCR",
+      "why_needed": "Defines the template cells for the PCRs.",
+      "status": "resolved",
+      "resolution": "Conjugation is a triparental mating of E. coli PIR2 carrying the pBLAM1-x plasmid, helper HB101/pRK600 and recipient KT2440. The cells are washed in 10 mM MgSO4 and mixed 1:1:1 by OD600. They are pelleted at 5000 g for 5 min, resuspended in 10–20 µL 10 mM MgSO4 and spotted on an LB agar plate. The plate is incubated at 30 °C for 5 h. The whole cell patch is then plated, undiluted or at 10^-2, on 145 mm M9-citrate agar plus the cargo antibiotic (kanamycin). Colonies appear by about 48 h. Colonies are picked into a 96-well plate of M9-citrate plus kanamycin 50 µg/mL and grown overnight at 30 °C with shaking. The plate is then replicated into M9-citrate plus ampicillin 500 µg/mL and LB plus kanamycin, grown overnight, and wells growing on kanamycin but not ampicillin are selected. The picking step is manual in the paper, and the volume of culture used to inoculate the replica plates is not given.",
+      "source": "https://oa.upm.es/83681/1/10090590.pdf; s2.2; s2.4"
+    },
+    {
+      "detail": "Control layout",
+      "why_needed": "Needed to interpret spurious-integration bands.",
+      "status": "resolved",
+      "resolution": "Wells E12 and G12 hold wild-type KT2440 (negative control) and wells F12 and H12 hold pBLAM1-2 plasmid (positive control) for the PS3/PS4 and PS5/PS6 reactions. One plate holds 46 variants plus controls for both primer pairs.",
+      "source": "s2.4"
+    }
+  ],
+  "retrieved_details": "1) Phire Hot Start II PCR Master Mix manual (https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0013122_Phire_Green_HotStartII_PCR_MasterMix_1000x50_UG.pdf). A 20 µL reaction is 10 µL 2X master mix, 0.5 µM of each primer (range 0.2–1.0 µM), template, and water to volume. The master mix supplies 1.5 mM MgCl2 and 200 µM of each dNTP. Cycling: 98 °C for 30 s; 25–35 cycles of 98 °C for 5 s, annealing for 5 s (3-step) and 72 °C at 10–15 s/kb; then 72 °C for 1 min and a 4 °C hold. Annealing is Tm+3 °C of the lower-Tm primer for primers longer than 20 nt, otherwise equal to the lower Tm. 2) pBLAM1-x paper (https://oa.upm.es/83681/1/10090590.pdf): triparental mating with E. coli PIR2 donor, HB101/pRK600 helper and KT2440 recipient at 1:1:1 by OD600. Cells are washed in 10 mM MgSO4, pelleted at 5000 g for 5 min, resuspended in 10–20 µL and spotted on LB agar at 30 °C for 5 h, then plated on 145 mm M9-citrate agar plus the cargo antibiotic; colonies appear by 48 h. Primer sequences are in its Table S3, which was not retrieved. 3) Martínez-García 2014 (https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2014.00046/full): colony PCR uses a single colony from a fresh LB plate put straight into the reaction. PS5-PS4 gives a 225 bp amplicon in oriT and PS5-PS6 gives 665 bp, covering oriT and the R6K origin. Ampicillin 500 µg/mL on LB is an alternative test for backbone integration. The paper's text says the PS3/PS4 positive band is 2964 bp, while its Fig. 2 legend says 2494 bp, so verify against the plasmid map. 4) Paper-stated details: M9-citrate is 1X M9 minimal salts, 2 mM MgSO4 and 20 mM trisodium citrate. Kanamycin is 50 µg/mL and ampicillin 500 µg/mL. Plates are grown at 30 °C with shaking. Controls are E12/G12 for KT2440 and F12/H12 for the pBLAM1-2 plasmid. Gels use GeneRuler 1 kb Plus."
+}

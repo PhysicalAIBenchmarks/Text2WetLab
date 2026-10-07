@@ -1,0 +1,153 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "search",
+      "value": ""
+    },
+    {
+      "kind": "search",
+      "value": ""
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4211546/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10306358/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/16157212/"
+    },
+    {
+      "kind": "search",
+      "value": "Das Kitten improved arbitrary primed PCR transposon insertion sites ARB6 ARB2"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/article/10.1186/1471-2180-11-38"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/16157212/"
+    },
+    {
+      "kind": "result",
+      "value": "https://academic.oup.com/synbio/article/8/1/ysad012/7204260"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/science/article/abs/pii/S0167701205000515"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/49856422_PBAM1_An_all-synthetic_genetic_tool_for_analysis_and_construction_of_complex_bacterial_phenotypes"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.wikidata.org/wiki/Q44913528"
+    },
+    {
+      "kind": "result",
+      "value": "https://currentprotocols.onlinelibrary.wiley.com/doi/10.1002/cpmb.38"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2024.11.07.622458v1.full.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8329163"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7943125"
+    },
+    {
+      "kind": "search",
+      "value": "Das Noe Paik Kitten 2005 improved arbitrary primed PCR method rapid characterization transposon insertion sites J Microbiol Methods"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/protocol/10.1007/978-1-4939-0473-0_39"
+    },
+    {
+      "kind": "result",
+      "value": "https://experiments.springernature.com/articles/10.1007/978-1-4939-0473-0_39"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.microbiologyresearch.org/content/journal/micro/10.1099/mic.0.066068-0"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/protocol/10.1007/978-1-0716-2445-6_10"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/protocol/10.1007/978-1-4939-6472-7_18"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/article/10.1007/s00705-014-2247-4"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.asm.org/doi/abs/10.1128/aac.00851-20"
+    },
+    {
+      "kind": "result",
+      "value": "https://currentprotocols.onlinelibrary.wiley.com/doi/10.1002/cpmb.38"
+    },
+    {
+      "kind": "result",
+      "value": "https://onlinelibrary.wiley.com/doi/10.1111/apm.12910"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.microbiologyresearch.org/content/journal/micro/10.1099/mic.0.051284-0"
+    },
+    {
+      "kind": "search",
+      "value": "New transposon tools tailored for metabolic engineering of Gram-negative microbial cell factories arbitrary PCR ARB6 ARB2 methods"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2014.00046/full"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/268232219_New_Transposon_Tools_Tailored_for_Metabolic_Engineering_of_Gram-Negative_Microbial_Cell_Factories"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/protocol/10.1007/978-1-4939-6472-7_18"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.osti.gov/etdeweb/biblio/22688016"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2024.11.07.622458v1.full.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://academic.oup.com/synbio/article/8/1/ysad012/7204260?login=false"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4211546/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12907669/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13231010/"
+    }
+  ]
+}

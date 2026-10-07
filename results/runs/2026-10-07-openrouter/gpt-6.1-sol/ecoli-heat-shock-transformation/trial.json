@@ -1,0 +1,28 @@
+{
+ "task": "ecoli-heat-shock-transformation",
+ "model": "openai/gpt-6.1-sol",
+ "agent": "claude-code",
+ "via": "openrouter",
+ "rewards": {
+  "reward": 1.0,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 1.0,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_task": 1.0,
+  "rubric_dna_addition": 1.0,
+  "rubric_heat_shock": 1.0,
+  "rubric_soc_recovery": 1.0
+ },
+ "exception": null,
+ "cost_usd": 0.14921825,
+ "input_tokens": 56632,
+ "output_tokens": 995,
+ "started_at": "2026-10-07T13:44:30.334245Z",
+ "finished_at": "2026-10-07T13:46:00.368630Z"
+}

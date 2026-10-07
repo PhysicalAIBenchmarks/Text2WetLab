@@ -1,0 +1,58 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/auto-qpcr/neuroeddu__Auto-qPCR",
+   "commit": "d881ebd01667766882f90de850bfc26d93c54e27",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "unclear",
+   "opentrons_py_files": 0,
+   "py_files": 22,
+   "redistributable": "no",
+   "repo": "neuroeddu/Auto-qPCR",
+   "robot_mentions": [],
+   "size_kb": 218146,
+   "status": "cloned",
+   "url": "https://github.com/neuroeddu/Auto-qPCR"
+  }
+ ],
+ "doi_primary": "10.1038/s41598-021-99727-6",
+ "dois": [
+  "10.1038/s41598-021-99727-6"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 31,
+  "source": "europepmc:PMC8556264"
+ },
+ "journal": "",
+ "note": "QuantStudio data analysis app",
+ "open_access": true,
+ "origin": [
+  "L_other (non-Opentrons) candidates, 2026-10-04"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2512032,
+  "licence": "cc by",
+  "pages": 14,
+  "redistributable": "yes",
+  "sha256": "9c3023beb2162339cf5fa10389b0c6197efbba4c2715e2bf48d21b16d62a1968",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s41598-021-99727-6.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s41598-021-99727-6.pdf"
+ },
+ "pmcid": "PMC8556264",
+ "slug": "auto-qpcr",
+ "title": "Auto-qPCR: a python-based web app for automated and reproducible analysis of qPCR data",
+ "year": "2021"
+}

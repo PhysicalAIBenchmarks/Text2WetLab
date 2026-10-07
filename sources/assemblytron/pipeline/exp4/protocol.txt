@@ -1,0 +1,87 @@
+AQUA-style homology-dependent assembly of four chromoprotein plasmids from separate PCRs (AssemblyTron, Fig. 5)
+
+Containers:
+- pcr_plate: 96-well plate — Thermocycler-compatible plate for 16 separate 25 µL fragment PCRs (rows A-D = tsPurple, YukonOFP, aeBlue, fuGFP constructs; columns 1-4 = fragments 1-4); later receives DpnI mix [assumed]
+- primer_plate: 96-well plate — Pre-mixed forward+reverse primer pairs (1 µM each) for the 16 fragments, same well layout as pcr_plate (A1:D4) [assumed]
+- pool_plate: 96-well plate — Pooled DpnI-treated fragments, one well per construct (A1 tsPurple, B1 Yukon, C1 aeBlue, D1 fuGFP) [assumed]
+- eluate_plate: 96-well plate — Column-purified pooled fragments eluted in 10 µL water (A1:D1, one per construct) [assumed]
+- transform_plate: 96-well plate — Chilled plate holding TOP10 competent cells for four transformations (A1:D1), used for transformation and recovery [assumed]
+- water: 15 mL tube — Molecular grade water [assumed]
+- q5_buffer: 1.5 mL tube — 5X Q5 reaction buffer [assumed]
+- dntp: 1.5 mL tube — 10 mM dNTP mix [assumed]
+- q5_pol: 1.5 mL tube — Q5 High-Fidelity DNA Polymerase (2 U/µL) [assumed]
+- rcutsmart: 1.5 mL tube — rCutSmart buffer (NEB) [assumed]
+- dpni: 1.5 mL tube — DpnI (NEB), 20 U/µL [assumed]
+- tmpl_tsPurple: 1.5 mL tube — Linearized pIDMv5K-J23100-tsPurple-B1006, 0.25 ng/µL [assumed]
+- tmpl_Yukon: 1.5 mL tube — Linearized pIDMv5K-J23100-YukonOFP-B1006, 0.25 ng/µL [assumed]
+- tmpl_aeBlue: 1.5 mL tube — Linearized pIDMv5K-J23100-aeBlue-B1006, 0.25 ng/µL (backbone source and aeBlue template) [assumed]
+- tmpl_fuGFP: 1.5 mL tube — Linearized pIDMv5K-J23100-fuGFP-B1006, 0.25 ng/µL [assumed]
+- pcr_mm: 1.5 mL tube — PCR master mix (water, Q5 buffer, dNTP, Q5 polymerase) for 18 reactions [assumed]
+- dpni_mix: 1.5 mL tube — DpnI digestion mix (water, rCutSmart, DpnI) for 18 reactions [assumed]
+- lb_dextrose: reservoir — LB + 0.2% (w/v) dextrose recovery medium
+
+Starting contents:
+- water: stock molecular grade water [assumed]
+- q5_buffer: stock 5X Q5 reaction buffer [assumed]
+- dntp: stock 10 mM dNTP mix [assumed]
+- q5_pol: stock Q5 High-Fidelity DNA Polymerase [assumed]
+- rcutsmart: stock rCutSmart buffer
+- dpni: stock DpnI [assumed]
+- primer_plate wells A1:D4: 20 µL fwd+rev primer pair mix, 1 µM each (j5-designed, ~32 bp terminal homology between adjacent fragments) [assumed]
+- tmpl_tsPurple: stock linearized tsPurple template plasmid, 0.25 ng/µL [assumed]
+- tmpl_Yukon: stock linearized YukonOFP template plasmid, 0.25 ng/µL [assumed]
+- tmpl_aeBlue: stock linearized aeBlue template plasmid, 0.25 ng/µL [assumed]
+- tmpl_fuGFP: stock linearized fuGFP template plasmid, 0.25 ng/µL [assumed]
+- transform_plate wells A1:D1: 50 µL TOP10 chemically competent cells (Hanahan method, 8.47 × 10^8 CFU/µg pUC19), kept on ice
+- lb_dextrose: stock LB + 0.2% (w/v) dextrose
+
+Steps:
+1. Transfer 265.5 µL of molecular grade water from water to pcr_mm. Note: 14.75 µL per reaction × 18 (16 + 2 overage) [assumed]
+2. Transfer 90 µL of 5X Q5 reaction buffer from q5_buffer to pcr_mm. Note: 5 µL per reaction × 18 (1X final) [assumed]
+3. Transfer 9 µL of 10 mM dNTP mix from dntp to pcr_mm. Note: 0.5 µL per reaction × 18 (200 µM final) [assumed]
+4. Transfer 4.5 µL of Q5 High-Fidelity DNA Polymerase from q5_pol to pcr_mm. Note: 0.25 µL per reaction × 18 [assumed]
+5. Mix pcr_mm by pipetting 100 µL up and down 5 times. Note: Mix master mix gently [assumed]
+6. Transfer 20.5 µL of PCR master mix from pcr_mm to pcr_plate wells A1:D4 (each well). Note: Separate PCR for each of 16 fragments [assumed]
+7. Transfer 2.5 µL of primer pair mix (1 µM each) from primer_plate wells A1:D4 to pcr_plate wells A1:D4 (each well). Note: 2.5 µL of 1 µM each in 25 µL gives 0.1 µM each primer [assumed]
+8. Transfer 2 µL of linearized aeBlue template (backbone fragment 1 for all four constructs) from tmpl_aeBlue to pcr_plate wells A1, B1, C1, D1 (each well). Note: 2 µL of 0.25 ng/µL = 0.5 ng [assumed]
+9. Transfer 2 µL of linearized tsPurple template from tmpl_tsPurple to pcr_plate wells A2:A4 (each well). Note: Fragments 2-4 of tsPurple construct [assumed]
+10. Transfer 2 µL of linearized YukonOFP template from tmpl_Yukon to pcr_plate wells B2:B4 (each well). Note: Fragments 2-4 of Yukon construct [assumed]
+11. Transfer 2 µL of linearized aeBlue template from tmpl_aeBlue to pcr_plate wells C2:C4 (each well). Note: Fragments 2-4 of aeBlue construct [assumed]
+12. Transfer 2 µL of linearized fuGFP template from tmpl_fuGFP to pcr_plate wells D2:D4 (each well). Note: Fragments 2-4 of fuGFP construct [assumed]
+13. Mix pcr_plate wells A1:D4 by pipetting 15 µL up and down 3 times. Note: Mix each PCR [assumed]
+14. MANUAL: Seal pcr_plate and move manually to a Bio-Rad C100 gradient thermocycler. Run: 98°C 30 s; 34 cycles of 98°C 10 s, annealing 30 s at the per-fragment temperature from the optimal linear gradient (each well/tube assigned the gradient temperature nearest its primer pair's optimal Ta), 72°C extension at 30 s/kb of amplicon (minimum ~15-30 s); final 72°C 5 min; hold 4°C. Unseal and return to the robot deck. Note: Q5 with 34 cycles assumed; PCRs were manually transferred to the thermocycler [assumed]
+15. Transfer 342 µL of molecular grade water from water to dpni_mix. Note: 19 µL × 18 [assumed]
+16. Transfer 90 µL of rCutSmart buffer from rcutsmart to dpni_mix. Note: 5 µL × 18 [assumed]
+17. Transfer 18 µL of DpnI from dpni to dpni_mix. Note: 1 µL × 18 [assumed]
+18. Mix dpni_mix by pipetting 100 µL up and down 5 times. [assumed]
+19. Transfer 25 µL of DpnI digestion mix (19 µL water + 5 µL rCutSmart + 1 µL DpnI) from dpni_mix to pcr_plate wells A1:D4 (each well), then mix 3 times. Note: Added to each 25 µL PCR (final 50 µL)
+20. MANUAL: Seal pcr_plate and incubate 30 min at 37°C, then heat-inactivate DpnI 20 min at 65°C (thermocycler); unseal and return to deck.
+21. Transfer 20 µL of DpnI-treated fragment 1 PCR from pcr_plate wells A1, B1, C1, D1 to pool_plate wells A1, B1, C1, D1 (each well). Note: Fragment lengths not given; equal 20 µL per fragment used as placeholder (set volumes ∝ amplicon length when known) [assumed]
+22. Transfer 20 µL of DpnI-treated fragment 2 PCR from pcr_plate wells A2, B2, C2, D2 to pool_plate wells A1, B1, C1, D1 (each well). Note: Placeholder volume, see fragment 1 note [assumed]
+23. Transfer 20 µL of DpnI-treated fragment 3 PCR from pcr_plate wells A3, B3, C3, D3 to pool_plate wells A1, B1, C1, D1 (each well). Note: Placeholder volume, see fragment 1 note [assumed]
+24. Transfer 20 µL of DpnI-treated fragment 4 PCR from pcr_plate wells A4, B4, C4, D4 to pool_plate wells A1, B1, C1, D1 (each well). Note: Placeholder volume, see fragment 1 note [assumed]
+25. Mix pool_plate wells A1:D1 by pipetting 50 µL up and down 5 times. [assumed]
+26. MANUAL: For each pool (80 µL), clean and concentrate with a Zymo DNA Clean & Concentrator-5 column per manufacturer's protocol (5 volumes binding buffer, spin, two washes, dry spin) and elute in 10 µL molecular grade water into eluate_plate wells A1:D1 (A1 tsPurple, B1 Yukon, C1 aeBlue, D1 fuGFP). Note: Column steps done by hand: binding-buffer volume exceeds well capacity [assumed]
+27. MANUAL: Use 5 µL of each eluate (remove by hand from eluate_plate A1:D1) to measure DNA concentration on a NanoDrop-2000c for transformation-efficiency calculation; 5 µL remains in each well. Note: Interpreted as 5 µL for quantification and 5 µL for transformation [assumed]
+28. Transfer 5 µL of purified fragment mix from eluate_plate wells A1, B1, C1, D1 to transform_plate wells A1, B1, C1, D1 (each well). Note: Add to cells; do not mix by pipetting (gentle tap), keep cells on ice [assumed]
+29. MANUAL: Incubate transform_plate on ice 30 min, then heat shock at 42°C for 60 s.
+30. Transfer 250 µL of LB + 0.2% (w/v) dextrose from lb_dextrose to transform_plate wells A1:D1 (each well). Note: Total ~305 µL per well
+31. MANUAL: Seal transform_plate and recover 60 min at 37°C with shaking (~250 rpm). Note: Shaking speed not given in paper (AQUA used shaking) [assumed]
+32. MANUAL: Spread 200 µL of each recovered transformation (undiluted; transform_plate A1:D1) on a separate LB agar + 50 µg/mL kanamycin plate (4 plates); incubate inverted at 37°C overnight. Next day count colonies manually (CFU/µg DNA plated) and score colony colour (blue = template backbone, uncoloured = failure). Note: Undiluted 200 µL chosen given expected ~10^3 CFU/µg; kanamycin assumed for pIDMv5K plasmids [assumed]
+
+Assumptions:
+- Experiment layout: 16 separate PCRs in pcr_plate; rows A-D = tsPurple, YukonOFP, aeBlue, fuGFP constructs; columns 1-4 = fragments 1-4. Pools/eluates/transformations in wells A1:D1 in the same row order.
+- Fragment design inferred, not stated in the paper: fragment 1 = backbone/KanR from the aeBlue plasmid for all constructs; fragments 2-4 (promoter, chromoprotein CDS, terminator) from the respective chromoprotein plasmid (aeBlue plasmid for the aeBlue construct). Primers designed by j5 with 20+ bp (ideally ~32 bp) terminal homology (AQUA, Beyer et al. 2015, 16-32 bp works, 32 bp optimal).
+- Primer pair mixes at 1 µM each in primer_plate; 2.5 µL per 25 µL gives 0.1 µM. Templates pre-linearized with a restriction enzyme cutting outside the amplicon (enzyme not stated) and diluted to 0.25 ng/µL; 2 µL = 0.5 ng.
+- Polymerase Q5 and 34 cycles assumed (paper allows Phusion or Q5, 34 or 36 cycles). Q5 25 µL recipe from NEB (1X buffer, 200 µM dNTP, 0.25 µL polymerase), recalled from memory, not the paper. Master mix made for 18 reactions (2 overage).
+- Extension 30 s/kb (NEB Q5 20-30 s/kb); per-fragment annealing temperatures from the optimal linear gradient on the Bio-Rad C100 (values not given in paper).
+- PCR plate used instead of 100 µL PCR tubes (paper moved tubes by hand to the thermocycler); well/robot deck positions are my choice since AssemblyTron-generated files were not available.
+- DpnI mix 19 µL water + 5 µL rCutSmart + 1 µL DpnI per 25 µL PCR as in paper; DpnI stock assumed 20 U/µL (NEB standard).
+- Pooling volumes: paper says proportional to fragment length but lengths are not given; 20 µL of each DpnI-treated PCR used as placeholder; adjust to amplicon length.
+- Zymo DNA Clean & Concentrator-5 done by hand with standard manufacturer volumes (5 volumes binding buffer, 2 washes, dry spin); elution 10 µL as stated.
+- Paper states 10 µL elution transformed and 'the other 5 µL' used for NanoDrop; interpreted as 5 µL transformed and 5 µL for quantification.
+- Cells: in-house Hanahan TOP10 (8.47×10^8 CFU/µg) 50 µL; recovery in LB + 0.2% dextrose (SOB with catabolite repression was used only for Fig 4). The 2 min ice step after heat shock in AQUA (Beyer et al. 2015) not included as the paper does not state it.
+- Recovery shaking speed (~250 rpm) assumed (AQUA used shaking at 700 rpm in tubes).
+- Plating: 200 µL undiluted of the ~305 µL recovery per construct, on LB agar with 50 µg/mL kanamycin (assumed from pIDMv5K plasmids); the paper allows 50-200 µL of base or 10× dilution. Plating is manual; agar plates are not a listed container kind.
+- Mixing volumes/cycles for robot mixing are standard OT-2 choices, not from the paper.
+- Expected readout per paper: ~10^3 CFU/µg; Yukon 68.7% correct, >80% for other colours; DNA mass transformed computed from the NanoDrop measurement.

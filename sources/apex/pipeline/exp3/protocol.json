@@ -1,0 +1,640 @@
+{
+  "title": "Validation of colony sampling, microculturing and sfGFP expression in E. coli BL21(DE3) (APEX Protocols 1-4)",
+  "containers": [
+    {
+      "name": "competent_cells_tube",
+      "kind": "tube_1.5ml",
+      "description": "Calcium-competent BL21(DE3) cells in 0.1 M CaCl2 + 15% glycerol, kept on ice",
+      "assumed": true
+    },
+    {
+      "name": "pEX05_dna_tube",
+      "kind": "tube_1.5ml",
+      "description": "sfGFP plasmid pEX05 (pJKR-H-araC) at 1.5e-4 pmol/µL",
+      "assumed": true
+    },
+    {
+      "name": "pEX01_dna_tube",
+      "kind": "tube_1.5ml",
+      "description": "Positive-control plasmid pEX01 at 1.5e-4 pmol/µL",
+      "assumed": true
+    },
+    {
+      "name": "soc_tube",
+      "kind": "tube_15ml",
+      "description": "SOC recovery medium",
+      "assumed": true
+    },
+    {
+      "name": "lb_reservoir",
+      "kind": "reservoir",
+      "description": "Plain LB (diluent for spot dilution, OD readout and blanks)",
+      "assumed": true
+    },
+    {
+      "name": "lb_carb_reservoir",
+      "kind": "reservoir",
+      "description": "LB + 100 µg/mL carbenicillin for overnight cultures and subcultures",
+      "assumed": true
+    },
+    {
+      "name": "arabinose_tube",
+      "kind": "tube_1.5ml",
+      "description": "Sterile 100 mM L-arabinose stock",
+      "assumed": true
+    },
+    {
+      "name": "transform_plate",
+      "kind": "plate_96",
+      "description": "Thermocycler PCR plate for heat shock transformation; columns 1-8 = pEX05 (sfGFP), column 9 = pEX01 control",
+      "assumed": true
+    },
+    {
+      "name": "dilution_plate",
+      "kind": "plate_96",
+      "description": "Plate for 5-fold dilution of transformations spotted at low density (columns 5-8)",
+      "assumed": true
+    },
+    {
+      "name": "agar_plate",
+      "kind": "plate_96",
+      "description": "Nunc OmniTray with LB agar + 100 µg/mL carbenicillin, 8x12 spot grid (modelled as a 96-position plate; agar not liquid)",
+      "assumed": true
+    },
+    {
+      "name": "overnight_plate",
+      "kind": "plate_96_deep",
+      "description": "96 deep-well plate for overnight cultures inoculated from sampled colonies",
+      "assumed": true
+    },
+    {
+      "name": "od_plate",
+      "kind": "plate_96",
+      "description": "Clear 96-well plate for 1:10 OD600 readout of overnight cultures, with LB blanks in column 10",
+      "assumed": true
+    },
+    {
+      "name": "subculture_plate",
+      "kind": "plate_96_deep",
+      "description": "96 deep-well plate for back-diluted subcultures, induced with L-arabinose",
+      "assumed": true
+    },
+    {
+      "name": "reader_plate",
+      "kind": "plate_96",
+      "description": "Clear-bottom black 96-well plate for the Varioskan LUX time course",
+      "assumed": false
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "competent_cells_tube",
+      "wells": [],
+      "reagent": "BL21(DE3) calcium-competent cells",
+      "volume_ul": 800.0,
+      "assumed": true
+    },
+    {
+      "container": "pEX05_dna_tube",
+      "wells": [],
+      "reagent": "pEX05 plasmid (sfGFP, pJKR-H-araC), 1.5e-4 pmol/µL",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "pEX01_dna_tube",
+      "wells": [],
+      "reagent": "pEX01 plasmid, 1.5e-4 pmol/µL",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "soc_tube",
+      "wells": [],
+      "reagent": "SOC medium",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "lb_reservoir",
+      "wells": [],
+      "reagent": "LB medium",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "lb_carb_reservoir",
+      "wells": [],
+      "reagent": "LB medium + 100 µg/mL carbenicillin",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "arabinose_tube",
+      "wells": [],
+      "reagent": "L-arabinose 100 mM",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "agar_plate",
+      "wells": [
+        "A1:H12"
+      ],
+      "reagent": "LB agar (1.5%) + 100 µg/mL carbenicillin",
+      "volume_ul": null,
+      "assumed": true
+    }
+  ],
+  "steps": [
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Prepare Hanahan calcium-competent BL21(DE3): inoculate a single colony in 5 mL LB, grow overnight at 37 °C with shaking; dilute 100-fold into 50 mL LB and grow at 37 °C, 300 rpm to OD600 = 0.4; chill on ice 20 min; pellet at 4000 ×g, 4 °C, 10 min; resuspend in 2 mL 0.1 M CaCl2 + 15% (v/v) glycerol; store at -80 °C. Thaw on ice before use (commercial Thermo BL21(DE3) cells may be substituted).",
+      "source_quote": "The overnight culture was 100-fold diluted into 50 mL of fresh LB medium to grow at 37 °C and 300 rpm until it reached OD600 = 0.4.",
+      "assumed": false,
+      "note": "Can be skipped if competent cells are already available"
+    },
+    {
+      "kind": "transfer",
+      "source": "competent_cells_tube",
+      "source_wells": [],
+      "dest": "transform_plate",
+      "dest_wells": [
+        "A1:H9"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "BL21(DE3) competent cells",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "APEXProtocol 1 used reduced volumes (LV configuration, 10 µl cells, 50 µl SOC)",
+      "assumed": true,
+      "note": "LV configuration assumed for Fig. 5; 72 transformations (8 rows x 9 columns)"
+    },
+    {
+      "kind": "transfer",
+      "source": "pEX05_dna_tube",
+      "source_wells": [],
+      "dest": "transform_plate",
+      "dest_wells": [
+        "A1:H8"
+      ],
+      "volume_ul": 1.0,
+      "reagent": "pEX05 plasmid (1.5e-4 pmol)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "All transformations used 1 µl of DNA at 1.5 × 10−4 pmol.",
+      "assumed": true,
+      "note": "sfGFP plasmid in columns 1-8"
+    },
+    {
+      "kind": "transfer",
+      "source": "pEX01_dna_tube",
+      "source_wells": [],
+      "dest": "transform_plate",
+      "dest_wells": [
+        "A9:H9"
+      ],
+      "volume_ul": 1.0,
+      "reagent": "pEX01 plasmid (1.5e-4 pmol)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "pEX05 encoding sfGFP (Columns 1-8), and pEX01 (Column 9, positive control)",
+      "assumed": true,
+      "note": "Positive control in column 9"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal transform_plate and run in the thermocycler: 4 °C for 30 min, then heat shock at 42 °C for 30 s (rapid ramp), returning immediately to 4 °C.",
+      "source_quote": "By default, cells are incubated at 4 °C for 30 minutes, heat shocked at 42 °C for 30 seconds, and recovered with SOC medium at 37 °C for 1 hour.",
+      "assumed": false,
+      "note": "Return to 4 °C hold is assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "soc_tube",
+      "source_wells": [],
+      "dest": "transform_plate",
+      "dest_wells": [
+        "A1:H9"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "SOC medium",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "recovered with SOC medium at 37 °C for 1 hour",
+      "assumed": true,
+      "note": "50 µL from LV configuration"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate transform_plate in the thermocycler at 37 °C for 1 h for recovery.",
+      "source_quote": "recovered with SOC medium at 37 °C for 1 hour",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Weigh the empty and the agar-filled OmniTray (about 30-35 mL LB agar + 100 µg/mL carbenicillin, assumed). Agar height = (plate+agar weight - empty plate weight) / (base area x 0.911 g/cm3). Set the spotting height to about 1-2 mm above the calculated agar surface (assumed offset).",
+      "source_quote": "calculating agar height from the plate base area, weight, and agar density",
+      "assumed": true,
+      "note": "Density 0.911 g/cm3 for rectangular plates"
+    },
+    {
+      "kind": "transfer",
+      "source": "lb_reservoir",
+      "source_wells": [],
+      "dest": "dilution_plate",
+      "dest_wells": [
+        "A5:H8"
+      ],
+      "volume_ul": 40.0,
+      "reagent": "LB diluent",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "diluted five-fold (Columns 5-8) onto selective agar to generate high- and low-density colonies respectively",
+      "assumed": true,
+      "note": "Diluent assumed LB"
+    },
+    {
+      "kind": "transfer",
+      "source": "transform_plate",
+      "source_wells": [
+        "A5:H8"
+      ],
+      "dest": "dilution_plate",
+      "dest_wells": [
+        "A5:H8"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "Recovered transformation",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "diluted five-fold (Columns 5-8) onto selective agar",
+      "assumed": true,
+      "note": "10 µL into 40 µL = 5-fold dilution"
+    },
+    {
+      "kind": "transfer",
+      "source": "transform_plate",
+      "source_wells": [
+        "A1:H4"
+      ],
+      "dest": "agar_plate",
+      "dest_wells": [
+        "A1:H4"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Recovered transformation (undiluted)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Cells were spotted directly (Columns 1-4)",
+      "assumed": false,
+      "note": "High density spots"
+    },
+    {
+      "kind": "transfer",
+      "source": "transform_plate",
+      "source_wells": [
+        "A9:H9"
+      ],
+      "dest": "agar_plate",
+      "dest_wells": [
+        "A9:H9"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Recovered pEX01 transformation (undiluted)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "pEX01 (Column 9, positive control)",
+      "assumed": true,
+      "note": "Control spotted undiluted (assumed)"
+    },
+    {
+      "kind": "transfer",
+      "source": "dilution_plate",
+      "source_wells": [
+        "A5:H8"
+      ],
+      "dest": "agar_plate",
+      "dest_wells": [
+        "A5:H8"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "5-fold diluted transformation",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Spotted cells (5 µl) were plated on antibiotic-supplemented LB agar",
+      "assumed": false,
+      "note": "Low density spots"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Let spots dry, then incubate the agar plate inverted at 37 °C for about 16 h until colonies form.",
+      "source_quote": "cells are plated on a selective solid medium, typically Lysogeny-Broth (LB) agar supplemented with antibiotic",
+      "assumed": true,
+      "note": "Time and temperature not stated in paper"
+    },
+    {
+      "kind": "transfer",
+      "source": "lb_carb_reservoir",
+      "source_wells": [],
+      "dest": "overnight_plate",
+      "dest_wells": [
+        "A1:H9"
+      ],
+      "volume_ul": 500.0,
+      "reagent": "LB + 100 µg/mL carbenicillin",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "APEX inoculates cells into fresh LB-antibiotic by mixing media in a 96 deep well plate",
+      "assumed": true,
+      "note": "Volume assumed (0.5 mL)"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Single pierce sampling: with a fresh tip per spot, lower the tip to the centre of each spot in agar_plate columns 1-4 (high density) and column 9 and just into the agar, then withdraw.",
+      "source_quote": "a single pierce sampling method for high cell densities, where the tip directly targets the centre of the initial cell dispension",
+      "assumed": true,
+      "note": "Pierce depth assumed; column 9 sampled by pierce (assumed)"
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "overnight_plate",
+      "dest_wells": [
+        "A1:H4",
+        "A9:H9"
+      ],
+      "volume_ul": 200.0,
+      "reagent": "",
+      "mix_cycles": 10,
+      "action": "",
+      "source_quote": "APEX inoculates cells into fresh LB-antibiotic by mixing media in a 96 deep well plate",
+      "assumed": true,
+      "note": "Mix with the same tip that sampled the colony to release cells"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Spiral sampling: with a fresh tip per spot, start at the centre of each spot in agar_plate columns 5-8 (low density) and trace slow, smooth spirals outward (radius about 1-2 mm, about 2-3 rotations, about 8-16 points), keeping the tip just below the agar surface.",
+      "source_quote": "a spiral sampling method, where the pipette traces a spiral motion from the same centre coordinates outward for low or uneven cell densities",
+      "assumed": true,
+      "note": "Spiral geometry values assumed"
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "overnight_plate",
+      "dest_wells": [
+        "A5:H8"
+      ],
+      "volume_ul": 200.0,
+      "reagent": "",
+      "mix_cycles": 10,
+      "action": "",
+      "source_quote": "APEX inoculates cells into fresh LB-antibiotic by mixing media in a 96 deep well plate",
+      "assumed": true,
+      "note": "Mix with the sampling tip"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal overnight_plate with a gas-permeable membrane and incubate overnight (about 16-18 h) at 37 °C with vigorous shaking (about 250 rpm).",
+      "source_quote": "After successful transformation and overnight culturing, cells are primed for protein expression induction.",
+      "assumed": true,
+      "note": "Conditions not specified in paper"
+    },
+    {
+      "kind": "transfer",
+      "source": "lb_reservoir",
+      "source_wells": [],
+      "dest": "od_plate",
+      "dest_wells": [
+        "A1:H9"
+      ],
+      "volume_ul": 180.0,
+      "reagent": "LB",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Growth comparison (OD600) of overnight cultures",
+      "assumed": true,
+      "note": "1:10 dilution for OD readout (assumed)"
+    },
+    {
+      "kind": "transfer",
+      "source": "lb_reservoir",
+      "source_wells": [],
+      "dest": "od_plate",
+      "dest_wells": [
+        "A10:H10"
+      ],
+      "volume_ul": 200.0,
+      "reagent": "LB blank",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Growth comparison (OD600) of overnight cultures",
+      "assumed": true,
+      "note": "Blank wells"
+    },
+    {
+      "kind": "transfer",
+      "source": "overnight_plate",
+      "source_wells": [
+        "A1:H9"
+      ],
+      "dest": "od_plate",
+      "dest_wells": [
+        "A1:H9"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "Overnight culture",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "Growth comparison (OD600) of overnight cultures sampled using Protocol 3’s two methods",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Read OD600 of od_plate in a plate reader; subtract LB blank and correct for the 1:10 dilution.",
+      "source_quote": "To monitor cell growth, we developed a protocol that automates the preparation of samples for Optical Density at 600 nm (OD600) measurements in a microplate",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "lb_carb_reservoir",
+      "source_wells": [],
+      "dest": "subculture_plate",
+      "dest_wells": [
+        "A1:H9"
+      ],
+      "volume_ul": 490.0,
+      "reagent": "LB + 100 µg/mL carbenicillin",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "APEX propagates cells in fresh LB-antibiotic media using an aliquot of the overnight culture.",
+      "assumed": true,
+      "note": "Volume assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "overnight_plate",
+      "source_wells": [
+        "A1:H9"
+      ],
+      "dest": "subculture_plate",
+      "dest_wells": [
+        "A1:H9"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "Overnight culture",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "Overnight cultures of E. coli BL21(DE3) transformed with the pJKR-H-araC plasmid were diluted and grown to an OD600 of approximately 0.2",
+      "assumed": true,
+      "note": "1:50 back-dilution assumed"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal subculture_plate with a gas-permeable membrane and manually transfer to a shaking incubator at 37 °C (about 250 rpm) until OD600 is approximately 0.2 (about 2-3 h; check OD600 by manual read).",
+      "source_quote": "The plate with subculture is then manually transferred to a shaking incubator until cells reach mid-log phase.",
+      "assumed": true,
+      "note": "Time and shaking speed assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "arabinose_tube",
+      "source_wells": [],
+      "dest": "subculture_plate",
+      "dest_wells": [
+        "A1:H8"
+      ],
+      "volume_ul": 6.7,
+      "reagent": "L-arabinose 100 mM",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "at which point they were induced with 1.33 mM L-arabinose",
+      "assumed": true,
+      "note": "6.7 µL of 100 mM into about 500 µL gives about 1.33 mM final; column 9 receives no inducer (negative control)"
+    },
+    {
+      "kind": "transfer",
+      "source": "subculture_plate",
+      "source_wells": [
+        "A1:H9"
+      ],
+      "dest": "reader_plate",
+      "dest_wells": [
+        "A1:H9"
+      ],
+      "volume_ul": 150.0,
+      "reagent": "Subculture (induced columns 1-8; uninduced column 9)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "150 µL of cells were transferred to a clear-bottom 96-well black plate",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate reader_plate in a Varioskan LUX at 37 °C with shaking at 960 rpm (high speed); measure OD600 and sfGFP fluorescence (excitation 485 nm, emission 528 nm) every 10 min for 4 h; report fluorescence (AFU) normalised to OD600.",
+      "source_quote": "OD600 and sfGFP fluorescence (excitation 485 nm, emission 528 nm) were measured every 10 minutes for 4 hours, and fluorescence (AFU) normalised to OD600 was reported.",
+      "assumed": false,
+      "note": ""
+    }
+  ],
+  "assumptions": [
+    "Layout: transform_plate, agar spots, overnight, subculture and reader plates all use A1:H9 with the same mapping: columns 1-8 = pEX05 (sfGFP), column 9 = pEX01 positive control; 8 rows = 8 replicates per column (assumed). Columns 1-4 undiluted spots sampled by single pierce (high density); columns 5-8 5-fold diluted spots sampled by spiral (low density). Column 9 receives no L-arabinose (negative control).",
+    "Transformation volumes: LV configuration (10 µL cells, 1 µL DNA at 1.5e-4 pmol, 50 µL SOC) taken from the Fig. 4 legend; the paper does not state Fig. 5 used exactly these. Heat shock 4 °C 30 min, 42 °C 30 s, SOC recovery 37 °C 1 h are the defaults from s2.2.",
+    "Competent cells prepared by Hanahan method per s4.2; any wash assumed to use ice-cold 0.1 M CaCl2; commercial Thermo BL21(DE3) is an alternative. Competent-cell tube volume of 800 µL is assumed.",
+    "Antibiotic: pJKR-H-araC (pEX05) is ampicillin resistant (pUC backbone, Addgene 62563); carbenicillin 100 µg/mL used in LB agar and liquid LB (s4.1). pEX01 antibiotic is in an image-only table, assumed also carbenicillin-resistant.",
+    "The agar OmniTray is a solid plate, not a liquid container; it is modelled as a plate_96 (8x12 spot grid) with agar spots at A1:H12 positions. Agar volume (about 30-35 mL), carbenicillin in agar, and spot height offset (1-2 mm above agar) are assumed. Agar density 0.911 g/cm3 for rectangular plates (s2.3).",
+    "Spot diluent for 5-fold dilution assumed to be LB (not stated); pEX01 control in column 9 spotted undiluted and sampled by single pierce (assumed).",
+    "Agar plate incubation after spotting (about 16 h at 37 °C) is assumed; paper does not state it.",
+    "Spiral and pierce geometry (radius 1-2 mm, 2-3 rotations, 8-16 points, depth, speed), fresh tip per spot, and mixing the sampling tip in 500 µL LB-carbenicillin (200 µL mix volume, 10 cycles) are assumed.",
+    "Overnight culture: 500 µL LB-carbenicillin per deep well, gas-permeable seal, 16-18 h at 37 °C, about 250 rpm; all assumed (paper says only 'overnight culturing').",
+    "OD600 of overnight cultures: 1:10 dilution in LB (20 µL + 180 µL) in a clear 96-well plate with LB blanks in column 10; dilution correction applied (assumed; Protocol 7 details are in the supplement).",
+    "Subculture: 10 µL overnight into 490 µL LB-carbenicillin (1:50) in deep well plate, grown at 37 °C with shaking until OD600 about 0.2 (about 2-3 h, assumed); s4.5 uses back-dilution to OD600 0.1 for the related experiment.",
+    "Induction: 100 mM sterile L-arabinose stock assumed; 6.7 µL per 500 µL gives about 1.33 mM final (s4.4). Induction is done in the subculture plate before transferring 150 µL to the reader plate (assumed ordering).",
+    "Plate-reader setup (150 µL per well, black clear-bottom plate, Varioskan LUX, 37 °C, 960 rpm, 485/528 nm, every 10 min for 4 h) from s4.4.",
+    "Details of Protocols 2-4 are in Supplementary File 1, not available; values taken from the recovered gap assessment (Addgene 62563 page and paper-internal values) and standard lab practice."
+  ]
+}

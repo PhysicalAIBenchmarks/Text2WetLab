@@ -1,0 +1,79 @@
+{
+ "code": [],
+ "doi_primary": "10.1177/2472630320973591",
+ "dois": [
+  "10.1177/2472630320973591"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Abstract; full text not retrievable",
+   "id": "nl-transfer-accuracy",
+   "liquid_handling": "mostly",
+   "title": "Modified OT-1 nanoliter transfer accuracy/precision (50 nL, 15 nL fluorescence)"
+  },
+  {
+   "evidence": "Abstract; full text not retrievable",
+   "id": "lowinput-proteomic-prep",
+   "liquid_handling": "mostly",
+   "title": "Low-nanogram proteomic sample preparation on modified OT-1"
+  }
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1177/2472630320973591:\n  europepmc: Server error '500 ' for url 'http",
+  "source": null
+ },
+ "journal": "",
+ "note": "CC BY-NC-ND; PDF bot-blocked (403) from Europe PMC/Sage; no code named in abstract; no repo found by web search.",
+ "open_access": false,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "licence": "cc by-nc-nd",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC8143861?pdf=render"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8143861.1/PMC8143861.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8143861.2/PMC8143861.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8143861.3/PMC8143861.3.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC8143861&blobtype=pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "http://journals.sagepub.com/doi/pdf/10.1177/2472630320973591"
+   }
+  ]
+ },
+ "pmcid": "PMC8143861",
+ "slug": "low-cost-pipetting-robot-slas",
+ "title": "Adapting a Low-Cost and Open-Source Commercial Pipetting Robot for Nanoliter Liquid Handling",
+ "year": "2021"
+}

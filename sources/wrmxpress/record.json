@@ -1,0 +1,52 @@
+{
+ "code": [
+  {
+   "archived": false,
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "redistributable": "yes",
+   "repo": "zamanianlab/wrmXpress",
+   "size_kb": 766726,
+   "status": "skipped: 748 MB exceeds the clone limit",
+   "url": "https://github.com/zamanianlab/wrmXpress"
+  }
+ ],
+ "doi_primary": "10.1371/journal.pntd.0010937",
+ "dois": [
+  "10.1371/journal.pntd.0010937"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 22,
+  "source": "europepmc:PMC9718391"
+ },
+ "journal": "",
+ "note": "ImageXpress Nano; repo 748 MB, not cloned",
+ "open_access": true,
+ "origin": [
+  "L_other (non-Opentrons) candidates, 2026-10-04"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2165901,
+  "licence": "cc by",
+  "pages": 15,
+  "redistributable": "yes",
+  "sha256": "79ccb0f6f6d88196acb466467edeb5dc448425f5e7e4383599edcfee6bd4bcf1",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://journals.plos.org/plosntds/article/file?id=10.1371/journal.pntd.0010937&type=printable"
+   }
+  ],
+  "url": "https://journals.plos.org/plosntds/article/file?id=10.1371/journal.pntd.0010937&type=printable"
+ },
+ "pmcid": "PMC9718391",
+ "slug": "wrmxpress",
+ "title": "wrmXpress: A modular package for high-throughput image analysis of parasitic and free-living worms",
+ "year": "2022"
+}

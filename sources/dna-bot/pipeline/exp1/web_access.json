@@ -1,0 +1,333 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "search",
+      "value": "NEB 5-alpha Competent E. coli 96-well plate C2987P protocol heat shock 42C 30 seconds"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/products/c2987-neb-5-alpha-competent-e-coli-high-efficiency"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/faqs/2013/03/11/what-is-the-optimal-heat-shock-time-for-the-96-well-plate-format-neb-5-alpha-competent-e-coli-neb"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.ca/detail.php?id=c2987"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/faqs/2015/11/22/what-is-the-optimal-heat-shock-time-for-the-96-tube-format-neb-5-alpha-competent-e-coli-neb-c2987u"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb-online.de/literatur/pdf/NEB_Competent_Cells.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://iright.com/products/neb-c2987i"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/protocols/high-efficiency-transformation-protocol-c2987?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.nebiolabs.com.au/products/c2987-neb-5-alpha-competent-e-coli-high-efficiency"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/products/c2988-neb-5-alpha-competent-e-coli-subcloning-efficiency"
+    },
+    {
+      "kind": "result",
+      "value": "http://www.ulab360.com/files/prod/manuals/201301/05/431754001.pdf"
+    },
+    {
+      "kind": "search",
+      "value": "BASIC: A simple and accurate modular DNA assembly method Methods Mol Biol 2017 Storch clip reaction"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/27671933/"
+    },
+    {
+      "kind": "result",
+      "value": "https://academic.oup.com/synbio/article/5/1/ysaa010/5869449"
+    },
+    {
+      "kind": "result",
+      "value": "https://ouci.dntb.gov.ua/en/works/lD0ZQRYl/"
+    },
+    {
+      "kind": "result",
+      "value": "https://experiments.springernature.com/articles/10.1007/978-1-0716-0908-8_14?error=cookies_not_supported&code=908d59d9-6542-475f-aa83-a2979724798e"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/protocol/10.1007/978-1-0716-0908-8_2"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/protocol/10.1007/978-1-4939-6343-0_6"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/343730409_BASIC_A_Simple_and_Accurate_Modular_DNA_Assembly_Method"
+    },
+    {
+      "kind": "result",
+      "value": "https://spiral.imperial.ac.uk/server/api/core/bitstreams/99356aa9-ec30-4a95-b15e-20b6f4f58849/content"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/10.1021/sb500356d"
+    },
+    {
+      "kind": "search",
+      "value": "BASIC DNA assembly Storch 2015 ACS Synth Biol clip reaction purification assembly transformation protocol AMPure"
+    },
+    {
+      "kind": "result",
+      "value": "https://academic.oup.com/synbio/article/5/1/ysaa010/5869449"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/full/10.1021/sb500356d"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/342830417_DNA-BOT_A_low-cost_automated_DNA_assembly_platform_for_synthetic_biology"
+    },
+    {
+      "kind": "result",
+      "value": "https://spiral.imperial.ac.uk/server/api/core/bitstreams/99356aa9-ec30-4a95-b15e-20b6f4f58849/content"
+    },
+    {
+      "kind": "result",
+      "value": "https://doi.org/10.1021/sb500356d"
+    },
+    {
+      "kind": "result",
+      "value": "https://ouci.dntb.gov.ua/en/works/lD0ZQRYl/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/10.1021/sb4001992"
+    },
+    {
+      "kind": "result",
+      "value": "https://ouci.dntb.gov.ua/en/works/4wMXRjJ9/"
+    },
+    {
+      "kind": "result",
+      "value": "https://currentprotocols.onlinelibrary.wiley.com/doi/10.1002/cppb.20038"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.nature.com/articles/nrm4014"
+    },
+    {
+      "kind": "search",
+      "value": "BASIC DNA assembly Storch 2015 ACS Synth Biol clip reaction purification assembly transformation protocol AMPure"
+    },
+    {
+      "kind": "result",
+      "value": "https://academic.oup.com/synbio/article/5/1/ysaa010/5869449"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/full/10.1021/sb500356d"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/342830417_DNA-BOT_A_low-cost_automated_DNA_assembly_platform_for_synthetic_biology"
+    },
+    {
+      "kind": "result",
+      "value": "https://doi.org/10.1021/sb500356d"
+    },
+    {
+      "kind": "result",
+      "value": "https://spiral.imperial.ac.uk/server/api/core/bitstreams/99356aa9-ec30-4a95-b15e-20b6f4f58849/content"
+    },
+    {
+      "kind": "result",
+      "value": "https://ouci.dntb.gov.ua/en/works/lD0ZQRYl/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/10.1021/sb4001992"
+    },
+    {
+      "kind": "result",
+      "value": "https://ouci.dntb.gov.ua/en/works/4wMXRjJ9/"
+    },
+    {
+      "kind": "result",
+      "value": "https://currentprotocols.onlinelibrary.wiley.com/doi/10.1002/cppb.20038"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.nature.com/articles/nrm4014"
+    },
+    {
+      "kind": "search",
+      "value": "BASIC: A simple and accurate modular DNA assembly method Methods Mol Biol 2017 Storch clip reaction"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/27671933/"
+    },
+    {
+      "kind": "result",
+      "value": "https://academic.oup.com/synbio/article/5/1/ysaa010/5869449"
+    },
+    {
+      "kind": "result",
+      "value": "https://ouci.dntb.gov.ua/en/works/lD0ZQRYl/"
+    },
+    {
+      "kind": "result",
+      "value": "https://experiments.springernature.com/articles/10.1007/978-1-0716-0908-8_14?error=cookies_not_supported&code=908d59d9-6542-475f-aa83-a2979724798e"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/protocol/10.1007/978-1-0716-0908-8_2"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/protocol/10.1007/978-1-4939-6343-0_6"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/343730409_BASIC_A_Simple_and_Accurate_Modular_DNA_Assembly_Method"
+    },
+    {
+      "kind": "result",
+      "value": "https://spiral.imperial.ac.uk/server/api/core/bitstreams/99356aa9-ec30-4a95-b15e-20b6f4f58849/content"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/10.1021/sb500356d"
+    },
+    {
+      "kind": "search",
+      "value": "NEB 5-alpha Competent E. coli 96-well plate C2987P protocol heat shock 42C 30 seconds"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/products/c2987-neb-5-alpha-competent-e-coli-high-efficiency"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/faqs/2013/03/11/what-is-the-optimal-heat-shock-time-for-the-96-well-plate-format-neb-5-alpha-competent-e-coli-neb"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.ca/detail.php?id=c2987"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/faqs/2015/11/22/what-is-the-optimal-heat-shock-time-for-the-96-tube-format-neb-5-alpha-competent-e-coli-neb-c2987u"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb-online.de/literatur/pdf/NEB_Competent_Cells.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://iright.com/products/neb-c2987i"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/protocols/high-efficiency-transformation-protocol-c2987?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.nebiolabs.com.au/products/c2987-neb-5-alpha-competent-e-coli-high-efficiency"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/products/c2988-neb-5-alpha-competent-e-coli-subcloning-efficiency"
+    },
+    {
+      "kind": "result",
+      "value": "http://www.ulab360.com/files/prod/manuals/201301/05/431754001.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.neb.com/en-us/products/c2987-neb-5-alpha-competent-e-coli-high-efficiency"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.neb.com/en-us/products/c2987-neb-5-alpha-competent-e-coli-high-efficiency"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://spiral.imperial.ac.uk/server/api/core/bitstreams/99356aa9-ec30-4a95-b15e-20b6f4f58849/content"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://spiral.imperial.ac.uk/server/api/core/bitstreams/99356aa9-ec30-4a95-b15e-20b6f4f58849/content"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.neb.com/en-us/protocols/2012/12/11/transformation-protocol-c2987"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://link.springer.com/protocol/10.1007/978-1-4939-6343-0_6"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://link.springer.com/protocol/10.1007/978-1-4939-6343-0_6"
+    },
+    {
+      "kind": "search",
+      "value": "NEB C2987P 96-well plate transformation protocol thaw on ice add DNA 1-5 µl heat shock 10 seconds 42°C SOC 80 µl"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/tools-and-resources/usage-guidelines/chemical-transformation-tips"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/protocols/high-efficiency-transformation-protocol-c2987?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/faqs/2013/03/11/what-is-the-optimal-heat-shock-time-for-the-96-well-plate-format-neb-5-alpha-competent-e-coli-neb"
+    },
+    {
+      "kind": "result",
+      "value": "http://www.ulab360.com/files/prod/manuals/201301/05/431754001.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.thermofisher.com/us/en/home/references/protocols/cloning/competent-cells-protocol/high-throughput-transformations-using-top10-chemically-competent-e-coli.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb-online.de/en/competent-cells/chemical-transformation-tips/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.studocu.com/en-us/document/university-of-texas-at-austin/biochemistry/high-efficiency-transformation-protocol/18514918"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/protocols/bacterial-transformation/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb-online.de/literatur/pdf/NEB_Competent_Cells.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://iright.com/products/neb-c2987i"
+    }
+  ]
+}

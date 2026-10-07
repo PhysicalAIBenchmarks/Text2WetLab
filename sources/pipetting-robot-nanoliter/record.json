@@ -1,0 +1,97 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/pipetting-robot-nanoliter/RTKlab-BYU__OpenLC",
+   "commit": "5bb4b87193725a9f6a1e92fee82e15c97657a84a",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 3,
+   "py_files": 37,
+   "redistributable": "no",
+   "repo": "RTKlab-BYU/OpenLC",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 1019,
+   "status": "cloned",
+   "url": "https://github.com/RTKlab-BYU/OpenLC"
+  },
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/pipetting-robot-nanoliter/RTKlab-BYU__OpenSampler",
+   "commit": "1fa04d2149e6f26ca6db6042ac0f2925da462b26",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "RTKlab-BYU/OpenSampler",
+   "robot_mentions": [],
+   "size_kb": 2,
+   "status": "cloned",
+   "url": "https://github.com/RTKlab-BYU/OpenSampler/tree/main"
+  }
+ ],
+ "doi_primary": "10.1002/jssc.70379",
+ "dois": [
+  "10.1002/jssc.70379"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Methods 2.4 \"Liquid Handling Characterization\"; Results 3.4; Fig. 5",
+   "id": "fluorescein_nanoliter_dispense_characterisation",
+   "liquid_handling": "mostly",
+   "title": "Nanoliter dispensing characterisation: 5-500 nL sodium fluorescein into borate buffer wells, fluorescence readout"
+  },
+  {
+   "evidence": "Methods 2.5 \"Autosampling\", 2.6-2.7; Results 3.5; Fig. 6",
+   "id": "hela_digest_lcms_autosampling",
+   "liquid_handling": "mostly",
+   "title": "OpenSampler autosampling of HeLa digest dilutions (384-well plate on tempdeck) into LC-MS, under/overfilled sample loop"
+  }
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 18,
+  "source": "europepmc:PMC13118588"
+ },
+ "journal": "",
+ "note": "Data Availability Statement names OpenLC and OpenSampler GitHub repos (OpenSampler holds STL files only; no py)",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1477684,
+  "licence": "cc by",
+  "pages": 18,
+  "redistributable": "yes",
+  "sha256": "020f7fab17e334fbeed859d62d59e95193848be8b490a54615da1edca3fde2a4",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC13118588?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13118588.1/PMC13118588.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13118588.1/PMC13118588.1.pdf"
+ },
+ "pmcid": "PMC13118588",
+ "slug": "pipetting-robot-nanoliter",
+ "title": "Modification of a Low-Cost Pipetting Robot for Nanoliter Liquid Handling and Autosampling for Liquid Chromatography-Mass Spectrometry",
+ "year": "2026"
+}

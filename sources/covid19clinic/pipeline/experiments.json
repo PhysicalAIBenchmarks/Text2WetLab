@@ -1,0 +1,63 @@
+[
+  {
+    "title": "EQA panel evaluation of the OT2-KF pathogen circuit (MagMax Pathogen kit extraction and TaqPath RT-PCR) versus commercial platforms",
+    "goal": "Validate the OT-2/KingFisher circuit for SARS-CoV-2 detection using eight EMQN EQA samples and compare Ct values and calls with Flow Solution, Cobas 6800 and Hamilton-Seegene.",
+    "section_refs": [
+      "s2.2",
+      "s2.2.1",
+      "s2.2.2",
+      "s2.2.3",
+      "s3.1"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.1.1",
+      "s2.1.2",
+      "s2.1.4",
+      "s2.1.5"
+    ],
+    "unresolved_refs": [
+      "according to manufacturer's instructions with some modifications",
+      "BindIt protocol MagMax_Pathogen_High_Volume",
+      "description of the comparator platforms in S1 File",
+      "labware placement for each station in S2 File",
+      "TaqPath COVID-19 CE-IVD RT-PCR setup volumes not given beyond 5 μl eluate"
+    ],
+    "figure_refs": [
+      "Figure 1",
+      "Figure 2",
+      "Table 1",
+      "Table 2",
+      "Table 3"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Comparison of OT2-KF pathogen and OT2-KF viral pathogen II circuits using 15 clinical nasopharyngeal swab samples",
+    "goal": "Show that the second circuit using the MagMax Viral/Pathogen II kit gives qualitatively identical SARS-CoV-2 RT-PCR results to the first circuit on 15 known clinical samples.",
+    "section_refs": [
+      "s2.2",
+      "s2.2.1",
+      "s2.2.2",
+      "s2.2.3",
+      "s3.1"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.1.1",
+      "s2.1.2",
+      "s2.1.4",
+      "s2.1.5"
+    ],
+    "unresolved_refs": [
+      "Thermo Fisher application note 400 μl sample input with two wash steps",
+      "BindIt protocol MVP_2Wash_400_Flex",
+      "according to manufacturer's instructions with some modifications",
+      "labware placement for each station in S2 File"
+    ],
+    "figure_refs": [
+      "Table 4"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

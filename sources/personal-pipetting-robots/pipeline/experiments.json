@@ -1,0 +1,203 @@
+[
+  {
+    "title": "Pipet positioning accuracy test (FITC-filled pipet imaging)",
+    "goal": "Measure repeatability of PHIL pipet positioning by imaging a FITC-filled pipet returning to the centre of well F12 after traveling across a 96-well plate.",
+    "section_refs": [
+      "s4.2",
+      "s4.4"
+    ],
+    "shared_refs": [
+      "s4.3"
+    ],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 2A"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "Pump calibration, volume accuracy, flow-rate accuracy and automated FITC dilution series",
+    "goal": "Quantify the accuracy of PHIL peristaltic pumps gravimetrically and by automated versus manual FITC dilution curves.",
+    "section_refs": [
+      "s4.5",
+      "s4.7"
+    ],
+    "shared_refs": [
+      "s4.2",
+      "s4.3"
+    ],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 3A"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Dynamic FITC/PBS media exchange pulses and oscillations in 96-well plates",
+    "goal": "Test PHIL's ability to rapidly and durably change media composition (single pulse, 15 s oscillations, 2 h oscillations over 48 h, parallel wells) by imaging FITC fluorescence.",
+    "section_refs": [
+      "s4.8"
+    ],
+    "shared_refs": [
+      "s4.3",
+      "s4.6"
+    ],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 3B",
+      "Figure 3C",
+      "Figure 3D",
+      "Figure 3E"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Pipet carry-over and wash-step cross-contamination test",
+    "goal": "Quantify FITC carry-over between wells by reusable pipets and the reduction achieved by 1, 4 and 8 automated wash steps.",
+    "section_refs": [
+      "s4.5",
+      "s4.7",
+      "s4.8"
+    ],
+    "shared_refs": [
+      "s4.3",
+      "s4.6"
+    ],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 4A"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Automated immunostaining of murine bone and cerebrum tissue sections",
+    "goal": "Show that PHIL can perform multi-step immunostaining of thick tissue sections while preserving morphology.",
+    "section_refs": [
+      "s4.12",
+      "s4.21",
+      "s4.22",
+      "s4.23"
+    ],
+    "shared_refs": [
+      "s4.3",
+      "s4.6"
+    ],
+    "unresolved_refs": [
+      "Samples fixed, decalcified, sectioned as previously described (ref 57)"
+    ],
+    "figure_refs": [
+      "Figure 5A"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Automated immunostaining of GATA2VENUS myeloid progenitors",
+    "goal": "Validate automated anti-VENUS immunostaining of sorted non-adherent progenitors against FACS values and test for cross-contamination with a secondary-only control.",
+    "section_refs": [
+      "s4.12",
+      "s4.13",
+      "s4.19",
+      "s4.20"
+    ],
+    "shared_refs": [
+      "s4.3",
+      "s4.6"
+    ],
+    "unresolved_refs": [
+      "Immunostaining 'according to protocols as described' (refs 31,34,39,55)",
+      "Cells isolated and sorted 'as previously described' (refs 31,53)"
+    ],
+    "figure_refs": [
+      "Figure 5B"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Gentle automated washing of human CD34+ HSPCs in ibidi μ-Slide VI0.4",
+    "goal": "Compare cell loss after manual versus automated PBS washing at different flow speeds in fixed flow-sensitive HSPCs.",
+    "section_refs": [
+      "s4.9",
+      "s4.10",
+      "s4.20"
+    ],
+    "shared_refs": [
+      "s4.3",
+      "s4.6"
+    ],
+    "unresolved_refs": [
+      "HSPCs cultured 'as previously described' (ref 21)",
+      "Cell counting by automated segmentation (fastER)"
+    ],
+    "figure_refs": [
+      "Figure 5C"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "ESC proliferation and survival in PHIL versus standard live-cell incubator",
+    "goal": "Test whether culture inside PHIL affects mouse ESC time to first division and cell numbers over 36 h.",
+    "section_refs": [
+      "s4.11"
+    ],
+    "shared_refs": [
+      "s4.2"
+    ],
+    "unresolved_refs": [
+      "Routine culture per refs 51,52",
+      "Humidifier 'previously reported'"
+    ],
+    "figure_refs": [
+      "Figure 6A"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "GMP displacement test during automated media exchange",
+    "goal": "Determine whether PHIL media washes displace non-adherent murine GMPs during time-lapse imaging.",
+    "section_refs": [
+      "s4.12",
+      "s4.13",
+      "s4.14",
+      "s4.15"
+    ],
+    "shared_refs": [
+      "s4.3",
+      "s4.6"
+    ],
+    "unresolved_refs": [
+      "Cells isolated and sorted 'as previously described' (refs 31,53)"
+    ],
+    "figure_refs": [
+      "Figure 6B"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "Dynamic TNFα stimulation of GFP-p65/H2B-mCHERRY GMPs with time-lapse imaging",
+    "goal": "Apply different TNFα stimulation patterns via PHIL during confocal time-lapse imaging and quantify single-cell p65 nuclear translocation dynamics.",
+    "section_refs": [
+      "s4.12",
+      "s4.13",
+      "s4.14",
+      "s4.15",
+      "s4.16",
+      "s4.17",
+      "s4.18"
+    ],
+    "shared_refs": [
+      "s4.3",
+      "s4.6"
+    ],
+    "unresolved_refs": [
+      "Tracking and quantification 'as previously described' (ref 54)",
+      "Cell isolation 'as previously described' (refs 31,53)"
+    ],
+    "figure_refs": [
+      "Figure 7A",
+      "Figure 7B",
+      "Figure 7C",
+      "Figure 7D"
+    ],
+    "liquid_handling": "partly"
+  }
+]

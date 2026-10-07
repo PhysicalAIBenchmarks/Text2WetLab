@@ -1,0 +1,35 @@
+{
+ "level": "easy",
+ "core": [
+  {
+   "id": "robot_practice",
+   "text": "Sound OT-2 practice: a valid apiLevel and metadata; every volume handled by a pipette whose range covers it (nothing below its minimum or above its maximum); no well filled beyond its capacity; modules and labware used as intended; nothing physically unsafe or nonsensical (e.g. pipetting from or into the wrong labware, or needless extra handling that puts samples at risk)."
+  },
+  {
+   "id": "tips_and_contamination",
+   "text": "Never aspirates, dispenses or mixes without a tip attached, and drops every tip so that no tip is left on a pipette at the end of the run. A fresh tip whenever the pipette moves on to a different sample, template or stock that carryover would contaminate, and no cross-contamination of samples or reagent stocks. A fresh tip whenever touching a different sample well (bead mixing, supernatant removal, ethanol removal, elution mixing, recovery); one tip may dispense a reagent into several wells only if it never aspirates from them."
+  },
+  {
+   "id": "fidelity_to_task",
+   "text": "All-or-nothing bonus for a fully faithful protocol: every step in the task text is carried out (or recorded with protocol.comment where it cannot be simulated) in the given order with the given quantities and conditions, nothing is added that would change the outcome, and comments and metadata are accurate. Any deviation fails this item, even one already failed under another item."
+  }
+ ],
+ "task": [
+  {
+   "id": "binding",
+   "text": "40 uL beads (0.8x) into each of the 96 samples, mixed about 10 times, and a 5 min incubation recorded before the magnet."
+  },
+  {
+   "id": "supernatant_and_washes",
+   "text": "Magnet engaged and settle recorded, about 90 uL supernatant removed to waste from every well, then two 200 uL 80% ethanol washes each fully removed to waste."
+  },
+  {
+   "id": "drying_and_elution",
+   "text": "About 5 min air dry, magnet disengaged, 50 uL water added and mixed about 10 times, 2 min incubation, then magnet re-engaged."
+  },
+  {
+   "id": "recovery",
+   "text": "45 uL eluate moved from each sample well to the matching elution plate well, so sample identity is preserved."
+  }
+ ]
+}

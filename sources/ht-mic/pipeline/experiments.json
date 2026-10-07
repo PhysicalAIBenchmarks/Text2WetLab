@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Automated antibiotic master plate preparation and serial dilution on OT-2",
+    "goal": "Generate a master plate of twofold-serially diluted antibiotic working stocks and replicate it into identical stock plates for MIC testing.",
+    "section_refs": [
+      "s3.1"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3"
+    ],
+    "unresolved_refs": [
+      "Opentrons calibration guided by Opentrons application",
+      "protocol code in GitHub 'antibiotics.json'"
+    ],
+    "figure_refs": [
+      "Figure 1A",
+      "Figure 1B",
+      "Figure 3",
+      "Figure 5",
+      "Figure 6"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Pipette tip change test for serial dilution accuracy using levofloxacin fluorescence",
+    "goal": "Test whether changing pipette tips between dilution steps affects twofold serial dilution accuracy, manually and on the OT-2, by measuring levofloxacin fluorescence against expected values.",
+    "section_refs": [
+      "s3.1"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3"
+    ],
+    "unresolved_refs": [
+      "fluorescence reading instrument and plate details not specified"
+    ],
+    "figure_refs": [
+      "Figure 4A",
+      "Figure 4B"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "HT-MIC testing of A. baumannii strains with robotic inoculation and OD600 readout",
+    "goal": "Determine MIC90 of 8 antibiotics against 4 A. baumannii strains in triplicate by inoculating antibiotic plates with the OT-2 and measuring OD600 after ~20 h growth, then assign MICs automatically for comparison with manual assignment.",
+    "section_refs": [
+      "s3.1",
+      "s3.2",
+      "s3.3"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3"
+    ],
+    "unresolved_refs": [
+      "growth conditions 'as described' in Dillon et al., 2019",
+      "protocol code in GitHub 'MIC test.json'",
+      "Python code 'MIC-PythonCode.docx' (computational step)"
+    ],
+    "figure_refs": [
+      "Figure 1C",
+      "Figure 1D",
+      "Figure 1E",
+      "Figure 1F",
+      "Table 1",
+      "Figure 6"
+    ],
+    "liquid_handling": "partly"
+  }
+]

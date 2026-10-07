@@ -1,7 +1,23 @@
-# paper2protocol
+# paper2protocol: the preprocessing step
 
-Paper (bioRxiv, PLOS, or any open-access article in Europe PMC) → experiments (with figure links) → numbered natural-language liquid-handling
-instructions (96-well plates, tubes, reservoirs) for a downstream parser LLM.
+**This is an ingestion tool, not part of the benchmark's evaluation.** It turns a paper into the *inputs* of
+Text2WetLab tasks: numbered plain-English liquid-handling instructions (the NL) and a typed protocol (the IR).
+Nothing here judges a robot's behaviour; that is `eval/`.
+
+```
+ inputs (any of)                      paper2protocol                              outputs, per paper
+ ───────────────                      ──────────────                              ──────────────────
+ DOI / doi.org / publisher URL ─┐
+ article title                  ├─►  readers.py ─► Paper ─► identify ─► resolve    sources/<slug>/pipeline/
+ *.xml  (JATS you already have) │      (sections,   │       (experiments) (gaps,     paper.json
+ *.pdf  (text layer)            │       figures)    │                      web)       experiments.json
+ *.md / *.txt                  ─┘                   └─► extract ─► check ─► critic   exp<N>/protocol.txt  ← the NL
+                                                                                        exp<N>/protocol.json ← the IR
+```
+
+Everything after `readers.py` only sees a `Paper`, so a new input kind is one function and one suffix.
+Where it sits in the repo: `sources/` holds what we collect, `paper2protocol/` processes it, `tasks/<task>/public/`
+holds what becomes a task (a task's `[[metadata.papers]]` in `task.toml` names its paper), `eval/` judges a model's answer.
 
 Design: `docs/superpowers/specs/2026-10-03-paper2protocol-design.md`
 
@@ -16,19 +32,31 @@ uv run paper2protocol assess 10.64898/2026.03.26.714448 -e 1    # enough detail 
 uv run paper2protocol convert 10.64898/2026.03.26.714448 -e 1   # assess → instructions + checks + critic
 ```
 
+### Inputs
+
+| You have | Command | Notes |
+|---|---|---|
+| a DOI, doi.org link, publisher URL or title | `list 10.1371/journal.pone.0246302` | JATS full text from Europe PMC, PLOS or bioRxiv (`--source` forces one) |
+| a JATS file | `list paper.xml --doi 10.1/x` | exact structure |
+| a PDF | `list paper.pdf --doi 10.1/x` | text layer only (no OCR); sections come from heading heuristics |
+| Markdown or text | `list notes.md --slug my-paper` | same heuristics |
+| several | `list 10.1/a paper.pdf 10.1/b` | `list` takes any number, each into its own folder |
+
+`--doi` records a DOI for a file and lets it find its folder in `sources/sources.json`; `--slug` names the folder.
+PDF and text sections are **coarse**: look at `paper.json` before trusting an experiment split built on them.
+`assess` and `convert` take one input and `-e <experiment number>`.
+
 `convert` runs `assess` first and stops if the verdict is `reject` (`--force` overrides,
 `--skip-assess` skips it, `--no-web` assesses without web research).
 
-Outputs go to `out/<doi>/`: `paper.json`, `experiments.json`, and `exp<N>/` with
+Outputs go to `<--out>/<slug>/pipeline/` (default `sources/`; the slug comes from `sources/sources.json` by DOI,
+else the file name or the DOI made filesystem-safe): `paper.json`, `experiments.json`, and `exp<N>/` with
 `sufficiency.json`, `web_access.json`, `protocol.json`, `protocol.txt` (the deliverable), `check.json`, `critic.json`.
 
-The paper can be a DOI, a doi.org link or a publisher URL (e.g.
-`https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0246302`).
-
-Full text comes from the sources in `sources.py`, tried in order: Europe PMC (most
-open-access journals via PMC, plus preprints; tables as text), PLOS, bioRxiv. Force one with
-`--source`, or pass a downloaded JATS file with `--xml file.xml`. To add a publisher, write a
-fetch function returning JATS XML and append a `Source` to `SOURCES`.
+Full text for DOIs comes from the sources in `sources.py`, tried in order: Europe PMC (most
+open-access journals via PMC, plus preprints; tables as text), PLOS, bioRxiv. To add a publisher, write a
+fetch function returning JATS XML and append a `Source` to `SOURCES`. To add an input kind, write a function
+returning a `Paper` in `readers.py` and register its suffix.
 
 ## Leak guard
 

@@ -1,0 +1,109 @@
+{
+  "code": [
+    {
+      "api_levels": [],
+      "archived": false,
+      "cache_path": "~/.cache/text2wetlab-ingest/code/personal-pipetting-robots/CSDGroup__PHIL",
+      "commit": "e3070fb2b2c6f8f614775d9c0d108a3da583425e",
+      "default_branch": "main",
+      "host": "github.com",
+      "licence": "MIT",
+      "opentrons_py_files": 0,
+      "py_files": 0,
+      "redistributable": "yes",
+      "repo": "CSDGroup/PHIL",
+      "robot_mentions": [],
+      "size_kb": 16539,
+      "status": "cloned",
+      "url": "https://github.com/CSDGroup/PHIL"
+    },
+    {
+      "url": "https://doi.org/10.5281/zenodo.6402030",
+      "host": "zenodo.org",
+      "status": "blocked: Zenodo returned 403 (bot protection) to curl; not downloaded",
+      "licence": null,
+      "redistributable": "unknown"
+    }
+  ],
+  "doi_primary": "10.1038/s41467-022-30643-7",
+  "dois": [
+    "10.1038/s41467-022-30643-7"
+  ],
+  "fulltext": {
+    "legends": 7,
+    "sections": 52,
+    "source": "europepmc:PMC9151679"
+  },
+  "journal": "",
+  "note": " Paper Code availability names GitHub CSDGroup/PHIL + Zenodo 10.5281/zenodo.6402030; GitHub repo is MATLAB/Arduino (0 .py).",
+  "open_access": true,
+  "origin": [
+    "Amass BiomedCore search (2026-10-03)"
+  ],
+  "paper_licence": "cc by",
+  "pdf": {
+    "bytes": 2270305,
+    "licence": "cc by",
+    "pages": 12,
+    "redistributable": "yes",
+    "sha256": "0defac99f2bbc0bf3dab70392db62da325ec541aa63ee8ee44901137e9ccdb14",
+    "status": "downloaded",
+    "tried": [
+      {
+        "http": 403,
+        "manual": false,
+        "ok": false,
+        "url": "https://europepmc.org/articles/PMC9151679?pdf=render"
+      },
+      {
+        "http": 403,
+        "manual": false,
+        "ok": false,
+        "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC9151679&blobtype=pdf"
+      },
+      {
+        "http": 200,
+        "manual": false,
+        "ok": true,
+        "url": "https://www.nature.com/articles/s41467-022-30643-7.pdf"
+      }
+    ],
+    "url": "https://www.nature.com/articles/s41467-022-30643-7.pdf"
+  },
+  "pmcid": "PMC9151679",
+  "slug": "personal-pipetting-robots",
+  "title": "Open-source personal pipetting robots with live-cell incubation and microscopy compatibility",
+  "year": "2022",
+  "experiments_hint": [
+    {
+      "id": "media-exchange-multiwell",
+      "title": "PHIL automated media exchange in multi-well plates (dynamic media exchange, pump calibration)",
+      "liquid_handling": "mostly",
+      "evidence": "Results 2.3; Methods 4.7, 4.8"
+    },
+    {
+      "id": "reusable-pipet-contamination",
+      "title": "Contamination-free pipetting with reusable pipets (surface treatment, cleaning)",
+      "liquid_handling": "mostly",
+      "evidence": "Results 2.4; Methods 4.5, 4.6"
+    },
+    {
+      "id": "automated-immunostaining-cells",
+      "title": "Automated immunostaining of cultured cells with PHIL",
+      "liquid_handling": "mostly",
+      "evidence": "Results 2.5; Methods 4.19"
+    },
+    {
+      "id": "long-term-live-cell-pipetting",
+      "title": "Automated pipetting of long-term live-cell cultures (HSPC/GMP) with time-lapse imaging",
+      "liquid_handling": "partly",
+      "evidence": "Results 2.6; Methods 4.8-4.15"
+    },
+    {
+      "id": "tissue-immunostaining",
+      "title": "Automated immunostaining of tissue sections with PHIL",
+      "liquid_handling": "mostly",
+      "evidence": "Methods 4.21-4.22"
+    }
+  ]
+}

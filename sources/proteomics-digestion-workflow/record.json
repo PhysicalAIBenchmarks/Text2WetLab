@@ -1,0 +1,60 @@
+{
+ "code": [],
+ "doi_primary": "10.1016/j.mcpro.2024.100790",
+ "dois": [
+  "10.1016/j.mcpro.2024.100790"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Experimental Procedures 1.1-1.2; Results 2.1-2.3; Fig. 1-3",
+   "id": "digestion-evotip",
+   "liquid_handling": "mostly",
+   "title": "OT-2 automated PAC magnetic-bead protein digestion, cleanup and Evotip loading (HeLa lysate optimisation, up to 192 samples)"
+  },
+  {
+   "evidence": "Results 2.4-2.5; Fig. 4-5",
+   "id": "plasma",
+   "liquid_handling": "mostly",
+   "title": "Automated plasma proteome sample preparation (optimisation and 48-patient melanoma immunotherapy cohort)"
+  },
+  {
+   "evidence": "Results 2.6; Fig. 6",
+   "id": "phospho",
+   "liquid_handling": "mostly",
+   "title": "Modified OT-2 protocol for phosphopeptide enrichment (phosphoproteomics)"
+  }
+ ],
+ "fulltext": {
+  "legends": 9,
+  "sections": 19,
+  "source": "europepmc:PMC11251069"
+ },
+ "journal": "",
+ "note": " Code: paper says run script is in Supplementary Material and Evosep OT-2 protocols at evosep.com/support/automation-opentrons-ot2 (not a repository, not downloaded); the EuropePMC supplement zip holds only figures + mmc1.xlsx (no script). Data on PRIDE PXD048325.",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2813420,
+  "licence": "cc by",
+  "pages": 12,
+  "redistributable": "yes",
+  "sha256": "259242f7c8417df6fd6834c27da91afde0159f19288d8500738684786670ba12",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": true,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11251069.1/PMC11251069.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11251069.1/PMC11251069.1.pdf"
+ },
+ "pmcid": "PMC11251069",
+ "slug": "proteomics-digestion-workflow",
+ "title": "Fully Automated Workflow for Integrated Sample Digestion and Evotip Loading Enabling High-Throughput Clinical Proteomics",
+ "year": "2024"
+}

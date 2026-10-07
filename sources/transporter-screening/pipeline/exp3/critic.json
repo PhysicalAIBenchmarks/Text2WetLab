@@ -1,0 +1,54 @@
+{
+  "verdict": "major_issues",
+  "summary": "The protocol follows the paper's screen format (CR1496c plates, 3 µL culture:glycerol pre-load, 297 µL LB+drug, 48 h read, 37 °C, 225 rpm, 20 min imaging) and the MIC definition. The 18 drugs, 10-step two-fold series, drug-free and blank columns and triplicates are laid out sensibly. The automated check found a real overflow: the culture:glycerol well totals 2010 µL against a 2000 µL capacity. The dilution plates leave almost no usable volume, and several robot-handling details are unspecified or unrealistic.",
+  "issues": [
+    {
+      "step": 4,
+      "severity": "major",
+      "issue": "The overflow comes from steps 1, 2 and 4: 1000 µL LB + 10 µL glycerol stock + 1000 µL 50% glycerol gives 2010 µL in culture_plate A1 and A2, above the 2000 µL deep-well capacity. The paper's 1 mL + 1 mL already fills the well, and adding the inoculum pushes it over. Mixing 5 times in a completely full well would also splash.",
+      "suggestion": "Reduce the volumes, e.g. 800 µL LB + 10 µL stock, then 810 µL 50% glycerol, to keep the 1:1 ratio. This still gives enough for 6 plates × 66 wells × 3 µL = 1188 µL from A1 and 594 µL from A2, with margin. Alternatively, grow the culture in 1 mL as in the paper and transfer only part of it into the glycerol mix."
+    },
+    {
+      "step": 25,
+      "severity": "major",
+      "issue": "Each dilution well is left with exactly 900 µL (steps 25, 36, 47) against a requirement of 3 × 297 = 891 µL. There is no dead volume. This applies to every column, including the LB-only columns 11 and 12 (steps 15, 26, 37). With 300 µL tips in 2 mL deep wells, the last aspirations of replicate 3 will pick up air or short-fill the plates, so the third replicate is likely to be unreliable.",
+      "suggestion": "Increase the per-well working volume, e.g. 1000 µL LB and 1000 µL transferred per step with 1000 µL left. Alternatively make slightly larger top-concentration volumes, staying within 2 mL. Keep at least 10-15% dead volume."
+    },
+    {
+      "step": 5,
+      "severity": "minor",
+      "issue": "Steps 5-13 and 15-56 use an 8-channel 300 µL / 20 µL pipette on 6-row layouts (A-F), and draw 3 µL for A1:F11 from a single well (A1 or A2) of the culture plate. A multichannel pipette cannot aspirate from one well with six channels. Rows A-F also need partial tip pickup, which the OT-2 multichannel does not support natively.",
+      "suggestion": "Put the culture:glycerol mix in a reservoir or in a full column (A1:H1) of the culture plate. Use all 8 rows or a layout compatible with the 8-channel pipette, or state that single-channel or partial-tip handling is used."
+    },
+    {
+      "step": 48,
+      "severity": "minor",
+      "issue": "No tip-change or dispense-order policy is given for dispensing from the dilution plates into the inoculated growth plates (steps 48-56). If tips are reused from high to low drug concentration, or touched into the pre-loaded inoculum droplet, drug carry-over will distort the low-concentration, drug-free and blank wells. Blank column 12 must also remain uncontaminated.",
+      "suggestion": "Specify a new tip per plate, or dispense in order blank, drug-free, then lowest to highest concentration. Dispense without touching the droplet or well walls."
+    },
+    {
+      "step": 16,
+      "severity": "minor",
+      "issue": "Mixing is 5 cycles with a 300 µL pipette in 1800 µL wells, after 900 µL transfers that take multiple aspirations. This is probably inadequate mixing for an accurate two-fold series, since small mixing volumes in a large deep well mix poorly. Dilution error would propagate down the series.",
+      "suggestion": "State the mixing volume (e.g. 250-300 µL) and increase the number of cycles to about 10. Or reduce the working volume so the pipette can mix a larger fraction of the well."
+    },
+    {
+      "step": 48,
+      "severity": "minor",
+      "issue": "The thawing of the frozen pre-inoculated plates (step 14 storage, then step 48) is only mentioned in a note and is not an explicit step. Thawing before adding LB is also not in the paper. In the paper, 297 µL LB+drug is simply added to the stored plates.",
+      "suggestion": "Either add an explicit MANUAL step (thaw/equilibrate to room temperature, with a time) marked as an assumption, or remove the thaw and add the LB+drug directly to the stored plates as in the paper."
+    },
+    {
+      "step": 3,
+      "severity": "minor",
+      "issue": "The overnight culture is incubated in an open deep-well plate with no mention of a breathable seal or cover. This risks contamination and evaporation over about 16 h at 37 °C with shaking. The paper also does not give the volume of stock used or the plate sealing.",
+      "suggestion": "Add a breathable seal or lid to the culture plate before incubation, and label it as an assumption."
+    },
+    {
+      "step": 15,
+      "severity": "minor",
+      "issue": "The ornidazole top concentration (3200 mg/L, 4× MIC) is justified as 'capped for solubility'. The paper states the compounds were chosen for being readily soluble in LB, and the cited MIC is 800 mg/L, so this cap is unsupported. It gives only two steps above the MIC for this drug, versus four for most others. The final concentration in the wells is also 99% of the dilution-plate concentration, because of the 3 µL inoculum.",
+      "suggestion": "Mark the ornidazole cap as an assumption without a solubility claim, or use the same 16× top concentration if solubility allows. Note the 297/300 dilution when reporting final concentrations."
+    }
+  ]
+}

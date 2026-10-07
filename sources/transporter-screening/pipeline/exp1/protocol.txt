@@ -1,0 +1,91 @@
+Baseline growth of the E. coli transporter knockout library in antibiotic-free LB (Growth Profiler 960)
+
+Containers:
+- stock1: 96-well plate — Glycerol stock plate 1 of the transporter knockout library [assumed]
+- stock2: 96-well plate — Glycerol stock plate 2 of the transporter knockout library [assumed]
+- stock3: 96-well plate — Glycerol stock plate 3 of the transporter knockout library [assumed]
+- stock4: 96-well plate — Glycerol stock plate 4 of the transporter knockout library [assumed]
+- stock5: 96-well plate — Glycerol stock plate 5 of the transporter knockout library [assumed]
+- overnight1: 96-deep-well plate (2 mL) — Overnight culture deep-well plate for library plate 1
+- overnight2: 96-deep-well plate (2 mL) — Overnight culture deep-well plate for library plate 2
+- overnight3: 96-deep-well plate (2 mL) — Overnight culture deep-well plate for library plate 3
+- overnight4: 96-deep-well plate (2 mL) — Overnight culture deep-well plate for library plate 4
+- overnight5: 96-deep-well plate (2 mL) — Overnight culture deep-well plate for library plate 5
+- LB_reservoir: reservoir — Sterile LB (antibiotic-free) for overnight cultures and assay plates; refilled as needed [assumed]
+- glycerol_reservoir: reservoir — Sterile 50% glycerol; refilled as needed [assumed]
+- assay1_r1: 96-well plate — CR1496c assay plate, library plate 1, replicate 1
+- assay1_r2: 96-well plate — CR1496c assay plate, library plate 1, replicate 2
+- assay2_r1: 96-well plate — CR1496c assay plate, library plate 2, replicate 1
+- assay2_r2: 96-well plate — CR1496c assay plate, library plate 2, replicate 2
+- assay3_r1: 96-well plate — CR1496c assay plate, library plate 3, replicate 1
+- assay3_r2: 96-well plate — CR1496c assay plate, library plate 3, replicate 2
+- assay4_r1: 96-well plate — CR1496c assay plate, library plate 4, replicate 1
+- assay4_r2: 96-well plate — CR1496c assay plate, library plate 4, replicate 2
+- assay5_r1: 96-well plate — CR1496c assay plate, library plate 5, replicate 1
+- assay5_r2: 96-well plate — CR1496c assay plate, library plate 5, replicate 2
+
+Starting contents:
+- stock1 wells A1:H12: stock E. coli transporter knockout glycerol stocks (plate 1) [assumed]
+- stock2 wells A1:H12: stock E. coli transporter knockout glycerol stocks (plate 2) [assumed]
+- stock3 wells A1:H12: stock E. coli transporter knockout glycerol stocks (plate 3) [assumed]
+- stock4 wells A1:H12: stock E. coli transporter knockout glycerol stocks (plate 4) [assumed]
+- stock5 wells A1:H12: stock E. coli transporter knockout glycerol stocks (plate 5) [assumed]
+- LB_reservoir: stock LB (Luria-Bertani) broth, no antibiotic [assumed]
+- glycerol_reservoir: stock 50% glycerol
+
+Steps:
+1. Transfer 1000 µL of LB from LB_reservoir to overnight1 wells A1:H12 (each well). Note: Filled in 300 µL-pipette aliquots by the OT-2 as needed
+2. Transfer 1000 µL of LB from LB_reservoir to overnight2 wells A1:H12 (each well).
+3. Transfer 1000 µL of LB from LB_reservoir to overnight3 wells A1:H12 (each well).
+4. Transfer 1000 µL of LB from LB_reservoir to overnight4 wells A1:H12 (each well).
+5. Transfer 1000 µL of LB from LB_reservoir to overnight5 wells A1:H12 (each well).
+6. Transfer 5 µL of glycerol stock from stock1 wells A1:H12 to overnight1 wells A1:H12 (each well). Note: Inoculum volume not stated; 5 µL assumed [assumed]
+7. Transfer 5 µL of glycerol stock from stock2 wells A1:H12 to overnight2 wells A1:H12 (each well). Note: Inoculum volume assumed [assumed]
+8. Transfer 5 µL of glycerol stock from stock3 wells A1:H12 to overnight3 wells A1:H12 (each well). Note: Inoculum volume assumed [assumed]
+9. Transfer 5 µL of glycerol stock from stock4 wells A1:H12 to overnight4 wells A1:H12 (each well). Note: Inoculum volume assumed [assumed]
+10. Transfer 5 µL of glycerol stock from stock5 wells A1:H12 to overnight5 wells A1:H12 (each well). Note: Inoculum volume assumed [assumed]
+11. MANUAL: Seal overnight1-overnight5 with a gas-permeable seal and incubate about 16 h (overnight) at 37 °C with shaking (about 220 rpm). Note: Duration, shaking speed and seal type are assumed [assumed]
+12. Transfer 1000 µL of 50% glycerol from glycerol_reservoir to overnight1 wells A1:H12 (each well), then mix 5 times. Note: Post-dispense mixing (5 cycles, about 500 µL) assumed [assumed]
+13. Transfer 1000 µL of 50% glycerol from glycerol_reservoir to overnight2 wells A1:H12 (each well), then mix 5 times. Note: Mixing assumed [assumed]
+14. Transfer 1000 µL of 50% glycerol from glycerol_reservoir to overnight3 wells A1:H12 (each well), then mix 5 times. Note: Mixing assumed [assumed]
+15. Transfer 1000 µL of 50% glycerol from glycerol_reservoir to overnight4 wells A1:H12 (each well), then mix 5 times. Note: Mixing assumed [assumed]
+16. Transfer 1000 µL of 50% glycerol from glycerol_reservoir to overnight5 wells A1:H12 (each well), then mix 5 times. Note: Mixing assumed [assumed]
+17. Transfer 3 µL of culture-glycerol mixture from overnight1 wells A1:H12 to assay1_r1 wells A1:H12 (each well). Note: 20 µL multichannel pipette; dispensed at well bottom as a droplet
+18. Transfer 3 µL of culture-glycerol mixture from overnight1 wells A1:H12 to assay1_r2 wells A1:H12 (each well). Note: Duplicate plate
+19. Transfer 3 µL of culture-glycerol mixture from overnight2 wells A1:H12 to assay2_r1 wells A1:H12 (each well).
+20. Transfer 3 µL of culture-glycerol mixture from overnight2 wells A1:H12 to assay2_r2 wells A1:H12 (each well). Note: Duplicate plate
+21. Transfer 3 µL of culture-glycerol mixture from overnight3 wells A1:H12 to assay3_r1 wells A1:H12 (each well).
+22. Transfer 3 µL of culture-glycerol mixture from overnight3 wells A1:H12 to assay3_r2 wells A1:H12 (each well). Note: Duplicate plate
+23. Transfer 3 µL of culture-glycerol mixture from overnight4 wells A1:H12 to assay4_r1 wells A1:H12 (each well).
+24. Transfer 3 µL of culture-glycerol mixture from overnight4 wells A1:H12 to assay4_r2 wells A1:H12 (each well). Note: Duplicate plate
+25. Transfer 3 µL of culture-glycerol mixture from overnight5 wells A1:H12 to assay5_r1 wells A1:H12 (each well).
+26. Transfer 3 µL of culture-glycerol mixture from overnight5 wells A1:H12 to assay5_r2 wells A1:H12 (each well). Note: Duplicate plate
+27. MANUAL: Store all 10 loaded assay plates at -20 °C (up to 3 weeks; -80 °C for longer storage); remove from storage before the assay. Note: No separate thaw step described; droplets thaw on LB addition
+28. Transfer 297 µL of LB (no antibiotic) from LB_reservoir to assay1_r1 wells A1:H12 (each well). Note: Baseline: no antibiotic added; 300 µL multichannel pipette
+29. Transfer 297 µL of LB (no antibiotic) from LB_reservoir to assay1_r2 wells A1:H12 (each well).
+30. Transfer 297 µL of LB (no antibiotic) from LB_reservoir to assay2_r1 wells A1:H12 (each well).
+31. Transfer 297 µL of LB (no antibiotic) from LB_reservoir to assay2_r2 wells A1:H12 (each well).
+32. Transfer 297 µL of LB (no antibiotic) from LB_reservoir to assay3_r1 wells A1:H12 (each well).
+33. Transfer 297 µL of LB (no antibiotic) from LB_reservoir to assay3_r2 wells A1:H12 (each well).
+34. Transfer 297 µL of LB (no antibiotic) from LB_reservoir to assay4_r1 wells A1:H12 (each well).
+35. Transfer 297 µL of LB (no antibiotic) from LB_reservoir to assay4_r2 wells A1:H12 (each well).
+36. Transfer 297 µL of LB (no antibiotic) from LB_reservoir to assay5_r1 wells A1:H12 (each well).
+37. Transfer 297 µL of LB (no antibiotic) from LB_reservoir to assay5_r2 wells A1:H12 (each well).
+38. MANUAL: Seal all 10 assay plates (assay1_r1 to assay5_r2) with CR1396b sandwich covers.
+39. MANUAL: Load all 10 sealed plates into the Growth Profiler 960 (5 library plates in duplicate); run at 37 °C with 225 rpm shaking, imaging every 20 min for about 24 h (until stationary phase). Note: Run duration (about 24 h) is assumed; G-values later converted to OD600 with a = 0.0158, b = 0.9854 [assumed]
+
+Assumptions:
+- 'Lucia Broth' is assumed to be a typo for Luria-Bertani broth: standard LB (10 g/L tryptone, 5 g/L yeast extract, 10 g/L NaCl), autoclaved, no antibiotic.
+- Glycerol stock plates are assumed to be 96-well plates (5 plates, wells A1:H12), with the layout of the 447 strains, WT and blank wells not specified in the paper; unused wells (480 - 447) are assumed to hold WT controls or sterile/blank wells. The same A1:H12 layout is carried through all plates.
+- Inoculum volume from glycerol stock to each overnight well is not stated; 5 µL assumed (standard practice), transferred with a fresh tip per transfer.
+- Overnight growth assumed to be about 16 h at 37 °C with about 220 rpm shaking and a gas-permeable seal; the paper states only 'overnight', 37 °C and agitation.
+- Mixing the overnight culture with 1 mL of 50% glycerol assumed to be done by 5 pipette cycles at about 500 µL; 1 mL + 1 mL = 2 mL fills the deep well to its working capacity.
+- Each deep-well plate seeds two assay plates (replicate 1 and 2) with 3 µL per well, so the 5 library plates give 10 assay plates (library in duplicate, as in the paper). The 3 µL droplets are dispensed at the well bottom with the 20 µL multichannel pipette (OT-2); 297 µL LB with the 300 µL multichannel pipette. Default OT-2 speeds and a fresh tip per transfer assumed; the paper's scripts were not consulted.
+- The assay plate CR1496c is a 96-half-deepwell polystyrene plate with a recommended culture volume of 0.3 mL (Enzyscreen, https://www.enzyscreen.com/product/polystyrene-transparent-square-96-half-deepwell-microplates-CR1496c/); it is represented here as plate_96 (360 µL working capacity), which fits the 300 µL final volume.
+- No separate thawing or mixing of frozen assay plates is described; 297 µL LB is added to the stored plates directly and the droplet dissolves during robot dispensing and Growth Profiler shaking (standard practice).
+- LB reservoir and 50% glycerol reservoir are given as stocks of ample volume (volume null); total needs (about 480 mL LB for overnights, about 285 mL LB for assay, about 480 mL glycerol) exceed one reservoir's capacity, so they are assumed to be refilled during the run.
+- Assay run duration is not stated; about 24 h (until all wells reach stationary phase) assumed, with the same window used for AUC for all strains. Growth Profiler settings (37 °C, 225 rpm, 20 min imaging) are from the paper.
+- Blank wells for G_Blank (uninoculated LB) are assumed to be included in the layout, and G-values are computed with the manufacturer's software; OD600 = 0.0158*(G - G_Blank)^0.9854 as given in the paper, so the standard curve is not redone.
+- Plate sterilisation between uses ('washing and UV in accordance with the manufacturer's instructions') is deferred: assume fresh gamma-sterilised CR1496c plates, or wash, dry and UV-sterilise reused plates; cycle time not given.
+- Growth rate (r) and AUC are obtained afterwards by Growthcurver in R; this analysis step is not included in the liquid-handling protocol.
+- Details drawn from the paper's s4 and Enzyscreen pages (https://www.enzyscreen.com/article/technical-specifications/, https://www.enzyscreen.com/product/universal-sandwich-cover-for-96-well-mtps-stackable/).

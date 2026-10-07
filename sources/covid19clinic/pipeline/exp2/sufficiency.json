@@ -1,0 +1,77 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives sample input, bead and MS2 volumes, kit and script names, the negative control, 5 µL eluate input and the result-calling rules. The Thermo MVP II application note, the MVP II user guide and the TaqPath CE-IVD instructions for use supply the plate volumes and the RT-PCR mix and cycling. One part is unverified: the MagMAX Pathogen RNA/DNA comparator extraction (wash and elution volumes, bead-mix composition, script parameters). My search quota ran out before I could fetch that manual, so that gap is only assumable, by following the manufacturer's high-volume protocol. The OT-2 labware and pipetting parameters (S2 File) are also assumable.",
+  "gaps": [
+    {
+      "detail": "MVP II extraction plate layout and reagent volumes for 'MVP_2Wash_400_Flex' (400 µL sample, 2 washes)",
+      "why_needed": "The paper defers to a Thermo application note. Plate volumes, bead-mix composition and elution volume are needed to fill the KingFisher plates.",
+      "status": "resolved",
+      "resolution": "Wash 1 plate: deep-well 96 plate, Wash Solution/Buffer 1,000 µL/well. Wash 2 plate: deep-well plate, 80% ethanol 1,000 µL/well. Elution plate: Elution Solution 50 µL/well. Tip comb plate: 96 tip comb for deep-well magnets placed in a KingFisher 96 microplate. Binding Bead Mix: 530 µL Binding Solution + 20 µL Binding Beads = 550 µL/well, with 10% overage, mixed by inversion. Make 80% ethanol fresh from molecular-biology-grade absolute ethanol and nuclease-free water (not DEPC-treated); the guide gives 1.5 mL per 400 µL extraction. The run takes ~24 min. Seal the eluate plate immediately; keep it on ice or store at −20 °C.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/BID/Application-Notes/magmax-viral-pathogen-kit-protocol-changes-sars-cov-2-testing-app-note-emea.pdf (Tables 1 and 4); https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0024756_MVPII_RUO_UG.pdf (400-µL automated method)"
+    },
+    {
+      "detail": "Internal KingFisher Flex step parameters of the BindIt script MVP_2Wash_400_Flex (mix times and speeds, bead collection, heating) and the exact way the proteinase K step was removed",
+      "why_needed": "The instrument program defines how the beads are processed. The paper says only that the proteinase K digestion step was removed and the plate configuration changed.",
+      "status": "assumable",
+      "resolution": "Download the published MVP_2Wash_400_Flex.bdz from the Thermo MagMAX Viral/Pathogen II product page, as the user guide directs. Delete the proteinase K digestion step as the paper states. Use the paper's plate set: three deep-well plates (sample, wash 1, wash 2), two standard plates (elution and tip comb), and one tip comb. The step-level parameters were not visible in the text I retrieved, so use the vendor script values unchanged.",
+      "source": "standard practice; user guide MAN0024756 says to load the program from the product page"
+    },
+    {
+      "detail": "MagMAX Pathogen RNA/DNA (comparator circuit) wash 1/wash 2 and elution volumes, composition of the 260 µL Bead Master Mix, and BindIt 'MagMax_Pathogen_High_Volume' parameters",
+      "why_needed": "The 15 samples are also run through the first circuit. Its plates must be filled correctly for the comparison to be valid.",
+      "status": "assumable",
+      "resolution": "The paper gives 460 µL lysate (no added lysis solution), 260 µL Bead Master Mix, 5 µL MS2 and a 460 µL PBS negative control at A1. I could not retrieve the MagMAX Pathogen RNA/DNA kit manual because the search quota ran out, so the values were not verified. Prepare the Bead Master Mix and fill the wash and elution plates exactly as the manufacturer's high-volume KingFisher Flex protocol states, and use the vendor 'MagMax_Pathogen_High_Volume' script. Verify against the manual before running.",
+      "source": "standard practice (follow the kit manual)"
+    },
+    {
+      "detail": "RT-PCR reaction mix composition and volumes for the TaqPath COVID-19 CE-IVD kit",
+      "why_needed": "The paper states only 5 µL eluate in a multiplex TaqPath reaction, so the mix volumes and total reaction volume are needed.",
+      "status": "resolved",
+      "resolution": "Both circuits extract from more than 200 µL of sample, so use the instructions for use' table for >200 µL input. Per reaction, mix 6.25 µL TaqPath 1-Step Multiplex Master Mix (4X, No ROX), 1.25 µL COVID-19 Real Time PCR Assay Multiplex and 12.5 µL nuclease-free water. For n samples plus 2 controls, make 6.875×(n+2) µL master mix, 1.375×(n+2) µL assay and 13.75×(n+2) µL water. Dispense 20 µL mix per well of a MicroAmp Fast Optical 96-well 0.1 mL plate, then add 5 µL purified RNA. Positive control well: 2 µL diluted TaqPath COVID-19 Control + 3 µL water. Negative control well: 5 µL purified extraction negative control. Total 25 µL. The paper does not say which mix variant (15 µL vs 20 µL) was used; the 20 µL variant is chosen because the input is >200 µL.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019215_TaqPathCOVID-19_CE-IVD_RT-PCR%20Kit_IFU.pdf (Chapter 4, >200-µL sample input, Table 4)"
+    },
+    {
+      "detail": "Positive control dilution and plate sealing, mixing and spin steps",
+      "why_needed": "The positive control must be at the right concentration, and plate mixing affects well-to-well consistency.",
+      "status": "resolved",
+      "resolution": "Dilute the TaqPath COVID-19 Control (1×10^4 copies/µL): 2 µL into 98 µL Dilution Buffer, then 12.5 µL of that into 87.5 µL Dilution Buffer, giving 25 copies/µL. Seal the plate with MicroAmp Optical Adhesive Film. Vortex 10–30 s at the highest setting. Centrifuge 1–2 min at ≥650 ×g.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019215_TaqPathCOVID-19_CE-IVD_RT-PCR%20Kit_IFU.pdf"
+    },
+    {
+      "detail": "ABI 7500 Fast run settings and thermal protocol",
+      "why_needed": "The paper names the instrument but gives no cycling conditions or settings.",
+      "status": "resolved",
+      "resolution": "Assay: Standard Curve (Absolute Quantitation). Run mode: Standard 7500 (the IFU specifies Standard 7500 for the 7500 Fast). Passive reference: None. Reaction volume 25 µL. Detectors: FAM = ORF1ab, VIC = N gene, ABY = S gene, JUN = MS2. Thermal protocol: 25 °C 2 min (UNG), 53 °C 10 min (reverse transcription), 95 °C 2 min (activation), then 40 cycles of 95 °C 3 s and 60 °C 30 s.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019215_TaqPathCOVID-19_CE-IVD_RT-PCR%20Kit_IFU.pdf (Chapter 6, 7500 Fast)"
+    },
+    {
+      "detail": "Ct cutoffs and the validity rule for the negative and positive controls",
+      "why_needed": "Needed to call results and judge whether the runs are valid. The paper's positive/negative/invalid/revise rules do not give a Ct cutoff.",
+      "status": "resolved",
+      "resolution": "Viral targets valid at Ct ≤37 in the positive control. In the negative control, viral targets must have Ct >37 and MS2 ≤32. A sample is called positive with two or more viral targets amplified. A sample is called negative when MS2 is amplified and the viral targets are not. A sample is invalid when nothing amplifies. Anything else is 'revise' and is reviewed by a microbiologist (paper s2.2.3).",
+      "source": "IFU Appendix A, Table 14 (https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019215_TaqPathCOVID-19_CE-IVD_RT-PCR%20Kit_IFU.pdf); paper s2.2.3"
+    },
+    {
+      "detail": "Inactivation step details: exact volumes mixed 1:1 with Cobas omni Lysis Reagent, and contact time",
+      "why_needed": "The paper says samples in 2 mL lysis buffer were vortexed and mixed 1:1 with Cobas omni Lysis Reagent, but not the volumes or time. Each sample must supply 460 µL + 400 µL of lysate.",
+      "status": "assumable",
+      "resolution": "Mix equal volumes (e.g. 1 mL sample + 1 mL Cobas omni Lysis Reagent, giving ≥860 µL for the two extractions plus dead volume). Vortex, then let stand a short time at room temperature (about 10–20 min) before extraction. The contact time is not given in the paper.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Order of reagent addition, mixing and negative control for the MVP II plate",
+      "why_needed": "The paper says bead mix and MS2 are added, with a PBS negative control at A1. It does not give the order or whether the plate is mixed.",
+      "status": "assumable",
+      "resolution": "Dispense 400 µL sample to each sample well. Dispense 400 µL PBS to the A1 negative control well (as in the paper; the vendor guide uses water). Add 550 µL Binding Bead Mix with a fresh tip per well. Mix the bead mix frequently by inversion and pipette slowly because it is viscous. Add 10 µL MS2 phage control to every well including the negative control. Add no proteinase K.",
+      "source": "MVP II user guide MAN0024756 (adapted per paper s2.2.1)"
+    },
+    {
+      "detail": "OT-2 station labware positions, tip handling, aspiration and dispense heights and speeds, mixing cycles (S2 File and the OT-2 code)",
+      "why_needed": "The robot steps require labware placement and liquid-handling parameters. The paper defers them to S2 File and its GitHub code, which I was told not to use.",
+      "status": "assumable",
+      "resolution": "Use standard OT-2 practice. Single-channel P1000 for the viscous bead mix, a fresh tip for every dispense, slow aspiration and dispense, and a slight pre-rinse where useful. Sample tubes in racks and the KingFisher deep-well plate on the deck. For 15 samples plus controls, adapt the layout to a partial 96-well plate. Verify plate labware definitions on the robot. Aspiration heights follow the paper's formula (total height minus aspirated height) or a fixed conservative height.",
+      "source": "standard practice; paper s2.1.2 and s3.1"
+    }
+  ],
+  "retrieved_details": "MVP II extraction (400 µL, 2-wash; Thermo application note COL33570 and MVP II user guide MAN0024756). Script: MVP_2Wash_400_Flex.bdz on KingFisher Flex with 96 deep-well head and the deep-well heating block. Sample plate (KingFisher 96 deep-well): 400 µL sample, 550 µL Binding Bead Mix (530 µL Binding Solution + 20 µL Binding Beads, +10% overage), 10 µL MS2; the paper omits proteinase K; negative control PBS at A1. Wash 1 plate: 1,000 µL Wash Buffer. Wash 2 plate: 1,000 µL 80% ethanol. Elution plate: 50 µL Elution Solution. Tip comb in a KingFisher 96 microplate. Run ≈24 min. Seal the eluate plate immediately; ice or −20 °C. Sources: https://documents.thermofisher.com/TFS-Assets/BID/Application-Notes/magmax-viral-pathogen-kit-protocol-changes-sars-cov-2-testing-app-note-emea.pdf and https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0024756_MVPII_RUO_UG.pdf. Comparator circuit (paper only): 460 µL lysate, 260 µL MagMAX Pathogen Bead Master Mix, 5 µL MS2, 460 µL PBS at A1, script MagMax_Pathogen_High_Volume; the kit manual values for washes, elution and bead-mix composition were not retrieved. RT-PCR (TaqPath COVID-19 CE-IVD IFU MAN0019215, https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019215_TaqPathCOVID-19_CE-IVD_RT-PCR%20Kit_IFU.pdf): for >200 µL extraction input, reaction mix per well 6.25 µL master mix (4X, No ROX) + 1.25 µL assay multiplex + 12.5 µL nuclease-free water = 20 µL, plus 5 µL eluate = 25 µL. Positive control: 2 µL of 25 copies/µL dilution + 3 µL water. Negative control: 5 µL extraction negative. Seal, vortex 10–30 s, spin ≥650 ×g for 1–2 min. 7500 Fast: passive reference None, 25 µL, 25 °C 2 min / 53 °C 10 min / 95 °C 2 min / 40× (95 °C 3 s, 60 °C 30 s). Channels FAM ORF1ab, VIC N, ABY S, JUN MS2. Ct cutoffs: viral targets ≤37 positive, MS2 ≤32 in the negative control. Paper-specific details: 15 nasopharyngeal swabs in 2 mL lysis buffer (2 M guanidinium thiocyanate, 2 mM DTT, 30 mM sodium citrate, 1% Triton X-100), vortexed and mixed 1:1 with Cobas omni Lysis Reagent. Results are called positive when ≥2 targets amplify, negative with MS2 only, invalid with no amplification, otherwise revise."
+}

@@ -1,0 +1,59 @@
+[
+  {
+    "title": "Automated alginate/CaCl2 hydrogel bead formation and imaging across alginate and CaCl2 concentrations",
+    "goal": "Assess the platform's ability to prepare alginate-CaCl2 hydrogel beads automatically and image them 30 min after combining, to detect the effect of ion concentration on bead opacity (pixel intensity).",
+    "section_refs": [
+      "s6.2",
+      "s7.1",
+      "s7.2",
+      "s7.3",
+      "s7.4",
+      "s8.1"
+    ],
+    "shared_refs": [
+      "s3.1",
+      "s6.1",
+      "s6.3",
+      "s6.4"
+    ],
+    "unresolved_refs": [
+      "Alginate and CaCl2 solution preparation not described (assumption: stock solutions prepared in 2 mL vials)",
+      "Exact dispensing volumes of CaCl2 and alginate droplets not stated",
+      "Image processing details (histogram equalization, thresholding) described only briefly"
+    ],
+    "figure_refs": [
+      "Figure 5A",
+      "Figure 5B"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Real-time imaging of EDTA-induced disintegration of alginate-calcium hydrogel beads",
+    "goal": "Validate the platform for time-lapse monitoring of hydrogel disintegration (1.5% alginate, 1.0% CaCl2) after addition of 200 mM EDTA, using mean pixel intensity over time.",
+    "section_refs": [
+      "s6.2",
+      "s7.1",
+      "s7.2",
+      "s7.3",
+      "s7.4",
+      "s8.2"
+    ],
+    "shared_refs": [
+      "s3.1",
+      "s6.1",
+      "s6.3",
+      "s6.4"
+    ],
+    "unresolved_refs": [
+      "EDTA addition volume and timing not specified",
+      "Imaging time-point schedule given only as an example (20 s to 30 min)",
+      "Image analysis for mean pixel intensity not detailed"
+    ],
+    "figure_refs": [
+      "Figure 6A",
+      "Figure 6B",
+      "Figure 6C"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

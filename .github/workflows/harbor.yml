@@ -1,0 +1,41 @@
+name: Harbor oracle
+# The full benchmark path: `harbor run -a oracle` on every task in Docker, LLM judge included. Needs ANTHROPIC_API_KEY
+# or OPENROUTER_API_KEY (the judge uses Anthropic when both are set),
+# so it never runs on untrusted code: main, nightly, manual, or a same-repo PR labelled safe-to-test.
+on:
+  push:
+    branches: [main]
+    paths: [tasks/**, eval/**, paper2protocol/**, .github/workflows/harbor.yml]
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+  pull_request:
+    types: [labeled, synchronize]
+concurrency:
+  group: harbor-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  oracle:
+    if: >-
+      github.event_name != 'pull_request' ||
+      (contains(github.event.pull_request.labels.*.name, 'safe-to-test') &&
+       github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+    steps:
+      - name: A judge key is configured
+        run: test -n "$ANTHROPIC_API_KEY$OPENROUTER_API_KEY" || { echo "::error::set the ANTHROPIC_API_KEY or OPENROUTER_API_KEY repo secret"; exit 1; }
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+      - run: uv tool install harbor==0.23.0
+      - run: harbor run -p tasks -a oracle -n 4 -y -o jobs --job-name oracle
+      - run: uv run --no-project python scripts/check_oracle_rewards.py jobs/oracle --min-judge 0.5
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: harbor-oracle-jobs
+          path: jobs/
+          retention-days: 14

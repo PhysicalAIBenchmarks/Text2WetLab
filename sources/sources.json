@@ -1,0 +1,710 @@
+[
+ {
+  "slug": "polymerisation-kinetics-robot",
+  "dois": [
+   "10.1039/d6sc02232d"
+  ],
+  "title": "A robotic approach to polymerisation kinetics: a case study on copolymerisation parameter estimation",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC13103962",
+  "known_code": [
+   "https://github.com/PRDMonash/A-Robotic-Approach-to-Polymerization-Kinetics-A-Case-Study-on-Copolymerization-Parameter-Estimation"
+  ],
+  "note": ""
+ },
+ {
+  "slug": "pipetting-robot-nanoliter",
+  "dois": [
+   "10.1002/jssc.70379"
+  ],
+  "title": "Modification of a Low-Cost Pipetting Robot for Nanoliter Liquid Handling and Autosampling for Liquid Chromatography-Mass Spectrometry",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC13118588",
+  "known_code": [
+   "https://github.com/RTKlab-BYU/OpenLC",
+   "https://github.com/RTKlab-BYU/OpenSampler/tree/main"
+  ],
+  "note": ""
+ },
+ {
+  "slug": "lap-transposon-genotyping",
+  "dois": [
+   "10.1186/s44330-025-00054-3"
+  ],
+  "title": "Automated workflow for genotyping individual transposon library variants",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC7618916",
+  "known_code": [
+   "https://github.com/BiocomputationLab/LAPrepository",
+   "https://github.com/BiocomputationLab/tnatlas"
+  ],
+  "note": "repository named in paper"
+ },
+ {
+  "slug": "opencell-automation",
+  "dois": [
+   "10.1093/pnasnexus/pgaf385"
+  ],
+  "title": "Open-source cell culture automation system with integrated cell counting for passaging microplate cultures",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC12750449",
+  "known_code": [
+   "https://github.com/czbiohub-sf/2021-opencell-microscopy-automation",
+   "https://github.com/czbiohub-sf/2024-accs-pub"
+  ],
+  "note": ""
+ },
+ {
+  "slug": "pipetting-speed-ot2",
+  "dois": [
+   "10.17912/micropub.biology.001566"
+  ],
+  "title": "Investigating the effects of liquid handling robot pipetting speed on yeast growth and gene expression using growth assays and RNA-seq",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC12117386",
+  "known_code": [
+   "https://github.com/bioinfo-tsukuba/OT2_pipspd_paper",
+   "https://github.com/bioinfo-tsukuba/OT2_pipspd_paper/blob/main/code/BaQFA_protocols/001_rotate-crop.ipynb",
+   "https://github.com/bioinfo-tsukuba/OT2_pipspd_paper/blob/main/code/BaQFA_protocols/scan-epson-lower.sh",
+   "https://github.com/bioinfo-tsukuba/OT2_pipspd_paper/blob/main/code/OT2_protocols/Experimental%20Design.pdf"
+  ],
+  "note": "names the study"
+ },
+ {
+  "slug": "pipette-tool-change",
+  "dois": [
+   "10.1016/j.ohx.2025.e00653"
+  ],
+  "title": "Leveraging flexible pipette-based tool changes to transform liquid handling systems into dual-function sample preparation and imaging platforms",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC12181777",
+  "known_code": [],
+  "note": ""
+ },
+ {
+  "slug": "ot-mation",
+  "dois": [
+   "10.1093/synbio/ysaf009"
+  ],
+  "title": "OT-Mation: an open-source code for parsing CSV files into Python scripts for control of OT-2 liquid-handling robotics",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC12063526",
+  "known_code": [
+   "https://github.com/tphoward/OT-Mation_Repo/",
+   "https://github.com/tphoward/OT-Mation_Repo"
+  ],
+  "note": "cites bioRxiv 10.1101/2025.01.20.633898"
+ },
+ {
+  "slug": "protein-crystallization-ot2",
+  "dois": [
+   "10.1016/j.slast.2025.100268"
+  ],
+  "title": "Automation of protein crystallization scaleup via Opentrons-2 liquid handling",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC12229254",
+  "known_code": [
+   "https://github.com/jbderoo/Opentrons2-Protein-Crystallization"
+  ],
+  "note": "mock-up demo scripts"
+ },
+ {
+  "slug": "actinomation",
+  "dois": [
+   "10.1016/j.synbio.2025.03.005"
+  ],
+  "title": "ActinoMation: A literate programming approach for medium-throughput robotic conjugation of Streptomyces spp",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC11999424",
+  "known_code": [
+   "https://github.com/Kedar",
+   "https://github.com/TennaAlexiadisMoeller/ActinoMation",
+   "https://github.com/TennaAlexiadisMoeller/ActinoMation/",
+   "https://github.com/TennaAlexiadisMoeller/ActinoMation/wiki/How-to-use-guide"
+  ],
+  "note": "no paper cited"
+ },
+ {
+  "slug": "proteomics-digestion-workflow",
+  "dois": [
+   "10.1016/j.mcpro.2024.100790"
+  ],
+  "title": "Fully Automated Workflow for Integrated Sample Digestion and Evotip Loading Enabling High-Throughput Clinical Proteomics",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC11251069",
+  "known_code": [],
+  "note": ""
+ },
+ {
+  "slug": "infectious-disease-diagnostic-workflow",
+  "dois": [
+   "10.3390/mi15060708"
+  ],
+  "title": "An Automated Versatile Diagnostic Workflow for Infectious Disease Detection in Low-Resource Settings",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC11205418",
+  "known_code": [],
+  "note": ""
+ },
+ {
+  "slug": "maldi-surface-throughput",
+  "dois": [
+   "10.1021/jasms.3c00062"
+  ],
+  "title": "Customized Surface Design to Increase Throughput of Ambient Ionization Mass Spectrometry Lipidomics",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC12765230",
+  "known_code": [],
+  "note": ""
+ },
+ {
+  "slug": "ht-mic",
+  "dois": [
+   "10.3389/fmicb.2023.1079033"
+  ],
+  "title": "Development of a high-throughput minimum inhibitory concentration (HT-MIC) testing workflow",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC10249070",
+  "known_code": [
+   "https://github.com/suman921/HT-MIC"
+  ],
+  "note": "no README, no .py"
+ },
+ {
+  "slug": "assemblytron",
+  "dois": [
+   "10.1093/synbio/ysac032"
+  ],
+  "title": "AssemblyTron: flexible automation of DNA assembly with Opentrons OT-2 lab robots",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC9832943",
+  "known_code": [
+   "http://doi.org/10.5281/zenodo.7250273"
+  ],
+  "note": "cites paper"
+ },
+ {
+  "slug": "covid-diagnostic-capacity-2022",
+  "dois": [
+   "10.1016/j.eimce.2022.05.001"
+  ],
+  "title": "Optimization and adaptation of the diagnostic capacity for the performance of large volumes of SARS-CoV-2 RT-PCR",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC9127703",
+  "known_code": [],
+  "note": ""
+ },
+ {
+  "slug": "sidekick",
+  "dois": [
+   "10.1016/j.ohx.2022.e00319"
+  ],
+  "title": "Sidekick: A Low-Cost Open-Source 3D-printed liquid dispensing robot",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC9168727",
+  "known_code": [
+   "https://github.com/rodolfokeesey/Liquid-Handler",
+   "https://github.com/rodolfokeesey/Liquid-Handler/blob/main/Supporting_Documentation/Serial_Example_Putty.pdf",
+   "https://github.com/rodolfokeesey/Liquid-Handler/tree/main/3D_Assets/96WellTrayHolder_Reservoir",
+   "https://github.com/rodolfokeesey/Liquid-Handler/tree/main/3D_Assets/Armature"
+  ],
+  "note": ""
+ },
+ {
+  "slug": "personal-pipetting-robots",
+  "dois": [
+   "10.1038/s41467-022-30643-7"
+  ],
+  "title": "Open-source personal pipetting robots with live-cell incubation and microscopy compatibility",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC9151679",
+  "known_code": [
+   "https://github.com/CSDGroup/PHIL"
+  ],
+  "note": ""
+ },
+ {
+  "slug": "sars-cov-2-rtqpcr-jove",
+  "dois": [
+   "10.3791/63395"
+  ],
+  "title": "Efficient SARS-CoV-2 Quantitative Reverse Transcriptase PCR Saliva Diagnostic Strategy utilizing Open-Source Pipetting Robots",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC9199378",
+  "known_code": [],
+  "note": ""
+ },
+ {
+  "slug": "shotgun-proteomics-jove",
+  "dois": [
+   "10.3791/63092"
+  ],
+  "title": "Shotgun Proteomics Sample Processing Automated by an Open-Source Lab Robot",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC8986016",
+  "known_code": [],
+  "note": ""
+ },
+ {
+  "slug": "covid19clinic",
+  "dois": [
+   "10.1371/journal.pone.0252509"
+  ],
+  "title": "Implementation of an open-source robotic platform for SARS-CoV-2 testing by real-time RT-PCR",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC8279358",
+  "known_code": [
+   "https://github.com/CDB-coreBM/covid19clinic",
+   "https://github.com/CDB-coreBM/covid19clinic/wiki",
+   "https://github.com/kkdey/Robocov",
+   "https://github.com/theosanderson/tube_checkout"
+  ],
+  "note": "no paper cited"
+ },
+ {
+  "slug": "covid-diagnostic-capacity-2021",
+  "dois": [
+   "10.1016/j.eimc.2021.01.014"
+  ],
+  "title": "Optimization and adaptation of the diagnostic capacity for the performance of large volumes of SARS-CoV-2 RT-PCR",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC7877244",
+  "known_code": [],
+  "note": ""
+ },
+ {
+  "slug": "low-cost-pipetting-robot-slas",
+  "dois": [
+   "10.1177/2472630320973591"
+  ],
+  "title": "Adapting a Low-Cost and Open-Source Commercial Pipetting Robot for Nanoliter Liquid Handling",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC8143861",
+  "known_code": [],
+  "note": ""
+ },
+ {
+  "slug": "sars-cov-2-magbead-extraction",
+  "dois": [
+   "10.3390/v12080863"
+  ],
+  "title": "SARS-CoV-2 RNA Extraction Using Magnetic Beads for Rapid Large-Scale Testing by RT-qPCR and RT-LAMP",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC7472728",
+  "known_code": [],
+  "note": ""
+ },
+ {
+  "slug": "dna-bot",
+  "dois": [
+   "10.1093/synbio/ysaa010"
+  ],
+  "title": "DNA-BOT: a low-cost, automated DNA assembly platform for synthetic biology",
+  "origin": [
+   "Amass BiomedCore search (2026-10-03)"
+  ],
+  "pmcid": "PMC7476404",
+  "known_code": [
+   "https://github.com/BASIC-DNA-ASSEMBLY/DNA-BOT/tree/oup_synbio",
+   "https://github.com/BASIC-DNA-ASSEMBLY/DNA-BOT/tree/oup_synbio/sequences",
+   "https://github.com/BASIC-DNA-ASSEMBLY/DNA-BOT"
+  ],
+  "note": "cites paper"
+ },
+ {
+  "slug": "botany",
+  "dois": [
+   "10.1101/2025.08.21.671538",
+   "10.1093/plphys/kiag066"
+  ],
+  "title": "BOTany: Voiniciuc lab OT-2 workflows (preprint and published version)",
+  "origin": [
+   "lLegon"
+  ],
+  "pmcid": null,
+  "known_code": [
+   "https://github.com/cvoiniciuc/BOTany"
+  ],
+  "note": "two DOIs, one study"
+ },
+ {
+  "slug": "transporter-screening",
+  "dois": [
+   "10.3390/antibiotics11081129"
+  ],
+  "title": "Transporter screening for antibiotic susceptibility (Antibiotics 2022)",
+  "origin": [
+   "lLegon"
+  ],
+  "pmcid": null,
+  "known_code": [
+   "https://github.com/ljm176/TransporterScreening"
+  ],
+  "note": ""
+ },
+ {
+  "slug": "kdm2b-hif",
+  "dois": [
+   "10.64898/2026.03.26.714448"
+  ],
+  "title": "HRE-luciferase reporter after KDM2B knockdown",
+  "origin": [
+   "lLegon"
+  ],
+  "pmcid": null,
+  "known_code": [],
+  "note": "no code"
+ },
+ {
+  "slug": "yeast-mycosporine",
+  "dois": [
+   "10.1101/2024.09.14.613006"
+  ],
+  "title": "Yeast engineering and LC-HRMS of mycosporine-glycine",
+  "origin": [
+   "lLegon"
+  ],
+  "pmcid": null,
+  "known_code": [],
+  "note": "no code"
+ },
+ {
+  "slug": "hulp-rna-extraction",
+  "dois": [
+   "10.1371/journal.pone.0246302"
+  ],
+  "title": "Automated low-cost SARS-CoV-2 RNA extraction protocols",
+  "origin": [
+   "lLegon; Harbor task (Mohammed Alshehri)"
+  ],
+  "pmcid": null,
+  "known_code": [
+   "https://github.com/HULPopentrons/RNA_extraction_OT2opentrons"
+  ],
+  "note": "Harbor task source"
+ },
+ {
+  "slug": "slowpoke",
+  "dois": [
+   "10.1021/acssynbio.5c00629"
+  ],
+  "title": "Slowpoke: Golden Gate cloning and colony PCR on OT-2/Flex",
+  "origin": [
+   "other Claude session"
+  ],
+  "pmcid": null,
+  "known_code": [
+   "https://github.com/Tom-Ellis-Lab/Slowpoke"
+  ],
+  "note": "PMC12930513"
+ },
+ {
+  "slug": "copick",
+  "dois": [
+   "10.3389/fbioe.2023.1202836"
+  ],
+  "title": "COPICK: vision-guided colony picking",
+  "origin": [
+   "other Claude session"
+  ],
+  "pmcid": null,
+  "known_code": [
+   "https://github.com/sysbio-cnb/COPICK"
+  ],
+  "note": "dropped from benchmark: vision-guided, not liquid handling"
+ },
+ {
+  "slug": "moeller-hackflex",
+  "dois": [
+   "10.1186/s13059-022-02777-w"
+  ],
+  "title": "Moeller lab microbiome DNA extraction and Hackflex library prep",
+  "origin": [
+   "other Claude session"
+  ],
+  "pmcid": null,
+  "known_code": [
+   "https://github.com/CUMoellerLab/Moeller_Opentrons_protocol_library"
+  ],
+  "note": "rejected by sufficiency (leak guard); has .bats tests"
+ },
+ {
+  "slug": "apex",
+  "dois": [
+   "10.1101/2024.08.13.607171"
+  ],
+  "title": "APEX: E. coli protein expression pipeline on OT-2 (7 chained protocols)",
+  "origin": [
+   "other Claude session"
+  ],
+  "pmcid": null,
+  "known_code": [],
+  "note": "bioRxiv XML was rate-limited; repo URL unknown (stracquadaniolab/APEX is 404)"
+ },
+ {
+  "slug": "polar-robot-1",
+  "dois": [],
+  "title": "POLAR robot 1: SARS-CoV-2 RNA extraction (Zymo kit)",
+  "origin": [
+   "other Claude session"
+  ],
+  "pmcid": null,
+  "known_code": [],
+  "note": "paper and code to be located"
+ },
+ {
+  "slug": "pioneer-ngs",
+  "dois": [],
+  "title": "Pioneer NGS: AMPure bead cleanup on a Hamilton STARlet",
+  "origin": [
+   "other Claude session"
+  ],
+  "pmcid": null,
+  "known_code": [],
+  "note": "paper and code to be located; Hamilton, not OT-2"
+ },
+ {
+  "slug": "proxy-viscometer",
+  "dois": [],
+  "title": "ProxyViscometer (Kedar lab): polymer viscosity by aspiration timing",
+  "origin": [
+   "other Claude session"
+  ],
+  "pmcid": null,
+  "known_code": [],
+  "note": "paper and code to be located; materials science, excluded as an outlier"
+ },
+ {
+  "slug": "chory-2021-hamilton",
+  "dois": [
+   "10.15252/msb.20209942"
+  ],
+  "title": "Enabling high-throughput biology with flexible open-source automation",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/dgretton/pyhamilton_population_dynamics",
+   "https://github.com/dgretton/many_asynchronous_turbidostats",
+   "https://github.com/dgretton/roboplaque",
+   "https://github.com/dgretton/platereader"
+  ],
+  "note": "Hamilton STARlet + BMG CLARIOstar"
+ },
+ {
+  "slug": "debenedictis-2022-prance",
+  "dois": [
+   "10.1038/s41592-021-01348-4"
+  ],
+  "title": "Systematic molecular evolution enables robust biomolecule discovery",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/dgretton/std-96-pace"
+  ],
+  "note": "Hamilton STARlet + BMG CLARIOstar; no PDF or full text retrieved"
+ },
+ {
+  "slug": "wrmxpress",
+  "dois": [
+   "10.1371/journal.pntd.0010937"
+  ],
+  "title": "wrmXpress: A modular package for high-throughput image analysis of parasitic and free-living worms",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/zamanianlab/wrmXpress"
+  ],
+  "note": "ImageXpress Nano; repo 748 MB, not cloned"
+ },
+ {
+  "slug": "wrmxpress-gui",
+  "dois": [
+   "10.1016/j.ijpddr.2025.100588"
+  ],
+  "title": "A graphical user interface for wrmXpress 2.0 streamlines helminth phenotypic screening",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/wheelerlab-uwec/wrmXpress-gui"
+  ],
+  "note": "ImageXpress Nano"
+ },
+ {
+  "slug": "glas-preciseflex",
+  "dois": [
+   "10.1039/d4dd00253a"
+  ],
+  "title": "GLAS: an open-source easily expandable Git-based scheduling architecture for integrated chemistry automation",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/swisscatplus/glas",
+   "https://github.com/swisscatplus/glas-web-client"
+  ],
+  "note": "Brooks PreciseFlex; chemistry; no PDF or full text retrieved"
+ },
+ {
+  "slug": "aros-cellpainting",
+  "dois": [
+   "10.1101/2025.05.30.657006"
+  ],
+  "title": "Integrating Cell Painting and Thermal Proteome Profiling for Inference of Targets and Mechanisms of Action",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/pharmbio/aros",
+   "https://github.com/pharmbio/robotlab",
+   "https://github.com/camilla-johansson/integrate-cp-tpp"
+  ],
+  "note": "Liconic STX"
+ },
+ {
+  "slug": "electroporation-bayesopt",
+  "dois": [
+   "10.1101/2025.11.18.689155"
+  ],
+  "title": "Active learning guides automated discovery of DNA delivery via electroporation",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/cultivarium/electroporation-bayesian-optimization"
+  ],
+  "note": "BTX Gemini X2 comparison; custom electroporator + CyBio FeliX + Opentrons Flex"
+ },
+ {
+  "slug": "lustro",
+  "dois": [
+   "10.1021/acssynbio.3c00215"
+  ],
+  "title": "Lustro: High-Throughput Optogenetic Experiments Enabled by Automation and a Yeast Optogenetic Toolbox",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/mccleanlab/Lustro"
+  ],
+  "note": "Tecan Spark"
+ },
+ {
+  "slug": "optoplate-ml",
+  "dois": [
+   "10.1021/acssynbio.3c00761"
+  ],
+  "title": "Dynamic Multiplexed Control and Modeling of Optogenetic Systems Using the High-Throughput Optoplate-96",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/mccleanlab/Optoplate-96",
+   "https://github.com/zavalab/ML"
+  ],
+  "note": "Tecan Spark; zavalab/ML 1.8 GB, not cloned"
+ },
+ {
+  "slug": "litos",
+  "dois": [
+   "10.1038/s41598-022-17312-x"
+  ],
+  "title": "LITOS: a versatile LED illumination tool for optogenetic stimulation",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/pertzlab/LITOS"
+  ],
+  "note": "LED hardware; pasted table's microPublication paper not found"
+ },
+ {
+  "slug": "auto-qpcr",
+  "dois": [
+   "10.1038/s41598-021-99727-6"
+  ],
+  "title": "Auto-qPCR: a python-based web app for automated and reproducible analysis of qPCR data",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/neuroeddu/Auto-qPCR"
+  ],
+  "note": "QuantStudio data analysis app"
+ },
+ {
+  "slug": "uc2-hi2",
+  "dois": [
+   "10.17504/protocols.io.bw8dphs6"
+  ],
+  "title": "UC2 - Automated Immunostaining Protocol using the Opentrons OT2 and UC2 High-throughput microscope",
+  "origin": [
+   "L_other (non-Opentrons) candidates, 2026-10-04"
+  ],
+  "pmcid": "",
+  "known_code": [
+   "https://github.com/openUC2/UC2-Hi2"
+  ],
+  "note": "OT-2 (belongs to L2); no full text retrieved"
+ }
+]

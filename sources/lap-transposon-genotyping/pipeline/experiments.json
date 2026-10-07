@@ -1,0 +1,48 @@
+[
+  {
+    "title": "Spurious integration control PCRs (PS3/PS4 and PS5/PS6) after counter-selection of transposon variants",
+    "goal": "Detect spurious (non-transposition) plasmid backbone integration events in P. putida KT2440 transposon variants by amplifying non-integrative plasmid regions, with wild-type and plasmid controls.",
+    "section_refs": [
+      "s2.2",
+      "s2.3",
+      "s2.4"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2"
+    ],
+    "unresolved_refs": [
+      "Bacterial conjugation with pBLAM1-2-TS2m 'as previously described [20]'",
+      "Step 1 colony picking into M9-citrate kanamycin plate (not automated, no details given)",
+      "Colony PCR cycling conditions and primer sequences (Table 1, not provided in text)",
+      "Agarose gel electrophoresis conditions not described"
+    ],
+    "figure_refs": [
+      "Figure 2A",
+      "Figure 2B"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Arbitrary nested PCR (ARB6/ME-O-Km-Ext-F then ARB2/ME-O-Km-Int-F) of transposon variants",
+    "goal": "Amplify genomic regions flanking transposon insertions in individual variants for sequencing, verified by agarose gel.",
+    "section_refs": [
+      "s2.2",
+      "s2.3",
+      "s2.4"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2"
+    ],
+    "unresolved_refs": [
+      "Arbitrary PCR conditions 'as in [23]' / Table 1 primers",
+      "Agarose gel electrophoresis conditions not described",
+      "Sanger sequencing performed by Macrogen (service) and subsequent TnAtlas annotation is computational"
+    ],
+    "figure_refs": [
+      "Figure 3"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

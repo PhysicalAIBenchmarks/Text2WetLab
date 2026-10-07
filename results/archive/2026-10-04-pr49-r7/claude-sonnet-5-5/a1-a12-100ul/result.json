@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 49
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "deck_and_hardware",
+        "score": 1,
+        "evidence": "Reservoir slot 1 and plate slot 2 loaded with correct labels; p20 left, p300 right, with tip racks in slots 10 and 11."
+      },
+      {
+        "id": "volumes_and_wells",
+        "score": 1,
+        "evidence": "Log shows 100 uL aspirated from reservoir A1 and dispensed into plate A1 through A12 with the p300, and no other wells touched."
+      },
+      {
+        "id": "tip_usage",
+        "score": 1,
+        "evidence": "Each aspirate/dispense is preceded by a pick up tip and followed by a drop tip; the last step ends with drop tip (line 48)."
+      },
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "100 uL is within the p300 range, apiLevel 2.15 is valid, and the simulation passed."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 1,
+        "evidence": "The single transfer step is fully done with no extra steps; metadata is accurate and there are no false comments."
+      }
+    ],
+    "scores": {
+      "deck_and_hardware": 1.0,
+      "volumes_and_wells": 1.0,
+      "tip_usage": 1.0,
+      "robot_practice": 1.0,
+      "fidelity_to_task": 1.0
+    },
+    "summary": "The protocol transfers 100 uL from reservoir A1 to plate A1\u2013A12 with the p300, using a fresh tip per well and dropping each tip. All rubric items are satisfied.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_deck_and_hardware": 1.0,
+    "rubric_volumes_and_wells": 1.0,
+    "rubric_tip_usage": 1.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_fidelity_to_task": 1.0
+  }
+}

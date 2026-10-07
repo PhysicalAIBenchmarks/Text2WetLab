@@ -1,0 +1,80 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      MUJOCO_GL: osmesa
+      PYOPENGL_PLATFORM: osmesa
+      OT_VENV: ${{ github.workspace }}/.venv-ot
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+      - uses: actions/setup-python@v5
+        id: py310
+        with:
+          python-version: "3.10"          # the Opentrons 7.5 simulator, same as the task images
+      - name: OpenGL for headless MuJoCo
+        run: sudo apt-get update && sudo apt-get install -y libosmesa6-dev libgl1
+      - name: Cache the simulator venv
+        uses: actions/cache@v4
+        with:
+          path: .venv-ot
+          key: venv-ot-${{ runner.os }}-py${{ steps.py310.outputs.python-version }}-${{ hashFiles('scripts/setup_ot_venv.sh') }}
+      - name: Simulator venv (.venv-ot)
+        run: .venv-ot/bin/python -c 'import opentrons' 2>/dev/null || scripts/setup_ot_venv.sh python3.10
+      - run: uv sync --group dev --group eval
+      # Includes: every reference solution passes its own grader (no judge), no reward-hacking attack beats the
+      # split grader, IR-derived task files are current (make_harbor --check), task-sources tables are current,
+      # and Harbor itself accepts every task.toml.
+      - run: uv run --with harbor==0.23.0 python -m pytest -q -rs
+      - name: Dataset publish allowlist (no hidden files, no third-party refs)
+        run: uv run python scripts/deploy_hf.py --dry-run | tail -1
+
+  tasks:
+    runs-on: ubuntu-latest
+    outputs:
+      names: ${{ steps.list.outputs.names }}
+    steps:
+      - uses: actions/checkout@v5
+      - id: list
+        run: echo "names=$(ls tasks | jq -R . | jq -sc .)" >> "$GITHUB_OUTPUT"
+
+  harbor-build:
+    # Every task's sandbox image must build. No secrets: safe on fork PRs.
+    needs: tasks
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        task: ${{ fromJson(needs.tasks.outputs.names) }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: tasks/${{ matrix.task }}/environment
+          push: false
+          cache-from: type=gha,scope=${{ matrix.task }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.task }}
+
+  deploy-hf:
+    # Publishes the public dataset only after the tests and every image build pass.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [test, harbor-build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install huggingface_hub
+      - run: python scripts/deploy_hf.py
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}

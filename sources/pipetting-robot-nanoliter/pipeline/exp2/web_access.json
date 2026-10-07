@@ -1,0 +1,65 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8143861/"
+    },
+    {
+      "kind": "search",
+      "value": "Councill Adapting a Low-Cost Open-Source Commercial Pipetting Robot for Nanoliter Liquid Handling syringe aspiration speed"
+    },
+    {
+      "kind": "result",
+      "value": "https://journals.sagepub.com/doi/full/10.1177/2472630320973591"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.nature.com/articles/s41467-022-30643-7"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.osti.gov/servlets/purl/1864140"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.slas-technology.org/article/S2472-6303(22)01108-6/fulltext"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.semanticscholar.org/paper/Adapting-a-Low-Cost-and-Open-Source-Commercial-for-Councill-Axtell/b391585afebbe3bd3292cb621e82c174b7027a01"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8143861/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.pnnl.gov/publications/adapting-low-cost-and-open-source-commercial-pipetting-robot-nanoliter-liquid-handling"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13118588/"
+    },
+    {
+      "kind": "result",
+      "value": "https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/jssc.70379?af=R"
+    },
+    {
+      "kind": "result",
+      "value": "https://ojs.imeti.org/index.php/IJETI/article/download/14847/1782"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://journals.sagepub.com/doi/full/10.1177/2472630320973591"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://journals.sagepub.com/doi/full/10.1177/2472630320973591"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.osti.gov/servlets/purl/1864140"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 215
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "dna_addition",
+        "score": 1,
+        "evidence": "Block set to 4 C with lid open (log 2-3); each of 8 wells gets aspirate/dispense 1 uL from plasmid_plate Xn into transformation_plate Xn (log 5-6 ... 75-76)."
+      },
+      {
+        "id": "heat_shock",
+        "score": 1,
+        "evidence": "Log 84-87: lid closed, 4 C 30 min, 42 C 30 s, 4 C 2 min, on the thermocycler."
+      },
+      {
+        "id": "soc_recovery",
+        "score": 1,
+        "evidence": "Log 90-91 etc.: 50 uL SOC dispensed into each well after heat shock; log 169-171 lid closed, 37 C for 60 min."
+      },
+      {
+        "id": "tip_usage",
+        "score": 1,
+        "evidence": "Every plasmid and every SOC addition has its own pick up/drop tip pair (log 4-83, 89-168); no tip returns to stock after touching cells."
+      },
+      {
+        "id": "fidelity_to_paper",
+        "score": 1,
+        "evidence": "Uses the LV configuration (1 uL DNA, 10 uL cells, 50 uL SOC) with the paper's temperatures and times; extra 2 min 4 C chill, lid heating and final 4 C hold are disclosed in comments, and the citation is correct."
+      }
+    ],
+    "scores": {
+      "dna_addition": 1.0,
+      "heat_shock": 1.0,
+      "soc_recovery": 1.0,
+      "tip_usage": 1.0,
+      "fidelity_to_paper": 1.0
+    },
+    "summary": "The protocol matches the simulator log on every rubric step: 1 uL DNA per well at 4 C, the 4 C/42 C heat shock with lid closed, 50 uL SOC, 37 C for 1 h, and a fresh tip each time. The only departures from the paper are disclosed in comments and are reasonable, so all items pass.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_dna_addition": 1.0,
+    "rubric_heat_shock": 1.0,
+    "rubric_soc_recovery": 1.0,
+    "rubric_tip_usage": 1.0,
+    "rubric_fidelity_to_paper": 1.0
+  }
+}

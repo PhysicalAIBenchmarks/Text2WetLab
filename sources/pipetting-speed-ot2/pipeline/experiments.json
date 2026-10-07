@@ -1,0 +1,47 @@
+[
+  {
+    "title": "Robotic pipetting-speed spot growth assay of yeast with time-lapse scanning",
+    "goal": "Measure the effect of OT-2 pipetting speed (50, 130, 210, 290 µL/s) on the maximum relative growth rate of S. cerevisiae colonies spotted on YPD agar.",
+    "section_refs": [
+      "s2",
+      "s3"
+    ],
+    "shared_refs": [
+      "s3"
+    ],
+    "unresolved_refs": [
+      "Detailed deck design and spot arrangement in 'Experimental Design.pdf' on GitHub",
+      "PlateShuttle build and operation described in the GitHub repository",
+      "Scripts run_first_half.py, run_second_half.py, run_experiment.ipynb, scan-epson-lower.sh on GitHub",
+      "baQFA analysis per Frey et al. 2021"
+    ],
+    "figure_refs": [
+      "Figure 1A",
+      "Figure 1B",
+      "Figure 1C"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "RNA-seq of yeast cells after pipetting at different speeds",
+    "goal": "Determine whether OT-2 pipetting speed alters the gene expression profile of S. cerevisiae by sequencing RNA from cells processed at four speeds.",
+    "section_refs": [
+      "s2"
+    ],
+    "shared_refs": [
+      "s3"
+    ],
+    "unresolved_refs": [
+      "RNA-seq library prep 'following the manufacturer's protocol' (NEBNext Ultra Directional RNA Library Prep Kit)",
+      "Sequencing and library preparation performed by Tsukuba i-Laboratory LLP",
+      "The 24 tubes' pipetting protocol in run_second_half.py is on GitHub"
+    ],
+    "figure_refs": [
+      "Figure 1D",
+      "Figure 1E",
+      "Figure 1F",
+      "Figure 1G"
+    ],
+    "liquid_handling": "partly"
+  }
+]

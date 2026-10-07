@@ -1,0 +1,1039 @@
+{
+  "title": "Robotic pipetting-speed spot growth assay of yeast (OT-2, 50/130/210/290 µL/s) with time-lapse scanning",
+  "containers": [
+    {
+      "name": "culture_rep1",
+      "kind": "tube_50ml",
+      "description": "30 mL W303-1B culture, biological replicate 1 (deck 7, A4)",
+      "assumed": false
+    },
+    {
+      "name": "culture_rep2",
+      "kind": "tube_50ml",
+      "description": "30 mL W303-1B culture, biological replicate 2 (deck 7, B4)",
+      "assumed": false
+    },
+    {
+      "name": "water_tube",
+      "kind": "tube_50ml",
+      "description": "50 mL Milli-Q water (deck 7, B3)",
+      "assumed": false
+    },
+    {
+      "name": "a620_plate",
+      "kind": "plate_96",
+      "description": "Corning 3997 96-well polypropylene plate for A620 reading (deck 11 on PlateShuttle)",
+      "assumed": false
+    },
+    {
+      "name": "dilution_plate",
+      "kind": "plate_96_deep",
+      "description": "Stand-in for the 24 x 2 mL screw-cap tubes in the deck 8 rack; one well per sample tube, A1:D6",
+      "assumed": true
+    },
+    {
+      "name": "spot_plate",
+      "kind": "plate_96",
+      "description": "Spotting wells holding diluted yeast, A1:D6, from which spots are drawn",
+      "assumed": true
+    },
+    {
+      "name": "ring_filler_tube",
+      "kind": "tube_1.5ml",
+      "description": "Diluted culture for the 24 outer-ring filler spots per plate",
+      "assumed": true
+    },
+    {
+      "name": "agar_plate_deck6",
+      "kind": "plate_96",
+      "description": "Stand-in for the YPD agar microplate Petri dish on deck 6; spots are mapped to a 6x8 grid, wells A1:F8",
+      "assumed": true
+    },
+    {
+      "name": "agar_plate_deck9",
+      "kind": "plate_96",
+      "description": "Stand-in for the YPD agar microplate Petri dish on deck 9; spots are mapped to a 6x8 grid, wells A1:F8",
+      "assumed": true
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "culture_rep1",
+      "wells": [],
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "volume_ul": 30000.0,
+      "assumed": false
+    },
+    {
+      "container": "culture_rep2",
+      "wells": [],
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "volume_ul": 30000.0,
+      "assumed": false
+    },
+    {
+      "container": "water_tube",
+      "wells": [],
+      "reagent": "Milli-Q water",
+      "volume_ul": 50000.0,
+      "assumed": false
+    },
+    {
+      "container": "agar_plate_deck6",
+      "wells": [
+        "A1:F8"
+      ],
+      "reagent": "YPD agar surface (dried 2 d)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "agar_plate_deck9",
+      "wells": [
+        "A1:F8"
+      ],
+      "reagent": "YPD agar surface (dried 2 d)",
+      "volume_ul": null,
+      "assumed": true
+    }
+  ],
+  "steps": [
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Prepare YPD liquid medium: dissolve 2% Peptone, 1% Yeast Extract and 0.003% Adenine in 450 mL deionized water (YP) and separately prepare 500 mL of 20% dextrose in deionized water. Cover the bottles with foil and autoclave at 120 °C for 2 h. Add 50 mL of the 20% dextrose to 450 mL YP.",
+      "source_quote": "After autoclaving, 50 mL of the 20% dextrose solution was added to 450 mL of the YP liquid medium to make up the yeast extract peptone dextrose (YPD) liquid medium.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Prepare YPD agar: dissolve 2% Peptone, 1% Yeast Extract, 2% Agar and 0.003% Adenine in 450 mL deionized water, autoclave at 120 °C for 2 h, then add 50 mL of 20% dextrose. Pour into microplate Petri dishes on a clean bench (about 35-40 mL per dish) and leave on the clean bench for 2 d to harden and dry the surface. Weigh each dish for the tip-height calibration.",
+      "source_quote": "The petri dishes were left on a clean bench for 2 d to allow the agar to harden and the surface to dry.",
+      "assumed": true,
+      "note": "Pour volume and weighing are assumptions (Taguchi et al. 2023 preprint)."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Streak W303-1B wild-type from the -80 °C freeze stock onto a YPD agar plate and incubate 2 d at 30 °C.",
+      "source_quote": "The yeast strain from -80°C freeze stock was inoculated on the YPD agar medium and was incubated in a 30°C incubator (MIR-154-PJ; PHC Holdings Corporation) for 2 d.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Add 3 mL YPD to each of two autoclaved test tubes, inoculate each with a yeast colony (one per tube) and incubate in a shaking water bath at 30 °C, 160 rpm for 16 h. These are the two biological replicates.",
+      "source_quote": "In two autoclaved test tubes, 3 mL of the YPD liquid medium were added to each tube, and the yeast colonies were inoculated.",
+      "assumed": false,
+      "note": "A single colony per tube is assumed."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "For each replicate, inoculate 3 mL of overnight culture into 27 mL fresh YPD in a 250 mL Erlenmeyer flask and shake at 30 °C, 160 rpm for 3 h. Transfer the 30 mL of each culture to a 50 mL tube (culture_rep1, culture_rep2).",
+      "source_quote": "Then, 3 mL of culture medium in the test tubes were inoculated in 27 mL of fresh YPD liquid medium in new 250 mL Erlenmeyer Flasks (Corning Inc. NY, US), and they were incubated in a shaker (BR-40LF, TAITEC CORPORATION) at 30°C and 160 rpm for 3 h.",
+      "assumed": false,
+      "note": "Culture tubes then hold 30 mL each, as loaded on deck 7."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Load the OT-2 deck: deck 4 300 µL tips; deck 5 20 µL tips; deck 6 and deck 9 YPD agar microplate Petri dishes (lids off); deck 7 tube rack with culture rep1 (A4), culture rep2 (B4), Milli-Q water (B3); deck 8 rack with 24 empty 2 mL screw-cap tubes; deck 11 96-well plate on PlateShuttle. Set tip height for spotting from the plate weight: Z = 2 mm dish bottom + agar height + 1 mm clearance.",
+      "source_quote": "Deck 7, Opentrons Tube Rack with a tube holder top for 10 tubes (999-00030, Opentrons Labworks Inc.) containing three 50 mL tubes (2324-050N; IWAKI (AGC), Shizuoka, Japan)) in A4 (30 mL culture of biological replicates #1), B4 (30 mL culture of biological replicates #2), and B3 (50 mL Milli-Q water)",
+      "assumed": true,
+      "note": "Tip height calculation is from the Taguchi et al. 2023 preprint. Detailed deck design is deferred to Experimental Design.pdf."
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "culture_rep1",
+      "dest_wells": [],
+      "volume_ul": 200.0,
+      "reagent": "",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Gentle resuspension before aspiration; assumed at the default flow rate."
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "culture_rep2",
+      "dest_wells": [],
+      "volume_ul": 200.0,
+      "reagent": "",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Gentle resuspension before aspiration; assumed at the default flow rate."
+    },
+    {
+      "kind": "transfer",
+      "source": "water_tube",
+      "source_wells": [],
+      "dest": "a620_plate",
+      "dest_wells": [
+        "A1:D6"
+      ],
+      "volume_ul": 180.0,
+      "reagent": "Milli-Q water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dispensing Milli-Q water into 2 mL tubes on deck 8 and spotting wells based on dilution rates calculated from the measured absorbance",
+      "assumed": true,
+      "note": "180 µL water per A620 well (Taguchi et al. 2023); default flow rate."
+    },
+    {
+      "kind": "transfer",
+      "source": "water_tube",
+      "source_wells": [],
+      "dest": "a620_plate",
+      "dest_wells": [
+        "H1:H3"
+      ],
+      "volume_ul": 200.0,
+      "reagent": "Milli-Q water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Water-only blank wells for A620 subtraction."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep1",
+      "source_wells": [],
+      "dest": "a620_plate",
+      "dest_wells": [
+        "A1",
+        "C4",
+        "D1"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "pipetting yeast liquid culture from two biological replicates in 50 mL tubes on deck 7 into a 96-well plate on deck 11 for absorbance measurements, using the four different pipetting speeds",
+      "assumed": true,
+      "note": "Rep 1, 50 µL/s aspirate+dispense."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep2",
+      "source_wells": [],
+      "dest": "a620_plate",
+      "dest_wells": [
+        "A5",
+        "B6",
+        "D5"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "pipetting yeast liquid culture from two biological replicates in 50 mL tubes on deck 7 into a 96-well plate on deck 11 for absorbance measurements, using the four different pipetting speeds",
+      "assumed": true,
+      "note": "Rep 2, 50 µL/s aspirate+dispense."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep1",
+      "source_wells": [],
+      "dest": "a620_plate",
+      "dest_wells": [
+        "A6",
+        "B5",
+        "C5"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "set the pipetting speed levels to 50, 130, 210, and 290 µL/sec",
+      "assumed": true,
+      "note": "Rep 1, 130 µL/s aspirate+dispense."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep2",
+      "source_wells": [],
+      "dest": "a620_plate",
+      "dest_wells": [
+        "A2",
+        "C3",
+        "D3"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "set the pipetting speed levels to 50, 130, 210, and 290 µL/sec",
+      "assumed": true,
+      "note": "Rep 2, 130 µL/s aspirate+dispense."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep1",
+      "source_wells": [],
+      "dest": "a620_plate",
+      "dest_wells": [
+        "A3",
+        "C2",
+        "D6"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "set the pipetting speed levels to 50, 130, 210, and 290 µL/sec",
+      "assumed": true,
+      "note": "Rep 1, 210 µL/s aspirate+dispense."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep2",
+      "source_wells": [],
+      "dest": "a620_plate",
+      "dest_wells": [
+        "B1",
+        "B4",
+        "D2"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "set the pipetting speed levels to 50, 130, 210, and 290 µL/sec",
+      "assumed": true,
+      "note": "Rep 2, 210 µL/s aspirate+dispense."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep1",
+      "source_wells": [],
+      "dest": "a620_plate",
+      "dest_wells": [
+        "B2",
+        "B3",
+        "D4"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "set the pipetting speed levels to 50, 130, 210, and 290 µL/sec",
+      "assumed": true,
+      "note": "Rep 1, 290 µL/s aspirate+dispense."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep2",
+      "source_wells": [],
+      "dest": "a620_plate",
+      "dest_wells": [
+        "A4",
+        "C1",
+        "C6"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "set the pipetting speed levels to 50, 130, 210, and 290 µL/sec",
+      "assumed": true,
+      "note": "Rep 2, 290 µL/s aspirate+dispense."
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "a620_plate",
+      "dest_wells": [
+        "A1:D6"
+      ],
+      "volume_ul": 100.0,
+      "reagent": "",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Mix before the A620 read; default flow rate."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Move the 96-well plate into the Absorbance 96 plate reader (PlateShuttle or by hand) and measure A620. Subtract the mean H2O blank (H1:H3). For each sample, calculate the culture and water volumes needed to dilute to A620 = 0.020.",
+      "source_quote": "6) run of PlateShuttle and measurement of the absorbance at 620 nm using Absorbance 96 Plate Reader, (7) calculation of liquid volume based on absorbance at 620 nm for normalizing the cell densities between samples",
+      "assumed": true,
+      "note": "Target A620 0.020 and blank subtraction are from Taguchi et al. 2023. Dilution volumes in later steps are nominal and are replaced by the calculated values."
+    },
+    {
+      "kind": "transfer",
+      "source": "water_tube",
+      "source_wells": [],
+      "dest": "dilution_plate",
+      "dest_wells": [
+        "A1:D6"
+      ],
+      "volume_ul": 280.0,
+      "reagent": "Milli-Q water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dispensing Milli-Q water into 2 mL tubes on deck 8",
+      "assumed": true,
+      "note": "Nominal volume; use the per-sample volume calculated from A620. Default flow rate."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep1",
+      "source_wells": [],
+      "dest": "dilution_plate",
+      "dest_wells": [
+        "A1",
+        "C4",
+        "D1"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Transferring yeast from each sample tube into the 2 mL tubes at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 1, 50 µL/s. Nominal volume; use the calculated per-sample volume."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep2",
+      "source_wells": [],
+      "dest": "dilution_plate",
+      "dest_wells": [
+        "A5",
+        "B6",
+        "D5"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Transferring yeast from each sample tube into the 2 mL tubes at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 2, 50 µL/s. Nominal volume; use the calculated per-sample volume."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep1",
+      "source_wells": [],
+      "dest": "dilution_plate",
+      "dest_wells": [
+        "A6",
+        "B5",
+        "C5"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Transferring yeast from each sample tube into the 2 mL tubes at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 1, 130 µL/s. Nominal volume; use the calculated per-sample volume."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep2",
+      "source_wells": [],
+      "dest": "dilution_plate",
+      "dest_wells": [
+        "A2",
+        "C3",
+        "D3"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Transferring yeast from each sample tube into the 2 mL tubes at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 2, 130 µL/s. Nominal volume; use the calculated per-sample volume."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep1",
+      "source_wells": [],
+      "dest": "dilution_plate",
+      "dest_wells": [
+        "A3",
+        "C2",
+        "D6"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Transferring yeast from each sample tube into the 2 mL tubes at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 1, 210 µL/s. Nominal volume; use the calculated per-sample volume."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep2",
+      "source_wells": [],
+      "dest": "dilution_plate",
+      "dest_wells": [
+        "B1",
+        "B4",
+        "D2"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Transferring yeast from each sample tube into the 2 mL tubes at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 2, 210 µL/s. Nominal volume; use the calculated per-sample volume."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep1",
+      "source_wells": [],
+      "dest": "dilution_plate",
+      "dest_wells": [
+        "B2",
+        "B3",
+        "D4"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Transferring yeast from each sample tube into the 2 mL tubes at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 1, 290 µL/s. Nominal volume; use the calculated per-sample volume."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep2",
+      "source_wells": [],
+      "dest": "dilution_plate",
+      "dest_wells": [
+        "A4",
+        "C1",
+        "C6"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Transferring yeast from each sample tube into the 2 mL tubes at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 2, 290 µL/s. Nominal volume; use the calculated per-sample volume."
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "dilution_plate",
+      "dest_wells": [
+        "A1:D6"
+      ],
+      "volume_ul": 150.0,
+      "reagent": "",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Mix diluted samples; default flow rate."
+    },
+    {
+      "kind": "transfer",
+      "source": "water_tube",
+      "source_wells": [],
+      "dest": "ring_filler_tube",
+      "dest_wells": [],
+      "volume_ul": 560.0,
+      "reagent": "Milli-Q water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "additional spots were placed outside the perimeter, expanding the matrix from 4×6 to 6×8",
+      "assumed": true,
+      "note": "Filler dilution at the nominal 1:15 ratio, 600 µL total. Same density as the samples, per the gap assessment."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_rep1",
+      "source_wells": [],
+      "dest": "ring_filler_tube",
+      "dest_wells": [],
+      "volume_ul": 40.0,
+      "reagent": "S. cerevisiae W303-1B culture in YPD (3 h subculture)",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "additional spots were placed outside the perimeter, expanding the matrix from 4×6 to 6×8",
+      "assumed": true,
+      "note": "Adjust to A620 0.020 as for the samples. Default flow rate; 3 post-dispense mix cycles."
+    },
+    {
+      "kind": "transfer",
+      "source": "dilution_plate",
+      "source_wells": [
+        "A1",
+        "C4",
+        "D1"
+      ],
+      "dest": "spot_plate",
+      "dest_wells": [
+        "A1",
+        "C4",
+        "D1"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "Diluted yeast culture",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dispensing yeast from the 2 mL tubes into the spotting wells at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 1, 50 µL/s. 50 µL per spotting well is assumed."
+    },
+    {
+      "kind": "transfer",
+      "source": "dilution_plate",
+      "source_wells": [
+        "A5",
+        "B6",
+        "D5"
+      ],
+      "dest": "spot_plate",
+      "dest_wells": [
+        "A5",
+        "B6",
+        "D5"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "Diluted yeast culture",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dispensing yeast from the 2 mL tubes into the spotting wells at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 2, 50 µL/s."
+    },
+    {
+      "kind": "transfer",
+      "source": "dilution_plate",
+      "source_wells": [
+        "A6",
+        "B5",
+        "C5"
+      ],
+      "dest": "spot_plate",
+      "dest_wells": [
+        "A6",
+        "B5",
+        "C5"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "Diluted yeast culture",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dispensing yeast from the 2 mL tubes into the spotting wells at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 1, 130 µL/s."
+    },
+    {
+      "kind": "transfer",
+      "source": "dilution_plate",
+      "source_wells": [
+        "A2",
+        "C3",
+        "D3"
+      ],
+      "dest": "spot_plate",
+      "dest_wells": [
+        "A2",
+        "C3",
+        "D3"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "Diluted yeast culture",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dispensing yeast from the 2 mL tubes into the spotting wells at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 2, 130 µL/s."
+    },
+    {
+      "kind": "transfer",
+      "source": "dilution_plate",
+      "source_wells": [
+        "A3",
+        "C2",
+        "D6"
+      ],
+      "dest": "spot_plate",
+      "dest_wells": [
+        "A3",
+        "C2",
+        "D6"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "Diluted yeast culture",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dispensing yeast from the 2 mL tubes into the spotting wells at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 1, 210 µL/s."
+    },
+    {
+      "kind": "transfer",
+      "source": "dilution_plate",
+      "source_wells": [
+        "B1",
+        "B4",
+        "D2"
+      ],
+      "dest": "spot_plate",
+      "dest_wells": [
+        "B1",
+        "B4",
+        "D2"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "Diluted yeast culture",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dispensing yeast from the 2 mL tubes into the spotting wells at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 2, 210 µL/s."
+    },
+    {
+      "kind": "transfer",
+      "source": "dilution_plate",
+      "source_wells": [
+        "B2",
+        "B3",
+        "D4"
+      ],
+      "dest": "spot_plate",
+      "dest_wells": [
+        "B2",
+        "B3",
+        "D4"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "Diluted yeast culture",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dispensing yeast from the 2 mL tubes into the spotting wells at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 1, 290 µL/s."
+    },
+    {
+      "kind": "transfer",
+      "source": "dilution_plate",
+      "source_wells": [
+        "A4",
+        "C1",
+        "C6"
+      ],
+      "dest": "spot_plate",
+      "dest_wells": [
+        "A4",
+        "C1",
+        "C6"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "Diluted yeast culture",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Dispensing yeast from the 2 mL tubes into the spotting wells at specified pipetting speeds",
+      "assumed": true,
+      "note": "Rep 2, 290 µL/s."
+    },
+    {
+      "kind": "transfer",
+      "source": "spot_plate",
+      "source_wells": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6"
+      ],
+      "dest": "agar_plate_deck6",
+      "dest_wells": [
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E7"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Diluted yeast culture",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Spotting each sample onto agar plates on deck 6 and deck 9.",
+      "assumed": true,
+      "note": "Spot in sample order A1 to D6 (top to bottom) so speed and replicate are not confounded with spotting order. 5 µL with P20 and 20 µL tips, default flow rate. The 24 samples fill the inner 4x6 block B2:E7."
+    },
+    {
+      "kind": "transfer",
+      "source": "ring_filler_tube",
+      "source_wells": [],
+      "dest": "agar_plate_deck6",
+      "dest_wells": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "A7",
+        "A8",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "B1",
+        "C1",
+        "D1",
+        "E1",
+        "B8",
+        "C8",
+        "D8",
+        "E8"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Diluted yeast culture (ring filler)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "additional spots were placed outside the perimeter, expanding the matrix from 4×6 to 6×8",
+      "assumed": true,
+      "note": "24 outer-ring filler spots, spotted after the inner spots (assumed)."
+    },
+    {
+      "kind": "transfer",
+      "source": "spot_plate",
+      "source_wells": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6"
+      ],
+      "dest": "agar_plate_deck9",
+      "dest_wells": [
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E7"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Diluted yeast culture",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Spotting each sample onto agar plates on deck 6 and deck 9.",
+      "assumed": true,
+      "note": "The same 24 samples are spotted on the second plate, after the deck 6 plate, in the same order."
+    },
+    {
+      "kind": "transfer",
+      "source": "ring_filler_tube",
+      "source_wells": [],
+      "dest": "agar_plate_deck9",
+      "dest_wells": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "A7",
+        "A8",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "B1",
+        "C1",
+        "D1",
+        "E1",
+        "B8",
+        "C8",
+        "D8",
+        "E8"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Diluted yeast culture (ring filler)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "additional spots were placed outside the perimeter, expanding the matrix from 4×6 to 6×8",
+      "assumed": true,
+      "note": "24 outer-ring filler spots on the second plate."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Cover the two spotted dishes with lids and place them agar-side down on the flatbed scanners (Epson GT-X980) inside the 30 °C incubator, aligned to the scanner corners. Run time-lapse scanning with scan-epson-lower.sh (scanimage) at 600 dpi, colour/RGB, every 10 min for 72 h (432 images).",
+      "source_quote": "Time-lapse scanning was initiated using a custom script ( scan-epson-lower.sh ), which executed the Linux command ‘scanimage’ to capture images at 600 dpi resolution every 10 minutes for 72 hours, yielding a total of 432 images.",
+      "assumed": true,
+      "note": "30 °C and colour mode are assumed (Taguchi et al. 2023 used a GT-X980 in a 30 °C incubator). Image analysis with baQFA is not part of this protocol."
+    }
+  ],
+  "assumptions": [
+    "A620 target 0.020 for normalising cell density, read in a 96-well plate: taken from Taguchi et al. 2023 (bioRxiv 10.1101/2022.07.16.500326), not stated in this paper.",
+    "A620 well: 180 µL H2O + 20 µL culture (200 µL), with H2O-only blank wells H1:H3 subtracted (Taguchi et al. 2023). Mix 3 x 100 µL before reading is assumed.",
+    "The A620 reading is done in the Byonoy Absorbance 96 reader, via PlateShuttle or by hand. PlateShuttle operation is deferred to GitHub.",
+    "Dilution volumes are nominal: 20 µL culture + 280 µL water (300 µL) per 2 mL tube. In practice use the per-sample volumes calculated from A620. The paper does not state them.",
+    "The 24 x 2 mL screw-cap tubes are represented by wells A1:D6 of a deep-well plate (dilution_plate).",
+    "Pipette: the paper lists two P20 entries but also 300 µL tips, so a P300 is assumed for volumes over 20 µL. Spots use a P20 with 20 µL tips.",
+    "The test speed (50/130/210/290 µL/s, aspirate and dispense) is applied to culture to A620 wells, culture to 2 mL tubes, and 2 mL tubes to spotting wells. Water dispensing, mixing, spotting onto agar and filler transfers use the default OT-2 flow rate. Speed is given in step notes because the schema has no speed field.",
+    "Design inferred: 24 samples = 4 speeds x 2 biological replicates x 3 technical replicates, with the same 24 samples spotted on both plates (4x6 inner spots each) plus a 24-spot outer ring (6x8 grid).",
+    "Sample layout (well: speed-biorep), in spotting order: A1 50-1, A2 130-2, A3 210-1, A4 290-2, A5 50-2, A6 130-1, B1 210-2, B2 290-1, B3 290-1, B4 210-2, B5 130-1, B6 50-2, C1 290-2, C2 210-1, C3 130-2, C4 50-1, C5 130-1, C6 290-2, D1 50-1, D2 210-2, D3 130-2, D4 290-1, D5 50-2, D6 210-1. This ordering is my own interleaving; the paper's agar_plate_annotation.csv is deferred.",
+    "Agar plates are represented as 96-well plates (A1:F8 = 6x8 spot grid); inner spots B2:E7 are filled row by row from top to bottom in sample order, and the outer ring is A1:A8, F1:F8, B1:E1 and B8:E8.",
+    "The spotting wells (spot_plate A1:D6) hold 50 µL per sample; spots of 5 µL are drawn from there. Both volumes are assumed (5 µL spot from Taguchi et al. 2023).",
+    "Filler for the outer ring: 40 µL rep 1 culture + 560 µL water (nominal), spotted after the inner spots on each plate; plates are spotted sequentially, deck 6 then deck 9.",
+    "Culture resuspension before aspiration: mix 5 x 200 µL, assumed.",
+    "Agar pour volume (about 35-40 mL per dish) and weighing are assumed. Tip Z = 2 mm dish bottom + agar height + 1 mm clearance (Taguchi et al. 2023; agar density 0.00107 g/mm³, 86 mm dish diameter in that paper, to be re-measured for these dishes).",
+    "Single colony used to inoculate each overnight culture; the paper does not state colony size.",
+    "Scanner: 30 °C, colour/RGB, plates agar-side down aligned to scanner corners (Taguchi et al. 2023 used the same scanner and a 30 °C incubator; this paper scans every 10 min rather than 90 min).",
+    "Analysis (baQFA, ANOVA, RNA-seq sample preparation) is excluded; the protocol covers spotting and scanning only."
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "verdict": "major_issues",
+  "summary": "The protocol covers the paper's dispense volumes, stock concentrations and 5 µM final concentration. However, it swaps the paper's 384-well plate for a 96-well plate without justification, which changes the fluorescence geometry and plate-reader results. It also has an unsupported plate-reader read and a workflow ordering problem. The paper's six dilution series are not represented as separate plates or runs. Several assumed details need clearer flagging.",
+  "issues": [
+    {
+      "step": 0,
+      "severity": "major",
+      "issue": "The paper specifies a Corning 3544 clear-bottomed 384-well plate. The protocol uses a generic 96-well plate with a 360 µL capacity. 20 µL in a 96-well well gives a much thinner liquid layer, a different path length and meniscus, and poor reproducibility. This undermines the validity of the characterization. The plate-reader read geometry and the 4 °C tempdeck fit are also affected. The note that the 20 µL prefill fits is not a sound justification.",
+      "suggestion": "Use the Corning 3544 384-well clear-bottom plate as in the paper, with a 384-well layout. The 96-well option should not be used, because the path-length-sensitive fluorescence readout would no longer match the paper."
+    },
+    {
+      "step": 1,
+      "severity": "minor",
+      "issue": "Step 1 combines hardware assembly, the debug-switch toggle, priming and calibration in one manual step. Calibrating the labware before the plate has been placed on the tempdeck (step 2) is out of order. The paper says labware calibration is needed whenever labware is placed.",
+      "suggestion": "Place the plate on the tempdeck first, then calibrate its corner wells. Split priming, labware calibration and syringe calibration into separate steps."
+    },
+    {
+      "step": 3,
+      "severity": "minor",
+      "issue": "Wells are prefilled and then left at 4 °C unsealed for the whole stock-dispensing run. Evaporation of 20 µL over this period would bias concentrations in the first-dispensed wells, and sub-µL dispenses are sensitive to it. The paper only says the plate was kept at 4 °C. The ordering of the prefill relative to dispensing is not given.",
+      "suggestion": "Prefill the wells immediately before dispensing and minimize the time from prefill to read. Consider sealing after dispensing, and state that this is an assumption."
+    },
+    {
+      "step": 4,
+      "severity": "minor",
+      "issue": "The standards are hand pipetted in the paper. The protocol uses the OT-2 for a 20 µL transfer, which does not match the paper and was not available with the modified syringe (25 µL syringe, 100 µm tubing). It is unclear which pipette is used for steps 3-8.",
+      "suggestion": "Mark steps 3-8 as manual hand pipetting, or state that the native OT-2 pipette is used for them. Specify the pipette to avoid confusion with the modified syringe."
+    },
+    {
+      "step": 9,
+      "severity": "major",
+      "issue": "The syringe is filled with system liquid and connected to a 40 cm needle. Aspirating sub-µL volumes from a 100 µL stock needs an air gap or a defined plan to avoid mixing with the system liquid, and the protocol does not describe the aspirate sequence. It also gives a volume in µL (0.5, 0.1 ... 0.005 µL), which is hard to read and error-prone. For a 5 nL dispense, no aspiration or priming volume is specified.",
+      "suggestion": "Specify volumes in nL. State the aspiration sequence, including whether an air gap or system-liquid separation is used and that the stock is drawn up to the target volume plus excess. Mark these as assumptions."
+    },
+    {
+      "step": 10,
+      "severity": "minor",
+      "issue": "The 25 µL flush equals the full syringe capacity of the 25 µL syringe and would need multiple strokes or refills. It is borrowed from the autosampling flush, not the characterization. It also flushes after each concentration but not between the standards stage and the first stock, and no final flush is given. Flushing from a 50 mL buffer tube that also serves as system liquid is fine, but the order of lowest-to-highest dilution is unusual: the stock concentrations run from low to high, which suits carryover control.",
+      "suggestion": "State that the flush is an assumption and clarify how a 25 µL flush is performed within the 25 µL syringe. Add a final flush after step 19."
+    },
+    {
+      "step": 21,
+      "severity": "minor",
+      "issue": "The read step omits the wells' plate type setting and the plate reader focus and read height, and reads at room temperature after warming. The 4 °C plate is warmed before reading, but condensation on the plate bottom is not mitigated otherwise. The PlateFuge step precedes the equilibration, and spinning cold plates is fine. Repeating on six days (OS-1 to OS-6) and the reference run are not instantiated as separate runs.",
+      "suggestion": "Make it explicit that this protocol is one of six batches, and add the original-software reference run as a separate optional procedure. Note that the equilibration time is an assumption."
+    }
+  ]
+}

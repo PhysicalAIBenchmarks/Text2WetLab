@@ -1,0 +1,49 @@
+{
+"task": "split-200ul-two-wells",
+"mutant": "transfer_api",
+"expected_pass": true,
+"events": [
+{
+"kind": "pick",
+"instrument": "P1000 Single-Channel GEN2 on right mount",
+"channels": 1
+},
+{
+"kind": "aspirate",
+"instrument": "P1000 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A1",
+"labware": "Agilent 1 Well Reservoir 290 mL on slot 3"
+},
+{
+"kind": "dispense",
+"instrument": "P1000 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A1",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "aspirate",
+"instrument": "P1000 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A1",
+"labware": "Agilent 1 Well Reservoir 290 mL on slot 3"
+},
+{
+"kind": "dispense",
+"instrument": "P1000 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "B1",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "drop",
+"instrument": "P1000 Single-Channel GEN2 on right mount",
+"channels": 1
+}
+]
+}

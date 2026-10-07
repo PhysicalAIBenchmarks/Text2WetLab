@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 228
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "dna_addition",
+        "score": 1,
+        "evidence": "Log lines 2-82: block set to 4 C with lid open, then for each well A1-H1 a 1 uL aspirate from plasmid_plate and dispense into the matching transformation_plate well."
+      },
+      {
+        "id": "heat_shock",
+        "score": 1,
+        "evidence": "Log 83-86: lid closed, then 4 C for 30 min, 42 C for 30 s, and a 2 min return to 4 C, all on the thermocycler."
+      },
+      {
+        "id": "soc_recovery",
+        "score": 1,
+        "evidence": "Log 88-167: 50 uL SOC dispensed into each of A1-H1 after the heat shock. Log 168-170: lid closed, then 37 C held for 60 min."
+      },
+      {
+        "id": "tip_usage",
+        "score": 1,
+        "evidence": "Log shows a pick up and drop tip pair for each of the 8 plasmid transfers and each of the 8 SOC additions. No tip is reused across wells, and none is held at the end."
+      },
+      {
+        "id": "fidelity_to_paper",
+        "score": 1,
+        "evidence": "The LV volumes (1/10/50 uL), 4 C 30 min, 42 C 30 s and 37 C 1 h all match the paper. The added mixing and the 2 min return to 4 C are flagged as CHOICE comments and are acceptable adaptations, and the citation is accurate."
+      }
+    ],
+    "scores": {
+      "dna_addition": 1.0,
+      "heat_shock": 1.0,
+      "soc_recovery": 1.0,
+      "tip_usage": 1.0,
+      "fidelity_to_paper": 1.0
+    },
+    "summary": "The simulator log shows 1 uL DNA added to each cell well at 4 C, then 4 C for 30 min, 42 C for 30 s, 50 uL SOC per well and 37 C for 1 h with a fresh tip every time. The only additions are gentle mixing and a short post-shock return to 4 C, both labelled as choices, so I scored every item as a pass.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_dna_addition": 1.0,
+    "rubric_heat_shock": 1.0,
+    "rubric_soc_recovery": 1.0,
+    "rubric_tip_usage": 1.0,
+    "rubric_fidelity_to_paper": 1.0
+  }
+}

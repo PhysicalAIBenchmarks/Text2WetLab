@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Automated OT-2 SARS-CoV-2 RT-PCR diagnostic workflow (inactivation, lysis, RNA extraction, plate setup, RT-qPCR)",
+    "goal": "Process patient samples for SARS-CoV-2 RT-PCR at high throughput with a traceable, automated workflow on OT-2 robots and QuantStudio 5 thermocyclers, and assess throughput and turnaround time.",
+    "section_refs": [
+      "s3.2",
+      "s3.3"
+    ],
+    "shared_refs": [
+      "s1"
+    ],
+    "unresolved_refs": [
+      "Reagent identities, volumes, lysis mixture, RNA extraction chemistry, and RT-PCR primers/cycling conditions are not given in the paper"
+    ],
+    "figure_refs": [
+      "Figure 1B"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

@@ -1,0 +1,58 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/lustro/mccleanlab__Lustro",
+   "commit": "10974df7844a78e75725458b803f75b757460292",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "mccleanlab/Lustro",
+   "robot_mentions": [],
+   "size_kb": 177,
+   "status": "cloned",
+   "url": "https://github.com/mccleanlab/Lustro"
+  }
+ ],
+ "doi_primary": "10.1021/acssynbio.3c00215",
+ "dois": [
+  "10.1021/acssynbio.3c00215"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 20,
+  "source": "europepmc:PMC10368012"
+ },
+ "journal": "",
+ "note": "Tecan Spark",
+ "open_access": true,
+ "origin": [
+  "L_other (non-Opentrons) candidates, 2026-10-04"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "bytes": 4921910,
+  "licence": "cc by-nc-nd",
+  "pages": 9,
+  "redistributable": "no",
+  "sha256": "0b0d08a6cf3f514acda4a8aea13d4534150f712a6bfbce60cae011c027c3fff2",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://europepmc.org/articles/PMC10368012?pdf=render"
+   }
+  ],
+  "url": "https://europepmc.org/articles/PMC10368012?pdf=render"
+ },
+ "pmcid": "PMC10368012",
+ "slug": "lustro",
+ "title": "Lustro: High-Throughput Optogenetic Experiments Enabled by Automation and a Yeast Optogenetic Toolbox",
+ "year": "2023"
+}

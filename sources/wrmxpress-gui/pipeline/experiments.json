@@ -1,0 +1,23 @@
+[
+  {
+    "title": "PZQ treatment and video tracking of S. mansoni miracidia behavior",
+    "goal": "Measure how a range of praziquantel concentrations changes swimming behavior of S. mansoni miracidia by video recording and tracking, compared with optical-flow motility.",
+    "section_refs": [
+      "s2.2",
+      "s2.3",
+      "s2.4"
+    ],
+    "shared_refs": [
+      "s2.1"
+    ],
+    "unresolved_refs": [
+      "adapted egg hatching protocol (Dinguirard et al., 2018)",
+      "APW recipe from NIH NIAID Schistosomiasis Resource Center (Cody et al., 2016)"
+    ],
+    "figure_refs": [
+      "Figure 4A",
+      "Figure 4B"
+    ],
+    "liquid_handling": "partly"
+  }
+]

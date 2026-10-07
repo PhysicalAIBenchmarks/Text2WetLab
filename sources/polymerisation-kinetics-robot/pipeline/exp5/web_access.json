@@ -1,0 +1,93 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "search",
+      "value": "Opentrons OT-2 radical polymerisation 96-well polypropylene plate aluminium seal AIBN toluene reactivity ratios NMR"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/sc/article/17/22/10992/1231860/A-robotic-approach-to-polymerisation-kinetics-a"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2504.14110"
+    },
+    {
+      "kind": "result",
+      "value": "https://opentrons.com/products/aluminum-block-96-well-pcr-plate"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13103962/"
+    },
+    {
+      "kind": "result",
+      "value": "https://docs.opentrons.com/ot-2/labware/types/"
+    },
+    {
+      "kind": "result",
+      "value": "https://a3p-scientific.com/a3p-product/aluminum-block-96-well-pcr-plate/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.directindustry.com/prod/opentrons-labworks/product-4607534-2785038.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://s3.amazonaws.com/opentrons-protocol-library-website/Technical+Notes/Nucleic+Acid+Purification+with+Magnetic+Module+OT2+Technical+Note.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10047100"
+    },
+    {
+      "kind": "result",
+      "value": "https://docs.opentrons.com/flex/labware/types/"
+    },
+    {
+      "kind": "search",
+      "value": "Van de Reydt Junkers Polym. Chem. 2023 14 1622 Opentrons OT-2 polymerisation"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13103962/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/en/content/articlepdf/2023/py/d2py01383e"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.polymatter.net/publications"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/42039784/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/en/content/articlepdf/2023/py/d3py00261f"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/dd/article/1/4/519/311451/Operator-independent-high-throughput"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2504.14110"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2512.08896"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/dd/article/4/3/711/846219/Opentrons-for-automated-and-high-throughput"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2505.13494"
+    }
+  ]
+}

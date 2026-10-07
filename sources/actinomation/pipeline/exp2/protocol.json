@@ -1,0 +1,655 @@
+{
+  "title": "Automated 96-well OT-2 conjugation of pSETGUS and pIJ12551 from E. coli ET12567/pUZ8002 into Streptomyces, with colony PCR false-positive screening",
+  "containers": [
+    {
+      "name": "ecoli_pSETGUS_1",
+      "kind": "tube_50ml",
+      "description": "10x concentrated ET12567/pUZ8002/pSETGUS donor culture, tube 1 (feeds rows A and C)",
+      "assumed": false
+    },
+    {
+      "name": "ecoli_pSETGUS_2",
+      "kind": "tube_50ml",
+      "description": "10x concentrated ET12567/pUZ8002/pSETGUS donor culture, tube 2 (feeds rows E and G)",
+      "assumed": true
+    },
+    {
+      "name": "ecoli_pIJ12551_1",
+      "kind": "tube_50ml",
+      "description": "10x concentrated ET12567/pUZ8002/pIJ12551 donor culture, tube 1 (feeds rows B and D)",
+      "assumed": false
+    },
+    {
+      "name": "ecoli_pIJ12551_2",
+      "kind": "tube_50ml",
+      "description": "10x concentrated ET12567/pUZ8002/pIJ12551 donor culture, tube 2 (feeds rows F and H)",
+      "assumed": true
+    },
+    {
+      "name": "spores_M1152",
+      "kind": "tube_15ml",
+      "description": "S. coelicolor M1152 spore suspension in 2xYT",
+      "assumed": false
+    },
+    {
+      "name": "spores_M1146",
+      "kind": "tube_15ml",
+      "description": "S. coelicolor M1146 spore suspension in 2xYT",
+      "assumed": false
+    },
+    {
+      "name": "spores_J1074",
+      "kind": "tube_15ml",
+      "description": "S. albidoflavus J1074 spore suspension in 2xYT (called J1047 in abstract/results)",
+      "assumed": false
+    },
+    {
+      "name": "spores_DSM40230",
+      "kind": "tube_15ml",
+      "description": "S. venezuelae DSM40230 spore suspension in 2xYT",
+      "assumed": false
+    },
+    {
+      "name": "conj_plate",
+      "kind": "plate_96_deep",
+      "description": "Deep-well conjugation plate (deck slot 3); rows A-H = 8 strain/plasmid combinations, columns 1-12 = replicates",
+      "assumed": false
+    },
+    {
+      "name": "water_reservoir",
+      "kind": "reservoir",
+      "description": "Sterile water for colony lysis and PCR mix",
+      "assumed": true
+    },
+    {
+      "name": "buffer_tube",
+      "kind": "tube_1.5ml",
+      "description": "10x DreamTaq buffer",
+      "assumed": true
+    },
+    {
+      "name": "dntp_tube",
+      "kind": "tube_1.5ml",
+      "description": "2 mM dNTPs",
+      "assumed": true
+    },
+    {
+      "name": "primerF_tube",
+      "kind": "tube_1.5ml",
+      "description": "10 mM primer pRM4e-apmR-LF",
+      "assumed": true
+    },
+    {
+      "name": "primerR_tube",
+      "kind": "tube_1.5ml",
+      "description": "10 mM primer pRM4e-apmR-LR",
+      "assumed": true
+    },
+    {
+      "name": "taq_tube",
+      "kind": "tube_1.5ml",
+      "description": "DreamTaq DNA polymerase",
+      "assumed": true
+    },
+    {
+      "name": "pcr_mastermix",
+      "kind": "tube_1.5ml",
+      "description": "Colony PCR master mix for 110 reactions (9 µL per reaction without template)",
+      "assumed": true
+    },
+    {
+      "name": "lysate_plate",
+      "kind": "plate_96",
+      "description": "96-well PCR plate for boiled colony suspensions in 50 µL water",
+      "assumed": false
+    },
+    {
+      "name": "pcr_plate",
+      "kind": "plate_96",
+      "description": "96-well PCR plate for 10 µL colony PCR reactions",
+      "assumed": false
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "ecoli_pSETGUS_1",
+      "wells": [],
+      "reagent": "ET12567/pUZ8002/pSETGUS, washed twice in LB and concentrated 10x (~10% of initial volume)",
+      "volume_ul": 5000.0,
+      "assumed": true
+    },
+    {
+      "container": "ecoli_pSETGUS_2",
+      "wells": [],
+      "reagent": "ET12567/pUZ8002/pSETGUS, washed twice in LB and concentrated 10x",
+      "volume_ul": 5000.0,
+      "assumed": true
+    },
+    {
+      "container": "ecoli_pIJ12551_1",
+      "wells": [],
+      "reagent": "ET12567/pUZ8002/pIJ12551, washed twice in LB and concentrated 10x",
+      "volume_ul": 5000.0,
+      "assumed": true
+    },
+    {
+      "container": "ecoli_pIJ12551_2",
+      "wells": [],
+      "reagent": "ET12567/pUZ8002/pIJ12551, washed twice in LB and concentrated 10x",
+      "volume_ul": 5000.0,
+      "assumed": true
+    },
+    {
+      "container": "spores_M1152",
+      "wells": [],
+      "reagent": "S. coelicolor M1152 spores in 2xYT (~6.7x10^8 spores/mL, ~10^8 per 150 µL)",
+      "volume_ul": 5000.0,
+      "assumed": true
+    },
+    {
+      "container": "spores_M1146",
+      "wells": [],
+      "reagent": "S. coelicolor M1146 spores in 2xYT (~6.7x10^8 spores/mL)",
+      "volume_ul": 5000.0,
+      "assumed": true
+    },
+    {
+      "container": "spores_J1074",
+      "wells": [],
+      "reagent": "S. albidoflavus J1074 spores in 2xYT (~6.7x10^8 spores/mL)",
+      "volume_ul": 5000.0,
+      "assumed": true
+    },
+    {
+      "container": "spores_DSM40230",
+      "wells": [],
+      "reagent": "S. venezuelae DSM40230 spores in 2xYT (~6.7x10^8 spores/mL)",
+      "volume_ul": 5000.0,
+      "assumed": true
+    },
+    {
+      "container": "water_reservoir",
+      "wells": [],
+      "reagent": "sterile water",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "buffer_tube",
+      "wells": [],
+      "reagent": "10x DreamTaq buffer",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "dntp_tube",
+      "wells": [],
+      "reagent": "2 mM dNTPs",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "primerF_tube",
+      "wells": [],
+      "reagent": "10 mM primer pRM4e-apmR-LF (5'-AGCAGCCACTGGTAAC-3')",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "primerR_tube",
+      "wells": [],
+      "reagent": "10 mM primer pRM4e-apmR-LR (5'-ATGCAGCGTCGTGTT-3')",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "taq_tube",
+      "wells": [],
+      "reagent": "DreamTaq DNA polymerase",
+      "volume_ul": null,
+      "assumed": false
+    }
+  ],
+  "steps": [
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Day 1: for each plasmid (pSETGUS, pIJ12551) inoculate two independent 5 mL LB cultures (chloramphenicol 25 µg/mL, kanamycin 50 µg/mL, apramycin 100 µg/mL), each with three colonies of E. coli ET12567/pUZ8002 carrying the plasmid from the transformation plate. Incubate ~3 h at 37 °C, 250 rpm.",
+      "source_quote": "three colonies of E. coli ET12467/pUZ8002 with pSETGUS [43] or pIJ12551 [44,45] from the transformation plate was inoculated into 5 mL LB supplemented with chloramphenicol, kanamycin, and apramycin.",
+      "assumed": true,
+      "note": "Two cultures per plasmid are assumed so that 48 wells per plasmid can be filled."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Add each 5 mL culture plus ~15 mL LB with the same antibiotics to a 50 mL Falcon tube (lid loosely tightened). Incubate ~18 h at 37 °C, 250 rpm to stationary phase (no OD target).",
+      "source_quote": "The cultures, with loosely tightened lids, were incubated at 37 °C, with 250 rpm orbital shaking for approx. 18 h and grown overnight to reach stationary state",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Day 2: pellet the E. coli (~4000 x g, 5-10 min, room temperature), wash twice with an equal volume of LB, and resuspend in 10% of the initial volume (10x concentrated) in the 50 mL tubes ecoli_pSETGUS_1/2 and ecoli_pIJ12551_1/2.",
+      "source_quote": "the user will wash the O/N culture two times with equal volume of LB media before resuspending it in 10 percent of the initial volume.",
+      "assumed": true,
+      "note": "Spin conditions are assumed (standard practice)."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Harvest spores of S. coelicolor M1152, S. coelicolor M1146, S. albidoflavus J1074 and S. venezuelae DSM40230 (grown on SFM at 30 °C until sporulated) into four 15 mL Falcon tubes using ~5 mL liquid. Adjust each to ~6.7x10^8 spores/mL in 2xYT so that 150 µL holds ~10^8 spores. Keep an aliquot for CFU estimation by serial dilution.",
+      "source_quote": "Next, the user will harvest the Streptomyces spores into 15 mL Falcon tubes using approx. 5 mL media.",
+      "assumed": true,
+      "note": "Spore counting and adjustment are assumed (Kieser 2000 standard practice; not fetched)."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Load the OT-2: empty 96-well deep-well plate conj_plate on slot 3; 50 mL tube rack with the E. coli tubes on slot 6; 15 mL tube rack with spore tubes on slot 9; 1000 µL tip box on slot 7; 300 µL tip box on slot 11. Use a single-channel 1000 µL pipette (E. coli) and a single-channel 300 µL pipette (spores). Start the protocol from the Opentrons GUI.",
+      "source_quote": "The user places the rack with 15 mL tubes with Streptomyces spores on deck position 9, tubes with the E. coli on deck position 6, the 96-well deep-well plates for the conjugation mix on deck position 3",
+      "assumed": false,
+      "note": "Layout: rows A-H = M1152+pSETGUS, M1152+pIJ12551, M1146+pSETGUS, M1146+pIJ12551, J1074+pSETGUS, J1074+pIJ12551, DSM40230+pSETGUS, DSM40230+pIJ12551; 12 replicates each (columns 1-12)."
+    },
+    {
+      "kind": "transfer",
+      "source": "ecoli_pSETGUS_1",
+      "source_wells": [],
+      "dest": "conj_plate",
+      "dest_wells": [
+        "A1:A12",
+        "C1:C12"
+      ],
+      "volume_ul": 150.0,
+      "reagent": "E. coli ET12567/pUZ8002/pSETGUS (10x)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The 1000 μL tips aspirate and dispense the E. coli",
+      "assumed": true,
+      "note": "Repeat-dispense with extra volume aspirated and no blow-out; one 1000 µL tip reused, up to 6 wells per aspiration."
+    },
+    {
+      "kind": "transfer",
+      "source": "ecoli_pSETGUS_2",
+      "source_wells": [],
+      "dest": "conj_plate",
+      "dest_wells": [
+        "E1:E12",
+        "G1:G12"
+      ],
+      "volume_ul": 150.0,
+      "reagent": "E. coli ET12567/pUZ8002/pSETGUS (10x)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "This allowed us to use a 1000 μL tip for E. coli, enabling repeat-dispensing of six wells consecutively.",
+      "assumed": true,
+      "note": "Second tube of the same pSETGUS donor."
+    },
+    {
+      "kind": "transfer",
+      "source": "ecoli_pIJ12551_1",
+      "source_wells": [],
+      "dest": "conj_plate",
+      "dest_wells": [
+        "B1:B12",
+        "D1:D12"
+      ],
+      "volume_ul": 150.0,
+      "reagent": "E. coli ET12567/pUZ8002/pIJ12551 (10x)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The OT-2 robot now mixes 150 μL of spores and 150 μL E. coli into the empty 96-well plates.",
+      "assumed": true,
+      "note": "Fresh 1000 µL tip for the second plasmid to avoid cross-contamination."
+    },
+    {
+      "kind": "transfer",
+      "source": "ecoli_pIJ12551_2",
+      "source_wells": [],
+      "dest": "conj_plate",
+      "dest_wells": [
+        "F1:F12",
+        "H1:H12"
+      ],
+      "volume_ul": 150.0,
+      "reagent": "E. coli ET12567/pUZ8002/pIJ12551 (10x)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The 1000 μL tips aspirate and dispense the E. coli",
+      "assumed": true,
+      "note": "Second tube of the same pIJ12551 donor."
+    },
+    {
+      "kind": "transfer",
+      "source": "spores_M1152",
+      "source_wells": [],
+      "dest": "conj_plate",
+      "dest_wells": [
+        "A1:B12"
+      ],
+      "volume_ul": 150.0,
+      "reagent": "S. coelicolor M1152 spores (~10^8) in 2xYT",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "while the 300 μL tips aspirate and dispense Streptomyces spores",
+      "assumed": true,
+      "note": "New 300 µL tip per spore tube; no extra mixing described."
+    },
+    {
+      "kind": "transfer",
+      "source": "spores_M1146",
+      "source_wells": [],
+      "dest": "conj_plate",
+      "dest_wells": [
+        "C1:D12"
+      ],
+      "volume_ul": 150.0,
+      "reagent": "S. coelicolor M1146 spores (~10^8) in 2xYT",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "new pipette tips were used for the transfer of the Streptomyces, which is performed using the single pipetting head with individual 300 μL tips",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "spores_J1074",
+      "source_wells": [],
+      "dest": "conj_plate",
+      "dest_wells": [
+        "E1:F12"
+      ],
+      "volume_ul": 150.0,
+      "reagent": "S. albidoflavus J1074 spores (~10^8) in 2xYT",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "approximately 108 Streptomyces spores in 150 μL 2xYT",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "spores_DSM40230",
+      "source_wells": [],
+      "dest": "conj_plate",
+      "dest_wells": [
+        "G1:H12"
+      ],
+      "volume_ul": 150.0,
+      "reagent": "S. venezuelae DSM40230 spores (~10^8) in 2xYT",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "150 μL of overnight E. coli cells were mixed with approximately 108 Streptomyces spores in 150 μL 2xYT",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Streak the full 300 µL content of each conj_plate well onto its own 9 cm SFM agar plate containing 10 mM MgCl2 (96 plates). Incubate at 30 °C for 16-20 h.",
+      "source_quote": "plated onto SFM agar plates (supplemented to contain a final concentration of 10 mM MgCl2 (Sigma-Aldrich; M1028)), and incubated at 30 °C for 16–20 h.",
+      "assumed": false,
+      "note": "Spreading is done manually."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Overlay each plate with 1 mL sterile water containing 0.5 mg nalidixic acid and the plasmid-specific selection antibiotic (apramycin, ~1 mg per plate). Dry in a sterile flow hood and incubate at 30 °C until exconjugant colonies appear (~3-5 days).",
+      "source_quote": "The plates were overlaid with 1 mL water containing 0.5 mg nalidixic acid and the plasmid specific selection antibiotic",
+      "assumed": true,
+      "note": "Apramycin amount and incubation time are assumed."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Count exconjugant colonies on each plate. In parallel, estimate Streptomyces CFU per conjugation by 10-fold serial dilution of the spore suspension, plating on SFM without antibiotic and counting after 2-4 days at 30 °C. Efficiency = exconjugant CFU / estimated Streptomyces CFU. Pick exconjugants with sterile toothpicks onto SFM containing nalidixic acid and apramycin and incubate at 30 °C.",
+      "source_quote": "Conjugation efficiencies were calculated as the number of Streptomyces exconjugant CFUs divided by the estimated number of Streptomyces CFUs in the conjugation experiment (estimated by serial dilution).",
+      "assumed": true,
+      "note": "Dilution and plating details are assumed."
+    },
+    {
+      "kind": "transfer",
+      "source": "water_reservoir",
+      "source_wells": [],
+      "dest": "lysate_plate",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "sterile water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "a pipette tip was used to suspend material from a single colony in 50 μL water in a 96-well PCR plate",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "lysate_plate",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Suspend material from one picked exconjugant colony per well in lysate_plate, matching the conj_plate layout (rows A-H = the 8 combinations, 12 colonies each). Seal and incubate 20 min at 95 °C in a thermocycler.",
+      "source_quote": "incubated for 20 min in a thermocycler (Eppendorf A, Germany) at 95 °C.",
+      "assumed": true,
+      "note": "12 PCRs per combination per the paper; one colony per replicate position is assumed."
+    },
+    {
+      "kind": "transfer",
+      "source": "water_reservoir",
+      "source_wells": [],
+      "dest": "pcr_mastermix",
+      "dest_wells": [],
+      "volume_ul": 770.0,
+      "reagent": "H2O",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "boiled colony material 1 μL and H20 7 μL",
+      "assumed": true,
+      "note": "Master mix for 110 reactions (96 plus ~15% overage): 7 µL water per reaction."
+    },
+    {
+      "kind": "transfer",
+      "source": "buffer_tube",
+      "source_wells": [],
+      "dest": "pcr_mastermix",
+      "dest_wells": [],
+      "volume_ul": 110.0,
+      "reagent": "10x DreamTaq buffer",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "10× Dream Taq Buffer (Thermo Scientific; 01186738) 1 μL",
+      "assumed": true,
+      "note": "1 µL x 110."
+    },
+    {
+      "kind": "transfer",
+      "source": "dntp_tube",
+      "source_wells": [],
+      "dest": "pcr_mastermix",
+      "dest_wells": [],
+      "volume_ul": 110.0,
+      "reagent": "2 mM dNTPs",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "2 mM dNTPs [(Thermo Scientific; 2640011) 1 μL",
+      "assumed": true,
+      "note": "1 µL x 110."
+    },
+    {
+      "kind": "transfer",
+      "source": "primerF_tube",
+      "source_wells": [],
+      "dest": "pcr_mastermix",
+      "dest_wells": [],
+      "volume_ul": 55.0,
+      "reagent": "primer pRM4e-apmR-LF 10 mM",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "primer pRM4e-apmR-LF (5′-AGCAGCCACTGGTAAC-3′)] 10 mM, 0.5 μL",
+      "assumed": true,
+      "note": "0.5 µL x 110."
+    },
+    {
+      "kind": "transfer",
+      "source": "primerR_tube",
+      "source_wells": [],
+      "dest": "pcr_mastermix",
+      "dest_wells": [],
+      "volume_ul": 55.0,
+      "reagent": "primer pRM4e-apmR-LR 10 mM",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "primer pRM4e-apmR-LR (5′-ATGCAGCGTCGTGTT-3′) 10 mM, 0.5 μL",
+      "assumed": true,
+      "note": "0.5 µL x 110."
+    },
+    {
+      "kind": "transfer",
+      "source": "taq_tube",
+      "source_wells": [],
+      "dest": "pcr_mastermix",
+      "dest_wells": [],
+      "volume_ul": 2.75,
+      "reagent": "DreamTaq DNA polymerase",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "DreamTaq DNA Polymerase (Thermo Scientific; 01188416) 0.025 μL",
+      "assumed": true,
+      "note": "0.025 µL x 110."
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "pcr_mastermix",
+      "dest_wells": [],
+      "volume_ul": 500.0,
+      "reagent": "",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Mix cycles and volume are assumed."
+    },
+    {
+      "kind": "transfer",
+      "source": "pcr_mastermix",
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 9.0,
+      "reagent": "colony PCR master mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "PCR was performed in 10 μL reactions",
+      "assumed": true,
+      "note": "9 µL master mix plus 1 µL template makes 10 µL."
+    },
+    {
+      "kind": "transfer",
+      "source": "lysate_plate",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 1.0,
+      "reagent": "boiled colony material",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "boiled colony material 1 μL",
+      "assumed": false,
+      "note": "Paired well to well."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal pcr_plate and run thermal cycling: 95 °C 3 min; 29 cycles of 95 °C 30 s, 50 °C 30 s, 72 °C 30 s; final extension 72 °C 5 min. Then run the products on an agarose gel (1-1.5%) and score presence or absence of the apramycin-resistance amplicon per colony. False-positive rate = negative PCRs / total PCRs (12 per combination) x 100.",
+      "source_quote": "initial denaturation at 95 °C for 3 min, followed by 29 cycles consisting of denaturation at 95 °C for 30 s, annealing for 30 s at 50 °C, extension at 72 °C for 30 s, and a final extension step at 72 °C for 5 min.",
+      "assumed": true,
+      "note": "Gel conditions are assumed; the paper only reports bands present or absent."
+    }
+  ],
+  "assumptions": [
+    "Strain naming: the methods give S. albidoflavus J1074 and the abstract/results give J1047. J1074 is used as the standard strain; J1047 is probably a typo.",
+    "Layout of the 96 conjugations (Table S3 not available): one deep-well plate, rows A-H = M1152+pSETGUS, M1152+pIJ12551, M1146+pSETGUS, M1146+pIJ12551, J1074+pSETGUS, J1074+pIJ12551, DSM40230+pSETGUS, DSM40230+pIJ12551; 12 replicates in columns 1-12. Each well receives 150 µL E. coli plus 150 µL spores (300 µL, within the 2000 µL well capacity).",
+    "Two 50 mL donor tubes per plasmid (four in total) are assumed so that 48 wells per plasmid (7.2 mL) can be filled. The paper states one concentrated culture serves ~31 conjugations. 5 mL concentrated culture per tube and 5 mL spore suspension per strain (needs 3.6 mL) are assumed, giving dead volume for repeat-dispensing.",
+    "Spore preparation (growth time, harvest, counting) is not described. It is assumed to follow Kieser 2000 (not fetched): confluent SFM lawn at 30 °C until sporulated, harvest in ~5 mL, count and adjust to ~6.7x10^8 spores/mL in 2xYT (~10^8 per 150 µL).",
+    "2xYT is assumed to be 16 g/L tryptone, 10 g/L yeast extract and 5 g/L NaCl, autoclaved (only tryptone is stated).",
+    "SFM composition: the paper omits the mannitol amount and agar %, and lists malt extract and glucose. 20 g/L soya flour, 20 g/L D-mannitol and 2% agar are assumed, plus 10 mM MgCl2 for conjugation plates (standard Kieser 2000 MS/SFM).",
+    "E. coli centrifugation (~4000 x g, 5-10 min, room temperature) is assumed. The wash with an equal volume of LB twice and resuspension in 10% of the initial volume are from the paper (s3.2.1).",
+    "The donor E. coli ET12567/pUZ8002 transformants (heat-shock transformation, s2.2/s3.2.1) are assumed to have been prepared beforehand, so the heat-shock robot run is not repeated here.",
+    "Liquid handling (OT-2 defaults): P1000 single-channel for E. coli with extra volume aspirated, repeat-dispensing 150 µL into up to 6 wells without blow-out, tips reused across E. coli transfers of the same plasmid; P300 single-channel with a fresh tip per Streptomyces tube. Mixing of the combined E. coli and spores is not described, so none is programmed. Deck layout follows s2.5/s3.2.1: conj_plate slot 3, E. coli tubes slot 6, spore tubes slot 9, 1000 µL tips slot 7, 300 µL tips slot 11.",
+    "Streaking of the full 300 µL well content onto 9 cm SFM + 10 mM MgCl2 plates, overlay, drying and incubation are manual, as in the paper. Apramycin amount in the overlay (~1 mg/plate), incubation time after overlay (3-5 days) and picking onto SFM with nalidixic acid (~25 µg/mL) and apramycin (50-100 µg/mL) are assumed standard practice.",
+    "Serial-dilution CFU estimation is not described in the paper. 10-fold dilutions plated on antibiotic-free SFM, counted after 2-4 days at 30 °C, are assumed.",
+    "Colony PCR: 12 PCRs per combination (stated) are assumed to be one colony per replicate position of the 96-well layout. The results text also says three colonies per experiment, which conflicts and is not resolved here. Master mix for 110 reactions (~15% overage) is assumed; per-reaction volumes are from s2.4 (1 µL buffer, 1 µL dNTPs, 0.5 µL of each primer, 0.025 µL polymerase, 7 µL water, 1 µL boiled colony). Master mix is dispensed at 9 µL per well before 1 µL template is added. Gel electrophoresis conditions are assumed.",
+    "Sources: no external sources could be fetched (Gren et al. 2021 and Kieser 2000 unavailable); all details come from the paper text, with gaps filled by standard practice.",
+    "The 96-well plate in s3.3.2 is read as one full plate (8 combinations x 12 replicates)."
+  ]
+}

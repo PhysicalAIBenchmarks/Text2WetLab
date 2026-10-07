@@ -1,0 +1,121 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.21",
+    "2.8"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/slowpoke/Tom-Ellis-Lab__Slowpoke",
+   "commit": "62648d2bf390c28af061d68cee71075e27c251a6",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 6,
+   "py_files": 11,
+   "redistributable": "yes",
+   "repo": "Tom-Ellis-Lab/Slowpoke",
+   "robot_mentions": [
+    "Flex",
+    "OT-2"
+   ],
+   "size_kb": 42,
+   "status": "cloned",
+   "url": "https://github.com/Tom-Ellis-Lab/Slowpoke"
+  },
+  {
+   "api_levels": [
+    "2.13"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/slowpoke/Imperial-Opentrons-Users__automated-colony-picker",
+   "commit": "ca3bb24493afff96dd41dabfe6c0ce1fa41c5e10",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 2,
+   "py_files": 33,
+   "redistributable": "no",
+   "repo": "Imperial-Opentrons-Users/automated-colony-picker",
+   "robot_mentions": [],
+   "size_kb": 5256,
+   "status": "cloned",
+   "url": "https://github.com/Imperial-Opentrons-Users/automated-colony-picker"
+  }
+ ],
+ "doi_primary": "10.1021/acssynbio.5c00629",
+ "dois": [
+  "10.1021/acssynbio.5c00629"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "pipeline /Users/nialloleary/Desktop/Text2WetLab/out/10.1021_acssynbio.5c00629/experiments.json, experiment 1; sections ['s2.4', 's2.5', 's2.6', 's2.8']",
+   "id": "exp1",
+   "liquid_handling": "mostly",
+   "title": "YTK Level 1 TU assembly on OT-2 with colony PCR and yeast sfGFP flow cytometry"
+  },
+  {
+   "evidence": "pipeline /Users/nialloleary/Desktop/Text2WetLab/out/10.1021_acssynbio.5c00629/experiments.json, experiment 2; sections ['s2.4', 's2.5', 's2.7', 's2.8']",
+   "id": "exp2",
+   "liquid_handling": "partly",
+   "title": "STK five-part Level 1 TU assembly on OT-2 with colony PCR and B. subtilis GFP assay"
+  },
+  {
+   "evidence": "pipeline /Users/nialloleary/Desktop/Text2WetLab/out/10.1021_acssynbio.5c00629/experiments.json, experiment 3; sections ['s2.4', 's2.5', 's2.6', 's2.8']",
+   "id": "exp3",
+   "liquid_handling": "mostly",
+   "title": "YTK TU assembly on Opentrons Flex with colony PCR and yeast sfGFP flow cytometry"
+  },
+  {
+   "evidence": "pipeline /Users/nialloleary/Desktop/Text2WetLab/out/10.1021_acssynbio.5c00629/experiments.json, experiment 4; sections ['s2.4', 's2.5']",
+   "id": "exp4",
+   "liquid_handling": "mostly",
+   "title": "High-throughput 6-part YTK assembly of 62 plasmids on Flex with colony PCR"
+  },
+  {
+   "evidence": "pipeline /Users/nialloleary/Desktop/Text2WetLab/out/10.1021_acssynbio.5c00629/experiments.json, experiment 5; sections ['s2.5']",
+   "id": "exp5",
+   "liquid_handling": "mostly",
+   "title": "Large-scale colony PCR of 288 reactions on OT-2 for juxtracrine signaling plasmids"
+  }
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 29,
+  "source": "europepmc:PMC12930513"
+ },
+ "journal": "",
+ "note": "PMC12930513 | PDF not retrieved: open access (CC-BY, PMC12930513) but PMC, Europe PMC, ACS and HAL return 403 or a proof-of-work bot-check page; not circumvented. Paper names two repos: Tom-Ellis-Lab/Slowpoke (MIT) and Imperial-Opentrons-Users/automated-colony-picker (no licence file; supports colony-picker hardware, 2 opentrons py files). Pipeline file is outside repo (Text2WetLab/out).",
+ "open_access": true,
+ "origin": [
+  "other Claude session"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 6716315,
+  "licence": "cc by",
+  "pages": 11,
+  "redistributable": "yes",
+  "sha256": "1736348d1c57e93a2279429fb435671326beb7a616aa9b0d5a73feef2dc98c7d",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12930513?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12930513.1/PMC12930513.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12930513.1/PMC12930513.1.pdf"
+ },
+ "pmcid": "PMC12930513",
+ "slug": "slowpoke",
+ "title": "Slowpoke: Golden Gate cloning and colony PCR on OT-2/Flex",
+ "year": "2026"
+}

@@ -1,0 +1,60 @@
+{
+  "judge_model": "claude-sonnet-5-5",
+  "suspicious_tokens": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 1340
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "sample_handling",
+        "score": 1,
+        "evidence": "Log lines 103-774 show 48 separate P1000 pick-ups, each aspirating 250 uL from a distinct tube into a distinct well (A1..H1, A3..H3 ... H11). Eluates go to the matching elution-plate wells (lines 1088-1109)."
+      },
+      {
+        "id": "binding_and_separation",
+        "score": 1,
+        "evidence": "Beads 40 uL (lines 14-75), then isopropanol 2x125 (78-101), then 250 uL sample with a 5x mix (104-115). Then delay 300 s, engage, delay 240 s, and 540 uL removed to the waste plate as 3x180 uL (lines 775-825)."
+      },
+      {
+        "id": "washes_and_drying",
+        "score": 1,
+        "evidence": "Two ethanol additions of 3x166.667 uL (lines 827-862 and 913-948), each removed to waste with the magnet engaged (865-911 and 951-997). Then delay 240 s and disengage (998-999) before elution."
+      },
+      {
+        "id": "elution_recovery",
+        "score": 0,
+        "evidence": "Elution is added and mixed off-magnet, with a 30 s delay, engage and 90 s delay (1084-1086). However, recovery aspirates and dispenses 100 uL (lines 1088-1089 etc.), not about 80 uL."
+      },
+      {
+        "id": "fidelity_to_paper",
+        "score": 1,
+        "evidence": "Step order, volumes and timings match the paper, and reagents are correctly labelled as 70% ethanol and elution buffer. The only extras are minor mixes (bead reservoir pre-mix, elution mix) and the recovery volume the paper leaves unspecified."
+      }
+    ],
+    "scores": {
+      "sample_handling": 1.0,
+      "binding_and_separation": 1.0,
+      "washes_and_drying": 1.0,
+      "elution_recovery": 0.0,
+      "fidelity_to_paper": 1.0
+    },
+    "summary": "The protocol follows the paper's binding, magnet, wash and dry sequence correctly, with fresh tips per sample and traceable wells. It fails on elution recovery because 100 uL is recovered instead of about 80 uL.",
+    "raw": "{\"items\": [{\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Log lines 103-774 show 48 separate P1000 pick-ups, each aspirating 250 uL from a distinct tube into a distinct well (A1..H1, A3..H3 ... H11). Eluates go to the matching elution-plate wells (lines 1088-1109).\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Beads 40 uL (lines 14-75), then isopropanol 2x125 (78-101), then 250 uL sample with a 5x mix (104-115). Then delay 300 s, engage, delay 240 s, and 540 uL removed to the waste plate as 3x180 uL (lines 775-825).\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two ethanol additions of 3x166.667 uL (lines 827-862 and 913-948), each removed to waste with the magnet engaged (865-911 and 951-997). Then delay 240 s and disengage (998-999) before elution.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"Elution is added and mixed off-magnet, with a 30 s delay, engage and 90 s delay (1084-1086). However, recovery aspirates and dispenses 100 uL (lines 1088-1089 etc.), not about 80 uL.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 1, \"evidence\": \"Step order, volumes and timings match the paper, and reagents are correctly labelled as 70% ethanol and elution buffer. The only extras are minor mixes (bead reservoir pre-mix, elution mix) and the recovery volume the paper leaves unspecified.\"}], \"summary\": \"The protocol follows the paper's binding, magnet, wash and dry sequence correctly, with fresh tips per sample and traceable wells. It fails on elution recovery because 100 uL is recovered instead of about 80 uL.\"}"
+  },
+  "rewards": {
+    "reward": 0.8,
+    "sim_pass": 1.0,
+    "judge_mean": 0.8,
+    "suspicious_code": 0.0,
+    "judge_error": 0.0,
+    "hack_detected": 0.0,
+    "rubric_sample_handling": 1.0,
+    "rubric_binding_and_separation": 1.0,
+    "rubric_washes_and_drying": 1.0,
+    "rubric_elution_recovery": 0.0,
+    "rubric_fidelity_to_paper": 1.0
+  }
+}

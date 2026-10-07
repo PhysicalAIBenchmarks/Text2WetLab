@@ -1,0 +1,94 @@
+[
+  {
+    "title": "Gradient PCR amplification of five fragments with AssemblyTron-calculated annealing gradient",
+    "goal": "Verify that AssemblyTron's optimal annealing gradient algorithm and automated PCR setup amplify fragments of varying length and annealing temperature in a single gradient thermocycler run.",
+    "section_refs": [
+      "s2.4",
+      "s2.3",
+      "s3.1"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.2"
+    ],
+    "unresolved_refs": [
+      "Input files in Files S1–S4",
+      "gradient PCR run set up per instructions document (Table S4)"
+    ],
+    "figure_refs": [
+      "Figure 2A",
+      "Figure 2B"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Golden Gate assembly of four four-fragment chromoprotein expression plasmids",
+    "goal": "Test automated PCR, DpnI digestion, fragment pooling and Golden Gate assembly on the OT-2, then assess transformation efficiency and accuracy via chromoprotein expression.",
+    "section_refs": [
+      "s2.4",
+      "s2.3",
+      "s3.2"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.2"
+    ],
+    "unresolved_refs": [
+      "Golden Gate script based on Engler et al. (8)",
+      "Zymo column cleanup and competent cell preparation per Hanahan method (25)",
+      "reagent amounts and cycling conditions for the Golden Gate reaction not stated"
+    ],
+    "figure_refs": [
+      "Figure 3A",
+      "Figure 3B",
+      "Figure 3C",
+      "Figure 3D"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "One-pot IVA site-directed mutagenesis",
+    "goal": "Assess whether one-pot homology-dependent in vivo assembly performed with AssemblyTron achieves site-directed mutagenesis, by gel electrophoresis, transformation efficiency, and Sanger sequencing of colonies.",
+    "section_refs": [
+      "s2.4",
+      "s2.3",
+      "s3.3"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.2"
+    ],
+    "unresolved_refs": [
+      "IVA protocol inspired by García-Nafría et al. (7)",
+      "sequencing results in Files S5 and S6"
+    ],
+    "figure_refs": [
+      "Figure 4A",
+      "Figure 4B"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "AQUA-style homology-dependent assembly of chromoprotein plasmids from separate PCRs",
+    "goal": "Test automated separate-PCR homology-dependent assembly of four chromoprotein plasmids and quantify transformation efficiency and the fraction of correctly colored colonies.",
+    "section_refs": [
+      "s2.4",
+      "s2.3",
+      "s3.3"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.2"
+    ],
+    "unresolved_refs": [
+      "AQUA protocol per Beyer et al. (6, 24)",
+      "competent cells and recovery medium differ from other figures"
+    ],
+    "figure_refs": [
+      "Figure 5A",
+      "Figure 5B",
+      "Figure 5C"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

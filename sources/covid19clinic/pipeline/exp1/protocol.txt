@@ -1,0 +1,94 @@
+EQA panel evaluation of the OT2-KF pathogen circuit (MagMax Pathogen RNA/DNA extraction, TaqPath RT-PCR) with comparator platforms
+
+Containers:
+- eqa_stock_plate: 96-deep-well plate (2 mL) — Eight inactivated EMQN EQA samples in A1:H1 [assumed]
+- cobas_lys_reservoir: reservoir — Cobas omni Lysis Reagent (LYS) [assumed]
+- lysis_plate: 96-deep-well plate (2 mL) — EQA samples mixed 1:1 with Cobas omni LYS (A1:H1) [assumed]
+- pbs_tube: 50 mL tube — PBS for extraction negative control [assumed]
+- kf_sample_plate: 96-deep-well plate (2 mL) — KingFisher deep-well sample plate: A1 = PBS negative control, A2:H2 = EQA samples 1-8
+- beads_tube: 1.5 mL tube — MagMax Nucleic Acid Binding Beads [assumed]
+- enhancer_tube: 1.5 mL tube — MagMax Lysis ENHANCER [assumed]
+- isopropanol_tube: 15 mL tube — 100% isopropanol [assumed]
+- bead_mix_tube: 15 mL tube — MagMax Pathogen RNA/DNA Bead Master Mix (kept on ice) [assumed]
+- ms2_tube: 1.5 mL tube — MS2 Phage Control [assumed]
+- wash1_reservoir: reservoir — Wash Solution 1 (concentrate plus 125 mL isopropanol) [assumed]
+- wash2_reservoir: reservoir — Wash Solution 2 (concentrate plus 232 mL ethanol) [assumed]
+- elution_buffer_tube: 50 mL tube — MagMax Elution Buffer [assumed]
+- wash1_plate_1: 96-deep-well plate (2 mL) — KingFisher Wash 1 plate (1 of 2) [assumed]
+- wash1_plate_2: 96-deep-well plate (2 mL) — KingFisher Wash 1 plate (2 of 2) [assumed]
+- wash2_plate_1: 96-deep-well plate (2 mL) — KingFisher Wash 2 plate (1 of 2) [assumed]
+- wash2_plate_2: 96-deep-well plate (2 mL) — KingFisher Wash 2 plate (2 of 2) [assumed]
+- elution_plate: 96-well plate — KingFisher standard plate for elution; receives RNA eluate [assumed]
+- tip_comb_plate: 96-well plate — KingFisher standard plate holding the tip comb (no liquid) [assumed]
+- master_mix_stock_tube: 1.5 mL tube — TaqPath 1-Step Multiplex Master Mix (No ROX, 4X) [assumed]
+- assay_stock_tube: 1.5 mL tube — COVID-19 Real Time PCR Assay Multiplex [assumed]
+- water_tube: 15 mL tube — Nuclease-free water [assumed]
+- pcr_mix_tube: 1.5 mL tube — RT-PCR reaction mix (11 reactions) [assumed]
+- control_stock_tube: 1.5 mL tube — TaqPath COVID-19 Control, 1x10^4 copies/uL [assumed]
+- dilution_buffer_tube: 1.5 mL tube — Dilution buffer for the positive control [assumed]
+- control_dil1_tube: 1.5 mL tube — Positive control intermediate dilution (100 copies/uL) [assumed]
+- control_dil2_tube: 1.5 mL tube — Positive control working dilution (25 copies/uL) [assumed]
+- pcr_plate: 96-well plate — MicroAmp Optical 96-well reaction plate: A1:H1 = samples 1-8, A2 = extraction negative control, B2 = positive control
+
+Starting contents:
+- eqa_stock_plate wells A1:H1: 300 µL Inactivated EMQN EQA sample (one per well) [assumed]
+- cobas_lys_reservoir: stock Cobas omni Lysis Reagent
+- pbs_tube: stock PBS
+- beads_tube: stock Nucleic Acid Binding Beads [assumed]
+- enhancer_tube: stock Lysis ENHANCER [assumed]
+- isopropanol_tube: stock 100% isopropanol [assumed]
+- ms2_tube: stock MS2 Phage Control
+- wash1_reservoir: stock Wash Solution 1 [assumed]
+- wash2_reservoir: stock Wash Solution 2 [assumed]
+- elution_buffer_tube: stock Elution Buffer [assumed]
+- master_mix_stock_tube: stock TaqPath 1-Step Multiplex Master Mix (No ROX, 4X) [assumed]
+- assay_stock_tube: stock COVID-19 Real Time PCR Assay Multiplex [assumed]
+- water_tube: stock Nuclease-free water [assumed]
+- control_stock_tube: stock TaqPath COVID-19 Control 1x10^4 copies/uL [assumed]
+- dilution_buffer_tube: stock Dilution buffer [assumed]
+
+Steps:
+1. Transfer 250 µL of EQA sample from eqa_stock_plate wells A1:H1 to lysis_plate wells A1:H1 (each well). Note: 250 uL is an assumed volume; the paper only states a 1:1 mix. [assumed]
+2. Transfer 250 µL of Cobas omni Lysis Reagent from cobas_lys_reservoir to lysis_plate wells A1:H1 (each well), then mix 3 times. Note: 1:1 with sample gives 500 uL of lysate per sample, enough for the 460 uL transfer. [assumed]
+3. Mix lysis_plate wells A1:H1 by pipetting 300 µL up and down 5 times. Note: Mix volume and cycles assumed. [assumed]
+4. MANUAL: Take aliquots of the same lysed EQA samples and test them on the comparator platforms (Flow Solution, Cobas 6800, Hamilton-Seegene) per each manufacturer's routine IVD protocol (described in S1 File, not in the main text). Note: Comparator procedures are deferred to S1 File. [assumed]
+5. Transfer 460 µL of Lysed EQA sample from lysis_plate wells A1:H1 to kf_sample_plate wells A2:H2 (each well). Note: Samples 1-8 go to A2:H2, paired in order.
+6. Transfer 460 µL of PBS from pbs_tube to kf_sample_plate well A1. Note: Extraction negative control.
+7. Transfer 100 µL of Nucleic Acid Binding Beads from beads_tube to bead_mix_tube. Note: Bead mix for 10 reactions (9 wells + overage): 10 uL beads per reaction, from the MagMAX Pathogen user guide. [assumed]
+8. Transfer 100 µL of Lysis ENHANCER from enhancer_tube to bead_mix_tube. Note: 10 uL ENHANCER per reaction x 10. [assumed]
+9. Transfer 2400 µL of 100% isopropanol from isopropanol_tube to bead_mix_tube, then mix 3 times. Note: Inferred ~240 uL isopropanol per well to reach 260 uL per well; use the rinse/pre-wet option for alcohol. [assumed]
+10. MANUAL: Vortex bead_mix_tube to resuspend the beads; keep on ice for up to 4 h until use. Note: Handling from the MagMAX user guide. [assumed]
+11. Transfer 260 µL of MagMax Pathogen RNA/DNA Bead Master Mix from bead_mix_tube to kf_sample_plate wells A1, A2:H2 (each well). Note: Added to the negative control well and all 8 sample wells.
+12. Transfer 5 µL of MS2 Phage Control from ms2_tube to kf_sample_plate wells A1, A2:H2 (each well).
+13. Transfer 300 µL of Wash Solution 1 from wash1_reservoir to wash1_plate_1 wells A1, A2:H2 (each well). Note: Plate layout and volumes from the MagMAX Pathogen user guide (high-volume layout). [assumed]
+14. Transfer 300 µL of Wash Solution 1 from wash1_reservoir to wash1_plate_2 wells A1, A2:H2 (each well). Note: Second Wash 1 plate. [assumed]
+15. Transfer 450 µL of Wash Solution 2 from wash2_reservoir to wash2_plate_1 wells A1, A2:H2 (each well). Note: From the MagMAX Pathogen user guide. [assumed]
+16. Transfer 450 µL of Wash Solution 2 from wash2_reservoir to wash2_plate_2 wells A1, A2:H2 (each well). Note: Second Wash 2 plate. [assumed]
+17. Transfer 90 µL of Elution Buffer from elution_buffer_tube to elution_plate wells A1, A2:H2 (each well). Note: 90 uL elution buffer from the user guide. [assumed]
+18. MANUAL: Load kf_sample_plate, wash1_plate_1/2, wash2_plate_1/2, elution_plate and tip_comb_plate (with tip comb) onto the KingFisher Flex and run the BindIt protocol MagMax_Pathogen_High_Volume as supplied by Thermo Fisher. Note: Script timings are not given in the paper.
+19. Transfer 68.75 µL of TaqPath 1-Step Multiplex Master Mix (No ROX, 4X) from master_mix_stock_tube to pcr_mix_tube. Note: 6.25 uL per reaction x 11 (10 reactions + 10% overage), from the TaqPath IFU. [assumed]
+20. Transfer 13.75 µL of COVID-19 Real Time PCR Assay Multiplex from assay_stock_tube to pcr_mix_tube. Note: 1.25 uL per reaction x 11. [assumed]
+21. Transfer 137.5 µL of Nuclease-free water from water_tube to pcr_mix_tube, then mix 3 times. Note: 12.5 uL per reaction x 11. [assumed]
+22. Transfer 98 µL of Dilution buffer from dilution_buffer_tube to control_dil1_tube. Note: First positive-control dilution per the TaqPath IFU. [assumed]
+23. Transfer 2 µL of TaqPath COVID-19 Control from control_stock_tube to control_dil1_tube, then mix 5 times. Note: 1x10^4 to 200 copies/uL. [assumed]
+24. Transfer 87.5 µL of Dilution buffer from dilution_buffer_tube to control_dil2_tube. Note: Second dilution per the IFU. [assumed]
+25. Transfer 12.5 µL of Positive control intermediate dilution from control_dil1_tube to control_dil2_tube, then mix 5 times. Note: Gives 25 copies/uL. [assumed]
+26. Transfer 20 µL of RT-PCR reaction mix from pcr_mix_tube to pcr_plate wells A1:H1, A2:B2 (each well). Note: 20 uL mix into 8 sample wells, the negative control well and the positive control well. [assumed]
+27. Transfer 5 µL of RNA eluate (samples 1-8) from elution_plate wells A2:H2 to pcr_plate wells A1:H1 (each well). Note: Paired in order.
+28. Transfer 5 µL of RNA eluate (extraction negative control, PBS) from elution_plate well A1 to pcr_plate well A2. Note: Negative control from the IFU. [assumed]
+29. Transfer 2 µL of Positive control (25 copies/uL) from control_dil2_tube to pcr_plate well B2. Note: From the IFU. [assumed]
+30. Transfer 3 µL of Nuclease-free water from water_tube to pcr_plate well B2. Note: Makes up 25 uL in the positive control well. [assumed]
+31. MANUAL: Seal pcr_plate with MicroAmp Optical Adhesive Film, vortex 10-30 s, centrifuge 1-2 min at >=650 x g. Note: From the TaqPath IFU. [assumed]
+32. MANUAL: Run pcr_plate on the ABI 7500 Fast (ABY and JUN dyes calibrated): passive reference None, reaction volume 25 uL, FAM=ORF1ab, VIC=N, ABY=S, JUN=MS2; control wells as Standard/NTC, samples as Unknown. Cycling: 25 C 2 min, 53 C 10 min, 95 C 2 min, then 40 cycles of 95 C 3 s and 60 C 30 s. About 70 min. Note: Cycling from the TaqPath IFU. [assumed]
+
+Assumptions:
+- Layout: lysis_plate A1:H1 = EQA samples 1-8; kf_sample_plate A1 = PBS negative control, A2:H2 = samples 1-8; pcr_plate A1:H1 = samples 1-8, A2 = extraction negative control, B2 = positive control.
+- Sample/LYS volumes: 250 uL EQA sample plus 250 uL Cobas omni LYS per sample (standard practice); the paper only states a 1:1 mix and 460 uL lysate transferred. EQA stock volume of 300 uL per sample is assumed.
+- Bead Master Mix: 20 uL bead mix (10 uL beads plus 10 uL ENHANCER, MagMAX Pathogen user guide) plus about 240 uL 100% isopropanol per well is an inference, not a verified value; prepared for 10 reactions.
+- Wash plate layout and volumes (Wash 1 300 uL x2 deep-well plates, Wash 2 450 uL x2 deep-well plates, 90 uL Elution Buffer in a standard plate, tip comb in a standard plate) are from the MagMAX Pathogen RNA/DNA user guide (https://documents.thermofisher.com/TFS-Assets/LSG/manuals/4463379_MM_Path_UG.pdf). Wash 1 contains 125 mL isopropanol added to the concentrate, and Wash 2 contains 232 mL ethanol added to each bottle (https://tools.thermofisher.com/content/sfs/manuals/4463379B.pdf). The KingFisher BindIt script MagMax_Pathogen_High_Volume is run as supplied; its timings are not stated.
+- RT-PCR mix (6.25 uL master mix, 1.25 uL assay, 12.5 uL water per reaction, 20 uL total plus 5 uL RNA = 25 uL), positive control dilution (2 uL into 98 uL, then 12.5 uL into 87.5 uL buffer; 2 uL plus 3 uL water per well), negative control (5 uL of extraction control), sealing/vortex/centrifuge and cycling conditions are from the TaqPath COVID-19 CE-IVD IFU (https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019215_TaqPathCOVID-19_CE-IVD_RT-PCR%20Kit_IFU.pdf). Mix is prepared for 11 reactions (10% overage). The IFU notes that inputs above 400 uL were not tested; the paper used 460 uL.
+- Dilution buffer for the positive control is assumed to be the kit's dilution buffer or nuclease-free water.
+- Comparator platform procedures (Flow Solution, Cobas 6800, Hamilton-Seegene) are in S1 File and are run per manufacturer's routine protocol.
+- The OT-2 labware placement, pipettes and tip handling (S2 File) are not given in the text; the pipetting steps are reconstructed from the stated volumes. Pipetting can be done by OT-2 P300/P1000 and P20 pipettes.
+- The eluate in elution_plate is generated by the KingFisher run; its volume (up to 90 uL) is not stated in the paper.
+- Positive/negative call interpretation (>=2 targets positive etc.) and Ct comparison are analysis and are not included as steps.

@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 7886
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "binding",
+        "score": 1,
+        "evidence": "Log shows 40 uL aspirated from beads A1 into each sample well followed by 10 mix cycles of 40 uL; the 5 min incubation comment (Step 2) precedes the magnet comment."
+      },
+      {
+        "id": "supernatant_and_washes",
+        "score": 1,
+        "evidence": "Step 3 comment records magnet engage and settle; the log shows 90 uL aspirate/dispense to waste A1 for all 96 wells, then two rounds of 200 uL ethanol add and 200 uL removal to waste."
+      },
+      {
+        "id": "drying_and_elution",
+        "score": 1,
+        "evidence": "Comments record the 5 min air dry, magnet disengage, 2 min incubation and magnet re-engage; the log shows 50 uL water added to each well followed by 10 mix cycles."
+      },
+      {
+        "id": "recovery",
+        "score": 1,
+        "evidence": "Log shows 45 uL aspirated from each sample_plate well and dispensed into the same-named elution_plate well (A1->A1 through H12->H12)."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "Every well gets its own pick up tip and drop tip in all steps (bead addition, supernatant removal, ethanol removal, elution, transfer); there is no tip reuse across samples."
+      }
+    ],
+    "scores": {
+      "binding": 1.0,
+      "supernatant_and_washes": 1.0,
+      "drying_and_elution": 1.0,
+      "recovery": 1.0,
+      "tips_and_contamination": 1.0
+    },
+    "summary": "The protocol simulates cleanly and the run log matches the task for all 96 wells in every step. Incubation, magnet, drying and disengage steps are recorded with comments, and a fresh tip is used per well throughout.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_binding": 1.0,
+    "rubric_supernatant_and_washes": 1.0,
+    "rubric_drying_and_elution": 1.0,
+    "rubric_recovery": 1.0,
+    "rubric_tips_and_contamination": 1.0
+  }
+}

@@ -1,11 +1,36 @@
 .env
 .cache/
-__pycache__/
 .venv/
 __pycache__/
 *.pyc
 .DS_Store
-episode_mujoco.mp4
-reference_episode.mp4
-# Not redistributable: downloaded at image build time by environment/fetch_paper.py
-tasks/harbor/ecoli-heat-shock-transformation/environment/data/paper.txt
+
+# Full text of papers whose licence does not allow redistribution (see tests/test_ingestion.py); re-fetch with paper2protocol
+sources/apex/pipeline/paper.json
+sources/covid-diagnostic-capacity-2021/pipeline/paper.json
+sources/covid-diagnostic-capacity-2022/pipeline/paper.json
+sources/polymerisation-kinetics-robot/pipeline/paper.json
+sources/yeast-mycosporine/pipeline/paper.json
+# Raw Harbor job output (trajectories, logs); per-task summaries live in results/
+results/harbor-jobs/
+.pytest_cache/
+# Papers that may not be redistributed: fetched at image build time by the task's environment/fetch_paper.py
+tasks/ecoli-heat-shock-transformation-hard/environment/data/paper.txt
+sources/chory-2021-hamilton/pipeline/paper.json
+sources/debenedictis-2022-prance/pipeline/paper.json
+sources/wrmxpress/pipeline/paper.json
+sources/wrmxpress-gui/pipeline/paper.json
+sources/glas-preciseflex/pipeline/paper.json
+sources/aros-cellpainting/pipeline/paper.json
+sources/electroporation-bayesopt/pipeline/paper.json
+sources/lustro/pipeline/paper.json
+sources/optoplate-ml/pipeline/paper.json
+sources/litos/pipeline/paper.json
+sources/auto-qpcr/pipeline/paper.json
+sources/uc2-hi2/pipeline/paper.json
+# Exported Claude Code session transcripts
+/20[0-9][0-9]-*-this-session-is-being-continued-*
+# Local simulator / renderer venvs and secrets
+.venv-ot/
+.venv-viz/
+.env

@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 7499
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "binding",
+        "score": 1,
+        "evidence": "Log shows 40 uL aspirated from beads A1 and dispensed into each sample well, then 10 aspirate/dispense 60 uL mix cycles per well with a new tip each; the 5 min incubation comment is recorded before the magnet comment."
+      },
+      {
+        "id": "supernatant_and_washes",
+        "score": 1,
+        "evidence": "The magnet engage/wait comment is recorded, then 90 uL is aspirated from every well to waste A1 (log 2306-2687), and two 200 uL ethanol additions are each followed by 200 uL removal from all 96 wells to waste."
+      },
+      {
+        "id": "drying_and_elution",
+        "score": 1,
+        "evidence": "Comments record the 5 min air dry and magnet disengage, then 50 uL water is added with 10 mix cycles, followed by the 2 min incubation and magnet re-engage comments."
+      },
+      {
+        "id": "recovery",
+        "score": 1,
+        "evidence": "Log 6150-6531 shows 45 uL aspirated from each sample well and dispensed into the same-named well of elution_plate, from A1 through H12."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "Supernatant removal, ethanol removal, water addition and elution each use pick up/drop tip per well; the ethanol addition shares one tip across wells, as the reference does, and no tip-reuse errors appear."
+      }
+    ],
+    "scores": {
+      "binding": 1.0,
+      "supernatant_and_washes": 1.0,
+      "drying_and_elution": 1.0,
+      "recovery": 1.0,
+      "tips_and_contamination": 1.0
+    },
+    "summary": "The protocol follows every step of the specified AMPure cleanup, and the run log confirms correct volumes, mixing, well mapping and eluate transfer. Manual steps are recorded as comments, and fresh tips are used for each sample wherever the rubric requires them.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_binding": 1.0,
+    "rubric_supernatant_and_washes": 1.0,
+    "rubric_drying_and_elution": 1.0,
+    "rubric_recovery": 1.0,
+    "rubric_tips_and_contamination": 1.0
+  }
+}

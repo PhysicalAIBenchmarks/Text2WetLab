@@ -1,0 +1,29 @@
+{
+ "task": "golden-gate-assembly-hard",
+ "model": "openai/gpt-6.1-sol",
+ "agent": "claude-code",
+ "via": "openrouter",
+ "rewards": {
+  "reward": 0.75,
+  "sim_pass": 1.0,
+  "checks_frac": 0.9524,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 0.4667,
+  "judge_score": 0.75,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_paper": 0.0,
+  "rubric_pcr_setup": 1.0,
+  "rubric_dpni_and_cleanup": 1.0,
+  "rubric_assembly_mix": 1.0,
+  "rubric_cycling_and_transformation": 1.0
+ },
+ "exception": null,
+ "cost_usd": 0.7440309999999999,
+ "input_tokens": 358635,
+ "output_tokens": 13285,
+ "started_at": "2026-10-07T13:34:52.817517Z",
+ "finished_at": "2026-10-07T13:42:06.642645Z"
+}

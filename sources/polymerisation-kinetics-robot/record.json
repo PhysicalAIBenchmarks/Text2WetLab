@@ -1,0 +1,101 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.19",
+    "2.20"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/polymerisation-kinetics-robot/PRDMonash__A-Robotic-Approach-to-Polymerization-Kinetics-A-Case-Study-on-Copolymerization-Parameter-Estimation",
+   "commit": "6dd08f5e0ca2dfe896011165c73a684c89ee188c",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 5,
+   "py_files": 6,
+   "redistributable": "no",
+   "repo": "PRDMonash/A-Robotic-Approach-to-Polymerization-Kinetics-A-Case-Study-on-Copolymerization-Parameter-Estimation",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 18,
+   "status": "cloned",
+   "url": "https://github.com/PRDMonash/A-Robotic-Approach-to-Polymerization-Kinetics-A-Case-Study-on-Copolymerization-Parameter-Estimation"
+  },
+  {
+   "cache_path": null,
+   "host": "bridges.monash.edu (figshare)",
+   "licence": "CC BY 4.0",
+   "note": "Data.zip 1.14 GB, experimental data (NMR etc.), not downloaded; named in Data availability statement. md5 9272a901c416928fa2e9bfe992283a8b",
+   "opentrons_py_files": null,
+   "py_files": null,
+   "redistributable": "no",
+   "size_kb": 1116597,
+   "status": "skipped_large",
+   "url": "https://doi.org/10.26180/32015067"
+  }
+ ],
+ "doi_primary": "10.1039/d6sc02232d",
+ "dois": [
+  "10.1039/d6sc02232d"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Results: \"Establishing a workflow for high-throughput thermal copolymerisation using the OT-2\", Fig. 1, Fig. S1",
+   "id": "automated_nmr_sample_prep_workflow",
+   "liquid_handling": "mostly",
+   "title": "HTP thermal copolymerisation reaction mixture and NMR sample preparation on OT-2 with HTP reactor and 3D-printed NMR tube holder"
+  },
+  {
+   "evidence": "Results: \"Design of copolymerisation formulations\", \"Determination of reactivity ratios for BMA-BA\", Figs 2-4",
+   "id": "bma_ba_reactivity_ratio_batch_series",
+   "liquid_handling": "mostly",
+   "title": "BMA-BA microlitre batch copolymerisation series (f10 0.1-0.8, 30 min / 2 h) for reactivity ratio estimation"
+  },
+  {
+   "evidence": "Results: \"Expanding the scope for the prediction of reactivity ratios\", Fig. 5; repo scripts Copolymerisation-PartA/B (photoreactor and well-plate variants)",
+   "id": "six_monomer_pair_scope_expansion",
+   "liquid_handling": "mostly",
+   "title": "Same HTP platform applied to six monomer pairs (BMA/BA, BMA/St, St/BA, St/MMA, GMA/St, ...)"
+  }
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 16,
+  "source": "europepmc:PMC13103962"
+ },
+ "journal": "",
+ "note": "PDF paywall-free (CC BY-NC) but publisher/PMC endpoints are bot-blocked; Data availability: GitHub + Monash Bridges dataset (not downloaded, 1.1 GB)",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by-nc",
+ "pdf": {
+  "bytes": 1128258,
+  "licence": "cc by-nc",
+  "pages": 11,
+  "redistributable": "no",
+  "sha256": "88f209bf6e088c1fb59a89f12b39eddae261f118a615c0461d094cf9aafcdc39",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC13103962?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13103962.1/PMC13103962.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13103962.1/PMC13103962.1.pdf"
+ },
+ "pmcid": "PMC13103962",
+ "slug": "polymerisation-kinetics-robot",
+ "title": "A robotic approach to polymerisation kinetics: a case study on copolymerisation parameter estimation",
+ "year": "2026"
+}

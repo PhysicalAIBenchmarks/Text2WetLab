@@ -1,0 +1,42 @@
+{
+  "verdict": "major_issues",
+  "summary": "The MagBead miniprep, Pichia electroporation conditions and colony PCR arithmetic broadly follow the paper and recovered sources. The mastermix volumes for 19 reactions are correct and the controls are present. The electroporation section has a bench-order and labware logic break at steps 33-34. The magnet and temperature hardware is not modelled, and a few assumed numbers are weakly justified.",
+  "issues": [
+    {
+      "step": 34,
+      "severity": "major",
+      "issue": "In step 33 the cell/DNA mixtures are moved manually into real 0.2 cm cuvettes and pulsed there. Step 34 then has the robot add sorbitol to cuvette_plate A1:D1, which are now empty stand-in wells. No step returns the pulsed cells to the plate, or sorbitol is added to the wrong vessel. The cells would never receive sorbitol or YPD in the robot workflow, and the 'immediately after pulsing' requirement cannot be met.",
+      "suggestion": "Either add sorbitol to the cuvettes manually and then transfer the cells into the plate or tubes before step 35. Or add a manual step that moves the pulsed cell/sorbitol mixture back into cuvette_plate A1:D1 before the YPD addition. Alternatively, pre-fill the recovery wells with YPD and transfer the pulsed cells into them. Make clear that sorbitol is added within seconds of the pulse."
+    },
+    {
+      "step": 16,
+      "severity": "major",
+      "issue": "No magnetic module or magnet stand appears in the containers or deck setup. Steps 12, 15, 18, 21, 24 and 28 use a magnet manually. The robot aspirates supernatant in steps 13, 16, 19, 22, 25 and 29 and dispenses washes in steps 17, 20 and 23, but it is never stated whether the plate sits on the magnet or off it. The steps alternate between manual vortexing and magnetic separation without specifying plate location. Whether a 2 mL deep-well plate fits the magnet is also unaddressed.",
+      "suggestion": "List the magnetic module or stand and the vortex or heater-shaker as hardware. State plate position for each robot step: on the magnet for supernatant removal, off the magnet for bead resuspension. Confirm compatibility of the 2 mL deep-well plate, and specify slow aspiration heights so beads are not disturbed."
+    },
+    {
+      "step": 33,
+      "severity": "minor",
+      "issue": "The cuvette_plate wells and competent_cells_tube are meant to be kept cold. The robot adds cells and DNA at room temperature with no chilling hardware, and no mixing or cold handling is described for steps 31-32. Warm competent cells and DNA reduce efficiency, and the 2 min ice incubation is not tied to the plate.",
+      "suggestion": "Place cuvette_plate on a cooled temperature module or pre-chilled block, or have the robot dispense only the DNA into pre-chilled cuvettes. Note that cells and DNA are not pipette-mixed, to avoid bubbles that cause arcing."
+    },
+    {
+      "step": 43,
+      "severity": "minor",
+      "issue": "The primer concentration is silently changed from the paper's '10 mM' to 10 µM. The recovered details support 10 µM, so this is reasonable. It is not flagged as a correction of the paper, and the paper's stock-concentration typo (100 mM) is not mentioned.",
+      "suggestion": "State in the assumptions that the paper's 10 mM and 100 mM figures are treated as typos for 10 µM and 100 µM. Confirm this with the user before running."
+    },
+    {
+      "step": 5,
+      "severity": "minor",
+      "issue": "Mixing 3 times in a well holding about 1000 µL (200 µL glycerol plus 800 µL culture) is impractical with a 1000 µL tip, and the mixing volume is not given. Glycerol at 75% is also viscous, so the 200 µL transfer in step 4 needs slow aspiration and dispensing.",
+      "suggestion": "Specify a mixing volume (for example 500-700 µL) with slow flow rates. Alternatively, mix by gentle inversion after sealing, as in a manual workflow."
+    },
+    {
+      "step": 37,
+      "severity": "minor",
+      "issue": "Plating only 100 µL of a roughly 1.05 mL recovery culture may give few or no colonies from circular episomal plasmid. The ATUM source plates 50-200 µL, and the paper requires 5 colonies per transformation. The plate medium, hygromycin concentration and 3-day incubation are all assumed. There is no plan if too few colonies grow.",
+      "suggestion": "Plate a larger fraction, or pellet and resuspend the cells before plating. Note that hygromycin concentration may need titration (150-300 µg/mL). Keep the no-DNA plate as the negative control."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "verdict": "major_issues",
+  "summary": "Most reagent arithmetic is internally consistent: the master mixes, the 1:100 dilution into PBS and the 57-well replicate layout all check out. The protocol has one real volume error in the yeast transformation, which causes the step 54 failure. The two other automated errors (steps 37 and 41) come from manual steps whose outputs are not tracked. The core experimental design (19 promoter constructs) is unsupported by the paper text. Several miniaturization choices are risky, and the plate capacity and aeration problems are not flagged.",
+  "issues": [
+    {
+      "step": 54,
+      "severity": "major",
+      "issue": "The step asks to remove 440 µL from each yeast_tf_plate well. After step 43 each well holds about 5 µL. Steps 47, 48 and 52 add 54, 10 and 296 µL, so the well holds about 365 µL. The step therefore overdraws by about 75 µL, as the checker found. It would also aspirate the pellet.",
+      "suggestion": "Remove about 350-360 µL, keeping a few µL above the pellet, or fix the upstream volumes. Add a pellet-safe aspiration height."
+    },
+    {
+      "step": 52,
+      "severity": "major",
+      "issue": "The note says the total is 460 µL per well. That figure assumes the full 100 µL of cells stays in the well and ignores the 95 µL removed in step 43. The actual volume is 5 + 54 + 10 + 296 = 365 µL. This wrong figure is the root cause of the step 54 overdraw.",
+      "suggestion": "Correct the note to about 365 µL. Compute the step 54 removal volume from this corrected total."
+    },
+    {
+      "step": 37,
+      "severity": "minor",
+      "issue": "The checker reports a draw from empty plasmid_plate. The miniprep in manual step 32 fills this plate, but the plate has no declared contents, so the protocol looks unfilled.",
+      "suggestion": "Declare the manual output of step 32 (for example about 30 µL eluate per well, ~100 ng/µL, assumed). Alternatively, add an explicit loading step for plasmid_plate."
+    },
+    {
+      "step": 41,
+      "severity": "minor",
+      "issue": "The checker reports a draw from empty yeast_cells_tube. The cells are prepared in manual step 40, and the tube starting content is not declared.",
+      "suggestion": "Declare that step 40 yields 2200 µL of cells in 0.1 M LiOAc in yeast_cells_tube. Alternatively, add a 'user loads' initial-state entry."
+    },
+    {
+      "step": 0,
+      "severity": "major",
+      "issue": "The protocol assumes 19 different promoter constructs, giving 57 flow wells. Figure 2D legend only says 19 colonies were randomly selected for colony PCR. The abstract reports 17/17 positive colonies. The Figure 3 and 4 legends show several colonies per construct, so 19 colonies does not mean 19 promoters. Figure 2A was not available, so the number and identity of constructs is unverified and probably too high.",
+      "suggestion": "Take the number of promoters and their identities from Figure 2A. Make the layout and every master-mix multiplier depend on that number. Otherwise label the 19-construct design clearly as a placeholder."
+    },
+    {
+      "step": 15,
+      "severity": "minor",
+      "issue": "transform_plate is a generic 96-well plate and each well ends up with 10 + 1 + 190 = 201 µL. This exceeds the working volume of standard PCR-type 96-well plates (about 200 µL) and risks spillage during 250 rpm shaking.",
+      "suggestion": "Use a 96-deep-well plate for transformation and recovery. Alternatively, reduce the SOC volume."
+    },
+    {
+      "step": 17,
+      "severity": "minor",
+      "issue": "Plating 10 µL of recovery culture onto a ~0.32 cm² agar well is a large departure from the paper's 6-well plates. Colony density may be too high to resolve green versus white colonies and to pick single colonies. There is no fallback for wells with no white colony, and step 20 assumes one white colony per well.",
+      "suggestion": "Plate a smaller or diluted volume, or use larger-format plates as in the paper. Add a decision rule for wells with no usable white colony."
+    },
+    {
+      "step": 29,
+      "severity": "minor",
+      "issue": "The step says to keep only PCR-positive constructs, but the note says all 19 are carried forward. Steps 30-31 inoculate all wells regardless of the colony PCR result, so a negative clone would go to miniprep and yeast transformation.",
+      "suggestion": "Make the downstream well lists conditional on the PCR results. Alternatively, state clearly that the result is ignored."
+    },
+    {
+      "step": 30,
+      "severity": "minor",
+      "issue": "1.8 mL of culture in a 2 mL deep well is almost full and gives poor aeration at 250 rpm. This deviates from the paper's 3 mL cultures in tubes and may lead to poor plasmid yield.",
+      "suggestion": "Use about 1 mL per well, or use a larger-capacity deep-well plate (for example 2.2 mL working volume or bigger)."
+    },
+    {
+      "step": 28,
+      "severity": "minor",
+      "issue": "The cycle number (~30), the 5 s annealing time and the extension time are guesses, since the paper only says to follow the manufacturer's protocol. The Phire guide's cycle table was not retrieved.",
+      "suggestion": "Take the cycle count and times from the Phire Plant Direct guide. Set the extension time from the amplicon size."
+    },
+    {
+      "step": 58,
+      "severity": "minor",
+      "issue": "The layout has no untransformed BY4741 autofluorescence control or other negative control. The gap assessment recommended one, but the protocol leaves it out. Flow data cannot then be background-corrected.",
+      "suggestion": "Add control wells, for example untransformed BY4741 in triplicate, to the preculture, growth and flow plates."
+    },
+    {
+      "step": 64,
+      "severity": "minor",
+      "issue": "The growth_plate cultures are sampled (2 µL) without a mixing step. Yeast settles in deep-well plates, so aspirating 2 µL without resuspension can give variable cell density.",
+      "suggestion": "Add a mixing step on growth_plate before sampling, for example mix 5 times at 300 µL."
+    }
+  ]
+}

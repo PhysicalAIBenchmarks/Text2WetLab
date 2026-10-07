@@ -1,0 +1,91 @@
+[
+  {
+    "title": "Food dye color-gradient mock sitting drop plate on OT-2 vs manual",
+    "goal": "Validate OT-2 reservoir mixing and sitting drop deposition in a 24-well CrysChem plate using red/blue/yellow dyes and compare with manual pipetting, including the reservoir surface flattening step.",
+    "section_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3",
+      "s2.4"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 3",
+      "Figure 4",
+      "Supplemental Figure 3"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Automated HEWL 24-well sitting drop crystallization",
+    "goal": "Test whether the OT-2 can set up HEWL sitting drop crystallization (varied precipitant volume and acetate pH) that yields crystals in 24 h.",
+    "section_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3",
+      "s2.5"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 5",
+      "Supplemental Figure 4A"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "OT-2 vs human HEWL plate preparation comparison",
+    "goal": "Compare time and crystal-growth consistency of HEWL plates set up by the OT-2 versus by three people of varying wet lab experience.",
+    "section_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3",
+      "s2.5"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "Manual plate setup and crystal scoring methods for human-prepared plates not described in methods"
+    ],
+    "figure_refs": [
+      "Figure 6",
+      "Supplemental Figure 5"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Pipetting accuracy of water and glycerol solutions, OT-2 vs human",
+    "goal": "Assess accuracy and precision of small-volume water pipetting (1 and 100 µL) and viscous glycerol solutions (0-100%) with the OT-2 pipets versus a human.",
+    "section_refs": [
+      "s2.1"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "Gravimetric/measurement method for pipetting accuracy not described in methods"
+    ],
+    "figure_refs": [
+      "Supplemental Figure 6",
+      "Supplemental Figure 7"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Automated CJ (CJ0420 variant) 24-well sitting drop crystallization",
+    "goal": "Demonstrate OT-2 setup of CJ protein sitting drop crystallization across pH 6.0/6.5 and ammonium sulfate 3.35-3.60 M.",
+    "section_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3",
+      "s2.6"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "CJ crystals grown 'according to previously optimized conditions [23]'"
+    ],
+    "figure_refs": [
+      "Figure 7",
+      "Supplemental Figure 4B"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

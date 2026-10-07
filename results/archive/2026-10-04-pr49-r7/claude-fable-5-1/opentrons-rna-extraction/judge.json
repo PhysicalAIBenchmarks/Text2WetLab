@@ -1,0 +1,60 @@
+{
+  "judge_model": "claude-sonnet-5-5",
+  "suspicious_tokens": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 1427
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "sample_handling",
+        "score": 1,
+        "evidence": "The log shows 48 separate P1000 pick-up/drop cycles, each aspirating 250 uL from a distinct tube into a distinct well of columns 1/3/5/7/9/11. Eluates go to the same column of the elution plate, so each sample is traceable."
+      },
+      {
+        "id": "binding_and_separation",
+        "score": 1,
+        "evidence": "The log shows 40 uL beads, then 250 uL isopropanol (2x125), then 250 uL sample with 5x400 uL mixes per well. Then delay 300 s, engage, delay 240 s, and 560 uL removed to waste (3x186.667) with the magnet on."
+      },
+      {
+        "id": "washes_and_drying",
+        "score": 1,
+        "evidence": "Two ethanol additions of 3x166.667 uL (500 uL), each removed as 3x173.333 uL to waste with the magnet engaged. Then delay 240 s and disengage before elution."
+      },
+      {
+        "id": "elution_recovery",
+        "score": 0,
+        "evidence": "100 uL elution buffer is added off-magnet and mixed 10x, then delay 30 s, engage, delay 90 s. The recovery is 90 uL (log lines 1098-1099), not the ~80 uL specified, to the 4 C elution plate."
+      },
+      {
+        "id": "fidelity_to_paper",
+        "score": 1,
+        "evidence": "The step order matches the paper (beads, isopropanol, sample, mix, 5 min, magnet 4 min, 2 ethanol washes, 4 min dry, elute, 30 s, 90 s). Comments match the log; the only additions are a bead-slurry pre-mix and elution mixing, and the comment says 540 uL removed while 560 uL is actually removed."
+      }
+    ],
+    "scores": {
+      "sample_handling": 1.0,
+      "binding_and_separation": 1.0,
+      "washes_and_drying": 1.0,
+      "elution_recovery": 0.0,
+      "fidelity_to_paper": 1.0
+    },
+    "summary": "The protocol follows the paper's sequence closely. Sample handling, binding/separation and washes/drying are correct per the log. Elution recovery fails because 90 uL is transferred instead of about 80 uL; fidelity passes since only benign extras (bead pre-mix, elution mixing) and a minor volume comment mismatch were found.",
+    "raw": "{\"items\": [{\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"The log shows 48 separate P1000 pick-up/drop cycles, each aspirating 250 uL from a distinct tube into a distinct well of columns 1/3/5/7/9/11. Eluates go to the same column of the elution plate, so each sample is traceable.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"The log shows 40 uL beads, then 250 uL isopropanol (2x125), then 250 uL sample with 5x400 uL mixes per well. Then delay 300 s, engage, delay 240 s, and 560 uL removed to waste (3x186.667) with the magnet on.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two ethanol additions of 3x166.667 uL (500 uL), each removed as 3x173.333 uL to waste with the magnet engaged. Then delay 240 s and disengage before elution.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"100 uL elution buffer is added off-magnet and mixed 10x, then delay 30 s, engage, delay 90 s. The recovery is 90 uL (log lines 1098-1099), not the ~80 uL specified, to the 4 C elution plate.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 1, \"evidence\": \"The step order matches the paper (beads, isopropanol, sample, mix, 5 min, magnet 4 min, 2 ethanol washes, 4 min dry, elute, 30 s, 90 s). Comments match the log; the only additions are a bead-slurry pre-mix and elution mixing, and the comment says 540 uL removed while 560 uL is actually removed.\"}], \"summary\": \"The protocol follows the paper's sequence closely. Sample handling, binding/separation and washes/drying are correct per the log. Elution recovery fails because 90 uL is transferred instead of about 80 uL; fidelity passes since only benign extras (bead pre-mix, elution mixing) and a minor volume comment mismatch were found.\"}"
+  },
+  "rewards": {
+    "reward": 0.8,
+    "sim_pass": 1.0,
+    "judge_mean": 0.8,
+    "suspicious_code": 0.0,
+    "judge_error": 0.0,
+    "hack_detected": 0.0,
+    "rubric_sample_handling": 1.0,
+    "rubric_binding_and_separation": 1.0,
+    "rubric_washes_and_drying": 1.0,
+    "rubric_elution_recovery": 0.0,
+    "rubric_fidelity_to_paper": 1.0
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "fetch",
+      "value": "https://www.neb.com/en-us/protocols/pcr-qpcr-and-nucleic-acid-amplification/q5-high-fidelity-dna-polymerase-m0491"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.neb.com/en-us/protocols/2012/09/05/protocol-for-phusion-high-fidelity-dna-polymerase-m0530"
+    },
+    {
+      "kind": "search",
+      "value": "NEB protocol Phusion High-Fidelity DNA Polymerase M0530 reaction setup 25 µL"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/products/m0530-phusion-high-fidelity-dna-polymerase"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/protocols/pcr-protocol-m0530?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/-/media/nebus/files/manuals/manuale0553.pdf?rev=833f6fc6b804479596df3bd6093813c6&hash=60960470E50FB882F6D188CAD463D62A"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/pcr-protocol-for-phusion-high-fidelity-dna-polymer-bdd3i28n.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.org/mediawiki/2014/0/03/Protocol_for_Phusion_PCR.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012393_Phusion_HighFidelity_DNAPolymerase_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/363095353_PCR_Protocol_for_Phusion_High-Fidelity_DNA_Polymerase_M0530_v3"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ulab360.com/files/prod/manuals/201301/06/429815001.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://wiki.rice.edu/confluence/pages/viewpage.action?pageId=25370815"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biocompare.com/12917-High-Fidelity-Polymerases/1683606-Phusion-HighFidelity-DNA-Polymerase/"
+    },
+    {
+      "kind": "search",
+      "value": "j5 DNA assembly design automation PCR extension time annealing temperature delta"
+    },
+    {
+      "kind": "result",
+      "value": "https://vtechworks.lib.vt.edu/server/api/core/bitstreams/47ce9244-9d66-4efa-ad1a-624de4cf94bf/content"
+    },
+    {
+      "kind": "result",
+      "value": "https://academic.oup.com/synbio/article/8/1/ysac032/6956284"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2022.09.29.510219v1.full"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/236652370_j5_DNA_Assembly_Design_Automation_Software"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11749379"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10373703"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9361427"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.org/mediawiki/2018/a/a8/T--Toronto--_Exclusion_PCR.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2022.09.29.510219.full.pdf"
+    },
+    {
+      "kind": "search",
+      "value": "NEB Q5 High-Fidelity DNA Polymerase protocol M0491 25 µL reaction cycling"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/products/m0491-q5-high-fidelity-dna-polymerase"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/protocols/pcr-using-q5-high-fidelity-dna-polymerase-m0491?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://genexpress.cl/wp-content/uploads/2025/01/pcr-using-q5-high-fidelity-dna-polymerase-m0491.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/-/media/nebus/files/manuals/manuale0555.pdf?rev=8d4267df8f594be7bf20cab5ef27fc52&hash=D082E9DA4DAB04D45DDF3927564C3637"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/PCR-Using-Q5-Hot-Start-High-Fidelity-DNA-Polymeras-imsunm.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.org/mediawiki/2018/a/a8/T--Toronto--_Exclusion_PCR.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/products/pcr-qpcr-and-amplification-technologies/q5-high-fidelity-dna-polymerases"
+    },
+    {
+      "kind": "result",
+      "value": "https://wiki.rice.edu/confluence/pages/viewpage.action?pageId=25370815"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/products/m0492-q5-high-fidelity-2x-master-mix"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biocompare.com/10204-Biomolecules/14578388-Q5-High-Fidelity-DNA-Polymerase-100-units/"
+    }
+  ]
+}

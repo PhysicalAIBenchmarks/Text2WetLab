@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 549
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "pcr_setup",
+        "score": 1,
+        "evidence": "The log shows 19 \u00b5L master mix, 2.5 \u00b5L forward and 2.5 \u00b5L reverse primer, and 1 \u00b5L template going into pcr_plate A1:G1. The template pairing A1, A1, B1, C1, A1, A1, D1 is correct, and the master mix is built from 106, 40, 4 and 2 \u00b5L."
+      },
+      {
+        "id": "dpni_and_cleanup",
+        "score": 1,
+        "evidence": "The code adds 19 \u00b5L water, 5 \u00b5L rCutSmart and 1 \u00b5L DpnI to A1:G1 and mixes 3 times at 30 \u00b5L (log lines 198-336). The 37/65\u00b0C incubation and the Zymo clean-up are recorded in protocol.comment in the right order."
+      },
+      {
+        "id": "assembly_mix",
+        "score": 1,
+        "evidence": "The assembly wells receive 7 \u00b5L water, 2 \u00b5L T4 buffer, 3 \u00b5L fragment 2, 2 \u00b5L fragment 5, 3 \u00b5L fragment 6, 2 \u00b5L of fragments 1/3/4/7 and 1 \u00b5L enzyme mix. Each enzyme addition is followed by a 5-cycle mix (log lines 338-488)."
+      },
+      {
+        "id": "cycling_and_transformation",
+        "score": 1,
+        "evidence": "The Golden Gate program (30 cycles of 37/16\u00b0C, 60\u00b0C, hold 4\u00b0C) and the assembly clean-up are recorded as comments. The log then shows 5 \u00b5L moved from assembly_plate A1:D1 to cells_plate A1:D1, and 250 \u00b5L LB added to each cell well. Heat shock and recovery are recorded as comments."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "The xfer helper drops the tip after every destination, so the log shows a fresh pick-up and drop-tip for each transfer. The mixes use a fresh tip per well, and no tip is reused across different fragments or assemblies."
+      }
+    ],
+    "scores": {
+      "pcr_setup": 1.0,
+      "dpni_and_cleanup": 1.0,
+      "assembly_mix": 1.0,
+      "cycling_and_transformation": 1.0,
+      "tips_and_contamination": 1.0
+    },
+    "summary": "The protocol matches the specified volumes, well pairings and order in the simulator log. Non-pipetting steps are recorded as comments, and a fresh tip is used for every destination.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_pcr_setup": 1.0,
+    "rubric_dpni_and_cleanup": 1.0,
+    "rubric_assembly_mix": 1.0,
+    "rubric_cycling_and_transformation": 1.0,
+    "rubric_tips_and_contamination": 1.0
+  }
+}

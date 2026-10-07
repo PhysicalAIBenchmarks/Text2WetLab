@@ -1,0 +1,217 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "search",
+      "value": "Opentrons OT-2 high-throughput radical polymerisation 48-well reactor NMR sample preparation reactivity ratios BMA BA AIBN toluene"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/42039784/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/sc/article/17/22/10992/1231860/A-robotic-approach-to-polymerisation-kinetics-a"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13103962/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.rsc.org/suppdata/d3/sc/d3sc06133g/d3sc06133g1.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2023.12.22.573056.full.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10636753/"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12247090"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12903423/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.rsc.org/suppdata/d2/dd/d2dd00035k/d2dd00035k1.pdf"
+    },
+    {
+      "kind": "search",
+      "value": "Van de Reydt Junkers Polym. Chem. 2023 14 1622 high throughput copolymerisation reactivity ratios"
+    },
+    {
+      "kind": "result",
+      "value": "https://advanced.onlinelibrary.wiley.com/doi/10.1002/aidi.202500248"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/sc/article/17/22/10992/1231860/A-robotic-approach-to-polymerisation-kinetics-a"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.polymatter.net/publications"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2603.05362"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2608.20979"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12503529"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12459380/"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2410.02824"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12431525/"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8288470"
+    },
+    {
+      "kind": "search",
+      "value": "Autzen IUPAC Polym. Chem. 2024 15 1851 reactivity ratios experimental NMR sampling guidelines"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/en/content/articlepdf/2024/py/d4py00270a"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/10.1021/acs.macromol.4c01156"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11638788"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/science/article/pii/S0032386126008657"
+    },
+    {
+      "kind": "result",
+      "value": "https://iupac.org/wp-content/uploads/2025/04/Div4_Lacik_20250221.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/395885577_Experimental_methods_and_data_evaluation_procedures_for_the_determination_of_radical_copolymerization_reactivity_ratios_from_composition_data_IUPAC_Recommendations_2025"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/10.1021/acspolymersau.4c00071"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.acs.org/doi/10.1021/acs.biomac.5c01505"
+    },
+    {
+      "kind": "result",
+      "value": "https://hal.science/hal-04649362v1/document"
+    },
+    {
+      "kind": "search",
+      "value": "Opentrons OT-2 high-throughput radical polymerisation 48-well reactor NMR sample preparation reactivity ratios BMA BA AIBN toluene"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/42039784/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/sc/article/17/22/10992/1231860/A-robotic-approach-to-polymerisation-kinetics-a"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13103962/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.rsc.org/suppdata/d3/sc/d3sc06133g/d3sc06133g1.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2023.12.22.573056.full.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10636753/"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12247090"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12903423/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.rsc.org/suppdata/d2/dd/d2dd00035k/d2dd00035k1.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pubs.rsc.org/sc/article/17/22/10992/1231860/A-robotic-approach-to-polymerisation-kinetics-a"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/42039784/"
+    },
+    {
+      "kind": "search",
+      "value": "robotic polymerisation OT-2 NMR tube holder 3D-printed CDCl3 dilution t0 t1 samples copolymerisation 75 °C heater shaker 48 well"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13103962/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/sc/article/17/22/10992/1231860/A-robotic-approach-to-polymerisation-kinetics-a"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/42039784/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12681755"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2509.21330"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.mdpi.com/2073-4360/14/3/361"
+    },
+    {
+      "kind": "result",
+      "value": "https://advanced.onlinelibrary.wiley.com/doi/10.1002/aisy.70549"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2406.17725"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/1707.05500"
+    }
+  ]
+}

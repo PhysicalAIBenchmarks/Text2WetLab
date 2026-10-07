@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 61
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "deck_and_hardware",
+        "score": 1,
+        "evidence": "Reservoir slot 1 and plate slot 2 are loaded with the required labels. The p20 (left) and p300 (right) are loaded with tip racks in slots 10 and 11."
+      },
+      {
+        "id": "volumes_and_wells",
+        "score": 1,
+        "evidence": "The run log shows 12 cycles of aspirate 100 uL from reservoir A1 and dispense 100 uL into plate A1 through A12 in order, all with the p300. No other wells are touched."
+      },
+      {
+        "id": "tip_usage",
+        "score": 1,
+        "evidence": "Each cycle in the log runs pick up tip, aspirate, dispense, drop tip. No pipetting happens without a tip, and the last step is a drop tip."
+      },
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "apiLevel 2.15 is within the allowed range and 100 uL is within the p300 limits. The blow_out at the well top is safe."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 1,
+        "evidence": "The protocol does exactly the one requested transfer, and the metadata and final comment accurately describe it."
+      }
+    ],
+    "scores": {
+      "deck_and_hardware": 1.0,
+      "volumes_and_wells": 1.0,
+      "tip_usage": 1.0,
+      "robot_practice": 1.0,
+      "fidelity_to_task": 1.0
+    },
+    "summary": "The protocol transfers 100 uL from reservoir A1 to plate A1 through A12 with the p300, using a fresh tip per well. The run log confirms the volumes, wells and tip handling, and the labware and labels match the task.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_deck_and_hardware": 1.0,
+    "rubric_volumes_and_wells": 1.0,
+    "rubric_tip_usage": 1.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_fidelity_to_task": 1.0
+  }
+}

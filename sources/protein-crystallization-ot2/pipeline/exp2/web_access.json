@@ -1,0 +1,65 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "fetch",
+      "value": "https://hamptonresearch.com/uploads/support_materials/HR7-110_UG.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://hamptonresearch.com/uploads/support_materials/HR7-110_UG.pdf"
+    },
+    {
+      "kind": "search",
+      "value": "Hampton Research 15-Minute Lysozyme Crystallization Reagent HR2-805 composition user guide"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/product-Lysozyme-524.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/uploads/support_materials/2-072_docs.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/uploads/support_materials/HR7-110_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/uploads/support_materials/HR2-072_binder.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/tips.php"
+    },
+    {
+      "kind": "result",
+      "value": "https://mcshan.chemistry.gatech.edu/static/outreach/Crystallizing%20Lysozyme_Spring2024_v2.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/uploads/support_materials/HR2-144_Binder.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/uploads/cg_pdf/CG101_COMPLETE_2019.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9592506"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8329407"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://opentrons.com.cn/wp-content/uploads/2023/11/Viscous-Liquid-Handling-Automation-using-Opentrons-OT-2.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://opentrons.com.cn/wp-content/uploads/2023/11/Viscous-Liquid-Handling-Automation-using-Opentrons-OT-2.pdf"
+    }
+  ]
+}

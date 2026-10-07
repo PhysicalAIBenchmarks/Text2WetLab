@@ -1,0 +1,58 @@
+Color-based cherry-picking of blue vs white E. coli DH5α colonies on X-gal plates with COPICK (OT-2)
+
+Containers:
+- culture_637: 1.5 mL tube — Overnight culture of E. coli DH5α carrying pSEVA637 (white colonies) [assumed]
+- culture_6819: 1.5 mL tube — Overnight culture of E. coli DH5α carrying pSEVA6819[gD] (blue colonies on X-gal) [assumed]
+- culture_mix: 1.5 mL tube — 50:50 mixture of the two cultures
+- LB_tube: 15 mL tube — Sterile LB broth for dilutions [assumed]
+- dil1: 1.5 mL tube — Dilution tube 1 (1:100) [assumed]
+- dil2: 1.5 mL tube — Dilution tube 2 (1:10^4) [assumed]
+- dil3: 1.5 mL tube — Dilution tube 3 (1:10^6), used for plating [assumed]
+- agar_xgal_tube: 50 mL tube — Molten LB agar with gentamicin and X-gal 50 µg/mL for the source plate [assumed]
+- agar_dest_tube: 50 mL tube — Molten LB agar with gentamicin for the destination Omnitray [assumed]
+- petri_source: reservoir — Round 85-89 mm Petri dish with LB-agar + X-gal + gentamicin (modelled as a single-well reservoir; not a 96-well plate); sits on the transilluminator [assumed]
+- omnitray_dest: reservoir — Nunc Omnitray single-well plate with LB-agar + gentamicin receiving the 64 picked colonies [assumed]
+
+Starting contents:
+- culture_637: stock E. coli DH5α pSEVA637 overnight culture [assumed]
+- culture_6819: stock E. coli DH5α pSEVA6819[gD] overnight culture [assumed]
+- LB_tube: stock LB broth [assumed]
+- agar_xgal_tube: stock Molten LB agar + gentamicin 10 µg/mL + X-gal 50 µg/mL [assumed]
+- agar_dest_tube: stock Molten LB agar + gentamicin 10 µg/mL [assumed]
+
+Steps:
+1. Transfer 25000 µL of Molten LB agar + gentamicin + X-gal 50 µg/mL from agar_xgal_tube to petri_source. Note: About 25 mL per dish (Thermo X-gal/IPTG LB plate protocol). X-gal is mixed into the agar. Gentamicin 10 µg/mL is assumed from the SEVA numbering convention. [assumed]
+2. MANUAL: Let the source plate solidify, then dry it with the lid ajar for about 15-30 min. Protect it from light and store it at 4 °C until use. Note: Standard practice for X-gal plates. [assumed]
+3. Transfer 35000 µL of Molten LB agar + gentamicin from agar_dest_tube to omnitray_dest. Note: The paper does not state the Omnitray contents. LB-agar + gentamicin is assumed, at about the Omnitray working volume of 35 mL (Thermo catalog 242811). Allow it to solidify and dry. [assumed]
+4. Transfer 100 µL of E. coli DH5α pSEVA637 culture from culture_637 to culture_mix. Note: 1:1 by volume. The 100 µL volume is assumed. [assumed]
+5. Transfer 100 µL of E. coli DH5α pSEVA6819[gD] culture from culture_6819 to culture_mix, then mix 5 times. Note: Mixed after dispense. [assumed]
+6. Transfer 990 µL of LB broth from LB_tube to dil1. Note: The paper gives only 'proper dilution factor'. A 10^-6 serial dilution is assumed, aiming for about 100-300 colonies per plate. [assumed]
+7. Transfer 990 µL of LB broth from LB_tube to dil2. Note: Assumed dilution scheme. [assumed]
+8. Transfer 990 µL of LB broth from LB_tube to dil3. Note: Assumed dilution scheme. [assumed]
+9. Transfer 10 µL of 50:50 culture mix from culture_mix to dil1, then mix 5 times. Note: 1:100 dilution. [assumed]
+10. Transfer 10 µL of Diluted culture from dil1 to dil2, then mix 5 times. Note: 1:10^4 cumulative. [assumed]
+11. Transfer 10 µL of Diluted culture from dil2 to dil3, then mix 5 times. Note: 1:10^6 cumulative. [assumed]
+12. Transfer 200 µL of Diluted 50:50 E. coli culture from dil3 to petri_source. Note: Spread over the whole surface with a sterile spreader. Aim for at least 64 non-border colonies. [assumed]
+13. MANUAL: Spread the inoculum evenly, let it absorb, then incubate the source plate inverted at 37 °C for 16-20 h. Optionally hold it at 4 °C for a few hours to intensify the blue colour. Protect it from light. Note: The paper gives no incubation conditions for the E. coli test. 30 °C overnight is stated only for the P. putida test. [assumed]
+14. MANUAL: Remove the lid and place the source plate on the transilluminator platform (up to 89 mm dishes). Place the Omnitray on the OT-2 deck. Check that the camera, the Raspberry Pi transilluminator and the OT-2 are connected to the master PC (USB, USB, Ethernet). Fix the camera exposure and white balance, and calibrate the pixel-to-mm factor. Note: Imaging settings are not given in the paper and are assumed. [assumed]
+15. MANUAL: Start the orchestrator. It uploads the flag-loop protocol to the OT-2 via SSH. The robot homes and moves the camera to the acquisition point, then loops on the auxiliary flag .txt file. The orchestrator switches the white light on via SSH to the Raspberry Pi and captures an image with the USB camera. Note: Flag file name: flag_txt_file.txt (Figure 6 legend).
+16. MANUAL: Segment the colonies with the Detectron 2 PanopticFPN model. Exclude colonies close to the plate border. Compute the mean HSV colour of each colony footprint and score each colony by dissimilarity to a blue reference colour sampled from a clearly blue colony under the same illumination, with colour weight only. Select the 64 most dissimilar colonies, ordered descending (white first, bluest last). Note: The reference RGB value, the dissimilarity metric and the weights are not given in the paper and are assumed. Pickable colonies are those 'not in close contact with the border of the Petri Dish'. [assumed]
+17. MANUAL: Map the colony centroids to robot coordinates (offset to labware centre, scale to mm, rotate 90° anticlockwise). Write the *.csv file, upload it to the OT-2 via SSH/scp, and update the flag file to release the robot loop.
+18. Transfer stock of colony biomass (64 selected colonies, one new P20 tip per colony) from petri_source to omnitray_dest. Note: Biomass is picked, not a liquid, so no volume is given. The 64 colonies are touched with a P20 tip and deposited on the Omnitray in column-wise order, from the most dissimilar (white) to the bluest. A deposit grid of 8 rows x 8 columns at 9 mm pitch is assumed. Tip z-height and dip depth must be tuned on the robot. [assumed]
+19. MANUAL: Incubate the Omnitray at 37 °C overnight to regrow the picked colonies, then check that the picking order matches the white-to-blue colour order. Note: The regrowth step is assumed. The paper reports an observed colour order (Figure 7B). [assumed]
+
+Assumptions:
+- Petri dish and Omnitray are not 96-well labware. Both are modelled as single-well 'reservoir' containers with no well addresses. Agar volumes are about 25 mL per dish (Thermo X-gal/IPTG LB plate protocol) and about 35 mL per Omnitray (Thermo catalog 242811).
+- Pouring agar and spreading cells are manual in practice. They are shown as transfers or manual steps for completeness.
+- The plating dilution is not specified ('proper dilution factor'). Assumed: 1:1 culture mix, then three serial 1:100 dilutions (10 µL into 990 µL LB) to 10^-6, then 200 µL spread. This aims for about 100-300 colonies, within the 12-453 range of the paper's raw-picking test. Plate spare dilutions if needed. At least 64 non-border colonies are required.
+- Culture volumes (100 µL each) and equal cell density of the two overnight cultures are assumed.
+- Gentamicin at about 10 µg/mL is assumed. It is inferred from the SEVA numbering convention (first digit 6 = gentamicin), from memory. The SEVA 2013 paper was seen only as a search snippet and did not confirm the plasmid markers. IPTG is not added, because the paper says only that colonies turn blue with X-gal.
+- X-gal at 50 µg/mL is stated in the paper. It is assumed to be mixed into the agar rather than spread on top.
+- Incubation at 37 °C for 16-20 h, with an optional 4 °C hold, is assumed. The paper gives no E. coli incubation conditions.
+- The destination Omnitray is assumed to contain LB-agar + gentamicin without X-gal. Its contents are not given in the paper.
+- Reference blue colour, dissimilarity metric (e.g. Euclidean distance in HSV or RGB) and weights (colour only, size and fluorescence weights 0) are assumed. The paper says only 'target RGB colour' and a weighted-sum score.
+- Picking motion parameters (P20, new tip per colony, tip z-height, dip depth) are assumed. The 8x8 deposit grid at 9 mm pitch, column-wise, is assumed. The paper states only the column-wise order.
+- Imaging settings (white channel, fixed exposure and white balance, pixel-to-mm calibration) are assumed. Hardware is as in s3.1 (Alvium 1800 U-500c camera, RGB LED transilluminator on a Raspberry Pi 4B).
+- Detectron 2 PanopticFPN weights and hyperparameters are not given in the paper. Any segmentation giving plate-centred centroids can substitute. Colonies near the plate border are excluded.
+- Orchestration (SSH, flag_txt_file.txt loop, CSV upload via scp) follows s3.2 and the Figure 6 legend.
+- Overnight regrowth of the picked colonies is an assumed verification step. Analysis of the colour order (Figure 7B) is not part of the protocol.

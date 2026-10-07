@@ -1,0 +1,756 @@
+{
+  "title": "OT-2 vs human HEWL 24-well sitting-drop plate preparation (time and crystal-growth consistency)",
+  "containers": [
+    {
+      "name": "ot2_reservoirs",
+      "kind": "plate_96_deep",
+      "description": "Reservoir (moat) wells of the OT-2-prepared Hampton CrysChem HR3-159 24-well plate, modeled as wells A1:D6 of a deep-well plate",
+      "assumed": true
+    },
+    {
+      "name": "ot2_pedestals",
+      "kind": "plate_96",
+      "description": "Pedestal (sitting drop) wells of the same OT-2-prepared CrysChem plate, modeled as wells A1:D6 of a separate plate; physically the same plate as ot2_reservoirs",
+      "assumed": true
+    },
+    {
+      "name": "human_reservoirs",
+      "kind": "plate_96_deep",
+      "description": "Reservoir (moat) wells of a manually prepared CrysChem 24-well plate, modeled as A1:D6",
+      "assumed": true
+    },
+    {
+      "name": "human_pedestals",
+      "kind": "plate_96",
+      "description": "Pedestal (sitting drop) wells of the same manually prepared CrysChem plate, modeled as A1:D6; physically the same plate as human_reservoirs",
+      "assumed": true
+    },
+    {
+      "name": "HR2-805_tube",
+      "kind": "tube_15ml",
+      "description": "Hampton 15-Minute Lysozyme Crystallization Reagent (HR2-805), stock (1)",
+      "assumed": true
+    },
+    {
+      "name": "NaOAc_pH4.6_tube",
+      "kind": "tube_1.5ml",
+      "description": "200 mM sodium acetate pH 4.6, stock (3a)",
+      "assumed": true
+    },
+    {
+      "name": "NaOAc_pH4.7_tube",
+      "kind": "tube_1.5ml",
+      "description": "200 mM sodium acetate pH 4.7, stock (3b)",
+      "assumed": true
+    },
+    {
+      "name": "NaOAc_pH4.8_tube",
+      "kind": "tube_1.5ml",
+      "description": "200 mM sodium acetate pH 4.8, stock (3c)",
+      "assumed": true
+    },
+    {
+      "name": "DI_water_reservoir",
+      "kind": "reservoir",
+      "description": "DI water used to bring reservoirs to 400 µL",
+      "assumed": true
+    },
+    {
+      "name": "HEWL_tube",
+      "kind": "tube_1.5ml",
+      "description": "Hampton HR7-110 lysozyme, 20 mg/mL in 20 mM sodium acetate pH 4.6, stock (2); one stock used for both arms",
+      "assumed": true
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "HR2-805_tube",
+      "wells": [],
+      "reagent": "15-Minute Lysozyme Crystallization Reagent HR2-805 (30% w/v PEG MME 5,000, 1.0 M NaCl, 0.05 M sodium acetate pH 4.6)",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "NaOAc_pH4.6_tube",
+      "wells": [],
+      "reagent": "200 mM sodium acetate pH 4.6",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "NaOAc_pH4.7_tube",
+      "wells": [],
+      "reagent": "200 mM sodium acetate pH 4.7",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "NaOAc_pH4.8_tube",
+      "wells": [],
+      "reagent": "200 mM sodium acetate pH 4.8",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "DI_water_reservoir",
+      "wells": [],
+      "reagent": "DI water",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "HEWL_tube",
+      "wells": [],
+      "reagent": "Hen egg white lysozyme (HR7-110) 20 mg/mL in 20 mM sodium acetate pH 4.6",
+      "volume_ul": null,
+      "assumed": false
+    }
+  ],
+  "steps": [
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "OT-2 arm: clip the 3D-printed PLA CrysChem adapter into two deck slots, seat the HR3-159 24-well plate, upload the custom labware JSON, load p10 Gen1 (left) and p300 Gen2 (right) with 10 µL and 200 µL tips, verify well positions, and start the timer for setup time",
+      "source_quote": "The machine was configured with a p10 1st generation pipet arm attached to the left arm, and a p300 2nd generation pipet arm attached to the right arm.",
+      "assumed": false,
+      "note": "Timer start and calibration details are assumed; see assumptions"
+    },
+    {
+      "kind": "transfer",
+      "source": "HR2-805_tube",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "A1:D1"
+      ],
+      "volume_ul": 300.0,
+      "reagent": "HR2-805",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "To prepare the reservoirs, 300–350 μL of solution (1) was added to every column (increasing by 10 μL every column).",
+      "assumed": false,
+      "note": "Column 1 = 300 µL; p300 Gen2"
+    },
+    {
+      "kind": "transfer",
+      "source": "HR2-805_tube",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "A2:D2"
+      ],
+      "volume_ul": 310.0,
+      "reagent": "HR2-805",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "300–350 μL of solution (1) was added to every column (increasing by 10 μL every column)",
+      "assumed": false,
+      "note": "Column 2"
+    },
+    {
+      "kind": "transfer",
+      "source": "HR2-805_tube",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "A3:D3"
+      ],
+      "volume_ul": 320.0,
+      "reagent": "HR2-805",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "300–350 μL of solution (1) was added to every column (increasing by 10 μL every column)",
+      "assumed": false,
+      "note": "Column 3"
+    },
+    {
+      "kind": "transfer",
+      "source": "HR2-805_tube",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "A4:D4"
+      ],
+      "volume_ul": 330.0,
+      "reagent": "HR2-805",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "300–350 μL of solution (1) was added to every column (increasing by 10 μL every column)",
+      "assumed": false,
+      "note": "Column 4"
+    },
+    {
+      "kind": "transfer",
+      "source": "HR2-805_tube",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "A5:D5"
+      ],
+      "volume_ul": 340.0,
+      "reagent": "HR2-805",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "300–350 μL of solution (1) was added to every column (increasing by 10 μL every column)",
+      "assumed": false,
+      "note": "Column 5"
+    },
+    {
+      "kind": "transfer",
+      "source": "HR2-805_tube",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "A6:D6"
+      ],
+      "volume_ul": 350.0,
+      "reagent": "HR2-805",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "300–350 μL of solution (1) was added to every column (increasing by 10 μL every column)",
+      "assumed": false,
+      "note": "Column 6"
+    },
+    {
+      "kind": "transfer",
+      "source": "NaOAc_pH4.6_tube",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "A1:A6"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "200 mM sodium acetate pH 4.6",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "50 μL of solution (3a) was added to each well of row A",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "NaOAc_pH4.7_tube",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "B1:B6"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "200 mM sodium acetate pH 4.7",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "50 μL of solution (3b) to each well of row B",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "NaOAc_pH4.8_tube",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "C1:D6"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "200 mM sodium acetate pH 4.8",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "and 50 μL of solution (3c) to each well of rows C and D",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "DI_water_reservoir",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "A1:D1"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "DI water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "To bring every reservoir up to 400 μL, DI water was added as necessary",
+      "assumed": false,
+      "note": "400 − 300 − 50 = 50 µL; calculated"
+    },
+    {
+      "kind": "transfer",
+      "source": "DI_water_reservoir",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "A2:D2"
+      ],
+      "volume_ul": 40.0,
+      "reagent": "DI water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "To bring every reservoir up to 400 μL, DI water was added as necessary",
+      "assumed": false,
+      "note": "400 − 310 − 50 = 40 µL; calculated"
+    },
+    {
+      "kind": "transfer",
+      "source": "DI_water_reservoir",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "A3:D3"
+      ],
+      "volume_ul": 30.0,
+      "reagent": "DI water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "To bring every reservoir up to 400 μL, DI water was added as necessary",
+      "assumed": false,
+      "note": "400 − 320 − 50 = 30 µL; calculated"
+    },
+    {
+      "kind": "transfer",
+      "source": "DI_water_reservoir",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "A4:D4"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "DI water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "To bring every reservoir up to 400 μL, DI water was added as necessary",
+      "assumed": false,
+      "note": "400 − 330 − 50 = 20 µL; calculated"
+    },
+    {
+      "kind": "transfer",
+      "source": "DI_water_reservoir",
+      "source_wells": [],
+      "dest": "ot2_reservoirs",
+      "dest_wells": [
+        "A5:D5"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "DI water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "To bring every reservoir up to 400 μL, DI water was added as necessary",
+      "assumed": false,
+      "note": "400 − 340 − 50 = 10 µL; column 6 needs no water (350 + 50 = 400)"
+    },
+    {
+      "kind": "transfer",
+      "source": "HEWL_tube",
+      "source_wells": [],
+      "dest": "ot2_pedestals",
+      "dest_wells": [
+        "A1:D6"
+      ],
+      "volume_ul": 2.0,
+      "reagent": "HEWL 20 mg/mL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "2 μL of solution (2) was aspirated into the pipet.",
+      "assumed": false,
+      "note": "p10 Gen1. In the paper the 2 µL protein and the 2 µL reservoir are aspirated in the same tip and dispensed together. Modeled as two transfers per well; run as one tip per well"
+    },
+    {
+      "kind": "transfer",
+      "source": "ot2_reservoirs",
+      "source_wells": [
+        "A1:D6"
+      ],
+      "dest": "ot2_pedestals",
+      "dest_wells": [
+        "A1:D6"
+      ],
+      "volume_ul": 2.0,
+      "reagent": "reservoir solution of the matching well",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "This was immediately followed by aspiration of 2 μL of an individual well’s reservoir fluid. The 4 μL sitting drop volume was then dispensed into the elevated crystal formation pedestal.",
+      "assumed": false,
+      "note": "Each well's own reservoir to its own pedestal, same tip as the protein; 4 µL total drop; no extra mixing"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Record end time of setup (last drop dispensed, before taping). Seal the OT-2 plate with Duck HP260 clear packaging tape once all 24 sitting drops are prepared",
+      "source_quote": "We then manually sealed the plate with Duck HP260 (Avon, OH) clear packaging tape after all 24 sitting drops had been prepared.",
+      "assumed": false,
+      "note": "Paper reports 31 min for the OT-2 HEWL plate (about 12 min for drops)"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate the sealed OT-2 plate undisturbed for 24 h at constant room temperature (about 20–22 °C), same location as human plates",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Only 24 h is stated in the paper"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "At 24 h, score each of the 24 wells of the OT-2 plate as crystals present or absent under a stereomicroscope, same observer and criterion for all plates, ideally blinded to who set up the plate",
+      "source_quote": "18/24 wells successfully yielded HEWL crystals in 24 h.",
+      "assumed": true,
+      "note": "Scoring criterion assumed"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Human arm: start the timer for setup time. One person (of three with varying wet-lab experience; record experience level) prepares a CrysChem 24-well plate with manual P10/P200 pipettes using the same layout and volumes as the OT-2 plate",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Manual procedure not described in the paper"
+    },
+    {
+      "kind": "transfer",
+      "source": "HR2-805_tube",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "A1:D1"
+      ],
+      "volume_ul": 300.0,
+      "reagent": "HR2-805",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "To prepare the reservoirs, 300–350 μL of solution (1) was added to every column (increasing by 10 μL every column).",
+      "assumed": true,
+      "note": "Manual pipetting; column 1 = 300 µL"
+    },
+    {
+      "kind": "transfer",
+      "source": "HR2-805_tube",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "A2:D2"
+      ],
+      "volume_ul": 310.0,
+      "reagent": "HR2-805",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Manual pipetting; column 2"
+    },
+    {
+      "kind": "transfer",
+      "source": "HR2-805_tube",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "A3:D3"
+      ],
+      "volume_ul": 320.0,
+      "reagent": "HR2-805",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Manual pipetting; column 3"
+    },
+    {
+      "kind": "transfer",
+      "source": "HR2-805_tube",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "A4:D4"
+      ],
+      "volume_ul": 330.0,
+      "reagent": "HR2-805",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Manual pipetting; column 4"
+    },
+    {
+      "kind": "transfer",
+      "source": "HR2-805_tube",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "A5:D5"
+      ],
+      "volume_ul": 340.0,
+      "reagent": "HR2-805",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Manual pipetting; column 5"
+    },
+    {
+      "kind": "transfer",
+      "source": "HR2-805_tube",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "A6:D6"
+      ],
+      "volume_ul": 350.0,
+      "reagent": "HR2-805",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Manual pipetting; column 6"
+    },
+    {
+      "kind": "transfer",
+      "source": "NaOAc_pH4.6_tube",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "A1:A6"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "200 mM sodium acetate pH 4.6",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Same layout as OT-2 plate"
+    },
+    {
+      "kind": "transfer",
+      "source": "NaOAc_pH4.7_tube",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "B1:B6"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "200 mM sodium acetate pH 4.7",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Same layout as OT-2 plate"
+    },
+    {
+      "kind": "transfer",
+      "source": "NaOAc_pH4.8_tube",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "C1:D6"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "200 mM sodium acetate pH 4.8",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Same layout as OT-2 plate"
+    },
+    {
+      "kind": "transfer",
+      "source": "DI_water_reservoir",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "A1:D1"
+      ],
+      "volume_ul": 50.0,
+      "reagent": "DI water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Brings column 1 to 400 µL"
+    },
+    {
+      "kind": "transfer",
+      "source": "DI_water_reservoir",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "A2:D2"
+      ],
+      "volume_ul": 40.0,
+      "reagent": "DI water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Brings column 2 to 400 µL"
+    },
+    {
+      "kind": "transfer",
+      "source": "DI_water_reservoir",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "A3:D3"
+      ],
+      "volume_ul": 30.0,
+      "reagent": "DI water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Brings column 3 to 400 µL"
+    },
+    {
+      "kind": "transfer",
+      "source": "DI_water_reservoir",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "A4:D4"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "DI water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Brings column 4 to 400 µL"
+    },
+    {
+      "kind": "transfer",
+      "source": "DI_water_reservoir",
+      "source_wells": [],
+      "dest": "human_reservoirs",
+      "dest_wells": [
+        "A5:D5"
+      ],
+      "volume_ul": 10.0,
+      "reagent": "DI water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Brings column 5 to 400 µL; column 6 needs none"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Gently swirl the human-prepared plate to spread the reservoir solutions in the moats",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Mixing method for human plates not stated; swirl assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "HEWL_tube",
+      "source_wells": [],
+      "dest": "human_pedestals",
+      "dest_wells": [
+        "A1:D6"
+      ],
+      "volume_ul": 2.0,
+      "reagent": "HEWL 20 mg/mL",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Manual P10; 2 µL protein first, then 2 µL of that well's reservoir, onto the pedestal, well by well"
+    },
+    {
+      "kind": "transfer",
+      "source": "human_reservoirs",
+      "source_wells": [
+        "A1:D6"
+      ],
+      "dest": "human_pedestals",
+      "dest_wells": [
+        "A1:D6"
+      ],
+      "volume_ul": 2.0,
+      "reagent": "reservoir solution of the matching well",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "4 µL total drop per well"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Record end time of setup (last drop dispensed, before taping). Seal the human-prepared plate with Duck HP260 clear packaging tape, then incubate undisturbed for 24 h at constant room temperature (about 20–22 °C) in the same location as the OT-2 plates. Repeat for 3 plates per person (3 people, 9 plates) and for 3 OT-2 plates in total",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Tape assumed identical to OT-2 arm; 3 OT-2 plates and 9 human plates are from the full text"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "At 24 h, score each of the 24 wells of every human plate as crystals present or absent under a stereomicroscope, same observer and criterion as for OT-2 plates; record setup time and number of crystal wells per plate for comparison",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Scoring method assumed"
+    }
+  ],
+  "assumptions": [
+    "The CrysChem 24-well plate is not an available container kind. Each plate is modeled as two containers: a deep-well plate (reservoir moats, 400 µL exceeds the 360 µL plate_96 capacity) and a 96-well plate (pedestals), both using wells A1:D6 (rows A–D, columns 1–6). Physically they are one plate.",
+    "Only one OT-2 plate and one human plate are written out as templates. The full comparison used 3 OT-2 plates (the original plus two additional) and 9 human plates (3 people with varying wet-lab experience, read as 3 plates each); repeat the template for each (source: full text of the published article, https://www.sciencedirect.com/science/article/pii/S2472630325000263).",
+    "HR2-805 composition (30% w/v PEG MME 5,000, 1.0 M NaCl, 0.05 M sodium acetate pH 4.6) is from https://hamptonresearch.com/product-Lysozyme-524.html and the HR7-108 user guide.",
+    "The 4 µL drop is 2 µL protein plus 2 µL reservoir because a 2 µL total drop could not be reliably ejected by the Gen1 p10 (full text of the published article). In the OT-2 run both are aspirated in the same p10 tip and dispensed together; this is represented as two transfers per well.",
+    "HEWL reservoirs needed no mixing step on the OT-2 (full text of the published article), so no mix steps are included. The food-dye script's 200 µL aspirate/redispense at 3 and 9 o'clock is skipped.",
+    "Water volumes per column (50, 40, 30, 20, 10, 0 µL) are calculated as 400 µL − HR2-805 − 50 µL acetate; column 6 needs none.",
+    "Layout: rows A–D, columns 1–6. HR2-805 rises from 300 to 350 µL by column; sodium acetate pH 4.6 in row A, pH 4.7 in row B, pH 4.8 in rows C and D.",
+    "Paired transfers from reservoir wells to pedestal wells assume row-major pairing of A1:D6 to A1:D6 (each well's reservoir goes to its own pedestal).",
+    "OT-2 pipetting parameters are not stated; assumed default flow rates, p10 Gen1 for the drops, p300 Gen2 for reservoir volumes (the 10 µL water steps could use the p10), a fresh tip per liquid or well, and tip-touch on the well wall at 12, 3, 6 and 9 o'clock (gap-assessment recommendations).",
+    "Custom labware: the paper gives only the A1 offset (x 30.5, y 12.5, z 6.1 mm) and plate size (150×106 mm). Build an equivalent labware definition, use a 3D-printed PLA adapter clipped into two deck slots (the paper's printed in 84 min on a Bambu X1C), and verify well positions before using protein.",
+    "Manual (human) procedure is not described in the paper. Assumed: same layout and volumes as the OT-2 plate, manual P10/P200 pipettes, gentle swirl of the plate, and experience level recorded per person without further definition.",
+    "Setup time is assumed to run from the start of reservoir preparation to the last drop dispensed, before taping. The OT-2 plate took 31 min (about 12 min for drops). Human times are in Supplemental Fig. 5, which was not retrieved.",
+    "Incubation at room temperature (about 20–22 °C) for 24 h is assumed; the paper gives only 24 h. Use the same location for all plates.",
+    "Crystal scoring (present/absent per well at 24 h under a stereomicroscope, same observer, ideally blinded) is assumed. The paper reports 18/24 wells with crystals for the OT-2 plate.",
+    "Lysozyme stock: dissolve HR7-110 to 20 mg/mL in 20 mM sodium acetate pH 4.6, mix gently until clear, spin or filter if cloudy, and use one stock for both arms (standard practice). Tubes and the water reservoir are assumed containers; stock volumes are given as null (ample)."
+  ]
+}

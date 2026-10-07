@@ -1,0 +1,58 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/electroporation-bayesopt/cultivarium__electroporation-bayesian-optimization",
+   "commit": "2a00cfc6226bf5f08a768f28c95d09949274bcf8",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "unclear",
+   "opentrons_py_files": 0,
+   "py_files": 2,
+   "redistributable": "no",
+   "repo": "cultivarium/electroporation-bayesian-optimization",
+   "robot_mentions": [],
+   "size_kb": 624,
+   "status": "cloned",
+   "url": "https://github.com/cultivarium/electroporation-bayesian-optimization"
+  }
+ ],
+ "doi_primary": "10.1101/2025.11.18.689155",
+ "dois": [
+  "10.1101/2025.11.18.689155"
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 26,
+  "source": "biorxiv"
+ },
+ "journal": "bioRxiv",
+ "note": "BTX Gemini X2 comparison; custom electroporator + CyBio FeliX + Opentrons Flex",
+ "open_access": false,
+ "origin": [
+  "L_other (non-Opentrons) candidates, 2026-10-04"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "bytes": 1449839,
+  "licence": "cc by-nc-nd",
+  "pages": 29,
+  "redistributable": "no",
+  "sha256": "9ba5fafe6c84cf54fbee0e8140da50dfb1d1944c8d56ac9f501876a9547a590b",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": true,
+    "ok": true,
+    "url": "https://www.biorxiv.org/content/10.1101/2025.11.18.689155v1.full.pdf"
+   }
+  ],
+  "url": "https://www.biorxiv.org/content/10.1101/2025.11.18.689155v1.full.pdf"
+ },
+ "pmcid": "",
+ "slug": "electroporation-bayesopt",
+ "title": "Active learning guides automated discovery of DNA delivery via electroporation",
+ "year": "2025"
+}

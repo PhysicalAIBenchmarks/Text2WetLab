@@ -1,0 +1,58 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 7886
+  },
+  "judge": {
+    "items": [
+      {
+        "id": "binding",
+        "score": 1,
+        "evidence": "Log shows 40 uL aspirated from beads A1 and dispensed into each of 96 wells, followed by 10 aspirate/dispense mix cycles of 70 uL; incubation comment is recorded before the magnet comment."
+      },
+      {
+        "id": "supernatant_and_washes",
+        "score": 1,
+        "evidence": "Engage-magnet/wait comment precedes 96 x 90 uL supernatant removals to waste A1, then two rounds of 200 uL ethanol added and 200 uL removed to waste for every well."
+      },
+      {
+        "id": "drying_and_elution",
+        "score": 1,
+        "evidence": "Comments for 5 min air dry, magnet disengage, and 2 min incubation then re-engage are present; 50 uL water is added per well with 10 mix cycles in the log."
+      },
+      {
+        "id": "recovery",
+        "score": 1,
+        "evidence": "Log lines 6530-6911 show 45 uL aspirated from each sample well and dispensed into the same-named elution_plate well (A1->A1 ... H12->H12)."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "Every well in supernatant removal, ethanol removal and elution gets its own pick up/drop tip pair in the log, with no tip reuse across samples."
+      }
+    ],
+    "scores": {
+      "binding": 1.0,
+      "supernatant_and_washes": 1.0,
+      "drying_and_elution": 1.0,
+      "recovery": 1.0,
+      "tips_and_contamination": 1.0
+    },
+    "summary": "The protocol performs all pipetting steps correctly per the simulator log, with correct volumes, 10x mixes, and well-to-well identity preservation. Manual steps (incubations, magnet, drying) are recorded as comments at the right points and a fresh tip is used for every well.",
+    "model": "claude-sonnet-5-5"
+  },
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "judge_mean": 1.0,
+    "rubric_binding": 1.0,
+    "rubric_supernatant_and_washes": 1.0,
+    "rubric_drying_and_elution": 1.0,
+    "rubric_recovery": 1.0,
+    "rubric_tips_and_contamination": 1.0
+  }
+}

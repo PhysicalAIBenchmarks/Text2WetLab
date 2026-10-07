@@ -1,0 +1,90 @@
+{
+ "slots": {
+  "1": {
+   "load_name": "corning_96_wellplate_360ul_flat",
+   "label": "sample_plate",
+   "kind": "plate_96"
+  },
+  "2": {
+   "load_name": "nest_1_reservoir_195ml",
+   "label": "beads_reservoir",
+   "kind": "reservoir"
+  },
+  "3": {
+   "load_name": "nest_1_reservoir_195ml",
+   "label": "ethanol_reservoir",
+   "kind": "reservoir"
+  },
+  "4": {
+   "load_name": "nest_1_reservoir_195ml",
+   "label": "water_reservoir",
+   "kind": "reservoir"
+  },
+  "5": {
+   "load_name": "nest_1_reservoir_195ml",
+   "label": "waste",
+   "kind": "waste"
+  },
+  "6": {
+   "load_name": "corning_96_wellplate_360ul_flat",
+   "label": "elution_plate",
+   "kind": "plate_96"
+  }
+ },
+ "containers": {
+  "sample_plate": {
+   "label": "sample_plate",
+   "load_name": "corning_96_wellplate_360ul_flat",
+   "slot": 1
+  },
+  "beads_reservoir": {
+   "label": "beads_reservoir",
+   "load_name": "nest_1_reservoir_195ml",
+   "slot": 2,
+   "well": "A1"
+  },
+  "ethanol_reservoir": {
+   "label": "ethanol_reservoir",
+   "load_name": "nest_1_reservoir_195ml",
+   "slot": 3,
+   "well": "A1"
+  },
+  "water_reservoir": {
+   "label": "water_reservoir",
+   "load_name": "nest_1_reservoir_195ml",
+   "slot": 4,
+   "well": "A1"
+  },
+  "waste": {
+   "label": "waste",
+   "load_name": "nest_1_reservoir_195ml",
+   "slot": 5,
+   "well": "A1"
+  },
+  "elution_plate": {
+   "label": "elution_plate",
+   "load_name": "corning_96_wellplate_360ul_flat",
+   "slot": 6
+  }
+ },
+ "tips": {
+  "300": {
+   "load_name": "opentrons_96_tiprack_300ul",
+   "slot": 11
+  },
+  "20": {
+   "load_name": "opentrons_96_tiprack_20ul",
+   "slot": 10
+  }
+ },
+ "pipettes": {
+  "p20_single_gen2": {
+   "mount": "left",
+   "tips": "20"
+  },
+  "p300_single_gen2": {
+   "mount": "right",
+   "tips": "300"
+  }
+ }
+}

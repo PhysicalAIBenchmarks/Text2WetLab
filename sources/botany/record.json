@@ -1,0 +1,95 @@
+{
+  "code": [
+    {
+      "api_levels": [
+        "2.20"
+      ],
+      "archived": false,
+      "cache_path": "~/.cache/text2wetlab-ingest/code/botany/cvoiniciuc__BOTany",
+      "commit": "c7588d321a59b0d9078c288504e63598b0f60b5e",
+      "default_branch": "main",
+      "host": "github.com",
+      "licence": "none",
+      "opentrons_py_files": 8,
+      "py_files": 8,
+      "redistributable": "no",
+      "repo": "cvoiniciuc/BOTany",
+      "robot_mentions": [
+        "OT-2"
+      ],
+      "size_kb": 146,
+      "status": "cloned",
+      "url": "https://github.com/cvoiniciuc/BOTany"
+    }
+  ],
+  "doi_primary": "10.1101/2025.08.21.671538",
+  "dois": [
+    "10.1101/2025.08.21.671538",
+    "10.1093/plphys/kiag066"
+  ],
+  "fulltext": {
+    "legends": 5,
+    "sections": 22,
+    "source": "biorxiv"
+  },
+  "journal": "bioRxiv",
+  "note": "two DOIs, one study | Published version 10.1093/plphys/kiag066 is the same study; PDF is the bioRxiv preprint (CC-BY). Paper names only github.com/cvoiniciuc/BOTany. Repo has no LICENSE file (licence none), so not redistributable. Experiment ids are 1-based positions in the pipeline experiments.json (no id field there).",
+  "open_access": false,
+  "origin": [
+    "lLegon"
+  ],
+  "paper_licence": "cc by",
+  "pdf": {
+    "bytes": 1613591,
+    "licence": "cc by",
+    "pages": 19,
+    "redistributable": "yes",
+    "sha256": "5c6f55d21eb469e8923350322283c01f08cb4e04171eca769f5a8daa0fba43b2",
+    "status": "downloaded",
+    "tried": [
+      {
+        "http": 200,
+        "manual": false,
+        "ok": true,
+        "url": "https://www.biorxiv.org/content/10.1101/2025.08.21.671538v1.full.pdf"
+      }
+    ],
+    "url": "https://www.biorxiv.org/content/10.1101/2025.08.21.671538v1.full.pdf"
+  },
+  "pmcid": null,
+  "slug": "botany",
+  "title": "BOTany: Voiniciuc lab OT-2 workflows (preprint and published version)",
+  "year": "2025",
+  "experiments_hint": [
+    {
+      "id": "exp1",
+      "title": "Automated Plant MoClo Level 1 Golden Gate assembly with colony PCR verification",
+      "liquid_handling": "mostly",
+      "evidence": "pipeline data/pipeline_runs/10.1101_2025.08.21.671538/experiments.json, experiment 1; sections ['s4.2', 's4.3', 's4.4']"
+    },
+    {
+      "id": "exp2",
+      "title": "Automated E. coli transformation (BOTany4-Shock&Go) with blue/white screening",
+      "liquid_handling": "mostly",
+      "evidence": "pipeline data/pipeline_runs/10.1101_2025.08.21.671538/experiments.json, experiment 2; sections ['s4.3', 's4.4']"
+    },
+    {
+      "id": "exp3",
+      "title": "MagBead plasmid extraction and downstream use in Golden Gate assembly, E. coli transformation and colony PCR",
+      "liquid_handling": "mostly",
+      "evidence": "pipeline data/pipeline_runs/10.1101_2025.08.21.671538/experiments.json, experiment 3; sections ['s4.4', 's4.5', 's4.3', 's4.2']"
+    },
+    {
+      "id": "exp4",
+      "title": "Pichia electroporation with MagBead-extracted Level 1 plasmids and colony genotyping",
+      "liquid_handling": "little",
+      "evidence": "pipeline data/pipeline_runs/10.1101_2025.08.21.671538/experiments.json, experiment 4; sections ['s4.4', 's4.5', 's4.6']"
+    },
+    {
+      "id": "exp5",
+      "title": "BOTany6-Universal mosaic inoculation of Pichia strains in 96 deep-well plate",
+      "liquid_handling": "mostly",
+      "evidence": "pipeline data/pipeline_runs/10.1101_2025.08.21.671538/experiments.json, experiment 5; sections ['s4.6']"
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "search",
+      "value": "NEBNext Ultra Directional RNA Library Prep Kit for Illumina E7420 manual protocol"
+    },
+    {
+      "kind": "result",
+      "value": "https://people.duke.edu/~ccc14/duke-hts-2017/_downloads/manualE7420_v8.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://api.faang.org/files/protocols/assays/UCD_SOP_RNA-Seq_Library_Prep_20150510.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.encodeproject.org/documents/01a7807d-0d18-4a4a-ac90-f4056a25a681/@@download/attachment/manualE7760_Directional_RNA_library_kit_October30_2018.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/-/media/nebus/files/manuals/manuale7530.pdf?rev=071d46347b5c4d1aa116f27abd8f1d22&hash=DB47CB277C42E13EA3AA9492F7FFC585"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.science.smith.edu/cmbs/wp-content/uploads/sites/36/2015/09/NEBNExt-Ultra-RNA-manual.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/-/media/nebus/files/manuals/manuale7770.pdf?rev=e03976a8a5dd4e499832ae79efa0c105&hash=A989A3888DBD4BD9618C079300F0171D"
+    },
+    {
+      "kind": "search",
+      "value": "NEBNext Poly(A) mRNA Magnetic Isolation Module E7490 manual protocol"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/-/media/nebus/files/manuals/manuale7490.pdf?rev=ed00dd803dc94459a8b437f75b82a42a&hash=1B5E599801C75D1BCAF7B9A9CBE3C363"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/-/media/nebus/files/manuals/manuale7490.pdf?rev=65815d685ed5414f8fb4059485193f02&hash=7BBD5C4185F6F950876BE94511624801"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/nebnext-poly-a-mrna-magnetic-isolation-module-neb-dj2k4qcw.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/383436755_NEBNextR_PolyA_mRNA_Magnetic_Isolation_Module_NEB_E7490SL_Standard_Protocol_v1"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/products/e7490-nebnext-polya-mrna-magnetic-isolation-module"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/protocols/protocol-for-use-with-nebnext-poly-a-mrna-magnetic-isolation-module-neb-e7490?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/protocols/protocol-for-use-with-nebnext-poly-a-mrna-magnetic-isolation-module-e7490-and-nebnext-ultra-ii-di?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.bioke.com/webshop/neb/e7490.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.science.smith.edu/departments/cmbs/documents/NEBNExtUltraRNAmanual.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/-/media/nebus/files/manuals/manuale3370.pdf?rev=fb1c9e147f1a4893abe95203ac6a6fe0&sc_lang=en-us&hash=69FFC6C899568C5A12959199152E7688"
+    },
+    {
+      "kind": "search",
+      "value": "NIPPON GENE ISOGEN 319-90211 protocol RNA extraction chloroform isopropanol"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.nippongene.com/english/tds/tds_isogen-e1109.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8614057"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8535914"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8252529"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8252528"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8754055"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.nippongene.com/english/tds/tds_isogen-spin-e.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.nippongene.com/english/product/extraction/isogen.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7749707"
+    },
+    {
+      "kind": "search",
+      "value": "Taguchi Automation of yeast spot assays using an affordable liquid handling robot OT-2 SLAS Technology"
+    },
+    {
+      "kind": "result",
+      "value": "https://yeastgenome.org/reference/S000341319"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.slas-technology.org/article/S2472-6303(22)01411-X/fulltext"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/366141410_Automation_of_yeast_spot_assays_using_an_affordable_liquid_handling_robot"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/science/article/pii/S2472630324001158"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/362085650_Automation_of_yeast_spot_assays_using_an_affordable_liquid_handling_robot"
+    },
+    {
+      "kind": "result",
+      "value": "https://slas-technology.org/article/S2472-6303(22)05187-1/fulltext"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biorxiv.org/content/10.1101/2022.07.16.500326v1.full.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://phys.org/news/2023-05-simple-liquid-dispensing-robot-automates-yeast.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://link.springer.com/article/10.1007/s12274-024-6970-1"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.nippongene.com/english/tds/tds_isogen-e1109.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.nippongene.com/english/tds/tds_isogen-e1109.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://people.duke.edu/~ccc14/duke-hts-2017/_downloads/manualE7420_v8.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://people.duke.edu/~ccc14/duke-hts-2017/_downloads/manualE7420_v8.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://doi.org/10.1016/j.slast.2022.12.001"
+    },
+    {
+      "kind": "search",
+      "value": "NEBNext Ultra Directional RNA Library Prep E7420 PCR cycles input RNA 100 ng 15 minutes fragmentation 94°C adaptor dilution"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/protocols/2015/06/09/protocol-for-use-with-purified-mrna-or-ribosome-depleted-rna-e7420"
+    },
+    {
+      "kind": "result",
+      "value": "https://people.duke.edu/~ccc14/duke-hts-2017/_downloads/manualE7420_v8.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://people.duke.edu/~ccc14/duke-hts-2017/_downloads/manualE7420_v8_trimmed.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/tools-and-resources/troubleshooting-guides/nebnext-ultratm-directional-rna-kit-troubleshooting-guide"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/-/media/nebus/files/manuals/manuale7760_e7765.pdf?rev=7b7833e3bb9548a5ac1086cba557ba1b&hash=D500ED77596333C016BA61B91BBFE89C"
+    },
+    {
+      "kind": "result",
+      "value": "https://people.duke.edu/~ccc14/duke-hts-2018/_downloads/manualE7760v1_trimmed_for_course.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/-/media/nebus/files/manuals/manuale3330.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.uth.edu/cgc/documents/manualE7760_E7765.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.science.smith.edu/cmbs/wp-content/uploads/sites/36/2015/09/NEBNExt-Ultra-RNA-manual.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://yeastgenome.org/reference/S000341319"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://yeastgenome.org/reference/S000341319"
+    }
+  ]
+}

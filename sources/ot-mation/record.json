@@ -1,0 +1,74 @@
+{
+  "code": [
+    {
+      "api_levels": [
+        "2.10"
+      ],
+      "archived": false,
+      "cache_path": "~/.cache/text2wetlab-ingest/code/ot-mation/tphoward__OT-Mation_Repo",
+      "commit": "e68db29f5f7ef7d3af54897e9b1b727375e563fc",
+      "default_branch": "main",
+      "host": "github.com",
+      "licence": "Apache-2.0",
+      "opentrons_py_files": 2,
+      "py_files": 2,
+      "redistributable": "yes",
+      "repo": "tphoward/OT-Mation_Repo",
+      "robot_mentions": [
+        "OT-2"
+      ],
+      "size_kb": 87,
+      "status": "cloned",
+      "url": "https://github.com/tphoward/OT-Mation_Repo"
+    }
+  ],
+  "doi_primary": "10.1093/synbio/ysaf009",
+  "dois": [
+    "10.1093/synbio/ysaf009"
+  ],
+  "fulltext": {
+    "legends": 3,
+    "sections": 17,
+    "source": "europepmc:PMC12063526"
+  },
+  "journal": "",
+  "note": "PDF is bioRxiv preprint v1 (CC BY). Paper is a software tool; no wet-lab experiment, one workflow: CSV to OT-2 script generation",
+  "open_access": true,
+  "origin": [
+    "Amass BiomedCore search (2026-10-03)"
+  ],
+  "paper_licence": "cc by",
+  "pdf": {
+    "bytes": 947519,
+    "licence": "cc by (bioRxiv preprint v1, per bioRxiv API; published version also CC BY)",
+    "pages": 10,
+    "redistributable": "yes",
+    "sha256": "7f46b8137a899f79b3f54f796a54a79af6c888f41ce41aec64b6fa3d2ed9e993",
+    "status": "downloaded",
+    "tried": [
+      {
+        "http": 200,
+        "manual": true,
+        "ok": true,
+        "url": "https://www.biorxiv.org/content/10.1101/2025.01.20.633898v1.full.pdf"
+      },
+      {
+        "note": "OUP/PMC/EuropePMC 403; used bioRxiv preprint PDF (same work)",
+        "ok": true
+      }
+    ],
+    "url": "https://www.biorxiv.org/content/10.1101/2025.01.20.633898v1.full.pdf"
+  },
+  "pmcid": "PMC12063526",
+  "slug": "ot-mation",
+  "title": "OT-Mation: an open-source code for parsing CSV files into Python scripts for control of OT-2 liquid-handling robotics",
+  "year": "2025",
+  "experiments_hint": [
+    {
+      "id": "csv_to_ot2_script_combinatorial_assembly",
+      "title": "OT-Mation: four CSV files (experimental parameters, labware, stocks, pipettes) parsed into an OT-2 script assembling combinatorial/DoE sample arrays",
+      "liquid_handling": "mostly",
+      "evidence": "Results 3.2-3.3, Figs 1-2; no wet-lab validation experiment"
+    }
+  ]
+}

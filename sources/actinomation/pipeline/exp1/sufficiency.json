@@ -1,0 +1,77 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives enough to run both arms: reagents, DNA amount, cell volume, 30 min chill, 30 s at 42 °C, LB recovery, 37 °C at 250 rpm for 60 min, and the robot aspiration scheme and deck layout. The gaps are the NEB-deferred details, plating volume and dilutions, how competent ET12567 cells were made, and the Mantis dispensing. All of these are resolved from the NEB protocol or have defensible defaults. I could not open the Mach1 manual, so its details come from search snippets only. The text also has internal inconsistencies, listed in the gaps below.",
+  "gaps": [
+    {
+      "detail": "Details of the NEB heat shock protocol that the paper defers to (cell/DNA mixing, post-heat-shock ice step, outgrowth medium, plating)",
+      "why_needed": "The manual arm is 'carried out according to NEB [47]', and the paper itself only states chill 30 min, 42 °C for 30 s, then LB and 37 °C for 60 min at 250 rpm.",
+      "status": "resolved",
+      "resolution": "NEB protocol (C2987): flick 4-5 times to mix cells and DNA, do not vortex. Keep on ice 30 min without mixing. Heat shock at exactly 42 °C for exactly 30 s without mixing. Return to ice for 5 min. Add 950 µL room-temperature outgrowth medium. Shake at 37 °C for 60 min at 250 rpm. Warm the selection plates to 37 °C. Spread 50-100 µL of each dilution and incubate overnight at 37 °C. The paper uses 100 µL LB for the manual arm, not NEB's 950 µL SOC. Use the paper's values wherever it states them.",
+      "source": "https://www.neb.com/en/protocols/high-efficiency-transformation-protocol-c2987?pdf=true"
+    },
+    {
+      "detail": "Mach1 T1 cell handling and expected efficiency",
+      "why_needed": "The manual and robot arms both use One Shot Mach1 T1 cells, and the paper compares its results with the supplier's stated efficiency.",
+      "status": "resolved",
+      "resolution": "The 50 µL single-use vial is thawed on ice. The manual says to add 1-5 µL DNA (10 pg-100 ng) and mix gently. Supplier efficiency is >1×10^9 cfu/µg, which matches the paper's comparison value. S.O.C. is the recommended recovery medium, but the paper used LB.",
+      "source": "https://tools.thermofisher.com/content/sfs/manuals/oneshot_mach1_man.pdf (search snippet only; the PDF could not be fetched) and https://www.thermofisher.com/order/catalog/product/C862003"
+    },
+    {
+      "detail": "Robot liquid-handling parameters for the heat shock transfer",
+      "why_needed": "Cell loss and bubbles affect CFU counts.",
+      "status": "resolved",
+      "resolution": "Use the 8-channel P300 (gen 2). Aspirate 100 µL of LB from the deep-well plate, then 30 µL of air, then 45 µL of the cell-plasmid mix. The mix is 52 µL, and some is left behind to avoid bubbles. Dispense into the 950 µL LB in the 2 mL deep-well plate. Reduce pipetting speed to two-thirds of default. Layout: deep-well plate at slot 6; 4 °C temperature module with plasmid plate at slot 7; freezer-pre-chilled aluminium block with competent cells at slot 8 (wrapped in a bag against condensation); 42 °C heating module with PCR plate at slot 9; 300 µL tips at slot 11. Start the cold module before the heating module and keep the two modules apart; the paper's slot and module descriptions are slightly inconsistent.",
+      "source": "s3.1.1, s3.2.1, s2.5"
+    },
+    {
+      "detail": "Volumes of cells and plasmid",
+      "why_needed": "Sets the µg DNA used in the CFU/µg calculation.",
+      "status": "resolved",
+      "resolution": "50 µL competent cells plus 2 µL plasmid (50 ng in TE buffer). s3.2.1 swaps these numbers ('50 µL plasmid and 2 µL competent cells'), which is almost certainly a typo. Use the s2.2 values. Total volume is 52 µL, consistent with the 52 µL mix in s3.1.1.",
+      "source": "s2.2, s3.1.1"
+    },
+    {
+      "detail": "Plating volume, dilution series and replicate plate number used to compute CFU/µg",
+      "why_needed": "CFU/µg cannot be computed without them. The paper says only that 'a small volume is plated' and that cells are spread with a loop on 9 cm warm selection plates.",
+      "status": "assumable",
+      "resolution": "Plate a dilution series of the outgrowth, for example neat, 1:10 and 1:100. Spread 50-100 µL per 9 cm plate, as in the NEB protocol. Calculate CFU/µg = colonies × (total outgrowth volume / volume plated) × dilution factor / 0.05 µg. For the robot arm, total outgrowth is about 1 mL. Include a no-DNA negative control, as in Fig. 6.",
+      "source": "standard practice; NEB protocol https://www.neb.com/en/protocols/high-efficiency-transformation-protocol-c2987?pdf=true"
+    },
+    {
+      "detail": "Selection antibiotics and concentrations on the E. coli transformation plates",
+      "why_needed": "Colony counts depend on correct selection.",
+      "status": "assumable",
+      "resolution": "Mach1 plates: LB agar (2% agar) with 100 µg/mL apramycin, because both pSETGUS and pIJ12551 carry apramycin resistance. ET12567/pUZ8002 plates: add 25 µg/mL chloramphenicol and 50 µg/mL kanamycin, which are the resistance markers of the strain and pUZ8002, plus 100 µg/mL apramycin. s2.1 gives these concentrations but does not say which combination goes on the transformation plates. Nalidixic acid is not needed for the E. coli plates.",
+      "source": "s2.1; standard practice"
+    },
+    {
+      "detail": "Source and preparation of chemically competent ET12567/pUZ8002 cells, and the plasmid DNA preps",
+      "why_needed": "Competence of the ET12567 cells sets the efficiency measured on the robot. The paper does not say how the cells or the plasmid preps were made.",
+      "status": "assumable",
+      "resolution": "Prepare ET12567/pUZ8002 cells by a standard CaCl2 or Inoue method, grown with chloramphenicol and kanamycin, and aliquot 50 µL per well or tube. Use miniprepped pSETGUS and pIJ12551 at about 25 ng/µL in TE. Record the competence of each batch, because the absolute ET12567 efficiency depends on it. A fetch-based search for a cited prep method was not completed because the search limit was reached.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Mixing step and chill time on the robot",
+      "why_needed": "The paper says the robot 'mixes' cells and plasmid but gives no volume or cycle count.",
+      "status": "assumable",
+      "resolution": "Aspirate and dispense about 20-25 µL of the 52 µL total, 3 times, at reduced speed with no bubbles. Incubate at 4 °C for 30 min. Heat shock at 42 °C for 30 s on the heating module plate (the paper does not say whether the 5 min post-heat-shock ice step is also used on the robot). Then transfer into the room-temperature or warm LB.",
+      "source": "standard practice; NEB protocol"
+    },
+    {
+      "detail": "Mantis dispensing of plasmids onto a PCR plate (deferred, no details)",
+      "why_needed": "This is optional plasmid plate preparation.",
+      "status": "assumable",
+      "resolution": "Skip the Mantis. Hand-pipette 2 µL of 25 ng/µL plasmid per well into a fully skirted 96-well PCR plate on the 4 °C module. The Mantis is only a convenience for large numbers, and the outcome is unaffected.",
+      "source": "standard practice; s3.2.1"
+    },
+    {
+      "detail": "LB medium preparation and plate warming",
+      "why_needed": "The recovery and plating conditions must be the same in both arms.",
+      "status": "assumable",
+      "resolution": "The LB recipe is given in s2.1, but it is odd: 20 g/L LB broth plus 10 g/L yeast extract plus 5 g/L NaCl. Use the paper's recipe as written. Pre-warm the LB to 37 °C for the robot deep-well plate, with 950 µL per well. For the manual arm use 100 µL of room-temperature LB per tube. Use the paper's sealing film and shake at 250 rpm.",
+      "source": "s2.1, s2.2, s3.2.1"
+    }
+  ],
+  "retrieved_details": "NEB High Efficiency Transformation Protocol (https://www.neb.com/en/protocols/high-efficiency-transformation-protocol-c2987?pdf=true): add 1-5 µL DNA (1 pg-100 ng) to the cells and flick 4-5 times (do not vortex). Keep on ice 30 min (efficiency falls about 2-fold for every 10 min the step is shortened). Heat shock at exactly 42 °C for exactly 30 s. Put on ice for 5 min. Add 950 µL room-temperature outgrowth medium (SOC gives about 2-fold higher efficiency than LB). Shake at 37 °C for 60 min at 250 rpm (efficiency falls about 2-fold for every 15 min the step is shortened). Warm the plates to 37 °C. Spread 50-100 µL of each dilution and incubate overnight at 37 °C. Thermo Fisher One Shot Mach1 T1R (https://tools.thermofisher.com/content/sfs/manuals/oneshot_mach1_man.pdf and https://www.thermofisher.com/order/catalog/product/C862003; snippets only): 50 µL single-use vials, thaw on ice, add 1-5 µL DNA (10 pg-100 ng), efficiency >1×10^9 cfu/µg, S.O.C. is the optimal recovery medium. Paper-stated robot parameters: 8-channel P300 gen 2; aspirate 100 µL LB, 30 µL air, then 45 µL of the 52 µL mix; dispense into 950 µL warm LB in a 2 mL deep-well plate; pipetting speed reduced to two-thirds; 4 °C module and 42 °C module; Mach1 results in Fig. 6 averaged 1.12×10^6 CFU/µg for manual and 4.48×10^5 CFU/µg for robot. Robot run time was 2 h 6 min against 2 h 18 min by hand. Three independent experiments with three replicates each were run, plus a no-DNA negative control."
+}

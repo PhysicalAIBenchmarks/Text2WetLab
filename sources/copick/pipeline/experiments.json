@@ -1,0 +1,66 @@
+[
+  {
+    "title": "Raw colony picking benchmark (no screening) of E. coli and P. putida plates",
+    "goal": "Measure detection and picking accuracy, precision, sensitivity and raw performance of COPICK on 44 plates (7,446 colonies) without selection criteria.",
+    "section_refs": [
+      "s3.3",
+      "s2.4",
+      "s3.2"
+    ],
+    "shared_refs": [
+      "s3.1",
+      "s2.1",
+      "s2.3",
+      "s2.2"
+    ],
+    "unresolved_refs": [
+      "Details about metrics and data processing are explained in Supplementary Material",
+      "Supplementary Material for coordinate mapping details",
+      "Plate preparation for the 44 plates not described (media/dilutions)"
+    ],
+    "figure_refs": [
+      "Figure 7A"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "Color-based cherry-picking of blue vs white E. coli DH5α colonies on X-gal plates",
+    "goal": "Test whether COPICK can select and pick 64 colonies ordered by dissimilarity to a reference blue color into a single-well plate.",
+    "section_refs": [
+      "s3.3",
+      "s2.5",
+      "s2.4",
+      "s3.2"
+    ],
+    "shared_refs": [
+      "s3.1"
+    ],
+    "unresolved_refs": [
+      "Plate dilution factor described only as 'proper dilution factor'"
+    ],
+    "figure_refs": [
+      "Figure 7B"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "Fluorescence-based cherry-picking of GFP-positive P. putida colonies",
+    "goal": "Test whether COPICK can discriminate and pick the 30 most GFP-fluorescent colonies from a 50:50 mixture of P. putida TA245 (GFP-negative) and KT-GFP in descending brightness order.",
+    "section_refs": [
+      "s3.3",
+      "s2.5",
+      "s2.4",
+      "s3.2"
+    ],
+    "shared_refs": [
+      "s3.1"
+    ],
+    "unresolved_refs": [
+      "Plating 'at required dilution'"
+    ],
+    "figure_refs": [
+      "Figure 7C"
+    ],
+    "liquid_handling": "little"
+  }
+]

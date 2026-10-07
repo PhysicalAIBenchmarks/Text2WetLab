@@ -1,0 +1,83 @@
+Automated 96-well OT-2 conjugation of pSETGUS and pIJ12551 from E. coli ET12567/pUZ8002 into Streptomyces, with colony PCR false-positive screening
+
+Containers:
+- ecoli_pSETGUS_1: 50 mL tube — 10x concentrated ET12567/pUZ8002/pSETGUS donor culture, tube 1 (feeds rows A and C)
+- ecoli_pSETGUS_2: 50 mL tube — 10x concentrated ET12567/pUZ8002/pSETGUS donor culture, tube 2 (feeds rows E and G) [assumed]
+- ecoli_pIJ12551_1: 50 mL tube — 10x concentrated ET12567/pUZ8002/pIJ12551 donor culture, tube 1 (feeds rows B and D)
+- ecoli_pIJ12551_2: 50 mL tube — 10x concentrated ET12567/pUZ8002/pIJ12551 donor culture, tube 2 (feeds rows F and H) [assumed]
+- spores_M1152: 15 mL tube — S. coelicolor M1152 spore suspension in 2xYT
+- spores_M1146: 15 mL tube — S. coelicolor M1146 spore suspension in 2xYT
+- spores_J1074: 15 mL tube — S. albidoflavus J1074 spore suspension in 2xYT (called J1047 in abstract/results)
+- spores_DSM40230: 15 mL tube — S. venezuelae DSM40230 spore suspension in 2xYT
+- conj_plate: 96-deep-well plate (2 mL) — Deep-well conjugation plate (deck slot 3); rows A-H = 8 strain/plasmid combinations, columns 1-12 = replicates
+- water_reservoir: reservoir — Sterile water for colony lysis and PCR mix [assumed]
+- buffer_tube: 1.5 mL tube — 10x DreamTaq buffer [assumed]
+- dntp_tube: 1.5 mL tube — 2 mM dNTPs [assumed]
+- primerF_tube: 1.5 mL tube — 10 mM primer pRM4e-apmR-LF [assumed]
+- primerR_tube: 1.5 mL tube — 10 mM primer pRM4e-apmR-LR [assumed]
+- taq_tube: 1.5 mL tube — DreamTaq DNA polymerase [assumed]
+- pcr_mastermix: 1.5 mL tube — Colony PCR master mix for 110 reactions (9 µL per reaction without template) [assumed]
+- lysate_plate: 96-well plate — 96-well PCR plate for boiled colony suspensions in 50 µL water
+- pcr_plate: 96-well plate — 96-well PCR plate for 10 µL colony PCR reactions
+
+Starting contents:
+- ecoli_pSETGUS_1: 5000 µL ET12567/pUZ8002/pSETGUS, washed twice in LB and concentrated 10x (~10% of initial volume) [assumed]
+- ecoli_pSETGUS_2: 5000 µL ET12567/pUZ8002/pSETGUS, washed twice in LB and concentrated 10x [assumed]
+- ecoli_pIJ12551_1: 5000 µL ET12567/pUZ8002/pIJ12551, washed twice in LB and concentrated 10x [assumed]
+- ecoli_pIJ12551_2: 5000 µL ET12567/pUZ8002/pIJ12551, washed twice in LB and concentrated 10x [assumed]
+- spores_M1152: 5000 µL S. coelicolor M1152 spores in 2xYT (~6.7x10^8 spores/mL, ~10^8 per 150 µL) [assumed]
+- spores_M1146: 5000 µL S. coelicolor M1146 spores in 2xYT (~6.7x10^8 spores/mL) [assumed]
+- spores_J1074: 5000 µL S. albidoflavus J1074 spores in 2xYT (~6.7x10^8 spores/mL) [assumed]
+- spores_DSM40230: 5000 µL S. venezuelae DSM40230 spores in 2xYT (~6.7x10^8 spores/mL) [assumed]
+- water_reservoir: stock sterile water [assumed]
+- buffer_tube: stock 10x DreamTaq buffer
+- dntp_tube: stock 2 mM dNTPs
+- primerF_tube: stock 10 mM primer pRM4e-apmR-LF (5'-AGCAGCCACTGGTAAC-3')
+- primerR_tube: stock 10 mM primer pRM4e-apmR-LR (5'-ATGCAGCGTCGTGTT-3')
+- taq_tube: stock DreamTaq DNA polymerase
+
+Steps:
+1. MANUAL: Day 1: for each plasmid (pSETGUS, pIJ12551) inoculate two independent 5 mL LB cultures (chloramphenicol 25 µg/mL, kanamycin 50 µg/mL, apramycin 100 µg/mL), each with three colonies of E. coli ET12567/pUZ8002 carrying the plasmid from the transformation plate. Incubate ~3 h at 37 °C, 250 rpm. Note: Two cultures per plasmid are assumed so that 48 wells per plasmid can be filled. [assumed]
+2. MANUAL: Add each 5 mL culture plus ~15 mL LB with the same antibiotics to a 50 mL Falcon tube (lid loosely tightened). Incubate ~18 h at 37 °C, 250 rpm to stationary phase (no OD target).
+3. MANUAL: Day 2: pellet the E. coli (~4000 x g, 5-10 min, room temperature), wash twice with an equal volume of LB, and resuspend in 10% of the initial volume (10x concentrated) in the 50 mL tubes ecoli_pSETGUS_1/2 and ecoli_pIJ12551_1/2. Note: Spin conditions are assumed (standard practice). [assumed]
+4. MANUAL: Harvest spores of S. coelicolor M1152, S. coelicolor M1146, S. albidoflavus J1074 and S. venezuelae DSM40230 (grown on SFM at 30 °C until sporulated) into four 15 mL Falcon tubes using ~5 mL liquid. Adjust each to ~6.7x10^8 spores/mL in 2xYT so that 150 µL holds ~10^8 spores. Keep an aliquot for CFU estimation by serial dilution. Note: Spore counting and adjustment are assumed (Kieser 2000 standard practice; not fetched). [assumed]
+5. MANUAL: Load the OT-2: empty 96-well deep-well plate conj_plate on slot 3; 50 mL tube rack with the E. coli tubes on slot 6; 15 mL tube rack with spore tubes on slot 9; 1000 µL tip box on slot 7; 300 µL tip box on slot 11. Use a single-channel 1000 µL pipette (E. coli) and a single-channel 300 µL pipette (spores). Start the protocol from the Opentrons GUI. Note: Layout: rows A-H = M1152+pSETGUS, M1152+pIJ12551, M1146+pSETGUS, M1146+pIJ12551, J1074+pSETGUS, J1074+pIJ12551, DSM40230+pSETGUS, DSM40230+pIJ12551; 12 replicates each (columns 1-12).
+6. Transfer 150 µL of E. coli ET12567/pUZ8002/pSETGUS (10x) from ecoli_pSETGUS_1 to conj_plate wells A1:A12, C1:C12 (each well). Note: Repeat-dispense with extra volume aspirated and no blow-out; one 1000 µL tip reused, up to 6 wells per aspiration. [assumed]
+7. Transfer 150 µL of E. coli ET12567/pUZ8002/pSETGUS (10x) from ecoli_pSETGUS_2 to conj_plate wells E1:E12, G1:G12 (each well). Note: Second tube of the same pSETGUS donor. [assumed]
+8. Transfer 150 µL of E. coli ET12567/pUZ8002/pIJ12551 (10x) from ecoli_pIJ12551_1 to conj_plate wells B1:B12, D1:D12 (each well). Note: Fresh 1000 µL tip for the second plasmid to avoid cross-contamination. [assumed]
+9. Transfer 150 µL of E. coli ET12567/pUZ8002/pIJ12551 (10x) from ecoli_pIJ12551_2 to conj_plate wells F1:F12, H1:H12 (each well). Note: Second tube of the same pIJ12551 donor. [assumed]
+10. Transfer 150 µL of S. coelicolor M1152 spores (~10^8) in 2xYT from spores_M1152 to conj_plate wells A1:B12 (each well). Note: New 300 µL tip per spore tube; no extra mixing described. [assumed]
+11. Transfer 150 µL of S. coelicolor M1146 spores (~10^8) in 2xYT from spores_M1146 to conj_plate wells C1:D12 (each well). [assumed]
+12. Transfer 150 µL of S. albidoflavus J1074 spores (~10^8) in 2xYT from spores_J1074 to conj_plate wells E1:F12 (each well). [assumed]
+13. Transfer 150 µL of S. venezuelae DSM40230 spores (~10^8) in 2xYT from spores_DSM40230 to conj_plate wells G1:H12 (each well). [assumed]
+14. MANUAL: Streak the full 300 µL content of each conj_plate well onto its own 9 cm SFM agar plate containing 10 mM MgCl2 (96 plates). Incubate at 30 °C for 16-20 h. Note: Spreading is done manually.
+15. MANUAL: Overlay each plate with 1 mL sterile water containing 0.5 mg nalidixic acid and the plasmid-specific selection antibiotic (apramycin, ~1 mg per plate). Dry in a sterile flow hood and incubate at 30 °C until exconjugant colonies appear (~3-5 days). Note: Apramycin amount and incubation time are assumed. [assumed]
+16. MANUAL: Count exconjugant colonies on each plate. In parallel, estimate Streptomyces CFU per conjugation by 10-fold serial dilution of the spore suspension, plating on SFM without antibiotic and counting after 2-4 days at 30 °C. Efficiency = exconjugant CFU / estimated Streptomyces CFU. Pick exconjugants with sterile toothpicks onto SFM containing nalidixic acid and apramycin and incubate at 30 °C. Note: Dilution and plating details are assumed. [assumed]
+17. Transfer 50 µL of sterile water from water_reservoir to lysate_plate wells A1:H12 (each well).
+18. MANUAL: Suspend material from one picked exconjugant colony per well in lysate_plate, matching the conj_plate layout (rows A-H = the 8 combinations, 12 colonies each). Seal and incubate 20 min at 95 °C in a thermocycler. Note: 12 PCRs per combination per the paper; one colony per replicate position is assumed. [assumed]
+19. Transfer 770 µL of H2O from water_reservoir to pcr_mastermix. Note: Master mix for 110 reactions (96 plus ~15% overage): 7 µL water per reaction. [assumed]
+20. Transfer 110 µL of 10x DreamTaq buffer from buffer_tube to pcr_mastermix. Note: 1 µL x 110. [assumed]
+21. Transfer 110 µL of 2 mM dNTPs from dntp_tube to pcr_mastermix. Note: 1 µL x 110. [assumed]
+22. Transfer 55 µL of primer pRM4e-apmR-LF 10 mM from primerF_tube to pcr_mastermix. Note: 0.5 µL x 110. [assumed]
+23. Transfer 55 µL of primer pRM4e-apmR-LR 10 mM from primerR_tube to pcr_mastermix. Note: 0.5 µL x 110. [assumed]
+24. Transfer 2.75 µL of DreamTaq DNA polymerase from taq_tube to pcr_mastermix. Note: 0.025 µL x 110. [assumed]
+25. Mix pcr_mastermix by pipetting 500 µL up and down 5 times. Note: Mix cycles and volume are assumed. [assumed]
+26. Transfer 9 µL of colony PCR master mix from pcr_mastermix to pcr_plate wells A1:H12 (each well). Note: 9 µL master mix plus 1 µL template makes 10 µL. [assumed]
+27. Transfer 1 µL of boiled colony material from lysate_plate wells A1:H12 to pcr_plate wells A1:H12 (each well). Note: Paired well to well.
+28. MANUAL: Seal pcr_plate and run thermal cycling: 95 °C 3 min; 29 cycles of 95 °C 30 s, 50 °C 30 s, 72 °C 30 s; final extension 72 °C 5 min. Then run the products on an agarose gel (1-1.5%) and score presence or absence of the apramycin-resistance amplicon per colony. False-positive rate = negative PCRs / total PCRs (12 per combination) x 100. Note: Gel conditions are assumed; the paper only reports bands present or absent. [assumed]
+
+Assumptions:
+- Strain naming: the methods give S. albidoflavus J1074 and the abstract/results give J1047. J1074 is used as the standard strain; J1047 is probably a typo.
+- Layout of the 96 conjugations (Table S3 not available): one deep-well plate, rows A-H = M1152+pSETGUS, M1152+pIJ12551, M1146+pSETGUS, M1146+pIJ12551, J1074+pSETGUS, J1074+pIJ12551, DSM40230+pSETGUS, DSM40230+pIJ12551; 12 replicates in columns 1-12. Each well receives 150 µL E. coli plus 150 µL spores (300 µL, within the 2000 µL well capacity).
+- Two 50 mL donor tubes per plasmid (four in total) are assumed so that 48 wells per plasmid (7.2 mL) can be filled. The paper states one concentrated culture serves ~31 conjugations. 5 mL concentrated culture per tube and 5 mL spore suspension per strain (needs 3.6 mL) are assumed, giving dead volume for repeat-dispensing.
+- Spore preparation (growth time, harvest, counting) is not described. It is assumed to follow Kieser 2000 (not fetched): confluent SFM lawn at 30 °C until sporulated, harvest in ~5 mL, count and adjust to ~6.7x10^8 spores/mL in 2xYT (~10^8 per 150 µL).
+- 2xYT is assumed to be 16 g/L tryptone, 10 g/L yeast extract and 5 g/L NaCl, autoclaved (only tryptone is stated).
+- SFM composition: the paper omits the mannitol amount and agar %, and lists malt extract and glucose. 20 g/L soya flour, 20 g/L D-mannitol and 2% agar are assumed, plus 10 mM MgCl2 for conjugation plates (standard Kieser 2000 MS/SFM).
+- E. coli centrifugation (~4000 x g, 5-10 min, room temperature) is assumed. The wash with an equal volume of LB twice and resuspension in 10% of the initial volume are from the paper (s3.2.1).
+- The donor E. coli ET12567/pUZ8002 transformants (heat-shock transformation, s2.2/s3.2.1) are assumed to have been prepared beforehand, so the heat-shock robot run is not repeated here.
+- Liquid handling (OT-2 defaults): P1000 single-channel for E. coli with extra volume aspirated, repeat-dispensing 150 µL into up to 6 wells without blow-out, tips reused across E. coli transfers of the same plasmid; P300 single-channel with a fresh tip per Streptomyces tube. Mixing of the combined E. coli and spores is not described, so none is programmed. Deck layout follows s2.5/s3.2.1: conj_plate slot 3, E. coli tubes slot 6, spore tubes slot 9, 1000 µL tips slot 7, 300 µL tips slot 11.
+- Streaking of the full 300 µL well content onto 9 cm SFM + 10 mM MgCl2 plates, overlay, drying and incubation are manual, as in the paper. Apramycin amount in the overlay (~1 mg/plate), incubation time after overlay (3-5 days) and picking onto SFM with nalidixic acid (~25 µg/mL) and apramycin (50-100 µg/mL) are assumed standard practice.
+- Serial-dilution CFU estimation is not described in the paper. 10-fold dilutions plated on antibiotic-free SFM, counted after 2-4 days at 30 °C, are assumed.
+- Colony PCR: 12 PCRs per combination (stated) are assumed to be one colony per replicate position of the 96-well layout. The results text also says three colonies per experiment, which conflicts and is not resolved here. Master mix for 110 reactions (~15% overage) is assumed; per-reaction volumes are from s2.4 (1 µL buffer, 1 µL dNTPs, 0.5 µL of each primer, 0.025 µL polymerase, 7 µL water, 1 µL boiled colony). Master mix is dispensed at 9 µL per well before 1 µL template is added. Gel electrophoresis conditions are assumed.
+- Sources: no external sources could be fetched (Gren et al. 2021 and Kieser 2000 unavailable); all details come from the paper text, with gaps filled by standard practice.
+- The 96-well plate in s3.3.2 is read as one full plate (8 combinations x 12 replicates).

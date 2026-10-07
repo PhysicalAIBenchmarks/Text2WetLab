@@ -57,14 +57,14 @@ publisher URL / article id / title without one (looked up in Europe PMC).
 | Flag | Effect |
 |---|---|
 | `--source europepmc\|plos\|biorxiv` | fetch full text from one source only |
-| `--xml file.xml` | use a local JATS XML file (e.g. a paywalled paper downloaded by hand) |
+| *a file path* | give a `.xml` (JATS), `.pdf`, `.md` or `.txt` file instead of a DOI; add `--doi` / `--slug` (see `paper2protocol/README.md`) |
 | `--refetch` | ignore saved `paper.json` and `experiments.json` and regenerate them |
 | `--no-web` | resolve from the model's own knowledge, without web tools |
 | `--skip-assess` | skip resolve entirely (convert only) |
 | `--force` | convert even when resolve rejects; a warning banner is added to `protocol.txt` |
 | `--no-critic` | skip the critic |
 | `--cache use\|refresh\|off\|only` | LLM response cache mode (see [Cache](#llm-calls-and-the-cache)) |
-| `--out DIR` | output root (default `out/`) |
+| `--out DIR` | output root (default `sources/`); each paper goes to `<DIR>/<slug>/pipeline/` |
 
 ## Stage by stage
 
@@ -85,9 +85,9 @@ the DOI, in order, and returns JATS XML from the first that succeeds:
 3. **bioRxiv**: `10.1101/` and `10.64898/` DOIs, using the latest version's JATS from the
    bioRxiv API.
 
-If none work, the error says so and suggests `--xml`. Paywalled journal articles that
+If none work, the error says so and suggests passing the file you downloaded. Paywalled journal articles that
 aren't in PMC fail here; a bioRxiv preprint of the same paper is often a workable substitute
-(see `out/10.1101_2025.08.21.671538/` for an example).
+(see `sources/botany/pipeline/` for an example).
 
 **Parsing.** `ingest.parse_jats` produces a `Paper`:
 
@@ -98,7 +98,7 @@ aren't in PMC fail here; a bioRxiv preprint of the same paper is often a workabl
   first so captions don't pollute section text.
 - `references`: citation text plus DOI where JATS provides one.
 
-Saved as `out/<doi>/paper.json` and reused on later runs unless `--refetch` or `--xml`.
+Saved as `sources/<slug>/pipeline/paper.json` and reused on later runs unless `--refetch`.
 
 ### 2. identify: `Paper` → experiments
 
@@ -266,8 +266,8 @@ Methods), so `guard.py` keeps the model away from them in three layers:
    Flags are printed as `!! LEAK FLAG`, stored in `web_access.json`, and an *opened* flagged
    URL adds a warning to `protocol.txt`.
 
-Author scripts kept for scoring live under `ref/` and are never on the pipeline's input
-path. Each `ref/*/README.md` records provenance, licence and which script corresponds to
+Author scripts kept for scoring live under `sources/<slug>/code/` and are never on the pipeline's input
+path. Each `sources/*/code/README.md` records provenance, licence and which script corresponds to
 which experiment. Score against them after a run, and don't use them to tune prompts.
 
 ## LLM calls and the cache
@@ -302,7 +302,7 @@ inspected later.
 ## Output layout
 
 ```
-out/<doi with / → _>/
+sources/<slug>/pipeline/
 ├── paper.json           parsed paper (ingest)
 ├── experiments.json     experiment list (identify); fixes the -e numbering
 └── exp<N>/
@@ -317,7 +317,7 @@ out/<doi with / → _>/
 ## Known limitations
 
 - **Full-text access.** Only Europe PMC, PLOS and bioRxiv are wired in. Paywalled articles
-  need a preprint or a hand-downloaded JATS file (`--xml`). PDFs aren't supported.
+  need a preprint or a hand-downloaded JATS file (pass the file). PDFs are read from their text layer only, with coarse heading-based sections; scanned PDFs are rejected.
 - **Non-determinism.** identify and resolve can give different answers on reruns. The saved
   `experiments.json` keeps numbering stable, but a resolve rerun with `--cache refresh` may
   change the verdict.

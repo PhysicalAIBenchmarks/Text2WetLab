@@ -1,0 +1,159 @@
+{
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 2411
+ },
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "end_state:colony_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:pcr_plate",
+   "pass": false,
+   "detail": "expected {'A1': 20.0, 'A2': 20.0, 'A3': 20.0, 'A4': 20.0, 'A5': 20.0, 'A6': 20.0, 'A7': 20.0, 'A8': 20.0, 'A9': 20.0, 'A10': 20.0, 'A11': 20.0, 'A12': 20.0, 'B1': 20.0, 'B2': 20.0, 'B3': 20.0, 'B4': 20.0, 'B5': 20.0, 'B6': 20.0, 'B7': 20.0, 'B8': 20.0, 'B9': 20.0, 'B10': 20.0, 'B11': 20.0, 'B12': 20.0, 'C1': 20.0, 'C2': 20.0, 'C3': 20.0, 'C4': 20.0, 'C5': 20.0, 'C6': 20.0, 'C7': 20.0, 'C8': 20.0, 'C9': 20.0, 'C10': 20.0, 'C11': 20.0, 'C12': 20.0, 'D1': 20.0, 'D2': 20.0, 'D3': 20.0, 'D4': 20.0, 'D5': 20.0, 'D6': 20.0, 'D7': 20.0, 'D8': 20.0, 'D9': 20.0, 'D10': 20.0, 'D11': 20.0, 'D12': 20.0, 'E1': 20.0, 'E2': 20.0, 'E3': 20.0, 'E4': 20.0, 'E5': 20.0, 'E6': 20.0, 'E7': 20.0, 'E8': 20.0, 'E9': 20.0, 'E10': 20.0, 'E11': 20.0, 'E12': 20.0, 'F1': 20.0, 'F2': 20.0, 'F3': 20.0, 'F4': 20.0, 'F5': 20.0, 'F6': 20.0, 'F7': 20.0, 'F8': 20.0, 'F9': 20.0, 'F10': 20.0, 'F11': 20.0, 'F12': 20.0, 'G1': 20.0, 'G2': 20.0, 'G3': 20.0, 'G4': 20.0, 'G5': 20.0, 'G6': 20.0, 'G7': 20.0, 'G8': 20.0, 'G9': 20.0, 'G10': 20.0, 'G11': 20.0, 'G12': 20.0, 'H1': 20.0, 'H2': 20.0, 'H3': 20.0, 'H4': 20.0, 'H5': 20.0, 'H6': 20.0, 'H7': 20.0, 'H8': 20.0, 'H9': 20.0, 'H10': 20.0, 'H11': 20.0, 'H12': 20.0}, got {'A1': 10.0, 'B1': 10.0, 'C1': 10.0, 'D1': 10.0, 'E1': 10.0, 'F1': 10.0, 'G1': 10.0, 'H1': 10.0, 'A2': 10.0, 'B2': 10.0, 'C2': 10.0, 'D2': 10.0, 'E2': 10.0, 'F2': 10.0, 'G2': 10.0, 'H2': 10.0, 'A3': 10.0, 'B3': 10.0, 'C3': 10.0, 'D3': 10.0, 'E3': 10.0, 'F3': 10.0, 'G3': 10.0, 'H3': 10.0, 'A4': 10.0, 'B4': 10.0, 'C4': 10.0, 'D4': 10.0, 'E4': 10.0, 'F4': 10.0, 'G4': 10.0, 'H4': 10.0, 'A5': 10.0, 'B5': 10.0, 'C5': 10.0, 'D5': 10.0, 'E5': 10.0, 'F5': 10.0, 'G5': 10.0, 'H5': 10.0, 'A6': 10.0, 'B6': 10.0, 'C6': 10.0, 'D6': 10.0, 'E6': 10.0, 'F6': 10.0, 'G6': 10.0, 'H6': 10.0, 'A7': 10.0, 'B7': 10.0, 'C7': 10.0, 'D7': 10.0, 'E7': 10.0, 'F7': 10.0, 'G7': 10.0, 'H7': 10.0, 'A8': 10.0, 'B8': 10.0, 'C8': 10.0, 'D8': 10.0, 'E8': 10.0, 'F8': 10.0, 'G8': 10.0, 'H8': 10.0, 'A9': 10.0, 'B9': 10.0, 'C9': 10.0, 'D9': 10.0, 'E9': 10.0, 'F9': 10.0, 'G9': 10.0, 'H9': 10.0, 'A10': 10.0, 'B10': 10.0, 'C10': 10.0, 'D10': 10.0, 'E10': 10.0, 'F10': 10.0, 'G10': 10.0, 'H10': 10.0, 'A11': 10.0, 'B11': 10.0, 'C11': 10.0, 'D11': 10.0, 'E11': 10.0, 'F11': 10.0, 'G11': 10.0, 'H11': 10.0, 'A12': 10.0, 'B12': 10.0, 'C12': 10.0, 'D12': 10.0, 'E12': 10.0, 'F12': 10.0, 'G12': 10.0, 'H12': 10.0}"
+  },
+  {
+   "name": "end_state:primer_plate",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "apiLevel 2.15, all transfers are 1\u20135 \u00b5L on the P20, the 10 \u00b5L reaction fits the flat plate wells, and the simulator and measured checks passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 1,
+    "evidence": "One tip is reused for master mix into empty wells, which is allowed. A fresh tip is used for each primer pair and each colony, and every tip is dropped (tip_dropped_at_end and no_cross_contamination passed).",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "fidelity_to_paper",
+    "score": 1,
+    "evidence": "Follows the paper's OT-2 workflow: 10 \u00b5L reaction, 9 \u00b5L mix (5 \u00b5L Q5 2x + 4 \u00b5L primer) first, then 1 \u00b5L colony. Q5 thermocycling is adapted and explained in comments. The 4 \u00b5L primer volume and 1.25 \u00b5M concentration are stated as assumptions, which the task allows.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "reaction_setup",
+    "score": 1,
+    "evidence": "5 \u00b5L Q5 2x (1x in 10 \u00b5L), 4 \u00b5L of the matching primer pair, then 1 \u00b5L colony template added last, giving 10 \u00b5L per well.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "sample_mapping",
+    "score": 1,
+    "evidence": "zip(primers, dests) and zip(colonies, dests) over wells() of identical plates map A1\u2192A1 through H12\u2192H12 once each for all 96 wells.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "thermocycling",
+    "score": 1,
+    "evidence": "Comments record sealing the plate and the program: 98 \u00b0C 3 min, 30 cycles of 98/60/72 \u00b0C, 72 \u00b0C 2 min final extension, 4 \u00b0C hold.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 1.0,
+   "fidelity_to_paper": 1.0,
+   "reaction_setup": 1.0,
+   "sample_mapping": 1.0,
+   "thermocycling": 1.0
+  },
+  "summary": "The protocol sets up 96 reactions of 10 \u00b5L each (5 \u00b5L Q5 2x, 4 \u00b5L primer pair, 1 \u00b5L colony) in the right order with correct well-to-well mapping and correct tip handling. It records sealing and a Q5-appropriate thermocycling program. The failed end_state:pcr_plate check reflects a 10 \u00b5L reaction against the reference's 20 \u00b5L, and the task allows both.",
+  "level": "hard",
+  "score": 1.0,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_paper": 0.25,
+   "reaction_setup": 0.0833,
+   "sample_mapping": 0.0833,
+   "thermocycling": 0.0833
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [],
+ "rewards": {
+  "reward": 1.0,
+  "sim_pass": 1.0,
+  "checks_frac": 0.8889,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 0.3333,
+  "judge_score": 1.0,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_paper": 1.0,
+  "rubric_reaction_setup": 1.0,
+  "rubric_sample_mapping": 1.0,
+  "rubric_thermocycling": 1.0
+ }
+}

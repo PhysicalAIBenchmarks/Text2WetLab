@@ -1,0 +1,48 @@
+{
+  "verdict": "minor_issues",
+  "summary": "The two runs are internally consistent. Well layouts are non-overlapping and cover every f10 × AIBN combination: 20 wells for the 30 min set and 45 for the extended set. Each well's volumes sum to 400 µL. The AIBN stock concentrations give the stated wt% levels, and the total monomer concentration is 2 M. No contradictions with the paper's numbers were found, and the automated check found nothing. The remaining issues are fidelity and robustness: the reactor stand-in and sealing, time-control accuracy for the 30 min set, the unsealed time with 45 wells, NMR sensitivity, and the missing 2 h repeat set needed for the 40-point comparison in Fig. 4a.",
+  "issues": [
+    {
+      "step": 50,
+      "severity": "minor",
+      "issue": "The reactor is represented as a 96-deep-well plate with an assumed 'compressive sealing lid'. The paper reports that 96-well plates sealed with aluminium tape lost monomer to evaporation or sealant absorption. Its no-evaporation result depends on the dedicated 48-well reactor with strong compressive sealing of every vial. The plate stand-in is also used in the manual sealing steps (18, 50).",
+      "suggestion": "State clearly that the real experiment uses the 48-well HTP reactor with its compressive seal (the 45-well run fits). The 96-deep-well plate should be only a simulation placeholder. Do not present a 96-well plate sealed with a lid as equivalent."
+    },
+    {
+      "step": 19,
+      "severity": "minor",
+      "issue": "For the 30 min control, a ~10 min cooling period before unsealing, plus the time to sample 20 wells sequentially, is large relative to 30 min. No quench is used, so conversion keeps increasing at different rates in each well. This could blur the 30 min vs 2 h comparison the experiment is meant to test. Heater warm-up of the block is also undefined.",
+      "suggestion": "Define the time zero and stop points explicitly (e.g. reactor at 75 °C, then immediate cooling on a cold block). Mark the cooling time and sampling order as assumptions. Consider adding a radical inhibitor (e.g. BHT) to the CDCl3, flagged as an assumption not in the paper."
+    },
+    {
+      "step": 47,
+      "severity": "minor",
+      "issue": "All 45 wells are filled with toluene, AIBN and monomers, then mixed and t0-sampled, before the reactor is sealed. The paper limited the number of wells to 20 specifically to cut unsealed time during dispensing, and noted that monomer evaporation can distort kinetics. Early wells in the 45-well run sit open for a long time, so toluene and monomer losses are possible.",
+      "suggestion": "Note the unsealed-time risk for the 45-well run. Add dispensing monomers last for each well and minimise the interval to sealing. Rely on the t0 NMR measurement of the actual f10, as the paper did, rather than the nominal values."
+    },
+    {
+      "step": 17,
+      "severity": "minor",
+      "issue": "A 20 µL aliquot diluted into 580 µL CDCl3 gives only ~67 mM total monomer at t0. At high conversion (≥0.9, f10 = 0.1) the residual minor-monomer vinyl signal falls to sub-mM levels, which risks poor S/N and large errors in X and f1. The paper does not give aliquot or dilution details, and no internal reference for conversion is defined.",
+      "suggestion": "Consider a larger aliquot, or a smaller CDCl3 volume, so the residual vinyl signals stay quantifiable. Mark both as assumptions, and note how conversion is referenced (e.g. toluene or a polymer signal)."
+    },
+    {
+      "step": 0,
+      "severity": "minor",
+      "issue": "The experiment includes the dataset-size comparison in Fig. 4a (20, 40 and 56 points). The protocol does not run the 2 h repeat of the 20-point set that gives the 40-point dataset, and it excludes pooling. The paper's 56 and 79 totals are inconsistent, but nothing in the protocol gives the data needed to rebuild the 40-point dataset.",
+      "suggestion": "Add a note or optional run for the 2 h repeat of the Table 1 design on a different day. State which runs combine into the 40-point set. Mark the 56/79 total as unresolved."
+    },
+    {
+      "step": 0,
+      "severity": "minor",
+      "issue": "The paper randomises well positions by script for each run, and shows that re-randomised repeats give no bias. The protocol uses a single fixed pseudo-random layout per run, which gives up the paper's randomisation and its position-bias control. The container descriptions also say 'A1:C4 region' for the 20-well set, but the protocol uses A1:B8 plus C1:C4, which does not match a rectangle.",
+      "suggestion": "Generate the layout from the csv with the script's randomisation, as in the paper. Correct the container description to 'A1:B8 and C1:C4'."
+    },
+    {
+      "step": 2,
+      "severity": "minor",
+      "issue": "The highest AIBN stock (108 mg/mL in toluene) may be at or near its solubility limit. 20 µL of volatile toluene stock also gives inaccurate pipetting if the solution is not clear or the tip drips.",
+      "suggestion": "Confirm the stock is fully dissolved, or lower the concentration and raise the dispense volume (reducing toluene to keep 400 µL). Use a pre-wet or slow-dispense setting for volatile solvent."
+    }
+  ]
+}

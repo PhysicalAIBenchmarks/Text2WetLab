@@ -1,0 +1,86 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/dna-bot/BASIC-DNA-ASSEMBLY__DNA-BOT",
+   "commit": "ae9aebbd5833752cad981ecf99a52a6c6e7202e2",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 15,
+   "py_files": 19,
+   "redistributable": "yes",
+   "repo": "BASIC-DNA-ASSEMBLY/DNA-BOT",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 26443,
+   "status": "cloned",
+   "url": "https://github.com/BASIC-DNA-ASSEMBLY/DNA-BOT"
+  }
+ ],
+ "doi_primary": "10.1093/synbio/ysaa010",
+ "dois": [
+  "10.1093/synbio/ysaa010"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "pipeline experiments.json s2.3",
+   "id": "exp1",
+   "liquid_handling": "mostly",
+   "title": "DNA-BOT automated BASIC assembly and transformation of 88 three-gene operon constructs, with plate spotting"
+  },
+  {
+   "evidence": "pipeline experiments.json s2.4",
+   "id": "exp2",
+   "liquid_handling": "partly",
+   "title": "Flow cytometry of sfGFP, mCherry and BFP expression from picked DNA-BOT colonies"
+  }
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 10,
+  "source": "europepmc:PMC7476404"
+ },
+ "journal": "",
+ "note": "cites paper Paper links branch oup_synbio (/tree/oup_synbio and /sequences); cache checked out at pinned commit ae9aebb (2024-01-19, master). Vendored copy: references/dna-bot-ysaa010.",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 562844,
+  "licence": "cc by",
+  "pages": 7,
+  "redistributable": "yes",
+  "sha256": "e23ff0b43be9dbbd2a138355aeafe14adfe12bb28b1f61db10939ccb04a16008",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://academic.oup.com/synbio/article-pdf/5/1/ysaa010/33722340/ysaa010.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7476404?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7476404.1/PMC7476404.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7476404.1/PMC7476404.1.pdf"
+ },
+ "pmcid": "PMC7476404",
+ "slug": "dna-bot",
+ "title": "DNA-BOT: a low-cost, automated DNA assembly platform for synthetic biology",
+ "year": "2020"
+}

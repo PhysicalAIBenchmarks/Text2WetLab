@@ -1,0 +1,84 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the key reagents, concentrations, volumes, plate types, temperature and plate-reader settings. The remaining gaps are operating parameters (draw and dispense speeds, tip height, system fluid, wash steps, fluorescein stock diluent) with defensible defaults, and none of them changes what the assay measures. I could not retrieve the full text of the cited prior method (ref 41, PMC8143861) because of a CAPTCHA and a tool-use limit. Only a search snippet of its fluorescein section was available, so this prior method is not fully resolved.",
+  "gaps": [
+    {
+      "detail": "Diluent and pH for the sodium borate buffer (prefill) and for the fluorescein stocks and calibration standards",
+      "why_needed": "Fluorescein fluorescence is strongly pH dependent, so the standards, prefilled wells and dispensed stocks must all be in the same alkaline medium. The paper gives only 50 mM sodium borate and does not state the pH or what the 0.2-20 mM stocks were made in.",
+      "status": "resolved",
+      "resolution": "The authors' earlier OT-1 method (ref 41) used a 50 mM sodium borate buffer at pH 9.3 and made fluorescein standards by diluting 10 mM stocks into it. Use 50 mM sodium borate pH 9.3 (about 9.3) for the prefill and the 3-7 µM standards. Make the 0.2-20 mM fluorescein stocks in the same borate buffer, or in water if the stock must be concentrated. This detail is from a search-result snippet of the SLAS Technology page, not a full-text read.",
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8143861/ (search snippet of https://www.slas-technology.org/article/S2472-6303(22)01108-6/fulltext)"
+    },
+    {
+      "detail": "Syringe aspirate and dispense speeds, air gaps, and tip Z-height or contact with liquid during nanoliter dispensing",
+      "why_needed": "These settings affect whether 5-500 nL drops are delivered into the buffer and not left on the needle tip. The paper gives no values.",
+      "status": "assumable",
+      "resolution": "Dispense with the needle tip submerged just below the surface of the 20 µL buffer, or touching it. Use slow draw and dispense speeds, with a short dwell before retracting the needle. Record the values used. The full ref 41 text could not be retrieved to confirm them.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "System (backing) liquid in the syringe and 40 cm × 100 µm i.d. sampling needle (about 3 µL volume), priming and bubble removal",
+      "why_needed": "A compressible air bubble or the wrong carrier liquid would distort nanoliter volumes. The paper does not state the fill liquid.",
+      "status": "assumable",
+      "resolution": "Fill the syringe and needle bubble-free with water or the borate buffer. Prime and check for bubbles before each batch.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Volume of fluorescein stock aspirated, and the source well or plate for the stocks",
+      "why_needed": "The robot must draw the stock before dispensing. The paper gives only the dispensed volume and concentration pairs (500 nL of 0.2 mM, 100 nL of 1 mM, 50 nL of 2 mM, 20 nL of 5 mM, 10 nL of 10 mM, 5 nL of 20 mM).",
+      "status": "assumable",
+      "resolution": "Place each stock in a well in the plate or on the temperature deck. Aspirate the target volume plus a small excess, or just the target volume, from a freshly mixed stock. Use a clean or flushed needle between concentrations.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Needle wash or rinse between dispenses and between concentrations",
+      "why_needed": "Carryover from the high-concentration stocks (up to 20 mM) would bias the lower-volume dispenses. The paper gives no wash scheme.",
+      "status": "assumable",
+      "resolution": "Flush the needle with buffer or water between concentration sets, with a solvent flush of about 25 µL like the autosampling flush in s2.5. Process the lowest-concentration stock first if that is practical.",
+      "source": "standard practice (flush volume analogous to s2.5 of the paper)"
+    },
+    {
+      "detail": "Syringe step-to-volume conversion",
+      "why_needed": "The plunger travel for each nL volume must be set correctly to deliver the intended volume.",
+      "status": "assumable",
+      "resolution": "Derive the conversion from the 25 µL Hamilton 1702 syringe geometry and the min/max plunger positions set in the s2.3 calibration, assuming linear displacement. The paper's OpenLC code is not to be used.",
+      "source": "s2.3 and standard practice"
+    },
+    {
+      "detail": "Plate layout and replicate scheme",
+      "why_needed": "The wells and replicate positions must be fixed before the run. The paper states n = 5 per volume per batch, with five replicates of each calibration standard hand pipetted in 20 µL aliquots, in one 384-well plate cooled to 4°C.",
+      "status": "assumable",
+      "resolution": "Use a Corning 3544 384-well clear-bottom plate on the OT-2 tempdeck at 4°C. Put the 5 replicate dispense wells for each of the 6 volumes, and the 5 replicate wells for each of the 5 standards (3, 4, 5, 6 and 7 µM), in separate blocks. Prefill the dispense wells with 20 µL of 50 mM borate. The paper reports 6 batches on different days (OS-1 to OS-6) plus one reference run with the original OT-2 software. Apply Grubbs outlier removal if desired.",
+      "source": "s2.4, s3.4 and Figure 5 legend"
+    },
+    {
+      "detail": "Timing, plate sealing and evaporation control during preparation",
+      "why_needed": "Evaporation from 20 µL wells could shift the final concentrations. The paper does not state how long preparation takes or whether the plate is covered.",
+      "status": "assumable",
+      "resolution": "Keep the plate at 4°C throughout, as stated. Minimize the time between prefilling the wells and the measurement. Seal the plate with foil (the paper uses an Eppendorf adhesive foil in the autosampling setup) once dispensing is complete.",
+      "source": "s2.4 and standard practice"
+    },
+    {
+      "detail": "PlateFuge centrifuge speed, and plate temperature and settling before the plate-reader read",
+      "why_needed": "The 1 min spin removes bubbles. The paper gives no speed and no read temperature.",
+      "status": "assumable",
+      "resolution": "Spin for 1 min in the PlateFuge at its fixed speed. Allow the plate to equilibrate to room temperature briefly, then read, to avoid condensation on the bottom of the well. Read at ambient temperature.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Plate-reader read details beyond the stated settings (read height, number of flashes, light source, pH or temperature control)",
+      "why_needed": "The reader settings affect the measured fluorescence signal.",
+      "status": "assumable",
+      "resolution": "Use the stated settings: Synergy Neo2, excitation 485/13 nm, emission 528/17 nm, gain 50, bottom read. Use the instrument default optics position, read height and number of flashes. Apply the same settings to the standards and the samples on the same plate.",
+      "source": "s2.4 and standard practice"
+    },
+    {
+      "detail": "Foil punching before dispensing (modified Gen1 pipette)",
+      "why_needed": "The paper describes a foil punch for sealed plates, but s2.4 does not say whether the characterization plate was foil-sealed.",
+      "status": "assumable",
+      "resolution": "Do not seal the plate during the dispensing run, or punch holes in the foil with the foil punch before dispensing if sealed. Characterization does not require sealing.",
+      "source": "s3.2 and standard practice"
+    }
+  ],
+  "retrieved_details": "From the cited ref 41 (Councill et al., SLAS Technol 2021;26:311-319, DOI 10.1177/2472630320973591), via a search snippet only: fluorescein standard solutions were made by diluting 10 mM stocks to 2-10 µM with 50 mM sodium borate buffer (pH 9.3 in the snippet). Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC8143861/ (also https://www.slas-technology.org/article/S2472-6303(22)01108-6/fulltext). The full ref 41 text could not be fetched (PMC returned a reCAPTCHA page; Europe PMC and OSTI fetches hit the tool limit).\n\nFrom the paper itself: s2.2 Hardware is an OT-2 with a Gen2 pipette body modified to drive a Hamilton 25 µL gastight 1702 syringe. A MicroTight union connects the syringe needle to a 40 cm, 100 µm i.d. fused-silica sampling needle (basic liquid handling configuration, no valves). s2.3 Calibration: calibrate every labware item, i.e. the three corner wells of each plate, then check at the fourth corner. Home the syringe motor, then set the plunger maximum, minimum and reference positions. Recalibrate the syringe each time the software is restarted. s2.4 Method: dispense 500, 100, 50, 20, 10 and 5 nL of 0.2, 1, 2, 5, 10 and 20 mM sodium fluorescein into wells prefilled with 20 µL of 50 mM sodium borate, giving 5 µM final. Calibration standards are 3, 4, 5, 6 and 7 µM, hand pipetted as 20 µL with 5 replicates each. Keep the plate at 4°C on the OT-2 tempdeck. Spin 1 min in a PlateFuge. Read on a Synergy Neo2 (excitation 485/13 nm, emission 528/17 nm, gain 50, bottom read) in a Corning 3544 clear-bottom 384-well plate. s3.4: n = 5 per volume, six batches on different days, plus one reference using the original OT-2 software and a nL-to-linear-distance conversion table. Grubbs outlier tests were applied. Absolute error was below 15% and CV below 7% for volumes of 20 nL or more."
+}

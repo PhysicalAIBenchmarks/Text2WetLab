@@ -1,0 +1,108 @@
+{
+  "code": [],
+  "doi_primary": "10.64898/2026.03.26.714448",
+  "dois": [
+    "10.64898/2026.03.26.714448"
+  ],
+  "fulltext": {
+    "legends": 6,
+    "sections": 24,
+    "source": "europepmc:PPR1217548"
+  },
+  "journal": "bioRxiv",
+  "note": "no code | bioRxiv preprint (CC-BY). No code: Data availability section only cites Figshare source data doi 10.6084/m9.figshare.33154961; no GitHub/protocol code and no Opentrons mention in the text.",
+  "open_access": true,
+  "origin": [
+    "lLegon"
+  ],
+  "paper_licence": "cc by",
+  "pdf": {
+    "bytes": 776363,
+    "licence": "cc by",
+    "pages": 33,
+    "redistributable": "yes",
+    "sha256": "9636879a0962d04ff7be364922d24909b281d7acbedfcb8d48152502f754e6ed",
+    "status": "downloaded",
+    "tried": [
+      {
+        "http": 403,
+        "manual": false,
+        "ok": false,
+        "url": "https://europepmc.org/api/fulltextRepo?pprId=PPR1217548&type=FILE&fileName=EMS215143-pdf.pdf&mimeType=application/pdf"
+      },
+      {
+        "http": 200,
+        "manual": false,
+        "ok": true,
+        "url": "https://www.biorxiv.org/content/10.64898/2026.03.26.714448v2.full.pdf"
+      }
+    ],
+    "url": "https://www.biorxiv.org/content/10.64898/2026.03.26.714448v2.full.pdf"
+  },
+  "pmcid": null,
+  "slug": "kdm2b-hif",
+  "title": "HRE-luciferase reporter after KDM2B knockdown",
+  "year": "2026",
+  "experiments_hint": [
+    {
+      "id": "exp1",
+      "title": "HRE-luciferase reporter assay after KDM2B siRNA knockdown in normoxia/hypoxia",
+      "liquid_handling": "partly",
+      "evidence": "pipeline data/pipeline_runs/10.64898_2026.03.26.714448/experiments.json, experiment 1; sections ['s4.2', 's4.4', 's4.3', 's4.9']"
+    },
+    {
+      "id": "exp2",
+      "title": "HRE-luciferase reporter assay after KDM2B overexpression",
+      "liquid_handling": "partly",
+      "evidence": "pipeline data/pipeline_runs/10.64898_2026.03.26.714448/experiments.json, experiment 2; sections ['s4.2', 's4.5', 's4.9']"
+    },
+    {
+      "id": "exp3",
+      "title": "qPCR validation of KDM2B siRNA knockdown and HIF-1α/HIF-2α/KDM2B mRNA levels",
+      "liquid_handling": "partly",
+      "evidence": "pipeline data/pipeline_runs/10.64898_2026.03.26.714448/experiments.json, experiment 3; sections ['s4.2', 's4.4', 's4.3', 's4.8']"
+    },
+    {
+      "id": "exp4",
+      "title": "Immunoblot of HIF target genes and HIF subunits after KDM2B knockdown",
+      "liquid_handling": "little",
+      "evidence": "pipeline data/pipeline_runs/10.64898_2026.03.26.714448/experiments.json, experiment 4; sections ['s4.2', 's4.4', 's4.3', 's4.7']"
+    },
+    {
+      "id": "exp5",
+      "title": "HIF-1α ChIP-qPCR at target gene HREs after KDM2B knockdown",
+      "liquid_handling": "mostly",
+      "evidence": "pipeline data/pipeline_runs/10.64898_2026.03.26.714448/experiments.json, experiment 5; sections ['s4.2', 's4.4', 's4.3', 's4.10']"
+    },
+    {
+      "id": "exp6",
+      "title": "KDM2B domain-mutant overexpression: HRE-luciferase reporter assay",
+      "liquid_handling": "partly",
+      "evidence": "pipeline data/pipeline_runs/10.64898_2026.03.26.714448/experiments.json, experiment 6; sections ['s4.6', 's4.2', 's4.5', 's4.9']"
+    },
+    {
+      "id": "exp7",
+      "title": "KDM2B domain-mutant overexpression: immunoblot of HIF-1α and targets",
+      "liquid_handling": "little",
+      "evidence": "pipeline data/pipeline_runs/10.64898_2026.03.26.714448/experiments.json, experiment 7; sections ['s4.6', 's4.2', 's4.5', 's4.7']"
+    },
+    {
+      "id": "exp8",
+      "title": "RNA Pol II ChIP-qPCR at the HIF1A promoter after KDM2B knockdown or domain-mutant overexpression",
+      "liquid_handling": "mostly",
+      "evidence": "pipeline data/pipeline_runs/10.64898_2026.03.26.714448/experiments.json, experiment 8; sections ['s4.2', 's4.4', 's4.5', 's4.3', 's4.10']"
+    },
+    {
+      "id": "exp9",
+      "title": "Cell proliferation assay after KDM2B knockdown in normoxia and hypoxia",
+      "liquid_handling": "partly",
+      "evidence": "pipeline data/pipeline_runs/10.64898_2026.03.26.714448/experiments.json, experiment 9; sections ['s4.2', 's4.4', 's4.3', 's4.11']"
+    },
+    {
+      "id": "exp10",
+      "title": "NF-κB luciferase reporter assay after KDM2B knockdown or overexpression with TNF-α",
+      "liquid_handling": "partly",
+      "evidence": "pipeline data/pipeline_runs/10.64898_2026.03.26.714448/experiments.json, experiment 10; sections ['s4.2', 's4.4', 's4.5', 's4.3', 's4.9']"
+    }
+  ]
+}

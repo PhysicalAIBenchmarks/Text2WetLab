@@ -1,0 +1,58 @@
+{
+ "slots": {
+  "1": {
+   "load_name": "biorad_96_wellplate_200ul_pcr",
+   "label": "plasmid_plate",
+   "kind": "plate_96"
+  },
+  "2": {
+   "load_name": "nest_12_reservoir_15ml",
+   "label": "soc_reservoir",
+   "kind": "reservoir"
+  },
+  "7": {
+   "load_name": "biorad_96_wellplate_200ul_pcr",
+   "label": "transformation_plate",
+   "kind": "plate_96",
+   "module": "thermocycler"
+  }
+ },
+ "containers": {
+  "plasmid_plate": {
+   "label": "plasmid_plate",
+   "load_name": "biorad_96_wellplate_200ul_pcr",
+   "slot": 1
+  },
+  "transformation_plate": {
+   "label": "transformation_plate",
+   "load_name": "biorad_96_wellplate_200ul_pcr",
+   "slot": "Thermocycler Module GEN1 on 7"
+  },
+  "soc_reservoir": {
+   "label": "soc_reservoir",
+   "load_name": "nest_12_reservoir_15ml",
+   "slot": 2,
+   "well": "A1"
+  }
+ },
+ "tips": {
+  "20": {
+   "load_name": "opentrons_96_tiprack_20ul",
+   "slot": 4
+  },
+  "300": {
+   "load_name": "opentrons_96_tiprack_300ul",
+   "slot": 5
+  }
+ },
+ "pipettes": {
+  "p20_single_gen2": {
+   "mount": "left",
+   "tips": "20"
+  },
+  "p300_single_gen2": {
+   "mount": "right",
+   "tips": "300"
+  }
+ }
+}
