@@ -27,14 +27,24 @@ jobs:
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
     steps:
       - name: A judge key is configured
-        run: test -n "$ANTHROPIC_API_KEY$OPENROUTER_API_KEY" || { echo "::error::set the ANTHROPIC_API_KEY or OPENROUTER_API_KEY repo secret"; exit 1; }
+        id: key
+        # No key: skip with a warning rather than fail main and the nightly run. A manual run still fails loudly.
+        run: |
+          if [ -n "$ANTHROPIC_API_KEY$OPENROUTER_API_KEY" ]; then echo "ok=true" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "::error::set the ANTHROPIC_API_KEY or OPENROUTER_API_KEY repo secret"; exit 1
+          else echo "::warning::oracle skipped: set the ANTHROPIC_API_KEY or OPENROUTER_API_KEY repo secret to run it"; echo "ok=false" >> "$GITHUB_OUTPUT"; fi
       - uses: actions/checkout@v5
+        if: steps.key.outputs.ok == 'true'
       - uses: astral-sh/setup-uv@v6
+        if: steps.key.outputs.ok == 'true'
       - run: uv tool install harbor==0.23.0
+        if: steps.key.outputs.ok == 'true'
       - run: harbor run -p tasks -a oracle -n 4 -y -o jobs --job-name oracle
+        if: steps.key.outputs.ok == 'true'
       - run: uv run --no-project python scripts/check_oracle_rewards.py jobs/oracle --min-judge 0.5
+        if: steps.key.outputs.ok == 'true'
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: always() && steps.key.outputs.ok == 'true'
         with:
           name: harbor-oracle-jobs
           path: jobs/
