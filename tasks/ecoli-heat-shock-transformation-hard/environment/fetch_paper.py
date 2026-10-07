@@ -15,6 +15,8 @@ import argparse
 import json
 import re
 import sys
+import time
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -23,9 +25,22 @@ BIORXIV_API = "https://api.biorxiv.org/details/biorxiv/{doi}"
 HEADERS = {"User-Agent": "Mozilla/5.0 (text2wetlab fetch_paper)"}
 
 
-def _get(url: str) -> bytes:
-    with urllib.request.urlopen(urllib.request.Request(url, headers=HEADERS), timeout=120) as r:
-        return r.read()
+def _get(url: str, attempts: int = 8) -> bytes:
+    for i in range(attempts):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers=HEADERS), timeout=120) as r:
+                return r.read()
+        except urllib.error.HTTPError as e:
+            if e.code not in (429, 500, 502, 503, 504) or i == attempts - 1:
+                raise
+            wait = int(e.headers.get("Retry-After") or 0) or min(5 * 2 ** i, 120)
+        except urllib.error.URLError:
+            if i == attempts - 1:
+                raise
+            wait = min(5 * 2 ** i, 120)
+        print(f"fetch {url} failed, retrying in {wait}s", file=sys.stderr)
+        time.sleep(wait)
+    raise RuntimeError("unreachable")
 
 
 def _strip_ns(root: ET.Element) -> ET.Element:

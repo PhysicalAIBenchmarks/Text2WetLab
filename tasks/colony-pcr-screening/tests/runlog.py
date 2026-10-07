@@ -17,6 +17,8 @@ PATTERNS = [
     ("engage", re.compile(r"^Engaging Magnetic Module")),
     ("disengage", re.compile(r"^Disengaging Magnetic Module")),
     ("temp", re.compile(r"^Setting Temperature Module temperature to ([\d.]+)")),
+    # Thermocycler module actions (lid, block temperature and hold times, profiles); kept as the simulator words them.
+    ("thermocycler", re.compile(r"^((?:Opening|Closing|Setting|Deactivating|Executing|Thermocycler).*[Tt]hermocycler.*)$")),
 ]
 INSTRUMENT_KINDS = {"aspirate", "dispense", "pick", "drop"}
 
@@ -66,6 +68,8 @@ def parse(text: str, payload: dict) -> dict | None:
             event["seconds"] = int(match[1]) * 60 + float(match[2])
         elif kind == "temp":
             event["celsius"] = float(match[1])
+        elif kind == "thermocycler":
+            event["text"] = match[1].strip()
         return event
     return None
 
