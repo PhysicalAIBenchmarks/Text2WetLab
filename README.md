@@ -240,7 +240,8 @@ export OPENROUTER_API_KEY=sk-or-...
 harbor run -p tasks -a oracle -n 4 -y -o jobs --job-name oracle          # judge via OpenRouter
 python scripts/check_oracle_rewards.py jobs/oracle                       # the CI gate
 
-ANTHROPIC_BASE_URL=https://openrouter.ai/api ANTHROPIC_AUTH_TOKEN=$OPENROUTER_API_KEY ANTHROPIC_API_KEY= \
+unset ANTHROPIC_API_KEY      # unset, not empty: Harbor takes the first key variable present, even ""
+ANTHROPIC_BASE_URL=https://openrouter.ai/api ANTHROPIC_AUTH_TOKEN=$OPENROUTER_API_KEY \
   harbor run -p tasks -a claude-code -m anthropic/claude-sonnet-5.5 -n 4 -y   # agent via OpenRouter too
 ```
 
