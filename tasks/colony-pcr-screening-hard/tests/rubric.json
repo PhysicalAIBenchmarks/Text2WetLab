@@ -11,13 +11,13 @@
   },
   {
    "id": "fidelity_to_paper",
-   "text": "All-or-nothing bonus for a fully faithful protocol: it implements the paper's method on the given deck with no missing, invented or reordered steps; volumes, times, temperatures and reagents match the paper, or are a sound adaptation where the given deck or reagents force one; and comments and metadata (including any citation) are accurate. Any deviation fails this item, even one already failed under another item."
+   "text": "All-or-nothing bonus for a fully faithful protocol: it implements the paper's method on the given deck with no missing, invented or reordered steps; volumes, times, temperatures and reagents match the paper, or are a sound adaptation where the given deck or reagents force one; and comments and metadata (including any citation) are accurate. Any deviation fails this item, even one already failed under another item. The deck does not state the primer pairs' concentration, so the primer volume is the agent's to choose: any volume that keeps the master mix at 1x and the reaction at 10 uL or 20-25 uL is a sound adaptation, not an invented quantity."
   }
  ],
  "task": [
   {
    "id": "reaction_setup",
-   "text": "Every PCR well gets the 2x master mix (1x in the final reaction), its colony's primer pair and about 1 uL of colony template (the paper's OT-2 template volume), with master mix in the well before the template as in the paper. A 10 uL reaction (the paper's OT-2 workflow) or a 20-25 uL reaction (the Q5 manufacturer's protocol) both pass."
+   "text": "Every PCR well gets the 2x master mix (1x in the final reaction), its colony's primer pair and about 1 uL of colony template (the paper's OT-2 template volume), with master mix in the well before the template as in the paper. A 10 uL reaction (the paper's OT-2 workflow) or a 20-25 uL reaction (the Q5 manufacturer's protocol) both pass. The deck does not state the primer pairs' concentration, so the primer volume is the agent's to choose: any volume that keeps the master mix at 1x and the reaction at 10 uL or 20-25 uL is a sound adaptation, not an invented quantity."
   },
   {
    "id": "sample_mapping",

@@ -1,13 +1,15 @@
 """Regrade saved Harbor trials with the current graders, without re-running any agent.
 
-    python scripts/regrade_jobs.py JOB_DIR [JOB_DIR ...] [--judge] [--data TASK=DIR ...] [--out DIR]
+    python scripts/regrade_jobs.py JOB_DIR [JOB_DIR ...] [--judge [--all]] [--data TASK=DIR ...] [--out DIR] [--workers N]
 
 Each trial's graded protocol (verifier/protocol.py) goes back through tasks/<task>/tests/grade.py outside Docker.
 Without --judge only the deterministic layers run (SKIP_JUDGE=1, free). With --judge the LLM judge runs too, but only for
-trials whose deterministic result changed; the others keep their original judge reward. Prints old vs new per trial.
+trials whose deterministic result changed, or for every trial with --all (after a change to the judge or a rubric);
+the others keep their original judge reward. Prints old vs new per trial.
 --data points a task at a local copy of its /data (e.g. a paper fetched at image build time).
 """
 import argparse
+import concurrent.futures
 import json
 import os
 import pathlib
@@ -39,38 +41,47 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("jobs", nargs="+", type=pathlib.Path)
     ap.add_argument("--judge", action="store_true")
+    ap.add_argument("--all", action="store_true", help="with --judge: re-judge every trial, not only changed ones")
     ap.add_argument("--data", nargs="*", default=[])
     ap.add_argument("--out", type=pathlib.Path)
+    ap.add_argument("--workers", type=int, default=4, help="trials graded at once")
     a = ap.parse_args()
     data_for = dict(x.split("=", 1) for x in a.data)
-    rows = []
-    for job in a.jobs:
-        for f in sorted(job.glob("*/result.json")):
-            trial = json.loads(f.read_text())
-            name = trial["task_name"].split("/")[-1]
-            old = (trial.get("verifier_result") or {}).get("rewards") or {}
-            protocol = f.parent / "verifier/protocol.py"
-            if trial.get("exception_info") or not protocol.exists():
-                rows.append({"job": job.name, "task": name, "skipped": (trial.get("exception_info") or {}).get("exception_type", "no protocol")})
-                continue
-            old_rec = next((json.loads((f.parent / "verifier" / n).read_text()) for n in ("result.json", "judge.json")
-                            if (f.parent / "verifier" / n).exists()), {})
-            old_checks = old_rec.get("checks")
-            if isinstance(old_checks, dict):
-                old_checks = old_checks.get("checks", [])
-            old_failed = sorted(c["name"] for c in old_checks or [] if not c["pass"])
-            task = ROOT / "tasks" / name
-            data = pathlib.Path(data_for.get(name, task / "environment/data"))
-            with tempfile.TemporaryDirectory() as tmp:
-                new = grade(task, protocol, data, False, pathlib.Path(tmp))
-            changed = new["failed"] != old_failed or new["rewards"].get("deterministic_reward") != old.get("deterministic_reward")
-            row = {"job": job.name, "task": name, "old": old, "old_failed": old_failed, "new_det": new["rewards"],
-                   "new_failed": new["failed"], "changed": changed}
-            if changed and a.judge:
-                out = (a.out / job.name / name) if a.out else pathlib.Path(tempfile.mkdtemp())
-                out.mkdir(parents=True, exist_ok=True)
-                row["new"] = grade(task, protocol, data, True, out)
-            rows.append(row)
+    trials = [(job, f) for job in a.jobs for f in sorted(job.glob("*/result.json"))]
+
+    def regrade(job_and_file) -> dict:
+        job, f = job_and_file
+        trial = json.loads(f.read_text())
+        name = trial["task_name"].split("/")[-1]
+        old = (trial.get("verifier_result") or {}).get("rewards") or {}
+        protocol = f.parent / "verifier/protocol.py"
+        if trial.get("exception_info") or not protocol.exists():
+            return {"job": job.name, "task": name, "skipped": (trial.get("exception_info") or {}).get("exception_type", "no protocol")}
+        old_rec = next((json.loads((f.parent / "verifier" / n).read_text()) for n in ("result.json", "judge.json")
+                        if (f.parent / "verifier" / n).exists()), {})
+        old_checks = old_rec.get("checks")
+        if isinstance(old_checks, dict):
+            old_checks = old_checks.get("checks", [])
+        old_failed = sorted(c["name"] for c in old_checks or [] if not c["pass"])
+        task = ROOT / "tasks" / name
+        data = pathlib.Path(data_for.get(name, task / "environment/data"))
+        with tempfile.TemporaryDirectory() as tmp:
+            new = grade(task, protocol, data, False, pathlib.Path(tmp))
+        changed = new["failed"] != old_failed or new["rewards"].get("deterministic_reward") != old.get("deterministic_reward")
+        row = {"job": job.name, "task": name, "old": old, "old_failed": old_failed, "new_det": new["rewards"],
+               "new_failed": new["failed"], "changed": changed}
+        if a.judge and (changed or a.all):
+            out = (a.out / job.name / name) if a.out else pathlib.Path(tempfile.mkdtemp())
+            done = out / "reward.json"
+            if done.exists() and not json.loads(done.read_text()).get("judge_error"):   # resume: judged already
+                row["new"] = {"rewards": json.loads(done.read_text())}
+                return row
+            out.mkdir(parents=True, exist_ok=True)
+            row["new"] = grade(task, protocol, data, True, out)
+        return row
+
+    with concurrent.futures.ThreadPoolExecutor(a.workers) as pool:     # each trial is its own subprocess
+        rows = list(pool.map(regrade, trials))
     print("| Job | Task | Old reward / det | New det | New reward | Checks that changed |\n|---|---|---|---|---|---|")
     for r in rows:
         if "skipped" in r:

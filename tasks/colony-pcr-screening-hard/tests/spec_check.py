@@ -269,7 +269,7 @@ def check(proto: Protocol, run: dict, free_wells: frozenset = frozenset(), deck:
             add(f"end_state:{cname}", ok, f"expected volumes {sorted(want.values())}, got {sorted(got.values())} (positions free)")
         else:
             ok = {w: round(v, 6) for w, v in want.items()} == got
-            add(f"end_state:{cname}", ok, "" if ok else f"expected {want}, got {got}"[:160])
+            add(f"end_state:{cname}", ok, "" if ok else f"expected {want}, got {got}")
     if not mapping:
         na.append("end_state (no IR container matched a unique run labware)")
     return {"passed": all(c["pass"] for c in checks), "checks": checks, "not_applicable": na,

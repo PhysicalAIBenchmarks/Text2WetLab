@@ -33,6 +33,7 @@ VARIANT = TESTS / "variant.json"
 OT_PYTHON = os.environ.get("OT_PYTHON", "/opt/ot/bin/python")
 OUT = Path(os.environ.get("VERIFIER_OUT", "/logs/verifier"))
 JUDGE_MODEL = os.environ.get("JUDGE_MODEL") or "claude-sonnet-5-5"
+JUDGE_VOTES = int(os.environ.get("JUDGE_VOTES") or 3)   # judge calls per protocol; each item takes the majority
 OPENROUTER_URL = "https://openrouter.ai/api"      # OpenRouter's Anthropic-compatible Messages API
 OPENROUTER_MODELS = {"claude-sonnet-5-5": "anthropic/claude-sonnet-5.5", "claude-opus-5-5": "anthropic/claude-opus-5.5",
                      "claude-fable-5-1": "anthropic/claude-fable-5.1"}
@@ -40,7 +41,7 @@ CRITICAL_CAP = 0.3
 CRITICAL_CHECKS = {
     "48_samples_to_odd_columns", "step_order", "supernatant_removed_each_step",
     "two_500ul_ethanol_washes", "recover_70_100ul_one_well_each",
-    "fresh_tip_per_sample_no_cross_contact",
+    "fresh_tip_per_sample_no_cross_contact", "reservoir_columns_within_15ml",
 }
 SAFE_ENV_KEYS = ["PATH", "HOME", "LANG", "LC_ALL"]
 SUSPICIOUS = re.compile(r"broker|_implementation|_core\b|\.commands\.|publish\(|monkey|__dict__|setattr\(")
@@ -157,6 +158,38 @@ def judge(context: dict) -> dict:
         spec_name="THE TASK TEXT" if easy else "THE PAPER",
         **context,
     )
+    ids = [r["id"] for r in rubric["items"]]
+    votes, errors = [], []
+    for _ in range(JUDGE_VOTES):
+        vote, error = one_verdict(client, model, prompt, set(ids))
+        (votes.append(vote) if vote else errors.append(error))
+    if not votes:
+        return {"error": errors[-1]}
+    items, scores = majority(votes, ids)
+    score = sum(r["weight"] * scores[r["id"]] for r in rubric["items"])
+    return {"items": items, "scores": scores, "summary": votes[0].get("summary"),
+            "raw": json.dumps([{k: v for k, v in vote.items() if k != "scores"} for vote in votes]),
+            "level": rubric["level"], "score": round(score, 4),
+            "weights": {r["id"]: round(r["weight"], 4) for r in rubric["items"]},
+            "model": model, "provider": provider, "votes": len(votes), "failed_votes": len(errors)}
+
+
+def majority(votes: list[dict], ids: list[str]) -> tuple[list[dict], dict[str, float]]:
+    """Per rubric item, the score most votes gave (a tie fails the item), with the evidence of a vote that agrees.
+    One judge call is noisy: the same protocol can pass on one call and fail on the next."""
+    items, scores = [], {}
+    for item_id in ids:
+        ones = sum(v["scores"][item_id] for v in votes)
+        score = 1.0 if 2 * ones > len(votes) else 0.0
+        agree = next(v for v in votes if v["scores"][item_id] == score) if any(v["scores"][item_id] == score for v in votes) else votes[0]
+        evidence = next(i.get("evidence", "") for i in agree["items"] if i["id"] == item_id)
+        items.append({"id": item_id, "score": int(score), "evidence": evidence, "votes": [int(v["scores"][item_id]) for v in votes]})
+        scores[item_id] = score
+    return items, scores
+
+
+def one_verdict(client, model: str, prompt: str, ids: set[str]) -> tuple[dict | None, str | None]:
+    """One judge call, retried up to 3 times on malformed or transient responses: (verdict, None) or (None, error)."""
     last_error = None
     for _ in range(3):
         try:
@@ -165,21 +198,16 @@ def judge(context: dict) -> dict:
                 tools=[GRADE_TOOL], tool_choice={"type": "auto"},
                 messages=[{"role": "user", "content": prompt}],
             )
-            calls = [block.input for block in message.content if block.type == "tool_use"]
-            text = "".join(block.text for block in message.content if block.type == "text")
+            calls = [b.input for b in message.content if b.type == "tool_use"]
+            text = "".join(b.text for b in message.content if b.type == "text")
             data = calls[0] if calls else json.loads(re.search(r"\{.*\}", text, re.S).group(0))
-            text = json.dumps(data)
             scores = {item["id"]: float(item["score"]) for item in data["items"]}
-            if set(scores) != {r["id"] for r in rubric["items"]} or any(s not in (0, 1) for s in scores.values()):
+            if set(scores) != ids or any(s not in (0, 1) for s in scores.values()):
                 raise ValueError(f"bad rubric scores: {scores}")
-            score = sum(r["weight"] * scores[r["id"]] for r in rubric["items"])
-            return {"items": data["items"], "scores": scores, "summary": data.get("summary"), "raw": text,
-                    "level": rubric["level"], "score": round(score, 4),
-                    "weights": {r["id"]: round(r["weight"], 4) for r in rubric["items"]},
-                    "model": model, "provider": provider}
-        except Exception as exc:  # retry malformed or transient judge responses
+            return dict(data, scores=scores), None
+        except Exception as exc:
             last_error = f"{type(exc).__name__}: {exc}"
-    return {"error": last_error}
+    return None, last_error
 
 
 def main() -> int:

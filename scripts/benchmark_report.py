@@ -2,7 +2,8 @@
 
     python scripts/benchmark_report.py JOB_DIR [JOB_DIR ...] [--json out.json]
 
-Each JOB_DIR is a `harbor run -o ... --job-name ...` folder. A "risk" is one deterministic check the grader runs against
+Each JOB_DIR is a `harbor run -o ... --job-name ...` folder, or a results/runs/<run>/<model>/ folder from
+scripts/export_run.py. A "risk" is one deterministic check the grader runs against
 the ground truth: the IR's end state (end_state:<container>), the fixed deck (deck_labware:<container>), and the
 physical safety rules (tips, overdispense, empty wells, cross-contamination). The RNA task has its own 16 run-log checks.
 """
@@ -28,7 +29,24 @@ def task_of(trial: dict, folder: pathlib.Path) -> str:
     return trial.get("task_name", folder.name).split("/")[-1]
 
 
+def load_exported(folder: pathlib.Path):
+    """A results/runs/<run>/<model>/ folder written by scripts/export_run.py."""
+    for f in sorted(folder.glob("*/trial.json")):
+        trial = json.loads(f.read_text())
+        rec = json.loads((f.parent / "grader.json").read_text()) if (f.parent / "grader.json").exists() else {}
+        checks = rec.get("checks")
+        if isinstance(checks, dict):
+            checks = checks.get("checks", [])
+        yield {"model": folder.name, "task": trial["task"], "rewards": trial.get("rewards") or {},
+               "exception": trial.get("exception"), "checks": checks or [], "traps": rec.get("traps", []),
+               "lint": rec.get("lint", []), "judge": rec.get("judge") or {}, "error": rec.get("error"),
+               "cost": trial.get("cost_usd"), "tokens": (trial.get("input_tokens"), trial.get("output_tokens"))}
+
+
 def load_trials(job: pathlib.Path):
+    if any(job.glob("*/trial.json")):
+        yield from load_exported(job)
+        return
     model = job.name.removeprefix("bench-").removeprefix("oracle-")
     for f in sorted(job.glob("*/result.json")):
         trial = json.loads(f.read_text())
@@ -142,7 +160,10 @@ def main():
         for x in t["lint"][:3]:
             out.append(f"- lint: {x}")
         for i in zero:
-            out.append(f"- judge 0 on `{i['id']}`: {i.get('evidence', '')[:300]}")
+            votes = f" (votes {i['votes']})" if i.get("votes") else ""
+            out.append(f"- judge 0 on `{i['id']}`{votes}: {i.get('evidence', '')[:300]}")
+        if t["judge"].get("failed_votes"):
+            out.append(f"- judge: {t['judge']['votes']} of {t['judge']['votes'] + t['judge']['failed_votes']} votes returned (network errors)")
         if t["exception"] or (t["error"] and not fails):
             out.append(f"- {t['exception'] or t['error']}")
         out.append("")

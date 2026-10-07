@@ -16,6 +16,7 @@ import re
 from pathlib import Path
 
 JUDGE_MODEL = os.environ.get("JUDGE_MODEL") or "claude-sonnet-5-5"
+JUDGE_VOTES = int(os.environ.get("JUDGE_VOTES") or 3)   # judge calls per protocol; each item takes the majority
 OPENROUTER_URL = "https://openrouter.ai/api"      # OpenRouter's Anthropic-compatible Messages API
 OPENROUTER_MODELS = {"claude-sonnet-5-5": "anthropic/claude-sonnet-5.5", "claude-opus-5-5": "anthropic/claude-opus-5.5",
                      "claude-fable-5-1": "anthropic/claude-fable-5.1"}
@@ -136,6 +137,35 @@ def judge(tests: Path, checks: list[dict], protocol: str, paper: Path) -> dict:
         client, model, provider = judge_client()
     except Exception as exc:
         return {"error": f"{type(exc).__name__}: {exc}"}
+    votes, errors = [], []
+    for _ in range(JUDGE_VOTES):
+        vote, error = one_verdict(client, model, prompt, ids)
+        (votes.append(vote) if vote else errors.append(error))
+    if not votes:
+        return {"error": errors[-1]}
+    items, scores = majority(votes, [r["id"] for r in rubric["items"]])
+    return {"items": items, "scores": scores, "summary": votes[0].get("summary"),
+            "level": rubric["level"], "score": round(weighted_score(rubric, scores), 4),
+            "weights": {r["id"]: round(r["weight"], 4) for r in rubric["items"]},
+            "model": model, "provider": provider, "votes": len(votes), "failed_votes": len(errors)}
+
+
+def majority(votes: list[dict], ids: list[str]) -> tuple[list[dict], dict[str, float]]:
+    """Per rubric item, the score most votes gave (a tie fails the item), with the evidence of a vote that agrees.
+    One judge call is noisy: the same protocol can pass on one call and fail on the next."""
+    items, scores = [], {}
+    for item_id in ids:
+        ones = sum(v["scores"][item_id] for v in votes)
+        score = 1.0 if 2 * ones > len(votes) else 0.0
+        agree = next(v for v in votes if v["scores"][item_id] == score) if any(v["scores"][item_id] == score for v in votes) else votes[0]
+        evidence = next(i.get("evidence", "") for i in agree["items"] if i["id"] == item_id)
+        items.append({"id": item_id, "score": int(score), "evidence": evidence, "votes": [int(v["scores"][item_id]) for v in votes]})
+        scores[item_id] = score
+    return items, scores
+
+
+def one_verdict(client, model: str, prompt: str, ids: set[str]) -> tuple[dict | None, str | None]:
+    """One judge call, retried up to 3 times on malformed or transient responses: (verdict, None) or (None, error)."""
     last_error = None
     for _ in range(3):
         try:
@@ -150,10 +180,7 @@ def judge(tests: Path, checks: list[dict], protocol: str, paper: Path) -> dict:
             scores = {item["id"]: float(item["score"]) for item in data["items"]}
             if set(scores) != ids or any(s not in (0, 1) for s in scores.values()):
                 raise ValueError(f"bad rubric scores: {scores}")
-            return {"items": data["items"], "scores": scores, "summary": data.get("summary"),
-                    "level": rubric["level"], "score": round(weighted_score(rubric, scores), 4),
-                    "weights": {r["id"]: round(r["weight"], 4) for r in rubric["items"]},
-                    "model": model, "provider": provider}
-        except Exception as exc:  # retry malformed or transient judge responses
+            return dict(data, scores=scores), None
+        except Exception as exc:
             last_error = f"{type(exc).__name__}: {exc}"
-    return {"error": last_error}
+    return None, last_error

@@ -11,6 +11,7 @@ PATTERN = ["beads", "isopropanol", "sample", "remove", "ethanol", "remove",
            "ethanol", "remove", "elution", "recover"]
 N_SAMPLES = 48
 TOLERANCE = 0.05
+RESERVOIR_WELL_UL = 15000  # nest_12_reservoir_15ml: no column can give more than it holds
 
 
 SLOT_ROLES = {"4": "mag", "6": "elution_plate", "7": "tube", "10": "tube", "5": "reservoir"}
@@ -49,6 +50,7 @@ def analyze(events: list[dict]) -> dict:
     sample_tips: list[int] = []
     recovered_to: dict[str, set[str]] = {}
     liquid: dict[str, float] = {}
+    drawn: dict[int, float] = {}  # reservoir column -> net uL taken out by all channels
 
     def contact(key: str, ids: set) -> None:
         current = tip.get(key)
@@ -89,6 +91,7 @@ def analyze(events: list[dict]) -> dict:
             where = role(event["labware"])
             if where == "reservoir":
                 column = int(event["well"][1:])
+                drawn[column] = drawn.get(column, 0.0) + event["volume"] * event["channels"]  # 8 tips, one trough
                 content[key] = ("reagent", REAGENT_COLUMNS.get(column, f"column {column}"))
             elif where == "tube":
                 tube = f"{event['labware']}:{event['well']}"
@@ -107,6 +110,9 @@ def analyze(events: list[dict]) -> dict:
             # Air gaps are not logged as aspirations, so only credit liquid actually held.
             volume = min(event["volume"], liquid.get(key, 0.0))
             liquid[key] = liquid.get(key, 0.0) - volume
+            if where == "reservoir":  # mixing in the trough puts liquid back: count only what leaves it
+                column = int(event["well"][1:])
+                drawn[column] = drawn.get(column, 0.0) - volume * event["channels"]
             if volume <= 0:
                 continue
             if where == "mag":
@@ -228,6 +234,11 @@ def analyze(events: list[dict]) -> dict:
         recover = [s for s in sequences[well] if s["op"] == "recover"]
         return bool(recover) and 70 <= recover[-1]["volume"] <= 100 and len(recovered_to.get(well, ())) == 1
 
+    def recovery_leaves_beads(well: str) -> bool:
+        # the paper and the task take ~80 uL of the 100 uL eluate so the pellet stays behind; the whole 100 uL does not
+        recover = [s for s in sequences[well] if s["op"] == "recover"]
+        return bool(recover) and 70 <= recover[-1]["volume"] <= 90
+
     first_recover = min((p["t"] for w in sample_wells for s in sequences[w]
                          if s["op"] == "recover" for p in s["parts"]), default=None)
     cold = first_recover is not None and any(t <= first_recover and abs(c - 4) < 0.5 for t, c in temps)
@@ -260,6 +271,9 @@ def analyze(events: list[dict]) -> dict:
         check("elution_100ul", fraction(lambda w: volumes_ok(w, ["elution"]))),
         check("elution_off_magnet_then_90s_on", fraction(elution_magnet)),
         check("recover_70_100ul_one_well_each", fraction(recovery)),
+        check("recover_about_80ul", fraction(recovery_leaves_beads),
+              "70-90 uL of the 100 uL eluate (~80 uL in the paper and the task); "
+              + "{}/{} sample wells".format(*fraction(recovery_leaves_beads))),
         check("distinct_elution_wells", len(targets) == N_SAMPLES and len(set(targets)) == N_SAMPLES,
               f"{len(set(targets))} distinct elution wells"),
         check("elution_plate_4C_before_recovery", cold, f"temperatures set: {temps}"),
@@ -267,6 +281,8 @@ def analyze(events: list[dict]) -> dict:
               not violations and len(set(sample_tips)) == len(sample_tips) == N_SAMPLES,
               f"{len(set(sample_tips))} distinct tips for {len(sample_tips)} sample transfers; "
               f"violations: {violations[:5]}"),
+        check("reservoir_columns_within_15ml", all(v <= RESERVOIR_WELL_UL * (1 + TOLERANCE / 5) for v in drawn.values()),
+              "uL drawn per reservoir column: " + ", ".join(f"{c}: {v:g}" for c, v in sorted(drawn.items()))),
     ]
     example = sample_wells[0] if sample_wells else None
     return {

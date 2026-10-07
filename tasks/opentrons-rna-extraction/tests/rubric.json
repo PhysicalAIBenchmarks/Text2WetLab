@@ -29,7 +29,7 @@
   },
   {
    "id": "elution_recovery",
-   "text": "100 uL elution added off-magnet and mixed, magnet re-engaged about 90 s, and about 80 uL recovered into a distinct well of the elution plate held at 4 C."
+   "text": "100 uL elution added off-magnet and mixed, magnet re-engaged about 90 s, and about 80 uL recovered into a distinct well of the elution plate held at 4 C. Recovering the whole 100 uL fails this item, even though the recover_70_100ul_one_well_each check accepts it: that check only catches gross errors, recover_about_80ul is the specification."
   }
  ]
 }
