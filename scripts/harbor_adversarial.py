@@ -5,6 +5,7 @@
 For every IR task the reference solution is the control (must score 1.0). Each attack is a small edit of it, or a
 protocol written to fool the grader. An attack that is supposed to be caught and scores 1.0 is a hole in the grader.
 Runs the generated tests/grade.py exactly as Harbor does, with local paths (needs the Opentrons venv in OT_VENV).
+--data TASK=DIR points a task at a local copy of its /data (the ecoli hard task fetches its paper at image build time).
 """
 import argparse
 import json
@@ -61,14 +62,23 @@ def attacks(code: str, deck: dict) -> dict[str, str | None]:
     return out
 
 
-def run_one(task: pathlib.Path, name: str, code: str) -> dict:
+def simulate(code: str) -> str:
+    """The simulator's run log, used to spot attacks that leave the protocol's behaviour unchanged."""
+    with tempfile.TemporaryDirectory() as d:
+        proto = pathlib.Path(d, "protocol.py")
+        proto.write_text(code)
+        r = subprocess.run([str(OT_VENV / "bin/opentrons_simulate"), str(proto)], capture_output=True, text=True, timeout=600)
+        return r.stdout if r.returncode == 0 else f"failed: {r.returncode}"
+
+
+def run_one(task: pathlib.Path, name: str, code: str, data: pathlib.Path) -> dict:
     h = task
     with tempfile.TemporaryDirectory() as d:
         proto = pathlib.Path(d, "protocol.py")
         proto.write_text(code)
         env = dict(os.environ, TESTS_DIR=str(h / "tests"), PROTOCOL_PATH=str(proto), VERIFIER_OUT=d,
                    OT_PYTHON=str(OT_VENV / "bin/python"), RUNLOG=str(h / "tests/runlog.py"),
-                   DATA_DIR=str(h / "environment/data"), SKIP_JUDGE="1")  # attacks target the deterministic layers; the judge is not a defence
+                   DATA_DIR=str(data), SKIP_JUDGE="1")  # attacks target the deterministic layers; the judge is not a defence
         r = subprocess.run([sys.executable, str(h / "tests/grade.py")], capture_output=True, text=True, env=env, timeout=900)
         try:
             rec = json.loads(pathlib.Path(d, "result.json").read_text())
@@ -82,7 +92,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(ROOT / "results/adversarial.json"))
     ap.add_argument("--tasks", nargs="*")
+    ap.add_argument("--data", nargs="*", default=[])
     a = ap.parse_args()
+    data_for = dict(x.split("=", 1) for x in a.data)
     results = {}
     for task in sorted((ROOT / "tasks").iterdir()):
         h = task
@@ -91,11 +103,18 @@ def main():
         code = (h / "solution/protocol.py").read_text()
         deck = json.loads((h / "tests/deck.json").read_text())
         results[task.name] = {}
+        reference_run = simulate(code)
         for name, mutated in attacks(code, deck).items():
             if mutated is None:
                 results[task.name][name] = {"skipped": "does not apply to this task"}
                 continue
-            results[task.name][name] = run_one(task, name, mutated)
+            # the printed run names wells by label, not labware type, so a no-op must also load the same labware
+            if (not name.startswith("control") and not reference_run.startswith("failed") and labels(mutated) == labels(code)
+                    and simulate(mutated) == reference_run):
+                # e.g. new_tip='once' on a transfer() of one well: same tips, same liquid moves, so 1.0 is the right score
+                results[task.name][name] = {"skipped": "no-op: same simulated run as the reference"}
+                continue
+            results[task.name][name] = run_one(task, name, mutated, pathlib.Path(data_for.get(task.name, h / "environment/data")))
             r = results[task.name][name]
             print(f"{task.name:34} {name:36} reward={r['reward']}  {'| ' + ','.join(r.get('failed_checks', []))[:70] if r.get('failed_checks') else ''}{' | lint:' + r['lint'][0][:40] if r.get('lint') else ''}", flush=True)
     pathlib.Path(a.out).parent.mkdir(parents=True, exist_ok=True)

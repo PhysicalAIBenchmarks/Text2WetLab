@@ -527,6 +527,186 @@
    "error": "protocol uses something a protocol does not need and is not graded"
   }
  },
+ "colony-pcr-screening-hard": {
+  "control_reference_solution": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "control_api_2_14": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "control_api_2_15": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "empty_protocol": {
+   "reward": 0.0,
+   "failed_checks": [
+    "deck_labware:colony_plate",
+    "deck_labware:pcr_plate",
+    "deck_labware:master_mix_reservoir",
+    "deck_labware:primer_plate"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "drop_last_transfer": {
+   "reward": 0.3333,
+   "failed_checks": [
+    "end_state:pcr_plate"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "halve_volumes": {
+   "reward": 0.3333,
+   "failed_checks": [
+    "end_state:pcr_plate"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "double_volumes": {
+   "reward": 0.3333,
+   "failed_checks": [
+    "end_state:pcr_plate"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "no_labels": {
+   "reward": 0.0,
+   "failed_checks": [
+    "deck_labware:colony_plate",
+    "deck_labware:pcr_plate",
+    "deck_labware:master_mix_reservoir",
+    "deck_labware:primer_plate",
+    "no_aspirate_from_empty_well"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "swap_two_labels": {
+   "reward": 0.0833,
+   "failed_checks": [
+    "deck_labware:colony_plate",
+    "deck_labware:pcr_plate",
+    "no_aspirate_from_empty_well"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "reservoir_labelled_as_plate_kind": {
+   "reward": 0.1875,
+   "failed_checks": [
+    "deck_labware:master_mix_reservoir",
+    "no_aspirate_from_empty_well"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "wrong_slot": {
+   "reward": 0.1667,
+   "failed_checks": [
+    "deck_labware:colony_plate",
+    "no_aspirate_from_empty_well"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "duplicate_label": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": "simulator gate failed"
+  },
+  "finish_holding_a_tip": {
+   "reward": 0.25,
+   "failed_checks": [
+    "tip_dropped_at_end"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "extra_liquid_into_target": {
+   "reward": 0.3333,
+   "failed_checks": [
+    "end_state:pcr_plate"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "share_one_tip_across_sources": {
+   "reward": 0.25,
+   "failed_checks": [
+    "no_cross_contamination"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "comment_spoof_only": {
+   "reward": 0.0,
+   "failed_checks": [
+    "deck_labware:colony_plate",
+    "deck_labware:pcr_plate",
+    "deck_labware:master_mix_reservoir",
+    "deck_labware:primer_plate"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "forged_result_then_systemexit": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 2: import json",
+    "line 9: name SystemExit"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  },
+  "import_os_and_exit": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 1: import os",
+    "line 6: attribute ._exit"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  },
+  "read_the_answer_key": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 5: name open",
+    "line 5: path to the grader in a string"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  },
+  "patch_the_log_parser": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 3: assignment to an attribute"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  },
+  "dunder_escape": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 5: attribute .__class__",
+    "line 5: attribute .__mro__"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  }
+ },
  "ecoli-heat-shock-transformation": {
   "control_reference_solution": {
    "reward": 1.0,
@@ -690,7 +870,388 @@
    "error": "protocol uses something a protocol does not need and is not graded"
   }
  },
+ "ecoli-heat-shock-transformation-hard": {
+  "control_reference_solution": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "control_api_2_14": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "control_api_2_15": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "empty_protocol": {
+   "reward": 0.0,
+   "failed_checks": [
+    "deck_labware:plasmid_plate",
+    "deck_labware:transformation_plate",
+    "deck_labware:soc_reservoir"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "drop_last_transfer": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "syntax error: expected an indented block after 'for' statement on line 35 (line 36)"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  },
+  "halve_volumes": {
+   "reward": 0.0,
+   "failed_checks": [
+    "end_state:plasmid_plate",
+    "end_state:transformation_plate"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "double_volumes": {
+   "reward": 0.0,
+   "failed_checks": [
+    "end_state:plasmid_plate",
+    "end_state:transformation_plate"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "no_labels": {
+   "reward": 0.0,
+   "failed_checks": [
+    "deck_labware:plasmid_plate",
+    "deck_labware:transformation_plate",
+    "deck_labware:soc_reservoir",
+    "no_aspirate_from_empty_well"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "swap_two_labels": {
+   "skipped": "does not apply to this task"
+  },
+  "reservoir_labelled_as_plate_kind": {
+   "reward": 0.1667,
+   "failed_checks": [
+    "deck_labware:soc_reservoir",
+    "no_aspirate_from_empty_well"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "wrong_slot": {
+   "reward": 0.125,
+   "failed_checks": [
+    "deck_labware:plasmid_plate",
+    "no_aspirate_from_empty_well"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "duplicate_label": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": "simulator gate failed"
+  },
+  "finish_holding_a_tip": {
+   "reward": 0.25,
+   "failed_checks": [
+    "tip_dropped_at_end"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "extra_liquid_into_target": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": "simulator gate failed"
+  },
+  "share_one_tip_across_sources": {
+   "skipped": "no-op: same simulated run as the reference"
+  },
+  "comment_spoof_only": {
+   "reward": 0.0,
+   "failed_checks": [
+    "deck_labware:plasmid_plate",
+    "deck_labware:transformation_plate",
+    "deck_labware:soc_reservoir"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "forged_result_then_systemexit": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 2: import json",
+    "line 9: name SystemExit"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  },
+  "import_os_and_exit": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 1: import os",
+    "line 6: attribute ._exit"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  },
+  "read_the_answer_key": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 5: name open",
+    "line 5: path to the grader in a string"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  },
+  "patch_the_log_parser": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 3: assignment to an attribute"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  },
+  "dunder_escape": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 5: attribute .__class__",
+    "line 5: attribute .__mro__"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  }
+ },
  "golden-gate-assembly": {
+  "control_reference_solution": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "control_api_2_14": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "control_api_2_15": {
+   "reward": 1.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": ""
+  },
+  "empty_protocol": {
+   "reward": 0.0,
+   "failed_checks": [
+    "deck_labware:water",
+    "deck_labware:q5_buffer",
+    "deck_labware:dntp",
+    "deck_labware:q5_pol",
+    "deck_labware:pcr_mm",
+    "deck_labware:primer_plate",
+    "deck_labware:template_plate",
+    "deck_labware:pcr_plate",
+    "deck_labware:rcutsmart",
+    "deck_labware:dpni",
+    "deck_labware:t4_buffer",
+    "deck_labware:gg_enzyme",
+    "deck_labware:assembly_plate",
+    "deck_labware:cells_plate",
+    "deck_labware:lb_dextrose"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "drop_last_transfer": {
+   "reward": 0.4667,
+   "failed_checks": [
+    "end_state:cells_plate"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "halve_volumes": {
+   "reward": 0.15,
+   "failed_checks": [
+    "no_aspirate_from_empty_well",
+    "end_state:pcr_mm",
+    "end_state:primer_plate",
+    "end_state:template_plate",
+    "end_state:pcr_plate",
+    "end_state:assembly_plate",
+    "end_state:cells_plate"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "double_volumes": {
+   "reward": 0.3,
+   "failed_checks": [
+    "end_state:pcr_mm",
+    "end_state:primer_plate",
+    "end_state:template_plate",
+    "end_state:pcr_plate",
+    "end_state:assembly_plate",
+    "end_state:cells_plate"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "no_labels": {
+   "reward": 0.0,
+   "failed_checks": [
+    "deck_labware:water",
+    "deck_labware:q5_buffer",
+    "deck_labware:dntp",
+    "deck_labware:q5_pol",
+    "deck_labware:pcr_mm",
+    "deck_labware:primer_plate",
+    "deck_labware:template_plate",
+    "deck_labware:pcr_plate",
+    "deck_labware:rcutsmart",
+    "deck_labware:dpni",
+    "deck_labware:t4_buffer",
+    "deck_labware:gg_enzyme",
+    "deck_labware:assembly_plate",
+    "deck_labware:cells_plate",
+    "deck_labware:lb_dextrose",
+    "no_aspirate_from_empty_well"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "swap_two_labels": {
+   "reward": 0.2167,
+   "failed_checks": [
+    "deck_labware:primer_plate",
+    "deck_labware:template_plate",
+    "no_aspirate_from_empty_well"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "reservoir_labelled_as_plate_kind": {
+   "skipped": "does not apply to this task"
+  },
+  "wrong_slot": {
+   "reward": 0.2333,
+   "failed_checks": [
+    "deck_labware:water",
+    "no_aspirate_from_empty_well"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "duplicate_label": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": "simulator gate failed"
+  },
+  "finish_holding_a_tip": {
+   "reward": 0.25,
+   "failed_checks": [
+    "tip_dropped_at_end"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "extra_liquid_into_target": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [],
+   "error": "simulator gate failed"
+  },
+  "share_one_tip_across_sources": {
+   "reward": 0.25,
+   "failed_checks": [
+    "no_cross_contamination"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "comment_spoof_only": {
+   "reward": 0.0,
+   "failed_checks": [
+    "deck_labware:water",
+    "deck_labware:q5_buffer",
+    "deck_labware:dntp",
+    "deck_labware:q5_pol",
+    "deck_labware:pcr_mm",
+    "deck_labware:primer_plate",
+    "deck_labware:template_plate",
+    "deck_labware:pcr_plate",
+    "deck_labware:rcutsmart",
+    "deck_labware:dpni",
+    "deck_labware:t4_buffer",
+    "deck_labware:gg_enzyme",
+    "deck_labware:assembly_plate",
+    "deck_labware:cells_plate",
+    "deck_labware:lb_dextrose"
+   ],
+   "lint": [],
+   "error": ""
+  },
+  "forged_result_then_systemexit": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 2: import json",
+    "line 9: name SystemExit"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  },
+  "import_os_and_exit": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 1: import os",
+    "line 6: attribute ._exit"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  },
+  "read_the_answer_key": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 5: name open",
+    "line 5: path to the grader in a string"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  },
+  "patch_the_log_parser": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 3: assignment to an attribute"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  },
+  "dunder_escape": {
+   "reward": 0.0,
+   "failed_checks": [],
+   "lint": [
+    "line 5: attribute .__class__",
+    "line 5: attribute .__mro__"
+   ],
+   "error": "protocol uses something a protocol does not need and is not graded"
+  }
+ },
+ "golden-gate-assembly-hard": {
   "control_reference_solution": {
    "reward": 1.0,
    "failed_checks": [],
