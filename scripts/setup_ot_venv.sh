@@ -4,6 +4,6 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 PY="${1:-python3.10}"
-"$PY" -m venv .venv-ot
+"$PY" -m venv --clear .venv-ot
 .venv-ot/bin/pip install --quiet opentrons==7.5.0 opentrons-shared-data==7.5.0 "pydantic<2"
 echo "ready: $(.venv-ot/bin/python -c 'import opentrons; print("opentrons", opentrons.__version__)')"
