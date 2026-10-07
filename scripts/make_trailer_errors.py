@@ -371,7 +371,7 @@ def title_card(out, dur):
     text(d, (W // 2, 250), "Text2WetLab", 84, WHITE, bold=True, anchor="mm")
     text(d, (W // 2, 330), "Can an AI agent turn a published wet-lab method into a correct robot protocol?", 25, LGREY, anchor="mm")
     text(d, (W // 2, 372), "3 worked errors  ·  Claude agents in Harbor  ·  OT-2 replayed in MuJoCo", 19, MGREY, anchor="mm")
-    text(d, (W // 2, 470), "Niall O'Leary  ·  Evan O'Leary  ·  Mohammed Alshehri  ·  Laurence Sturdy", 17, DGREY, anchor="mm")
+    text(d, (W // 2, 470), "Evan O'Leary  ·  Mohammed Alshehri  ·  Laurence Legon", 17, DGREY, anchor="mm")
     return scene(out, dur, img)
 
 

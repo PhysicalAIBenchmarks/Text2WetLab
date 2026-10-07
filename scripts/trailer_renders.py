@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render every robot run the trailers use (scripts/make_trailer.py, scripts/make_trailer_errors.py).
+"""Render every robot run scripts/make_trailer_errors.py uses (make_trailer.py needs none: its 3D comes from git).
 
     uv run python scripts/trailer_renders.py [--out /tmp/t2wl_renders] [--only NAME ...]
 
@@ -18,10 +18,6 @@ RNA_LABWARE = "tasks/opentrons-rna-extraction/harbor/environment/data/labware"
 
 # name: (commit or None for the working tree, protocol path, labware dir or None)
 RENDERS = {
-    # make_trailer.py: scored agent protocols, round R2 (graded rubric), as committed in results/
-    "golden-gate-assembly-claude-opus-5-5": (None, "results/claude-opus-5-5/golden-gate-assembly/protocol.py", None),
-    "opentrons-rna-extraction-claude-opus-5-5": (None, "results/claude-opus-5-5/opentrons-rna-extraction/protocol.py", RNA_LABWARE),
-    "colony-pcr-screening-claude-sonnet-5-5": (None, "results/claude-sonnet-5-5/colony-pcr-screening/protocol.py", None),
     # make_trailer_errors.py: R7 = 48836f1 (clean re-run, 21 trials), R5 = 8beadb3 (run-log judge)
     "r7-ecoli-opus": ("48836f1", "results/claude-opus-5-5/ecoli-heat-shock-transformation/protocol.py", None),
     "r7-rna-opus": ("48836f1", "results/claude-opus-5-5/opentrons-rna-extraction/protocol.py", RNA_LABWARE),
