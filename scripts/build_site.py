@@ -63,8 +63,14 @@ def run_data(run: pathlib.Path) -> dict:
             "hard": mean([r(k) for k in answered[m] if k.endswith("-hard")]),
             "refusals": sum(trials[(m, k)]["refused"] for k in tasks),
             "cost": round(sum(trials[(m, k)]["cost"] for k in tasks), 2)})
+    provisional = json.loads((run / "PROVISIONAL.json").read_text()) if (run / "PROVISIONAL.json").exists() else {}
+    for key, why in provisional.items():
+        m, _, k = key.partition("/")
+        if (m, k) in trials:
+            trials[(m, k)]["provisional"] = why
     grid = {k: {m: trials.get((m, k)) for m in models} for k in tasks}
-    return {"run": run.name, "models": models, "tasks": tasks, "rows": rows, "grid": grid, "n_common": len(common)}
+    return {"run": run.name, "models": models, "tasks": tasks, "rows": rows, "grid": grid, "n_common": len(common),
+            "n_provisional": sum(1 for t in trials.values() if t.get("provisional"))}
 
 
 def cell(t: dict | None) -> str:
@@ -77,6 +83,8 @@ def cell(t: dict | None) -> str:
     r = t["reward"]
     tier = "full" if r >= 0.999 else "high" if r >= 0.7 else "mid" if r >= 0.45 else "low"
     note = f'judge votes: {t["votes"]}' + (f'; failed checks: {", ".join(t["failed"])}' if t["failed"] else "")
+    if t.get("provisional"):
+        return f'<td class="{tier} prov" title="{html.escape("Provisional: " + t["provisional"])}">{r:.2f}<sup>†</sup></td>'
     return f'<td class="{tier}" title="{html.escape(note)}">{r:.2f}</td>'
 
 
@@ -86,7 +94,7 @@ def leaderboard(d: dict) -> str:
     body = []
     for i, k in enumerate(d["tasks"]):
         if i == 0 or k.endswith("-hard") != d["tasks"][i - 1].endswith("-hard"):
-            label = "Hard · goal and paper only" if k.endswith("-hard") else "Easy · steps given"
+            label = "Paper-only (hard) · goal and paper" if k.endswith("-hard") else "Easy · steps given"
             body.append(f'<tr class="group"><th colspan="{len(d["models"]) + 1}">{label}</th></tr>')
         body.append(f'<tr><th scope="row"><code>{html.escape(k)}</code></th>' + "".join(cell(d["grid"][k][m]) for m in d["models"]) + "</tr>")
     report = f'{REPO}/blob/main/results/runs/{d["run"]}/REPORT.md'
@@ -138,6 +146,7 @@ td.full {{ color:var(--green); }} td.high {{ color:#9be7ff; }} td.mid {{ color:v
 td.refused {{ color:var(--muted); font-style:italic; font-family:'Inter',sans-serif;
              background:repeating-linear-gradient(135deg,transparent 0 6px,#ffffff08 6px 12px); }}
 td.na {{ color:var(--muted); }}
+td.prov {{ outline:1px dashed var(--amber); outline-offset:-4px; }} sup {{ color:var(--amber); }}
 code {{ font-family:'JetBrains Mono',monospace; font-size:.92em; }}
 .notes {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); gap:12px; }}
 .note {{ background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; font-size:14px; color:var(--muted); min-width:0; }}
@@ -155,7 +164,7 @@ code {{ font-family:'JetBrains Mono',monospace; font-size:.92em; }}
   </nav>
   <h1>Text2WetLab <span>Leaderboard</span></h1>
   <p class="lede">Agents write Opentrons OT-2 protocols for 11 wet-lab tasks: 7 easy tasks that give the steps, 4 hard tasks that
-  give only a goal and the source paper. Each protocol is simulated, checked against a ground truth, and scored by a
+  give only a goal and the source paper (paper-only). Each protocol is simulated, checked against a ground truth, and scored by a
   three-vote rubric judge. One attempt per task, same Claude Code agent for every model. Run <code>{html.escape(d["run"])}</code>.</p>
 </header>
 
@@ -169,8 +178,8 @@ code {{ font-family:'JetBrains Mono',monospace; font-size:.92em; }}
 <div class="rank" id="rank"></div>
 
 <h2>Per task</h2>
-<p class="sub">Hover a score for the judge votes and any failed check. Every failure with its evidence is in the
-<a href="{report}">full report</a>.</p>
+<p class="sub">Hover a score for the judge votes and any failed check; † marks a provisional score. Every failure
+with its evidence is in the <a href="{report}">full report</a>.</p>
 <div class="scroll"><table>
   <thead><tr><th scope="col">Task</th>{head}</tr></thead>
   <tbody>{''.join(body)}</tbody>
@@ -180,7 +189,7 @@ code {{ font-family:'JetBrains Mono',monospace; font-size:.92em; }}
 <div class="notes">
   <div class="note"><b>Reward</b>Rubric score: three core items at 25% each (robot practice, tips and contamination, fidelity to the task or paper) and task items sharing 25%. A failed critical check caps it at 0.30.</div>
   <div class="note"><b>Verifier</b>Lint gate, 10 reward-hacking traps, the Opentrons 7.5 simulator and deterministic checks against the ground truth come first. All 11 reference solutions pass; 152 broken or cheating protocols all fail.</div>
-  <div class="note"><b>Pending</b>The RNA trials predate the 70-90 µL recovery check, and three Sonnet trials have fewer than three judge votes; both are re-judged in the next run. See the <a href="{report}">report</a>.</div>
+  <div class="note"><b>Provisional (†)</b>{d["n_provisional"]} scores were judged before the paper-only audit removed two requirements the papers do not support, or with fewer than three judge votes. Hover a † for the reason; they are re-judged in the next run.</div>
 </div>
 </div>
 <script>

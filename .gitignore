@@ -35,3 +35,4 @@ sources/uc2-hi2/pipeline/paper.json
 .venv-viz/
 .env
 _site/
+manuscript/*.pdf

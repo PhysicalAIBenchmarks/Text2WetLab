@@ -33,6 +33,9 @@ gpus = 0
 
 [checks]
 free_wells = []
+# The ground truth (from the easy task) is a 20 uL reaction; the paper's OT-2 workflow is 10 uL and the deck gives no
+# primer concentration, so the paper does not determine the PCR plate's volumes. The rubric judges the reaction.
+not_from_paper = ["pcr_plate"]
 
 [[metadata.papers]]
 slug = "slowpoke"

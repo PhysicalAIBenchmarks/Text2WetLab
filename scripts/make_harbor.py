@@ -160,11 +160,21 @@ def render_files(task: pathlib.Path) -> dict[str, str]:
         "solution/solve.sh": SOLVE_SH,
         "tests/deck.json": json.dumps(deck, indent=1) + "\n",
         "tests/ir.json": (task / "public/ir.json").read_text(),
-        "tests/checks.json": json.dumps({"free_wells": sorted(meta.get("checks", {}).get("free_wells", []))}) + "\n",
+        "tests/checks.json": checks_json(task),
     }
     for dst, src in CHECKER_COPIES.items():
         files[f"tests/{dst}"] = (ROOT / src).read_text()
     return files
+
+
+def checks_json(folder: pathlib.Path) -> str:
+    """tests/checks.json from the folder's own task.toml [checks]: free_wells, and not_from_paper (paper-only tasks
+    whose paper does not fix some container's volumes)."""
+    cfg = tomllib.loads((folder / "task.toml").read_text()).get("checks", {})
+    out = {"free_wells": sorted(cfg.get("free_wells", []))}
+    if cfg.get("not_from_paper"):
+        out["not_from_paper"] = sorted(cfg["not_from_paper"])
+    return json.dumps(out) + "\n"
 
 
 def main():
@@ -179,7 +189,7 @@ def main():
         targets = [(task, files)]
         hard = task.with_name(task.name + "-hard")
         if hard.is_dir() and not (hard / "public").exists() and (hard / "tests/ir.json").read_text() == files["tests/ir.json"]:
-            targets.append((hard, {k: v for k, v in files.items() if k != "instruction.md"}))
+            targets.append((hard, {k: v for k, v in files.items() if k != "instruction.md"} | {"tests/checks.json": checks_json(hard)}))
         for folder, out in targets:
             for rel, text in out.items():
                 f = folder / rel
