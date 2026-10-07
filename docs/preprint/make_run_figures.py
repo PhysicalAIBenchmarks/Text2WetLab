@@ -18,9 +18,11 @@ RUN = ROOT / "results/runs/2026-10-07-openrouter"
 OUT = ROOT / "docs/preprint/figures"
 OUT.mkdir(parents=True, exist_ok=True)
 
-MODELS = ["claude-sonnet-5.5", "claude-opus-5.5", "claude-fable-5.1"]
-NAME = {"claude-sonnet-5.5": "Sonnet 5.5", "claude-opus-5.5": "Opus 5.5", "claude-fable-5.1": "Fable 5.1"}
-COL = {"claude-opus-5.5": "#2a78d6", "claude-sonnet-5.5": "#eb6834", "claude-fable-5.1": "#1baf7a"}  # as make_figures.py
+ORDER = ["claude-sonnet-5.5", "claude-opus-5.5", "claude-fable-5.1", "gpt-6.1-sol"]
+NAME = {"claude-sonnet-5.5": "Sonnet 5.5", "claude-opus-5.5": "Opus 5.5", "claude-fable-5.1": "Fable 5.1", "gpt-6.1-sol": "GPT-6.1 Sol"}
+COL = {"claude-opus-5.5": "#2a78d6", "claude-sonnet-5.5": "#eb6834", "claude-fable-5.1": "#1baf7a", "gpt-6.1-sol": "#4a3aa7"}
+MODELS = [m for m in ORDER if (RUN / m).is_dir()]
+OFF = lambda j, width: (j - (len(MODELS) - 1) / 2) * width   # bar offset of model j in a group
 INK, INK2, MUTED, GRID, REFUSE = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#d9d7cf"
 SCORE = LinearSegmentedColormap.from_list("score", ["#b8321e", "#eda100", "#f4f1e6", "#7fb8e6", "#2a78d6"])
 
@@ -53,7 +55,7 @@ mean = lambda xs: sum(xs) / len(xs) if xs else float("nan")
 
 
 # Figure 7: reward per task and model, refusals marked
-fig, ax = plt.subplots(figsize=(6.4, 5.0))
+fig, ax = plt.subplots(figsize=(2.2 + 1.4 * len(MODELS), 5.0))
 rows = EASY + HARD
 for i, k in enumerate(rows):
     for j, m in enumerate(MODELS):
@@ -72,7 +74,7 @@ ax.tick_params(length=0); [s.set_visible(False) for s in ax.spines.values()]
 ax.text(len(MODELS) - .4, (len(EASY) - 1) / 2, "EASY\nstep by step", rotation=90, va="center", ha="left", fontsize=7.5, color=MUTED)
 ax.text(len(MODELS) - .4, len(EASY) + (len(HARD) - 1) / 2, "HARD\npaper only", rotation=90, va="center", ha="left", fontsize=7.5, color=MUTED)
 foot = "  ·  ".join(f"{NAME[m]}: {mean([reward(m, k) if not refused(m, k) else 0 for k in TASKS]):.3f}" for m in MODELS)
-ax.text(1, len(rows) - .1, "Mean, refusals as 0:  " + foot, ha="center", va="top", fontsize=8, color=INK2)
+ax.text((len(MODELS) - 1) / 2, len(rows) - .1, "Mean, refusals as 0:  " + foot, ha="center", va="top", fontsize=8, color=INK2)
 fig.savefig(OUT / "run_rewards.png"); plt.close(fig)
 
 
@@ -81,15 +83,16 @@ fig, (a, b) = plt.subplots(1, 2, figsize=(9.2, 3.4), gridspec_kw={"width_ratios"
 rules = [("Refusals count as 0", lambda m: mean([0 if refused(m, k) else reward(m, k) for k in TASKS])),
          ("Tasks the model answered", lambda m: mean([reward(m, k) for k in answered[m]])),
          (f"The {len(common)} tasks all answered", lambda m: mean([reward(m, k) for k in common]))]
-w = .26
+w = .8 / len(MODELS)
 for j, m in enumerate(MODELS):
     vals = [f(m) for _, f in rules]
-    xs = [i + (j - 1) * w for i in range(len(rules))]
+    xs = [i + OFF(j, w) for i in range(len(rules))]
     a.bar(xs, vals, w * .92, color=COL[m], label=NAME[m])
     for x, v in zip(xs, vals):
-        a.text(x, v + .012, f"{v:.2f}", ha="center", fontsize=7, color=INK2)
+        a.text(x, v - .012, f"{v:.2f}", ha="center", va="top", fontsize=6.5, color="white", fontweight="bold")
 a.set_xticks(range(len(rules)), [r for r, _ in rules], fontsize=8)
-a.set_ylim(.5, 1.04); a.set_ylabel("Mean reward"); ygrid(a); a.legend(loc="upper left", ncol=3, fontsize=8)
+a.set_ylim(.5, 1.0); a.set_ylabel("Mean reward"); ygrid(a)
+a.legend(loc="upper center", bbox_to_anchor=(.5, -.12), ncol=len(MODELS), fontsize=7.5)
 a.set_title("Ranking flips with how refusals are counted"); panel(a, "a")
 for m in MODELS:
     cost = sum(trials[(m, k)].get("cost_usd") or 0 for k in TASKS)
@@ -98,7 +101,9 @@ for m in MODELS:
     nref = sum(refused(m, k) for k in TASKS)
     b.annotate(f"{NAME[m]}\n{nref} refusal{'s' * (nref != 1)}", (cost, v), xytext=(8, -4), textcoords="offset points", fontsize=8, color=INK2)
 b.set_xlabel("Agent cost for all 11 tasks (USD)"); b.set_ylabel("Mean reward (refusals as 0)")
-b.set_xlim(0, 8); b.set_ylim(.6, .95); ygrid(b); xgrid(b)
+costs = [sum(trials[(m, k)].get("cost_usd") or 0 for k in TASKS) for m in MODELS]
+vals = [rules[0][1](m) for m in MODELS]
+b.set_xlim(0, max(costs) * 1.3); b.set_ylim(min(vals) - .05, min(1.0, max(vals) + .05)); ygrid(b); xgrid(b)
 b.set_title("Cost against reward"); panel(b, "b")
 fig.tight_layout(); fig.savefig(OUT / "run_means_cost.png"); plt.close(fig)
 
@@ -107,7 +112,7 @@ fig.tight_layout(); fig.savefig(OUT / "run_means_cost.png"); plt.close(fig)
 RISKS = [("simulator_ran", "Runs in the simulator"), ("end_state", "End-state volumes"),
          ("tip_before_aspirate", "Tip before pipetting"), ("no_overdispense", "No overdispense"),
          ("no_aspirate_from_empty_well", "No empty-well draw"), ("tip_dropped_at_end", "Tip dropped at end"),
-         ("no_cross_contamination", "No cross-contamination"), ("rna", "RNA run-log checks (16)")]
+         ("no_cross_contamination", "No cross-contamination"), ("rna", "RNA run-log checks")]
 def risk_of(name):
     base = name.split(":")[0].split("[")[0]       # deck_labware is recorded only when it fails: none did
     return base if base in dict(RISKS) else "rna"
@@ -124,29 +129,34 @@ for j, m in enumerate(MODELS):
     vals = [passed[(m, r)] / ran[(m, r)] if ran[(m, r)] else None for r, _ in RISKS]
     for y, v, (r, _) in zip(ys, vals, RISKS):
         if v is not None:
-            a.barh(y + (j - 1) * .26, v, .24, color=COL[m], label=NAME[m] if y == 0 else None)
-            if v < 1:
-                a.text(v + .01, y + (j - 1) * .26, f"{passed[(m, r)]}/{ran[(m, r)]}", va="center", fontsize=7, color=INK2)
+            a.barh(y + OFF(j, .8 / len(MODELS)), v, .72 / len(MODELS), color=COL[m], label=NAME[m] if y == 0 else None)
+
+for y, (r, _) in zip(ys, RISKS):   # one line per risk that any model missed: every model's passed/run
+    if any(ran[(m, r)] and passed[(m, r)] < ran[(m, r)] for m in MODELS):
+        a.text(1.02, y, "\n".join(f"{NAME[m]} {passed[(m, r)]}/{ran[(m, r)]}" for m in MODELS if ran[(m, r)]),
+               va="center", fontsize=5.8, color=INK2, linespacing=1.0)
 a.set_yticks(list(ys), [l for _, l in RISKS], fontsize=8); a.invert_yaxis()
-a.set_xlim(0, 1.12); a.set_xlabel("Share of checks passed"); xgrid(a)
+a.set_xlim(0, 1.3); a.set_xticks([0, .2, .4, .6, .8, 1]); a.set_xlabel("Share of checks passed"); xgrid(a)
 a.set_title("Deterministic checks: almost nothing fails"); panel(a, "a")
-a.legend(loc="lower left", fontsize=7.5, ncol=3, bbox_to_anchor=(0, -.3))
-ITEMS = ["fidelity_to_paper", "elution_recovery", "fidelity_to_task", "robot_practice"]
+a.legend(loc="lower left", fontsize=7.5, ncol=len(MODELS), bbox_to_anchor=(0, -.3))
 fails = collections.Counter()
 for (m, k), t in trials.items():
+    if m not in MODELS:
+        continue
     for key, v in (t["rewards"] or {}).items():
         if key.startswith("rubric_") and v == 0:
             fails[(m, key.removeprefix("rubric_"))] += 1
+# every rubric item that failed at least once, most failures first
+ITEMS = sorted({i for (_, i) in fails}, key=lambda i: -sum(v for (m, j), v in fails.items() if j == i))
 left = [0] * len(ITEMS)
 for m in MODELS:
     vals = [fails[(m, i)] for i in ITEMS]
     b.barh(range(len(ITEMS)), vals, .6, left=left, color=COL[m], label=NAME[m])
     left = [l + v for l, v in zip(left, vals)]
 b.set_yticks(range(len(ITEMS)), ITEMS, fontsize=8.5, family="monospace"); b.invert_yaxis()
-b.set_xlabel("Failed rubric items (all 3 models)"); b.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(integer=True)); xgrid(b)
+b.set_xlabel(f"Failed rubric items (all {len(MODELS)} models)"); b.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(integer=True)); xgrid(b)
 b.set_title("LLM judge: every lost point"); panel(b, "b")
-n_other = sum(v for (m, i), v in fails.items() if i not in ITEMS)
-b.text(.98, .03, f"{sum(fails.values())} failed items in all; every other item passed" + (f" (+{n_other} other)" if n_other else ""),
+b.text(.98, .03, f"{sum(fails.values())} failed items in all; every other item passed",
        transform=b.transAxes, ha="right", fontsize=7.5, color=MUTED)
 fig.tight_layout(); fig.savefig(OUT / "run_where_lost.png"); plt.close(fig)
 

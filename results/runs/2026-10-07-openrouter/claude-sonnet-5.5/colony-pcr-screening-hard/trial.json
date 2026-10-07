@@ -24,5 +24,21 @@
  "input_tokens": 128372,
  "output_tokens": 4184,
  "started_at": "2026-10-07T01:05:15.836971Z",
- "finished_at": "2026-10-07T01:06:28.988688Z"
+ "finished_at": "2026-10-07T01:06:28.988688Z",
+ "original_rewards": {
+  "reward": 0.75,
+  "sim_pass": 1.0,
+  "checks_frac": 0.8889,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 0.3333,
+  "judge_score": 0.75,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_paper": 0.0,
+  "rubric_reaction_setup": 1.0,
+  "rubric_sample_mapping": 1.0,
+  "rubric_thermocycling": 1.0
+ }
 }

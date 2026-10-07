@@ -1,109 +1,136 @@
 {
-  "lint": [],
-  "traps": [],
-  "simulation": {
-    "ok": true,
-    "n_commands": 26
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 26
+ },
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
   },
-  "checks": [
-    {
-      "name": "simulator_ran",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "tip_before_aspirate",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_overdispense",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_aspirate_from_empty_well",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "tip_dropped_at_end",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "no_cross_contamination",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "end_state:plate",
-      "pass": true,
-      "detail": ""
-    }
-  ],
-  "judge": {
-    "model": "anthropic/claude-sonnet-5.5",
-    "items": [
-      {
-        "id": "robot_practice",
-        "score": 1,
-        "evidence": "apiLevel 2.15 is valid, 100 uL is within the p300 range, and the plate wells are far below the 360 uL capacity."
-      },
-      {
-        "id": "tips_and_contamination",
-        "score": 1,
-        "evidence": "One tip is picked up before any aspirate and dropped at the end. The source is a single reservoir and the checks for tip use and cross-contamination passed."
-      },
-      {
-        "id": "fidelity_to_task",
-        "score": 1,
-        "evidence": "The code makes 12 transfers of 100 uL from reservoir A1 to plate A1-A12 in order, with the labels and slots the task specified. Nothing extra is added."
-      },
-      {
-        "id": "deck_and_hardware",
-        "score": 1,
-        "evidence": "Reservoir (slot 1) and plate (slot 2) carry the specified labels. The tip racks are in slots 10 and 11, and the p20 (left) and p300 (right) pipettes are loaded."
-      },
-      {
-        "id": "volumes_and_wells",
-        "score": 1,
-        "evidence": "The p300 aspirates 100 from reservoir A1 and dispenses 100 into each of A1-A12. No other wells are touched, and the end_state:plate check passed."
-      }
-    ],
-    "scores": {
-      "robot_practice": 1.0,
-      "tips_and_contamination": 1.0,
-      "fidelity_to_task": 1.0,
-      "deck_and_hardware": 1.0,
-      "volumes_and_wells": 1.0
-    },
-    "summary": "The protocol simulates cleanly and all measured checks pass. It transfers 100 uL from reservoir A1 to plate wells A1-A12 with the p300 using a single tip, which is dropped at the end.",
-    "level": "easy",
-    "score": 1.0,
-    "weights": {
-      "robot_practice": 0.25,
-      "tips_and_contamination": 0.25,
-      "fidelity_to_task": 0.25,
-      "deck_and_hardware": 0.125,
-      "volumes_and_wells": 0.125
-    },
-    "provider": "openrouter"
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
   },
-  "critical_failures": [],
-  "rewards": {
-    "reward": 1.0,
-    "sim_pass": 1.0,
-    "checks_frac": 1.0,
-    "lint_violations": 0.0,
-    "hack_detected": 0.0,
-    "deterministic_reward": 1.0,
-    "judge_score": 1.0,
-    "critical_fail": 0.0,
-    "rubric_robot_practice": 1.0,
-    "rubric_tips_and_contamination": 1.0,
-    "rubric_fidelity_to_task": 1.0,
-    "rubric_deck_and_hardware": 1.0,
-    "rubric_volumes_and_wells": 1.0
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "end_state:plate",
+   "pass": true,
+   "detail": ""
   }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "apiLevel 2.15 is valid, 100 \u00b5L is within the p300 range, and the protocol uses the correct labware with no overfilled wells.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 1,
+    "evidence": "One tip is picked up before any aspirate and dropped at the end. The source is the single reservoir, and the tip_before_aspirate, tip_dropped_at_end and no_cross_contamination checks all passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "fidelity_to_task",
+    "score": 1,
+    "evidence": "It does a single 100 \u00b5L reservoir A1 to plate A1\u2013A12 transfer in order, with labels as specified and nothing added. Metadata and comments are accurate.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "deck_and_hardware",
+    "score": 1,
+    "evidence": "The reservoir (slot 1) and plate (slot 2) are loaded with the correct labels, the tip racks are in slots 10 and 11, and p20 (left) and p300 (right) are loaded.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "volumes_and_wells",
+    "score": 1,
+    "evidence": "The loop aspirates and dispenses 100 \u00b5L with p300 from reservoir A1 into plate A1\u2013A12 only, and the end_state:plate check passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 1.0,
+   "fidelity_to_task": 1.0,
+   "deck_and_hardware": 1.0,
+   "volumes_and_wells": 1.0
+  },
+  "summary": "The protocol simulates cleanly, and all measured checks passed. It transfers 100 \u00b5L to A1\u2013A12 with the p300 using one tip, which is dropped at the end.",
+  "level": "easy",
+  "score": 1.0,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_task": 0.25,
+   "deck_and_hardware": 0.125,
+   "volumes_and_wells": 0.125
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [],
+ "rewards": {
+  "reward": 1.0,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 1.0,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_task": 1.0,
+  "rubric_deck_and_hardware": 1.0,
+  "rubric_volumes_and_wells": 1.0
+ }
 }

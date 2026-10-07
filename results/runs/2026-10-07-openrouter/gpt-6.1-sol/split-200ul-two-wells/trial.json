@@ -1,0 +1,27 @@
+{
+ "task": "split-200ul-two-wells",
+ "model": "openai/gpt-6.1-sol",
+ "agent": "claude-code",
+ "via": "openrouter",
+ "rewards": {
+  "reward": 1.0,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 1.0,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_task": 1.0,
+  "rubric_deck_and_hardware": 1.0,
+  "rubric_volumes_and_wells": 1.0
+ },
+ "exception": null,
+ "cost_usd": 0.13919275,
+ "input_tokens": 55105,
+ "output_tokens": 757,
+ "started_at": "2026-10-07T13:57:11.879345Z",
+ "finished_at": "2026-10-07T13:58:29.816368Z"
+}

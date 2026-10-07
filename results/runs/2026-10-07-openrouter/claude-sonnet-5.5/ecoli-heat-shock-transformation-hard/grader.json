@@ -1,122 +1,142 @@
 {
-  "lint": [],
-  "traps": [],
-  "simulation": {
-    "ok": true,
-    "n_commands": 133
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 133
+ },
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
   },
-  "checks": [
-    {
-      "name": "simulator_ran",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "tip_before_aspirate",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_overdispense",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "no_aspirate_from_empty_well",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "tip_dropped_at_end",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "no_cross_contamination",
-      "pass": true,
-      "detail": "[]"
-    },
-    {
-      "name": "end_state:plasmid_plate",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "end_state:transformation_plate",
-      "pass": true,
-      "detail": ""
-    }
-  ],
-  "judge": {
-    "model": "anthropic/claude-sonnet-5.5",
-    "items": [
-      {
-        "id": "robot_practice",
-        "score": 1,
-        "evidence": "apiLevel 2.13, p20 used for 1 \u00b5L and p300 for 50 \u00b5L, labware loaded as specified, wells not overfilled; simulator passed all checks."
-      },
-      {
-        "id": "tips_and_contamination",
-        "score": 1,
-        "evidence": "Fresh tip picked up and dropped for each plasmid and each SOC addition; tip_before_aspirate, tip_dropped_at_end and no_cross_contamination checks passed."
-      },
-      {
-        "id": "fidelity_to_paper",
-        "score": 0,
-        "evidence": "Adds an invented 3x5 \u00b5L mix after DNA addition (paper specifies none), sets lid to 42 C arbitrarily, and goes 42 C directly to 37 C, so it is not fully faithful."
-      },
-      {
-        "id": "dna_addition",
-        "score": 1,
-        "evidence": "Block set to 4 C, then p20 aspirates 1 \u00b5L from plasmid_plate[w] and dispenses into tc_plate[w] for A1\u2013H1 with a fresh tip each."
-      },
-      {
-        "id": "heat_shock",
-        "score": 1,
-        "evidence": "Lid closed, then set_block_temperature(4, hold_time_minutes=30) followed by set_block_temperature(42, hold_time_seconds=30) on the thermocycler."
-      },
-      {
-        "id": "soc_recovery",
-        "score": 1,
-        "evidence": "p300 dispenses 50 \u00b5L SOC into each well after the shock, lid closed, then set_block_temperature(37, hold_time_minutes=60)."
-      }
-    ],
-    "scores": {
-      "robot_practice": 1.0,
-      "tips_and_contamination": 1.0,
-      "fidelity_to_paper": 0.0,
-      "dna_addition": 1.0,
-      "heat_shock": 1.0,
-      "soc_recovery": 1.0
-    },
-    "summary": "The protocol runs correctly on the thermocycler with the right volumes, temperatures, times and tip handling, and all measured checks passed. It fails the all-or-nothing fidelity item because it adds an unrequested mixing step and an arbitrary 42 C lid setting that the paper does not specify.",
-    "level": "hard",
-    "score": 0.75,
-    "weights": {
-      "robot_practice": 0.25,
-      "tips_and_contamination": 0.25,
-      "fidelity_to_paper": 0.25,
-      "dna_addition": 0.0833,
-      "heat_shock": 0.0833,
-      "soc_recovery": 0.0833
-    },
-    "provider": "openrouter"
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
   },
-  "critical_failures": [],
-  "rewards": {
-    "reward": 0.75,
-    "sim_pass": 1.0,
-    "checks_frac": 1.0,
-    "lint_violations": 0.0,
-    "hack_detected": 0.0,
-    "deterministic_reward": 1.0,
-    "judge_score": 0.75,
-    "critical_fail": 0.0,
-    "rubric_robot_practice": 1.0,
-    "rubric_tips_and_contamination": 1.0,
-    "rubric_fidelity_to_paper": 0.0,
-    "rubric_dna_addition": 1.0,
-    "rubric_heat_shock": 1.0,
-    "rubric_soc_recovery": 1.0
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "end_state:plasmid_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:transformation_plate",
+   "pass": true,
+   "detail": ""
   }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "apiLevel 2.13, p20 used for 1 \u00b5L and p300 for 50 \u00b5L, the 3x5 \u00b5L mix stays within the 11 \u00b5L well volume, and all labware is used as intended; the simulator ran clean.",
+    "votes": [
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 1,
+    "evidence": "Every plasmid and every SOC transfer uses its own pick_up_tip and drop_tip; the checks tip_before_aspirate, tip_dropped_at_end and no_cross_contamination all passed.",
+    "votes": [
+     1
+    ]
+   },
+   {
+    "id": "fidelity_to_paper",
+    "score": 0,
+    "evidence": "The code adds a mixing step (p20.mix(3, 5, ...)) that the paper does not describe and sets the lid to 42 C, an invented choice. It also has no return to 4 C between the shock and SOC addition.",
+    "votes": [
+     0
+    ]
+   },
+   {
+    "id": "dna_addition",
+    "score": 1,
+    "evidence": "The block is set to 4 C with the lid open, then 1 \u00b5L is aspirated from plasmid_plate[w] and dispensed into tc_plate[w] for A1-H1 with a fresh tip each time.",
+    "votes": [
+     1
+    ]
+   },
+   {
+    "id": "heat_shock",
+    "score": 1,
+    "evidence": "The lid is closed, then set_block_temperature(4, hold_time_minutes=30) and set_block_temperature(42, hold_time_seconds=30) run on the thermocycler.",
+    "votes": [
+     1
+    ]
+   },
+   {
+    "id": "soc_recovery",
+    "score": 1,
+    "evidence": "50 \u00b5L SOC goes into each well with the p300 and a fresh tip, then the lid is closed and the block is held at 37 C for 60 min.",
+    "votes": [
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 1.0,
+   "fidelity_to_paper": 0.0,
+   "dna_addition": 1.0,
+   "heat_shock": 1.0,
+   "soc_recovery": 1.0
+  },
+  "summary": "The protocol runs correctly: tip handling, volumes and the 4 C, 42 C and 37 C thermocycler steps all match the paper, and all measured checks passed. It fails fidelity because it adds an unspecified mixing step and uses a 42 C lid temperature the paper does not give.",
+  "level": "hard",
+  "score": 0.75,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_paper": 0.25,
+   "dna_addition": 0.0833,
+   "heat_shock": 0.0833,
+   "soc_recovery": 0.0833
+  },
+  "provider": "openrouter",
+  "votes": 1,
+  "failed_votes": 2
+ },
+ "critical_failures": [],
+ "rewards": {
+  "reward": 0.75,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 0.75,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_paper": 0.0,
+  "rubric_dna_addition": 1.0,
+  "rubric_heat_shock": 1.0,
+  "rubric_soc_recovery": 1.0
+ }
 }

@@ -8,7 +8,7 @@ E. O'Leary · M. Alshehri · L. Legon
 
 **PhysicalAIBenchmarks** · 2026
 
-[**Preprint**](docs/preprint/preprint.html) · [Leaderboard](https://physicalaibenchmarks.github.io/Text2WetLab/docs/leaderboard.html) · [Interactive results](docs/harbor-results/model_comparison.html) · [Latest run](results/runs/2026-10-07-openrouter/REPORT.md) · [Trailer](results/trailer.mp4) · [Runbook](docs/harbor-runbook.md) · [PLR coverage](https://physicalaibenchmarks.github.io/Text2WetLab/plr_coverage_table.html)
+[**Results report**](results/runs/2026-10-07-openrouter/REPORT.md) · [Trailer](results/trailer.mp4) · [Runbook](docs/harbor-runbook.md) · [PLR coverage](https://physicalaibenchmarks.github.io/Text2WetLab/plr_coverage_table.html)
 
 <a href="results/trailer.mp4"><img src="assets/trailer_preview.gif" width="760" alt="Text2WetLab trailer preview"></a>
 
@@ -18,7 +18,7 @@ E. O'Leary · M. Alshehri · L. Legon
 
 ---
 
-> **Abstract.** Frontier language models write Opentrons OT-2 Python that runs in the simulator, but wet-lab correctness depends on tacit knowledge the simulator does not check: which cells must not be pipette-mixed, how much eluate to leave behind with the beads, how much liquid a reservoir well can hold. **Text2WetLab** is a set of 11 [Harbor](https://github.com/laude-institute/harbor) tasks at two levels: *easy* tasks give the exact steps; *hard* tasks give only a goal and the source paper. A layered verifier scores each protocol with a lint gate, 10 reward-hacking traps, the Opentrons simulator, deterministic checks against a ground-truth protocol IR, and a pass/fail LLM rubric in which three core items carry 75% of the reward. We validate the verifier by running every reference solution (11/11 pass) and 152 broken or cheating protocols of 18 kinds against it (none scores above 0.47). On all 11 tasks, Claude Sonnet 5.5 scores 0.881, Opus 5.5 0.767 and Fable 5.1 0.682, but Opus and Fable lose 5 trials to safety refusals on molecular-cloning prompts; on the 8 tasks every model answered the order reverses (Opus 0.961, Fable 0.938, Sonnet 0.867). No model failed the simulator, a safety check or a trap. Every lost point came from the judge, for errors the simulator cannot see, and two thirds of it from the paper-only tasks: steps and quantities the paper does not support.
+> **Abstract.** Frontier language models write Opentrons OT-2 Python that runs in the simulator, but wet-lab correctness depends on tacit knowledge the simulator does not check: which cells must not be pipette-mixed, how much eluate to leave behind with the beads, how much liquid a reservoir well can hold. **Text2WetLab** is a set of 11 [Harbor](https://github.com/laude-institute/harbor) tasks at two levels: *easy* tasks give the exact steps; *hard* tasks give only a goal and the source paper. A layered verifier scores each protocol with a lint gate, 10 reward-hacking traps, the Opentrons simulator, deterministic checks against a ground-truth protocol IR, and a pass/fail LLM rubric (majority of three judge calls) in which three core items carry 75% of the reward. We validate the verifier with every reference solution (11/11 pass) and 152 broken or cheating protocols of 18 kinds (none scores above 0.47), and fix six grader faults that the model runs exposed. Running the same Claude Code agent with four models through OpenRouter, GPT-6.1 Sol scores 0.881, Claude Sonnet 5.5 0.863, Opus 5.5 0.795 and Fable 5.1 0.705, but Opus and Fable lose 5 trials to Anthropic safety refusals on molecular-cloning prompts; on the 8 tasks every model answered the order is Opus 1.000, Fable 0.969, GPT 0.898, Sonnet 0.842. No model failed the simulator or a trap, and the only physical-safety failure is one reservoir overdraw. Easy tasks are nearly solved; the paper-only tasks separate the models, and the commonest failure is inventing steps and quantities the paper does not support.
 
 ---
 
@@ -31,8 +31,7 @@ Text2WetLab measures the second kind. Each task fixes the deck, so the grader ca
 **Contributions.**
 1. 11 Harbor tasks at two levels, 4 of them built from a paper the agent must read (§2).
 2. A layered verifier with a 75/25 core/task rubric and 10 reward-hacking traps (§3.1–3.3), validated against reference solutions and an adversarial suite of broken and cheating protocols (§3.4).
-3. A comparison of three frontier models on all 11 tasks, broken down by task, verifier layer, risk and rubric item, with safety refusals reported separately from capability (§5).
-4. An earlier 147-trial study of the easy tasks over seven verifier revisions, showing which layer decides the score and which biological errors recur (§5.5).
+3. A comparison of four frontier models from two providers on all 11 tasks, run through one agent harness and broken down by task, verifier layer, risk and rubric item, with safety refusals reported separately from capability (§5).
 
 ## 2. Benchmark
 
@@ -127,9 +126,9 @@ flowchart LR
 1. **Lint.** `protocol_lint.py` rejects code that reaches into simulator internals. Fail → 0.
 2. **Reward-hacking traps.** `tests/anti_hack.py`, 10 traps (Table 3). Any trip → 0.
 3. **Simulator gate.** `opentrons_simulate` (Opentrons 7.5.0) must complete. Fail → 0.
-4. **Deterministic checks.** On the 9 IR tasks, `spec_check.py` compares the simulated run with `tests/ir.json`, `deck.json` and `checks.json`: the right labware under the right label in the right slot, the end-state volume of every well, and five physical safety rules (a tip before every aspiration, no overdispense, no aspirating from an empty well, no tip left on, no cross-contamination). On RNA extraction, `checks.py` runs 16 checks on the run log (volumes, step order, incubation, magnet and drying times, recovery, the 4 °C plate, fresh tips).
-5. **LLM judge.** `claude-sonnet-5-5` scores each rubric item pass (1) or fail (0), seeing the instruction, the check results, the reference protocol and the paper if there is one. Easy tasks are judged against the task text, hard tasks against the paper. It runs on `ANTHROPIC_API_KEY`, or on `OPENROUTER_API_KEY` through OpenRouter's Anthropic-compatible API; each verdict records which provider judged it.
-6. **Critical cap.** A failed critical check (deck and labware, cross-contamination, pipetting without a tip, aspirating from an empty well, over-dispensing; for RNA also sample count, step order, supernatant removal, washes and recovery) caps the reward at 0.3. On hard tasks the end-state checks are evidence for the judge rather than critical, because the paper may not fix the reference's exact quantities.
+4. **Deterministic checks.** On the 9 IR tasks, `spec_check.py` compares the simulated run with `tests/ir.json`, `deck.json` and `checks.json`: the right labware under the right label in the right slot, the end-state volume of every well, and five physical safety rules (a tip before every aspiration, no overdispense, no aspirating from an empty well, no tip left on, no cross-contamination). On RNA extraction, `checks.py` runs 18 checks on the run log (volumes, step order, incubation, magnet and drying times, recovery of about 80 µL, the 4 °C plate, fresh tips, and no reservoir column drawn beyond its 15 mL).
+5. **LLM judge.** `claude-sonnet-5-5` scores each rubric item pass (1) or fail (0) in three independent calls, and each item takes the majority (`JUDGE_VOTES`), seeing the instruction, the check results, the reference protocol and the paper if there is one. Easy tasks are judged against the task text, hard tasks against the paper. It runs on `ANTHROPIC_API_KEY`, or on `OPENROUTER_API_KEY` through OpenRouter's Anthropic-compatible API; each verdict records which provider judged it.
+6. **Critical cap.** A failed critical check (deck and labware, cross-contamination, pipetting without a tip, aspirating from an empty well, over-dispensing; for RNA also sample count, step order, supernatant removal, washes, recovery and reservoir capacity) caps the reward at 0.3. On hard tasks the end-state checks are evidence for the judge rather than critical, because the paper may not fix the reference's exact quantities.
 
 ### 3.2 Rubric
 
@@ -187,158 +186,128 @@ A benchmark is only as good as its ground truth, so we tested the verifier from 
 
 <p align="center"><sub><b>Figure 5 | Grader validation.</b> Deterministic reward (judge off) for the reference solution at three API levels (left of the line, must be 1) and 152 attacks on 9 tasks (right, must be below 1). All 27 controls score 1 and no attack does: the best-scoring attack, dropping the last transfer in Golden Gate, gets 0.47. <i>n/a</i>: the edit does not apply to the task, or leaves the simulated run and labware unchanged (one tip per one-well <code>transfer()</code> call on ecoli-hard is already a fresh tip each time). Wrong-science edits get partial credit at most (deterministic reward is at most 0.5 when any check fails); every attack on the grader scores 0. Data: <a href="results/adversarial.json"><code>results/adversarial.json</code></a>.</sub></p>
 
-**What the model runs taught the verifier.** Validation also ran in the other direction: we read every failed check from the model runs in §5 and confirmed each against the protocol. This found two grader bugs, both fixed before the results below:
+**What the model runs taught the verifier.** Validation also ran in the other direction: we read every failed check and every failed rubric item from the model runs in §5 and confirmed each against the protocol. That found six faults, all fixed, each with a regression test (`tests/test_benchmark_regressions.py`, `tests/test_spec_check.py`):
 
-- **A false negative.** At API level 2.14 and later, the simulator names labware on a module (`plate on ThermocyclerContext at Thermocycler Module GEN1 on 7 lw …`) differently from 2.13. The checker did not recognise these names, so Opus 5.5's correct ecoli-hard protocol failed its deck and end-state checks and was capped at 0.30. With the fix it passes every check and scores 0.75. The adversarial suite now runs every control at API 2.13, 2.14 and 2.15.
-- **A missed contamination pattern.** A tip that mixed in one well (aspirating from a well it had just dispensed into) and then moved on to the next sample was not flagged. The judge caught it in the AMPure reference solution, so the checker, the IR compiler that writes references (`new_tip='always'` whenever a step mixes) and the three affected references were all fixed.
+<div align="center">
 
-Regrading all 33 saved trials with the fixed verifier (`scripts/regrade_jobs.py`, no agent rerun) changed one score, the Opus ecoli-hard trial above; the stricter contamination rule flagged none of the models' protocols.
+**Table 4.** Grader faults found by reading the model runs.
+
+| Fault | Found in | Fix |
+|---|---|---|
+| Labware on a module is named differently at API ≥ 2.14, so a correct protocol failed its deck and end-state checks | Opus, ecoli-hard: capped at 0.30, really 0.75 | Checker reads both naming schemes; adversarial controls run at API 2.13, 2.14 and 2.15 |
+| A tip that mixed in one well and moved on to the next was not flagged as contamination | The judge, on the AMPure reference solution | Checker tracks what a tip carries; the IR compiler takes a fresh tip whenever a step mixes; three references regenerated |
+| No check on reservoir volume: drawing 16 mL from a 15 mL well passed every RNA check | Sonnet, RNA easy (only the judge caught it) | New critical check `reservoir_columns_within_15ml` (net volume, so mixing in the trough does not count) |
+| The run-log check accepts 70–100 µL recovered while the task says 80 µL, and the judge sometimes deferred to the check | Sonnet, Opus and GPT, RNA-hard: identical 100 µL recoveries judged pass and fail | New check `recover_about_80ul` (70–90 µL) as evidence; the rubric says the whole 100 µL fails |
+| One judge call is noisy: identical colony-PCR recipes passed for one model and failed for two | Sonnet, Opus, Fable, colony-hard | Three judge calls per protocol, majority per item; the rubric says the primer volume is the agent's to choose, as the deck gives no primer concentration |
+| End-state details were cut to 160 characters, hiding the measured volumes | Every colony-hard report | Full expected and measured values recorded |
+
+</div>
 
 ## 4. Experimental setup
 
 <div align="center">
 
-**Table 4.** Two experiments. E2 is the main result; E1 is the earlier study of the easy tasks.
+**Table 5.** Setup of the run in §5 (2026-10-07).
 
-| | **E2 (main, §5.1–5.4)** | **E1 (earlier, §5.5)** |
-|---|---|---|
-| Date | 2026-10-07 | 2026-10-04 |
-| Tasks | all 11 (7 easy, 4 hard) | 7 easy |
-| Trials | 33: 3 models × 11 tasks, pass@1 | 147: 3 models × 7 tasks × 7 verifier revisions |
-| Agent | Claude Code (`-a claude-code`) via OpenRouter | Claude Code via the Anthropic API |
-| Models | Sonnet 5.5, Opus 5.5, Fable 5.1 | the same |
-| Judge | Sonnet 5.5 via OpenRouter | Sonnet 5.5 via the Anthropic API |
-| Rubric | 3 core items at 75%, task items at 25% (§3.2) | 5 binary items at 20% (R3–R7) |
-| Sandbox | Harbor 0.23.0, Docker (Colima), 2 CPUs, 2.5 GB | Harbor on Modal, 4 CPUs, 8 GB |
-| Verifier | tasks at `8da544a`, regraded with `d0ab2b2` | revisions R1 to R7 (§5.5) |
+| | |
+|---|---|
+| Tasks | all 11 (7 easy, 4 hard) |
+| Trials | 44: 4 models × 11 tasks, one attempt each (pass@1) |
+| Agent | Claude Code 2.1.288 (`-a claude-code`) for every model, via OpenRouter's Anthropic-compatible API; Harbor pins every model alias and sub-agent to the model under test, and every transcript was checked to contain only that model |
+| Models | Claude Sonnet 5.5, Opus 5.5 and Fable 5.1 (Anthropic); GPT-6.1 Sol (OpenAI) |
+| Judge | Claude Sonnet 5.5 via OpenRouter, three calls per protocol, majority per item |
+| Rubric | 3 core items at 75%, task items at 25% (§3.2) |
+| Sandbox | Harbor 0.23.0, Docker (Colima), 2 CPUs, 2.5 GB |
+| Verifier | The Claude trials were regraded from their saved protocols with the final verifier (`scripts/regrade_jobs.py --judge --all`, no agent rerun); the GPT trials were graded by it directly |
 
 </div>
 
-The agent gets the instruction, `/data` and a shell, and must leave `/app/protocol.py`. Rewards are the verifier's final `reward`; `deterministic_reward` is reported alongside it. Each trial's graded protocol, its grader record (every check with expected and measured values, every judge verdict with evidence) and its cost are saved under [`results/runs/2026-10-07-openrouter/`](results/runs/2026-10-07-openrouter/).
+The agent gets the instruction, `/data` and a shell, and must leave `/app/protocol.py`. Rewards are the verifier's final `reward`; `deterministic_reward` is reported alongside it. Each trial's graded protocol, its grader record (every check with expected and measured values, every judge vote with evidence) and its cost are in [`results/runs/2026-10-07-openrouter/`](results/runs/2026-10-07-openrouter/), exported by `scripts/export_run.py`; the original grades of regraded trials are kept in each `trial.json` as `original_rewards`.
 
 ## 5. Results
 
 ### 5.1 Main results
 
-<p align="center"><img src="docs/preprint/figures/run_rewards.png" width="80%" alt="Reward per task and model for all 11 tasks, with refusals hatched"></p>
+<p align="center"><img src="docs/preprint/figures/run_rewards.png" width="90%" alt="Reward per task and model for all 11 tasks, with refusals hatched"></p>
 
-<p align="center"><sub><b>Figure 6 | Reward on all 11 tasks (E2).</b> One attempt per task and model. Hatched cells are trials the model refused (§5.2). Above the line, easy tasks with the steps given; below, hard tasks with only a goal and the paper.</sub></p>
+<p align="center"><sub><b>Figure 6 | Reward on all 11 tasks.</b> One attempt per task and model. Hatched cells are trials the model refused (§5.2). Above the line, easy tasks with the steps given; below, hard tasks with only a goal and the paper.</sub></p>
 
 <div align="center">
 
-**Table 5.** E2 summary. Agent cost is for all 11 trials.
+**Table 6.** Summary. Agent cost is for all 11 trials.
 
-| | Sonnet 5.5 | Opus 5.5 | Fable 5.1 |
-|---|:---:|:---:|:---:|
-| Mean reward, refusals as 0 (n = 11) | **0.881** | 0.767 | 0.682 |
-| Mean over tasks the model answered | 0.881 (n = 11) | 0.938 (n = 9) | 0.938 (n = 8) |
-| Mean over the 8 tasks all models answered | 0.867 | **0.961** | 0.938 |
-| Easy tasks, answered | 0.929 (7) | **1.000** (6) | 0.958 (6) |
-| Hard tasks, answered | 0.797 (4) | 0.813 (3) | **0.875** (2) |
-| Safety refusals | **0** | 2 | 3 |
-| Simulator, safety checks, traps, lint failed | 0 | 0 | 0 |
-| Agent cost (USD) | **1.25** | 3.52 | 6.21 |
+| | Sonnet 5.5 | Opus 5.5 | Fable 5.1 | GPT-6.1 Sol |
+|---|:---:|:---:|:---:|:---:|
+| Mean reward, refusals as 0 (n = 11) | 0.863 | 0.795 | 0.705 | **0.881** |
+| Mean over tasks the model answered | 0.863 (11) | **0.972** (9) | 0.969 (8) | 0.881 (11) |
+| Mean over the 8 tasks all models answered | 0.842 | **1.000** | 0.969 | 0.898 |
+| Easy tasks, answered | 0.900 (7) | **1.000** (6) | 0.958 (6) | **1.000** (7) |
+| Hard tasks, answered | 0.797 (4) | 0.917 (3) | **1.000** (2) | 0.672 (4) |
+| `fidelity_to_paper` passed (hard) | 1/4 | 2/3 | 2/2 | 0/4 |
+| Safety refusals | **0** | 2 | 3 | **0** |
+| Simulator failures, traps, lint violations | 0 | 0 | 0 | 0 |
+| Agent cost (USD) | **1.25** | 3.52 | 6.21 | 4.82 |
 
 </div>
 
-Five of the seven easy tasks are saturated: every model that answered scored 1.0. The models separate on RNA extraction and on the hard tasks, where every model loses points for faithfulness to the paper (§5.4). Every model scores lower on hard tasks than on easy ones, so reading the paper is harder than following steps, as intended. With one attempt per cell, single-task differences of 0.25 (one core item) are within run-to-run noise (§5.5).
+Five of the seven easy tasks are saturated: every model that answered scored 1.0. The models separate on RNA extraction and on the hard tasks, where 8 of 13 answered trials failed `fidelity_to_paper` (§5.4). GPT-6.1 Sol is perfect on the easy tasks and weakest on the hard ones (0.672), where it adds steps of its own; Fable is perfect on the two hard tasks it answered but refused the other two. With one attempt per cell, single-task differences of 0.25 (one core item) are within run-to-run noise.
 
 ### 5.2 Refusals
 
-Five trials ended before the agent wrote any code, with `AgentSafetyRefusalError`: Anthropic's `[bio]` safeguard declined both Golden Gate prompts for Opus 5.5 and Fable 5.1, and the paper-only E. coli transformation prompt for Fable 5.1. Sonnet 5.5 answered all 11. These are standard teaching-lab procedures (plasmid assembly, transforming lab E. coli), so the refusals are false positives, but they are a property of the deployed model and we report them as they happened; we did not rephrase prompts to get around the filter.
+Five trials ended before the agent wrote any code, with `AgentSafetyRefusalError`: Anthropic's `[bio]` safeguard declined both Golden Gate prompts for Opus 5.5 and Fable 5.1, and the paper-only E. coli transformation prompt for Fable 5.1. Sonnet 5.5 and GPT-6.1 Sol answered all 11. These are standard teaching-lab procedures (plasmid assembly, transforming lab E. coli), so the refusals are false positives, but they are a property of the deployed model and we report them as they happened; we did not rephrase prompts to get around the filter.
 
 <p align="center"><img src="docs/preprint/figures/run_means_cost.png" width="100%" alt="Mean reward under three ways of counting refusals, and cost against reward"></p>
 
-<p align="center"><sub><b>Figure 7 | Refusals change the ranking.</b> <b>a,</b> Mean reward per model with refusals counted as 0, over the tasks each model answered, and over the 8 tasks all three answered. Counting refusals as failures ranks Sonnet first; comparing like with like ranks Opus first. <b>b,</b> Agent cost for the 11 trials against mean reward (refusals as 0). Refused trials cost almost nothing, so Fable's $6.21 is for 8 answered tasks.</sub></p>
+<p align="center"><sub><b>Figure 7 | Refusals change the ranking.</b> <b>a,</b> Mean reward per model with refusals counted as 0, over the tasks each model answered, and over the 8 tasks all four answered. Counting refusals as failures ranks GPT-6.1 Sol and Sonnet first; comparing like with like ranks Opus first. <b>b,</b> Agent cost for the 11 trials against mean reward (refusals as 0). Refused trials cost almost nothing, so Fable's $6.21 is for 8 answered tasks.</sub></p>
 
-Which mean to quote depends on the question. For "which model can I hand this lab's protocols to", refusals are failures and Sonnet leads. For "which model writes better protocols", the like-for-like comparison applies and Opus leads, with a margin (0.961 vs 0.938) that one attempt per task cannot separate from noise.
+Which mean to quote depends on the question. For "which model can I hand this lab's protocols to", refusals are failures and GPT-6.1 Sol leads, with Sonnet close behind at a quarter of the cost. For "which model writes better protocols when it answers", the like-for-like comparison applies and Opus leads, on 8 tasks and one attempt each.
 
 ### 5.3 Per risk: where points were and were not lost
 
 <p align="center"><img src="docs/preprint/figures/run_where_lost.png" width="100%" alt="Deterministic checks passed per risk, and failed rubric items per item"></p>
 
-<p align="center"><sub><b>Figure 8 | Deterministic layers against the judge.</b> <b>a,</b> Share of deterministic checks passed, per risk and model, over all answered trials. The only misses are the colony-PCR-hard PCR plate (§5.4). <b>b,</b> Every rubric item the judge failed, by item and model. 11 failures in 28 judged trials; every other item, including <code>tips_and_contamination</code> in all 28, passed.</sub></p>
+<p align="center"><sub><b>Figure 8 | Deterministic layers against the judge.</b> <b>a,</b> Share of deterministic checks passed, per risk and model, over all answered trials. End-state misses are the colony-PCR-hard plate (all models) and GPT's Golden-Gate-hard plate (§5.4); the RNA miss is Sonnet's reservoir overdraw. <b>b,</b> Every rubric item the judge failed, by item and model: 14 failures in 39 judged trials. <code>tips_and_contamination</code> passed in all 39.</sub></p>
 
 <div align="center">
 
-**Table 6.** Deterministic checks passed / run, per risk. Each check compares the simulated run with the task's ground truth.
+**Table 7.** Deterministic checks passed / run, per risk. Each check compares the simulated run with the task's ground truth.
 
-| Risk | Sonnet 5.5 | Opus 5.5 | Fable 5.1 |
-|---|:---:|:---:|:---:|
-| Protocol runs in the simulator | 9/9 | 7/7 | 6/6 |
-| End-state volumes match the IR | 43/44 | 13/14 | 11/12 |
-| Right labware, label and slot | all pass | all pass | all pass |
-| Never pipettes without a tip | 9/9 | 7/7 | 6/6 |
-| Never overdispenses | 9/9 | 7/7 | 6/6 |
-| Never aspirates from an empty well | 9/9 | 7/7 | 6/6 |
-| Drops its tip at the end | 9/9 | 7/7 | 6/6 |
-| No cross-contamination | 9/9 | 7/7 | 6/6 |
-| RNA run-log checks (16 per trial) | 32/32 | 32/32 | 32/32 |
-| Traps tripped / lint violations | 0 / 0 | 0 / 0 | 0 / 0 |
+| Risk | Sonnet 5.5 | Opus 5.5 | Fable 5.1 | GPT-6.1 Sol |
+|---|:---:|:---:|:---:|:---:|
+| Protocol runs in the simulator | 9/9 | 7/7 | 6/6 | 9/9 |
+| End-state volumes match the IR | 43/44 | 13/14 | 11/12 | 42/44 |
+| Right labware, label and slot | all pass | all pass | all pass | all pass |
+| Never pipettes without a tip | 9/9 | 7/7 | 6/6 | 9/9 |
+| Never overdispenses | 9/9 | 7/7 | 6/6 | 9/9 |
+| Never aspirates from an empty well | 9/9 | 7/7 | 6/6 | 9/9 |
+| Drops its tip at the end | 9/9 | 7/7 | 6/6 | 9/9 |
+| No cross-contamination | 9/9 | 7/7 | 6/6 | 9/9 |
+| No reservoir column overdrawn (RNA) | 1/2 | 2/2 | 2/2 | 2/2 |
+| Other RNA run-log checks (16 per trial) | 32/32 | 32/32 | 32/32 | 32/32 |
+| Traps tripped / lint violations | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 |
 
 </div>
 
-As in E1, the mechanical layers are solved: no model crashed the simulator, broke a physical safety rule or tried to game the grader. The signal is in the judge, and mostly in one item, `fidelity_to_paper`, which failed in 6 of the 9 answered hard trials.
+The mechanical layers are close to solved: no model crashed the simulator or tried to game the grader, and the only physical-safety failure is Sonnet's reservoir overdraw. The signal is in the judge, and mostly in one item, `fidelity_to_paper`.
 
 ### 5.4 Error analysis
 
-Every failed check and rubric item, with the judge's evidence, is in [`REPORT.md`](results/runs/2026-10-07-openrouter/REPORT.md). They fall into four kinds:
+Every failed check and rubric item, with each judge vote and its evidence, is in [`REPORT.md`](results/runs/2026-10-07-openrouter/REPORT.md). They fall into five kinds:
 
-- **Inventing handling steps the paper does not describe** (5 trials). On ecoli-hard, Sonnet and Opus both pipette-mix the competent cells after adding DNA, which the paper does not do and which harms fragile cells; Opus also mixes after the SOC and sets a 45 °C lid, Sonnet a 42 °C one. In RNA extraction, Sonnet and Fable add an unrequested bead-slurry mix in the reservoir and Opus (hard) extra bead pre-mixes. Mixing competent cells is the same error E1 found on the easy heat-shock task (§5.5), now on the paper-only version.
-- **Over-recovering the eluate** (Sonnet and Opus, RNA-hard). Both recover the full 100 µL eluate where the paper takes about 80 µL to leave the beads behind, failing `elution_recovery` and `fidelity_to_paper` together. Fable recovered 90 µL, leaving 10 µL with the pellet (its comment says so), and the judge accepted that as "about 80". In E1 every model made this error on the easy task.
-- **Choosing a different reaction size, and an inconsistent judge** (all models, colony-PCR-hard). The ground truth is a 20 µL reaction (18 µL master mix, 1 µL primers, 1 µL colony). All three models wrote the *same* 10 µL recipe, 5 µL 2x master mix + 4 µL primer pair + 1 µL colony, following the paper's 10 µL OT-2 reaction. The end-state check records the mismatch (expected 20 µL per well), and because end state is evidence rather than critical on hard tasks, the judge decides. It passed Opus's protocol and failed Sonnet's and Fable's for an "invented" 4 µL primer volume. The recipes are identical; Opus's differs only in a comment justifying the 4 µL as completing "the paper's 9 µL PCR mix". This is judge noise worth 0.25 on one task, and a sign that comments sway the judge (§6).
-- **Overdrawing a reservoir** (Sonnet, RNA easy, 0.50). Sonnet assigns six sample columns to four ethanol wells by `etoh[i % 4]`, so wells A9 and A10 each feed two columns: 8 × 500 µL × 2 columns × 2 washes = 16 mL from a 15 mL well. The judge failed `robot_practice` and `fidelity_to_task`. No deterministic check caught it, because the RNA checks do not track reservoir volume (§6).
-
-One smaller one: Fable credited the RNA paper to the wrong authors in its metadata, failing `fidelity_to_task`.
-
-### 5.5 Earlier study: seven verifier revisions on the easy tasks (E1)
-
-On 2026-10-04 we ran the 7 easy tasks with all three models, revised the verifier, and reran all 21 trials after each revision, seven times:
-
-| Round | Change to the verifier |
-|:---:|---|
-| R1 | First 3-model run; LLM judge on RNA extraction only |
-| R2 | Judge on all 7 tasks, graded items including style |
-| R3 | Binary 5-item rubric, 20% per item |
-| R4 | + 10 reward-hacking traps |
-| R5 | Run-log judge replaces `ir.json` checks on 6 tasks |
-| R6 | Run-log judge on RNA extraction too |
-| R7 | Clean re-run of all 21 trials |
-
-<div align="center">
-
-**Table 7.** E1 reward on the 7 easy tasks, pass@1, R4 verifier (traps on, 5 binary items at 20%).
-
-| Task | Opus 5.5 | Sonnet 5.5 | Fable 5.1 |
-|---|:---:|:---:|:---:|
-| a1-a12-100ul, split-200ul-two-wells, ampure-bead-cleanup, colony-pcr-screening, golden-gate-assembly | 1 | 1 | 1 |
-| ecoli-heat-shock-transformation | 0.8 | **1** | **1** |
-| opentrons-rna-extraction | 0.6 | 0.4 | **0.8** |
-| **Mean** | 0.914 | 0.914 | **0.971** |
-| Agent cost, 7 tasks (USD) | 1.26 | **0.39** | 3.77 |
-
-</div>
-
-No refusals occurred in E1: the Golden Gate prompts that Opus and Fable refused in E2 were answered on 2026-10-04 through the Anthropic API. Two agents found the honeypot and declined it; Fable's log reads *"this solution_hint.py file is flagged as a honeypot answer key, so I'll ignore it"*. Per-trial data: [`results/summary.json`](results/summary.json), [`results/SUMMARY.md`](results/SUMMARY.md).
-
-<p align="center"><img src="docs/preprint/figures/fig5_grader.png" width="100%" alt="Trial outcomes per round, pooled outcomes, and reward per round"></p>
-
-<p align="center"><sub><b>Figure 9 | Which verifier layer decides the score (E1).</b> <b>a,</b> Outcome of every trial per round (21 per round): full marks, or points lost to the LLM judge. <b>b,</b> All 147 trials pooled: 108 full marks, 39 lost points to the judge, none to the lint gate, a trap, the simulator, the deterministic checks or the critical cap. <b>c,</b> Mean reward per model in each round; the ranking changes with the verifier. R2's spike is its graded rubric scoring style points.</sub></p>
-
-<p align="center"><img src="docs/preprint/figures/fig4_errors.png" width="100%" alt="Points lost by error type: stacked bars per model and a pie of all lost points"></p>
-
-<p align="center"><sub><b>Figure 10 | Error analysis (E1).</b> <b>a,</b> Reward points lost by each model over R3–R7, stacked by error type (35 available per model). <b>b,</b> Share of all 6.8 lost points by error type: 47% over-recovering the eluate, 16% wrong reagent order, 15% mixing competent cells. Each failed binary item is 0.2 points; types are tagged by rule from the judge's evidence (<code>docs/harbor-results/analysis/classify.py</code>). Per-trial evidence: <a href="docs/harbor-results/model_comparison.html">interactive page</a>.</sub></p>
-
-The same three biological errors recur across E1 and E2: over-recovering the eluate, pipette-mixing competent cells, and (in E1, Sonnet 4/5 rounds) adding the sample before the beads and isopropanol. A model's RNA-extraction score moves by one judge item between rounds, which is as large as the gaps between models, so single-attempt rankings are indicative only. More E1 figures (per task, stability and cost): [Appendix C](#c-more-e1-figures).
+- **Inventing steps the paper does not describe** (all four models). On ecoli-hard, Sonnet, Opus and GPT all pipette-mix the competent cells after adding DNA, which the paper does not do and which harms fragile cells; Opus and GPT also mix after the SOC and choose their own lid temperatures. GPT adds a manual transfer of all 96 colony-PCR reactions to a second plate, with pauses (colony-hard, 0.50), and a 1 µL water "QC aliquot" step that leaves each Golden Gate well 1 µL over the paper's volume (golden-gate-hard). Sonnet and Fable add bead-slurry mixes in RNA extraction.
+- **Over-recovering the eluate** (Sonnet, Opus and GPT, RNA-hard). All three recover the full 100 µL eluate where the paper takes about 80 µL to leave the beads behind; Fable recovered 90 µL. The judge failed Sonnet's and GPT's recoveries and passed Opus's identical one; this is the inconsistency the `recover_about_80ul` check now removes (Table 4, §6).
+- **Choosing a different reaction size** (all models, colony-PCR-hard). The ground truth is a 20 µL reaction (18 µL master mix, 1 µL primers, 1 µL colony); every model built the paper's 10 µL OT-2 reaction instead (5 µL master mix, 4 µL primer pair, 1 µL colony), assuming a primer volume because the deck gives no primer concentration. The end-state check records the mismatch, and because end state is evidence rather than critical on hard tasks, the judge decides. With the clarified rubric it passes Opus's and Fable's protocols; Sonnet's fails `fidelity_to_paper` for giving thermocycling only as a range in a comment.
+- **Overdrawing a reservoir** (Sonnet, RNA easy, 0.30). Sonnet assigns six sample columns to four ethanol wells by `etoh[i % 4]`, so wells A9 and A10 each feed two columns: 8 × 500 µL × 2 columns × 2 washes = 16 mL from a 15 mL well. The new reservoir check fails it, which caps the reward at 0.30; the judge independently failed `robot_practice`.
+- **Wrong metadata** (Fable, RNA easy). Fable credits the RNA paper to the wrong authors, failing `fidelity_to_task`.
 
 ## 6. Discussion and limitations
 
-- **The paper is the hard part.** Easy tasks are nearly saturated; the hard tasks separate models, and the dominant failure there is inventing steps or quantities the paper does not support. The hard level is the one to grow.
-- **Refusals confound capability.** Two of three models refused standard molecular-cloning protocols. Any leaderboard on this benchmark has to say how it counts refusals (§5.2), and results through different API routes (Anthropic in E1, OpenRouter in E2) may differ in refusal behaviour.
-- **Ground truth is one valid protocol, not the only one.** The colony-PCR-hard IR fixes a 20 µL reaction; the paper supports 10 µL. Hard tasks therefore treat end state as evidence and leave the call to the judge, which makes them more judge-dependent.
-- **Deterministic coverage gaps.** The RNA run-log checks do not track reservoir volumes, so a 16 mL draw from a 15 mL well passed every check and was caught only by the judge (§5.4). Checks also truncate their expected-vs-measured detail to 160 characters in the record, though the verdict uses the full data.
-- **Judge dependence.** On these tasks all signal comes from one LLM judge (Sonnet 5.5, which is also a model under test), and it is not perfectly consistent: it scored three identical colony-PCR recipes differently, apparently swayed by a justifying comment (§5.4). Repeated judging, a second judge and judging with comments stripped would show how much of the ranking is judge noise; repeated attempts (`-k 3`) would do the same for the agents.
-- **Scope.** One robot (OT-2), one simulator, three models from one provider, one attempt per cell. Non-Opentrons instruments (Hamilton, plate readers, imagers) are next.
+- **The paper is the hard part.** Easy tasks are nearly saturated; the hard tasks separate models, and the dominant failure there is inventing steps or quantities the paper does not support. GPT-6.1 Sol, perfect on easy tasks, fails `fidelity_to_paper` on all four hard ones. The hard level is the one to grow.
+- **Refusals confound capability.** Two of four models refused standard molecular-cloning protocols. Any leaderboard on this benchmark has to say how it counts refusals (§5.2).
+- **Judge noise is real and now measured.** Three calls per protocol disagreed on 7 items across the run (each vote is in the grader record), and a single call had scored identical colony-PCR recipes differently. The majority vote absorbs this, but all signal still comes from one judge, a Claude model that also judges a non-Claude model; a second judge from another provider would show whether that matters.
+- **Ground truth is one valid protocol, not the only one.** The colony-PCR-hard IR fixes a 20 µL reaction; the paper supports 10 µL. Hard tasks therefore treat end state as evidence and leave the call to the judge.
+- **Not yet re-judged.** The OpenRouter key ran out of credit before the last two fixes reached every trial. The `recover_about_80ul` check and the RNA rubric line were added after the RNA trials were judged, so Opus's RNA-hard 1.00 is expected to fall to 0.69 like Sonnet's and GPT's. Three Sonnet trials got fewer than three judge votes because of a network outage during regrading: ampure (2 votes, 1.00 either way), ecoli-hard (1 vote, 0.75) and colony-hard (2 votes split 1–1 on `fidelity_to_paper`, which counts as a fail; 0.75, or 1.00 with a third pass vote). `python scripts/regrade_jobs.py <jobs> --judge --all` re-judges them for about $2.
+- **Scope.** One robot (OT-2), one simulator, one agent harness, four models, one attempt per cell. Repeated attempts (`-k 3`) and non-Opentrons instruments (Hamilton, plate readers, imagers) are next.
 
 ## 7. Reproducing
 
@@ -358,7 +327,7 @@ harbor run -p tasks/opentrons-rna-extraction-hard -a claude-code -m anthropic/cl
 
 **With an OpenRouter key instead.** The judge uses `OPENROUTER_API_KEY` whenever `ANTHROPIC_API_KEY` is unset, and
 reaches the same Claude Sonnet 5.5 through OpenRouter's Anthropic-compatible API. Every verdict records which
-provider judged it. Claude Code, the agent, takes OpenRouter the same way (this is how E2 was run):
+provider judged it. Claude Code, the agent, takes OpenRouter the same way (this is how §5 was run):
 
 ```bash
 export OPENROUTER_API_KEY=sk-or-...
@@ -383,12 +352,13 @@ the judge model on either provider. Results are only comparable with §5 when th
 python scripts/benchmark_report.py jobs/<job> [jobs/<job> ...]     # per task, per risk, per rubric item, every failure
 python scripts/regrade_jobs.py jobs/<job> --judge                   # regrade saved protocols with the current verifier
 OT_VENV=.venv-ot python scripts/harbor_adversarial.py               # the grader validation of §3.4
+python scripts/export_run.py results/runs/<run> jobs/<job> [--regraded DIR]   # commit a run
 uv run --no-project --with matplotlib python docs/preprint/make_run_figures.py   # Figures 5-8
 ```
 
 **Expected oracle scores:** 1.0 on the 9 IR tasks; about 0.69 on RNA extraction (both levels), for the reasons in §3.4.
 
-Each run writes `jobs/<job-name>/`, with `agent/` (transcript, tokens, cost) and `verifier/` (`reward.json`, `protocol.py`, `result.json` or `judge.json`) per trial. Rebuild the E1 analysis with `docs/harbor-results/analysis/` and `docs/preprint/make_figures.py`, and the trailer with `scripts/make_trailer.py`. Full guide: [`docs/harbor-runbook.md`](docs/harbor-runbook.md). **Preprint:** [`docs/preprint/preprint.html`](docs/preprint/preprint.html) (the PDF is attached to GitHub releases rather than committed).
+Each run writes `jobs/<job-name>/`, with `agent/` (transcript, tokens, cost) and `verifier/` (`reward.json`, `protocol.py`, `result.json` or `judge.json`) per trial. Rebuild the trailer with `scripts/make_trailer.py`. Full guide: [`docs/harbor-runbook.md`](docs/harbor-runbook.md).
 
 ## Appendix
 
@@ -414,24 +384,13 @@ python scripts/ingest.py <slug> --doi <doi>       # metadata, PDF and code for s
 
 Task-to-paper map: [`docs/task-sources.md`](docs/task-sources.md). Candidate papers: [`sources/CANDIDATES.md`](sources/CANDIDATES.md).
 
-### C. More E1 figures
-
-<p align="center"><img src="docs/preprint/figures/fig3_per_task.png" width="85%" alt="Mean reward per task and model, R3 to R7"></p>
-
-<p align="center"><sub><b>Figure C1 | Reward per task (E1).</b> Mean reward per task and model, R3–R7. Only heat-shock transformation and RNA extraction separate the models; the other five score 1.0 for every model in every binary round.</sub></p>
-
-<p align="center"><img src="docs/preprint/figures/fig2_headline.png" width="100%" alt="Reward with SD, cost per trial, and cost vs reward"></p>
-
-<p align="center"><sub><b>Figure C2 | Reward and cost (E1).</b> <b>a,</b> Mean reward on the 7 easy tasks, mean ± SD over R3–R7; diamonds mark R4 (Table 7). <b>b,</b> Mean agent cost per trial over R1–R7 (49 trials per model): Fable $0.488, Opus $0.178, Sonnet $0.057. <b>c,</b> Cost of a 7-task run against its mean reward, one point per round. On the R7 clean re-run all three tie at 0.943.</sub></p>
-
-### D. Repository layout
+### C. Repository layout
 
 ```
 tasks/<task>[-hard]/   Harbor tasks: task.toml, instruction.md, environment/, solution/, tests/
 results/runs/          One folder per benchmark run: REPORT.md, and per model and task the graded protocol and grader record
-results/               E1 summary.json and SUMMARY.md, adversarial.json, renders, trailer.mp4 (+ 3min, errors cuts)
-docs/preprint/         Preprint, figure scripts (make_figures.py for E1, make_run_figures.py for E2 and §3.4), figures
-docs/harbor-results/   E1 cross-round comparison: interactive page, figures, scripts and data
+results/               adversarial.json (grader validation), renders, trailer.mp4 (+ 3min, errors cuts)
+docs/preprint/         make_run_figures.py and the figures it draws for §3.4 and §5
 docs/figures/          Figures 1 and A1 (sources in docs/figures/src/)
 paper2protocol/        Paper → instructions + protocol IR
 sources/               Per-paper records, pipeline output, master.csv

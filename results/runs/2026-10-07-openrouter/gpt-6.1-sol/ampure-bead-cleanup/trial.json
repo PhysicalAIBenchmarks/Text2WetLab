@@ -1,0 +1,29 @@
+{
+ "task": "ampure-bead-cleanup",
+ "model": "openai/gpt-6.1-sol",
+ "agent": "claude-code",
+ "via": "openrouter",
+ "rewards": {
+  "reward": 1.0,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 1.0,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_task": 1.0,
+  "rubric_binding": 1.0,
+  "rubric_supernatant_and_washes": 1.0,
+  "rubric_drying_and_elution": 1.0,
+  "rubric_recovery": 1.0
+ },
+ "exception": null,
+ "cost_usd": 0.20954699999999998,
+ "input_tokens": 60085,
+ "output_tokens": 2975,
+ "started_at": "2026-10-07T13:58:56.205406Z",
+ "finished_at": "2026-10-07T14:01:31.730219Z"
+}
