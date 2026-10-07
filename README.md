@@ -72,17 +72,18 @@ flowchart LR
 
 <div align="center">
 
-**Table 1.** The 11 tasks. Easy tasks give the deck, the starting contents and every step with its quantity. Hard tasks give the deck, the starting contents, a one-paragraph goal and the paper at `/data/paper.txt`.
+**Table 1.** The 11 tasks: 7 easy and 4 hard. Seven protocols have an easy task, which gives the deck, the starting contents and every step with its quantity. Four of them, the ones with a source paper, also have a hard task, which gives the deck, the starting contents, a one-paragraph goal and the paper at `/data/paper.txt`.
 
-| Task | What the agent must automate | Easy | Hard (source paper) |
-|---|---|:---:|---|
-| `a1-a12-100ul` | 100 µL from a 1-well reservoir to wells A1 to A12 | ✓ | no paper (handwritten) |
-| `split-200ul-two-wells` | Split 200 µL into two 100 µL wells | ✓ | no paper (handwritten) |
-| `ampure-bead-cleanup` | AMPure XP magnetic bead cleanup of PCR products | ✓ | no paper (code only) |
-| `colony-pcr-screening` | Colony PCR screening of 96 colonies | ✓ | ✓ Slowpoke, ACS Synth. Biol. (CC BY) |
-| `ecoli-heat-shock-transformation` | E. coli heat-shock transformation with recovery | ✓ | ✓ APEX Protocol 1, bioRxiv |
-| `golden-gate-assembly` | Golden Gate assembly of four four-fragment plasmids | ✓ | ✓ AssemblyTron, Synth. Biol. 2022 (CC BY) |
-| `opentrons-rna-extraction` | 48-sample magnetic-bead SARS-CoV-2 RNA extraction | ✓ | ✓ PLOS ONE 2021 ([doi](https://doi.org/10.1371/journal.pone.0246302)) |
+| Protocol | What the agent must automate | Source | Easy task | Hard task |
+|---|---|---|---|---|
+| Reservoir to a row | 100 µL from a 1-well reservoir to wells A1 to A12 | handwritten | `a1-a12-100ul` | – |
+| Split a volume | Split 200 µL into two 100 µL wells | handwritten | `split-200ul-two-wells` | – |
+| AMPure cleanup | AMPure XP magnetic bead cleanup of PCR products | published code, no paper | `ampure-bead-cleanup` | – |
+| Colony PCR | Colony PCR screening of 96 colonies | Slowpoke, ACS Synth. Biol. (CC BY) | `colony-pcr-screening` | `colony-pcr-screening-hard` |
+| Heat-shock transformation | E. coli heat-shock transformation with recovery | APEX Protocol 1, bioRxiv | `ecoli-heat-shock-transformation` | `ecoli-heat-shock-transformation-hard` |
+| Golden Gate | Golden Gate assembly of four four-fragment plasmids | AssemblyTron, Synth. Biol. 2022 (CC BY) | `golden-gate-assembly` | `golden-gate-assembly-hard` |
+| RNA extraction | 48-sample magnetic-bead SARS-CoV-2 RNA extraction | PLOS ONE 2021 ([doi](https://doi.org/10.1371/journal.pone.0246302)) | `opentrons-rna-extraction` | `opentrons-rna-extraction-hard` |
+| **Total: 11** | | | **7** | **4** |
 
 </div>
 

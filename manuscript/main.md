@@ -159,24 +159,25 @@ copied in only after it finishes.](../docs/figures/fig1_pipeline.png)
 Each task fixes the deck, so the grader can locate every labware by its label, and asks for a complete OT-2 protocol
 [@opentrons2026api]. Easy tasks give the deck, the starting contents and every step with its quantity. Hard tasks give
 the deck, the starting contents, a one-paragraph goal and the paper as text. Seven tasks are easy and four are hard
-(Table 2). The hard tasks come from four papers that published OT-2 code: a Golden Gate cloning and colony-PCR workflow
+(Table 2): every protocol has an easy task, and the four with a source paper also have a hard one. The hard tasks come from four papers that published OT-2 code: a Golden Gate cloning and colony-PCR workflow
 [@malci2026slowpoke], AssemblyTron [@bryant2022assemblytron], the APEX automated protein-expression pipeline
 [@kasprzyk2024apex] and a low-cost SARS-CoV-2 RNA extraction [@lazaroperona2021rna]. The source corpus behind the tasks
 covers 48 papers.
 
 <div align="center">
 
-**Table 2.** The 11 tasks.
+**Table 2.** The 11 tasks: seven protocols, each with an easy task, four of which also have a paper-only hard task.
 
-| Task | What the agent must automate | Easy | Hard (source) |
-|---|---|:---:|---|
-| `a1-a12-100ul` | 100 µL from a reservoir to wells A1 to A12 | ✓ | (handwritten) |
-| `split-200ul-two-wells` | Split 200 µL into two 100 µL wells | ✓ | (handwritten) |
-| `ampure-bead-cleanup` | AMPure XP magnetic bead cleanup | ✓ | (code only) |
-| `colony-pcr-screening` | Colony PCR of 96 colonies | ✓ | ✓ [@malci2026slowpoke] |
-| `ecoli-heat-shock-transformation` | E. coli heat-shock transformation | ✓ | ✓ [@kasprzyk2024apex] |
-| `golden-gate-assembly` | Golden Gate assembly of four plasmids | ✓ | ✓ [@bryant2022assemblytron] |
-| `opentrons-rna-extraction` | 48-sample magnetic-bead RNA extraction | ✓ | ✓ [@lazaroperona2021rna] |
+| Protocol | Source | Easy task | Hard task |
+|---|---|---|---|
+| 100 µL from a reservoir to wells A1 to A12 | handwritten | `a1-a12-100ul` | – |
+| Split 200 µL into two 100 µL wells | handwritten | `split-200ul-two-wells` | – |
+| AMPure XP magnetic bead cleanup | published code, no paper | `ampure-bead-cleanup` | – |
+| Colony PCR of 96 colonies | [@malci2026slowpoke] | `colony-pcr-screening` | `colony-pcr-screening-hard` |
+| E. coli heat-shock transformation | [@kasprzyk2024apex] | `ecoli-heat-shock-transformation` | `ecoli-heat-shock-transformation-hard` |
+| Golden Gate assembly of four plasmids | [@bryant2022assemblytron] | `golden-gate-assembly` | `golden-gate-assembly-hard` |
+| 48-sample magnetic-bead RNA extraction | [@lazaroperona2021rna] | `opentrons-rna-extraction` | `opentrons-rna-extraction-hard` |
+| **Total: 11 tasks** | | **7** | **4** |
 
 </div>
 
