@@ -1,0 +1,162 @@
+{
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 2309
+ },
+ "not_applicable": [
+  "end_state:pcr_plate (the source paper does not determine the exact volumes; composition checked instead)"
+ ],
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "end_state:colony_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "composition:pcr_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:primer_plate",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "Valid apiLevel 2.13 and metadata; all volumes (1-5 uL, 8 uL mix) are handled by the p20 within range, and the 10 uL wells are never overfilled. All measured checks pass.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 1,
+    "evidence": "Every step does pick_up_tip/drop_tip per well, including a fresh tip for each primer pair and colony. The tip_before_aspirate, tip_dropped_at_end and no_cross_contamination checks pass.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "fidelity_to_paper",
+    "score": 0,
+    "evidence": "The protocol adds steps the paper does not have (mix and touch_tip). It also invents assumptions about primer Tm and concentration, and it describes an 'ice-chilled deck' that the code does not provide. Cycling uses a combined 72 C anneal/extend with a '4-10 C' hold instead of the paper-based adjusted program.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "reaction_setup",
+    "score": 1,
+    "evidence": "10 uL reaction: 5 uL Q5 2x master mix is dispensed first, then 4 uL primer pair, then 1 uL colony template.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "sample_mapping",
+    "score": 1,
+    "evidence": "colony_plate.wells(), primer_plate.wells() and pcr_plate.wells() are zipped in order, so all 96 wells map A1 to A1 with none skipped or reused.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "thermocycling",
+    "score": 0,
+    "evidence": "Sealing and cycling are recorded only in a final comment. The program is a two-step 98/72 C cycle with no separate annealing step. It rests on an invented assumption (Tm >= 69 C) and ends with a '4-10 C' hold rather than 4 C.",
+    "votes": [
+     0,
+     1,
+     0
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 1.0,
+   "fidelity_to_paper": 0.0,
+   "reaction_setup": 1.0,
+   "sample_mapping": 1.0,
+   "thermocycling": 0.0
+  },
+  "summary": "The liquid handling is sound. It uses fresh tips throughout, builds correct 10 uL reactions in the right order, and maps wells 1:1 across all 96. It loses the fidelity and thermocycling items because of invented assumptions (primer Tm, primer concentration, ice-chilled deck), extra mixing and touch-tip steps, and a non-standard two-step cycling program with a 4-10 C hold.",
+  "level": "hard",
+  "score": 0.6667,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_paper": 0.25,
+   "reaction_setup": 0.0833,
+   "sample_mapping": 0.0833,
+   "thermocycling": 0.0833
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [],
+ "rewards": {
+  "reward": 0.6667,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 0.6667,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_paper": 0.0,
+  "rubric_reaction_setup": 1.0,
+  "rubric_sample_mapping": 1.0,
+  "rubric_thermocycling": 0.0
+ }
+}

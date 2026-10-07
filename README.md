@@ -18,7 +18,7 @@ E. O'Leary · M. Alshehri · L. Legon
 
 ---
 
-> **Abstract.** Frontier language models write Opentrons OT-2 Python that runs in the simulator, but wet-lab correctness depends on tacit knowledge the simulator does not check: which cells must not be pipette-mixed, how much eluate to leave behind with the beads, how much liquid a reservoir well can hold. **Text2WetLab** is a set of 11 [Harbor](https://github.com/laude-institute/harbor) tasks at two levels: *easy* tasks give the exact steps; *paper-only* ("hard") tasks give only a goal, a fixed deck and the source paper. A layered verifier scores each protocol with a lint gate, 10 reward-hacking traps, the Opentrons simulator, deterministic checks against a ground-truth protocol IR, and a pass/fail LLM rubric (majority of three judge calls) in which three core items carry 75% of the reward. We validate the verifier with every reference solution (11/11 pass) and 152 broken or cheating protocols of 18 kinds (none scores above 0.47), fix six grader faults that the model runs exposed, and audit the paper-only tasks so that every quantity they grade is in the paper or the brief, which found and fixed two more. Running the same Claude Code agent with four models through OpenRouter, and scoring only the tasks a model answered (a safety refusal is the provider's policy, not a protocol), Claude Opus 5.5 scores 1.000 on the 8 tasks every model answered, Fable 5.1 0.969, GPT-6.1 Sol 0.898 and Sonnet 5.5 0.842; Opus and Fable refused 5 molecular-cloning prompts between them, which are reported but not scored. No model failed the simulator or a trap, and the only physical-safety failure is one reservoir overdraw. Easy tasks are nearly solved; the paper-only tasks separate the models, and the commonest failure is inventing steps and quantities the paper does not support. Five of the 44 scores are provisional until a re-judge with the audited verifier (§6).
+> **Abstract.** Frontier language models write Opentrons OT-2 Python that runs in the simulator, but wet-lab correctness depends on tacit knowledge the simulator does not check: which cells must not be pipette-mixed, how much eluate to leave behind with the beads, how much liquid a reservoir well can hold. **Text2WetLab** is a set of 11 [Harbor](https://github.com/laude-institute/harbor) tasks at two levels: *easy* tasks give the exact steps; *paper-only* ("hard") tasks give only a goal, a fixed deck and the source paper. A layered verifier scores each protocol with a lint gate, 10 reward-hacking traps, the Opentrons simulator, deterministic checks against a ground-truth protocol IR, and a pass/fail LLM rubric (majority of three judge calls) in which three core items carry 75% of the reward. We validate the verifier with every reference solution (11/11 pass) and 151 broken or cheating protocols of 18 kinds (none scores above 0.47), fix eight grader faults that the model runs exposed, and audit the paper-only tasks so that every quantity they grade is in the paper or the brief, which found and fixed two more. Running the same Claude Code agent with six models through OpenRouter, and scoring only the tasks a model answered (a safety refusal is the provider's policy, not a protocol), Claude Opus 5.5 scores 1.000 on the 8 tasks every model answered, Fable 5.1 0.969, GPT-6.1 Sol 0.938, Sonnet 5.5 0.881, Qwen3.8-2.4T-A95B 0.832 and DeepSeek V4 Pro 0.755; Opus and Fable refused 5 molecular-cloning prompts between them, which are reported but not scored. No model failed the simulator or a trap. The physical-safety failures are three reservoir overdraws and, in the two open-weight models only, four cross-contaminations from one tip mixing in a reaction and returning to a stock. Easy tasks are nearly solved; the paper-only tasks separate the models, and the commonest failure is inventing steps and quantities the paper does not support. A repeat of one model on Modal shows single-attempt scores moving by up to 0.70 on a task and 0.08 in the mean.
 
 ---
 
@@ -185,13 +185,13 @@ A benchmark is only as good as its ground truth, so we tested the verifier from 
 
 <p align="center"><img src="docs/preprint/figures/grader_validation.png" width="100%" alt="Matrix of reference controls and attacks per task, with the reward each received"></p>
 
-<p align="center"><sub><b>Figure 5 | Grader validation.</b> Deterministic reward (judge off) for the reference solution at three API levels (left of the line, must be 1) and 152 attacks on 9 tasks (right, must be below 1). All 27 controls score 1 and no attack does: the best-scoring attack, dropping the last transfer in Golden Gate, gets 0.47. <i>n/a</i>: the edit does not apply to the task, or leaves the simulated run and labware unchanged (one tip per one-well <code>transfer()</code> call on ecoli-hard is already a fresh tip each time). Wrong-science edits get partial credit at most (deterministic reward is at most 0.5 when any check fails); every attack on the grader scores 0. Data: <a href="results/adversarial.json"><code>results/adversarial.json</code></a>.</sub></p>
+<p align="center"><sub><b>Figure 5 | Grader validation.</b> Deterministic reward (judge off) for the reference solution at three API levels (left of the line, must be 1) and 151 attacks on 9 tasks (right, must be below 1). All 27 controls score 1 and no attack does: the best-scoring attack, dropping the last transfer in Golden Gate, gets 0.47. Outlined: halving every volume on colony-PCR-hard gives 9 + 0.5 + 0.5 = 10 µL, the paper's own OT-2 reaction, so it is a valid protocol and must score 1. <i>n/a</i>: the edit does not apply to the task, or leaves the simulated run and labware unchanged (one tip per one-well <code>transfer()</code> call on ecoli-hard is already a fresh tip each time). Wrong-science edits get partial credit at most (deterministic reward is at most 0.5 when any check fails); every attack on the grader scores 0. Data: <a href="results/adversarial.json"><code>results/adversarial.json</code></a>.</sub></p>
 
-**What the model runs taught the verifier.** Validation also ran in the other direction: we read every failed check and every failed rubric item from the model runs in §5 and confirmed each against the protocol. That found six faults. A second check asked whether each paper-only task grades only what its paper or brief says (`tests/test_hard_tasks.py`), and found two more. All eight are fixed, each with a regression test (`tests/test_benchmark_regressions.py`, `tests/test_spec_check.py`, `tests/test_hard_tasks.py`):
+**What the model runs taught the verifier.** Validation also ran in the other direction: we read every failed check and every failed rubric item from the model runs in §5 and confirmed each against the protocol. That found eight faults, two of them in the open-weight models' runs. A second check asked whether each paper-only task grades only what its paper or brief says (`tests/test_hard_tasks.py`), and found two more. All ten are fixed, each with a regression test (`tests/test_benchmark_regressions.py`, `tests/test_spec_check.py`, `tests/test_hard_tasks.py`):
 
 <div align="center">
 
-**Table 4.** Grader faults found by reading the model runs (rows 1-6) and by the paper-only audit (rows 7-8).
+**Table 4.** Grader faults found by reading the model runs (rows 1-6, and 9-10 from the open-weight runs) and by the paper-only audit (rows 7-8).
 
 | Fault | Found in | Fix |
 |---|---|---|
@@ -202,7 +202,9 @@ A benchmark is only as good as its ground truth, so we tested the verifier from 
 | One judge call is noisy: identical colony-PCR recipes passed for one model and failed for two | Sonnet, Opus, Fable, colony-hard | Three judge calls per protocol, majority per item; the rubric says the primer volume is the agent's to choose, as the deck gives no primer concentration |
 | End-state details were cut to 160 characters, hiding the measured volumes | Every colony-hard report | Full expected and measured values recorded |
 | RNA-hard's rubric required about 80 µL recovered; the paper says only "After 90 sec collect the supernatant", and the 80 µL is in the authors' code | Sonnet and GPT marked down for recovering the whole 100 µL | Hard rubric accepts any full recovery (70–100 µL); the 80 µL check runs on the easy task only |
-| Colony-PCR-hard's end-state check used the easy task's 20 µL reaction; the paper's OT-2 reaction is 10 µL and the deck gives no primer concentration | Every model "failed" it, and the judge saw that as evidence | `not_from_paper = ["pcr_plate"]`: the reaction volume is judged by the rubric only; deck, tip and contamination checks stay |
+| Colony-PCR-hard's end-state check used the easy task's 20 µL reaction; the paper's OT-2 reaction is 10 µL and the deck gives no primer concentration | Every model "failed" it, and the judge saw that as evidence | `not_from_paper = { pcr_plate = [10, 25] }`: no exact volumes; instead every well must get master mix, its primers and its colony, all wells alike, 10–25 µL (the paper's OT-2 reaction up to a standard Q5 reaction) |
+| The lint gate refused any assignment to an attribute, including Opentrons' documented `pipette.tip_racks = [...]` | DeepSeek, `a1-a12-100ul`: a correct protocol scored 0 | Documented pipette settings (`tip_racks`, `starting_tip`, `default_speed`, `flow_rate.*`, `well_bottom_clearance.*`) allowed; patching any class or module is still refused |
+| The contamination check flagged a tip that mixed in a source well before drawing from it (resuspending a colony) | DeepSeek, colony-hard: capped at 0.30, really 1.00 | Only mixing in a destination makes a tip carry that well's contents |
 
 </div>
 
@@ -215,11 +217,11 @@ to follow from quoted facts by arithmetic the test spells out. After the two fix
 | `ecoli-heat-shock-transformation-hard` | Its own IR, from the APEX paper | Paper text (4 °C 30 min, 42 °C 30 s, 37 °C 1 h) and a figure caption (1 µL DNA, 10 µL cells, 50 µL SOC) |
 | `golden-gate-assembly-hard` | The easy task's IR | Paper ("25 µL volumes … 0.1 µM primers and 0.5 ng … template"), the brief's design table and stock concentrations, and the manufacturer's standard recipe: 2.5 µL primers, 19 µL master mix, 106/40/4/2 µL for 8 reactions, 7 µL water to 20 µL |
 | `opentrons-rna-extraction-hard` | The easy task's run-log checks, minus the 80 µL | Paper (40/250/250 µL, 2 × 500 µL 70% ethanol, 4 min, 100 µL, 30 s, 90 s) and the brief (4 °C plate) |
-| `colony-pcr-screening-hard` | The easy task's IR, without the PCR-plate volumes | Deck, tip and contamination checks only; the reaction is judged against the paper's 10 µL or the master mix maker's 20-25 µL |
+| `colony-pcr-screening-hard` | The easy task's IR, without the exact PCR-plate volumes | Paper ("9 μL of this master mix" + 1 µL colony = 10 µL) for the lower bound of a 10–25 µL reaction with all three inputs in every well; deck, tip and contamination checks as usual |
 
 Whether the level is *harder* is a weaker claim. Its briefs list no steps and few volumes (RNA-hard names 2, the easy
-brief 10), so the agent must extract the procedure; but each model has only 2-4 paper-only trials, and five of them
-are provisional. We call it paper-only rather than hard for that reason.
+brief 10), so the agent must extract the procedure, and every model but Fable scores lower on it than on the easy
+tasks; but each model has only 2-4 paper-only trials, one attempt each. We call it paper-only rather than hard for that reason.
 
 ## 4. Experimental setup
 
@@ -230,13 +232,14 @@ are provisional. We call it paper-only rather than hard for that reason.
 | | |
 |---|---|
 | Tasks | all 11 (7 easy, 4 hard) |
-| Trials | 44: 4 models × 11 tasks, one attempt each (pass@1) |
+| Trials | 66: 6 models × 11 tasks, one attempt each (pass@1); plus an 11-task repeat of Qwen on Modal |
 | Agent | Claude Code 2.1.288 (`-a claude-code`) for every model, via OpenRouter's Anthropic-compatible API; Harbor pins every model alias and sub-agent to the model under test, and every transcript was checked to contain only that model |
-| Models | Claude Sonnet 5.5, Opus 5.5 and Fable 5.1 (Anthropic); GPT-6.1 Sol (OpenAI) |
+| Models | Claude Sonnet 5.5, Opus 5.5 and Fable 5.1 (Anthropic); GPT-6.1 Sol (OpenAI); Qwen3.8-2.4T-A95B (Alibaba, open weights); DeepSeek V4 Pro (DeepSeek, open weights) |
 | Judge | Claude Sonnet 5.5 via OpenRouter, three calls per protocol, majority per item |
 | Rubric | 3 core items at 75%, task items at 25% (§3.2) |
-| Sandbox | Harbor 0.23.0, Docker (Colima), 2 CPUs, 2.5 GB |
-| Verifier | The Claude trials were regraded from their saved protocols with the final verifier (`scripts/regrade_jobs.py --judge --all`, no agent rerun); the GPT trials were graded by it directly |
+| Sandbox | Harbor 0.23.0, Docker (Colima), 2 CPUs, 2.5 GB, two trials at a time; DeepSeek on Modal (`-e modal`), all 11 at once |
+| Verifier | Every trial is graded by the final verifier: earlier trials were regraded from their saved protocols (`scripts/regrade_jobs.py --judge --all`, no agent rerun) |
+| Cost | Agent tokens at OpenRouter prices (`prices.json`); Claude Code's own figure prices every model as Claude, so it is kept only as `claude_code_cost_usd` |
 
 </div>
 
@@ -252,78 +255,106 @@ The agent gets the instruction, `/data` and a shell, and must leave `/app/protoc
 
 <div align="center">
 
-**Table 6.** Summary. Refused tasks are not scored; the first row is the headline. Agent cost is for every trial run. † Includes provisional scores (§6).
+**Table 6.** Summary. Refused tasks are not scored; the first row is the headline. Agent cost is for every trial run.
 
-| | Sonnet 5.5 | Opus 5.5 | Fable 5.1 | GPT-6.1 Sol |
-|---|:---:|:---:|:---:|:---:|
-| **Mean over the 8 tasks all models answered** | 0.842 | **1.000** | 0.969 | 0.898 |
-| Mean over all tasks the model answered | 0.863 (11) | **0.972** (9) | 0.969 (8) | 0.881 (11) |
-| Easy tasks, answered | 0.900 (7) | **1.000** (6) | 0.958 (6) | **1.000** (7) |
-| Paper-only tasks, answered | 0.797 (4)† | 0.917 (3) | **1.000** (2) | 0.672 (4)† |
-| `fidelity_to_paper` passed (hard) | 1/4 | 2/3 | 2/2 | 0/4 |
-| Refused, not scored | 0 | 2 | 3 | 0 |
-| Simulator failures, traps, lint violations | 0 | 0 | 0 | 0 |
-| Agent cost (USD) | **1.25** | 3.52 | 6.21 | 4.82 |
+| | Sonnet 5.5 | Opus 5.5 | Fable 5.1 | GPT-6.1 Sol | Qwen3.8-2.4T | DeepSeek V4 Pro |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Mean over the 8 tasks all models answered** | 0.881 | **1.000** | 0.969 | 0.938 | 0.832 | 0.755 |
+| Mean over all tasks the model answered | 0.891 (11) | **0.972** (9) | 0.969 (8) | 0.909 (11) | 0.728 (11) | 0.735 (11) |
+| Easy tasks, answered | 0.900 (7) | **1.000** (6) | 0.958 (6) | **1.000** (7) | 0.800 (7) | 0.800 (7) |
+| Paper-only tasks, answered | 0.875 (4) | 0.917 (3) | **1.000** (2) | 0.750 (4) | 0.601 (4) | 0.622 (4) |
+| `fidelity_to_paper` passed (hard) | 2/4 | 2/3 | 2/2 | 1/4 | 0/4 | 2/4 |
+| Refused, not scored | 0 | 2 | 3 | 0 | 0 | 0 |
+| Critical failures (reward capped at 0.30) | 1 | 0 | 0 | 0 | 3 | 3 |
+| Simulator failures, traps, lint violations | 0 | 0 | 0 | 0 | 0 | 0 |
+| Agent cost (USD) | **1.25** | 3.52 | 6.21 | 1.49 | 2.83 | 2.53 |
 
 </div>
 
-Six of the seven easy tasks are saturated: every model that answered them scored 1.0. The models separate on RNA extraction and on the hard tasks, where 8 of 13 answered trials failed `fidelity_to_paper` (§5.4). GPT-6.1 Sol is perfect on the easy tasks and weakest on the hard ones (0.672), where it adds steps of its own; Fable is perfect on the two hard tasks it answered but refused the other two. With one attempt per cell, single-task differences of 0.25 (one core item) are within run-to-run noise.
+Four of the seven easy tasks are saturated: every model scored 1.0 on them. The models separate on RNA extraction and on the hard tasks, where 12 of 21 answered trials failed `fidelity_to_paper` (§5.4). GPT-6.1 Sol is perfect on the easy tasks and weaker on the hard ones (0.750), where it adds steps of its own; Fable is perfect on the two hard tasks it answered but refused the other two. The two open-weight models trail on both levels, and they account for six of the seven critical failures: they mix with a tip and send it back to a stock, and they overdraw the RNA ethanol reservoir. With one attempt per cell, single-task differences of 0.25 (one core item) are within run-to-run noise (§5.5).
 
 ### 5.2 Refusals
 
-Five trials ended before the agent wrote any code, with `AgentSafetyRefusalError`: Anthropic's `[bio]` safeguard declined both Golden Gate prompts for Opus 5.5 and Fable 5.1, and the paper-only E. coli transformation prompt for Fable 5.1. Sonnet 5.5 and GPT-6.1 Sol answered all 11. These are standard teaching-lab procedures (plasmid assembly, transforming lab E. coli), so the refusals are false positives; we report them as they happened and did not rephrase prompts to get around the filter. **A refused task is not scored.** A refusal is the provider's safety policy, not a protocol, so it says nothing about a model's ability to write one, and counting it as 0 would rank models by their filters. Models are compared on the 8 tasks every model answered; each model's mean over all the tasks it answered is shown beside it, and refusals are reported separately.
+Five trials ended before the agent wrote any code, with `AgentSafetyRefusalError`: Anthropic's `[bio]` safeguard declined both Golden Gate prompts for Opus 5.5 and Fable 5.1, and the paper-only E. coli transformation prompt for Fable 5.1. Sonnet 5.5, GPT-6.1 Sol, Qwen and DeepSeek answered all 11. These are standard teaching-lab procedures (plasmid assembly, transforming lab E. coli), so the refusals are false positives; we report them as they happened and did not rephrase prompts to get around the filter. **A refused task is not scored.** A refusal is the provider's safety policy, not a protocol, so it says nothing about a model's ability to write one, and counting it as 0 would rank models by their filters. Models are compared on the 8 tasks every model answered; each model's mean over all the tasks it answered is shown beside it, and refusals are reported separately.
 
 <p align="center"><img src="docs/preprint/figures/run_means_cost.png" width="100%" alt="Mean reward over the tasks all models answered, all tasks answered, easy and paper-only; cost against reward"></p>
 
-<p align="center"><sub><b>Figure 7 | Scores without refusals.</b> <b>a,</b> Mean reward over the 8 tasks all four models answered (the headline), over every task each model answered, and over the easy and paper-only tasks it answered. <b>b,</b> Agent cost for the tasks each model answered against its headline score. Refused trials cost almost nothing, so Fable's $6.21 is for 8 tasks.</sub></p>
+<p align="center"><sub><b>Figure 7 | Scores without refusals.</b> <b>a,</b> Mean reward over the 8 tasks all six models answered (the headline), over every task each model answered, and over the easy and paper-only tasks it answered. <b>b,</b> Agent cost for the tasks each model answered against its headline score. Refused trials cost almost nothing, so Fable's $6.21 is for 8 tasks.</sub></p>
 
-On the 8 tasks all four answered, Opus scores 1.000 and Fable 0.969, ahead of GPT-6.1 Sol (0.898) and Sonnet (0.842). With one attempt per task the gaps between Opus, Fable and GPT are a few judge items. Sonnet is the cheapest by far ($1.25 for 11 tasks), and Sonnet and GPT are the only models that answered every task, which matters to a lab that needs all of its protocols automated even though it is not part of the score.
+On the 8 tasks all six answered, Opus scores 1.000 and Fable 0.969, ahead of GPT-6.1 Sol (0.938), Sonnet (0.881), Qwen (0.832) and DeepSeek (0.755). With one attempt per task the gaps between Opus, Fable and GPT are a few judge items. Sonnet and GPT are the cheapest ($1.25 and $1.49 for 11 tasks). Four models answered every task, which matters to a lab that needs all of its protocols automated even though it is not part of the score.
 
 ### 5.3 Per risk: where points were and were not lost
 
 <p align="center"><img src="docs/preprint/figures/run_where_lost.png" width="100%" alt="Deterministic checks passed per risk, and failed rubric items per item"></p>
 
-<p align="center"><sub><b>Figure 8 | Deterministic layers against the judge.</b> <b>a,</b> Share of deterministic checks passed, per risk and model, over all answered trials. End-state misses are the colony-PCR-hard plate (all models) and GPT's Golden-Gate-hard plate (§5.4); the RNA miss is Sonnet's reservoir overdraw. <b>b,</b> Every rubric item the judge failed, by item and model: 14 failures in 39 judged trials. <code>tips_and_contamination</code> passed in all 39.</sub></p>
+<p align="center"><sub><b>Figure 8 | Deterministic layers against the judge.</b> <b>a,</b> Deterministic checks passed / run, per risk and model, over all answered trials (red: at least one failed). End-state misses are GPT's and Qwen's Golden-Gate-hard plates; the contamination misses are Qwen's and DeepSeek's shared tips; the RNA misses are reservoir overdraws (§5.4). <b>b,</b> Every rubric item the judge failed, by item and model: 28 failures in 61 judged trials.</sub></p>
 
 <div align="center">
 
 **Table 7.** Deterministic checks passed / run, per risk. Each check compares the simulated run with the task's ground truth.
 
-| Risk | Sonnet 5.5 | Opus 5.5 | Fable 5.1 | GPT-6.1 Sol |
-|---|:---:|:---:|:---:|:---:|
-| Protocol runs in the simulator | 9/9 | 7/7 | 6/6 | 9/9 |
-| End-state volumes match the IR | 43/44 | 13/14 | 11/12 | 42/44 |
-| Right labware, label and slot | all pass | all pass | all pass | all pass |
-| Never pipettes without a tip | 9/9 | 7/7 | 6/6 | 9/9 |
-| Never overdispenses | 9/9 | 7/7 | 6/6 | 9/9 |
-| Never aspirates from an empty well | 9/9 | 7/7 | 6/6 | 9/9 |
-| Drops its tip at the end | 9/9 | 7/7 | 6/6 | 9/9 |
-| No cross-contamination | 9/9 | 7/7 | 6/6 | 9/9 |
-| No reservoir column overdrawn (RNA) | 1/2 | 2/2 | 2/2 | 2/2 |
-| Other RNA run-log checks (16 per trial) | 32/32 | 32/32 | 32/32 | 32/32 |
-| Traps tripped / lint violations | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 |
+| Risk | Sonnet 5.5 | Opus 5.5 | Fable 5.1 | GPT-6.1 Sol | Qwen3.8-2.4T | DeepSeek V4 Pro |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| Protocol runs in the simulator | 9/9 | 7/7 | 6/6 | 9/9 | 9/9 | 9/9 |
+| End-state volumes match the IR (or the paper's range) | 44/44 | 14/14 | 12/12 | 43/44 | 42/44 | 44/44 |
+| Right labware, label and slot | all pass | all pass | all pass | all pass | all pass | all pass |
+| Never pipettes without a tip | 9/9 | 7/7 | 6/6 | 9/9 | 9/9 | 9/9 |
+| Never overdispenses | 9/9 | 7/7 | 6/6 | 9/9 | 9/9 | 9/9 |
+| Never aspirates from an empty well | 9/9 | 7/7 | 6/6 | 9/9 | 9/9 | 9/9 |
+| Drops its tip at the end | 9/9 | 7/7 | 6/6 | 9/9 | 9/9 | 9/9 |
+| No cross-contamination | 9/9 | 7/7 | 6/6 | 9/9 | 7/9 | 7/9 |
+| No reservoir column overdrawn (RNA) | 1/2 | 2/2 | 2/2 | 2/2 | 1/2 | 1/2 |
+| Other RNA run-log checks | 32/32 | 32/32 | 32/32 | 32/32 | 33/33 | 33/33 |
+| Traps tripped / lint violations | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 |
 
 </div>
 
-The mechanical layers are close to solved: no model crashed the simulator or tried to game the grader, and the only physical-safety failure is Sonnet's reservoir overdraw. The signal is in the judge, and mostly in one item, `fidelity_to_paper`.
+The mechanical layers are close to solved for the closed models: no model crashed the simulator or tried to game the grader, and their only physical-safety failure is Sonnet's reservoir overdraw. The open-weight models add the benchmark's only contamination failures. Beyond those, the signal is in the judge, and mostly in one item, `fidelity_to_paper`.
 
 ### 5.4 Error analysis
 
-Every failed check and rubric item, with each judge vote and its evidence, is in [`REPORT.md`](results/runs/2026-10-07-openrouter/REPORT.md). They fall into five kinds:
+Every failed check and rubric item, with each judge vote and its evidence, is in [`REPORT.md`](results/runs/2026-10-07-openrouter/REPORT.md). They fall into these kinds:
 
-- **Inventing steps the paper does not describe** (all four models). On ecoli-hard, Sonnet, Opus and GPT all pipette-mix the competent cells after adding DNA, which the paper does not do and which harms fragile cells; Opus and GPT also mix after the SOC and choose their own lid temperatures. GPT adds a manual transfer of all 96 colony-PCR reactions to a second plate, with pauses (colony-hard, 0.50), and a 1 µL water "QC aliquot" step that leaves each Golden Gate well 1 µL over the paper's volume (golden-gate-hard). Sonnet and Fable add bead-slurry mixes in RNA extraction.
-- **Not errors: recovering the whole eluate on RNA-hard, and a 10 µL colony PCR.** Sonnet, Opus and GPT recover all 100 µL on RNA-hard, and every model builds the paper's 10 µL colony-PCR reaction (5 µL master mix, 4 µL primer pair, 1 µL colony). Both follow the paper. Before the audit (Table 4, rows 7-8) the grader held them to the authors' 80 µL and the easy task's 20 µL; the affected scores are provisional (§6). On the easy RNA task, whose brief says 80 µL, over-recovering *is* an error.
-- **Overdrawing a reservoir** (Sonnet, RNA easy, 0.30). Sonnet assigns six sample columns to four ethanol wells by `etoh[i % 4]`, so wells A9 and A10 each feed two columns: 8 × 500 µL × 2 columns × 2 washes = 16 mL from a 15 mL well. The new reservoir check fails it, which caps the reward at 0.30; the judge independently failed `robot_practice`.
+- **Inventing steps the paper does not describe** (every model). On ecoli-hard, Sonnet, Opus and GPT all pipette-mix the competent cells after adding DNA, which the paper does not do and which harms fragile cells; Opus and GPT also mix after the SOC and choose their own lid temperatures. GPT adds a manual transfer of all 96 colony-PCR reactions to a second plate, with pauses (colony-hard, 0.50), and a 1 µL water "QC aliquot" step that leaves each Golden Gate well 1 µL over the paper's volume (golden-gate-hard). Sonnet and Fable add bead-slurry mixes in RNA extraction. Qwen fails `fidelity_to_paper` on all four paper-only tasks.
+- **Not errors: recovering the whole eluate on RNA-hard, and a 10 µL colony PCR.** Sonnet, Opus and GPT recover all 100 µL on RNA-hard, and every model builds the paper's 10 µL colony-PCR reaction (5 µL master mix, 4 µL primer pair, 1 µL colony). Both follow the paper. Before the audit (Table 4, rows 7-8) the grader held them to the authors' 80 µL and the easy task's 20 µL; every affected trial has been re-judged. On the easy RNA task, whose brief says 80 µL, over-recovering *is* an error.
+- **Overdrawing a reservoir** (Sonnet, Qwen and DeepSeek, RNA easy, 0.30 each). Sonnet assigns six sample columns to four ethanol wells by `etoh[i % 4]`, so wells A9 and A10 each feed two columns: 8 × 500 µL × 2 columns × 2 washes = 16 mL from a 15 mL well. DeepSeek's plan is the same and Qwen's overdraws one well the same way. The reservoir check fails it, which caps the reward at 0.30; the judge independently failed `robot_practice`.
+- **One tip from the reaction back to the stock** (Qwen, both Golden Gate tasks; DeepSeek, AMPure and Golden-Gate-hard; 0.30 each). `transfer(..., new_tip='once', mix_after=(5, 15))` mixes in each reaction well and then returns the same tip to the enzyme-mix or bead stock for the next well, carrying every reaction into the stock. The contamination check and the judge's `tips_and_contamination` both fail it. No closed model did this.
 - **Wrong metadata** (Fable, RNA easy). Fable credits the RNA paper to the wrong authors, failing `fidelity_to_task`.
+
+### 5.5 Local Docker or Modal, and how much one attempt moves
+
+We ran Qwen a second time on Modal (`-e modal -n 11`, every task at once) with the same agent, tasks and grader.
+Times are from Harbor's `result.json` (`scripts/compare_jobs.py`); rewards are as graded at run time.
+
+<div align="center">
+
+**Table 8.** The same 11 tasks on two backends.
+
+| | Qwen, local Docker (2 at a time) | Qwen, Modal (11 at a time) | DeepSeek, Modal (11 at a time) |
+|---|:---:|:---:|:---:|
+| Wall clock, 11 tasks | 54.7 min | 31.9 min | 12.0 min |
+| Median trial | 4.4 min | 7.8 min | 4.7 min |
+| Median sandbox setup | 7 s | 1.5 min | 1.5 min |
+| Median agent time | 3.0 min | 4.9 min | 1.8 min |
+| Agent cost | $2.83 | $3.61 | $2.53 |
+| Mean reward, 11 tasks | 0.728 | 0.805 | - |
+
+</div>
+
+Modal is 1.7× faster for Qwen, and would be faster still without a single slow trial: run in parallel, the wall clock
+is the slowest task (a 28-minute agent session on RNA extraction), and each sandbox spends about 1.5 minutes building
+its image where local Docker reuses a cached one. The scores show the noise of one attempt: the mean moved by 0.08, and
+four tasks changed by 0.08 to 0.70 with nothing changed but the run. Details:
+[`results/repeats/2026-10-07-qwen-modal`](results/repeats/2026-10-07-qwen-modal/).
 
 ## 6. Discussion and limitations
 
-- **The paper is the hard part.** Easy tasks are nearly saturated; the paper-only tasks separate models, and the dominant failure there is inventing steps or quantities the paper does not support. GPT-6.1 Sol, perfect on easy tasks, fails `fidelity_to_paper` on all four paper-only ones (two provisional). The paper-only level is the one to grow, and every new task has to pass the audit first.
-- **Refusals are not scored, but they are not free.** Two of four models refused standard molecular-cloning protocols. We exclude refused tasks from every score (§5.2), which makes the headline a comparison on 8 tasks, not 11; every new model can only shrink that set, so we also report each model's mean over all the tasks it answered, and its refusals.
-- **Judge noise is real and now measured.** Three calls per protocol disagreed on 7 items across the run (each vote is in the grader record), and a single call had scored identical colony-PCR recipes differently. The majority vote absorbs this, but all signal still comes from one judge, a Claude model that also judges a non-Claude model; a second judge from another provider would show whether that matters.
-- **Ground truth comes from the easy task.** Three of the four paper-only tasks reuse their easy task's ground truth. That is only fair where the paper fixes the same quantities; the audit now enforces it, and it is why colony-PCR-hard no longer grades its reaction volume deterministically.
-- **Provisional scores.** Five scores, listed with reasons in [`PROVISIONAL.json`](results/runs/2026-10-07-openrouter/PROVISIONAL.json), were judged before the audit or with fewer than three votes: Sonnet and GPT on RNA-hard and colony-PCR-hard, and Sonnet on ecoli-hard (one vote). They are marked † on the leaderboard. The OpenRouter key ran out of credit before they could be re-judged; `python scripts/regrade_jobs.py <jobs> --judge --all` does it for about $2.
-- **Scope.** One robot (OT-2), one simulator, one agent harness, four models, one attempt per cell. Repeated attempts (`-k 3`) and non-Opentrons instruments (Hamilton, plate readers, imagers) are next.
+- **The paper is the hard part.** Easy tasks are nearly saturated; the paper-only tasks separate models, and the dominant failure there is inventing steps or quantities the paper does not support. GPT-6.1 Sol, perfect on easy tasks, fails `fidelity_to_paper` on three of the four paper-only ones, and Qwen on all four. The paper-only level is the one to grow, and every new task has to pass the audit first.
+- **Refusals are not scored, but they are not free.** Two of six models refused standard molecular-cloning protocols. We exclude refused tasks from every score (§5.2), which makes the headline a comparison on 8 tasks, not 11; every new model can only shrink that set, so we also report each model's mean over all the tasks it answered, and its refusals.
+- **Judge noise is real and now measured.** Three calls per protocol disagreed on 9 of 380 items across the run (each vote is in the grader record), and a single call had scored identical colony-PCR recipes differently. The majority vote absorbs this, but all signal still comes from one judge, a Claude model that also judges a non-Claude model; a second judge from another provider would show whether that matters.
+- **Ground truth comes from the easy task.** Three of the four paper-only tasks reuse their easy task's ground truth. That is only fair where the paper fixes the same quantities; the audit now enforces it, and it is why colony-PCR-hard checks its reaction's composition and the paper's volume range instead of the easy task's exact volumes.
+- **One attempt is noisy.** Qwen, run a second time on Modal with everything else the same, moved from 0.728 to 0.805 over the 11 tasks, and four tasks changed score (RNA extraction 0.30 → 1.00, heat-shock-hard 0.75 → 0.30, Golden-Gate-hard 0.30 → 0.75). Gaps of under about 0.1 between models are not meaningful at pass@1 ([`results/repeats/`](results/repeats/2026-10-07-qwen-modal/)).
+- **Scope.** One robot (OT-2), one simulator, one agent harness, six models, one attempt per cell. Repeated attempts (`-k 3`) and non-Opentrons instruments (Hamilton, plate readers, imagers) are next.
 
 ## 7. Reproducing
 

@@ -5,6 +5,7 @@
   "ok": true,
   "n_commands": 133
  },
+ "not_applicable": [],
  "checks": [
   {
    "name": "simulator_ran",
@@ -53,48 +54,60 @@
    {
     "id": "robot_practice",
     "score": 1,
-    "evidence": "apiLevel 2.13, p20 used for 1 \u00b5L and p300 for 50 \u00b5L, the 3x5 \u00b5L mix stays within the 11 \u00b5L well volume, and all labware is used as intended; the simulator ran clean.",
+    "evidence": "apiLevel 2.13, p20 used for 1 \u00b5L and p300 for 50 \u00b5L, correct labware/module use, simulator and measured checks all pass.",
     "votes": [
+     1,
+     1,
      1
     ]
    },
    {
     "id": "tips_and_contamination",
     "score": 1,
-    "evidence": "Every plasmid and every SOC transfer uses its own pick_up_tip and drop_tip; the checks tip_before_aspirate, tip_dropped_at_end and no_cross_contamination all passed.",
+    "evidence": "Fresh pick_up_tip/drop_tip for each plasmid and each SOC dispense; tip_dropped_at_end and no_cross_contamination checks pass.",
     "votes": [
+     1,
+     1,
      1
     ]
    },
    {
     "id": "fidelity_to_paper",
     "score": 0,
-    "evidence": "The code adds a mixing step (p20.mix(3, 5, ...)) that the paper does not describe and sets the lid to 42 C, an invented choice. It also has no return to 4 C between the shock and SOC addition.",
+    "evidence": "Adds an invented p20.mix(3, 5) step after each DNA addition and sets the lid to 42 C, neither of which is in the paper, so not fully faithful.",
     "votes": [
+     0,
+     0,
      0
     ]
    },
    {
     "id": "dna_addition",
     "score": 1,
-    "evidence": "The block is set to 4 C with the lid open, then 1 \u00b5L is aspirated from plasmid_plate[w] and dispensed into tc_plate[w] for A1-H1 with a fresh tip each time.",
+    "evidence": "Aspirates 1 \u00b5L from plasmid_plate[w] and dispenses into tc_plate[w] for all 8 wells with the block set to 4 C and lid open.",
     "votes": [
+     1,
+     1,
      1
     ]
    },
    {
     "id": "heat_shock",
     "score": 1,
-    "evidence": "The lid is closed, then set_block_temperature(4, hold_time_minutes=30) and set_block_temperature(42, hold_time_seconds=30) run on the thermocycler.",
+    "evidence": "Lid closed, set_block_temperature(4, hold 30 min) then (42, hold 30 s) on the thermocycler.",
     "votes": [
+     1,
+     1,
      1
     ]
    },
    {
     "id": "soc_recovery",
     "score": 1,
-    "evidence": "50 \u00b5L SOC goes into each well with the p300 and a fresh tip, then the lid is closed and the block is held at 37 C for 60 min.",
+    "evidence": "Dispenses 50 \u00b5L SOC to each well with a fresh tip, then closes lid and holds 37 C for 60 min.",
     "votes": [
+     1,
+     1,
      1
     ]
    }
@@ -107,7 +120,7 @@
    "heat_shock": 1.0,
    "soc_recovery": 1.0
   },
-  "summary": "The protocol runs correctly: tip handling, volumes and the 4 C, 42 C and 37 C thermocycler steps all match the paper, and all measured checks passed. It fails fidelity because it adds an unspecified mixing step and uses a 42 C lid temperature the paper does not give.",
+  "summary": "The protocol correctly implements the LV configuration, tip handling, DNA addition, heat shock, and SOC recovery on the thermocycler. It fails strict fidelity because of an invented mixing step and a non-paper lid temperature of 42 C.",
   "level": "hard",
   "score": 0.75,
   "weights": {
@@ -119,8 +132,8 @@
    "soc_recovery": 0.0833
   },
   "provider": "openrouter",
-  "votes": 1,
-  "failed_votes": 2
+  "votes": 3,
+  "failed_votes": 0
  },
  "critical_failures": [],
  "rewards": {

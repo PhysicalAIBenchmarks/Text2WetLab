@@ -1,0 +1,35 @@
+{
+ "task": "a1-a12-100ul",
+ "model": "deepseek/deepseek-v4-pro-0813",
+ "agent": "claude-code",
+ "via": "openrouter",
+ "rewards": {
+  "reward": 1.0,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 1.0,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_task": 1.0,
+  "rubric_deck_and_hardware": 1.0,
+  "rubric_volumes_and_wells": 1.0
+ },
+ "exception": null,
+ "cost_usd": 0.03586,
+ "input_tokens": 67222,
+ "output_tokens": 983,
+ "started_at": "2026-10-07T18:21:21.691039Z",
+ "finished_at": "2026-10-07T18:24:24.758790Z",
+ "original_rewards": {
+  "reward": 0.0,
+  "sim_pass": 0.0,
+  "checks_frac": 0.0,
+  "lint_violations": 2.0
+ },
+ "cache_tokens": 16384,
+ "claude_code_cost_usd": 0.28695699999999996
+}

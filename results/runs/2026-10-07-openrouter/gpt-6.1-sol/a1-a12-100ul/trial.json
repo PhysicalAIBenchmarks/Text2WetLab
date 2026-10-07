@@ -19,9 +19,11 @@
   "rubric_volumes_and_wells": 1.0
  },
  "exception": null,
- "cost_usd": 0.14462450000000002,
+ "cost_usd": 0.045447,
  "input_tokens": 56041,
  "output_tokens": 752,
  "started_at": "2026-10-07T13:42:06.659918Z",
- "finished_at": "2026-10-07T13:43:18.902754Z"
+ "finished_at": "2026-10-07T13:43:18.902754Z",
+ "cache_tokens": 39029,
+ "claude_code_cost_usd": 0.14462450000000002
 }

@@ -558,25 +558,24 @@
    "error": ""
   },
   "drop_last_transfer": {
-   "reward": 0.3333,
+   "reward": 0.25,
    "failed_checks": [
-    "end_state:pcr_plate"
+    "composition:pcr_plate"
    ],
    "lint": [],
    "error": ""
   },
   "halve_volumes": {
-   "reward": 0.3333,
-   "failed_checks": [
-    "end_state:pcr_plate"
-   ],
+   "reward": 1.0,
+   "failed_checks": [],
    "lint": [],
-   "error": ""
+   "error": "",
+   "valid": "9 uL mix + 0.5 + 0.5 = 10 uL, the paper's OT-2 reaction volume"
   },
   "double_volumes": {
-   "reward": 0.3333,
+   "reward": 0.25,
    "failed_checks": [
-    "end_state:pcr_plate"
+    "composition:pcr_plate"
    ],
    "lint": [],
    "error": ""
@@ -604,7 +603,7 @@
    "error": ""
   },
   "reservoir_labelled_as_plate_kind": {
-   "reward": 0.1875,
+   "reward": 0.1667,
    "failed_checks": [
     "deck_labware:master_mix_reservoir",
     "no_aspirate_from_empty_well"
@@ -613,7 +612,7 @@
    "error": ""
   },
   "wrong_slot": {
-   "reward": 0.1667,
+   "reward": 0.125,
    "failed_checks": [
     "deck_labware:colony_plate",
     "no_aspirate_from_empty_well"
@@ -636,9 +635,9 @@
    "error": ""
   },
   "extra_liquid_into_target": {
-   "reward": 0.3333,
+   "reward": 0.25,
    "failed_checks": [
-    "end_state:pcr_plate"
+    "composition:pcr_plate"
    ],
    "lint": [],
    "error": ""

@@ -21,9 +21,11 @@
   "rubric_recovery": 1.0
  },
  "exception": null,
- "cost_usd": 0.20954699999999998,
+ "cost_usd": 0.070502,
  "input_tokens": 60085,
  "output_tokens": 2975,
  "started_at": "2026-10-07T13:58:56.205406Z",
- "finished_at": "2026-10-07T14:01:31.730219Z"
+ "finished_at": "2026-10-07T14:01:31.730219Z",
+ "cache_tokens": 41799,
+ "claude_code_cost_usd": 0.20954699999999998
 }

@@ -1,0 +1,7 @@
+{
+ "qwen/qwen3.8-2.4t-a95b": {
+  "completion": "0.000006",
+  "input_cache_read": "0.00000025",
+  "prompt": "0.000002"
+ }
+}

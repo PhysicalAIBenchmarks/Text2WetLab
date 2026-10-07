@@ -1,0 +1,137 @@
+{
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 28
+ },
+ "not_applicable": [],
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "end_state:plate",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "apiLevel 2.15 is valid; distribute(100,...) with the p300 keeps every aspirate at or below 300 \u00b5L, and the checks for overdispense and empty-well aspiration passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 1,
+    "evidence": "distribute defaults to one tip for the run, which is dropped at the end; tip_before_aspirate, tip_dropped_at_end and no_cross_contamination all passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "fidelity_to_task",
+    "score": 1,
+    "evidence": "The only step, 100 \u00b5L from reservoir A1 to plate A1\u2013A12, is done in order; the extra disposal volume is blown back out and does not change any well's contents (end_state:plate passed).",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "deck_and_hardware",
+    "score": 1,
+    "evidence": "Reservoir is loaded in slot 1 and plate in slot 2 with the specified labels, p20 is on the left and p300 on the right, and the tip racks are in slots 10 and 11.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "volumes_and_wells",
+    "score": 1,
+    "evidence": "pipette=p300 and plate.rows()[0] covers A1\u2013A12 with 100 \u00b5L each from reservoir A1; end_state:plate passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 1.0,
+   "fidelity_to_task": 1.0,
+   "deck_and_hardware": 1.0,
+   "volumes_and_wells": 1.0
+  },
+  "summary": "The protocol uses p300 distribute() from reservoir A1 to plate row A (A1\u2013A12), 100 \u00b5L each. It simulates cleanly, all measured checks passed, and the labware, pipettes and slots match the task.",
+  "level": "easy",
+  "score": 1.0,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_task": 0.25,
+   "deck_and_hardware": 0.125,
+   "volumes_and_wells": 0.125
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [],
+ "rewards": {
+  "reward": 1.0,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 1.0,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_task": 1.0,
+  "rubric_deck_and_hardware": 1.0,
+  "rubric_volumes_and_wells": 1.0
+ }
+}

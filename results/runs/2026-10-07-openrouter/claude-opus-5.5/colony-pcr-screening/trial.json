@@ -40,5 +40,6 @@
   "rubric_master_mix": 1.0,
   "rubric_template_and_primers": 1.0,
   "rubric_thermocycling": 1.0
- }
+ },
+ "cache_tokens": 100678
 }

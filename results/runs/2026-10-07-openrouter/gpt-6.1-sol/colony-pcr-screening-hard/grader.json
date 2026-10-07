@@ -5,6 +5,9 @@
   "ok": true,
   "n_commands": 1458
  },
+ "not_applicable": [
+  "end_state:pcr_plate (the source paper does not determine the exact volumes; composition checked instead)"
+ ],
  "checks": [
   {
    "name": "simulator_ran",
@@ -42,9 +45,9 @@
    "detail": ""
   },
   {
-   "name": "end_state:pcr_plate",
-   "pass": false,
-   "detail": "expected {'A1': 20.0, 'A2': 20.0, 'A3': 20.0, 'A4': 20.0, 'A5': 20.0, 'A6': 20.0, 'A7': 20.0, 'A8': 20.0, 'A9': 20.0, 'A10': 20.0, 'A11': 20.0, 'A12': 20.0, 'B1': 20.0, 'B2': 20.0, 'B3': 20.0, 'B4': 20.0, 'B5': 20.0, 'B6': 20.0, 'B7': 20.0, 'B8': 20.0, 'B9': 20.0, 'B10': 20.0, 'B11': 20.0, 'B12': 20.0, 'C1': 20.0, 'C2': 20.0, 'C3': 20.0, 'C4': 20.0, 'C5': 20.0, 'C6': 20.0, 'C7': 20.0, 'C8': 20.0, 'C9': 20.0, 'C10': 20.0, 'C11': 20.0, 'C12': 20.0, 'D1': 20.0, 'D2': 20.0, 'D3': 20.0, 'D4': 20.0, 'D5': 20.0, 'D6': 20.0, 'D7': 20.0, 'D8': 20.0, 'D9': 20.0, 'D10': 20.0, 'D11': 20.0, 'D12': 20.0, 'E1': 20.0, 'E2': 20.0, 'E3': 20.0, 'E4': 20.0, 'E5': 20.0, 'E6': 20.0, 'E7': 20.0, 'E8': 20.0, 'E9': 20.0, 'E10': 20.0, 'E11': 20.0, 'E12': 20.0, 'F1': 20.0, 'F2': 20.0, 'F3': 20.0, 'F4': 20.0, 'F5': 20.0, 'F6': 20.0, 'F7': 20.0, 'F8': 20.0, 'F9': 20.0, 'F10': 20.0, 'F11': 20.0, 'F12': 20.0, 'G1': 20.0, 'G2': 20.0, 'G3': 20.0, 'G4': 20.0, 'G5': 20.0, 'G6': 20.0, 'G7': 20.0, 'G8': 20.0, 'G9': 20.0, 'G10': 20.0, 'G11': 20.0, 'G12': 20.0, 'H1': 20.0, 'H2': 20.0, 'H3': 20.0, 'H4': 20.0, 'H5': 20.0, 'H6': 20.0, 'H7': 20.0, 'H8': 20.0, 'H9': 20.0, 'H10': 20.0, 'H11': 20.0, 'H12': 20.0}, got {'A1': 10.0, 'B1': 10.0, 'C1': 10.0, 'D1': 10.0, 'E1': 10.0, 'F1': 10.0, 'G1': 10.0, 'H1': 10.0, 'A2': 10.0, 'B2': 10.0, 'C2': 10.0, 'D2': 10.0, 'E2': 10.0, 'F2': 10.0, 'G2': 10.0, 'H2': 10.0, 'A3': 10.0, 'B3': 10.0, 'C3': 10.0, 'D3': 10.0, 'E3': 10.0, 'F3': 10.0, 'G3': 10.0, 'H3': 10.0, 'A4': 10.0, 'B4': 10.0, 'C4': 10.0, 'D4': 10.0, 'E4': 10.0, 'F4': 10.0, 'G4': 10.0, 'H4': 10.0, 'A5': 10.0, 'B5': 10.0, 'C5': 10.0, 'D5': 10.0, 'E5': 10.0, 'F5': 10.0, 'G5': 10.0, 'H5': 10.0, 'A6': 10.0, 'B6': 10.0, 'C6': 10.0, 'D6': 10.0, 'E6': 10.0, 'F6': 10.0, 'G6': 10.0, 'H6': 10.0, 'A7': 10.0, 'B7': 10.0, 'C7': 10.0, 'D7': 10.0, 'E7': 10.0, 'F7': 10.0, 'G7': 10.0, 'H7': 10.0, 'A8': 10.0, 'B8': 10.0, 'C8': 10.0, 'D8': 10.0, 'E8': 10.0, 'F8': 10.0, 'G8': 10.0, 'H8': 10.0, 'A9': 10.0, 'B9': 10.0, 'C9': 10.0, 'D9': 10.0, 'E9': 10.0, 'F9': 10.0, 'G9': 10.0, 'H9': 10.0, 'A10': 10.0, 'B10': 10.0, 'C10': 10.0, 'D10': 10.0, 'E10': 10.0, 'F10': 10.0, 'G10': 10.0, 'H10': 10.0, 'A11': 10.0, 'B11': 10.0, 'C11': 10.0, 'D11': 10.0, 'E11': 10.0, 'F11': 10.0, 'G11': 10.0, 'H11': 10.0, 'A12': 10.0, 'B12': 10.0, 'C12': 10.0, 'D12': 10.0, 'E12': 10.0, 'F12': 10.0, 'G12': 10.0, 'H12': 10.0}"
+   "name": "composition:pcr_plate",
+   "pass": true,
+   "detail": ""
   },
   {
    "name": "end_state:primer_plate",
@@ -58,7 +61,7 @@
    {
     "id": "robot_practice",
     "score": 0,
-    "evidence": "The protocol adds a needless manual well-by-well transfer of all 96 reactions to a different plate plus several pauses, extra handling that puts samples at risk. Otherwise, apiLevel 2.15 is valid and all volumes (1-5 uL) are handled by the p20.",
+    "evidence": "Valid apiLevel 2.15 and P20 volumes of 1\u20135 \u00b5L are fine, but the protocol tells the user to manually transfer all 96 reactions from the Corning pcr_plate into a different PCR plate. That is needless extra handling that puts samples at risk.",
     "votes": [
      0,
      0,
@@ -68,7 +71,7 @@
    {
     "id": "tips_and_contamination",
     "score": 1,
-    "evidence": "add_reagent picks up a fresh tip for every transfer and drops it. The tip checks (tip_before_aspirate, tip_dropped_at_end, no_cross_contamination) all pass.",
+    "evidence": "add_reagent picks up a fresh tip and drops it for every transfer. The tip_before_aspirate, no_cross_contamination and tip_dropped_at_end checks all pass.",
     "votes": [
      1,
      1,
@@ -78,7 +81,7 @@
    {
     "id": "fidelity_to_paper",
     "score": 0,
-    "evidence": "The protocol invents a manual transfer to a real PCR plate and extra pauses, and assumes a 1.25 uM primer concentration. The paper has no such steps, so it is not fully faithful.",
+    "evidence": "The protocol invents a manual transfer into a separate 0.2 mL PCR plate, a gel electrophoresis step, and assumed primer dilutions and cycling values. The paper's OT-2 workflow runs the reaction in the destination plate.",
     "votes": [
      0,
      0,
@@ -88,7 +91,7 @@
    {
     "id": "reaction_setup",
     "score": 1,
-    "evidence": "Each 10 uL reaction gets 5 uL Q5 2x (1x final), 4 uL of its primer pair, then 1 uL colony template, with master mix added first. This is an allowed 10 uL reaction.",
+    "evidence": "Each 10 \u00b5L well gets 5 \u00b5L 2x Q5 (1x final) first, then 4 \u00b5L primer pair, then 1 \u00b5L colony template last.",
     "votes": [
      1,
      1,
@@ -98,7 +101,7 @@
    {
     "id": "sample_mapping",
     "score": 1,
-    "evidence": "The loops use primer_plate[destination.well_name] and colony_plate[destination.well_name] over pcr_plate.wells(), giving a one-to-one A1-H12 mapping with no well skipped or reused.",
+    "evidence": "Primer and colony wells map to the same-named pcr_plate wells (primer_plate[destination.well_name], colony_plate[destination.well_name]) across all 96 wells, each used once.",
     "votes": [
      1,
      1,
@@ -108,7 +111,7 @@
    {
     "id": "thermocycling",
     "score": 1,
-    "evidence": "The comments record sealing and a Q5 program: 98C 30 s, 30 cycles of 98C 10 s / 65C 20 s / 72C 30 s, a 72C 120 s final extension and a 4C hold.",
+    "evidence": "The comments record sealing and a Q5 program: 98 \u00b0C for 30 s, then 30 cycles of 98 \u00b0C 10 s, 65 \u00b0C 20 s and 72 \u00b0C 30 s, then 72 \u00b0C for 2 min and a 4 \u00b0C hold.",
     "votes": [
      1,
      1,
@@ -124,7 +127,7 @@
    "sample_mapping": 1.0,
    "thermocycling": 1.0
   },
-  "summary": "The pipetting itself is sound: fresh tips throughout, correct master mix, primer and template order, A1-to-A1 mapping, and a reasonable Q5 cycling program. However, it invents a manual transfer of all reactions to a real PCR plate and several pauses, which fails robot_practice and fidelity_to_paper.",
+  "summary": "The agent builds correct 10 \u00b5L reactions with the right order, fresh tips and a one-to-one well mapping, and it records a sensible Q5 program. It loses robot_practice and fidelity because it adds an invented manual transfer to a different PCR plate, plus a gel step and assumed primer concentrations.",
   "level": "hard",
   "score": 0.5,
   "weights": {
@@ -143,10 +146,10 @@
  "rewards": {
   "reward": 0.5,
   "sim_pass": 1.0,
-  "checks_frac": 0.8889,
+  "checks_frac": 1.0,
   "lint_violations": 0.0,
   "hack_detected": 0.0,
-  "deterministic_reward": 0.3333,
+  "deterministic_reward": 1.0,
   "judge_score": 0.5,
   "critical_fail": 0.0,
   "rubric_robot_practice": 0.0,

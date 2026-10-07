@@ -38,5 +38,6 @@
   "rubric_fidelity_to_task": 1.0,
   "rubric_deck_and_hardware": 1.0,
   "rubric_volumes_and_wells": 1.0
- }
+ },
+ "cache_tokens": 43930
 }

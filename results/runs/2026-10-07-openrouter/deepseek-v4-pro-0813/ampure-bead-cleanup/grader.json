@@ -1,0 +1,170 @@
+{
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 6164
+ },
+ "not_applicable": [],
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": false,
+   "detail": "[(23, 'A1'), (24, 'B1'), (25, 'B1')]"
+  },
+  {
+   "name": "end_state:sample_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:elution_plate",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "apiLevel 2.13 is valid. All volumes (40, 50, 90, 200, 45 \u00b5L) go through the p300, and no well exceeds its capacity. The simulation passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 0,
+    "evidence": "Steps 1, 11 and 13 use new_tip='once' with mix_after or a sample-to-sample transfer, so one tip touches many samples. It also returns to the bead and water stocks after mixing in samples. The no_cross_contamination check failed.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "fidelity_to_task",
+    "score": 0,
+    "evidence": "Shared tips across samples in steps 1, 11 and 13 cross-contaminate. The elution mix volume was changed to 30 \u00b5L. The protocol is therefore not fully faithful.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "binding",
+    "score": 1,
+    "evidence": "p300.transfer(40, beads_reservoir['A1'], wells, mix_after=(10, 40)) is followed by a comment recording the 5 min incubation before the magnet comment.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "supernatant_and_washes",
+    "score": 1,
+    "evidence": "The code comments that the magnet is engaged with a 5 min wait. A loop then aspirates 90 \u00b5L from every well to waste with a fresh tip each. Two 200 \u00b5L ethanol additions follow, and each is removed fully to waste.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "drying_and_elution",
+    "score": 1,
+    "evidence": "Comments record the 5 min air dry, the magnet disengaging, the 2 min incubation and the magnet re-engaging. 50 \u00b5L water is added with mix_after=(10, 30).",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "recovery",
+    "score": 1,
+    "evidence": "p300.transfer(45, wells, elution_plate.wells()) pairs each sample well with the matching elution well in order, so sample identity is preserved.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 0.0,
+   "fidelity_to_task": 0.0,
+   "binding": 1.0,
+   "supernatant_and_washes": 1.0,
+   "drying_and_elution": 1.0,
+   "recovery": 1.0
+  },
+  "summary": "The protocol follows the right order and quantities, and its supernatant, wash, drying, elution and recovery steps are correct. However, steps 1, 11 and 13 reuse one tip across many sample wells (new_tip='once') and the contamination check failed. The elution mix volume was also changed to 30 \u00b5L, so tips_and_contamination and fidelity_to_task score 0.",
+  "level": "easy",
+  "score": 0.5,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_task": 0.25,
+   "binding": 0.0625,
+   "supernatant_and_washes": 0.0625,
+   "drying_and_elution": 0.0625,
+   "recovery": 0.0625
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [
+  "no_cross_contamination"
+ ],
+ "rewards": {
+  "reward": 0.3,
+  "sim_pass": 1.0,
+  "checks_frac": 0.875,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 0.25,
+  "judge_score": 0.5,
+  "critical_fail": 1.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 0.0,
+  "rubric_fidelity_to_task": 0.0,
+  "rubric_binding": 1.0,
+  "rubric_supernatant_and_washes": 1.0,
+  "rubric_drying_and_elution": 1.0,
+  "rubric_recovery": 1.0
+ }
+}

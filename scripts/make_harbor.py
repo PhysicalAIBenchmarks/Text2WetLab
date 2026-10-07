@@ -173,7 +173,8 @@ def checks_json(folder: pathlib.Path) -> str:
     cfg = tomllib.loads((folder / "task.toml").read_text()).get("checks", {})
     out = {"free_wells": sorted(cfg.get("free_wells", []))}
     if cfg.get("not_from_paper"):
-        out["not_from_paper"] = sorted(cfg["not_from_paper"])
+        nfp = cfg["not_from_paper"]   # [containers], or {container: [min uL, max uL] the paper supports}
+        out["not_from_paper"] = dict(sorted(nfp.items())) if isinstance(nfp, dict) else sorted(nfp)
     return json.dumps(out) + "\n"
 
 

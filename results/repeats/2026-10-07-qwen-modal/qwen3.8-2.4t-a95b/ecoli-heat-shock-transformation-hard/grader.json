@@ -1,0 +1,157 @@
+{
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 194
+ },
+ "not_applicable": [],
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": false,
+   "detail": "[(15, 'aspirate_from_empty'), (25, 'aspirate_from_empty'), (35, 'aspirate_from_empty')]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "end_state:plasmid_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:transformation_plate",
+   "pass": false,
+   "detail": "expected {'A1': 61.0, 'B1': 61.0, 'C1': 61.0, 'D1': 61.0, 'E1': 61.0, 'F1': 61.0, 'G1': 61.0, 'H1': 61.0}, got {'A1': 61.0, 'B1': 10.0, 'C1': 10.0, 'D1': 10.0, 'E1': 10.0, 'F1': 10.0, 'G1': 10.0, 'H1': 10.0, 'A2': 56.0, 'A3': 56.0, 'A4': 56.0, 'A5': 56.0, 'A6': 56.0, 'A7': 56.0, 'A8': 56.0}"
+  }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 0,
+    "evidence": "`cell_wells = transformation_plate.rows()[0]` is row A (A1..A12), not column 1, so DNA and SOC went into A2\u2013A8 and the mixes aspirated from empty wells (no_aspirate_from_empty_well failed).",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 1,
+    "evidence": "A fresh tip is picked up and dropped for each plasmid and each SOC addition; tip_before_aspirate, tip_dropped_at_end and no_cross_contamination all passed.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "fidelity_to_paper",
+    "score": 0,
+    "evidence": "The deck mapping is wrong (end_state shows B1\u2013H1 stuck at 10 \u00b5L and A2\u2013A8 at 56 \u00b5L), and unrequested mixing steps were added.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "dna_addition",
+    "score": 0,
+    "evidence": "DNA from plasmid wells A1\u2013H1 went into transformation-plate wells A1\u2013A8 (row A) instead of A1\u2013H1, so B1\u2013H1 never received DNA.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "heat_shock",
+    "score": 1,
+    "evidence": "The code runs the closed-lid thermocycler program: 4 \u00b0C for 30 min, then 42 \u00b0C for 30 s, then back to 4 \u00b0C.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "soc_recovery",
+    "score": 0,
+    "evidence": "50 \u00b5L SOC was dispensed into cell_wells[i], which is A1\u2013A8, so B1\u2013H1 got no SOC; end_state shows 10 \u00b5L in B1\u2013H1 and 56 \u00b5L in A2\u2013A8.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 0.0,
+   "tips_and_contamination": 1.0,
+   "fidelity_to_paper": 0.0,
+   "dna_addition": 0.0,
+   "heat_shock": 1.0,
+   "soc_recovery": 0.0
+  },
+  "summary": "The protocol indexes the transformation plate with rows()[0], which is row A, instead of column 1. DNA and SOC therefore went into the wrong wells, and the mixes aspirated from empty wells. The thermal program and tip handling are correct, but the DNA addition, SOC recovery, robot practice and fidelity items fail.",
+  "level": "hard",
+  "score": 0.3333,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_paper": 0.25,
+   "dna_addition": 0.0833,
+   "heat_shock": 0.0833,
+   "soc_recovery": 0.0833
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [
+  "no_aspirate_from_empty_well"
+ ],
+ "rewards": {
+  "reward": 0.3,
+  "sim_pass": 1.0,
+  "checks_frac": 0.75,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 0.125,
+  "judge_score": 0.3333,
+  "critical_fail": 1.0,
+  "rubric_robot_practice": 0.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_paper": 0.0,
+  "rubric_dna_addition": 0.0,
+  "rubric_heat_shock": 1.0,
+  "rubric_soc_recovery": 0.0
+ }
+}

@@ -21,9 +21,11 @@
   "rubric_cycling_and_transformation": 1.0
  },
  "exception": null,
- "cost_usd": 0.7440309999999999,
+ "cost_usd": 0.245584,
  "input_tokens": 358635,
  "output_tokens": 13285,
  "started_at": "2026-10-07T13:34:52.817517Z",
- "finished_at": "2026-10-07T13:42:06.642645Z"
+ "finished_at": "2026-10-07T13:42:06.642645Z",
+ "cache_tokens": 318177,
+ "claude_code_cost_usd": 0.7440309999999999
 }

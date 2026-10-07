@@ -1,0 +1,235 @@
+{
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 602
+ },
+ "not_applicable": [],
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": false,
+   "detail": "[(395, 'D2'), (396, 'B1'), (397, 'B1')]"
+  },
+  {
+   "name": "end_state:water",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:q5_buffer",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:dntp",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:q5_pol",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:pcr_mm",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:primer_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:template_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:pcr_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:rcutsmart",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:dpni",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:t4_buffer",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:gg_enzyme",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:assembly_plate",
+   "pass": false,
+   "detail": "expected {'A1': 15.0, 'B1': 15.0, 'C1': 15.0, 'D1': 15.0}, got {'A1': 10.0, 'B1': 10.0, 'C1': 10.0, 'D1': 10.0}"
+  },
+  {
+   "name": "end_state:cells_plate",
+   "pass": false,
+   "detail": "expected {'A1': 305.0, 'B1': 305.0, 'C1': 305.0, 'D1': 305.0}, got {'A1': 310.0, 'B1': 310.0, 'C1': 310.0, 'D1': 310.0}"
+  },
+  {
+   "name": "end_state:lb_dextrose",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "Valid apiLevel 2.13 (via requirements), every volume uses a suitable pipette (p20 for \u226419 \u00b5L, p300 for 40/106/250 \u00b5L), no well exceeds capacity, and the simulator passed with no overdispense or empty-aspirate errors.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 0,
+    "evidence": "The no_cross_contamination check failed [(395,'D2'),(396,'B1'),(397,'B1')]: the gg_enzyme transfer uses new_tip='once' with mix_after=(5,15), so one tip mixes in assembly wells and then returns to the enzyme stock D2 and the next wells.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "fidelity_to_paper",
+    "score": 0,
+    "evidence": "The protocol deviates from the paper: fragments are eluted in 15 \u00b5L instead of 10 \u00b5L, the full 10 \u00b5L assembly eluate is transformed (the paper uses 5 \u00b5L), and the enzyme tip is reused across assembly wells; the end_state checks for assembly_plate and cells_plate also differ.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "pcr_setup",
+    "score": 1,
+    "evidence": "Master mix gives 19 \u00b5L per reaction, then 2.5 \u00b5L of each 1 \u00b5M primer and 1 \u00b5L of 0.5 ng/\u00b5L template give 25 \u00b5L, with the primer and template mapping taken from the design table.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "dpni_and_cleanup",
+    "score": 1,
+    "evidence": "Comment records 98 C 30 s, 36 cycles with gradient annealing, 72 C 5 min; DpnI uses 19 \u00b5L water, 5 \u00b5L rCutSmart and 1 \u00b5L DpnI, with 37 C 30 min then 65 C 20 min; a pause for Zymo cleanup follows, in that order.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "assembly_mix",
+    "score": 1,
+    "evidence": "Each assembly gets 7 \u00b5L water, 2 \u00b5L 10X T4 buffer, 1 \u00b5L enzyme mix and fragments 3+2+3+2 \u00b5L from the design table, totalling 20 \u00b5L in its own well.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "cycling_and_transformation",
+    "score": 1,
+    "evidence": "Records a Golden Gate program (30 cycles of 37/16 C, 60 C, 4 C hold), cleanup eluted in 10 \u00b5L, transfer to TOP10 cells, 30 min ice, 42 C 60 s, 250 \u00b5L LB+dextrose, 37 C 60 min, plating on kanamycin.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 0.0,
+   "fidelity_to_paper": 0.0,
+   "pcr_setup": 1.0,
+   "dpni_and_cleanup": 1.0,
+   "assembly_mix": 1.0,
+   "cycling_and_transformation": 1.0
+  },
+  "summary": "The protocol is sound on volumes, PCR setup, DpnI, assembly mix and the cycling/transformation steps. It fails tips because the enzyme-mix transfer reuses one tip across mixing in assembly wells and the enzyme stock, which the measured contamination check flagged, and it fails fidelity because of the 15 \u00b5L fragment elution and the full 10 \u00b5L transformed.",
+  "level": "hard",
+  "score": 0.5,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_paper": 0.25,
+   "pcr_setup": 0.0625,
+   "dpni_and_cleanup": 0.0625,
+   "assembly_mix": 0.0625,
+   "cycling_and_transformation": 0.0625
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [
+  "no_cross_contamination"
+ ],
+ "rewards": {
+  "reward": 0.3,
+  "sim_pass": 1.0,
+  "checks_frac": 0.8571,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 0.2167,
+  "judge_score": 0.5,
+  "critical_fail": 1.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 0.0,
+  "rubric_fidelity_to_paper": 0.0,
+  "rubric_pcr_setup": 1.0,
+  "rubric_dpni_and_cleanup": 1.0,
+  "rubric_assembly_mix": 1.0,
+  "rubric_cycling_and_transformation": 1.0
+ }
+}

@@ -1,0 +1,157 @@
+{
+ "lint": [],
+ "traps": [],
+ "simulation": {
+  "ok": true,
+  "n_commands": 1997
+ },
+ "not_applicable": [
+  "end_state:pcr_plate (the source paper does not determine these volumes; judged by the rubric)"
+ ],
+ "checks": [
+  {
+   "name": "simulator_ran",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "tip_before_aspirate",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_overdispense",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "no_aspirate_from_empty_well",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "tip_dropped_at_end",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "no_cross_contamination",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "name": "end_state:colony_plate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "end_state:primer_plate",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "judge": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "items": [
+   {
+    "id": "robot_practice",
+    "score": 1,
+    "evidence": "apiLevel 2.13 with metadata; all volumes (5, 4, 1 \u00b5L) go through the p20 within 1\u201320 \u00b5L, and the simulator ran with no overdispense or empty-well checks failing.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "tips_and_contamination",
+    "score": 1,
+    "evidence": "Master mix is distributed with one tip (new_tip='once'), and primers and template use new_tip='always'. The tip_before_aspirate, tip_dropped_at_end and no_cross_contamination checks all pass.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "fidelity_to_paper",
+    "score": 0,
+    "evidence": "The cycling program uses a 5 min initial denaturation and 35 cycles, which departs from the Q5 manufacturer's 30 s start and about 30 cycles. The code also adds an invented manual spin-down step and assumes the primer plate is pre-diluted.",
+    "votes": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "reaction_setup",
+    "score": 1,
+    "evidence": "Each well gets 5 \u00b5L 2x Q5 master mix (1x final), 4 \u00b5L of its primer pair and 1 \u00b5L colony template, added in that order. That makes a 10 \u00b5L reaction, matching the paper's OT-2 volume.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "sample_mapping",
+    "score": 1,
+    "evidence": "colony_plate.wells()[:96], primer_plate.wells()[:96] and pcr_plate.wells()[:96] are paired by index in the transfers, so A1 maps to A1 and so on, with no well skipped or reused.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "thermocycling",
+    "score": 1,
+    "evidence": "A comment records sealing and a program of 98 \u00b0C initial denaturation, 35 cycles of 98/60/72 \u00b0C, 72 \u00b0C final extension and a 4 \u00b0C hold, which is suitable for Q5 Hot Start.",
+    "votes": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "scores": {
+   "robot_practice": 1.0,
+   "tips_and_contamination": 1.0,
+   "fidelity_to_paper": 0.0,
+   "reaction_setup": 1.0,
+   "sample_mapping": 1.0,
+   "thermocycling": 1.0
+  },
+  "summary": "The protocol sets up the 96 reactions correctly: 5 \u00b5L 2x master mix, 4 \u00b5L primer pair and 1 \u00b5L template per well, with correct well mapping and tip handling, and the simulator checks pass. It fails the all-or-nothing fidelity item because of deviations in the cycling program (5 min initial denaturation, 35 cycles) and an invented spin-down step.",
+  "level": "hard",
+  "score": 0.75,
+  "weights": {
+   "robot_practice": 0.25,
+   "tips_and_contamination": 0.25,
+   "fidelity_to_paper": 0.25,
+   "reaction_setup": 0.0833,
+   "sample_mapping": 0.0833,
+   "thermocycling": 0.0833
+  },
+  "provider": "openrouter",
+  "votes": 3,
+  "failed_votes": 0
+ },
+ "critical_failures": [],
+ "rewards": {
+  "reward": 0.75,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 0.75,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_paper": 0.0,
+  "rubric_reaction_setup": 1.0,
+  "rubric_sample_mapping": 1.0,
+  "rubric_thermocycling": 1.0
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "task": "ecoli-heat-shock-transformation-hard",
+ "model": "qwen/qwen3.8-2.4t-a95b",
+ "agent": "claude-code",
+ "via": "openrouter",
+ "rewards": {
+  "reward": 0.3,
+  "sim_pass": 1.0,
+  "checks_frac": 0.75,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 0.125,
+  "judge_score": 0.3333,
+  "critical_fail": 1.0,
+  "rubric_robot_practice": 0.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_paper": 0.0,
+  "rubric_dna_addition": 0.0,
+  "rubric_heat_shock": 1.0,
+  "rubric_soc_recovery": 0.0
+ },
+ "exception": null,
+ "cost_usd": 0.156076,
+ "input_tokens": 253659,
+ "output_tokens": 8802,
+ "started_at": "2026-10-07T18:21:21.520197Z",
+ "finished_at": "2026-10-07T18:27:54.602018Z",
+ "cache_tokens": 230888,
+ "claude_code_cost_usd": 0.47774525
+}

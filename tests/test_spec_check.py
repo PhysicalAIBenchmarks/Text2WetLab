@@ -106,3 +106,43 @@ def test_a_tip_that_mixed_in_one_sample_cannot_go_on_to_the_next():
     mix_then_next = [pick, asp("A1", "res"), disp("A1"), asp("A1"), disp("A1"), asp("A1", "res"), disp("A2"), drop]
     assert cross_contamination(multi_dispense) == []
     assert cross_contamination(mix_then_next) != []
+
+
+def test_mixing_a_source_before_drawing_from_it_is_not_contamination():
+    """DeepSeek V4 Pro on colony-PCR-hard: fresh tip per colony, mix the colony well, take 1 uL, dispense into its PCR
+    well. The mix-tracking rule had flagged every colony; only mixing in a destination carries anything."""
+    from spec_check import cross_contamination
+    pick, drop = {"kind": "pick"}, {"kind": "drop"}
+    asp = lambda w, lw: {"kind": "aspirate", "labware": lw, "well": w}
+    disp = lambda w, lw: {"kind": "dispense", "labware": lw, "well": w}
+    colony = [pick, asp("A1", "colonies"), disp("A1", "colonies"), asp("A1", "colonies"), disp("A1", "colonies"),
+              asp("A1", "colonies"), disp("A1", "pcr"), drop]
+    assert cross_contamination(colony) == []
+    # still caught: mixing in the destination, then back to the stock and on to the next sample
+    dest_mix_then_stock = [pick, asp("A1", "beads"), disp("A1", "samples"), asp("A1", "samples"), disp("A1", "samples"),
+                           asp("A1", "beads"), disp("B1", "samples"), drop]
+    assert cross_contamination(dest_mix_then_stock) != []
+
+
+def test_a_container_the_paper_does_not_fix_is_still_checked_for_what_it_does_fix():
+    # colony-PCR-hard: any equal reaction of 10-25 uL passes; a missing input, unequal wells or 40 uL do not
+    from spec_check import _composition
+    proto = Protocol.model_validate_json((ROOT / "tasks/colony-pcr-screening-hard/tests/ir.json").read_text())
+    mapping = {"master_mix_reservoir": "mm", "colony_plate": "col", "primer_plate": "pri", "pcr_plate": "pcr"}
+    wells = [r + str(c) for r in "ABCDEFGH" for c in range(1, 13)]
+    want = {w: 20.0 for w in wells}
+    fed_all = {("pcr", w): {"mm", "col", "pri"} for w in wells}
+    ok = lambda got, fed=fed_all: _composition("pcr_plate", "pcr", want, got, fed, proto, mapping, (10, 25), False)
+    assert ok({w: 11.0 for w in wells})[0]                                  # 9 mix + 1 primer + 1 colony
+    assert not ok({w: 40.0 for w in wells})[0]
+    assert not ok({**{w: 11.0 for w in wells}, "H12": 41.0})[0]
+    assert not ok({w: 11.0 for w in wells[:-1]})[0]
+    assert not ok({w: 10.0 for w in wells}, {**fed_all, ("pcr", "A1"): {"mm", "col"}})[0]
+
+
+def test_non_claude_cost_comes_from_tokens_at_openrouter_prices():
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from export_run import openrouter_cost
+    agent = {"n_input_tokens": 1_000_000, "n_cache_tokens": 800_000, "n_output_tokens": 10_000}
+    pricing = {"prompt": "0.000002", "completion": "0.000006", "input_cache_read": "0.00000025"}
+    assert openrouter_cost(agent, pricing) == pytest.approx(0.4 + 0.2 + 0.06)

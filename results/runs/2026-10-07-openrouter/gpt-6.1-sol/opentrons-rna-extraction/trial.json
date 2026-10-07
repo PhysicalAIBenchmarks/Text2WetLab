@@ -22,9 +22,11 @@
   "rubric_elution_recovery": 1.0
  },
  "exception": null,
- "cost_usd": 0.5695785000000001,
+ "cost_usd": 0.186089,
  "input_tokens": 295616,
  "output_tokens": 9857,
  "started_at": "2026-10-07T13:43:18.923153Z",
- "finished_at": "2026-10-07T13:58:56.182538Z"
+ "finished_at": "2026-10-07T13:58:56.182538Z",
+ "cache_tokens": 265112,
+ "claude_code_cost_usd": 0.5695785000000001
 }

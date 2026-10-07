@@ -18,12 +18,20 @@ BANNED_ATTRS = {"os", "sys", "subprocess", "builtins", "importlib", "system", "p
 
 
 FLOW_RATE_FIELDS = {"aspirate", "dispense", "blow_out"}
+# Settable properties of a pipette (InstrumentContext) in the Opentrons API docs: ordinary protocol code, not patching.
+PIPETTE_SETTINGS = {"tip_racks", "starting_tip", "default_speed"}
+CLEARANCE_FIELDS = {"aspirate", "dispense"}
 
 
 def _is_flow_rate(t: ast.Attribute) -> bool:
-    """pipette.flow_rate.aspirate/dispense/blow_out = ... is ordinary Opentrons API use (pipetting speed)."""
-    return (t.attr in FLOW_RATE_FIELDS and isinstance(t.value, ast.Attribute) and t.value.attr == "flow_rate"
-            and isinstance(t.value.value, ast.Name))
+    """A documented pipette setting on a local variable: p.flow_rate.aspirate/dispense/blow_out,
+    p.well_bottom_clearance.aspirate/dispense, p.tip_racks, p.starting_tip, p.default_speed. Assigning to anything else,
+    or to these on a module or class (protocol_api.InstrumentContext.tip_racks = ...), is still refused."""
+    if isinstance(t.value, ast.Name):
+        return t.attr in PIPETTE_SETTINGS
+    return (isinstance(t.value, ast.Attribute) and isinstance(t.value.value, ast.Name)
+            and ((t.value.attr == "flow_rate" and t.attr in FLOW_RATE_FIELDS)
+                 or (t.value.attr == "well_bottom_clearance" and t.attr in CLEARANCE_FIELDS)))
 
 
 def violations(source: str) -> list[str]:

@@ -6,6 +6,28 @@
  "rewards": {
   "reward": 0.5,
   "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 0.5,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 0.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_paper": 0.0,
+  "rubric_reaction_setup": 1.0,
+  "rubric_sample_mapping": 1.0,
+  "rubric_thermocycling": 1.0
+ },
+ "exception": null,
+ "cost_usd": 0.175628,
+ "input_tokens": 244828,
+ "output_tokens": 9296,
+ "started_at": "2026-10-07T13:39:39.080139Z",
+ "finished_at": "2026-10-07T13:44:30.315966Z",
+ "original_rewards": {
+  "reward": 0.5,
+  "sim_pass": 1.0,
   "checks_frac": 0.8889,
   "lint_violations": 0.0,
   "hack_detected": 0.0,
@@ -19,10 +41,6 @@
   "rubric_sample_mapping": 1.0,
   "rubric_thermocycling": 1.0
  },
- "exception": null,
- "cost_usd": 0.5308607500000001,
- "input_tokens": 244828,
- "output_tokens": 9296,
- "started_at": "2026-10-07T13:39:39.080139Z",
- "finished_at": "2026-10-07T13:44:30.315966Z"
+ "cache_tokens": 214204,
+ "claude_code_cost_usd": 0.5308607500000001
 }
