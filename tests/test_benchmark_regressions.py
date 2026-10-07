@@ -115,20 +115,20 @@ def test_end_state_detail_is_not_truncated():
 
 
 @pytest.mark.skipif(not OT.exists(), reason="needs the Opentrons 7.5 simulator venv (set OT_VENV)")
-@pytest.mark.parametrize("model,ok", [("claude-fable-5.1", True), ("claude-opus-5.5", False)])
-def test_recovering_the_whole_eluate_fails_the_80ul_check(model, ok, tmp_path):
-    # Opus 5.5 took all 100 uL and the judge passed it because recover_70_100ul accepts 100; Fable 5.1 took 90 uL
+@pytest.mark.parametrize("model", ["claude-opus-5.5", "claude-fable-5.1"])
+def test_paper_only_rna_accepts_any_full_recovery(model, tmp_path):
+    # the paper says only "collect the supernatant" after a 100 uL elution: Opus's 100 uL and Fable's 90 uL both follow it.
+    # (An earlier version of this test required the hard task to fail 100 uL; the paper-only audit showed that was wrong.)
     task = ROOT / "tasks/opentrons-rna-extraction-hard"
     env = dict(os.environ, TESTS_DIR=str(task / "tests"), PROTOCOL_PATH=str(RUN / model / task.name / "protocol.py"),
                VERIFIER_OUT=str(tmp_path), OT_PYTHON=str(OT), RUNLOG=str(task / "tests/runlog.py"),
                DATA_DIR=str(task / "environment/data"), SKIP_JUDGE="1")
     subprocess.run([sys.executable, str(task / "tests/grade.py")], capture_output=True, text=True, env=env, timeout=900)
     checks = {c["name"]: c for c in json.loads((tmp_path / "judge.json").read_text())["checks"]["checks"]}
-    assert checks["recover_about_80ul"]["pass"] is ok and checks["recover_70_100ul_one_well_each"]["pass"]
+    assert "recover_about_80ul" not in checks and checks["recover_70_100ul_one_well_each"]["pass"]
 
 
-@pytest.mark.parametrize("task", RNA)
-def test_rna_rubric_says_the_whole_eluate_fails(task):
-    rubric = json.loads((ROOT / "tasks" / task / "tests/rubric.json").read_text())
+def test_easy_rna_rubric_holds_the_80ul_the_brief_states():
+    rubric = json.loads((ROOT / "tasks/opentrons-rna-extraction/tests/rubric.json").read_text())
     text = next(i["text"] for i in rubric["task"] if i["id"] == "elution_recovery")
-    assert "Recovering the whole 100 uL fails this item" in text
+    assert "Recovering the whole 100 uL fails this item" in text and "Transfer 80 uL of eluate" in text

@@ -231,7 +231,7 @@ def main() -> int:
         record["simulation"] = {k: v for k, v in sim.items() if k != "events"}
         if sim.get("ok"):
             rewards["sim_pass"] = 1.0
-            measured = analyze(sim["events"])
+            measured = analyze(sim["events"], load_rubric()["level"])
             record["checks"] = measured
             rewards["checks_frac"] = round(measured["checks_passed"] / measured["checks_total"], 4)
             (OUT / "events.json").write_text(json.dumps(sim["events"]))

@@ -57,8 +57,10 @@ def grade(protocol: Path = PROTOCOL) -> tuple[dict, dict]:
     rewards["sim_pass"] = 1.0
     ir = Protocol.model_validate_json((TESTS / "ir.json").read_text())
     deck = json.loads((TESTS / "deck.json").read_text())
-    free = frozenset(json.loads((TESTS / "checks.json").read_text())["free_wells"])
-    res = check(ir, sim, free, deck)
+    checks_cfg = json.loads((TESTS / "checks.json").read_text())
+    free = frozenset(checks_cfg["free_wells"])
+    res = check(ir, sim, free, deck, frozenset(checks_cfg.get("not_from_paper", [])))
+    record["not_applicable"] = res["not_applicable"]
     passed = sum(c["pass"] for c in res["checks"])
     rewards["checks_frac"] = round(passed / len(res["checks"]), 4)
     # Partial credit counts only the substantive checks (right labware in the right slot, right end state), so a protocol
