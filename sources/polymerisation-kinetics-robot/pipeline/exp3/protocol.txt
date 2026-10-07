@@ -1,0 +1,101 @@
+BMA-BA reaction-time (30 min vs 2 h) and dataset-size (45-point, f10 0.1-0.9) controls on an OT-2 platform
+
+Containers:
+- reactor_30min: 96-deep-well plate (2 mL) — Reactor for the 30 min time-control set: 20 reaction wells in A1:C4 region (stands in for the 48-well reactor) [assumed]
+- reactor_45: 96-deep-well plate (2 mL) — Reactor for the 45-point extended set (2 h): wells A1:E8 and F1:F5 (stands in for the 48-well reactor) [assumed]
+- nmr_t0_30: 96-deep-well plate (2 mL) — Cut glass NMR tubes in 3D-printed holder for t0 samples of the 30 min set; tube position matches reactor well [assumed]
+- nmr_t1_30: 96-deep-well plate (2 mL) — Cut glass NMR tubes in 3D-printed holder for t1 samples of the 30 min set [assumed]
+- nmr_t0_45: 96-deep-well plate (2 mL) — Cut glass NMR tubes in 3D-printed holder for t0 samples of the 45-point set [assumed]
+- nmr_t1_45: 96-deep-well plate (2 mL) — Cut glass NMR tubes in 3D-printed holder for t1 samples of the 45-point set [assumed]
+- toluene: 50 mL tube — Toluene solvent [assumed]
+- bma_stock: 15 mL tube — BMA (M1) 4 M in toluene [assumed]
+- ba_stock: 15 mL tube — BA (M2) 4 M in toluene [assumed]
+- aibn_0p05: 1.5 mL tube — AIBN stock for 0.05 wt% level [assumed]
+- aibn_0p25: 1.5 mL tube — AIBN stock for 0.25 wt% level [assumed]
+- aibn_0p5: 1.5 mL tube — AIBN stock for 0.5 wt% level [assumed]
+- aibn_1p0: 1.5 mL tube — AIBN stock for 1.0 wt% level [assumed]
+- aibn_2p0: 1.5 mL tube — AIBN stock for 2.0 wt% level [assumed]
+- cdcl3: reservoir — CDCl3 for NMR sample dilution [assumed]
+
+Starting contents:
+- toluene: stock toluene [assumed]
+- bma_stock: stock BMA 4 M in toluene (inhibitor removed) [assumed]
+- ba_stock: stock BA 4 M in toluene (inhibitor removed) [assumed]
+- aibn_0p05: 500 µL AIBN 2.7 mg/mL in toluene (0.05 wt% of monomer when 20 µL is used) [assumed]
+- aibn_0p25: 500 µL AIBN 13.5 mg/mL in toluene (0.25 wt%) [assumed]
+- aibn_0p5: 500 µL AIBN 27 mg/mL in toluene (0.5 wt%) [assumed]
+- aibn_1p0: 500 µL AIBN 54 mg/mL in toluene (1.0 wt%) [assumed]
+- aibn_2p0: 500 µL AIBN 108 mg/mL in toluene (2.0 wt%) [assumed]
+- cdcl3: stock CDCl3 [assumed]
+
+Steps:
+1. Transfer 180 µL of toluene from toluene to reactor_30min wells A1:B8, C1:C4 (each well). Note: RUN 1 (30 min set). Toluene makes up the balance of 400 µL (200 µL monomer stocks + 20 µL AIBN stock + 180 µL toluene). [assumed]
+2. Transfer 20 µL of AIBN 2.7 mg/mL in toluene (0.05 wt%) from aibn_0p05 to reactor_30min wells A1, B8, B3, A6 (each well). Note: AIBN 0.05 wt% wells [assumed]
+3. Transfer 20 µL of AIBN 13.5 mg/mL in toluene (0.25 wt%) from aibn_0p25 to reactor_30min wells A8, A3, C2, B5 (each well). Note: AIBN 0.25 wt% wells [assumed]
+4. Transfer 20 µL of AIBN 27 mg/mL in toluene (0.5 wt%) from aibn_0p5 to reactor_30min wells B7, B2, A5, C4 (each well). Note: AIBN 0.5 wt% wells [assumed]
+5. Transfer 20 µL of AIBN 54 mg/mL in toluene (1.0 wt%) from aibn_1p0 to reactor_30min wells A2, C1, B4, A7 (each well). Note: AIBN 1.0 wt% wells [assumed]
+6. Transfer 20 µL of AIBN 108 mg/mL in toluene (2.0 wt%) from aibn_2p0 to reactor_30min wells B1, A4, C3, B6 (each well). Note: AIBN 2.0 wt% wells [assumed]
+7. Transfer 180 µL of BA 4 M in toluene from ba_stock to reactor_30min wells A1, A8, B7, A2, B1 (each well). Note: f10 = 0.1 wells (BA = 0.9 of 200 µL) [assumed]
+8. Transfer 140 µL of BA 4 M in toluene from ba_stock to reactor_30min wells B8, A3, B2, C1, A4 (each well). Note: f10 = 0.3 wells [assumed]
+9. Transfer 100 µL of BA 4 M in toluene from ba_stock to reactor_30min wells B3, C2, A5, B4, C3 (each well). Note: f10 = 0.5 wells [assumed]
+10. Transfer 40 µL of BA 4 M in toluene from ba_stock to reactor_30min wells A6, B5, C4, A7, B6 (each well). Note: f10 = 0.8 wells [assumed]
+11. Transfer 20 µL of BMA 4 M in toluene from bma_stock to reactor_30min wells A1, A8, B7, A2, B1 (each well). Note: f10 = 0.1 wells [assumed]
+12. Transfer 60 µL of BMA 4 M in toluene from bma_stock to reactor_30min wells B8, A3, B2, C1, A4 (each well). Note: f10 = 0.3 wells [assumed]
+13. Transfer 100 µL of BMA 4 M in toluene from bma_stock to reactor_30min wells B3, C2, A5, B4, C3 (each well). Note: f10 = 0.5 wells [assumed]
+14. Transfer 160 µL of BMA 4 M in toluene from bma_stock to reactor_30min wells A6, B5, C4, A7, B6 (each well). Note: f10 = 0.8 wells [assumed]
+15. Mix reactor_30min wells A1:B8, C1:C4 by pipetting 150 µL up and down 3 times. Note: Mix volume and cycles not stated in the paper [assumed]
+16. Transfer 580 µL of CDCl3 from cdcl3 to nmr_t0_30 wells A1:B8, C1:C4 (each well). Note: Deuterated solvent, volume not stated; CDCl3 assumed [assumed]
+17. Transfer 20 µL of reaction mixture (t0 aliquot) from reactor_30min wells A1:B8, C1:C4 to nmr_t0_30 wells A1:B8, C1:C4 (each well). Note: Aliquot volume assumed; same well position in tube holder [assumed]
+18. MANUAL: Seal reactor_30min with compressive sealing lid, move it to the heater-shaker and incubate 30 min at 75 °C with orbital shaking at about 400 rpm. Note: Shaking speed assumed; no degassing [assumed]
+19. MANUAL: Remove reactor_30min from heater-shaker, cool to room temperature (about 10 min), unseal and place back on the OT-2 deck. Note: Cooling time assumed [assumed]
+20. Transfer 580 µL of CDCl3 from cdcl3 to nmr_t1_30 wells A1:B8, C1:C4 (each well). Note: Same assumed solvent and volume as t0 [assumed]
+21. Transfer 20 µL of reaction mixture (t1 aliquot) from reactor_30min wells A1:B8, C1:C4 to nmr_t1_30 wells A1:B8, C1:C4 (each well). Note: Aliquot volume assumed [assumed]
+22. MANUAL: Cap the t0 and t1 NMR tubes of the 30 min set and take to the NMR facility for 1H NMR. Note: End of run 1 [assumed]
+23. Transfer 180 µL of toluene from toluene to reactor_45 wells A1:E8, F1:F5 (each well). Note: RUN 2 (45-point set, 2 h). 9 f10 levels x 5 AIBN levels; includes the 20 original Table 1 conditions [assumed]
+24. Transfer 20 µL of AIBN 2.7 mg/mL in toluene (0.05 wt%) from aibn_0p05 to reactor_45 wells A1, E4, D2, B8, A6, F1, D7, C5, B3 (each well). Note: AIBN 0.05 wt% wells [assumed]
+25. Transfer 20 µL of AIBN 13.5 mg/mL in toluene (0.25 wt%) from aibn_0p25 to reactor_45 wells A8, F3, E1, C7, B5, A3, E6, D4, C2 (each well). Note: AIBN 0.25 wt% wells [assumed]
+26. Transfer 20 µL of AIBN 27 mg/mL in toluene (0.5 wt%) from aibn_0p5 to reactor_45 wells B7, A5, E8, D6, C4, B2, F5, E3, D1 (each well). Note: AIBN 0.5 wt% wells [assumed]
+27. Transfer 20 µL of AIBN 54 mg/mL in toluene (1.0 wt%) from aibn_1p0 to reactor_45 wells C6, B4, A2, E5, D3, C1, A7, F2, D8 (each well). Note: AIBN 1.0 wt% wells [assumed]
+28. Transfer 20 µL of AIBN 108 mg/mL in toluene (2.0 wt%) from aibn_2p0 to reactor_45 wells D5, C3, B1, F4, E2, C8, B6, A4, E7 (each well). Note: AIBN 2.0 wt% wells [assumed]
+29. Transfer 180 µL of BA 4 M in toluene from ba_stock to reactor_45 wells A1, A8, B7, C6, D5 (each well). Note: f10 = 0.1 wells [assumed]
+30. Transfer 160 µL of BA 4 M in toluene from ba_stock to reactor_45 wells E4, F3, A5, B4, C3 (each well). Note: f10 = 0.2 wells [assumed]
+31. Transfer 140 µL of BA 4 M in toluene from ba_stock to reactor_45 wells D2, E1, E8, A2, B1 (each well). Note: f10 = 0.3 wells [assumed]
+32. Transfer 120 µL of BA 4 M in toluene from ba_stock to reactor_45 wells B8, C7, D6, E5, F4 (each well). Note: f10 = 0.4 wells [assumed]
+33. Transfer 100 µL of BA 4 M in toluene from ba_stock to reactor_45 wells A6, B5, C4, D3, E2 (each well). Note: f10 = 0.5 wells [assumed]
+34. Transfer 80 µL of BA 4 M in toluene from ba_stock to reactor_45 wells F1, A3, B2, C1, C8 (each well). Note: f10 = 0.6 wells [assumed]
+35. Transfer 60 µL of BA 4 M in toluene from ba_stock to reactor_45 wells D7, E6, F5, A7, B6 (each well). Note: f10 = 0.7 wells [assumed]
+36. Transfer 40 µL of BA 4 M in toluene from ba_stock to reactor_45 wells C5, D4, E3, F2, A4 (each well). Note: f10 = 0.8 wells [assumed]
+37. Transfer 20 µL of BA 4 M in toluene from ba_stock to reactor_45 wells B3, C2, D1, D8, E7 (each well). Note: f10 = 0.9 wells [assumed]
+38. Transfer 20 µL of BMA 4 M in toluene from bma_stock to reactor_45 wells A1, A8, B7, C6, D5 (each well). Note: f10 = 0.1 wells [assumed]
+39. Transfer 40 µL of BMA 4 M in toluene from bma_stock to reactor_45 wells E4, F3, A5, B4, C3 (each well). Note: f10 = 0.2 wells [assumed]
+40. Transfer 60 µL of BMA 4 M in toluene from bma_stock to reactor_45 wells D2, E1, E8, A2, B1 (each well). Note: f10 = 0.3 wells [assumed]
+41. Transfer 80 µL of BMA 4 M in toluene from bma_stock to reactor_45 wells B8, C7, D6, E5, F4 (each well). Note: f10 = 0.4 wells [assumed]
+42. Transfer 100 µL of BMA 4 M in toluene from bma_stock to reactor_45 wells A6, B5, C4, D3, E2 (each well). Note: f10 = 0.5 wells [assumed]
+43. Transfer 120 µL of BMA 4 M in toluene from bma_stock to reactor_45 wells F1, A3, B2, C1, C8 (each well). Note: f10 = 0.6 wells [assumed]
+44. Transfer 140 µL of BMA 4 M in toluene from bma_stock to reactor_45 wells D7, E6, F5, A7, B6 (each well). Note: f10 = 0.7 wells [assumed]
+45. Transfer 160 µL of BMA 4 M in toluene from bma_stock to reactor_45 wells C5, D4, E3, F2, A4 (each well). Note: f10 = 0.8 wells [assumed]
+46. Transfer 180 µL of BMA 4 M in toluene from bma_stock to reactor_45 wells B3, C2, D1, D8, E7 (each well). Note: f10 = 0.9 wells [assumed]
+47. Mix reactor_45 wells A1:E8, F1:F5 by pipetting 150 µL up and down 3 times. Note: Mix volume and cycles not stated in the paper [assumed]
+48. Transfer 580 µL of CDCl3 from cdcl3 to nmr_t0_45 wells A1:E8, F1:F5 (each well). Note: Deuterated solvent and volume not stated [assumed]
+49. Transfer 20 µL of reaction mixture (t0 aliquot) from reactor_45 wells A1:E8, F1:F5 to nmr_t0_45 wells A1:E8, F1:F5 (each well). Note: Aliquot volume assumed [assumed]
+50. MANUAL: Seal reactor_45 with compressive sealing lid, move it to the heater-shaker and incubate 2 h at 75 °C with orbital shaking at about 400 rpm. Note: Shaking speed assumed; no degassing [assumed]
+51. MANUAL: Remove reactor_45 from heater-shaker, cool to room temperature (about 10 min), unseal and place back on the OT-2 deck. Note: Cooling time assumed [assumed]
+52. Transfer 580 µL of CDCl3 from cdcl3 to nmr_t1_45 wells A1:E8, F1:F5 (each well). Note: Same assumed solvent and volume as t0 [assumed]
+53. Transfer 20 µL of reaction mixture (t1 aliquot) from reactor_45 wells A1:E8, F1:F5 to nmr_t1_45 wells A1:E8, F1:F5 (each well). Note: Aliquot volume assumed [assumed]
+54. MANUAL: Cap the t0 and t1 NMR tubes of the 45-point set and take to the NMR facility for 1H NMR. Note: End of run 2 [assumed]
+
+Assumptions:
+- The 48-well reactor is not an available container kind, so it is represented by a plate_96_deep (2000 µL per well) because 400 µL reactions exceed the 360 µL plate_96 capacity. Only wells A1:F5 (45 wells) and A1:C4 (20 wells) are used.
+- Cut glass NMR tubes in the 3D-printed holder are represented as plate_96_deep wells at the same positions as the reactor wells (t0 and t1 racks per run).
+- Two runs: Run 1 = 30 min time control (20 reactions: f10 = 0.1, 0.3, 0.5, 0.8 x AIBN 0.05, 0.25, 0.5, 1.0, 2.0 wt%); Run 2 = 45-point extended set at 2 h (f10 = 0.1-0.9 in 0.1 steps x 5 AIBN levels). The 45 = 9 x 5 split (SI Table S2 rows 1-20 and 61-85) is reconstructed from the main text; Table S2 was not consulted. The 20-point 2 h set is contained in run 2.
+- Combining datasets (56 or 79 points) and the JCI comparison are post-hoc analysis and are not included. The text gives both 56 and 79 as totals, which cannot be reconciled.
+- Well layout is explicit and non-overlapping. The paper randomises well positions by script; here a fixed pseudo-random layout is used (well index = 7 x condition number mod number of conditions, filling rows A-F across 8 columns), recorded for traceability.
+- Monomers and AIBN are dispensed as toluene stock solutions. The paper does not say whether neat or stock solutions were used. Stock concentrations of 4 M BMA and 4 M BA in toluene are assumed. 200 µL of combined monomer stocks gives 0.8 mmol in 400 µL, i.e. 2 M total monomer, as stated.
+- Inhibitor is assumed removed from monomers (basic alumina plug), as standard practice.
+- AIBN stocks are in toluene at 2.7, 13.5, 27, 54 and 108 mg/mL; 20 µL is dispensed to give 0.05, 0.25, 0.5, 1.0 and 2.0 wt% relative to total monomer. The calculation assumes an average monomer mass of about 108 mg per 400 µL (MW BMA 142.2, BA 128.17), so the actual wt% varies by about ±4% across f10. The highest AIBN stock may be near its solubility limit in toluene, so check dissolution.
+- Toluene (180 µL) fills each well to 400 µL. Order of addition: toluene, AIBN, BA, BMA, then mix. Mix 150 µL x 3 cycles is assumed.
+- No deoxygenation is performed. The paper polymerises through oxygen using high AIBN loadings. The reactor is sealed with strong compressive force; the exact seal type is not given, so a compressive sealing lid is assumed.
+- Heater-shaker: 75 °C stated in Table 1; 2 h or 30 min stated; shaking speed (about 400 rpm), warm-up and a cooling time of about 10 min before unsealing are assumed.
+- NMR samples: 20 µL aliquot into 580 µL CDCl3 per tube (600 µL total) is assumed. The paper does not give the solvent, aliquot volume, or any quenching/inhibitor. Each aliquot removes 20 µL, so the reactor volume is 380 µL at t1. Conversion is a ratio, so exact dilution does not matter.
+- Glass NMR tubes are cut with a glass tube cutter to clear the tip-loaded pipette heads, and a 3D-printed NMR tube holder is used (Fig. S1, S2), as stated in the paper.
+- No external sources could be fetched; all details come from the paper text and standard lab practice. NMR acquisition settings and peak integration are not included.

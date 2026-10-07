@@ -1,0 +1,91 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the core conjugation parameters: 150 µL E. coli plus 150 µL spores (~10^8) in 2xYT, SFM + 10 mM MgCl2, 30 °C for 16–20 h, a 1 mL overlay with 0.5 mg nalidixic acid and apramycin, the colony PCR recipe and cycling, and the OT-2 deck layout. The remaining gaps are deferred or unstated details (Kieser/Gren steps, spore prep, overlay apramycin dose, gel analysis, serial-dilution CFU method). I could not fetch the cited Gren 2021 or Kieser sources because the PMC page returned a reCAPTCHA page and the search/fetch tool limit was then exceeded, so no gap is marked resolved. Each of these has a defensible standard-practice default that would not change what is measured.",
+  "gaps": [
+    {
+      "detail": "Streptomyces spore stock preparation: growth medium and time on plates, harvest liquid, filtering, and the method used to count spores to reach ~10^8 per 150 µL",
+      "why_needed": "Spore input sets the conjugation efficiency denominator and must be equal across strains. The paper only says spores were harvested into 15 mL tubes with ~5 mL of 'media'.",
+      "status": "assumable",
+      "resolution": "Grow each strain as a confluent lawn on SFM at 30 °C for about 5–10 days until sporulated. Harvest by scraping into ~5 mL of liquid and filter through cotton wool if needed. Count spores (hemocytometer or serial-dilution CFU), then wash and adjust to ~6.7×10^8 spores/mL in 2xYT so that 150 µL holds ~10^8. Pellet and resuspend in 2xYT if needed.",
+      "source": "standard practice (Kieser et al. 2000 Practical Streptomyces Genetics; not fetched)"
+    },
+    {
+      "detail": "Composition of SFM: the mannitol amount is missing from the text, the agar % for SFM is not stated, and the listed malt extract/glucose is non-standard",
+      "why_needed": "Medium composition affects sporulation and conjugation efficiency.",
+      "status": "assumable",
+      "resolution": "Use SFM/MS agar with 20 g/L soya flour, 20 g/L D-mannitol and 2% agar. Treat the malt extract 10 g/L and glucose 4 g/L entries as probable text garbling, and omit them for the conjugation plates. For conjugation plates, supplement with 10 mM MgCl2 as stated.",
+      "source": "standard practice (Kieser 2000 MS/SFM agar)"
+    },
+    {
+      "detail": "Strain naming inconsistency: S. albidoflavus is called J1047 in the abstract and results but J1074 in the methods",
+      "why_needed": "The correct strain identity must be used.",
+      "status": "assumable",
+      "resolution": "Use S. albidoflavus J1074, the standard strain in the methods section. J1047 is most likely a typo.",
+      "source": "s2.1 (methods text)"
+    },
+    {
+      "detail": "2xYT composition beyond tryptone 16 g/L",
+      "why_needed": "The spore resuspension medium must be defined.",
+      "status": "assumable",
+      "resolution": "2xYT is 16 g/L tryptone, 10 g/L yeast extract and 5 g/L NaCl, sterilised by autoclave.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "E. coli washing details: centrifugation speed and time, and sterile wash volumes",
+      "why_needed": "The paper says the overnight culture is washed twice with an equal volume of LB and resuspended in 10% of the original volume, but gives no spin conditions.",
+      "status": "assumable",
+      "resolution": "The paper gives the volumes: wash twice with an equal volume of LB, resuspend in 10% of the original volume. For the spin, use ~4000 × g for 5–10 min at room temperature in 50 mL Falcon tubes and decant gently. The result is ~2 mL of 10× cells from 20 mL of culture, enough for ~31 conjugations at 150 µL.",
+      "source": "s3.2.1 (volumes); standard practice (spin conditions)"
+    },
+    {
+      "detail": "Apramycin amount in the 1 mL water overlay, and nalidixic acid/apramycin concentrations in the SFM plates used to pick exconjugants",
+      "why_needed": "The overlay is the selection step that defines which colonies count as exconjugants. The paper gives 0.5 mg nalidixic acid per overlay but only says 'plasmid specific antibiotic'.",
+      "status": "assumable",
+      "resolution": "Overlay 1 mL sterile water with 0.5 mg nalidixic acid plus apramycin (typically ~1 mg per plate, i.e. a final concentration of ~50 µg/mL on 20 mL of agar). Pick onto SFM containing 25 µg/mL nalidixic acid and 50–100 µg/mL apramycin. The paper states apramycin at 100 µg/mL for SFM selection plates.",
+      "source": "standard practice (Kieser 2000; s2.1 for the 100 µg/mL apramycin)"
+    },
+    {
+      "detail": "Serial-dilution method for estimating Streptomyces CFU (the efficiency denominator)",
+      "why_needed": "Conjugation efficiency is the number of exconjugant CFU divided by the number of Streptomyces CFU, and the paper gives no dilution scheme.",
+      "status": "assumable",
+      "resolution": "Make 10-fold serial dilutions of the spore suspension in water or 2xYT and plate 3 dilutions (e.g. 10^-5 to 10^-7) on SFM without antibiotic. Incubate at 30 °C for 2–4 days, count 30–300 colonies, and back-calculate CFU per conjugation (~10^8 spores input).",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Incubation time after overlay until exconjugants are picked, and the picking step",
+      "why_needed": "Colony counts depend on when plates are counted. The paper says only 'until colonies form'.",
+      "status": "assumable",
+      "resolution": "Incubate at 30 °C for 3–5 days after the overlay, count exconjugant colonies, then pick with sterile toothpicks onto SFM + nalidixic acid + apramycin. Incubate at 30 °C for 2–4 days and pick 3 colonies per conjugation for PCR.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Plating of the 300 µL conjugation mixture: the exact spread method and plate volume",
+      "why_needed": "Colony counts depend on plating consistency.",
+      "status": "assumable",
+      "resolution": "Manually spread the full 300 µL from each well with a sterile loop or spreader onto a 9 cm SFM + 10 mM MgCl2 plate (~20–25 mL of agar). Dry briefly and incubate at 30 °C for 16–20 h.",
+      "source": "s2.3/s3.2.1 (full-well streaking, 9 cm plate); standard practice for the rest"
+    },
+    {
+      "detail": "Preparation of competent E. coli ET12567/pUZ8002 and heat-shock volumes. Section 2.2 gives 50 µL cells + 2 µL plasmid, whereas s3.2.1 states 50 µL plasmid + 2 µL cells (probably swapped)",
+      "why_needed": "This is needed to generate the donor strains with pSETGUS or pIJ12551.",
+      "status": "assumable",
+      "resolution": "Use chemically competent ET12567/pUZ8002 (CaCl2 method or commercial). Use 50 µL cells with ~50 ng plasmid in 2 µL, following the NEB protocol cited in the paper. Chill for 30 min at 4 °C, heat shock at 42 °C for 30 s, add 100 µL room-temperature LB, and recover at 37 °C for 60 min at 250 rpm. Plate on LB with chloramphenicol, kanamycin and apramycin. The OT-2 run uses 4 °C and 42 °C temperature modules and 950 µL of warm LB per well in a 2 mL deep-well plate.",
+      "source": "s2.2, s3.2.1; NEB transformation protocol [47] (not fetched)"
+    },
+    {
+      "detail": "OT-2 liquid-handling parameters: aspirate/dispense speeds, mixing cycles, extra aspirated volume, tip heights and labware definitions",
+      "why_needed": "These are needed to reproduce the 150 µL transfers and avoid bubbles and cross-contamination.",
+      "status": "assumable",
+      "resolution": "Use default OT-2 flow rates. Use the P1000 single-channel for E. coli: aspirate extra volume and repeat-dispense 150 µL into 6 wells consecutively, with no blow-out. Use P300 single-channel with a fresh tip per Streptomyces tube to dispense 150 µL of spores. The paper gives the deck layout: 2 and 3 deep-well plates, 4–6 for 50 mL tube racks, 7 for 1000 µL tips, 8 and 9 for 15 mL tube racks, 10 and 11 for 300 µL tips. In the conjugation run, E. coli tubes are on slot 6, Streptomyces tubes on slot 9, the conjugation plate on slot 3 (then 2) and tip boxes on slots 7 and 11. Mixing of the combined cells and spores in the well is not described; use no or gentle mixing.",
+      "source": "s2.5, s3.1.2, s3.2.1; defaults are standard practice"
+    },
+    {
+      "detail": "Colony PCR analysis: gel electrophoresis conditions and expected amplicon size for the pRM4e-apmR-LF/LR primers",
+      "why_needed": "The false-positive rate is computed from the proportion of colonies giving no band.",
+      "status": "assumable",
+      "resolution": "Run 5–10 µL of each 10 µL reaction on a 1–1.5% agarose gel with a DNA stain and a ladder. Score presence or absence of the apramycin-resistance amplicon. The paper gives 12 PCRs per combination and 3 colonies per experiment. The PCR recipe and cycling are in the paper: 29 cycles, 50 °C annealing, 30 s extension.",
+      "source": "standard practice; s2.4 for the PCR recipe"
+    }
+  ],
+  "retrieved_details": "No external sources could be fetched. The PMC and nature.com pages for Gren et al. 2021 (https://pmc.ncbi.nlm.nih.gov/articles/PMC8443760/) returned a reCAPTCHA page, and the tool limit was then exceeded. Kieser 2000 is a book. Details below come from the paper's own text.\n\nE. coli culture and donor prep (s2.1, s2.3):\n- LB with chloramphenicol 25 µg/mL, kanamycin 50 µg/mL, apramycin 100 µg/mL and nalidixic acid 25 µg/mL, as required.\n- Donor: ET12567/pUZ8002 + pSETGUS or pIJ12551. Pick 3 colonies into 5 mL LB + chloramphenicol, kanamycin and apramycin, and grow at 37 °C, 250 rpm for ~3 h.\n- Transfer to a 50 mL Falcon tube with ~15 mL LB + antibiotics, loose lid, and grow ~18 h at 37 °C, 250 rpm to stationary phase (not OD-controlled).\n- Wash twice with an equal volume of LB, resuspend in 10% of the initial volume. This is enough for ~31 conjugations.\n\nStreptomyces and conjugation (s2.3, s3.1.2, s3.2.1):\n- Streptomyces strains: M1152, M1146, J1074, DSM40230, grown at 30 °C on SFM ± 100 µg/mL apramycin.\n- No heat shock of spores.\n- Robot mixes 150 µL E. coli (10× concentrated) with ~10^8 spores in 150 µL 2xYT in a 96-well deep-well plate (up to 2 plates, 192 combinations).\n- The user streaks the whole well contents onto 9 cm SFM/MS agar + 10 mM MgCl2 and incubates at 30 °C for 16–20 h.\n- Overlay with 1 mL water containing 0.5 mg nalidixic acid + plasmid-specific antibiotic, dry in a flow hood, and incubate at 30 °C until colonies form.\n- Pick exconjugants with toothpicks onto SFM + nalidixic acid + antibiotic.\n- Efficiency = exconjugant CFU / estimated Streptomyces CFU (serial dilution). False-positive rate = % of negative PCRs among 12 PCRs per combination.\n\nColony PCR (s2.4):\n- Suspend colony in 50 µL water in a 96-well PCR plate and heat at 95 °C for 20 min.\n- 10 µL reaction: 1 µL 10× DreamTaq buffer, 1 µL 2 mM dNTPs, 0.5 µL each of 10 µM primers (pRM4e-apmR-LF 5'-AGCAGCCACTGGTAAC-3' and -LR 5'-ATGCAGCGTCGTGTT-3'), 0.025 µL DreamTaq, 1 µL boiled colony material, 7 µL H2O.\n- Cycling: 95 °C 3 min; 29 × (95 °C 30 s, 50 °C 30 s, 72 °C 30 s); 72 °C 5 min.\n\nHardware (s2.5): OT-2 with single-channel 300 µL and 1000 µL pipettes for conjugation, and an 8-channel 300 µL pipette for heat shock. Software (s2.6): Opentrons API v5.0.2, Python 3.9.12."
+}

@@ -1,0 +1,90 @@
+{
+  "verdict": "major_issues",
+  "summary": "The protocol follows the paper's main stages, but several numerical and bench-order problems would break the run. The bead mix is made at the wrong scale and its isopropanol is wrongly rationalised. Wash and elution plates are filled for only 9 wells, but the wash plates are not assigned to wells that match the sample plate layout in a clearly documented way. The 4X master mix is mis-scaled relative to the reaction mix, and the positive control dilution note is wrong. The sample-prep steps are also out of order relative to the MS2 and bead addition, and there is no step to move the eluate. Several smaller issues remain.",
+  "issues": [
+    {
+      "step": 7,
+      "severity": "major",
+      "issue": "Bead mix is prepared for 10 reactions, but the plate needs 9 wells (8 samples + 1 negative control). The plan also gives a 260 µL/well master mix, i.e. 2340 µL for 9 wells, while the tube total at 10x is 2600 µL with only a little overage. Dead volume for pipetting 260 µL x 9 from a 15 mL tube is not considered, and the stated 10-reaction scale is not tied to the 11x scale used for the PCR mix.",
+      "suggestion": "State the number of wells and overage consistently (e.g. 10 reactions = 9 wells + 1 overage) and verify the total volume in the tube covers 9 x 260 µL plus dead volume."
+    },
+    {
+      "step": 9,
+      "severity": "major",
+      "issue": "Isopropanol volume (2400 µL for 10 reactions, 240 µL/well) is a reconstruction of an unverified composition. Added to 20 µL of beads/ENHANCER, the 260 µL mix is mostly isopropanol, which will destabilise the beads when pooled, and the pre-wet 'rinse' guidance is vague. Mixing only 3 times is unlikely to keep beads suspended.",
+      "suggestion": "Flag as a high-uncertainty assumption, and add bead resuspension (vortex) before step 7/11, and re-mix bead mix immediately before each aspiration in step 11."
+    },
+    {
+      "step": 10,
+      "severity": "major",
+      "issue": "The bead mix vortex is placed after the beads and isopropanol are combined in step 9, but the beads should be resuspended before they are pipetted in step 7. The bead stock will have settled when 100 µL is taken, so bead concentration per well will be wrong.",
+      "suggestion": "Add a manual step to vortex the beads_tube before step 7 and keep the existing vortex after step 9."
+    },
+    {
+      "step": 11,
+      "severity": "major",
+      "issue": "Bead mix (260 µL) is added to lysate before the MS2 control (step 12) and in an order that conflicts with the paper's wording only loosely, but more importantly the bead mix contains 240 µL isopropanol and is dispensed in one go with no mix-on-dispense, and the plate has already been filled with lysate in step 5 well before this, with no timing constraint. The 'rinse' option for alcohols is mentioned only in step 9 and not applied here.",
+      "suggestion": "Apply the alcohol/viscous-liquid handling (pre-wet, slow dispense) and re-mix beads before step 11, and note that the sample plate should go onto the KingFisher promptly."
+    },
+    {
+      "step": 13,
+      "severity": "minor",
+      "issue": "Wash solutions are dispensed into wells A1, A2:H2 of every wash plate, which matches the sample plate column layout, but the wells are not necessarily contiguous with the KingFisher column pattern used by the script; the script's required plate layout is not confirmed in the paper. Also, the wash plates are 2 mL deep-well plates, and Wash 1/Wash 2 reservoirs have no stated volumes, so volume sufficiency is not shown.",
+      "suggestion": "Add stock volumes for the reservoirs (9 wells x 300 µL x 2 plates, etc.) and confirm wells match the BindIt script layout."
+    },
+    {
+      "step": 17,
+      "severity": "minor",
+      "issue": "Elution buffer is dispensed into A1 and A2:H2 of a standard (not deep-well) 96-well plate with 90 µL; the paper does not state the elution volume. This is from the user guide (assumed) and the volume is flagged only in the note.",
+      "suggestion": "Keep, but mark the 90 µL elution volume as taken from the user guide rather than the paper."
+    },
+    {
+      "step": 19,
+      "severity": "major",
+      "issue": "The PCR reaction mix is prepared for 11 reactions, but the plate needs 10 wells (8 samples + negative control + positive control) and 10% overage is stated as 11 total. The 20 µL mix is dispensed into 10 wells (200 µL) from 220 µL total, leaving little dead volume for a 1.5 mL tube. The note says '10 reactions + 10% overage' consistent with 11, but the volumes total 220 µL, so it is workable only marginally.",
+      "suggestion": "Prepare mix for 12 reactions (or more) to allow dead volume for a multi-dispense, or keep 11 and acknowledge the minimal dead volume."
+    },
+    {
+      "step": 22,
+      "severity": "major",
+      "issue": "The control dilution is described with step 23 note as '1x10^4 to 200 copies/uL', but 2 µL into 98 µL gives a 1:50 dilution (200 copies/µL), while step 25 then dilutes 12.5 µL into 87.5 µL (1:8), giving 25 copies/µL. The container list labels control_dil1_tube as 100 copies/µL, which contradicts the 200 copies/µL in step 23.",
+      "suggestion": "Correct the container description for control_dil1_tube to 200 copies/µL."
+    },
+    {
+      "step": 22,
+      "severity": "minor",
+      "issue": "Dilution buffer is assumed to be the kit buffer or nuclease-free water, but the identity is not resolved. Also, the dilution is pipetted before the PCR mix and the order of dilution (buffer first, then control) is fine, but the order relative to the extraction run is wasteful: the dilutions and mix could be prepared during the KingFisher run, and this timing is not stated.",
+      "suggestion": "State the dilution buffer identity explicitly and note that steps 19-25 are prepared during extraction."
+    },
+    {
+      "step": 26,
+      "severity": "major",
+      "issue": "The reaction mix is dispensed into pcr_plate wells A1:H1, A2:B2, before the eluate is available and at the OT-2 station C, but there is no instruction for retrieving elution_plate from the KingFisher and transferring it to the OT-2 deck. Further, step 18 (extraction) should precede steps 27-28, which is respected, but pcr plate preparation should be prefaced by a step stating the eluate plate is moved.",
+      "suggestion": "Add a manual step after step 18 to remove the elution plate from the KingFisher and place it on station C (keeping it cold/sealed if needed)."
+    },
+    {
+      "step": 29,
+      "severity": "minor",
+      "issue": "Positive control 2 µL and 3 µL water are pipetted as two separate P20 transfers into the well, with water added after the control, and each volume is on the lower edge of accuracy. The positive control is also added on the same plate/deck as eluates, risking cross-contamination of samples by high-copy control; the paper's workflow would normally add the positive control last and away from samples.",
+      "suggestion": "Add the positive control last, with a fresh tip, and consider adding the 3 µL water before the 2 µL control (or premix) to reduce error."
+    },
+    {
+      "step": 0,
+      "severity": "major",
+      "issue": "The protocol contains no pre-run lysate step ordering for the 1:1 mix with Cobas omni LYS relative to the paper: the paper mixes samples 1:1 with Cobas omni LYS and uses 460 µL; the total volumes (250+250) leave only 40 µL excess, and the EQA stock is 300 µL per well (assumed), leaving 50 µL. Because the comparator platforms also use aliquots of the same lysed samples (step 4), 500 µL of lysate cannot supply 460 µL for KingFisher plus comparator aliquots. Step 4 also consumes lysate before step 5.",
+      "suggestion": "Increase the sample/LYS volumes (e.g. larger EQA aliquots) or state that comparator platforms use separately lysed aliquots, and give the aliquot volume taken in step 4."
+    },
+    {
+      "step": 0,
+      "severity": "minor",
+      "issue": "The IFU states that inputs above 400 µL were not tested, whereas the paper used 460 µL; the protocol notes this only in the assumptions section. The MS2 control is also 5 µL (200 µL IFU input) while 460 µL lysate is used; the IFU says 10 µL for 400 µL input, so the paper's 5 µL is potentially low-ish but is stated in the paper.",
+      "suggestion": "Keep the paper's 5 µL MS2 and 460 µL, but flag the discrepancy with the IFU in the notes of steps 5 and 12."
+    },
+    {
+      "step": 2,
+      "severity": "minor",
+      "issue": "Mix 3 times is specified in step 2 and a separate mix of 5 times at 300 µL in step 3, which is redundant; also, mixing 500 µL with 300 µL pipette volume is repeated after the transfer.",
+      "suggestion": "Merge steps 2 and 3 into one mixing step."
+    }
+  ]
+}

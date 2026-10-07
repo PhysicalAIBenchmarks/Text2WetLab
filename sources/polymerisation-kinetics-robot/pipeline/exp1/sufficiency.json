@@ -1,0 +1,56 @@
+{
+  "verdict": "reject",
+  "summary": "The main text gives the design (BMA/BA in toluene, 2 M total monomer, 400 µL per well, no AIBN, t0 and t1 NMR, 2 h heating) but not the values that decide the outcome. Missing are the heating temperature, the exact f10 values (deferred to Table S10), the sealing hardware and the NMR sample preparation volumes. The cited references and the Opentrons documentation did not supply them, and the paper's own SI was not used as instructed, so guessing would risk invalidating the evaporation result.",
+  "gaps": [
+    {
+      "detail": "Heating temperature and shaker speed during the 2 h evaporation test",
+      "why_needed": "Evaporation scales with temperature. The text says only 'elevated temperatures' and 'the aforementioned protocol'. The test is meaningless if run at a different temperature from the polymerisations.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Exact f10 values of BMA in the evaporation-test mixtures (4 levels within 0.1–0.8)",
+      "why_needed": "The monomer volumes to dispense depend on these values, and the paper defers them to Fig. S3 / Table S10. Which of the 20 wells were used is also unstated; the text implies the full set of 4 f10 × 5 'AIBN' levels, with AIBN replaced by nothing.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Reactor and sealing hardware (48-well reactor model, vial or septum type, seal or lid type, compression mechanism)",
+      "why_needed": "The paper attributes the absence of loss to the sealing method, with strong compressive force on all vials. Without it the test cannot be reproduced and the result cannot be interpreted.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "NMR sample preparation (aliquot volume, deuterated solvent and volume, NMR tube size, t0 and t1 sampling volumes)",
+      "why_needed": "The t0 and t1 composition and conversion readouts depend on these. The paper says only that tubes were shortened and loaded by the robot.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Monomer purity and inhibitor removal, and the NMR acquisition parameters and peak integration used",
+      "why_needed": "Inhibitor and impurity content affect the integrals, and the acquisition parameters affect the quantification of the vinyl peaks.",
+      "status": "assumable",
+      "resolution": "Pass monomers through basic alumina to remove inhibitor. Use CDCl3 and a standard 1H NMR with a sufficient relaxation delay. Integrate the non-overlapping vinyl peaks against toluene or an internal reference.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Dispensing order, pipette type and mixing step; time the mixtures stay unsealed; plate randomisation",
+      "why_needed": "The text says the number of wells was limited to reduce unsealed time, but gives no volumes, pipettes or timings.",
+      "status": "assumable",
+      "resolution": "Dispense toluene, then BMA, then BA. Mix by aspirating and dispensing. Randomise well positions as in the main workflow. Seal as soon as dispensing is finished.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Fixed values stated in the text: 2 M total monomer, 400 µL per well, toluene, no AIBN, t0 NMR before and t1 NMR after 2 h heating, 20 wells, 48-well reactor on a plate shaker, OT-2 Python protocol with csv input",
+      "why_needed": "These define the core of the experiment.",
+      "status": "resolved",
+      "resolution": "2 M total monomer in toluene, 400 µL per well, 0 wt% AIBN, 2 h heating, 40 NMR samples (20 t0 and 20 t1).",
+      "source": "s2.1 and s2.3 of the paper"
+    }
+  ],
+  "retrieved_details": "Recovered from the paper text (s2.1, s2.3) only: BMA (M1) and BA (M2) in toluene at varying f10 without AIBN; total monomer 2 M; 400 µL per well; at most 20 positions used, to limit unsealed time; t0 NMR taken after dispensing and t1 after heating; 2 h reaction time; reactor sealed with strong compressive force on all vials; NMR tubes cut with a glass tube cutter and held in a 3D-printed holder; the operator moves the reactor to the plate shaker between the t0 and t1 protocols; well positions randomised and repeats auto-populated from a csv; the expected result is no significant change in composition or conversion. Searches of cited and related literature found no heating temperature, f10 values, sealing hardware or NMR preparation volumes. The only sources found for these details were the paper's own SI (Fig. S3, Table S10), which was not used."
+}

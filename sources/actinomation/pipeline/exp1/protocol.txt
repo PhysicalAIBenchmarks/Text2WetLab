@@ -1,0 +1,58 @@
+Robotic (OT-2) vs manual heat shock transformation of E. coli Mach1 T1 and ET12567/pUZ8002 with pSETGUS / pIJ12551
+
+Containers:
+- LB_warm_reservoir: reservoir — LB medium pre-warmed to 37 °C for the robot outgrowth deep-well plate
+- LB_RT_tube: 15 mL tube — Room-temperature LB for the manual arm (100 µL per sample) [assumed]
+- pSETGUS_stock: 1.5 mL tube — Miniprepped pSETGUS in TE, 25 ng/µL [assumed]
+- pIJ12551_stock: 1.5 mL tube — Miniprepped pIJ12551 in TE, 25 ng/µL [assumed]
+- TE_tube: 1.5 mL tube — TE buffer used as the no-DNA negative control [assumed]
+- cells_plate: 96-well plate — Fully skirted 200 µL PCR plate with chemically competent cells on a freezer-pre-chilled aluminium block (deck slot 8)
+- plasmid_plate: 96-well plate — Fully skirted 200 µL PCR plate on the 4 °C temperature module (deck slot 7); receives plasmid, then cells
+- heatshock_plate: 96-well plate — Empty fully skirted 200 µL PCR plate on the 42 °C heating module (deck slot 9)
+- deepwell_plate: 96-deep-well plate (2 mL) — 2 mL deep-well plate for outgrowth in LB (deck slot 6)
+- manual_plate: 96-well plate — Plate used to run the manual-protocol arm (Mach1 + pSETGUS); the paper's manual tubes are adapted to a plate [assumed]
+- waste: waste container — Used tips and leftover mix [assumed]
+
+Starting contents:
+- LB_warm_reservoir: stock LB medium (37 °C)
+- LB_RT_tube: stock LB medium (room temperature)
+- pSETGUS_stock: stock pSETGUS plasmid DNA, 25 ng/µL in TE [assumed]
+- pIJ12551_stock: stock pIJ12551 plasmid DNA, 25 ng/µL in TE [assumed]
+- TE_tube: stock TE buffer [assumed]
+- cells_plate wells A1:H1, A4:H4: 50 µL Chemically competent E. coli Mach1 T1
+- cells_plate wells A2:H3, A5:H5: 50 µL Chemically competent E. coli ET12567/pUZ8002 [assumed]
+- manual_plate wells A1:H1: 50 µL Chemically competent E. coli Mach1 T1
+
+Steps:
+1. MANUAL: Set up the OT-2: 4 °C module with aluminium block at slot 7 and 42 °C heating module with aluminium block at slot 9. Start the cold module BEFORE the heating module and do not place the two modules adjacent. Pre-chilled (freezer) aluminium block in a bag at slot 8 with cells_plate. deepwell_plate at slot 6, 300 µL tips at slot 11, 8-channel P300 gen 2 pipette. Set pipetting speed to two-thirds of default. Allow modules to reach 4 °C and 42 °C. Note: Cold-before-heat ordering from s3.1.1.
+2. Transfer 950 µL of LB medium (37 °C) from LB_warm_reservoir to deepwell_plate wells A1:H5 (each well). Note: Columns 1-5 match the plasmid plate layout.
+3. Transfer 2 µL of pSETGUS (50 ng) from pSETGUS_stock to plasmid_plate wells A1:H2 (each well). Note: Hand-pipetted (Mantis skipped). Col 1 = Mach1 + pSETGUS, col 2 = ET12567 + pSETGUS. [assumed]
+4. Transfer 2 µL of pIJ12551 (50 ng) from pIJ12551_stock to plasmid_plate wells A3:H3 (each well). Note: Col 3 = ET12567 + pIJ12551. [assumed]
+5. Transfer 2 µL of TE buffer (no-DNA negative control) from TE_tube to plasmid_plate wells A4:H5 (each well). Note: Col 4 = Mach1 no-DNA control, col 5 = ET12567 no-DNA control. [assumed]
+6. Transfer 50 µL of Competent E. coli cells from cells_plate wells A1:H5 to plasmid_plate wells A1:H5 (each well), then mix 3 times. Note: Cells in cells_plate col 1-5 match the plasmid column; 3 mix cycles at reduced speed. Total 52 µL per well. s3.2.1 swaps 50/2 µL; s2.2 values are used.
+7. Mix plasmid_plate wells A1:H5 by pipetting 25 µL up and down 3 times. Note: Gentle mix at two-thirds speed, avoiding bubbles. Volume and cycle count are assumed. [assumed]
+8. MANUAL: Incubate plasmid_plate 30 min at 4 °C on the OT-2 cold module.
+9. Transfer 45 µL of Cell-plasmid mix from plasmid_plate wells A1:H5 to heatshock_plate wells A1:H5 (each well). Note: Robot aspirates 100 µL LB, 30 µL air, then 45 µL mix (airgap). The leftover mix stays in the source well.
+10. MANUAL: Heat shock: hold heatshock_plate 30 s at 42 °C on the heating module. Note: The 5 min post-heat-shock ice step is not described for the robot and is omitted.
+11. Transfer 45 µL of Heat-shocked cell-plasmid mix from heatshock_plate wells A1:H5 to deepwell_plate wells A1:H5 (each well). Note: Dispensed into 950 µL warm LB together with the 100 µL LB aspirated before the air gap.
+12. MANUAL: Seal deepwell_plate with clear adhesive film (MicroAmp) and incubate 60 min at 37 °C, 250 rpm.
+13. MANUAL: Plate outgrowths from deepwell_plate: spread 100 µL of neat, 1:10 and 1:100 dilutions with a sterile loop onto 37 °C pre-warmed 9 cm LB agar plates (2% agar). Mach1 plates: 100 µg/mL apramycin. ET12567/pUZ8002 plates: 25 µg/mL chloramphenicol, 50 µg/mL kanamycin, 100 µg/mL apramycin. Incubate overnight at 37 °C. Note: Dilutions, plating volume and antibiotic choice follow the NEB protocol and standard practice. [assumed]
+14. Transfer 2 µL of pSETGUS (50 ng) from pSETGUS_stock to manual_plate wells A1:H1 (each well). Note: Manual arm, performed by hand.
+15. MANUAL: Flick manual_plate gently 4-5 times (do not vortex), then chill 30 min on ice. Heat shock 30 s at 42 °C, then 5 min on ice. Note: Flicking and the 5 min ice step come from the NEB protocol (C2987). [assumed]
+16. Transfer 100 µL of Room-temperature LB from LB_RT_tube to manual_plate wells A1:H1 (each well). Note: The paper's 100 µL is used rather than NEB's 950 µL.
+17. MANUAL: Seal manual_plate with clear adhesive film and incubate 60 min at 37 °C, 250 rpm. Plate neat, 1:10 and 1:100 dilutions on warm 100 µg/mL apramycin LB agar plates as for the robot arm and incubate overnight at 37 °C. Note: Plating details assumed (NEB protocol). [assumed]
+
+Assumptions:
+- The NEB High Efficiency Transformation Protocol (C2987) was used for details the paper defers: gentle flicking 4-5 times (no vortexing), 30 min ice, exactly 42 °C for 30 s, 5 min ice (manual arm), warm selection plates, and spreading 50-100 µL. The paper's own values (100 µL LB in the manual arm, 950 µL LB in the robot arm) take priority.
+- Cells/DNA volumes: 50 µL cells + 2 µL plasmid (50 ng), as in s2.2 and the 52 µL mix in s3.1.1. The s3.2.1 statement '50 µL plasmid and 2 µL competent cells' is taken to be a swapped typo.
+- Plate layout (robot, same columns in cells_plate, plasmid_plate, heatshock_plate, deepwell_plate): col 1 Mach1 + pSETGUS, col 2 ET12567 + pSETGUS, col 3 ET12567 + pIJ12551, col 4 Mach1 no-DNA control (TE), col 5 ET12567 no-DNA control (TE). 8 replicates per column, as the Fig. 6 legend describes a single column of 8 per test. The manual arm (Mach1 + pSETGUS, 8 replicates) is in column 1 of manual_plate.
+- The manual arm is adapted from individual tubes to a 96-well plate for container consistency.
+- Plasmid stocks (25 ng/µL in TE) and ET12567/pUZ8002 competent cell preparation (CaCl2/Inoue method, grown with chloramphenicol and kanamycin) are assumed; competence of each batch should be recorded.
+- The Mantis plasmid dispensing is skipped; plasmids are hand-pipetted into plasmid_plate.
+- Mix on robot: 25 µL, 3 cycles, at two-thirds speed (assumed, standard practice). The paper only says it mixes.
+- The robot's 100 µL LB / 30 µL air / 45 µL mix aspiration cannot be represented exactly; it is shown as 45 µL mix transfers with the air-gap details in the notes. The 42 °C step at the heating module is represented as a transfer into heatshock_plate for 30 s. The post-heat-shock 5 min ice step is not stated for the robot and omitted.
+- Deck layout per paper: deep-well plate slot 6, 4 °C module slot 7, chilled block slot 8, 42 °C module slot 9, 300 µL tips slot 11. The paper's slot descriptions are slightly inconsistent. The cold module is started before the heating module and modules are kept apart.
+- Plating: dilutions (neat, 1:10, 1:100), 100 µL spread per 9 cm plate, and selection antibiotics (apramycin 100 µg/mL for Mach1; chloramphenicol 25 + kanamycin 50 + apramycin 100 µg/mL for ET12567/pUZ8002; no nalidixic acid) are assumed from NEB and standard practice. Agar plates cannot be modelled as containers, so plating is a manual step.
+- LB recipe per s2.1 as written (20 g/L LB broth, 10 g/L yeast extract, 5 g/L NaCl); pre-warmed to 37 °C for the robot arm and room temperature for the manual arm.
+- The three independent experiments with three replicates each are not laid out as separate plates; the protocol covers one run (repeat for independent experiments). CFU counting and calculation are analysis and not included.
+- Supplier details: One Shot Mach1 T1 are 50 µL single-use vials thawed on ice with >1×10^9 cfu/µg efficiency (Thermo Fisher manual, snippet only); S.O.C. is the recommended recovery medium but the paper used LB.

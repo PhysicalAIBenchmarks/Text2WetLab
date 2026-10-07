@@ -1,0 +1,70 @@
+{
+  "verdict": "reject",
+  "summary": "The experiment compares three volume configurations (HV, MV, LV), but Table 1 is available only as an image, so the HV and MV volumes of cells, DNA and SOC are not in the text. Only LV is recoverable (10 µl cells, 1 µl DNA, 50 µl SOC, from the Fig. 4 legend). The supplier manual gives the standard volumes, but the paper does not say how HV and MV were derived from them. Guessing these would change the variable being measured, so I rejected.",
+  "gaps": [
+    {
+      "detail": "HV (High Volume) configuration: volumes of competent cells, DNA and SOC",
+      "why_needed": "HV is one of the three conditions being compared. Its volumes are the independent variable, and they also set the thermocycler well fill and the plating dilution.",
+      "status": "missing",
+      "resolution": "Table 1 is image-only. The paper says HV volumes were the competent-cell supplier's standard volumes adjusted to fit a 200 µl PCR plate. The Fig. 4 legend gives the manual method as 50 µl cells and 250 µl SOC, but whether that equals HV is not stated. Thermo's DH5α manuals give 50 µl cells and 950 µl SOC, which cannot fit a 200 µl well. The exact HV values cannot be recovered.",
+      "source": ""
+    },
+    {
+      "detail": "MV (Medium Volume) configuration: volumes of competent cells, DNA and SOC",
+      "why_needed": "MV is the intermediate condition. Its volumes define the comparison and the 88% and 77% TE differences reported against it.",
+      "status": "missing",
+      "resolution": "Not in the text and not derivable. It lies somewhere between HV and LV, but the numbers are unknown.",
+      "source": ""
+    },
+    {
+      "detail": "DNA input per reaction in each configuration, and whether DNA volume or concentration was held constant",
+      "why_needed": "The TE calculation and the cell-to-DNA ratio depend on the DNA mass actually added in each configuration.",
+      "status": "assumable",
+      "resolution": "Plasmid amounts are given in the text: pEX05 at 1.5×10^-4 pmol and pEX01 at 1.5×10^-5 pmol. The Fig. 4 legend shows 1 µl DNA at 1.5×10^-4 pmol for the LV configuration. Assume 1 µl of DNA at these amounts in every configuration. The paper does say TE was normalised for the cells-to-DNA ratio, but the formula is not in the text.",
+      "source": "s2.6; Figure 4 legend; s4.3"
+    },
+    {
+      "detail": "LV configuration volumes",
+      "why_needed": "LV is the configuration the paper selected.",
+      "status": "resolved",
+      "resolution": "10 µl cells, 1 µl DNA, 50 µl SOC.",
+      "source": "Figure 4 legend (LV configuration, 10 µl cells, 50 µl SOC, 1 µl DNA)"
+    },
+    {
+      "detail": "Heat-shock and recovery parameters (Protocol 1)",
+      "why_needed": "The thermocycler programme depends on these values.",
+      "status": "resolved",
+      "resolution": "4 °C for 30 min, 42 °C for 30 s, then recovery in SOC at 37 °C for 1 h. The paper does not state a post-shock ice step, so none is included. The thermocycler lid and ramp settings are not stated; assume the default lid temperature.",
+      "source": "s2.2"
+    },
+    {
+      "detail": "Competent cell preparation and SOC composition",
+      "why_needed": "The cells are made in-house and the recovery medium has to be prepared.",
+      "status": "resolved",
+      "resolution": "Cells are made by the Hanahan method. A single colony goes into 5 ml LB overnight and is diluted 100-fold into 50 ml LB. Grow at 37 °C and 300 rpm to OD600 0.4, chill on ice for 20 min, then spin at 4000 ×g and 4 °C for 10 min. Resuspend in 2 ml of 0.1 M CaCl2 with 15% glycerol and store at −80 °C. SOC contains 2.5 g/l yeast extract, 10 g/l tryptone, 10 mM NaCl, 10 mM KCl, 20 mM glucose, 10 mM MgSO4 and 10 mM MgCl2. Cell aliquot thawing and handling are not described, so assume thawing on ice.",
+      "source": "s4.2; s4.1"
+    },
+    {
+      "detail": "Selective agar plates: plate format, agar volume, antibiotic and concentration for pEX05 and pEX01",
+      "why_needed": "The agar height is calculated from the plate's weight and density, and the antibiotic sets the selection.",
+      "status": "assumable",
+      "resolution": "The medium is LB with 1.5% agar plus antibiotic. The antibiotic concentrations are garbled in s4.1, which lists four concentrations for five antibiotics. Both plasmids (pUC19 and pJKR-H-araC) are assumed to be carbenicillin or ampicillin resistant, at 100 µg/ml. The paper also says plates were OmniTray rectangular plates in an 8×12 grid, with agar density 0.911 g/cm³. The agar volume is not given and the plate weight has to be measured. The spotting height offset is not given either, so use a small offset above the agar surface, for example 1 mm.",
+      "source": "s4.1; s2.3; standard practice"
+    },
+    {
+      "detail": "Spotting and plating parameters: volume spotted, dilution before spotting, and incubation of plates",
+      "why_needed": "These determine whether colonies on each spot are countable.",
+      "status": "assumable",
+      "resolution": "5 µl of the transformation is spotted per position. The Fig. 3 layout is 4 replicates per condition and a negative control in row 10. No dilution is stated for this experiment, so spot undiluted. Plates are incubated overnight at 37 °C. Imaging used a Syngene NuGenius gel doc and ImageJ for counting.",
+      "source": "s4.3; Figure 3 legend; standard practice"
+    },
+    {
+      "detail": "Negative control definition",
+      "why_needed": "Needed to interpret the colony counts.",
+      "status": "assumable",
+      "resolution": "Cells with no DNA, carried through the same steps and plated.",
+      "source": "standard practice; Figure 3 legend"
+    }
+  ],
+  "retrieved_details": "Recovered from the paper: LV = 10 µl cells + 1 µl DNA + 50 µl SOC (Fig. 4 legend). Manual comparator = 50 µl cells + 250 µl SOC. pEX05 at 1.5e-4 pmol and pEX01 at 1.5e-5 pmol (s2.6). Protocol 1 default: 4 °C 30 min, 42 °C 30 s, SOC 37 °C 1 h (s2.2). Plate 5 µl of transformation, OmniTray 8×12, agar density 0.911 g/cm³ (s2.3, s4.3). Competent cells by the Hanahan method, resuspended in 2 ml of 0.1 M CaCl2 with 15% glycerol (s4.2). Not recoverable: Table 1 HV/MV volumes. Supplier reference (Thermo DH5α for Subcloning, https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0018593_DH5alpha_competent_cells_sub_UG.pdf): 50 µl cells, 1–5 µl DNA, 30 min on ice, 42 °C for 20 s, then a 2 min ice step and 37 °C recovery. Thermo FAQ (https://www.thermofisher.com/store/v3/products/faqs/EC0112): heat shock of 30 s for a 50 µl reaction, 45 s for 100 µl and 60 s for 250 µl. These scale to a 1 ml SOC recovery and are not the paper's HV/MV values."
+}

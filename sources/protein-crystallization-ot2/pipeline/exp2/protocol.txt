@@ -1,0 +1,56 @@
+Automated HEWL 24-well sitting drop crystallization on the Opentrons OT-2
+
+Containers:
+- crystal_plate: 96-deep-well plate (2 mL) — Stand-in for the Hampton CrysChem 24-well sitting drop plate (HR3-159) on its 3D-printed adapter. Reservoir (moat) wells are A1:D6 (4 rows x 6 columns, 400 uL each). The pedestal of each well is modelled as the matching well in columns 7-12 (A1->A7 ... D6->D12). [assumed]
+- reagent1_tube: 15 mL tube — Hampton 15-Minute Lysozyme Crystallization Reagent (HR2-805), solution (1) [assumed]
+- NaOAc_pH4.6_tube: 1.5 mL tube — 200 mM sodium acetate pH 4.6, solution (3a) [assumed]
+- NaOAc_pH4.7_tube: 1.5 mL tube — 200 mM sodium acetate pH 4.7, solution (3b) [assumed]
+- NaOAc_pH4.8_tube: 1.5 mL tube — 200 mM sodium acetate pH 4.8, solution (3c) [assumed]
+- HEWL_protein_tube: 1.5 mL tube — Hampton lysozyme (HR7-110) 20 mg/mL in 20 mM sodium acetate pH 4.6, solution (2) [assumed]
+- water_reservoir: reservoir — DI water used to bring each reservoir to 400 uL [assumed]
+
+Starting contents:
+- reagent1_tube: stock 15-Minute Lysozyme Crystallization Reagent (HR2-805): 30% w/v PEG MME 5,000, 1.0 M NaCl, 0.05 M sodium acetate pH 4.6
+- NaOAc_pH4.6_tube: stock 200 mM sodium acetate pH 4.6
+- NaOAc_pH4.7_tube: stock 200 mM sodium acetate pH 4.7
+- NaOAc_pH4.8_tube: stock 200 mM sodium acetate pH 4.8
+- HEWL_protein_tube: stock Hen egg white lysozyme (HR7-110) 20 mg/mL in 20 mM sodium acetate pH 4.6
+- water_reservoir: stock DI water
+
+Steps:
+1. MANUAL: Set up the OT-2 with a p10 gen1 pipette (left, 10 uL tips) and a p300 gen2 pipette (right, 200 uL tips). Clip the 3D-printed PLA CrysChem adapter into two deck slots and seat the CrysChem 24-well plate in it. Upload the custom labware definition (A1 offset x 30.5, y 12.5, z 6.1 mm). Load the reagent, acetate and protein tubes and the water reservoir with source-tube geometry defined so the tips are not fully submerged. Calibrate the deck. Note: Adapter and labware definition must be obtained or made and calibrated by the technician. Slot layout is free. [assumed]
+2. Transfer 300 µL of 15-Minute Lysozyme Crystallization Reagent (1) from reagent1_tube to crystal_plate wells A1:D1 (each well). Note: Column 1 = 300 uL. p300, new tip per well. The paper gives only the 300-350 uL range, so the 300 uL start is assumed. Volumes above 200 uL need two aspirations with 200 uL tips. Use slow viscous-liquid handling: slow flow, pause, slow withdrawal, blow-out. [assumed]
+3. Transfer 310 µL of 15-Minute Lysozyme Crystallization Reagent (1) from reagent1_tube to crystal_plate wells A2:D2 (each well). Note: Column 2 = 310 uL [assumed]
+4. Transfer 320 µL of 15-Minute Lysozyme Crystallization Reagent (1) from reagent1_tube to crystal_plate wells A3:D3 (each well). Note: Column 3 = 320 uL [assumed]
+5. Transfer 330 µL of 15-Minute Lysozyme Crystallization Reagent (1) from reagent1_tube to crystal_plate wells A4:D4 (each well). Note: Column 4 = 330 uL [assumed]
+6. Transfer 340 µL of 15-Minute Lysozyme Crystallization Reagent (1) from reagent1_tube to crystal_plate wells A5:D5 (each well). Note: Column 5 = 340 uL [assumed]
+7. Transfer 350 µL of 15-Minute Lysozyme Crystallization Reagent (1) from reagent1_tube to crystal_plate wells A6:D6 (each well). Note: Column 6 = 350 uL [assumed]
+8. Transfer 50 µL of 200 mM sodium acetate pH 4.6 (3a) from NaOAc_pH4.6_tube to crystal_plate wells A1:A6 (each well). Note: p300, new tip per row
+9. Transfer 50 µL of 200 mM sodium acetate pH 4.7 (3b) from NaOAc_pH4.7_tube to crystal_plate wells B1:B6 (each well). Note: p300
+10. Transfer 50 µL of 200 mM sodium acetate pH 4.8 (3c) from NaOAc_pH4.8_tube to crystal_plate wells C1:D6 (each well). Note: p300, rows C and D
+11. Transfer 50 µL of DI water from water_reservoir to crystal_plate wells A1:D1 (each well). Note: Water = 400 - reagent (1) - 50 uL acetate; column 1 = 50 uL. The per-column values are calculated from the stated totals. [assumed]
+12. Transfer 40 µL of DI water from water_reservoir to crystal_plate wells A2:D2 (each well). Note: Column 2 = 40 uL [assumed]
+13. Transfer 30 µL of DI water from water_reservoir to crystal_plate wells A3:D3 (each well). Note: Column 3 = 30 uL [assumed]
+14. Transfer 20 µL of DI water from water_reservoir to crystal_plate wells A4:D4 (each well). Note: Column 4 = 20 uL [assumed]
+15. Transfer 10 µL of DI water from water_reservoir to crystal_plate wells A5:D5 (each well). Note: Column 5 = 10 uL (use the p10, which is below the p300 minimum). Column 6 needs no water (350 + 50 = 400 uL). [assumed]
+16. Mix crystal_plate wells A1:D6 by pipetting 200 µL up and down 5 times. Note: The mixing method is not given in the text. Assumed p300, 5 aspirate/dispense cycles of 200 uL, tip kept off the well bottom, new tip per well. [assumed]
+17. Transfer 2 µL of HEWL 20 mg/mL protein (2) from HEWL_protein_tube to crystal_plate wells A7:D12 (each well). Note: p10, new tip per well. Dispensed into the pedestal of each well (A7:D12 stand for the pedestals of A1:D6). The tip is kept for the reservoir aliquot in the next step (same tip, per the paper).
+18. Transfer 2 µL of Mixed reservoir solution from crystal_plate wells A1:D6 to crystal_plate wells A7:D12 (each well). Note: Each reservoir well is paired in order with its own pedestal (A1->A7 ... D6->D12). Physically, the 2 uL protein and 2 uL reservoir fluid are aspirated in the same p10 tip and dispensed together as one 4 uL drop, repeated for each well. Modelled here as two transfers.
+19. MANUAL: Manually seal crystal_plate (the CrysChem 24-well plate) with Duck HP260 clear packaging tape after all 24 sitting drops have been prepared.
+20. MANUAL: Incubate the sealed crystal_plate undisturbed for 24 h at ambient room temperature (about 20-25 C). Note: The 24 h time comes from the paper. The temperature is not stated and is assumed. [assumed]
+21. MANUAL: After 24 h, inspect each of the 24 drops under a stereo or light microscope and record per well whether crystals are present or absent. Note: The scoring method is not stated in the paper and is assumed. [assumed]
+
+Assumptions:
+- The 24-well CrysChem plate has no matching container kind. It is represented as a plate_96_deep named crystal_plate. Reservoirs are wells A1:D6 (400 uL exceeds the 360 uL plate_96 capacity). Each pedestal is the matching well in columns 7-12 (A1->A7 ... D6->D12). The physical plate is a 24-well CrysChem plate (HR3-159).
+- Layout: rows A-D x columns 1-6. Reagent (1) is 300 uL in column 1, rising by 10 uL per column to 350 uL in column 6. Acetate (50 uL, 200 mM) is pH 4.6 in row A, pH 4.7 in row B and pH 4.8 in rows C and D. DI water brings each reservoir to 400 uL: 50, 40, 30, 20, 10 and 0 uL for columns 1-6, calculated from the stated totals. The paper only says 300-350 uL, so the 300 uL start in column 1 and the 10 uL steps over 6 columns are inferred.
+- Reagent (1) composition (HR2-805 15-Minute Lysozyme Crystallization Reagent) is 30% w/v PEG MME 5,000, 1.0 M NaCl, 0.05 M sodium acetate trihydrate pH 4.6, used as supplied (https://hamptonresearch.com/product-Lysozyme-524.html).
+- HEWL stock: dissolve lyophilized lysozyme (HR7-110) in 0.02 M sodium acetate pH 4.6 to 20 mg/mL by gentle rocking at room temperature, with no vortexing. It may optionally be centrifuged or filtered (0.22-0.45 um); the paper does not say whether the authors did, so record which is used. It is stable 24 h at 25 C or 30 days at 4 C. 20 mg/mL is at the low end of the recommended 20-100 mg/mL range (https://hamptonresearch.com/uploads/support_materials/HR7-110_UG.pdf).
+- The 200 mM sodium acetate stocks at pH 4.6, 4.7 and 4.8 are assumed to be made as follows: sodium acetate trihydrate in DI water, pH adjusted with acetic acid or HCl using a calibrated pH meter, 0.22 um filtered, used at room temperature (standard practice).
+- Reservoir mixing is not described in the provided text. Assumed p300, 5 aspirate/dispense cycles of 200 uL per reservoir, tip kept off the well bottom, new tip per well (standard practice).
+- Pipetting parameters are not given. For the viscous PEG reagent: slowed aspirate/dispense flow rates, a post-aspiration pause, slow tip withdrawal and a blow-out (Opentrons viscous-liquid application note, https://opentrons.com.cn/wp-content/uploads/2023/11/Viscous-Liquid-Handling-Automation-using-Opentrons-OT-2.pdf). For drops: p10 at default rates, 2 uL protein then 2 uL reservoir in the same tip, dispensed just above the pedestal surface with a tip touch, new tip per well (standard practice).
+- Pipette assignment: p300 gen2 (200 uL tips) for reservoir additions of reagent (1), acetate and water. The 300-350 uL reagent volumes exceed the 200 uL tip volume, so they need two aspirations. p10 gen1 (10 uL tips) for the 10 uL water additions in column 5 and for all 2 uL drop transfers. The tip-change scheme and deck slot layout are free choices (s2.1, s2.3).
+- The adapter (3D-printed PLA, spanning two deck slots) and the custom labware .json (A1 offset x 30.5, y 12.5, z 6.1 mm) released by the authors were deliberately not used. A technician must obtain or create an equivalent adapter and labware definition, measure the plate geometry (moat and pedestal positions, depths) and calibrate on the deck before running (s2.2).
+- Stock tubes and the water reservoir are assumed. Stock volumes are given as null (ample); the actual needs are about 7.8 mL reagent (1), 300 uL each of pH 4.6 and 4.7 acetate and 600 uL pH 4.8 acetate, at least 48 uL protein plus dead volume, and 600 uL water.
+- Incubation temperature is not stated. Assumed ambient room temperature (about 20-25 C) for 24 h, undisturbed, after manual sealing with Duck HP260 tape (standard practice).
+- Crystal scoring is not described in the paper. Assumed microscope inspection at 24 h, recording crystals present or absent per well (Fig. 5; the paper reports 18/24 positive wells).
+- The drop is physically formed per well in a single p10 tip (2 uL protein then 2 uL reservoir, dispensed as 4 uL). It is modelled here as two sequential transfers to the same pedestal well.

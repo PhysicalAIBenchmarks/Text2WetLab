@@ -1,0 +1,70 @@
+{
+  "verdict": "reject",
+  "summary": "The paper names the workflow but defers the extraction chemistry to a repository I was not allowed to use. The guanidine-HCl lysis buffer, the PEG binding buffer, the bead type and volume, and the wash and elution volumes are therefore undefined. I could not retrieve the BOMB appendix recipes or the media recipes from [33] or Table S4. Guessing these would risk invalidating the extraction yield the experiment is meant to measure. The Hackflex tagmentation, wash and PCR chemistry was recovered from the cited paper.",
+  "gaps": [
+    {
+      "detail": "Composition of the guanidine HCl lysis buffer (GuHCl molarity, buffer, EDTA, detergent, pH)",
+      "why_needed": "Lysis efficiency and downstream DNA binding depend on the chaotrope concentration. The paper gives only the volume (800 µL) and the bead-beating settings.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Composition of the PEG-based magnetic bead binding buffer (PEG-8000 % and NaCl concentration), plus the type, concentration and volume of magnetic beads added to the 600 µL lysate",
+      "why_needed": "Binding conditions set the DNA capture yield and size cut-off. Oberacker et al. state that carboxyl beads bind DNA through PEG/NaCl crowding and silica beads through chaotropic salts. They also state that the beads:binding-buffer ratio sets the size cut-off. The paper does not say which bead type, PEG % or ratio was used.",
+      "status": "missing",
+      "resolution": "",
+      "source": "Oberacker et al. 2019 PLoS Biol, main text (PDF fetched). The recipes are in S1 Appendix, which I could not retrieve."
+    },
+    {
+      "detail": "Wash buffer identities and volumes, number of washes, magnet engagement times, and elution volume and time for the extraction",
+      "why_needed": "The robot steps cannot be programmed without these values. They are in the repository protocol, which I may not use.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Media recipes (YCFA, YCFA+starch, BSM, BHIS, BBE) as agar plates and the liquid media used for colony picks (Table S4)",
+      "why_needed": "Medium composition determines which taxa grow. The paper defers it to Table S4 and ref [33].",
+      "status": "assumable",
+      "resolution": "Use the standard published formulations for each named medium. Pick colonies into 900 µL of the matching liquid medium. I could not access Table S4 or Goldman et al. 2022 (Wiley paywall; the fetch failed). BSM is a less standardised recipe, so the formulation should be confirmed against [33]. The workflow validation does not depend on exactly which taxa grow.",
+      "source": "standard practice; Goldman et al. 2022 doi:10.1111/1755-0998.13456 (not retrievable)"
+    },
+    {
+      "detail": "Pelleting time for the 300 µL culture aliquot at 16,000 g, and the glycerol buffer composition and resuspension volume",
+      "why_needed": "Needed to make the cell pellets and the freezer stocks. They are not stated in the paper.",
+      "status": "assumable",
+      "resolution": "Spin for about 10 min. Resuspend in a standard glycerol stock buffer (about 20–25% final glycerol in the culture medium or PBS), using the same volume as the culture aliquot. Store at −80 °C.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Mass or volume of 0.2 mm glass beads dispensed per tube by the 3D-printed loader",
+      "why_needed": "Bead-beating efficiency depends on the bead load. The loader's dispensed volume is not stated.",
+      "status": "assumable",
+      "resolution": "Use about 0.1–0.2 g (roughly 100–200 µL) of 0.2 mm glass beads per 1.2 mL tube, and aim for consistent loading across wells.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Input DNA mass and volume for Hackflex tagmentation, and the adapted reagent volumes",
+      "why_needed": "The paper says the OT-2 version changes some reagent quantities and does not list them. Extractions with low yield (QC threshold 0.1 ng/µL) cannot supply 10 ng.",
+      "status": "assumable",
+      "resolution": "Use the original Hackflex volumes: 10 µL DNA, 10 µL 1:50 diluted BLT and 25 µL 2× tagmentation buffer. Run tagmentation, stop and PCR as in retrieved_details. For low-yield samples, use the maximum volume available.",
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8914357/"
+    },
+    {
+      "detail": "Dual-sided size-selection bead ratios and the elution volume for the library cleanup",
+      "why_needed": "These set the library fragment size distribution. The paper only says 'bead-based dual-sided size selection'.",
+      "status": "assumable",
+      "resolution": "Follow the Illumina Nextera DNA Flex double-sided cleanup, using SPRIselect and water in place of SPB and RSB as Hackflex does. The ratios are not in the retrieved Hackflex text, so confirm them against the Illumina manual (not fetched).",
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8914357/ (reagent substitution only); standard practice"
+    },
+    {
+      "detail": "QuantiFluor reduced-volume assay in 384-well plates: dye and sample volumes, standards, and plate-reader settings",
+      "why_needed": "Needed to apply the QC thresholds (0.1 ng/µL after extraction, 0.5 ng/µL after library prep). The paper gives only the reader (Tecan M200) and that the assay was reduced-volume.",
+      "status": "assumable",
+      "resolution": "Scale the Promega QuantiFluor dsDNA protocol down proportionally, for example about 2 µL sample plus 18 µL dye working solution. Include a lambda or standard curve on each plate, and use ex ~485 nm and em ~530 nm. I did not fetch the Promega technical manual.",
+      "source": "standard practice"
+    }
+  ],
+  "retrieved_details": "Hackflex (Gaio et al. 2022, Microb Genom; https://pmc.ncbi.nlm.nih.gov/articles/PMC8914357/): Dilute Nextera Flex BLT beads 1:50 in nuclease-free water. Tagmentation mix is 10 ng genomic DNA in 10 µL water, 10 µL diluted BLT and 25 µL 2× home-made tagmentation buffer (20 mM Tris pH 7.6, 20 mM MgCl2, 20% v/v dimethylformamide), 45 µL total. Incubate at 55 °C for 15 min, then hold at 10 °C. Stop with 10 µL 0.2% SDS in place of TSB, and incubate at 37 °C for 15 min. In v0, wash the beads 3× with 100 µL of 10% PEG 8000 and 0.25 M NaCl in TE (0.22 µm filtered). In v1 this wash is omitted. PCR uses the PrimeSTAR GXL kit: 10 µL 5× GXL buffer, 4 µL 10 mM dNTPs, 1 µL polymerase (v1; 2 µL in v0), 20 µL water (19 µL in v0), and 5 µL each of 10 µM i5 and i7 oligos (1 µM final), 45 µL total. The Hackflex programme is 68 °C 3 min, 98 °C 3 min, then 12 cycles of 98 °C 45 s, 62 °C 30 s, 68 °C 2 min, then 68 °C 1 min and hold at 10 °C. The Sanders paper (s5.4) specifies 17 cycles. Size selection uses SPRIselect beads in place of Illumina SPB, and water in place of RSB. The cleanup of a pool used 0.6× beads and two 200 µL 80% ethanol washes, eluting in 30 µL water. Paper text (s5.4): the pooling algorithm transfers 5 ng of each library, 1 µL if more than 10 µL is needed, and 0.5 µL if less than 0.5 µL is needed. Libraries are amplified with unique dual-index primers and cleaned with dual-sided size selection. BOMB (Oberacker et al. 2019 PLoS Biol, fetched as PDF from https://journals.plos.org/plosone/article/file?id=10.1371/journal.pbio.3000107&type=printable): silica-coated beads with guanidinium hydrochloride are the usual capture chemistry, and carboxyl beads bind DNA via PEG-8000/NaCl crowding. The binding-buffer-to-sample ratio sets the size cut-off, with up to 95% DNA recovery and a 96-well format. The 2:3:4 beads:lysate:isopropanol ratio belongs to the mammalian GITC protocol (bomb.bio protocol 6.1, https://bomb.bio/wp-content/uploads/2018/09/6.1_BOMB_TNA_extraction_mammalian_GITC_v1.0.pdf). It is not confirmed for the GuHCl/PEG protocol used here. Paper-stated values: cultivate at 37 °C in a 5% H2, 5% CO2, 90% N2 chamber, with colonies picked by toothpick into 900 µL liquid medium in 1.2 mL strip tubes and incubated 4 d (plates incubated 5 d). Pellet 300 µL at 16,000 g. Lysis is 800 µL GuHCl buffer with 0.2 mm glass beads, bead-beaten at 6.5 m/s for 40 s on an Omni Bead Ruptor Elite, then spun at 400 g for 5 min. Transfer 600 µL lysate, add beads in PEG binding buffer, and rotate for 10 min. Elute in nuclease-free water."
+}

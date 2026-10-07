@@ -1,0 +1,163 @@
+[
+  {
+    "title": "Digestion efficiency of HeLa lysate at different temperatures and incubation times",
+    "goal": "Compare missed cleavage rates for combined Lys-C/trypsin on-bead digestion at room temperature vs 37 °C over 1 h to overnight to justify short room-temperature digestion on the OT-2.",
+    "section_refs": [
+      "s1.1",
+      "s1.2",
+      "s1.3",
+      "s1.4"
+    ],
+    "shared_refs": [
+      "s1.5"
+    ],
+    "unresolved_refs": [
+      "Exact incubation times and sample inputs tested for temperature comparison are not specified",
+      "OT-2 deck setup 'according to step-by-step guide' on Evosep website"
+    ],
+    "figure_refs": [
+      "Figure 1C"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "Automated PAC digestion and Evotip loading of 192 HeLa samples",
+    "goal": "Evaluate throughput, depth and reproducibility of the fully automated OT-2 workflow on two plates of identical HeLa lysate analyzed by 100 SPD nDIA on the Orbitrap Astral.",
+    "section_refs": [
+      "s1.1",
+      "s1.2",
+      "s1.3",
+      "s1.4"
+    ],
+    "shared_refs": [
+      "s1.5"
+    ],
+    "unresolved_refs": [
+      "OT-2 deck setup 'according to the step-by-step guide' on Evosep website",
+      "Opentrons protocol scripts downloaded from Evosep / supplementary material"
+    ],
+    "figure_refs": [
+      "Figure 2A",
+      "Figure 2B",
+      "Figure 2C",
+      "Figure 2D",
+      "Figure 2E",
+      "Figure 2F",
+      "Figure 2G",
+      "Figure S1A",
+      "Figure S1B",
+      "Figure S1C",
+      "Figure S1D",
+      "Figure S1E"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Storage stability of peptides on Evotips",
+    "goal": "Test whether peptides loaded on Evotips remain stable when stored cold (4 °C) or ambient (23 °C) for up to 6 days before LC-MS/MS.",
+    "section_refs": [
+      "s1.1",
+      "s1.2",
+      "s1.3",
+      "s1.4"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "Storage conditions details beyond 4 °C vs 23 °C and 1-6 days not given; sample type used for storage test not explicitly stated (assumed HeLa)"
+    ],
+    "figure_refs": [
+      "Figure 3A",
+      "Figure 3B",
+      "Figure 3C"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "Plasma proteome performance and Evotip load optimization",
+    "goal": "Assess automated workflow performance on undepleted healthy-donor plasma (1 μg input) at different Evotip loading amounts using 100 SPD on the Orbitrap Exploris.",
+    "section_refs": [
+      "s1.1",
+      "s1.2",
+      "s1.3",
+      "s1.4"
+    ],
+    "shared_refs": [
+      "s1.5"
+    ],
+    "unresolved_refs": [
+      "OT-2 deck setup 'according to the step-by-step guide' on Evosep website"
+    ],
+    "figure_refs": [
+      "Figure 4A",
+      "Figure 4B",
+      "Figure 4C",
+      "Figure 4D",
+      "Figure 4E",
+      "Figure 4F",
+      "Figure 4G"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Plasma proteomics of melanoma patients before and after checkpoint inhibitor therapy",
+    "goal": "Apply the automated workflow to paired plasma samples from 48 metastatic melanoma patients to identify protein changes associated with response to immunotherapy.",
+    "section_refs": [
+      "s1.1",
+      "s1.2",
+      "s1.3",
+      "s1.4"
+    ],
+    "shared_refs": [
+      "s1.5"
+    ],
+    "unresolved_refs": [
+      "OT-2 deck setup 'according to the step-by-step guide' on Evosep website"
+    ],
+    "figure_refs": [
+      "Figure 5B",
+      "Figure 5C",
+      "Figure 5D"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Automated phosphoproteomics benchmarking with low-input HeLa cells",
+    "goal": "Test sensitivity and enrichment efficiency of integrated automated digestion and Ti-IMAC phosphopeptide enrichment using 10-60k HeLa cells in 96- or 48-well plates.",
+    "section_refs": [
+      "s1.1",
+      "s1.2",
+      "s1.3",
+      "s1.4"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 6B",
+      "Figure S2A",
+      "Figure S2B",
+      "Figure S2C",
+      "Figure S2D",
+      "Figure S2E"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Anisomycin time-course phosphoproteomics",
+    "goal": "Profile dynamic phosphorylation in HeLa cells treated with 1 μM anisomycin for 0, 0.5, 1 and 2 h using the automated phosphoproteomics workflow.",
+    "section_refs": [
+      "s1.1",
+      "s1.2",
+      "s1.3",
+      "s1.4"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 6C",
+      "Figure 6D",
+      "Figure 6E",
+      "Figure 6F"
+    ],
+    "liquid_handling": "partly"
+  }
+]

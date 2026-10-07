@@ -1,0 +1,42 @@
+{
+  "verdict": "major_issues",
+  "summary": "The protocol follows the paper's overall flow: A620 normalisation, dilution, spotting of 24 samples on two plates with a 6x8 grid and outer-ring fillers, and 72 h scanning at 10 min intervals. The sample/speed layout, the inner and outer grid mapping, and the scan numbers (432 images) are internally consistent. The main weaknesses are that the key per-sample normalisation step is left as a nominal placeholder, that the spotting labware and the paper's water-into-spotting-wells step are not handled, and that speed groups are run in fixed ascending order, which risks the order confounding the paper tried to avoid.",
+  "issues": [
+    {
+      "step": 21,
+      "severity": "major",
+      "issue": "The normalisation to A620 0.020 is the core of the assay, but steps 21-29 dispense identical nominal volumes (280 µL water + 20 µL culture) into every well. The note says these are 'replaced by calculated values', so as written the steps do not normalise cell density. The nominal 1:15 dilution is also not tied to the A620 target, because it is unclear whether 0.020 refers to the 1:10 read well or the final dilution.",
+      "suggestion": "State the formula and an explicit per-sample volume table, to be filled from the step 20 readings. Define whether 0.020 refers to the read well or to the final spotting dilution. Make steps 21-29 per-sample, with a fixed total volume, and give a sensible default if the computed culture volume would be below the pipette minimum."
+    },
+    {
+      "step": 33,
+      "severity": "major",
+      "issue": "The spot_plate (spotting wells) and ring_filler_tube are never loaded on the deck in step 6, which lists only the deck-11 96-well plate. The deck-11 plate is already occupied by A620 samples in A1:D6. In addition, the paper's second-half script dispenses Milli-Q water into the spotting wells as well as the 2 mL tubes, and then dispenses yeast from the tubes into those wells. Here the spotting wells receive 50 µL of already diluted sample with no water.",
+      "suggestion": "Assign a deck slot and labware to the spotting wells and to the filler tube in step 6, or state explicitly that the deck-11 plate is reused. Flag the omitted water-into-spotting-wells step as a deviation from the paper (or add it with calculated volumes) and justify the single-dilution simplification as an assumption."
+    },
+    {
+      "step": 11,
+      "severity": "minor",
+      "issue": "Speed groups are run in fixed ascending order (50, then 130, 210, 290) in steps 11-18, 22-29 and 33-40, so speed is confounded with time since the culture was last mixed. The paper explicitly guards against confounding of speed with order and elapsed time by choosing the spotting order, but only the spotting order is interleaved here.",
+      "suggestion": "Interleave or randomise the speed and replicate order across the A620, dilution and spot-plate transfers, or at least alternate the order. Also log timestamps per sample from the OT-2 so elapsed time from the 50 mL tube to the spot can be reconstructed for the ANOVA."
+    },
+    {
+      "step": 20,
+      "severity": "minor",
+      "issue": "The manual A620 read and calculation happen mid-run. The agar plates on decks 6 and 9 are loaded with lids off from step 6, which risks contamination and drying. The unmixed 30 mL cultures continue to grow and settle while waiting.",
+      "suggestion": "Keep the dish lids on until just before spotting, or load the dishes after the read. Re-mix the cultures before the dilution transfers (step 21 onward), not only in steps 7-8. Mixing 200 µL in 30 mL is a weak resuspension, so consider a larger mix volume."
+    },
+    {
+      "step": 32,
+      "severity": "minor",
+      "issue": "The ring filler is diluted at a nominal 1:15 from rep1 only, while the note says 'adjust to A620 0.020 as for the samples'. No A620 is measured for the filler, so the claim is unsupported. A 40 µL transfer on a P300 is also at the lower end of accurate pipetting.",
+      "suggestion": "Compute the filler volumes from the replicate-1 A620 reading, or state that the filler density is only approximate. Consider making a larger volume or using the P20 for smaller aliquots."
+    },
+    {
+      "step": 41,
+      "severity": "minor",
+      "issue": "Spotting onto agar is stated at the default flow rate. The gap assessment treats spotting as a speed-controlled step. The 50 µL cell suspensions in the spotting wells also sit unmixed for roughly 70 min or more of spotting, so cells can settle and the spot density can drift.",
+      "suggestion": "State clearly whether spotting uses the sample's test speed or the default, and mark this as an assumption. Add a short mix of the spotting well before each aspiration, or at least before each plate."
+    }
+  ]
+}

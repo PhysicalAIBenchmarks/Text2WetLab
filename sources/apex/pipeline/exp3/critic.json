@@ -1,0 +1,48 @@
+{
+  "verdict": "major_issues",
+  "summary": "The transformation, spotting, dilution, subculture, induction and plate-reader steps are broadly faithful to the paper (LV volumes, 4 °C/30 min, 42 °C/30 s, 37 °C/1 h recovery, 5 µL spots, 5-fold dilution, 1.33 mM arabinose, 150 µL reader volume, 485/528 nm every 10 min for 4 h). The core of the experiment, automated colony sampling by single pierce or spiral, is written as manual steps in an order the robot cannot follow. Several smaller handling and assumption issues also remain.",
+  "issues": [
+    {
+      "step": 16,
+      "severity": "major",
+      "issue": "Single-pierce colony sampling is labelled MANUAL. The paper (Protocol 3, s2.4) presents this as an OT-2 pipette-tip operation, and it is the thing Fig. 5 validates. Step 16 also pierces every spot before step 17 mixes, so the tip carrying each colony cannot be 'the same tip' as stated in step 17.",
+      "suggestion": "Make sampling an automated step. For each spot, pick up a fresh tip, pierce the spot centre at the calculated agar height, move to the matching overnight_plate well, mix, then dispose of the tip. Merge steps 16 and 17 into one per-well loop and state that the sampling height is derived from the step 8 agar-height calculation."
+    },
+    {
+      "step": 18,
+      "severity": "major",
+      "issue": "Spiral sampling is also labelled MANUAL, with the same ordering problem as step 16: all spots are sampled before step 19 mixes with 'the sampling tip'. The paper describes the spiral (radius, number of points, rotations) as a configurable robot movement.",
+      "suggestion": "Make it an automated step in which each spiral sample is followed immediately by mixing in its destination well with the same tip. Merge steps 18 and 19 and give the spiral parameters (radius, points, rotations) as configurable assumed values."
+    },
+    {
+      "step": 2,
+      "severity": "minor",
+      "issue": "Seventy-two 10 µL aliquots (720 µL) are drawn from 800 µL of competent cells, leaving almost no dead volume. Cells and DNA are also dispensed onto a plate that is not stated to be cooled, whereas the paper pre-incubates cells and DNA cold (4 °C).",
+      "suggestion": "Specify a larger cell volume (for example 900 µL–1 mL) or split the cells across tubes. Keep transform_plate on a cold block or in the pre-chilled thermocycler during dispensing."
+    },
+    {
+      "step": 8,
+      "severity": "minor",
+      "issue": "The agar weighing and height calculation is placed after the recovery incubation, but the plate must be prepared and weighed before the spotting steps. The calculated spotting height offset is not carried into the spotting steps 11–13.",
+      "suggestion": "Move the agar preparation and weighing earlier, before spotting. In steps 11–13 state that the dispense height uses the calculated agar height plus the 1–2 mm assumed offset."
+    },
+    {
+      "step": 12,
+      "severity": "minor",
+      "issue": "The pEX01 control is spotted undiluted. In Fig. 4 pEX01 transformations were diluted 4-fold before spotting because they produced very dense growth, so undiluted spots could be confluent.",
+      "suggestion": "Keep this as an explicitly flagged assumption, or dilute the pEX01 control (for example 4-fold, as in Fig. 4)."
+    },
+    {
+      "step": 27,
+      "severity": "minor",
+      "issue": "All wells are induced together (step 28) after a fixed 2–3 h growth with a single manual OD check. Starting ODs after a fixed 1:50 back-dilution vary between wells, so the OD at induction will differ across wells, whereas the paper induces at OD600 about 0.2. The OD-check method is also left undefined.",
+      "suggestion": "State how OD is checked (for example a sampled aliquot read in the plate reader) and the acceptance criterion. Alternatively, use the overnight OD readings from step 24 to scale the back-dilution volumes."
+    },
+    {
+      "step": 30,
+      "severity": "minor",
+      "issue": "The 150 µL cultures are incubated at 37 °C with 960 rpm shaking for 4 h, but the protocol does not mention a lid or seal to limit evaporation.",
+      "suggestion": "Add a note that the reader plate is covered with its lid or a clear seal, marked as an assumption."
+    }
+  ]
+}

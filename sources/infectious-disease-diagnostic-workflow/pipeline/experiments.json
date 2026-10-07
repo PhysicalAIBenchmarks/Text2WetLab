@@ -1,0 +1,80 @@
+[
+  {
+    "title": "Automated N. meningitidis workflow: Dynabeads DNA isolation and ctrA RPA amplification verified by BioAnalyzer",
+    "goal": "To verify that the automated DNA isolation and RPA modules amplify the 146 bp ctrA fragment from N. meningitidis DNA spiked into water or CSF.",
+    "section_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.6",
+      "s2.7"
+    ],
+    "shared_refs": [
+      "s2",
+      "s3",
+      "s3.1"
+    ],
+    "unresolved_refs": [
+      "Dynabeads DNA Universal Kit 'following the manufacturer's instructions'",
+      "TwistAmp Basic Kit 'following the manufacturer's instructions'",
+      "Agilent DNA 1000 Kit 'following the manufacturer's instructions'",
+      "Primers 'previously described by Rivas et al. [18]'",
+      "Wizard Genomic DNA Purification Kit 'according to manufacturer's instructions'"
+    ],
+    "figure_refs": [
+      "Figure 4A"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Automated exonuclease digestion and vertical flow microarray detection of ctrA amplicons with gold nanoparticle signal enhancement",
+    "goal": "To show that the automated digestion and paper-based VFM detection modules detect single-stranded ctrA amplicons from spiked water or CSF samples, with signal quantified from scanned arrays.",
+    "section_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3",
+      "s2.4",
+      "s2.5",
+      "s2.6",
+      "s2.7"
+    ],
+    "shared_refs": [
+      "s2",
+      "s3",
+      "s3.2"
+    ],
+    "unresolved_refs": [
+      "VFM 'validated previously by Rivas et al. [18]'",
+      "Ink solution 'prepared as described by Gökçe et al. [19]'",
+      "Dynabeads and TwistAmp kits per manufacturer's instructions"
+    ],
+    "figure_refs": [
+      "Figure 4B"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Time and cost assessment of automated versus manual workflow for eight samples",
+    "goal": "To compare the hands-on run time (five independent experiments) and per-sample cost of the automated workflow against manual bench execution.",
+    "section_refs": [
+      "s2.1",
+      "s2.2",
+      "s2.3",
+      "s2.4",
+      "s2.6",
+      "s2.7"
+    ],
+    "shared_refs": [
+      "s2",
+      "s3.3.1",
+      "s3.3.2"
+    ],
+    "unresolved_refs": [
+      "Manual workflow timing by 'an experienced operator' not described in detail",
+      "Cost per Table 3 not detailed"
+    ],
+    "figure_refs": [
+      "Figure 5"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

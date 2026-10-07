@@ -1,0 +1,109 @@
+[
+  {
+    "title": "Evaporation control: monomer loss test in sealed 48-well reactor without AIBN (BMA-BA)",
+    "goal": "Test whether heating the sealed reactor causes monomer evaporation or absorption into the seal by comparing t0 and t1 NMR composition and conversion in the absence of initiator.",
+    "section_refs": [
+      "s2.1",
+      "s2.3"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "Experimental procedures deferred to SI (Fig. S3, Table S10)"
+    ],
+    "figure_refs": [
+      "Figure S3",
+      "Table S10"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Automated HTP copolymerisation of BMA-BA in 48-well reactor with t0/t1 NMR sampling (20-variant design, 2 h, repeats)",
+    "goal": "Generate f10-X-F1 data at varied feed ratios and AIBN levels for reactivity ratio estimation of BMA-BA, and check reproducibility across days with re-randomised wells.",
+    "section_refs": [
+      "s2.1",
+      "s2.3",
+      "s2.4"
+    ],
+    "shared_refs": [
+      "s2.2"
+    ],
+    "unresolved_refs": [
+      "Full experimental procedures in SI",
+      "NMR acquisition parameters not given in main text"
+    ],
+    "figure_refs": [
+      "Figure 2a",
+      "Figure 2b",
+      "Figure 4b",
+      "Figure 4c",
+      "Table 1"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "BMA-BA reaction time and dataset size controls (30 min vs 2 h; 45-point extended f10 range; combined datasets)",
+    "goal": "Show that varying AIBN concentration rather than time gives consistent reactivity ratios, and assess how the number of datapoints and f10 range affect the confidence interval.",
+    "section_refs": [
+      "s2.1",
+      "s2.3",
+      "s2.4"
+    ],
+    "shared_refs": [
+      "s2.2"
+    ],
+    "unresolved_refs": [
+      "Details in SI Table S2"
+    ],
+    "figure_refs": [
+      "Figure 3a",
+      "Figure 3b",
+      "Figure 4a",
+      "Figure S7",
+      "Figure S8"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Reactivity ratio determination for six monomer pairs in the 48-vial reactor",
+    "goal": "Determine r1 and r2 for BMA-BA, BMA-St, St-BA, St-MMA, GMA-BA and GMA-St using the standard 20-variant HTP copolymerisation workflow.",
+    "section_refs": [
+      "s2.1",
+      "s2.3",
+      "s2.5"
+    ],
+    "shared_refs": [
+      "s2.2",
+      "s2.4"
+    ],
+    "unresolved_refs": [
+      "Experimental details in SI Tables S4-S8"
+    ],
+    "figure_refs": [
+      "Figure 5",
+      "Table 2"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Comparison with 96-well plate format (aluminium tape sealed)",
+    "goal": "Compare reactivity ratios and monomer loss between the sealed 48-vial reactor and a 96-well polypropylene plate.",
+    "section_refs": [
+      "s2.5"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.3"
+    ],
+    "unresolved_refs": [
+      "Plate protocol details in SI"
+    ],
+    "figure_refs": [
+      "Figure S10",
+      "Figure S11",
+      "Figure S12",
+      "Figure S13",
+      "Figure S14"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

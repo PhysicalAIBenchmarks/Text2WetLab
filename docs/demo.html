@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text2WetLab — AI Protocol Verification Benchmark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ---- Reset & base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #07080d;
+  --bg2:      #0e1018;
+  --bg3:      #161823;
+  --surface:  #1c1f2e;
+  --border:   #2a2f44;
+  --text:     #dde0eb;
+  --text-dim: #7a7f9a;
+  --amber:    #f59e0b;
+  --amber-dk: #b45309;
+  --teal:     #14b8a6;
+  --teal-dk:  #0d7a6f;
+  --red:      #ef4444;
+  --green:    #22c55e;
+  --font-body: 'Source Sans 3', system-ui, sans-serif;
+  --font-mono: 'Source Code Pro', 'Fira Code', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+a { color: var(--teal); text-decoration: none; }
+a:hover { color: var(--amber); }
+
+/* ---- Utility ---- */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.label {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid var(--amber-dk);
+  padding: 2px 10px;
+  border-radius: 3px;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.section-desc {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  max-width: 680px;
+  margin-bottom: 48px;
+}
+
+/* ---- Nav ---- */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(7, 8, 13, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--amber);
+  white-space: nowrap;
+}
+.nav-logo span { color: var(--teal); }
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--text-dim);
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--text); }
+@media (max-width: 600px) { .nav-links { display: none; } }
+
+/* ---- Hero ---- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 60% 40%,
+    rgba(20, 184, 166, 0.07) 0%,
+    rgba(245, 158, 11, 0.04) 40%,
+    transparent 70%);
+  pointer-events: none;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+@media (max-width: 800px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 20px;
+}
+.hero-headline {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.hero-headline em {
+  font-style: normal;
+  color: var(--amber);
+}
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  margin-bottom: 36px;
+  max-width: 520px;
+}
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--amber);
+  color: #000;
+  border: none;
+}
+.btn-primary:hover { background: #fbbf24; color: #000; }
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+/* Hero visual */
+.hero-visual {
+  position: relative;
+}
+.hero-video-wrap {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  background: var(--bg3);
+  aspect-ratio: 16/10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-video-wrap video,
+.hero-video-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-badge {
+  position: absolute;
+  bottom: -18px;
+  right: 18px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+.hero-badge .b-val { color: var(--green); font-weight: 600; }
+.hero-stat-row {
+  display: flex;
+  gap: 28px;
+  margin-top: 40px;
+}
+.hero-stat { text-align: center; }
+.hero-stat .val {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--amber);
+  display: block;
+}
+.hero-stat .lbl {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+/* ---- Sections shared ---- */
+section {
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+}
+section:first-of-type { border-top: none; }
+
+/* ---- Section 1: Reproducibility Gap ---- */
+#pipeline { background: var(--bg2); }
+
+.flow-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  margin-bottom: 56px;
+}
+.flow-node {
+  flex: 1;
+  min-width: 130px;
+  max-width: 180px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.flow-node.visible { opacity: 1; transform: translateY(0); }
+.flow-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 16px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.flow-icon {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+  display: block;
+}
+.flow-name {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.flow-detail {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+.flow-arrow {
+  flex: 0 0 36px;
+  text-align: center;
+  color: var(--border);
+  font-size: 1.2rem;
+  position: relative;
+  top: -4px;
+}
+.flow-node:nth-child(1) .flow-box { border-color: #2a2f44; }
+.flow-node:nth-child(3) .flow-box { border-color: var(--teal-dk); }
+.flow-node:nth-child(5) .flow-box { border-color: var(--amber-dk); }
+.flow-node:nth-child(7) .flow-box { border-color: #7c3aed; }
+.flow-node:nth-child(9) .flow-box { border-color: var(--green); }
+
+/* Delay each node */
+.flow-node:nth-child(1)  { transition-delay: .0s; }
+.flow-node:nth-child(2)  { transition-delay: .1s; }
+.flow-node:nth-child(3)  { transition-delay: .2s; }
+.flow-node:nth-child(4)  { transition-delay: .3s; }
+.flow-node:nth-child(5)  { transition-delay: .4s; }
+.flow-node:nth-child(6)  { transition-delay: .5s; }
+.flow-node:nth-child(7)  { transition-delay: .6s; }
+.flow-node:nth-child(8)  { transition-delay: .7s; }
+.flow-node:nth-child(9)  { transition-delay: .8s; }
+
+.gap-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.gap-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px 24px;
+}
+.gap-card-icon {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+.gap-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.gap-card p {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+/* ---- Section 2: Task Showcases ---- */
+#tasks { background: var(--bg); }
+
+.task-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 80px;
+  padding: 36px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+@media (max-width: 760px) {
+  .task-showcase { grid-template-columns: 1fr; gap: 28px; padding: 24px; }
+}
+.task-showcase.reversed { direction: rtl; }
+.task-showcase.reversed > * { direction: ltr; }
+.task-media {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 16/10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+}
+.task-media video,
+.task-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.task-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+.task-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.task-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--amber);
+  margin-bottom: 16px;
+}
+.task-body {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.verdict-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+.verdict-pass { background: rgba(34,197,94,.12); color: var(--green); border: 1px solid rgba(34,197,94,.3); }
+.verdict-fail { background: rgba(239,68,68,.12); color: var(--red); border: 1px solid rgba(239,68,68,.3); }
+.verdict-warn { background: rgba(245,158,11,.12); color: var(--amber); border: 1px solid rgba(245,158,11,.3); }
+
+/* Hallucination diff */
+.diff-block {
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.7;
+  background: #0a0c14;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  overflow-x: auto;
+}
+.diff-del { color: var(--red); background: rgba(239,68,68,.08); display: block; }
+.diff-add { color: var(--green); background: rgba(34,197,94,.08); display: block; }
+.diff-ctx { color: var(--text-dim); display: block; }
+
+/* Score pill */
+.score-pill {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-left: 8px;
+}
+.score-high { background: rgba(34,197,94,.15); color: var(--green); }
+.score-mid  { background: rgba(245,158,11,.15); color: var(--amber); }
+.score-low  { background: rgba(239,68,68,.15); color: var(--red); }
+
+/* ---- Section 3: Leaderboard ---- */
+#results { background: var(--bg2); }
+
+.leaderboard {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.lb-header {
+  display: grid;
+  grid-template-columns: 220px 1fr 90px;
+  gap: 16px;
+  padding: 14px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.lb-row {
+  display: grid;
+  grid-template-columns: 220px 1fr 90px;
+  gap: 16px;
+  padding: 18px 24px;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  transition: background .15s;
+}
+.lb-row:last-child { border-bottom: none; }
+.lb-row:hover { background: var(--surface); }
+.lb-rank {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.rank-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.rank-1 { background: rgba(245,158,11,.2); color: var(--amber); border: 1px solid var(--amber-dk); }
+.rank-2 { background: rgba(20,184,166,.15); color: var(--teal); border: 1px solid var(--teal-dk); }
+.rank-3 { background: rgba(124,58,237,.15); color: #a78bfa; border: 1px solid #5b21b6; }
+.model-name {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: #fff;
+}
+.bar-wrap {
+  position: relative;
+  height: 10px;
+  background: var(--border);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.bar-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  border-radius: 5px;
+  width: 0;
+  transition: width 1.2s cubic-bezier(.16,1,.3,1);
+}
+.bar-opus   { background: linear-gradient(90deg, var(--amber), #fb923c); }
+.bar-sonnet { background: linear-gradient(90deg, var(--teal), #38bdf8); }
+.bar-fable  { background: linear-gradient(90deg, #a78bfa, #818cf8); }
+.lb-score {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Per-task matrix */
+.matrix-wrap { margin-top: 40px; overflow-x: auto; }
+.matrix {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+.matrix th {
+  padding: 10px 14px;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.matrix td {
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(42,47,68,.5);
+  color: var(--text);
+  vertical-align: middle;
+}
+.matrix tr:last-child td { border-bottom: none; }
+.matrix tr:hover td { background: rgba(28,31,46,.5); }
+.cell-score {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 2px 7px;
+  display: inline-block;
+}
+
+/* ---- Section 4: CTA ---- */
+#cta {
+  background: var(--bg);
+  text-align: center;
+}
+.cta-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+.cta-headline {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.cta-sub {
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  margin-bottom: 40px;
+}
+.cta-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-large {
+  padding: 14px 32px;
+  font-size: 1rem;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 24px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+/* Scroll animation helper */
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Mobile tweaks ---- */
+@media (max-width: 500px) {
+  nav { padding: 12px 16px; }
+  .hero { padding: 100px 16px 60px; }
+  section { padding: 70px 0; }
+  .task-showcase { padding: 20px; }
+  .lb-header, .lb-row { grid-template-columns: 170px 1fr 70px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-logo">Text2<span>WetLab</span></div>
+  <ul class="nav-links">
+    <li><a href="#pipeline">Pipeline</a></li>
+    <li><a href="#tasks">Tasks</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Benchmark · 2026</div>
+      <h1 class="hero-headline">
+        Millions of lab protocols will be executed by AI.<br>
+        <em>How do we know they're right?</em>
+      </h1>
+      <p class="hero-sub">
+        Text2WetLab is the first end-to-end benchmark that converts published
+        wet-lab papers into executable Opentrons OT-2 protocols and grades
+        correctness in a physics-accurate MuJoCo simulation.
+      </p>
+      <div class="hero-cta">
+        <a href="#pipeline" class="btn btn-primary btn-large">See the Pipeline</a>
+        <a href="https://github.com/Tyronita/text2wetlab" class="btn btn-ghost btn-large">
+          ★ GitHub
+        </a>
+      </div>
+      <div class="hero-stat-row">
+        <div class="hero-stat">
+          <span class="val">7</span>
+          <span class="lbl">Protocol tasks</span>
+        </div>
+        <div class="hero-stat">
+          <span class="val">3</span>
+          <span class="lbl">Models benchmarked</span>
+        </div>
+        <div class="hero-stat">
+          <span class="val">0.935</span>
+          <span class="lbl">Top score (Opus)</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-video-wrap">
+        <video autoplay muted loop playsinline
+               src="../assets/examples3d/a1-a12-100ul.mp4"
+               poster="../assets/examples3d/a1-a12-100ul_frames.png">
+          <img src="../assets/examples3d/a1-a12-100ul_frames.png"
+               alt="MuJoCo 3D simulation of A1–A12 pipetting task">
+        </video>
+      </div>
+      <div class="hero-badge">
+        <span class="b-val">✓ sim_pass</span><br>
+        <span style="color:var(--text-dim)">reward: </span><span class="b-val">1.000</span><br>
+        <span style="color:var(--text-dim)">12 commands</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 1 — THE REPRODUCIBILITY GAP / PIPELINE
+     ============================================================ -->
+<section id="pipeline">
+  <div class="container">
+    <div class="label">Section 01 — The Pipeline</div>
+    <h2 class="section-title">From PDF to Pipette in Five Steps</h2>
+    <p class="section-desc">
+      We chain a structured extraction model, an intermediate representation (IR),
+      an Opentrons code generator, and a simulation-based verifier to turn any
+      methods-section PDF into a graded, reproducible robot protocol.
+    </p>
+
+    <!-- Animated flowchart -->
+    <div class="flow-wrap" id="flowchart">
+      <div class="flow-node">
+        <div class="flow-box">
+          <span class="flow-icon">📄</span>
+          <div class="flow-name">Paper PDF</div>
+          <div class="flow-detail">Methods section</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-box">
+          <span class="flow-icon">💬</span>
+          <div class="flow-name">NL Protocol</div>
+          <div class="flow-detail">paper2protocol</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-box">
+          <span class="flow-icon">🗂</span>
+          <div class="flow-name">IR (JSON)</div>
+          <div class="flow-detail">Structured steps</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-box">
+          <span class="flow-icon">🤖</span>
+          <div class="flow-name">Python Protocol</div>
+          <div class="flow-detail">OT-2 API v2</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-box">
+          <span class="flow-icon">🎮</span>
+          <div class="flow-name">MuJoCo Sim</div>
+          <div class="flow-detail">Physics reward</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Three gap cards -->
+    <div class="gap-cards fade-in">
+      <div class="gap-card">
+        <div class="gap-card-icon">⚠️</div>
+        <h3>Hallucinated Steps</h3>
+        <p>Models invent pipetting actions not present in the source protocol—
+           mixing competent cells, spurious washes, or phantom reagent additions
+           that would ruin a transformation.</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-card-icon">🧮</div>
+        <h3>Volume Errors</h3>
+        <p>Off-by-20µL elution volumes in RNA extraction risk bead carryover
+           into downstream qPCR—a silent failure invisible to the operator
+           but lethal to a clinical assay.</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-card-icon">🔁</div>
+        <h3>Simulation as Ground Truth</h3>
+        <p>Because the OT-2 simulator tracks every µL with perfect fidelity,
+           we can assign deterministic pass/fail rewards without a wet lab—
+           enabling large-scale, reproducible AI evaluation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2 — TASK SHOWCASES
+     ============================================================ -->
+<section id="tasks">
+  <div class="container">
+    <div class="label">Section 02 — Task Showcases</div>
+    <h2 class="section-title">Three Protocols That Tell the Story</h2>
+    <p class="section-desc">
+      Real published wet-lab protocols, graded at full simulation fidelity.
+      Each exposes a distinct failure mode — or a surprising success.
+    </p>
+
+    <!-- Task 1: E. coli heat shock — The Phantom Mix -->
+    <div class="task-showcase fade-in">
+      <div class="task-media">
+        <video autoplay muted loop playsinline
+               src="../assets/examples3d/ecoli-heat-shock-transformation.mp4"
+               poster="../assets/examples3d/ecoli-heat-shock-transformation_frames.png">
+          <img src="../assets/examples3d/ecoli-heat-shock-transformation_frames.png"
+               alt="E. coli heat shock transformation simulation">
+        </video>
+      </div>
+      <div class="task-info">
+        <div class="task-num">Task 01 / E. coli Heat Shock Transformation</div>
+        <h3 class="task-title">The Phantom Mix</h3>
+        <div class="task-subtitle">"The robot mixed the cells it was never asked to touch."</div>
+        <p class="task-body">
+          This four-step protocol (add DNA → heat shock → SOC recovery → incubate)
+          is conceptually simple — but both <strong>Opus</strong> and <strong>Fable</strong>
+          added an unrequested <code>mix()</code> call immediately after dispensing
+          the plasmid DNA into competent cells. Vigorous mixing at that stage
+          disrupts osmotic conditions and dramatically reduces transformation efficiency.
+          <strong>Sonnet</strong> followed the spec exactly.
+        </p>
+        <div class="diff-block">
+          <span class="diff-ctx"># Correct (Sonnet)</span>
+          <span class="diff-add">+ p20.transfer(2, plasmid['A1'], cells['A1'])</span>
+          <span class="diff-ctx"># Hallucination (Opus / Fable)</span>
+          <span class="diff-del">- p20.transfer(2, plasmid['A1'], cells['A1'],</span>
+          <span class="diff-del">-              mix_after=(3, 10))  # ← phantom step</span>
+        </div>
+        <div class="verdict-row" style="margin-top:16px">
+          <span class="verdict verdict-pass">✓ Sonnet — 0.857</span>
+          <span class="verdict verdict-warn">⚠ Opus — 0.714</span>
+          <span class="verdict verdict-fail">✗ Fable — 0.714</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task 2: Golden Gate Assembly — Perfect at 33 steps -->
+    <div class="task-showcase reversed fade-in">
+      <div class="task-media">
+        <video autoplay muted loop playsinline
+               src="../assets/examples3d/golden-gate-assembly.mp4"
+               poster="../assets/examples3d/golden-gate-assembly_frames.png">
+          <img src="../assets/examples3d/golden-gate-assembly_frames.png"
+               alt="Golden Gate assembly simulation">
+        </video>
+      </div>
+      <div class="task-info">
+        <div class="task-num">Task 02 / Golden Gate Assembly</div>
+        <h3 class="task-title">Perfect at 33 Steps</h3>
+        <div class="task-subtitle">"613 simulation commands. Every check green."</div>
+        <p class="task-body">
+          Assembling four four-fragment chromoprotein expression plasmids with
+          BsaI-HFv2 and T4 ligase demands precise volume fractions, correct
+          fragment ordering, DpnI digestion timing, and a thermocycler programme
+          across 33 protocol steps. All three models — Opus, Sonnet, and Fable —
+          achieved a perfect <strong>1.00</strong> reward. This is the benchmark
+          at its best: a complex protocol faithfully rendered by every contender.
+        </p>
+        <div class="verdict-row">
+          <span class="verdict verdict-pass">✓ Opus — 1.000</span>
+          <span class="verdict verdict-pass">✓ Sonnet — 1.000</span>
+          <span class="verdict verdict-pass">✓ Fable — 1.000</span>
+        </div>
+        <div class="diff-block" style="margin-top:16px">
+          <span class="diff-ctx"># 9 rubric categories, all scored 1.0</span>
+          <span class="diff-add">✓ deck_and_hardware  ✓ pcr_setup</span>
+          <span class="diff-add">✓ dpni_and_cleanup   ✓ assembly_mix</span>
+          <span class="diff-add">✓ thermocycler_prog  ✓ transformation</span>
+          <span class="diff-add">✓ tips_contamination ✓ robot_practice</span>
+          <span class="diff-add">✓ fidelity_to_paper</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task 3: RNA extraction — The 20µL that matters -->
+    <div class="task-showcase fade-in">
+      <div class="task-media">
+        <img src="../assets/examples/a1-a12-100ul.gif"
+             alt="2D IR visualization of RNA extraction elution step"
+             loading="lazy">
+      </div>
+      <div class="task-info">
+        <div class="task-num">Task 03 / Opentrons RNA Extraction</div>
+        <h3 class="task-title">The 20µL That Matters</h3>
+        <div class="task-subtitle">"Recovering 100µL instead of 80µL risks bead carryover."</div>
+        <p class="task-body">
+          A magnetic bead RNA extraction over 48 samples — 16 simultaneous checks
+          cover bead binding order, wash volumes, magnet timing, air-dry duration,
+          and elution recovery. The critical failure: all models recovered the full
+          <strong>100µL elution volume</strong> instead of the protocol-specified
+          ~80µL. The remaining 20µL near the pellet carries magnetic beads. In a
+          clinical RT-qPCR workflow, those beads inhibit polymerase — a silent assay
+          failure that looks like RNA degradation.
+        </p>
+        <div class="verdict-row">
+          <span class="verdict verdict-warn">⚠ Opus — 0.889</span>
+          <span class="verdict verdict-warn">⚠ Sonnet — 0.833</span>
+          <span class="verdict verdict-warn">⚠ Fable — 0.833</span>
+        </div>
+        <div class="diff-block" style="margin-top:16px">
+          <span class="diff-ctx"># All models wrote:</span>
+          <span class="diff-del">- p1000.transfer(ELUTION_VOL, elution_plate,   # 100 µL ← wrong</span>
+          <span class="diff-ctx"># Correct approach:</span>
+          <span class="diff-add">+ p1000.transfer(80, elution_plate,            # ~80 µL ✓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3 — RESULTS LEADERBOARD
+     ============================================================ -->
+<section id="results">
+  <div class="container">
+    <div class="label">Section 03 — Results</div>
+    <h2 class="section-title">Model Leaderboard</h2>
+    <p class="section-desc">
+      Mean reward across all 7 tasks (pass@1, single attempt per task).
+      Grading combines deterministic end-state checking and LLM-judged rubrics.
+    </p>
+
+    <div class="leaderboard fade-in" id="leaderboard">
+      <div class="lb-header">
+        <div>Model</div>
+        <div>Mean reward (7 tasks)</div>
+        <div style="text-align:right">Score</div>
+      </div>
+
+      <div class="lb-row">
+        <div class="lb-rank">
+          <div class="rank-badge rank-1">#1</div>
+          <div class="model-name">claude-opus-5-5</div>
+        </div>
+        <div>
+          <div class="bar-wrap">
+            <div class="bar-fill bar-opus" data-width="93.5"></div>
+          </div>
+        </div>
+        <div class="lb-score" style="color:var(--amber)">0.935</div>
+      </div>
+
+      <div class="lb-row">
+        <div class="lb-rank">
+          <div class="rank-badge rank-2">#2</div>
+          <div class="model-name">claude-sonnet-5-5</div>
+        </div>
+        <div>
+          <div class="bar-wrap">
+            <div class="bar-fill bar-sonnet" data-width="91.0"></div>
+          </div>
+        </div>
+        <div class="lb-score" style="color:var(--teal)">0.910</div>
+      </div>
+
+      <div class="lb-row">
+        <div class="lb-rank">
+          <div class="rank-badge rank-3">#3</div>
+          <div class="model-name">claude-fable-5-1</div>
+        </div>
+        <div>
+          <div class="bar-wrap">
+            <div class="bar-fill bar-fable" data-width="88.2"></div>
+          </div>
+        </div>
+        <div class="lb-score" style="color:#a78bfa">0.882</div>
+      </div>
+    </div>
+
+    <!-- Per-task matrix -->
+    <div class="matrix-wrap fade-in">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Grader</th>
+            <th>Oracle</th>
+            <th>Opus</th>
+            <th>Sonnet</th>
+            <th>Fable</th>
+          </tr>
+        </thead>
+        <tbody id="matrix-body">
+          <tr>
+            <td>a1-a12-100ul</td>
+            <td style="color:var(--text-dim)">end-state</td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">1.000</span></td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">1.000</span></td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.1);color:var(--green)">0.917</span></td>
+            <td><span class="cell-score" style="background:rgba(245,158,11,.12);color:var(--amber)">0.833</span></td>
+          </tr>
+          <tr>
+            <td>ampure-bead-cleanup</td>
+            <td style="color:var(--text-dim)">end-state</td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">1.000</span></td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.1);color:var(--green)">0.944</span></td>
+            <td><span class="cell-score" style="background:rgba(245,158,11,.12);color:var(--amber)">0.889</span></td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">1.000</span></td>
+          </tr>
+          <tr>
+            <td>colony-pcr-screening</td>
+            <td style="color:var(--text-dim)">end-state</td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">1.000</span></td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">1.000</span></td>
+            <td><span class="cell-score" style="background:rgba(245,158,11,.12);color:var(--amber)">0.875</span></td>
+            <td><span class="cell-score" style="background:rgba(245,158,11,.12);color:var(--amber)">0.875</span></td>
+          </tr>
+          <tr>
+            <td>ecoli-heat-shock-transformation</td>
+            <td style="color:var(--text-dim)">end-state</td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">1.000</span></td>
+            <td><span class="cell-score" style="background:rgba(245,158,11,.12);color:var(--amber)">0.714</span></td>
+            <td><span class="cell-score" style="background:rgba(245,158,11,.12);color:var(--amber)">0.857</span></td>
+            <td><span class="cell-score" style="background:rgba(245,158,11,.12);color:var(--amber)">0.714</span></td>
+          </tr>
+          <tr>
+            <td>golden-gate-assembly</td>
+            <td style="color:var(--text-dim)">end-state</td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">1.000</span></td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">1.000</span></td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">1.000</span></td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">1.000</span></td>
+          </tr>
+          <tr>
+            <td>opentrons-rna-extraction</td>
+            <td style="color:var(--text-dim)">LLM judge + 16 checks</td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.1);color:var(--green)">0.944</span></td>
+            <td><span class="cell-score" style="background:rgba(245,158,11,.12);color:var(--amber)">0.889</span></td>
+            <td><span class="cell-score" style="background:rgba(245,158,11,.12);color:var(--amber)">0.833</span></td>
+            <td><span class="cell-score" style="background:rgba(245,158,11,.12);color:var(--amber)">0.833</span></td>
+          </tr>
+          <tr>
+            <td>split-200ul-two-wells</td>
+            <td style="color:var(--text-dim)">end-state</td>
+            <td style="color:var(--text-dim)">—</td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">1.000</span></td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">1.000</span></td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.1);color:var(--green)">0.917</span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2" style="font-weight:700;color:#fff;padding-top:16px">Mean</td>
+            <td><span class="cell-score" style="background:rgba(34,197,94,.12);color:var(--green)">0.991</span></td>
+            <td><span class="cell-score" style="background:rgba(245,158,11,.2);color:var(--amber);font-size:.9rem">0.935</span></td>
+            <td><span class="cell-score" style="background:rgba(20,184,166,.15);color:var(--teal);font-size:.9rem">0.910</span></td>
+            <td><span class="cell-score" style="background:rgba(124,58,237,.15);color:#a78bfa;font-size:.9rem">0.882</span></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4 — CTA
+     ============================================================ -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-inner fade-in">
+      <div class="label" style="margin-bottom:20px">Section 04 — Get Involved</div>
+      <h2 class="cta-headline">Run the Benchmark on Your Model</h2>
+      <p class="cta-sub">
+        Text2WetLab is open source. Add a new model, contribute a protocol task,
+        or replicate our results with a single Docker command.
+        Full dataset on HuggingFace.
+      </p>
+      <div class="cta-buttons">
+        <a href="https://github.com/Tyronita/text2wetlab"
+           class="btn btn-primary btn-large">
+          ★ GitHub Repository
+        </a>
+        <a href="https://arxiv.org/abs/PLACEHOLDER"
+           class="btn btn-ghost btn-large">
+          📄 bioRxiv Preprint
+        </a>
+        <a href="https://huggingface.co/datasets/EvanOLeary/text2wetlab"
+           class="btn btn-ghost btn-large">
+          🤗 HuggingFace Dataset
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Text2WetLab · 2026 · Benchmark for AI-automated wet-lab protocol execution
+    · Data and code released under MIT License
+  </div>
+</footer>
+
+<script>
+// ---- Intersection Observer for fade-in ----
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+// ---- Flowchart node animation ----
+const flowObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.flow-node').forEach(n => n.classList.add('visible'));
+      flowObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+const fc = document.getElementById('flowchart');
+if (fc) flowObs.observe(fc);
+
+// ---- Leaderboard bar animation ----
+const lbObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.bar-fill').forEach(bar => {
+        const w = bar.dataset.width;
+        setTimeout(() => { bar.style.width = w + '%'; }, 200);
+      });
+      lbObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const lb = document.getElementById('leaderboard');
+if (lb) lbObs.observe(lb);
+
+// ---- Smooth scroll for anchor links ----
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>

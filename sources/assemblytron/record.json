@@ -1,0 +1,116 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.0",
+    "2.10",
+    "2.2",
+    "2.9"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/assemblytron/PlantSynBioLab__AssemblyTron",
+   "commit": "745f0c05040bb4fcfa49f1c75dc09e3a81d90eed",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "Apache-2.0",
+   "note": "GitHub reports NOASSERTION; LICENSE.txt is Apache-2.0.",
+   "opentrons_py_files": 102,
+   "py_files": 141,
+   "redistributable": "yes",
+   "repo": "PlantSynBioLab/AssemblyTron",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 63699,
+   "status": "cloned",
+   "url": "https://github.com/PlantSynBioLab/AssemblyTron"
+  },
+  {
+   "api_levels": [
+    "2.0",
+    "2.10",
+    "2.2",
+    "2.6",
+    "2.9"
+   ],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/assemblytron/zenodo-7250273/src",
+   "host": "zenodo.org",
+   "licence": "Apache-2.0",
+   "note": "Zenodo metadata licence 'other-open'; LICENSE.txt in the archive is Apache-2.0. Counts include build/dist copies.",
+   "opentrons_py_files": 101,
+   "py_files": 116,
+   "redistributable": "yes",
+   "repo": "zenodo:7250273 (PlantSynBioLab/AssemblyTron v0.0.8)",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "sha256": "6f0f9f6b12400f33eb78f71eed26bbde6f809c044f47fd2ef00dee2100b14978",
+   "size_kb": 12914,
+   "status": "downloaded",
+   "url": "https://doi.org/10.5281/zenodo.7250273"
+  }
+ ],
+ "doi_primary": "10.1093/synbio/ysac032",
+ "dois": [
+  "10.1093/synbio/ysac032"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "pipeline experiments.json exp 1; s2.4,s3.1; Fig. 2",
+   "id": "exp1",
+   "liquid_handling": "mostly",
+   "title": "Gradient PCR amplification of five fragments with AssemblyTron-calculated annealing gradient"
+  },
+  {
+   "evidence": "pipeline exp 2; s3.2; Fig. 3",
+   "id": "exp2",
+   "liquid_handling": "mostly",
+   "title": "Golden Gate assembly of four four-fragment chromoprotein expression plasmids"
+  },
+  {
+   "evidence": "pipeline exp 3; s3.3; Fig. 4",
+   "id": "exp3",
+   "liquid_handling": "mostly",
+   "title": "One-pot IVA site-directed mutagenesis"
+  },
+  {
+   "evidence": "pipeline exp 4; s3.3; Fig. 5",
+   "id": "exp4",
+   "liquid_handling": "mostly",
+   "title": "AQUA-style homology-dependent assembly of chromoprotein plasmids from separate PCRs"
+  }
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 18,
+  "source": "europepmc:PMC9832943"
+ },
+ "journal": "",
+ "note": "PDF via PMC Open Access S3 bucket (Europe PMC/OUP 403).",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2691950,
+  "licence": "cc by",
+  "pages": 9,
+  "redistributable": "yes",
+  "sha256": "697c89c57707e93f48642990baef119ab28aeb8ff284de8460352f2cd3fc4284",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9832943.1/PMC9832943.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9832943.1/PMC9832943.1.pdf"
+ },
+ "pmcid": "PMC9832943",
+ "slug": "assemblytron",
+ "title": "AssemblyTron: flexible automation of DNA assembly with Opentrons OT-2 lab robots",
+ "year": "2023"
+}

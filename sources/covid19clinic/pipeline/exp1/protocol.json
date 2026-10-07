@@ -1,0 +1,794 @@
+{
+  "title": "EQA panel evaluation of the OT2-KF pathogen circuit (MagMax Pathogen RNA/DNA extraction, TaqPath RT-PCR) with comparator platforms",
+  "containers": [
+    {
+      "name": "eqa_stock_plate",
+      "kind": "plate_96_deep",
+      "description": "Eight inactivated EMQN EQA samples in A1:H1",
+      "assumed": true
+    },
+    {
+      "name": "cobas_lys_reservoir",
+      "kind": "reservoir",
+      "description": "Cobas omni Lysis Reagent (LYS)",
+      "assumed": true
+    },
+    {
+      "name": "lysis_plate",
+      "kind": "plate_96_deep",
+      "description": "EQA samples mixed 1:1 with Cobas omni LYS (A1:H1)",
+      "assumed": true
+    },
+    {
+      "name": "pbs_tube",
+      "kind": "tube_50ml",
+      "description": "PBS for extraction negative control",
+      "assumed": true
+    },
+    {
+      "name": "kf_sample_plate",
+      "kind": "plate_96_deep",
+      "description": "KingFisher deep-well sample plate: A1 = PBS negative control, A2:H2 = EQA samples 1-8",
+      "assumed": false
+    },
+    {
+      "name": "beads_tube",
+      "kind": "tube_1.5ml",
+      "description": "MagMax Nucleic Acid Binding Beads",
+      "assumed": true
+    },
+    {
+      "name": "enhancer_tube",
+      "kind": "tube_1.5ml",
+      "description": "MagMax Lysis ENHANCER",
+      "assumed": true
+    },
+    {
+      "name": "isopropanol_tube",
+      "kind": "tube_15ml",
+      "description": "100% isopropanol",
+      "assumed": true
+    },
+    {
+      "name": "bead_mix_tube",
+      "kind": "tube_15ml",
+      "description": "MagMax Pathogen RNA/DNA Bead Master Mix (kept on ice)",
+      "assumed": true
+    },
+    {
+      "name": "ms2_tube",
+      "kind": "tube_1.5ml",
+      "description": "MS2 Phage Control",
+      "assumed": true
+    },
+    {
+      "name": "wash1_reservoir",
+      "kind": "reservoir",
+      "description": "Wash Solution 1 (concentrate plus 125 mL isopropanol)",
+      "assumed": true
+    },
+    {
+      "name": "wash2_reservoir",
+      "kind": "reservoir",
+      "description": "Wash Solution 2 (concentrate plus 232 mL ethanol)",
+      "assumed": true
+    },
+    {
+      "name": "elution_buffer_tube",
+      "kind": "tube_50ml",
+      "description": "MagMax Elution Buffer",
+      "assumed": true
+    },
+    {
+      "name": "wash1_plate_1",
+      "kind": "plate_96_deep",
+      "description": "KingFisher Wash 1 plate (1 of 2)",
+      "assumed": true
+    },
+    {
+      "name": "wash1_plate_2",
+      "kind": "plate_96_deep",
+      "description": "KingFisher Wash 1 plate (2 of 2)",
+      "assumed": true
+    },
+    {
+      "name": "wash2_plate_1",
+      "kind": "plate_96_deep",
+      "description": "KingFisher Wash 2 plate (1 of 2)",
+      "assumed": true
+    },
+    {
+      "name": "wash2_plate_2",
+      "kind": "plate_96_deep",
+      "description": "KingFisher Wash 2 plate (2 of 2)",
+      "assumed": true
+    },
+    {
+      "name": "elution_plate",
+      "kind": "plate_96",
+      "description": "KingFisher standard plate for elution; receives RNA eluate",
+      "assumed": true
+    },
+    {
+      "name": "tip_comb_plate",
+      "kind": "plate_96",
+      "description": "KingFisher standard plate holding the tip comb (no liquid)",
+      "assumed": true
+    },
+    {
+      "name": "master_mix_stock_tube",
+      "kind": "tube_1.5ml",
+      "description": "TaqPath 1-Step Multiplex Master Mix (No ROX, 4X)",
+      "assumed": true
+    },
+    {
+      "name": "assay_stock_tube",
+      "kind": "tube_1.5ml",
+      "description": "COVID-19 Real Time PCR Assay Multiplex",
+      "assumed": true
+    },
+    {
+      "name": "water_tube",
+      "kind": "tube_15ml",
+      "description": "Nuclease-free water",
+      "assumed": true
+    },
+    {
+      "name": "pcr_mix_tube",
+      "kind": "tube_1.5ml",
+      "description": "RT-PCR reaction mix (11 reactions)",
+      "assumed": true
+    },
+    {
+      "name": "control_stock_tube",
+      "kind": "tube_1.5ml",
+      "description": "TaqPath COVID-19 Control, 1x10^4 copies/uL",
+      "assumed": true
+    },
+    {
+      "name": "dilution_buffer_tube",
+      "kind": "tube_1.5ml",
+      "description": "Dilution buffer for the positive control",
+      "assumed": true
+    },
+    {
+      "name": "control_dil1_tube",
+      "kind": "tube_1.5ml",
+      "description": "Positive control intermediate dilution (100 copies/uL)",
+      "assumed": true
+    },
+    {
+      "name": "control_dil2_tube",
+      "kind": "tube_1.5ml",
+      "description": "Positive control working dilution (25 copies/uL)",
+      "assumed": true
+    },
+    {
+      "name": "pcr_plate",
+      "kind": "plate_96",
+      "description": "MicroAmp Optical 96-well reaction plate: A1:H1 = samples 1-8, A2 = extraction negative control, B2 = positive control",
+      "assumed": false
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "eqa_stock_plate",
+      "wells": [
+        "A1:H1"
+      ],
+      "reagent": "Inactivated EMQN EQA sample (one per well)",
+      "volume_ul": 300.0,
+      "assumed": true
+    },
+    {
+      "container": "cobas_lys_reservoir",
+      "wells": [],
+      "reagent": "Cobas omni Lysis Reagent",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "pbs_tube",
+      "wells": [],
+      "reagent": "PBS",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "beads_tube",
+      "wells": [],
+      "reagent": "Nucleic Acid Binding Beads",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "enhancer_tube",
+      "wells": [],
+      "reagent": "Lysis ENHANCER",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "isopropanol_tube",
+      "wells": [],
+      "reagent": "100% isopropanol",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "ms2_tube",
+      "wells": [],
+      "reagent": "MS2 Phage Control",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "wash1_reservoir",
+      "wells": [],
+      "reagent": "Wash Solution 1",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "wash2_reservoir",
+      "wells": [],
+      "reagent": "Wash Solution 2",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "elution_buffer_tube",
+      "wells": [],
+      "reagent": "Elution Buffer",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "master_mix_stock_tube",
+      "wells": [],
+      "reagent": "TaqPath 1-Step Multiplex Master Mix (No ROX, 4X)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "assay_stock_tube",
+      "wells": [],
+      "reagent": "COVID-19 Real Time PCR Assay Multiplex",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "water_tube",
+      "wells": [],
+      "reagent": "Nuclease-free water",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "control_stock_tube",
+      "wells": [],
+      "reagent": "TaqPath COVID-19 Control 1x10^4 copies/uL",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "dilution_buffer_tube",
+      "wells": [],
+      "reagent": "Dilution buffer",
+      "volume_ul": null,
+      "assumed": true
+    }
+  ],
+  "steps": [
+    {
+      "kind": "transfer",
+      "source": "eqa_stock_plate",
+      "source_wells": [
+        "A1:H1"
+      ],
+      "dest": "lysis_plate",
+      "dest_wells": [
+        "A1:H1"
+      ],
+      "volume_ul": 250.0,
+      "reagent": "EQA sample",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Samples were mixed 1:1 with Cobas omni Lysis Reagent (Roche) before being processed to allow comparisons.",
+      "assumed": true,
+      "note": "250 uL is an assumed volume; the paper only states a 1:1 mix."
+    },
+    {
+      "kind": "transfer",
+      "source": "cobas_lys_reservoir",
+      "source_wells": [],
+      "dest": "lysis_plate",
+      "dest_wells": [
+        "A1:H1"
+      ],
+      "volume_ul": 250.0,
+      "reagent": "Cobas omni Lysis Reagent",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "Samples were mixed 1:1 with Cobas omni Lysis Reagent (Roche) before being processed to allow comparisons.",
+      "assumed": true,
+      "note": "1:1 with sample gives 500 uL of lysate per sample, enough for the 460 uL transfer."
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "lysis_plate",
+      "dest_wells": [
+        "A1:H1"
+      ],
+      "volume_ul": 300.0,
+      "reagent": "",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "Samples were mixed 1:1 with Cobas omni Lysis Reagent (Roche) before being processed to allow comparisons.",
+      "assumed": true,
+      "note": "Mix volume and cycles assumed."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Take aliquots of the same lysed EQA samples and test them on the comparator platforms (Flow Solution, Cobas 6800, Hamilton-Seegene) per each manufacturer's routine IVD protocol (described in S1 File, not in the main text).",
+      "source_quote": "These samples were analyzed using the KF pathogen circuit and three additional platforms used in routine at our laboratory: Flow Solution (Roche), Cobas 6800 (Roche), and a Hamilton-Seegene combination (see S1 File).",
+      "assumed": true,
+      "note": "Comparator procedures are deferred to S1 File."
+    },
+    {
+      "kind": "transfer",
+      "source": "lysis_plate",
+      "source_wells": [
+        "A1:H1"
+      ],
+      "dest": "kf_sample_plate",
+      "dest_wells": [
+        "A2:H2"
+      ],
+      "volume_ul": 460.0,
+      "reagent": "Lysed EQA sample",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "no addition of MagMax™ Pathogen RNA/DNA Lysis Solution Master Mix was applied to the inactivated samples, and 460 μl of lysates were directly transferred to the King Fisher™ deep-well sample plate.",
+      "assumed": false,
+      "note": "Samples 1-8 go to A2:H2, paired in order."
+    },
+    {
+      "kind": "transfer",
+      "source": "pbs_tube",
+      "source_wells": [],
+      "dest": "kf_sample_plate",
+      "dest_wells": [
+        "A1"
+      ],
+      "volume_ul": 460.0,
+      "reagent": "PBS",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "including a negative control sample containing 460 μl of PBS located at A1 position of the 96 deep-well plate",
+      "assumed": false,
+      "note": "Extraction negative control."
+    },
+    {
+      "kind": "transfer",
+      "source": "beads_tube",
+      "source_wells": [],
+      "dest": "bead_mix_tube",
+      "dest_wells": [],
+      "volume_ul": 100.0,
+      "reagent": "Nucleic Acid Binding Beads",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "260 μl of MagMax™ Pathogen RNA/DNA Bead Master Mix",
+      "assumed": true,
+      "note": "Bead mix for 10 reactions (9 wells + overage): 10 uL beads per reaction, from the MagMAX Pathogen user guide."
+    },
+    {
+      "kind": "transfer",
+      "source": "enhancer_tube",
+      "source_wells": [],
+      "dest": "bead_mix_tube",
+      "dest_wells": [],
+      "volume_ul": 100.0,
+      "reagent": "Lysis ENHANCER",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "260 μl of MagMax™ Pathogen RNA/DNA Bead Master Mix",
+      "assumed": true,
+      "note": "10 uL ENHANCER per reaction x 10."
+    },
+    {
+      "kind": "transfer",
+      "source": "isopropanol_tube",
+      "source_wells": [],
+      "dest": "bead_mix_tube",
+      "dest_wells": [],
+      "volume_ul": 2400.0,
+      "reagent": "100% isopropanol",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "260 μl of MagMax™ Pathogen RNA/DNA Bead Master Mix",
+      "assumed": true,
+      "note": "Inferred ~240 uL isopropanol per well to reach 260 uL per well; use the rinse/pre-wet option for alcohol."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "bead_mix_tube",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Vortex bead_mix_tube to resuspend the beads; keep on ice for up to 4 h until use.",
+      "source_quote": "260 μl of MagMax™ Pathogen RNA/DNA Bead Master Mix",
+      "assumed": true,
+      "note": "Handling from the MagMAX user guide."
+    },
+    {
+      "kind": "transfer",
+      "source": "bead_mix_tube",
+      "source_wells": [],
+      "dest": "kf_sample_plate",
+      "dest_wells": [
+        "A1",
+        "A2:H2"
+      ],
+      "volume_ul": 260.0,
+      "reagent": "MagMax Pathogen RNA/DNA Bead Master Mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Subsequently, 260 μl of MagMax™ Pathogen RNA/DNA Bead Master Mix and 5 μl of the MS2 Phage Control (Thermo Fisher Scientific, Waltham, MA) were added to each well",
+      "assumed": false,
+      "note": "Added to the negative control well and all 8 sample wells."
+    },
+    {
+      "kind": "transfer",
+      "source": "ms2_tube",
+      "source_wells": [],
+      "dest": "kf_sample_plate",
+      "dest_wells": [
+        "A1",
+        "A2:H2"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "MS2 Phage Control",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "5 μl of the MS2 Phage Control (Thermo Fisher Scientific, Waltham, MA) were added to each well",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "wash1_reservoir",
+      "source_wells": [],
+      "dest": "wash1_plate_1",
+      "dest_wells": [
+        "A1",
+        "A2:H2"
+      ],
+      "volume_ul": 300.0,
+      "reagent": "Wash Solution 1",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "automated RNA extraction was performed using the BindIt™ protocol “MagMax_Pathogen_High_Volume”.",
+      "assumed": true,
+      "note": "Plate layout and volumes from the MagMAX Pathogen user guide (high-volume layout)."
+    },
+    {
+      "kind": "transfer",
+      "source": "wash1_reservoir",
+      "source_wells": [],
+      "dest": "wash1_plate_2",
+      "dest_wells": [
+        "A1",
+        "A2:H2"
+      ],
+      "volume_ul": 300.0,
+      "reagent": "Wash Solution 1",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "automated RNA extraction was performed using the BindIt™ protocol “MagMax_Pathogen_High_Volume”.",
+      "assumed": true,
+      "note": "Second Wash 1 plate."
+    },
+    {
+      "kind": "transfer",
+      "source": "wash2_reservoir",
+      "source_wells": [],
+      "dest": "wash2_plate_1",
+      "dest_wells": [
+        "A1",
+        "A2:H2"
+      ],
+      "volume_ul": 450.0,
+      "reagent": "Wash Solution 2",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "automated RNA extraction was performed using the BindIt™ protocol “MagMax_Pathogen_High_Volume”.",
+      "assumed": true,
+      "note": "From the MagMAX Pathogen user guide."
+    },
+    {
+      "kind": "transfer",
+      "source": "wash2_reservoir",
+      "source_wells": [],
+      "dest": "wash2_plate_2",
+      "dest_wells": [
+        "A1",
+        "A2:H2"
+      ],
+      "volume_ul": 450.0,
+      "reagent": "Wash Solution 2",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "automated RNA extraction was performed using the BindIt™ protocol “MagMax_Pathogen_High_Volume”.",
+      "assumed": true,
+      "note": "Second Wash 2 plate."
+    },
+    {
+      "kind": "transfer",
+      "source": "elution_buffer_tube",
+      "source_wells": [],
+      "dest": "elution_plate",
+      "dest_wells": [
+        "A1",
+        "A2:H2"
+      ],
+      "volume_ul": 90.0,
+      "reagent": "Elution Buffer",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "automated RNA extraction was performed using the BindIt™ protocol “MagMax_Pathogen_High_Volume”.",
+      "assumed": true,
+      "note": "90 uL elution buffer from the user guide."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Load kf_sample_plate, wash1_plate_1/2, wash2_plate_1/2, elution_plate and tip_comb_plate (with tip comb) onto the KingFisher Flex and run the BindIt protocol MagMax_Pathogen_High_Volume as supplied by Thermo Fisher.",
+      "source_quote": "The sample plate was then loaded onto the KingFisher™ instrument, and automated RNA extraction was performed using the BindIt™ protocol “MagMax_Pathogen_High_Volume”.",
+      "assumed": false,
+      "note": "Script timings are not given in the paper."
+    },
+    {
+      "kind": "transfer",
+      "source": "master_mix_stock_tube",
+      "source_wells": [],
+      "dest": "pcr_mix_tube",
+      "dest_wells": [],
+      "volume_ul": 68.75,
+      "reagent": "TaqPath 1-Step Multiplex Master Mix (No ROX, 4X)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "5 μl of nucleic acid eluate was used for multiplex real-time RT-PCR test intended for the qualitative detection of nucleic acid for SARS-CoV-2 using the TaqPath™ COVID-19 CE-IVD RT-PCR kit",
+      "assumed": true,
+      "note": "6.25 uL per reaction x 11 (10 reactions + 10% overage), from the TaqPath IFU."
+    },
+    {
+      "kind": "transfer",
+      "source": "assay_stock_tube",
+      "source_wells": [],
+      "dest": "pcr_mix_tube",
+      "dest_wells": [],
+      "volume_ul": 13.75,
+      "reagent": "COVID-19 Real Time PCR Assay Multiplex",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "5 μl of nucleic acid eluate was used for multiplex real-time RT-PCR test intended for the qualitative detection of nucleic acid for SARS-CoV-2 using the TaqPath™ COVID-19 CE-IVD RT-PCR kit",
+      "assumed": true,
+      "note": "1.25 uL per reaction x 11."
+    },
+    {
+      "kind": "transfer",
+      "source": "water_tube",
+      "source_wells": [],
+      "dest": "pcr_mix_tube",
+      "dest_wells": [],
+      "volume_ul": 137.5,
+      "reagent": "Nuclease-free water",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "5 μl of nucleic acid eluate was used for multiplex real-time RT-PCR test intended for the qualitative detection of nucleic acid for SARS-CoV-2 using the TaqPath™ COVID-19 CE-IVD RT-PCR kit",
+      "assumed": true,
+      "note": "12.5 uL per reaction x 11."
+    },
+    {
+      "kind": "transfer",
+      "source": "dilution_buffer_tube",
+      "source_wells": [],
+      "dest": "control_dil1_tube",
+      "dest_wells": [],
+      "volume_ul": 98.0,
+      "reagent": "Dilution buffer",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "5 μl of nucleic acid eluate was used for multiplex real-time RT-PCR test",
+      "assumed": true,
+      "note": "First positive-control dilution per the TaqPath IFU."
+    },
+    {
+      "kind": "transfer",
+      "source": "control_stock_tube",
+      "source_wells": [],
+      "dest": "control_dil1_tube",
+      "dest_wells": [],
+      "volume_ul": 2.0,
+      "reagent": "TaqPath COVID-19 Control",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "5 μl of nucleic acid eluate was used for multiplex real-time RT-PCR test",
+      "assumed": true,
+      "note": "1x10^4 to 200 copies/uL."
+    },
+    {
+      "kind": "transfer",
+      "source": "dilution_buffer_tube",
+      "source_wells": [],
+      "dest": "control_dil2_tube",
+      "dest_wells": [],
+      "volume_ul": 87.5,
+      "reagent": "Dilution buffer",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "5 μl of nucleic acid eluate was used for multiplex real-time RT-PCR test",
+      "assumed": true,
+      "note": "Second dilution per the IFU."
+    },
+    {
+      "kind": "transfer",
+      "source": "control_dil1_tube",
+      "source_wells": [],
+      "dest": "control_dil2_tube",
+      "dest_wells": [],
+      "volume_ul": 12.5,
+      "reagent": "Positive control intermediate dilution",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "5 μl of nucleic acid eluate was used for multiplex real-time RT-PCR test",
+      "assumed": true,
+      "note": "Gives 25 copies/uL."
+    },
+    {
+      "kind": "transfer",
+      "source": "pcr_mix_tube",
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "A1:H1",
+        "A2:B2"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "RT-PCR reaction mix",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "5 μl of nucleic acid eluate was used for multiplex real-time RT-PCR test",
+      "assumed": true,
+      "note": "20 uL mix into 8 sample wells, the negative control well and the positive control well."
+    },
+    {
+      "kind": "transfer",
+      "source": "elution_plate",
+      "source_wells": [
+        "A2:H2"
+      ],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "A1:H1"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "RNA eluate (samples 1-8)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "5 μl of nucleic acid eluate was used for multiplex real-time RT-PCR test",
+      "assumed": false,
+      "note": "Paired in order."
+    },
+    {
+      "kind": "transfer",
+      "source": "elution_plate",
+      "source_wells": [
+        "A1"
+      ],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "A2"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "RNA eluate (extraction negative control, PBS)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "5 μl of nucleic acid eluate was used for multiplex real-time RT-PCR test",
+      "assumed": true,
+      "note": "Negative control from the IFU."
+    },
+    {
+      "kind": "transfer",
+      "source": "control_dil2_tube",
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "B2"
+      ],
+      "volume_ul": 2.0,
+      "reagent": "Positive control (25 copies/uL)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "5 μl of nucleic acid eluate was used for multiplex real-time RT-PCR test",
+      "assumed": true,
+      "note": "From the IFU."
+    },
+    {
+      "kind": "transfer",
+      "source": "water_tube",
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [
+        "B2"
+      ],
+      "volume_ul": 3.0,
+      "reagent": "Nuclease-free water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "5 μl of nucleic acid eluate was used for multiplex real-time RT-PCR test",
+      "assumed": true,
+      "note": "Makes up 25 uL in the positive control well."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal pcr_plate with MicroAmp Optical Adhesive Film, vortex 10-30 s, centrifuge 1-2 min at >=650 x g.",
+      "source_quote": "5 μl of nucleic acid eluate was used for multiplex real-time RT-PCR test",
+      "assumed": true,
+      "note": "From the TaqPath IFU."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "pcr_plate",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Run pcr_plate on the ABI 7500 Fast (ABY and JUN dyes calibrated): passive reference None, reaction volume 25 uL, FAM=ORF1ab, VIC=N, ABY=S, JUN=MS2; control wells as Standard/NTC, samples as Unknown. Cycling: 25 C 2 min, 53 C 10 min, 95 C 2 min, then 40 cycles of 95 C 3 s and 60 C 30 s. About 70 min.",
+      "source_quote": "6. the RT-PCR (ABI 7500 Fast thermocycler).",
+      "assumed": true,
+      "note": "Cycling from the TaqPath IFU."
+    }
+  ],
+  "assumptions": [
+    "Layout: lysis_plate A1:H1 = EQA samples 1-8; kf_sample_plate A1 = PBS negative control, A2:H2 = samples 1-8; pcr_plate A1:H1 = samples 1-8, A2 = extraction negative control, B2 = positive control.",
+    "Sample/LYS volumes: 250 uL EQA sample plus 250 uL Cobas omni LYS per sample (standard practice); the paper only states a 1:1 mix and 460 uL lysate transferred. EQA stock volume of 300 uL per sample is assumed.",
+    "Bead Master Mix: 20 uL bead mix (10 uL beads plus 10 uL ENHANCER, MagMAX Pathogen user guide) plus about 240 uL 100% isopropanol per well is an inference, not a verified value; prepared for 10 reactions.",
+    "Wash plate layout and volumes (Wash 1 300 uL x2 deep-well plates, Wash 2 450 uL x2 deep-well plates, 90 uL Elution Buffer in a standard plate, tip comb in a standard plate) are from the MagMAX Pathogen RNA/DNA user guide (https://documents.thermofisher.com/TFS-Assets/LSG/manuals/4463379_MM_Path_UG.pdf). Wash 1 contains 125 mL isopropanol added to the concentrate, and Wash 2 contains 232 mL ethanol added to each bottle (https://tools.thermofisher.com/content/sfs/manuals/4463379B.pdf). The KingFisher BindIt script MagMax_Pathogen_High_Volume is run as supplied; its timings are not stated.",
+    "RT-PCR mix (6.25 uL master mix, 1.25 uL assay, 12.5 uL water per reaction, 20 uL total plus 5 uL RNA = 25 uL), positive control dilution (2 uL into 98 uL, then 12.5 uL into 87.5 uL buffer; 2 uL plus 3 uL water per well), negative control (5 uL of extraction control), sealing/vortex/centrifuge and cycling conditions are from the TaqPath COVID-19 CE-IVD IFU (https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019215_TaqPathCOVID-19_CE-IVD_RT-PCR%20Kit_IFU.pdf). Mix is prepared for 11 reactions (10% overage). The IFU notes that inputs above 400 uL were not tested; the paper used 460 uL.",
+    "Dilution buffer for the positive control is assumed to be the kit's dilution buffer or nuclease-free water.",
+    "Comparator platform procedures (Flow Solution, Cobas 6800, Hamilton-Seegene) are in S1 File and are run per manufacturer's routine protocol.",
+    "The OT-2 labware placement, pipettes and tip handling (S2 File) are not given in the text; the pipetting steps are reconstructed from the stated volumes. Pipetting can be done by OT-2 P300/P1000 and P20 pipettes.",
+    "The eluate in elution_plate is generated by the KingFisher run; its volume (up to 90 uL) is not stated in the paper.",
+    "Positive/negative call interpretation (>=2 targets positive etc.) and Ct comparison are analysis and are not included as steps."
+  ]
+}

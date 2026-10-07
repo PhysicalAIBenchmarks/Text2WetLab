@@ -1,0 +1,27 @@
+[
+  {
+    "step": 12,
+    "severity": "error",
+    "message": "overnight1 A1 reaches 2005 µL, above plate_96_deep capacity 2000 µL"
+  },
+  {
+    "step": 13,
+    "severity": "error",
+    "message": "overnight2 A1 reaches 2005 µL, above plate_96_deep capacity 2000 µL"
+  },
+  {
+    "step": 14,
+    "severity": "error",
+    "message": "overnight3 A1 reaches 2005 µL, above plate_96_deep capacity 2000 µL"
+  },
+  {
+    "step": 15,
+    "severity": "error",
+    "message": "overnight4 A1 reaches 2005 µL, above plate_96_deep capacity 2000 µL"
+  },
+  {
+    "step": 16,
+    "severity": "error",
+    "message": "overnight5 A1 reaches 2005 µL, above plate_96_deep capacity 2000 µL"
+  }
+]

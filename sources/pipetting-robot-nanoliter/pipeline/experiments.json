@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Fluorescein dispensing characterization of the modified OT-2 sub-microliter liquid handling",
+    "goal": "Measure the accuracy and reproducibility of 5-500 nL fluorescein dispenses into buffer-filled wells, quantified by fluorescence against hand-pipetted standards.",
+    "section_refs": [
+      "s2.2",
+      "s2.3",
+      "s2.4"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s3.1",
+      "s3.2",
+      "s3.4"
+    ],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 5"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Autosampling LC-MS of HeLa digest with sample-loop overfilling versus underfilling",
+    "goal": "Demonstrate nanoLC-MS autosampling of 0.25-10 ng HeLa digest and compare protein and peptide identifications between overfilled and underfilled loop injections.",
+    "section_refs": [
+      "s2.2",
+      "s2.3",
+      "s2.5",
+      "s2.6",
+      "s2.7"
+    ],
+    "shared_refs": [
+      "s2.1",
+      "s2.8",
+      "s3.3",
+      "s3.5"
+    ],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 6"
+    ],
+    "liquid_handling": "partly"
+  }
+]

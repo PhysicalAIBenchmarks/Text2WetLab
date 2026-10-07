@@ -1,0 +1,60 @@
+{
+ "code": [],
+ "doi_primary": "10.1016/j.eimc.2021.01.014",
+ "dois": [
+  "10.1016/j.eimc.2021.01.014"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Resultados 3.2",
+   "id": "ot2-station-a",
+   "liquid_handling": "mostly",
+   "title": "OT-2 station A: lysis mix dispensing and extraction/reaction reagent dispensing"
+  },
+  {
+   "evidence": "Resultados 3.2",
+   "id": "ot2-station-b",
+   "liquid_handling": "mostly",
+   "title": "OT-2 station B: RNA extraction and 96-well RT-PCR plate preparation"
+  }
+ ],
+ "fulltext": {
+  "legends": 1,
+  "sections": 9,
+  "source": "europepmc:PMC7877244"
+ },
+ "journal": "",
+ "note": "OA but Europe PMC PDF blocked (403); Spanish full text has no code/repo statement; code on request/not stated.",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "bytes": 657430,
+  "licence": "",
+  "pages": 5,
+  "redistributable": "unknown",
+  "sha256": "4157f9d02168729b4ea2e02162b32cf3e83da3c3fcb535fffc0a37558e5976ce",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7877244?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7877244.1/PMC7877244.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7877244.1/PMC7877244.1.pdf"
+ },
+ "pmcid": "PMC7877244",
+ "slug": "covid-diagnostic-capacity-2021",
+ "title": "Optimization and adaptation of the diagnostic capacity for the performance of large volumes of SARS-CoV-2 RT-PCR",
+ "year": "2021"
+}

@@ -1,0 +1,74 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/ht-mic/suman921__HT-MIC",
+   "commit": "ea66fd5640ded7ea5831b419ef1f2b0e70a2d8e9",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "note": "Repo has no .py; contains Opentrons Protocol Designer JSON (Antiboitics.json, MIC test.json, OT-2 Standard), a Jupyter notebook and a docx of Python code. py_files/opentrons_py_files count .py only.",
+   "opentrons_py_files": 0,
+   "protocol_json_files": 2,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "suman921/HT-MIC",
+   "robot_mentions": [],
+   "size_kb": 56,
+   "status": "cloned",
+   "url": "https://github.com/suman921/HT-MIC"
+  }
+ ],
+ "doi_primary": "10.3389/fmicb.2023.1079033",
+ "dois": [
+  "10.3389/fmicb.2023.1079033"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Methods 3.1; Fig. 1B",
+   "id": "antibiotic-plates",
+   "liquid_handling": "mostly",
+   "title": "OT-2 serial-dilution preparation of antibiotic stock plates (Antiboitics.json)"
+  },
+  {
+   "evidence": "Methods 3.1-3.2; Fig. 1C",
+   "id": "mic-inoculation",
+   "liquid_handling": "mostly",
+   "title": "OT-2 transfer of 30 uL antibiotics and bacterial culture into 96-well plates for MIC testing (MIC test.json)"
+  }
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 16,
+  "source": "europepmc:PMC10249070"
+ },
+ "journal": "",
+ "note": "no README, no .py",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2263496,
+  "licence": "cc by",
+  "pages": 9,
+  "redistributable": "yes",
+  "sha256": "d56c54fd2274a1713ead835ed0813fbfb5002eafd24f029f733677c1dda950ab",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": true,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10249070.1/PMC10249070.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10249070.1/PMC10249070.1.pdf"
+ },
+ "pmcid": "PMC10249070",
+ "slug": "ht-mic",
+ "title": "Development of a high-throughput minimum inhibitory concentration (HT-MIC) testing workflow",
+ "year": "2023"
+}

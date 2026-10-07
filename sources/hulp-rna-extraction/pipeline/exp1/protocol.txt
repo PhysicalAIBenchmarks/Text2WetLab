@@ -1,0 +1,181 @@
+Extraction efficiency of MMkit, OT-2in-house and MMin-house protocols using spiked mock samples (TaqMan 2019-nCoV control)
+
+Containers:
+- ctrl_stock: 1.5 mL tube — TaqMan 2019-nCoV Control Kit v1 DNA positive control, 1x10^4 copies/uL
+- ctrl_1e3: 1.5 mL tube — Ten-fold dilution of control (1x10^3 copies/uL), 100 uL [assumed]
+- ctrl_1e2: 1.5 mL tube — Hundred-fold dilution of control (1x10^2 copies/uL), 100 uL [assumed]
+- water: 50 mL tube — Nuclease-free water (Ambion)
+- vtm: 50 mL tube — Viral transport medium (Deltalab)
+- gtc: 50 mL tube — 4 M guanidine isothiocyanate with 5 ug/mL carrier RNA
+- mock_plate: 96-deep-well plate (2 mL) — Mock samples (1000 uL each): A1:A3 standard, A4:A6 low, A7:A9 very-low, A10 negative control [assumed]
+- mmkit_beads: 1.5 mL tube — MagMAX CORE Magnetic Beads
+- mmkit_pk: 1.5 mL tube — MagMAX CORE Proteinase K
+- mmkit_lysis: 15 mL tube — MagMAX CORE Lysis Solution
+- mmkit_binding: 15 mL tube — MagMAX CORE Binding Solution
+- mmkit_wash1_stock: 15 mL tube — MagMAX CORE Wash Solution 1
+- mmkit_wash2_stock: 15 mL tube — MagMAX CORE Wash Solution 2
+- mmkit_eb_stock: 15 mL tube — MagMAX CORE Elution Buffer
+- mmkit_bead_pk: 1.5 mL tube — Beads/PK mix (20 uL beads + 10 uL PK per sample, +10% overage)
+- mmkit_lysis_binding: 15 mL tube — Lysis/Binding solution (350+350 uL per sample, +10% overage)
+- mmkit_sample_plate: 96-deep-well plate (2 mL) — MMkit sample deep-well plate
+- mmkit_wash1_plate: 96-deep-well plate (2 mL) — MMkit Wash Solution 1 deep-well plate
+- mmkit_wash2_plate: 96-deep-well plate (2 mL) — MMkit Wash Solution 2 deep-well plate
+- mmkit_elution_plate: 96-well plate — MagMAX Express 96 microtiter elution plate for MMkit; holds final eluate
+- beads_total: 1.5 mL tube — Mag-Bind TotalPure NGS magnetic beads (Omega Bio-Tek)
+- ipa: 15 mL tube — 2-Propanol absolute (Emsure)
+- etoh_abs: 50 mL tube — Absolute ethanol (Emsure)
+- etoh70: 50 mL tube — Freshly prepared 70% ethanol
+- omega_eb: 15 mL tube — Elution Buffer (Omega BIO-TEK)
+- mmin_sample_plate: 96-deep-well plate (2 mL) — MMin-house sample deep-well plate
+- mmin_wash1_plate: 96-deep-well plate (2 mL) — MMin-house 70% ethanol wash plate 1
+- mmin_wash2_plate: 96-deep-well plate (2 mL) — MMin-house 70% ethanol wash plate 2
+- mmin_elution_plate: 96-well plate — MagMAX Express 96 microtiter elution plate for MMin-house; holds final eluate
+- ot2_plate: 96-deep-well plate (2 mL) — OT-2in-house deep-well plate on GEN1 magnetic module
+- ot2_eluate: 96-well plate — 96-well microtiter plate receiving OT-2in-house eluate
+- waste: waste container — Liquid waste (supernatants, ethanol) [assumed]
+- taqpath_mm: 1.5 mL tube — TaqPath 1-Step RT-qPCR Master Mix, CG (4x) [assumed]
+- assay_orf1ab: 1.5 mL tube — TaqMan 2019-nCoV Assay ORF1ab (20x, FAM)
+- assay_s: 1.5 mL tube — TaqMan 2019-nCoV Assay S gene (20x, FAM)
+- assay_n: 1.5 mL tube — TaqMan 2019-nCoV Assay N gene (20x, FAM)
+- assay_rnasep: 1.5 mL tube — TaqMan RNase P assay (20x, VIC)
+- mix_orf1ab: 1.5 mL tube — qPCR master mix for ORF1ab/RNaseP duplex [assumed]
+- mix_s: 1.5 mL tube — qPCR master mix for S/RNaseP duplex [assumed]
+- mix_n: 1.5 mL tube — qPCR master mix for N/RNaseP duplex [assumed]
+- qpcr_orf1ab: 96-well plate — qPCR plate, ORF1ab assay [assumed]
+- qpcr_s: 96-well plate — qPCR plate, S assay [assumed]
+- qpcr_n: 96-well plate — qPCR plate, N assay [assumed]
+
+Starting contents:
+- ctrl_stock: stock TaqMan 2019-nCoV Control v1, 1e4 copies/uL
+- water: stock Nuclease-free water
+- vtm: stock Viral transport medium
+- gtc: stock 4 M GTC + 5 ug/mL carrier RNA
+- mmkit_beads: stock MagMAX CORE Magnetic Beads
+- mmkit_pk: stock MagMAX CORE Proteinase K
+- mmkit_lysis: stock MagMAX CORE Lysis Solution
+- mmkit_binding: stock MagMAX CORE Binding Solution
+- mmkit_wash1_stock: stock MagMAX CORE Wash Solution 1
+- mmkit_wash2_stock: stock MagMAX CORE Wash Solution 2
+- mmkit_eb_stock: stock MagMAX CORE Elution Buffer
+- beads_total: stock Mag-Bind TotalPure NGS beads
+- ipa: stock Isopropanol absolute
+- etoh_abs: stock Absolute ethanol
+- omega_eb: stock Omega Elution Buffer
+- taqpath_mm: stock TaqPath 1-Step RT-qPCR Master Mix, CG (4x) [assumed]
+- assay_orf1ab: stock TaqMan 2019-nCoV ORF1ab assay 20x
+- assay_s: stock TaqMan 2019-nCoV S assay 20x
+- assay_n: stock TaqMan 2019-nCoV N assay 20x
+- assay_rnasep: stock TaqMan RNase P assay 20x
+
+Steps:
+1. Transfer 90 µL of Nuclease-free water from water to ctrl_1e3. Note: Diluent assumed nuclease-free water [assumed]
+2. Transfer 10 µL of TaqMan 2019-nCoV Control v1 from ctrl_stock to ctrl_1e3, then mix 5 times. Note: 1e3 copies/uL [assumed]
+3. Transfer 90 µL of Nuclease-free water from water to ctrl_1e2. [assumed]
+4. Transfer 10 µL of Control 1e3 copies/uL from ctrl_1e3 to ctrl_1e2, then mix 5 times. Note: 1e2 copies/uL [assumed]
+5. Transfer 490 µL of Viral transport medium from vtm to mock_plate wells A1:A10 (each well). Note: A1:A3 standard, A4:A6 low, A7:A9 very-low, A10 negative
+6. Transfer 10 µL of Control 1e4 copies/uL from ctrl_stock to mock_plate wells A1:A3 (each well). Note: Standard load, triplicate
+7. Transfer 10 µL of Control 1e3 copies/uL from ctrl_1e3 to mock_plate wells A4:A6 (each well). Note: Low load, triplicate
+8. Transfer 10 µL of Control 1e2 copies/uL from ctrl_1e2 to mock_plate wells A7:A9 (each well). Note: Very-low load, triplicate
+9. Transfer 10 µL of Nuclease-free water from water to mock_plate well A10. Note: Negative control = VTM + GTC + water instead of control [assumed]
+10. Transfer 500 µL of 4 M GTC + carrier RNA from gtc to mock_plate wells A1:A10 (each well), then mix 5 times. Note: Mix volume 500 uL assumed
+11. MANUAL: Seal mock_plate, heat 2 min at 80 °C, short vortex, unseal. Note: Applied to mock samples by assumption (same as clinical samples) [assumed]
+12. Transfer 220 µL of MagMAX CORE Magnetic Beads from mmkit_beads to mmkit_bead_pk. Note: 20 uL x 10 samples + 10% overage [assumed]
+13. Transfer 110 µL of MagMAX CORE Proteinase K from mmkit_pk to mmkit_bead_pk. Note: 10 uL x 10 samples + 10% overage [assumed]
+14. MANUAL: Vortex mmkit_bead_pk to resuspend. Note: Per kit manual [assumed]
+15. Transfer 3850 µL of MagMAX CORE Lysis Solution from mmkit_lysis to mmkit_lysis_binding. Note: Kit manual: 350 uL per sample (700 uL total per Table 1) x 10 + 10% overage [assumed]
+16. Transfer 3850 µL of MagMAX CORE Binding Solution from mmkit_binding to mmkit_lysis_binding. Note: 350 uL per sample per kit manual [assumed]
+17. MANUAL: Invert mmkit_lysis_binding at least 10 times. Note: Per kit manual [assumed]
+18. Transfer 500 µL of MagMAX CORE Wash Solution 1 from mmkit_wash1_stock to mmkit_wash1_plate wells A1:A10 (each well).
+19. Transfer 500 µL of MagMAX CORE Wash Solution 2 from mmkit_wash2_stock to mmkit_wash2_plate wells A1:A10 (each well).
+20. Transfer 90 µL of MagMAX CORE Elution Buffer from mmkit_eb_stock to mmkit_elution_plate wells A1:A10 (each well).
+21. Transfer 30 µL of Beads/PK mix from mmkit_bead_pk to mmkit_sample_plate wells A1:A10 (each well).
+22. Transfer 200 µL of Mock sample from mock_plate wells A1:A10 to mmkit_sample_plate wells A1:A10 (each well).
+23. Transfer 700 µL of Lysis/Binding solution from mmkit_lysis_binding to mmkit_sample_plate wells A1:A10 (each well).
+24. MANUAL: Load mmkit_sample_plate, mmkit_wash1_plate, mmkit_wash2_plate, mmkit_elution_plate and tip comb in the KingFisher MagMAX Express-96; run script MagMAX_CORE_KF-96 with default vendor settings; store eluate on ice for immediate qPCR. Note: Script parameters not given in the paper; vendor defaults assumed
+25. Transfer 17500 µL of Absolute ethanol from etoh_abs to etoh70. Note: 25 mL of 70% v/v; enough for MMin-house and OT-2 washes [assumed]
+26. Transfer 7500 µL of Nuclease-free water from water to etoh70. [assumed]
+27. MANUAL: Invert etoh70 tube to mix; prepare fresh on the day. [assumed]
+28. Transfer 500 µL of Ethanol 70% from etoh70 to mmin_wash1_plate wells A1:A10 (each well).
+29. Transfer 500 µL of Ethanol 70% from etoh70 to mmin_wash2_plate wells A1:A10 (each well).
+30. Transfer 90 µL of Omega Elution Buffer from omega_eb to mmin_elution_plate wells A1:A10 (each well).
+31. Transfer 40 µL of Mag-Bind TotalPure NGS beads from beads_total to mmin_sample_plate wells A1:A10 (each well).
+32. Transfer 500 µL of Isopropanol from ipa to mmin_sample_plate wells A1:A10 (each well).
+33. Transfer 500 µL of Mock sample from mock_plate wells A1:A10 to mmin_sample_plate wells A1:A10 (each well).
+34. MANUAL: Load mmin_sample_plate, mmin_wash1_plate, mmin_wash2_plate, mmin_elution_plate and tip comb in the KingFisher MagMAX Express-96; run script MagMAX_CORE_KF-96 (same as MMkit).
+35. Transfer 40 µL of Mag-Bind TotalPure NGS beads from beads_total to ot2_plate wells A1:A10 (each well).
+36. Transfer 250 µL of Isopropanol from ipa to ot2_plate wells A1:A10 (each well).
+37. Transfer 250 µL of Mock sample from mock_plate wells A1:A10 to ot2_plate wells A1:A10 (each well).
+38. Mix ot2_plate wells A1:A10 by pipetting 200 µL up and down 5 times. Note: Mix volume 200 uL assumed [assumed]
+39. MANUAL: Incubate ot2_plate 5 min at room temperature.
+40. MANUAL: Engage GEN1 magnetic module for 4 min.
+41. Transfer 540 µL of Supernatant from ot2_plate wells A1:A10 to waste. Note: 540 uL = total volume added; magnet engaged [assumed]
+42. Transfer 500 µL of Ethanol 70% from etoh70 to ot2_plate wells A1:A10 (each well). Note: Wash 1
+43. Transfer 500 µL of Ethanol 70% wash from ot2_plate wells A1:A10 to waste.
+44. Transfer 500 µL of Ethanol 70% from etoh70 to ot2_plate wells A1:A10 (each well). Note: Wash 2
+45. Transfer 500 µL of Ethanol 70% wash from ot2_plate wells A1:A10 to waste.
+46. MANUAL: Air dry beads 4 min at room temperature, then turn off the GEN1 magnetic module.
+47. Transfer 100 µL of Omega Elution Buffer from omega_eb to ot2_plate wells A1:A10 (each well), then mix 5 times. Note: Resuspension by pipetting 5x assumed [assumed]
+48. MANUAL: Wait 30 sec, turn on GEN1 magnetic module, wait 90 sec.
+49. Transfer 100 µL of Eluate from ot2_plate wells A1:A10 to ot2_eluate wells A1:A10 (each well). Note: Full 100 uL assumed collected [assumed]
+50. Transfer 237.5 µL of TaqPath 4x Master Mix from taqpath_mm to mix_orf1ab. Note: 6.25 uL x 38 reactions (34 + 10% overage) [assumed]
+51. Transfer 47.5 µL of ORF1ab assay 20x from assay_orf1ab to mix_orf1ab. Note: 1.25 uL x 38 [assumed]
+52. Transfer 47.5 µL of RNase P assay 20x from assay_rnasep to mix_orf1ab. Note: 1.25 uL x 38 [assumed]
+53. Transfer 427.5 µL of Water from water to mix_orf1ab, then mix 5 times. Note: 11.25 uL x 38; mix volume 300 uL [assumed]
+54. Transfer 20 µL of ORF1ab/RNaseP master mix from mix_orf1ab to qpcr_orf1ab wells A1:C10 (each well). Note: Layout: row A MMkit, row B MMin-house, row C OT-2in-house; D1:D3 control reference, D4 NTC [assumed]
+55. Transfer 20 µL of ORF1ab/RNaseP master mix from mix_orf1ab to qpcr_orf1ab wells D1:D4 (each well). [assumed]
+56. Transfer 5 µL of MMkit eluate from mmkit_elution_plate wells A1:A10 to qpcr_orf1ab wells A1:A10 (each well). Note: Dispensed to a 96-well plate instead of strips [assumed]
+57. Transfer 5 µL of MMin-house eluate from mmin_elution_plate wells A1:A10 to qpcr_orf1ab wells B1:B10 (each well). [assumed]
+58. Transfer 5 µL of OT-2in-house eluate from ot2_eluate wells A1:A10 to qpcr_orf1ab wells C1:C10 (each well). [assumed]
+59. Transfer 1 µL of Control 1e4 copies/uL from ctrl_stock to qpcr_orf1ab well D1. Note: Reference (Ctpc) [assumed]
+60. Transfer 1 µL of Control 1e3 copies/uL from ctrl_1e3 to qpcr_orf1ab well D2. [assumed]
+61. Transfer 1 µL of Control 1e2 copies/uL from ctrl_1e2 to qpcr_orf1ab well D3. [assumed]
+62. Transfer 4 µL of Water from water to qpcr_orf1ab wells D1:D3 (each well). Note: Control wells total 5 uL template [assumed]
+63. Transfer 5 µL of Water (NTC) from water to qpcr_orf1ab well D4. Note: No-template control [assumed]
+64. Transfer 237.5 µL of TaqPath 4x Master Mix from taqpath_mm to mix_s. [assumed]
+65. Transfer 47.5 µL of S assay 20x from assay_s to mix_s. [assumed]
+66. Transfer 47.5 µL of RNase P assay 20x from assay_rnasep to mix_s. [assumed]
+67. Transfer 427.5 µL of Water from water to mix_s, then mix 5 times. Note: Mix volume 300 uL [assumed]
+68. Transfer 20 µL of S/RNaseP master mix from mix_s to qpcr_s wells A1:C10 (each well). [assumed]
+69. Transfer 20 µL of S/RNaseP master mix from mix_s to qpcr_s wells D1:D4 (each well). [assumed]
+70. Transfer 5 µL of MMkit eluate from mmkit_elution_plate wells A1:A10 to qpcr_s wells A1:A10 (each well). [assumed]
+71. Transfer 5 µL of MMin-house eluate from mmin_elution_plate wells A1:A10 to qpcr_s wells B1:B10 (each well). [assumed]
+72. Transfer 5 µL of OT-2in-house eluate from ot2_eluate wells A1:A10 to qpcr_s wells C1:C10 (each well). [assumed]
+73. Transfer 1 µL of Control 1e4 copies/uL from ctrl_stock to qpcr_s well D1. [assumed]
+74. Transfer 1 µL of Control 1e3 copies/uL from ctrl_1e3 to qpcr_s well D2. [assumed]
+75. Transfer 1 µL of Control 1e2 copies/uL from ctrl_1e2 to qpcr_s well D3. [assumed]
+76. Transfer 4 µL of Water from water to qpcr_s wells D1:D3 (each well). [assumed]
+77. Transfer 5 µL of Water (NTC) from water to qpcr_s well D4. [assumed]
+78. Transfer 237.5 µL of TaqPath 4x Master Mix from taqpath_mm to mix_n. [assumed]
+79. Transfer 47.5 µL of N assay 20x from assay_n to mix_n. [assumed]
+80. Transfer 47.5 µL of RNase P assay 20x from assay_rnasep to mix_n. [assumed]
+81. Transfer 427.5 µL of Water from water to mix_n, then mix 5 times. Note: Mix volume 300 uL [assumed]
+82. Transfer 20 µL of N/RNaseP master mix from mix_n to qpcr_n wells A1:C10 (each well). [assumed]
+83. Transfer 20 µL of N/RNaseP master mix from mix_n to qpcr_n wells D1:D4 (each well). [assumed]
+84. Transfer 5 µL of MMkit eluate from mmkit_elution_plate wells A1:A10 to qpcr_n wells A1:A10 (each well). [assumed]
+85. Transfer 5 µL of MMin-house eluate from mmin_elution_plate wells A1:A10 to qpcr_n wells B1:B10 (each well). [assumed]
+86. Transfer 5 µL of OT-2in-house eluate from ot2_eluate wells A1:A10 to qpcr_n wells C1:C10 (each well). [assumed]
+87. Transfer 1 µL of Control 1e4 copies/uL from ctrl_stock to qpcr_n well D1. [assumed]
+88. Transfer 1 µL of Control 1e3 copies/uL from ctrl_1e3 to qpcr_n well D2. [assumed]
+89. Transfer 1 µL of Control 1e2 copies/uL from ctrl_1e2 to qpcr_n well D3. [assumed]
+90. Transfer 4 µL of Water from water to qpcr_n wells D1:D3 (each well). [assumed]
+91. Transfer 5 µL of Water (NTC) from water to qpcr_n well D4. [assumed]
+92. MANUAL: Seal qpcr_orf1ab, qpcr_s and qpcr_n, briefly centrifuge, run on CFX96 Touch: 25 °C 2 min, 50 °C 15 min, 95 °C 2 min, then 40 cycles of 95 °C 3 s and 60 °C 30 s; read FAM (target) and VIC (RNase P). Note: Cycling from the TaqMan 2019-nCoV Assay Kit v1 manual for TaqPath 1-Step master mix [assumed]
+
+Assumptions:
+- Mock samples laid out in deep-well plate mock_plate: A1:A3 standard, A4:A6 low, A7:A9 very-low, A10 negative control (VTM + GTC + water, no control DNA). One 1000 uL mock well per replicate supplies all three methods (200 + 250 + 500 uL).
+- The same mock sample layout (A1:A10) is used in every method plate and eluate plate. qPCR plates: row A MMkit, row B MMin-house, row C OT-2in-house (columns 1-10); D1:D3 control reference (1e4, 1e3, 1e2 copies/uL), D4 NTC.
+- Ten-fold serial dilutions of the control (ctrl_1e3, ctrl_1e2) were made in nuclease-free water (diluent not stated in paper).
+- The paper's arithmetic (10 uL x 1e4 copies/uL in 1 mL) gives 1e5 copies/mL, not the stated 1e6 copies/mL; the stated procedure was followed and efficiency should use actual copies added.
+- Mock samples receive the same GTC (with 5 ug/mL carrier RNA), 80 °C 2 min and short vortex as clinical samples; mock plate mix volume 500 uL x 5 cycles assumed.
+- MMkit Lysis/Binding: paper text says 300+300 uL but Table 1 says 700 uL; used 350 uL Lysis + 350 uL Binding per sample from the MagMAX CORE user guide (MAN0015944). Beads/PK mix 20+10 uL per sample with 10% overage; kit volumes (30 uL beads/PK, 200 uL sample, 700 uL lysis/binding, 500 uL washes, 90 uL elution) follow the guide and Table 1.
+- KingFisher script MagMAX_CORE_KF-96 run with default vendor settings (times, mixing, heating not given); identical script for MMkit and MMin-house. Tip comb and plate loading order per vendor guide.
+- 70% ethanol prepared fresh as 17.5 mL absolute ethanol + 7.5 mL water (25 mL; ~20 mL needed for both in-house arms).
+- OT-2 parameters not given in paper (pipette/tip type, rates, heights, magnet height): assumed default Opentrons P300/P1000 settings; mix volume 200 uL; supernatant removal 540 uL; bead resuspension in elution buffer by pipetting 5x; eluate transfer volume 100 uL; the authors' GitHub scripts were not used.
+- OT-2in-house run on deep-well plate on the GEN1 magnetic module; eluate transferred to a standard 96-well plate.
+- Reagents in stocks (ctrl_stock, VTM, GTC, kit reagents, beads, IPA, etc.) assumed to be in ample volume (volume null).
+- qPCR master mix not named in paper: TaqPath 1-Step RT-qPCR Master Mix, CG assumed; per reaction 6.25 uL 4x mix + 1.25 uL 2019-nCoV assay + 1.25 uL RNase P assay + 11.25 uL water + 5 uL template = 25 uL, with 10% overage (38 reactions per assay) per TaqMan 2019-nCoV Assay Kit v1 manual (MAN0019096). Each of the ORF1ab, S and N assays is run in duplex with RNase P on its own plate.
+- Cycling conditions from MAN0019096 for TaqPath 1-Step master mix (25 °C 2 min; 50 °C 15 min; 95 °C 2 min; 40 x 95 °C 3 s / 60 °C 30 s). Positive call Ct < 37 and auto baseline / fixed threshold per target on CFX Maestro are analysis-side assumptions.
+- Reference (Ctpc) wells: 1 uL of control stock or dilution + 4 uL water per well, run once per plate; expected copies are to be corrected afterwards for each method's input volume (200, 250, 500 uL) and elution volume (90 or 100 uL). Replicates of reference wells not stated.
+- Eluate dispensed into a qPCR 96-well plate (5 uL) instead of strips, by OT-2 or by hand; the paper used qPCR strips with another OT-2 module.
+- Waste container used for discarded supernatant and ethanol; waste transfers use no destination wells.
+- Tubes for beads/PK, lysis/binding, ethanol and qPCR mixes are assumed containers; deep-well plate capacity (2000 uL) suffices for the largest well volume (1040 uL).

@@ -1,0 +1,70 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the reagents, volumes, bead and elution steps and incubation and drying times for all three extractions, and the mock-sample preparation. The MMkit procedure and the qPCR reaction setup and cycling were recovered from the Thermo Fisher manuals. What remains (robot liquid-handling parameters, KingFisher script timings, qPCR master mix choice, diluent and the Ctpc reference preparation) has defensible defaults. One inconsistency needs flagging: the stated mock viral load (1×10^6 copies/mL) does not match the stated dilution.",
+  "gaps": [
+    {
+      "detail": "MMkit Lysis/Binding Solution composition per sample (paper text says 300 µL Lysis + 300 µL Binding; Table 1 says 700 µL total)",
+      "why_needed": "Sets the correct reagent volumes for the commercial-kit arm that the in-house protocols are benchmarked against",
+      "status": "resolved",
+      "resolution": "The manual's Simple Workflow uses 350 µL Lysis Solution + 350 µL Binding Solution = 700 µL per sample. This matches Table 1's 700 µL and the paper's 200 µL sample. Use 350+350. Other kit volumes: 20 µL beads + 10 µL Proteinase K (30 µL Bead/PK Mix, prepared with 10% overage); Wash 1 and Wash 2 500 µL each in deep-well plates; Elution Buffer 90 µL.",
+      "source": "https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0015944_MagMAXCORE_NA_Kit_UG.pdf"
+    },
+    {
+      "detail": "KingFisher MagMAX Express-96 script 'MagMAX_CORE_KF-96': bead collection, wash and elution times, mixing speeds and heating",
+      "why_needed": "Defines the automated binding, wash and elution timing for MMkit and MMin-house",
+      "status": "assumable",
+      "resolution": "Use the vendor MagMAX_CORE script supplied with the kit for the KingFisher instrument, with default vendor settings. The current manual lists MagMAX_CORE_Flex_Express.bdz for Flex but no longer covers the Express-96. Run the identical script for MMkit and MMin-house so the arms are comparable.",
+      "source": "standard practice; https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0015944_MagMAXCORE_NA_Kit_UG.pdf"
+    },
+    {
+      "detail": "OT-2 liquid-handling parameters: pipette and tip type, mix volume, aspiration and dispense rates, tip heights, magnet engage height, time for beads to settle before removing supernatant, plate type, and whether the elution is mixed",
+      "why_needed": "These are needed to reproduce bead recovery on the robot",
+      "status": "assumable",
+      "resolution": "The paper gives: 40 µL beads + 250 µL isopropanol + 250 µL sample in a deep-well plate; mix by pipetting 5×; 5 min at room temperature; magnet on for 4 min; remove and discard supernatant; two washes with 500 µL of 70% ethanol (each removed and discarded); air-dry 4 min; magnet off; add 100 µL Elution Buffer; 30 sec; magnet on; after 90 sec transfer the supernatant to a 96-well plate. Assume default Opentrons P300/P1000 settings: mix volume of about 200 µL, slow aspiration near the bottom of the well, and mixing of beads in the elution buffer by pipetting 5×. The paper's own deposited scripts were deliberately not used.",
+      "source": "standard practice; paper s2.3"
+    },
+    {
+      "detail": "Mock-sample concentration inconsistency and diluent for the ten-fold dilutions",
+      "why_needed": "Defines the input copy number for the standard, low and very-low samples and the extraction efficiency reference",
+      "status": "assumable",
+      "resolution": "The paper's own arithmetic gives 10 µL × 1×10^4 copies/µL = 1×10^5 copies in 1 mL, i.e. 1×10^5 copies/mL, not the stated 1×10^6. Follow the stated procedure: 10 µL control (or its ten-fold dilution) + 490 µL VTM + 500 µL 4 M GTC, in triplicate, with negative controls (VTM + GTC with no control). Dilute the control ten-fold in nuclease-free water. Process each mock sample identically in all three methods. Report the discrepancy and base efficiency on actual copies added.",
+      "source": "standard practice; paper s2.4"
+    },
+    {
+      "detail": "Whether the mock samples receive the same inactivation (carrier RNA 5 µg/mL in GTC; 80°C for 2 min; short vortex) as clinical samples",
+      "why_needed": "Pre-treatment may affect extraction recovery",
+      "status": "assumable",
+      "resolution": "Apply the same GTC (with 5 µg/mL carrier RNA), 2 min at 80°C and short vortex used for clinical samples (s2.1), since the mock mix already contains the GTC.",
+      "source": "standard practice; paper s2.1"
+    },
+    {
+      "detail": "Reference (Ctpc) preparation: how the positive control was prepared directly from stock and corrected for dilution factor and input sample",
+      "why_needed": "Needed to calculate extraction efficiency R = 2^-(Ctss-Ctpc)",
+      "status": "assumable",
+      "resolution": "Run the undiluted or diluted control stock directly in qPCR. Use 1 µL control + 4 µL water for the 5 µL template, per the manual. Adjust the expected copies per reaction for each method's input volume (200, 250 or 500 µL of sample) and elution volume (90 or 100 µL) when computing the ΔCt reference.",
+      "source": "https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019096_TaqMan2019nCoVAssayKit_PI.pdf; standard practice"
+    },
+    {
+      "detail": "qPCR master mix identity (not named in the paper)",
+      "why_needed": "Determines the reaction composition and cycling program",
+      "status": "assumable",
+      "resolution": "The manufacturer manual allows either TaqPath 1-Step RT-qPCR Master Mix, CG (A15299/A15300) or TaqMan Fast Virus 1-Step Master Mix (4444432/4/6). Use TaqPath 1-Step RT-qPCR Master Mix, CG with the matching thermal protocol below.",
+      "source": "https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019096_TaqMan2019nCoVAssayKit_PI.pdf"
+    },
+    {
+      "detail": "qPCR reaction setup and cycling conditions ('recommended by the manufacturer')",
+      "why_needed": "Needed to run the qPCR on the extracts",
+      "status": "resolved",
+      "resolution": "See retrieved_details for the reaction mix and thermal protocol. Run each of the three 2019-nCoV assays (ORF1ab, S, N) in duplex with RNase P, with one control and one NTC per assay per plate.",
+      "source": "https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019096_TaqMan2019nCoVAssayKit_PI.pdf"
+    },
+    {
+      "detail": "qPCR analysis settings on the Bio-Rad CFX96 (baseline and threshold) and automated transfer of eluate to qPCR strips",
+      "why_needed": "Ct values depend on threshold setting",
+      "status": "assumable",
+      "resolution": "The manual specifies Auto Baseline and Auto Threshold (written for Thermo software). On CFX Maestro use auto baseline and one fixed threshold per target across all samples and methods. Dispense 5 µL eluate per well with the OT-2 or by hand.",
+      "source": "standard practice"
+    }
+  ],
+  "retrieved_details": "MMkit (MagMAX CORE user guide, Simple Workflow; https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0015944_MagMAXCORE_NA_Kit_UG.pdf): processing plates are Wash Plate 1 (deep-well, 500 µL Wash Solution 1), Wash Plate 2 (deep-well, 500 µL Wash Solution 2), Elution plate (standard, 90 µL Elution Buffer) and a tip comb. Bead/PK Mix per sample is 20 µL beads + 10 µL Proteinase K = 30 µL (vortex beads first; +10% overage). Lysis/Binding Solution per sample is 350 µL Lysis + 350 µL Binding = 700 µL; invert at least 10×. Add 30 µL Bead/PK Mix to wells, then 200 µL sample (the guide's volume for swab, plasma and serum samples), then the 700 µL Lysis/Binding Solution. Select the MagMAX_CORE script on the instrument, start the run and load plates when prompted. Store the eluate on ice for immediate use, at -20°C up to 1 month, or at -80°C for long term. Express-96 is no longer in the current guide; the paper ran MagMAX_CORE_KF-96.\n\nPaper-stated in-house conditions (s2.2, s2.3): MMin-house uses 500 µL sample + 500 µL isopropanol + 40 µL Mag-Bind TotalPure NGS beads in a deep-well plate, two deep-well plates with 500 µL 70% ethanol each, and 90 µL Omega Elution Buffer in a MagMAX Express-96 plate, run with the same script. OT-2in-house uses 250 µL sample + 250 µL isopropanol + 40 µL beads; pipette-mix 5×; 5 min at room temperature; magnet 4 min; two 500 µL 70% ethanol washes; air-dry 4 min; 100 µL elution buffer; 30 sec; magnet 90 sec; transfer the eluate. Use freshly prepared 70% ethanol.\n\nqPCR (TaqMan 2019-nCoV Assay Kit v1 PIS MAN0019096; https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019096_TaqMan2019nCoVAssayKit_PI.pdf): per reaction, 6.25 µL 4× Master Mix + 1.25 µL 2019-nCoV assay (20×) + 1.25 µL RNase P assay (20×) + 11.25 µL RT-PCR grade water = 20 µL, plus 5 µL sample (+10% overage on the mix). Total volume is 25 µL. Control reaction: 1 µL 2019-nCoV Control v1 + 4 µL water. Also run one NTC per assay per plate. Thermal protocol for TaqPath 1-Step RT-qPCR Master Mix, CG: UNG 25°C 2 min; RT 50°C 15 min; activation 95°C 2 min; then 40 cycles of 95°C 3 s and 60°C 30 s. For TaqMan Fast Virus 1-Step Master Mix: 50°C 5 min; 95°C 20 s; 40 cycles of 95°C 3 s and 60°C 30 s. The assays are FAM (ORF1ab, S, N) and VIC (RNase P); expected control Ct is 30 or below and NTC is Undetermined. Assay positive call is Ct < 37.\n\nMock samples (paper s2.4): the TaqMan 2019-nCoV Control Kit v1 is at 1×10^4 copies/µL. Standard sample is 10 µL control + 490 µL VTM + 500 µL GTC; low and very-low use ten-fold serial dilutions of the control. All were made in triplicate with negative controls in every run. Efficiency R = 2^-(Ctss-Ctpc)."
+}

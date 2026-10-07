@@ -1,0 +1,7 @@
+[
+  {
+    "step": 27,
+    "severity": "error",
+    "message": "withdraws more than assembly_plate A1 holds (short by 0.5 µL)"
+  }
+]

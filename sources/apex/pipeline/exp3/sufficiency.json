@@ -1,0 +1,91 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper and its figure legends give the key biology: Hanahan competent cells, the default heat-shock program, low-volume transformation volumes, 5 µl spotting, 1.33 mM L-arabinose at OD600 about 0.2, and the plate-reader settings. The deferred details are mostly mechanical or routine culture settings, which I covered with defaults or retrieved values. These are spiral geometry, spotting height, overnight culture conditions, culture volumes and dilution factors. None of them is likely to change what the experiment measures, so no gap is blocking. I did not use Supplementary File 1 or the APEX code, as instructed, and I did not fetch the other cited references or kit manuals.",
+  "gaps": [
+    {
+      "detail": "Antibiotic and concentration for the sfGFP plasmid (pJKR-H-araC, pEX05) in agar and liquid media",
+      "why_needed": "Selection of transformants on agar and in overnight culture",
+      "status": "resolved",
+      "resolution": "pJKR-H-araC is ampicillin-resistant (pUC backbone). The paper lists carbenicillin at 100 µg/ml, so use LB agar and LB with 100 µg/ml carbenicillin. The paper's antibiotic list is garbled but the first value is carbenicillin 100 µg/ml. The positive-control plasmid pEX01 and its antibiotic are in an image-only table, so assume it is also carbenicillin-resistant (pUC19-like).",
+      "source": "https://www.addgene.org/62563/ ; s4.1"
+    },
+    {
+      "detail": "Transformation volumes (cells, DNA, SOC) for BL21(DE3) in Protocol 1",
+      "why_needed": "Defines the transformation reaction and the liquid-handling volumes",
+      "status": "assumable",
+      "resolution": "Use the low-volume (LV) configuration from the Fig. 4 legend: 10 µl competent cells, 1 µl DNA at 1.5×10^-4 pmol, 50 µl SOC. Run 4 °C for 30 min, 42 °C for 30 s, then recover at 37 °C for 1 h (defaults in s2.2). The paper does not state that Fig. 5 used these exact volumes.",
+      "source": "Fig. 4 legend; s2.2"
+    },
+    {
+      "detail": "Competent-cell wash buffer and wash steps in the Hanahan preparation",
+      "why_needed": "Reproducing the competent cells for BL21(DE3)",
+      "status": "assumable",
+      "resolution": "Grow 5 ml overnight culture, then 1:100 into 50 ml LB at 37 °C and 300 rpm to OD600 0.4. Chill on ice for 20 min and spin at 4000 ×g, 4 °C, 10 min. Resuspend in 2 ml of 0.1 M CaCl2 with 15% glycerol and store at −80 °C. Any wash is assumed to use ice-cold 0.1 M CaCl2. Alternatively use commercial Thermo BL21(DE3) cells, which the paper lists as the strain source.",
+      "source": "s4.2; standard practice"
+    },
+    {
+      "detail": "Agar plate type, agar volume or weight, and spotting layout for Fig. 5",
+      "why_needed": "The agar height is calculated from plate area, weight and density, and this sets the dispense and pierce heights",
+      "status": "assumable",
+      "resolution": "Use the Thermo Nunc OmniTray (8×12 grid), 1.5% LB agar with 100 µg/ml carbenicillin, with columns 1–8 as sfGFP spots and column 9 as the pEX01 control. Use agar density 0.911 g/cm³ for rectangular plates (0.954 g/cm³ for round). Agar height is (plate+agar weight − empty plate weight) / (base area × density). Pour a standard volume (about 30–35 ml, assumed) and weigh each plate.",
+      "source": "s2.3; Fig. 2a; Fig. 5 legend; standard practice"
+    },
+    {
+      "detail": "Spotting volume and cell dilution for Protocol 2",
+      "why_needed": "Sets colony density, the high-density versus low-density comparison",
+      "status": "resolved",
+      "resolution": "Spot 5 µl of transformation per spot. Spot undiluted for high density (columns 1–4) and dilute 5-fold for low density (columns 5–8). The diluent is not stated, so assume LB or SOC.",
+      "source": "s4.3; Fig. 5 legend"
+    },
+    {
+      "detail": "Spotting height above the agar surface",
+      "why_needed": "The pipette tip must dispense onto the agar surface",
+      "status": "assumable",
+      "resolution": "The paper says this is an adjustable offset relative to the calculated agar height. Assume a small positive offset of about 1–2 mm above the agar surface. Dispense slowly, then let the spots dry before moving the plate.",
+      "source": "s2.3; standard practice"
+    },
+    {
+      "detail": "Spiral and single-pierce sampling geometry (radius, number of points, rotations, pierce depth, speed)",
+      "why_needed": "Instrument settings that determine whether colonies are picked successfully",
+      "status": "assumable",
+      "resolution": "Single pierce: lower the tip to the spot centre and just into the agar, then withdraw. Spiral: start at the spot centre and trace outward with a radius within the spot (about 1–2 mm), about 2–3 rotations and about 8–16 points. Move slowly and keep the tip just below the agar surface. Use a fresh tip per spot. Pierce high-density spots (columns 1–4) and spiral low-density spots (columns 5–8), as in Fig. 5b.",
+      "source": "s2.4; Fig. 2c-d; standard practice"
+    },
+    {
+      "detail": "Overnight culture conditions after sampling: medium volume, plate, temperature, time, shaking",
+      "why_needed": "Sets the cell density and physiological state before induction",
+      "status": "assumable",
+      "resolution": "After sampling, mix the tip into LB with 100 µg/ml carbenicillin in a 96 deep-well plate. The volume is assumed to be 0.5–1 ml per well. Seal with a gas-permeable membrane and grow overnight (about 16–18 h) at 37 °C with vigorous shaking (assumed 200–250 rpm for a deep-well plate, or higher). The paper only says 'overnight culturing' and shows OD600 of overnight cultures in Fig. 5b.",
+      "source": "s2.4; s2.5; Fig. 5b; standard practice"
+    },
+    {
+      "detail": "Subculture dilution factor and growth time to reach OD600 about 0.2",
+      "why_needed": "Induction must occur at the stated OD, so a growth step is needed before it",
+      "status": "assumable",
+      "resolution": "Back-dilute the overnight culture into fresh LB with carbenicillin, for example to OD600 about 0.05–0.1 (about 1:50–1:100). Grow at 37 °C with shaking until OD600 is about 0.2, checking OD600 by manual read or the Protocol 7 OD preparation. The paper states only 'diluted and grown to an OD600 of approximately 0.2'. The related expression experiment (s4.5) back-dilutes to OD600 0.1.",
+      "source": "s4.4; s4.5; standard practice"
+    },
+    {
+      "detail": "L-arabinose stock concentration and volume added",
+      "why_needed": "Liquid-handling volume for inducing at 1.33 mM final",
+      "status": "assumable",
+      "resolution": "Final concentration is 1.33 mM (s4.4). Make a concentrated sterile L-arabinose stock (for example 100–200 mM) and add a small volume to give 1.33 mM final. Column 9 gets no inducer as the negative control.",
+      "source": "s4.4; Fig. 5c; standard practice"
+    },
+    {
+      "detail": "Plate-reader measurement setup",
+      "why_needed": "Reproducing the OD600 and fluorescence readout",
+      "status": "resolved",
+      "resolution": "Transfer 150 µl of culture to a clear-bottom black 96-well plate. Read in a Varioskan LUX at 37 °C with shaking at 960 rpm (high). Measure OD600 and sfGFP fluorescence (excitation 485 nm, emission 528 nm) every 10 min for 4 h (240 min). Report AFU/OD600.",
+      "source": "s4.4; Fig. 5c"
+    },
+    {
+      "detail": "Dilution of overnight cultures for OD600 readout in Fig. 5b",
+      "why_needed": "Reading overnight cultures within the linear range of the plate reader",
+      "status": "assumable",
+      "resolution": "Dilute an aliquot of each overnight culture (for example 1:10 in LB, assumed) in a clear 96-well plate. Read OD600 and apply a pathlength or dilution correction. Include LB blanks.",
+      "source": "s2.5 (Protocol 7 is in the supplement, which was not used); standard practice"
+    }
+  ],
+  "retrieved_details": "Addgene plasmid 62563 (pJKR-H-araC): pUC backbone, high copy, ampicillin 100 µg/ml, grown at 37 °C in DH5α, GFP expressed in proportion to arabinose (https://www.addgene.org/62563/). Paper-internal details: default heat shock is 4 °C 30 min, 42 °C 30 s, then SOC recovery at 37 °C 1 h (s2.2). The LV transformation configuration is 10 µl cells, 1 µl DNA at 1.5×10^-4 pmol, and 50 µl SOC (Fig. 4 legend). Spot 5 µl per colony spot (s4.3). Agar density is 0.911 g/cm³ for rectangular OmniTray plates and 0.954 g/cm³ for round plates, with agar height = agar weight / (base area × density) (s2.3, Fig. 2a). Single pierce is for dense spots and spiral for sparse spots (s2.4, Fig. 2c-d). Dilute spots 5-fold for low density (Fig. 5). Induce at OD600 about 0.2 with 1.33 mM L-arabinose, 150 µl in a black clear-bottom 96-well plate, 37 °C, 960 rpm, reading every 10 min for 4 h (485/528 nm) (s4.4). LB is 5 g/l yeast extract, 10 g/l tryptone, 10 g/l NaCl. LB agar is the same plus 1.5% agar. SOC is 2.5 g/l yeast extract, 10 g/l tryptone, 10 mM NaCl, 10 mM KCl, 20 mM glucose, 10 mM MgSO4, 10 mM MgCl2 (s4.1). Carbenicillin is used at 100 µg/ml (s4.1). Competent cells: Hanahan method, OD600 0.4, 20 min on ice, 4000 ×g, 4 °C, 10 min, resuspended in 2 ml 0.1 M CaCl2 with 15% glycerol from 50 ml culture, stored at −80 °C (s4.2)."
+}

@@ -1,0 +1,70 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the hardware plumbing, loop and line dimensions, sample and chase volumes, HeLa dilutions, plate temperature, LC gradient, and the main MS and DDA parameters. What is left are operational settings that don't change what is measured: syringe speeds, needle height, valve timing, column temperature, MS2 AGC and injection time, and the foil-puncher motion. Each of these has a defensible default or a precedent from the authors' earlier OT-1 work.",
+  "gaps": [
+    {
+      "detail": "Syringe aspiration/dispense rate and translation speed for sample and solvent A plugs",
+      "why_needed": "Flow rate affects plug dispersion and the accuracy of the 0.5-1.7 µL sample volumes.",
+      "status": "assumable",
+      "resolution": "Use a slow rate of about 50 nL/s for sample and chase aspiration, with stage speed of about 1000 mm/min. These values come from the authors' earlier OT-1 nanoliter work (Councill et al. 2021). The flush with 25 µL solvent A can run faster, for example 1 µL/s or more. Treat all of these as assumptions, since the OpenSampler paper does not state them.",
+      "source": "https://journals.sagepub.com/doi/full/10.1177/2472630320973591 (precedent only); standard practice"
+    },
+    {
+      "detail": "Needle z-height and tip position in wells of the 384-well LoBind plate (10 µL sample per well); how the needle is rinsed or wiped between wells",
+      "why_needed": "The needle tip must sit in the liquid without touching the bottom, and it must not carry over sample or pick up air.",
+      "status": "assumable",
+      "resolution": "Set the tip about 0.5-1 mm above the well bottom, which is inside the 10 µL liquid. Set it during labware calibration (corner wells, accept the 4th-corner check) and check by eye. Rely on the 25 µL solvent A loop flush between injections for carryover control.",
+      "source": "standard practice; calibration procedure in s2.3"
+    },
+    {
+      "detail": "Valve switching sequence and timing, and the handshake with the LC pump",
+      "why_needed": "This defines when the loop goes inline, when the pump gradient is triggered, and what the selector valve position is during aspiration and flushing.",
+      "status": "assumable",
+      "resolution": "Fixed by the plumbing in s2.2 and s3.3. During aspiration, the syringe is connected through selector port 6 to two-position port 1. Aspirate sample, then solvent A chase, via the needle on port 6 with the loop in the load position. Switch the two-position valve to inject, which puts the loop inline between the pump (port 3) and the column (port 4). Then send the GPIO relay signal to the ESP32 to start the gradient. The pump waits for this signal, and the end-of-method signal returns the system to the load position for the next injection. Between injections, flush the loop with 25 µL solvent A from selector port 3 (the solvent A vial), with waste to selector port 1. Exact delays are not stated and are assumed to be a few seconds.",
+      "source": "s2.2, s3.3, s2.6; standard practice"
+    },
+    {
+      "detail": "Pre-injection column equilibration and loading flow during sample loading",
+      "why_needed": "The initial %B and the loading conditions affect peptide trapping and retention-time reproducibility.",
+      "status": "assumable",
+      "resolution": "The method starts at 1% B at 200 nL/min and the final 15 min at 1% B re-equilibrates the column. Load the sample at the same 200 nL/min and 1% B, with the loop switched inline when the gradient is triggered. The gradient runs 1→5% B in 1 min, 5→25% in 20 min, 25→45% in 2 min, 45→75% in 1 min, 75% for 4 min, 75→25% in 1 min, 25% for 1 min, 25→75% in 1 min, 75% for 3 min, 75→1% in 1 min, then 1% for 15 min.",
+      "source": "s2.6"
+    },
+    {
+      "detail": "Column oven/temperature, trap or fritted capillary details, and ESI emitter position",
+      "why_needed": "Column temperature affects retention time and reproducibility.",
+      "status": "assumable",
+      "resolution": "Run the 15 cm × 75 µm C18 1.6 µm column at ambient or a typical controlled 40-50 °C. The paper gives no value, so this is an assumption. The 15 cm × 20 µm fritted capillary is connected between the transfer line and the column as stated in s2.2. Spray at 2200 V.",
+      "source": "standard practice; s2.2, s2.7"
+    },
+    {
+      "detail": "MS2 AGC target, MS2 maximum injection time, MS2 scan range/first mass, FAIMS use, sheath/aux gas, and expected MS1 resolution at m/z 200",
+      "why_needed": "These are needed to reproduce DDA acquisition and the protein/peptide identification numbers.",
+      "status": "assumable",
+      "resolution": "Use Exploris 480 DDA defaults for 1.6 µm, 75 µm nanoLC, with no FAIMS and no sheath or auxiliary gas. MS2 uses a standard AGC of 100-200% and an auto or 'custom' maximum injection time, scaled to match the 45k or 90k resolution. The stated values are: MS1 at 120K, 375-1575 Th, RF lens 50%, AGC 300%, max IT 22 ms, intensity threshold 5e3, charge 2-6, 60 s exclusion, 1.5 s cycle, 10 Th isolation, HCD 30%, MS2 resolution 45k (2.5 and 10 ng) or 90k (250 pg), and ion transfer tube at 250 °C.",
+      "source": "s2.7; standard practice"
+    },
+    {
+      "detail": "Foil-puncher operation (modified Gen1 pipette): puncture position and depth, and timing relative to injection",
+      "why_needed": "The plate is foil-sealed, and the foil must be punctured immediately before the first injection of each aliquot.",
+      "status": "assumable",
+      "resolution": "Puncture the foil over the target well with a Gen1-pipette-based puncher (Figure 2C) immediately before the first of the three replicate injections. Replicates follow immediately to limit evaporation. The needle-tip puncher is centered on the well with a single downward stroke. The paper does not give the depth, so it is assumed.",
+      "source": "s3.5, Figure 2 legend; standard practice"
+    },
+    {
+      "detail": "Mobile-phase and sample solvent preparation and HeLa stock concentration",
+      "why_needed": "Dilutions must be made correctly from the Pierce HeLa Protein Digest Standard.",
+      "status": "assumable",
+      "resolution": "Reconstitute the Pierce HeLa digest standard per the manufacturer's instructions, for example to 200 ng/µL in 0.1% formic acid or water. Dilute in solvent A (water + 0.1% FA) to 0.25, 0.5, 2.5, 5, 10, and 20 ng/µL. Load 10 µL per well into 384-well LoBind PCR plates at 4 °C on the tempdeck and foil-seal. Two batches, injected in ascending concentration with two blanks between batches, three replicate injections each.",
+      "source": "s2.1, s2.5, s3.5; manufacturer's digest instructions (not fetched), standard practice"
+    },
+    {
+      "detail": "Syringe/transfer-line priming and syringe calibration (plunger min/max/reference positions) and system filling with solvent A",
+      "why_needed": "The lines (40 cm × 100 µm needle, 200 µm transfer lines) must be liquid-filled without air for nL accuracy.",
+      "status": "assumable",
+      "resolution": "Home the syringe motor. Define the plunger minimum, maximum, and reference positions in the software each time it restarts (s2.3). Fill the syringe and lines with solvent A via the selector valve port 3, then flush to waste at port 1. Bubbles are purged by flushing before use.",
+      "source": "s2.3, s3.3; standard practice"
+    }
+  ],
+  "retrieved_details": "From Councill et al., SLAS Technol 2021 (OT-1 nanoliter handling, precedent for this platform): translation stage speed set to 1000 mm/min and fluid delivery rate 50 nL/s, with up to 300 nL/s possible but not characterized. Source: https://journals.sagepub.com/doi/full/10.1177/2472630320973591. Values given in the paper itself: loop is 13 cm × 100 µm i.d. (≈1 µL); sample injections were 500 nL sample + 3500 nL solvent A (underfill) or 1700 nL sample + 3000 nL solvent A (overfill). Underfill was used for 0.5, 5, and 20 ng/µL (0.25, 2.5, and 10 ng), and overfill for 0.25, 2.5, and 10 ng/µL (0.25, 2.5, and 10 ng). Loop flush was 25 µL solvent A between injections. Valve plumbing: selector center port to syringe, port 1 to waste, port 3 to solvent A, port 6 to two-position port 1. On the two-position valve, ports 2 and 5 carry the loop, port 6 the needle, port 3 the HPLC pump, and port 4 the column (s3.3). Control is via an ESP32-WROOM-32 GPIO, with a relay to trigger the gradient and a pin to receive the end-of-method signal. LC and MS settings are as given in s2.6-s2.7."
+}

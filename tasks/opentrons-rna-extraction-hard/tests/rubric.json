@@ -1,0 +1,35 @@
+{
+ "level": "hard",
+ "core": [
+  {
+   "id": "robot_practice",
+   "text": "Sound OT-2 practice: a valid apiLevel and metadata; every volume handled by a pipette whose range covers it (nothing below its minimum or above its maximum); no well filled beyond its capacity; modules and labware used as intended; nothing physically unsafe or nonsensical (e.g. pipetting from or into the wrong labware, or needless extra handling that puts samples at risk)."
+  },
+  {
+   "id": "tips_and_contamination",
+   "text": "Never aspirates, dispenses or mixes without a tip attached, and drops every tip so that no tip is left on a pipette at the end of the run. A fresh tip whenever the pipette moves on to a different sample, template or stock that carryover would contaminate, and no cross-contamination of samples or reagent stocks. One fresh tip per sample transfer, and no tip that has touched one sample well touches another."
+  },
+  {
+   "id": "fidelity_to_paper",
+   "text": "All-or-nothing bonus for a fully faithful protocol: it implements the paper's method on the given deck with no missing, invented or reordered steps; volumes, times, temperatures and reagents match the paper, or are a sound adaptation where the given deck or reagents force one; and comments and metadata (including any citation) are accurate. Any deviation fails this item, even one already failed under another item."
+  }
+ ],
+ "task": [
+  {
+   "id": "sample_handling",
+   "text": "All 48 samples, 250 uL each, moved from their tubes into the odd columns (1, 3, 5, 7, 9, 11) of the magnetic-module plate, one sample per well, and each sample traceable to its own elution well."
+  },
+  {
+   "id": "binding_and_separation",
+   "text": "40 uL beads, 250 uL isopropanol, then 250 uL sample in that order, mixed 5 times, 5 min incubation, magnet engaged about 4 min, then supernatant removed to waste with the magnet on."
+  },
+  {
+   "id": "washes_and_drying",
+   "text": "Two 500 uL 70% ethanol washes, each fully removed with the magnet engaged, then about 4 min air-dry and the magnet disengaged before elution."
+  },
+  {
+   "id": "elution_recovery",
+   "text": "100 uL elution added off-magnet and mixed, magnet re-engaged about 90 s, and about 80 uL recovered into a distinct well of the elution plate held at 4 C."
+  }
+ ]
+}

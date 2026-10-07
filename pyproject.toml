@@ -16,6 +16,14 @@ dependencies = [
 dev = [
     "pytest>=9.1.1",
 ]
+eval = [
+    "numpy",
+    "matplotlib",
+    "imageio[ffmpeg]",
+    "pillow",
+    "mujoco>=3.0",
+    "gymnasium",
+]
 
 [project.scripts]
 paper2protocol = "paper2protocol.cli:main"

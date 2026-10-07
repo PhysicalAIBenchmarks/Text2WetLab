@@ -1,0 +1,93 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "search",
+      "value": "Addgene pJKR-H-araC plasmid 62563 sfGFP sequencing primers"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/62563/sequences/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/62557/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/browse/sequence/267047/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/62563/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/62561/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/62567/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/mol-bio-reference/sequencing-primers/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.addgene.org/protocols/sequence-analysis/"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12460317"
+    },
+    {
+      "kind": "search",
+      "value": "colony PCR protocol E. coli Taq master mix cycling conditions volume 96-well"
+    },
+    {
+      "kind": "result",
+      "value": "http://www.protocol-online.org/biology-forums/posts/23857.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://sequencing.roche.com/content/dam/diagnostics_microsites/sequencing/us/en/resources/pdfs/application-notes/colony-pcr-app-note-mc-us-07380.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.org/mediawiki/2018/a/a2/T--ETH_Zurich--Protocols.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "http://lowepowerlab.ucdavis.edu/protocols/colony_pcr.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.takarabio.com/learning-centers/pcr/technical-notes/colony-pcr-in-under-an-hour"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6316193"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8217146"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.promega.com/-/media/files/resources/promega-notes/101/recombinant-clone-screening-using-the-gotaq-hot-start-green-master-mix.pdf?la=en"
+    },
+    {
+      "kind": "result",
+      "value": "https://labprotocol.co/blog/colony-pcr-protocol"
+    },
+    {
+      "kind": "result",
+      "value": "https://openwetware.org/wiki/PrbbBB:colony_pcr_v1"
+    }
+  ]
+}

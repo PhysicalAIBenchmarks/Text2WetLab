@@ -1,0 +1,92 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.2"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/transporter-screening/ljm176__TransporterScreening",
+   "commit": "455fc2e569ad4a873ab415186a29e3e396e8cc4e",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 2,
+   "py_files": 2,
+   "redistributable": "no",
+   "repo": "ljm176/TransporterScreening",
+   "robot_mentions": [],
+   "size_kb": 34677,
+   "status": "cloned",
+   "url": "https://github.com/ljm176/TransporterScreening"
+  }
+ ],
+ "doi_primary": "10.3390/antibiotics11081129",
+ "dois": [
+  "10.3390/antibiotics11081129"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "pipeline data/pipeline_runs/10.3390_antibiotics11081129/experiments.json, experiment 1; sections ['s4']",
+   "id": "exp1",
+   "liquid_handling": "mostly",
+   "title": "Baseline growth of E. coli transporter knockout library in LB (no antibiotic)"
+  },
+  {
+   "evidence": "pipeline data/pipeline_runs/10.3390_antibiotics11081129/experiments.json, experiment 2; sections ['s4']",
+   "id": "exp2",
+   "liquid_handling": "mostly",
+   "title": "Screening of transporter knockout library at sub-inhibitory concentrations of 18 antimicrobials"
+  },
+  {
+   "evidence": "pipeline data/pipeline_runs/10.3390_antibiotics11081129/experiments.json, experiment 3; sections ['s4']",
+   "id": "exp3",
+   "liquid_handling": "mostly",
+   "title": "MIC and concentration-inhibition determination of antibiotics in wild-type BW1556"
+  }
+ ],
+ "fulltext": {
+  "legends": 8,
+  "sections": 9,
+  "source": "europepmc:PMC9405208"
+ },
+ "journal": "",
+ "note": "PDF not retrieved: PMC/Europe PMC/MDPI/DTU Orbit all returned 403 or a bot-check page; OA CC-BY paper, so a human can download it from https://www.mdpi.com/2079-6382/11/8/1129/pdf. Code: ljm176/TransporterScreening has no licence file. opentrons_py_files=0 is a detector miss: both .py files (LoadMedia_GPPlates.py, innoc_glycerol_droplets_V2.py) use protocol.load_labware with apiLevel 2.2, i.e. 2 Opentrons protocols.",
+ "open_access": true,
+ "origin": [
+  "lLegon"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3748534,
+  "licence": "cc by",
+  "pages": 15,
+  "redistributable": "yes",
+  "sha256": "93d2cd829e55e29d2d071bc670e4c14ae8f71b5992bfec3b4e12d0cc7cd8a93d",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://www.mdpi.com/2079-6382/11/8/1129/pdf?version=1661232869"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC9405208?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9405208.1/PMC9405208.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9405208.1/PMC9405208.1.pdf"
+ },
+ "pmcid": "PMC9405208",
+ "slug": "transporter-screening",
+ "title": "Transporter screening for antibiotic susceptibility (Antibiotics 2022)",
+ "year": "2022"
+}

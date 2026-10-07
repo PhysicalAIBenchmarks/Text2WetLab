@@ -1,0 +1,66 @@
+{
+  "code": [],
+  "doi_primary": "10.1101/2024.09.14.613006",
+  "dois": [
+    "10.1101/2024.09.14.613006"
+  ],
+  "fulltext": {
+    "legends": 4,
+    "sections": 17,
+    "source": "biorxiv"
+  },
+  "journal": "bioRxiv",
+  "note": "no code | bioRxiv preprint (CC-BY-NC-ND, not redistributable). No code and no Opentrons/robot/liquid-handler mention anywhere in the PDF text; liquid handling is only inferred by the pipeline.",
+  "open_access": true,
+  "origin": [
+    "lLegon"
+  ],
+  "paper_licence": "cc by-nc-nd",
+  "pdf": {
+    "bytes": 1396080,
+    "licence": "cc by-nc-nd",
+    "pages": 24,
+    "redistributable": "no",
+    "sha256": "1f9ef476bc2a7ac4d21f2caeba22f3def9e980ecaed6293f726b4c9f6528c0a2",
+    "status": "downloaded",
+    "tried": [
+      {
+        "http": 403,
+        "manual": false,
+        "ok": false,
+        "url": "https://europepmc.org/api/fulltextRepo?pprId=PPR912537&type=FILE&fileName=EMS198821-pdf.pdf&mimeType=application/pdf"
+      },
+      {
+        "http": 200,
+        "manual": false,
+        "ok": true,
+        "url": "https://www.biorxiv.org/content/10.1101/2024.09.14.613006v1.full.pdf"
+      }
+    ],
+    "url": "https://www.biorxiv.org/content/10.1101/2024.09.14.613006v1.full.pdf"
+  },
+  "pmcid": null,
+  "slug": "yeast-mycosporine",
+  "title": "Yeast engineering and LC-HRMS of mycosporine-glycine",
+  "year": "2024",
+  "experiments_hint": [
+    {
+      "id": "exp1",
+      "title": "Yeast strain engineering and LC-HRMS detection of 4-DG and MG production",
+      "liquid_handling": "partly",
+      "evidence": "pipeline data/pipeline_runs/10.1101_2024.09.14.613006/experiments.json, experiment 1; sections ['s4.3', 's4.6', 's4.7', 's4.8']"
+    },
+    {
+      "id": "exp2",
+      "title": "Expression of wild-type, loop-swapped and point-mutant Np.MysD and Nl.MysD in SC.L26 and quantification of shinorine and porphyra-334",
+      "liquid_handling": "partly",
+      "evidence": "pipeline data/pipeline_runs/10.1101_2024.09.14.613006/experiments.json, experiment 2; sections ['s4.4', 's4.3', 's4.6', 's4.7', 's4.8']"
+    },
+    {
+      "id": "exp3",
+      "title": "Screening of 20 cyanobacterial MysD orthologs expressed in SC.L26 by LC-HRMS",
+      "liquid_handling": "partly",
+      "evidence": "pipeline data/pipeline_runs/10.1101_2024.09.14.613006/experiments.json, experiment 3; sections ['s4.5', 's4.6', 's4.7', 's4.8']"
+    }
+  ]
+}

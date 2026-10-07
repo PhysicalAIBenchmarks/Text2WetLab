@@ -1,0 +1,70 @@
+{
+  "verdict": "reject",
+  "summary": "The Golden Gate step (s2.4) and the B. subtilis competence transformation (s2.7) are mostly specified. Several critical details for the B. subtilis GFP assay are not in the text: the mannitol inducer concentration, the MC medium composition (Table S2), and how the plasmid is prepared for integration. My web search and fetch tools hit a usage limit before any cited source could be retrieved, so no gap is resolved. The ones that would change the measured outcome are marked missing.",
+  "gaps": [
+    {
+      "detail": "Mannitol (inducer) concentration and addition protocol for the mannitol-inducible STK promoters (Fig. 3C/E)",
+      "why_needed": "Section 2.8 says inducers were added at early stationary phase (~2 h after inoculation), but gives no inducer identity or final concentration. Mannitol is named only in the Fig. 3 legend. The induced GFP level depends directly on the concentration.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "MC medium composition (Table S2) for B. subtilis competence",
+      "why_needed": "Section 2.7 refers to Table S2, which is not in the provided text. Competence and transformation efficiency depend on the medium formulation.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Form of STK Level 1 plasmid used for B. subtilis transformation (linearized or circular, integration locus), and the plasmid extraction method from E. coli",
+      "why_needed": "Section 2.7 says 0.5–2 µg of plasmid DNA was used, but plasmid extraction is not described. Linearization is described only for YTK (NotI), not for STK. Whether the construct integrates or replicates determines how transformants are selected and how the GFP is expressed.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "B. subtilis culture conditions for the GFP assay: medium, starting inoculum or dilution, and the exact time points relative to inducer addition",
+      "why_needed": "Section 2.8 gives only 'samples collected at 6 h of cultivation' and 'inducers added ~2 h after inoculation'. The medium, the inoculum from the overnight culture and the volume are not stated. Section 2.2 implies LB with 5 µg/mL erythromycin. The 'early stationary' wording at 2 h is inconsistent with 'mid-exponential' at 6 h.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "E. coli transformation procedure (NEB Turbo or 5-alpha F'Iq): volume of cells, Golden Gate reaction volume added, ice and heat-shock times, recovery medium, time and volume, and plating volume on the 6-well LB-agar plates",
+      "why_needed": "Section 2.4 says only that the reaction was 'directly used to transform E. coli' and plated. Efficiency and colony numbers depend on these values.",
+      "status": "assumable",
+      "resolution": "Use the manufacturer's standard chemical transformation protocol: thaw cells on ice, add 1–5 µL of the heat-inactivated reaction to 25–50 µL cells, incubate 30 min on ice, heat shock 30 s at 42 °C, put back on ice for 5 min, recover in SOC for 60 min at 37 °C, and plate on LB agar with the correct antibiotic. This is the standard NEB protocol and was not fetched.",
+      "source": "standard practice (NEB competent cell manual, not retrieved)"
+    },
+    {
+      "detail": "Colony PCR with Phire Plant Direct: cycling program, annealing temperature, extension time, and the STK colony PCR primers (Table S1)",
+      "why_needed": "Section 2.5 defers to 'the manufacturer's protocol' with adjustments. It gives only 9 µL master mix plus 1 µL colony template on the OT-2, with the 2× Phire master mix, water and primers.",
+      "status": "assumable",
+      "resolution": "Use the Phire Plant Direct standard program: 98 °C for 5 min, then 40 cycles of 98 °C for 5 s, annealing at the primer Tm for 5 s, and 72 °C for about 20 s/kb, then 72 °C for 1 min. Pick the extension time from the expected amplicon size. Primer sequences must come from Table S1 or be designed to flank the STK insert. The manual was not retrieved.",
+      "source": "standard practice (Thermo Fisher Phire Plant Direct manual, not retrieved)"
+    },
+    {
+      "detail": "Colony template plate preparation (how colonies are resuspended for PCR)",
+      "why_needed": "The paper says 1 µL was taken from 'colony template plates' on the OT-2, but not how those plates were prepared.",
+      "status": "assumable",
+      "resolution": "Pick each colony into about 20–50 µL of water or dilution buffer in a 96-well plate and use 1 µL as the template. Phire Plant Direct is designed for direct use of crude cell material.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Golden Gate setup for the OT-2 STK assembly: reagent volumes and the DNA, buffer and water split in 10 µL",
+      "why_needed": "The paper gives 50 fmol of each plasmid, 0.5 µL BsaI-HF (10 U), 0.5 µL T4 ligase (200 U) and 1× T4 ligase buffer. It does not give DNA stock concentrations, so µL per part cannot be calculated. The 25 × (37 °C 2 min, 16 °C 5 min) cycling and the 60 °C 5 min step are stated. The T4 ligase buffer stock and the volume of buffer are not stated.",
+      "status": "assumable",
+      "resolution": "Dilute each plasmid to a working stock so about 1 µL delivers 50 fmol, or calculate the volume from the measured concentration. Add 1 µL of 10× T4 ligase buffer, fill to 10 µL with water, and use a master mix for the common reagents. Table S5 holds the volumes but was not available.",
+      "source": "standard practice; s2.4"
+    },
+    {
+      "detail": "Flow cytometry gating and analysis ('previously described gating approach')",
+      "why_needed": "Gating is deferred to an earlier reference, but the paper gives the voltages, 10,000 events and an FSC-H × FSC-A singlet gate. These are enough to acquire data.",
+      "status": "assumable",
+      "resolution": "Gate singlets on FSC-H vs FSC-A, then gate cells on FSC/SSC. Report BL1 (GFP) geometric or median fluorescence. Voltages: FSC 440 V, SSC 340 V, BL1 490 V for B. subtilis. Dilute 1:100 in PBS to 200 µL in a 96-well plate and record 10,000 events on an Attune NxT.",
+      "source": "s2.8"
+    }
+  ],
+  "retrieved_details": "No external sources could be fetched, because the search and fetch tools hit a usage limit. Everything below is from the paper text only. Golden Gate on OT-2 (s2.4): 10 µL total, 50 fmol of each entry plasmid and backbone, 0.5 µL BsaI-HF (10 U), 0.5 µL T4 ligase (200 U), 1× T4 ligase buffer. A master mix of the common reagents is distributed to the wells, and custom parts are added separately. Cycling: 25 × (37 °C 2 min, 16 °C 5 min), then 60 °C 5 min. The product goes directly into E. coli (NEB Turbo or 5-alpha F'Iq) and is plated on 6-well plates with 5 mL LB agar plus antibiotic (Cm 34, Amp 100 or Kan 50 µg/mL). Colony PCR on OT-2 (s2.5): Phire Plant Direct, 9 µL master mix plus 1 µL colony template, run on the Opentrons thermocycler. B. subtilis 168 transformation (s2.7): single colony into 3 mL MC medium at 37 °C with shaking until OD600 1.1–1.5 (4–5 h). Mix 1 mL culture with 2–3 µL plasmid (0.5–2 µg), vortex 5 s, incubate 40 min at 37 °C shaking, pellet, resuspend in 75 µL medium, plate on selective LB agar and incubate overnight at 37 °C. Pick colonies into 3 mL LB with 5 µg/mL erythromycin at 250 rpm. Flow cytometry (s2.8): dilute 1:100 in PBS to 200 µL in a 96-well plate, Attune NxT with autosampler, FSC 440 V, SSC 340 V, BL1 490 V (GFPmut3b), 10,000 events, singlet gate FSC-H × FSC-A, FlowJo 10.10.0, sample at 6 h of cultivation, triplicates. The mannitol concentration, the MC medium recipe (Table S2) and the Table S1 primers are not in the provided text."
+}

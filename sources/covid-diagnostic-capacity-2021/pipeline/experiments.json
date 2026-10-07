@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Automated high-throughput SARS-CoV-2 RT-PCR workflow on OT-2 robots (inactivation, lysis, RNA extraction, RT-qPCR)",
+    "goal": "Process and validate large volumes of clinical samples for SARS-CoV-2 RT-PCR with an automated, traceable, open-source OT-2 liquid-handling workflow (up to 5,640 samples/day, ~4 h turnaround).",
+    "section_refs": [
+      "s3.2",
+      "s3.3"
+    ],
+    "shared_refs": [
+      "s2.2"
+    ],
+    "unresolved_refs": [
+      "Specific reagents, kits, volumes, primers/probes and thermocycling conditions are not stated in the paper",
+      "Manual inactivation in biosafety cabinet: protocol not described",
+      "RNA extraction using magnetic module: chemistry/kit not specified"
+    ],
+    "figure_refs": [
+      "Figure 1B"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

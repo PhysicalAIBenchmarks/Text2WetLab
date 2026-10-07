@@ -1,0 +1,42 @@
+{
+  "verdict": "major_issues",
+  "summary": "The preparation part (instrument assembly, LC/MS methods, dilution series, plate layout) is largely consistent with the paper. Dilution arithmetic and volumes check out: 200→20→10→5→2.5 ng/µL and 5→0.5→0.25 ng/µL, each leaving enough volume for the plate aliquots. The protocol stops at step 25 and ends in a malformed step 26. It therefore omits the core of the experiment: the loop-fill injections, valve switching, gradient trigger, flushes, blanks, replicates and batch 2. There are also a few ordering and assumption problems.",
+  "issues": [
+    {
+      "step": 26,
+      "severity": "major",
+      "issue": "Step 26 is a malformed, non-executable step ('Transfer stock from sample_sample_placeholder to None'). It uses a nonexistent source and a None destination, which caused the automated error. It looks like a generation or truncation artifact where the sample-loop aspiration step was supposed to be, with a placeholder name instead of sample_plate/sample_loop.",
+      "suggestion": "Replace it with a valid aspiration step: e.g. aspirate the sample volume from the specified sample_plate well (A1) via the sampling needle into sample_loop, using real container IDs. Remove the placeholder source and the None destination."
+    },
+    {
+      "step": 0,
+      "severity": "major",
+      "issue": "The protocol is truncated after the first puncture (step 25). The injection workflow from the paper is missing. This includes aspirating 500 nL sample + 3500 nL solvent A (underfill; 0.5, 5, 20 ng/µL) or 1700 nL sample + 3000 nL solvent A (overfill; 0.25, 2.5, 10 ng/µL). It also omits switching the two-position valve to inject, sending the GPIO/relay signal to trigger the LC gradient, and the end-of-method signal returning the valve to load. Also missing are the 25 µL solvent A loop flush between injections, 3 replicate injections per aliquot, wells A2-A6 in ascending order, two blank injections between batches (C1, C2), and the second batch (B1-B6).",
+      "suggestion": "Add the full per-injection sequence and loop it over batch 1 (A1-A6), the two blanks, and batch 2 (B1-B6). For each aliquot, puncture the foil once and run 3 immediate replicate injections. Specify the underfill or overfill volumes per concentration, the valve switch, the gradient trigger, the end-of-run return to load, and the 25 µL flush to waste (selector port 1) after each injection."
+    },
+    {
+      "step": 2,
+      "severity": "minor",
+      "issue": "Plate calibration (and the needle-height setting) is done in step 2 before the tempdeck, plate, and foil-puncher are placed on the deck (step 3). The sealed plate is prepared only in steps 17-24. Calibration requires the labware to be in position, and the paper says to recalibrate whenever labware is placed or moved. As written, the calibration would be invalid or would need repeating.",
+      "suggestion": "Place the tempdeck (4 °C) and plate on the deck, and perform the plate/needle calibration after labware placement. Fill the plate before sealing and recalibrate if anything moves."
+    },
+    {
+      "step": 0,
+      "severity": "minor",
+      "issue": "The paper uses 384-well plates for the sample aliquots. The protocol substitutes a 96-well plate (assumed), which changes well geometry and the needle-height/foil-puncture setup. In the paper, 10 µL sits in 384-well wells.",
+      "suggestion": "Use a 384-well LoBind PCR plate (Eppendorf) as in the paper, or explicitly flag the 96-well substitution as a deviation. Re-derive the needle z-height for the chosen plate."
+    },
+    {
+      "step": 14,
+      "severity": "minor",
+      "issue": "dil_5 is drawn from for dil_2p5 (40 µL), dil_0p5 (8 µL), and the plate aliquots (20 µL), leaving only about 4 µL of its 80 µL. This is too little for dead volume and pipetting error, and the later 0.5 ng/µL dilution depends on it.",
+      "suggestion": "Prepare larger volumes of the intermediate dilutions (e.g. 100-120 µL), or reorder steps so the plate aliquots are taken before the volume runs low."
+    },
+    {
+      "step": 25,
+      "severity": "minor",
+      "issue": "Foil puncturing is listed as a MANUAL step, but the paper describes it as an automated operation using a modified Gen1 pipette foil puncher (Figure 2C) just before the first injection.",
+      "suggestion": "Make puncturing an automated per-well step run just before the first of the three replicate injections. Specify the puncher position over the well."
+    }
+  ]
+}

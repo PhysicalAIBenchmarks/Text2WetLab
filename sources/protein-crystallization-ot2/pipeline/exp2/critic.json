@@ -1,0 +1,36 @@
+{
+  "verdict": "minor_issues",
+  "summary": "The protocol agrees with the paper on the main numbers. Reagent (1) runs 300 to 350 uL in 10 uL steps per column, and acetate is 50 uL at pH 4.6 (row A), 4.7 (row B) and 4.8 (rows C and D). Water is 50 to 0 uL, giving 400 uL per reservoir. The drop is 2 uL protein plus 2 uL reservoir, the plate is taped by hand, and the incubation is 24 h. The stock volume estimates are arithmetically correct (7.8 mL reagent, 300/300/600 uL acetate, 600 uL water). The remaining issues concern how the two-transfer drop model is executed, an under-specified mixing step, pipette volume ranges, and missing stock-preparation steps.",
+  "issues": [
+    {
+      "step": 17,
+      "severity": "minor",
+      "issue": "The paper aspirates 2 uL protein and then 2 uL reservoir in the same tip and dispenses the 4 uL together. Steps 17 and 18 model this as two separate dispenses into the pedestal. The note in step 17 says 'new tip per well' but also says the tip is kept for step 18, which is contradictory. Run literally, the protein is dispensed first and the tip then goes back to the reservoir.",
+      "suggestion": "State explicitly that this is a single-tip sequence: pick up one p10 tip, aspirate 2 uL protein, aspirate 2 uL reservoir from the matching well, dispense 4 uL onto the pedestal, then drop the tip. Remove the contradictory tip wording, or implement it as a single combined step in the executable script."
+    },
+    {
+      "step": 18,
+      "severity": "minor",
+      "issue": "Step 18 as written dispenses the reservoir aliquot as a second transfer. It does not reproduce the paper's aspirate-both-then-dispense order, and the executor may add a separate tip change between steps 17 and 18.",
+      "suggestion": "Link steps 17 and 18 so the tip is retained and the dispense happens only once, after both aspirations. Alternatively, mark the pair as one 4 uL composite operation."
+    },
+    {
+      "step": 16,
+      "severity": "minor",
+      "issue": "Mixing is assumed to be 5 cycles of 200 uL at what appears to be default flow rates. The 400 uL reservoirs contain viscous PEG MME 5,000 reagent, so this may mix poorly. The viscous-liquid guidance cited elsewhere in the protocol is not applied to this step. The reservoirs must be homogeneous because they form the gradient.",
+      "suggestion": "Specify slowed aspirate/dispense rates for mixing, with a pause. Consider more cycles (e.g. 8-10) with the tip positioned mid-volume, and verify mixing with a dye test, as the paper does in Script 1. Keep this marked as an assumption."
+    },
+    {
+      "step": 14,
+      "severity": "minor",
+      "issue": "The 20 uL water addition in step 14 is at the lower limit of the p300 gen2 range, where accuracy is poor. Step 15 moves 10 uL to the p10, but the 20 uL addition is not treated the same way.",
+      "suggestion": "Use the p10 for column 4 (20 uL, as two 10 uL transfers or one aspiration with a larger p10 tip) or note the accuracy limitation. Alternatively, pre-dilute the water into a larger-volume addition."
+    },
+    {
+      "step": 1,
+      "severity": "minor",
+      "issue": "The protocol contains no steps for preparing the HEWL stock (20 mg/mL in 20 mM NaOAc pH 4.6) or the 200 mM NaOAc stocks at pH 4.6, 4.7 and 4.8. These are only described in the assumptions. The stocks are treated as already existing, and the protein is stable for only 24 h at 25 C.",
+      "suggestion": "Add a manual pre-step before the robot run to prepare the stocks (gentle rocking with no vortexing, optional 0.22-0.45 um filtering or centrifugation, with a record of which was used). Use the protein within its stability window."
+    }
+  ]
+}

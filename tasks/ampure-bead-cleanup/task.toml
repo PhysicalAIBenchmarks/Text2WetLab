@@ -1,0 +1,30 @@
+schema_version = "1.4"
+
+[task]
+name = "text2wetlab/ampure-bead-cleanup"
+version = "0.1.0"
+description = "AMPure XP magnetic bead cleanup of PCR products"
+authors = [{ name = "Text2WetLab" }]
+keywords = ["opentrons", "ot-2", "lab-automation", "protocol-generation"]
+
+[metadata]
+level = "easy"
+source = "handwritten"
+deck = "specified"
+grading = "simulator gate + end-state checks + Sonnet 5.5 rubric judge (75% core: robot practice, tips/contamination, fidelity; 25% task-specific)"
+
+[agent]
+timeout_sec = 1800.0
+
+[verifier]
+timeout_sec = 900.0
+env = { ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY}" }
+
+[environment]
+network_mode = "allowlist"
+allowed_hosts = ["api.anthropic.com", "registry.npmjs.org"]
+build_timeout_sec = 1200.0
+cpus = 4
+memory_mb = 8192
+storage_mb = 10240
+gpus = 0

@@ -1,0 +1,56 @@
+{
+  "verdict": "reject",
+  "summary": "The paper gives the hardware, calibration and workflow, the alginate (0.5–2.0%) and CaCl2 (0.1–10%) concentration grid, and a 30 min imaging time. It does not give the CaCl2 volume per well, the alginate droplet volume, or the alginate grade, so the opacity result cannot be reproduced. The cited papers (refs 44–46) cover alginate fibres and gelation theory and could not be used to fill these in.",
+  "gaps": [
+    {
+      "detail": "CaCl2 volume dispensed per well (1000 µL pipette from 2 mL vials)",
+      "why_needed": "Sets the Ca2+ bath volume and the Ca2+:alginate ratio. Bead opacity and the 'critical R value' in Fig. 5 depend on this ratio, so the pixel-intensity trend cannot be reproduced without it.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Alginate droplet volume and number of droplets per well (the 'three droplets with air gaps' are described, but not their volume or whether one or three go into each well)",
+      "why_needed": "Bead size and total alginate load set the bead area and the pixel intensity measured. The protocol only says 'three separate droplets' are aspirated and that the first droplet goes to well A1.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Alginate identity: sodium alginate supplier, catalogue number, molecular weight or viscosity grade, M/G ratio",
+      "why_needed": "Gelation, opacity and the Ca2+ threshold depend strongly on the alginate type, so the grade is needed to reproduce the opacity trends.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Stock preparation: solvent, w/v vs w/w basis for the % values, dissolution method, CaCl2 form (anhydrous or dihydrate) and supplier",
+      "why_needed": "Defines the actual concentrations tested. CaCl2 hydration state changes the molarity by about 30%. Alginate dissolution and degassing affect viscosity and dispensing.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Image analysis parameters: histogram equalization method, threshold method and value, background and lighting, camera exposure and gain settings",
+      "why_needed": "Pixel intensity values depend on these settings and on the black background. The paper describes them only qualitatively, so absolute intensities cannot be matched.",
+      "status": "assumable",
+      "resolution": "Use OpenCV CLAHE or global histogram equalization, then Otsu thresholding on grayscale 8-bit images with a black background, 640x480 raw RGB. Report the mean intensity inside the bead mask. These choices are not from the paper.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Plate-well mapping of the 4 alginate x 6 CaCl2 concentration combinations (24 conditions), and the number of replicates",
+      "why_needed": "Needed to lay out the plate and to know which wells receive which reagents.",
+      "status": "assumable",
+      "resolution": "One well per combination, arranged as a 4x6 block on the 96-well plate, with A1–A3 as in the demo. Replicate number is not stated.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Camera-to-well distance and focus; dispensing heights and speeds for the pipette tip touch-off; pipette model ('20 µL' vs 300 µL P-series, with a conflicting description of the pipettes)",
+      "why_needed": "Needed for image quality and for drop coalescence in the well.",
+      "status": "assumable",
+      "resolution": "Camera protrudes about 10 mm below the holder (s6.2). Focus manually on the live feed and centre the offsets in the Opentrons labware position check (s7.2). Dispense the droplet just before detachment, then touch it to the liquid surface (s7.4). Pipette models, heights and speeds are not specified, so use OT-2 defaults.",
+      "source": "s6.2, s7.2, s7.4; standard practice"
+    }
+  ],
+  "retrieved_details": "From the paper: OT-2 deck layout is slot 1 96-well plate, slot 8 1000 µL tips, slot 9 300 µL (or 20 µL) tips, slot 10 2 mL vial rack, slot 11 camera holder with pick-and-place tool (s7.1). The 1000 µL pipette is on the right mount and the second pipette on the left. The camera is an Opti-Tekscope OT-HD, 640x480, controlled over a Python socket server (s3.1, s6.4, s7.3). Calibration: run the Opentrons deck calibration and labware position check, and set camera focus and offsets over well A1 (s7.2). Dispensing: CaCl2 is dispensed first from the 2 mL vials into the wells. Alginate droplets are then dispensed in two sub-steps, to just before detachment and then touching the liquid surface to coalesce (s7.4). Concentrations: alginate 0.5/1.0/1.5/2.0% and CaCl2 0.1/0.5/1.0/1.5/5.0/10.0%. Images were taken 30 min after combining (s8.1). Analysis: 8-bit pixel intensity inside a bead mask made by histogram equalization and thresholding, against a black background (s8.1). Searches for refs 44–46 returned only abstracts for alginate fibre and gelation studies (e.g. https://www.sciencedirect.com/science/article/abs/pii/S0144861712003220). They give no volumes or alginate grade for this protocol."
+}

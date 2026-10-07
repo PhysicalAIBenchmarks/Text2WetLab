@@ -1,0 +1,77 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the media, strain, culture, labware layout, speed levels (50/130/210/290 µL/s), spot-position and spot-order logic, scanning (600 dpi, every 10 min, 72 h) and the baQFA 'nr' readout. It leaves out several volumes and the dilution target, which it defers to GitHub scripts I was told not to use. Most of these can be filled from the same group's earlier OT-2 spot-assay paper (Taguchi et al. 2023, bioRxiv preprint) or from standard practice. The max-growth-rate readout is an intrinsic rate, so these defaults should not change what is measured. Nothing is outright missing.",
+  "gaps": [
+    {
+      "detail": "Target cell density / dilution endpoint for normalising samples before spotting (the absorbance at 620 nm to which each culture is diluted)",
+      "why_needed": "Cell density has to be equalised across the 24 samples; the paper says the dilution is calculated from the A620 reading but gives no target value.",
+      "status": "resolved",
+      "resolution": "The same group's earlier OT-2 spot assay adjusted samples to A620 = 0.020, read in a 96-well plate on the Byonoy Absorbance 96 reader. Use the same target here as an analogy, and treat it as an assumption for this paper.",
+      "source": "https://www.biorxiv.org/content/10.1101/2022.07.16.500326v1.full"
+    },
+    {
+      "detail": "Culture and water volumes in the 96-well plate for the A620 reading, and the blank",
+      "why_needed": "The reading depends on the path length (well volume) and on how the culture was diluted for reading.",
+      "status": "resolved",
+      "resolution": "The preprint used 180 µL H2O plus 20 µL culture (a 10x dilution, 200 µL total) per well, read at 620 nm. Use this and subtract an H2O blank.",
+      "source": "https://www.biorxiv.org/content/10.1101/2022.07.16.500326v1.full"
+    },
+    {
+      "detail": "Spot volume per colony, and the final volume and dilution in the 2 mL tubes and spotting wells",
+      "why_needed": "The robot dispenses these volumes at the test speeds; the paper does not state them.",
+      "status": "assumable",
+      "resolution": "Spot 5 µL per colony with a P20 and 20 µL tips, as in the earlier OT-2 spot assay. Pre-fill each 2 mL tube with Milli-Q water plus culture, with the volumes calculated from the A620 reading to reach the target density. Use a few hundred µL in total, which is an assumption. Draw spots from the diluted sample in the spotting well/tube.",
+      "source": "https://www.biorxiv.org/content/10.1101/2022.07.16.500326v1.full; standard practice"
+    },
+    {
+      "detail": "Which aspirate/dispense steps use the test speed, and what speed is used for non-test steps (water dispensing, 96-well transfers for A620)",
+      "why_needed": "Pipetting speed is the independent variable, so the steps it applies to must be defined.",
+      "status": "assumable",
+      "resolution": "Apply the test speed (50/130/210/290 µL/s) to both aspirate and dispense in the two steps the paper names: culture to 2 mL tube, and 2 mL tube to spotting well. Spotting onto agar is also a speed-controlled step in the paper's list. Leave water dispensing and the A620 transfer at the Opentrons default flow rate, which is an assumption.",
+      "source": "s2 'Execution of experiments with OT-2'; standard practice"
+    },
+    {
+      "detail": "Sample/replicate design: 24 samples = 4 speeds × 2 biological replicates × 3 technical replicates, and the same 24 samples spotted on both plates (deck 6 and deck 9)",
+      "why_needed": "This fixes the number of tubes and spots and the plate layout.",
+      "status": "assumable",
+      "resolution": "Inferred from 24 numbered microtubes, the 4×6 inner spot matrix per plate, two biological-replicate tubes and four speeds. Spot order and the 6×8 outer ring of extra spots follow the paper's description (Experimental Design.pdf is deferred). Randomise or interleave speeds and bioreps down the plate so spotting order is not confounded with speed. Fill the outer ring with culture of the same density.",
+      "source": "s2 'The order of spotting', 'The positions of spots', 'Setting labware'"
+    },
+    {
+      "detail": "Volume of YPD agar poured per plate, and the OT-2 tip height above the agar surface",
+      "why_needed": "Agar thickness determines the spotting z-height and spot quality.",
+      "status": "resolved",
+      "resolution": "The paper only says the agar was poured and left 2 d to dry. The earlier OT-2 paper estimates agar height from the plate weight. Tip z = plate-bottom thickness (2 mm) + agar height + 1 mm clearance. It used a dish diameter of 86 mm, an agar density of 0.00107 g/mm³ and an empty dish weight of 17.88 g, which came from that paper's dishes, not this one's. Weigh each plate and calibrate the height. The pour volume itself is an assumption: fill the microplate dish to a uniform level, e.g. about 35–40 mL.",
+      "source": "https://www.biorxiv.org/content/10.1101/2022.07.16.500326v1.full"
+    },
+    {
+      "detail": "Scanner details: 72 h at 30 °C (incubator temperature not restated), scan mode and colour, plate orientation",
+      "why_needed": "The time-lapse images feed the growth curves.",
+      "status": "resolved",
+      "resolution": "Scan with `scanimage` at 600 dpi every 10 min for 72 h (432 images), as stated in the paper. Set the incubator to 30 °C, as used throughout. Place the plate agar-side down and aligned to the scanner corners, and close the door gently. The earlier paper used the same GT-X980 scanner in a 30 °C incubator, scanning from the back of the spot surface. The scanning mode (colour vs grey) is an assumption: use colour/RGB.",
+      "source": "s2 'Quantitative cell growth assay'; https://www.biorxiv.org/content/10.1101/2022.07.16.500326v1.full"
+    },
+    {
+      "detail": "baQFA settings and image-to-growth-curve procedure",
+      "why_needed": "This yields the 'nr' readout.",
+      "status": "assumable",
+      "resolution": "The paper defines nr as the maximum slope of the LOESS-fitted log growth curve, using intervals of width 1e-4 and baQFA v0.1.0. The package and its documentation are cited (Frey 2021: judithbergada.github.io/bacolonyzer, github.com/baQFA). Run baQFA with its defaults, a plate-wise grid of 4×6 spots, and normalise nr to the plate median. This is analysis, so it is a minor gap.",
+      "source": "https://journals.asm.org/doi/10.1128/msystems.01323-20"
+    },
+    {
+      "detail": "Inoculation details for the liquid culture and the Opentrons mixing steps; tube fill volumes",
+      "why_needed": "The starting culture state affects growth.",
+      "status": "assumable",
+      "resolution": "3 mL YPD in each of two tubes, inoculated from colonies, 16 h at 30 °C and 160 rpm. Then 3 mL is transferred into 27 mL fresh YPD in a 250 mL flask and shaken 3 h at 30 °C and 160 rpm. The 30 mL culture goes into a 50 mL tube on the OT-2. The exact colony size is not stated, so use a single colony. Add a gentle resuspension before aspiration (assumption).",
+      "source": "s2 'Liquid culturing'"
+    },
+    {
+      "detail": "PlateShuttle and A620 reader operation",
+      "why_needed": "The plate has to move into the reader on the OT-2.",
+      "status": "assumable",
+      "resolution": "The paper defers this to the PlateShuttle GitHub, which I did not use. At the bench, the A620 reading can be done manually in the Byonoy Absorbance 96 reader (as in the earlier paper), then the dilution calculated and the protocol continued. This does not change the measured outcome.",
+      "source": "s2 'Setting labware'; https://www.biorxiv.org/content/10.1101/2022.07.16.500326v1.full"
+    }
+  ],
+  "retrieved_details": "From Taguchi et al. 2023 (earlier OT-2 yeast spot assay, same group; bioRxiv, https://www.biorxiv.org/content/10.1101/2022.07.16.500326v1.full): 96-well plate A620 reading with 180 µL H2O + 20 µL culture on the Byonoy Absorbance 96 reader; dilution calculated to adjust A620 to 0.020 across samples; 5 µL spots with a P20/20 µL tip; tip height Z = 2 mm dish bottom + agar height (from plate weight; 86 mm dish diameter, agar density 0.00107 g/mm³) + 1 mm clearance; plates dried 2 d on a clean bench; incubator at 30 °C with an Epson GT-X980 scanner at 600 dpi (that paper scanned every 90 min). Taguchi et al.'s doubling time of 90 min for yeast at 30 °C is also cited in this paper. baQFA (Frey et al. 2021, https://journals.asm.org/doi/10.1128/msystems.01323-20): software at judithbergada.github.io/bacolonyzer and github.com/baQFA. The published SLAS version of the Taguchi paper (doi 10.1016/j.slast.2022.12.001) could not be fetched, so the preprint was used. Paper-specified items: YPD = 2% peptone, 1% yeast extract, 0.003% adenine, 2% dextrose (450 mL YP + 50 mL 20% dextrose, autoclaved separately at 120 °C for 2 h); agar plates with 2% agar; 2 d at 30 °C on plates from the -80 °C stock; 3 mL overnight culture for 16 h, then 3 mL into 27 mL fresh YPD for 3 h at 30 °C, 160 rpm; speeds of 50, 130, 210 and 290 µL/s; scanning at 600 dpi every 10 min for 72 h (432 images); nr normalised to the plate median."
+}

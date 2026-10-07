@@ -1,0 +1,119 @@
+[
+  {
+    "title": "CCI counting performance vs flow cytometry",
+    "goal": "Characterize linearity, dispersion and calibration factor of the Cell Counting Imager against bead-corrected flow cytometry using HEK293T dilution series.",
+    "section_refs": [
+      "s3.11.3",
+      "s3.4.5"
+    ],
+    "shared_refs": [
+      "s3.8",
+      "s3.7",
+      "s3.4.3",
+      "s3.5",
+      "s3.9"
+    ],
+    "unresolved_refs": [
+      "Full flow cytometer instrument configuration in Supplementary A"
+    ],
+    "figure_refs": [
+      "Figure 2A"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "ACCS seeding density control from Challenge Plate measured by flow cytometry",
+    "goal": "Test how consistently ACCS seeds a target of 12.5k cells/well from a source plate with widely varying densities, measured by flow cytometry of output wells.",
+    "section_refs": [
+      "s3.11.1",
+      "s3.2",
+      "s3.4.5",
+      "s3.11.4"
+    ],
+    "shared_refs": [
+      "s3.8",
+      "s3.9",
+      "s3.5",
+      "s3.6",
+      "s3.7"
+    ],
+    "unresolved_refs": [
+      "Supplementary A for full flow cytometer configuration and detailed ACCS protocol steps"
+    ],
+    "figure_refs": [
+      "Figure 2B",
+      "Figure 2C"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Manual vs ACCS seeding consistency by CellTiter-Glo ATP assay",
+    "goal": "Compare well-to-well seeding density consistency of plates passaged by hand (visual confluency) versus ACCS using an ATP luminescence readout after overnight culture.",
+    "section_refs": [
+      "s3.11.1",
+      "s3.10.1",
+      "s3.2",
+      "s3.4.5",
+      "s3.11.5"
+    ],
+    "shared_refs": [
+      "s3.8",
+      "s3.9",
+      "s3.7",
+      "s3.5",
+      "s3.6"
+    ],
+    "unresolved_refs": [
+      "CellTiter-Glo reagent prepared 'per the manufacturer's instructions'",
+      "Supplementary A for ACCS protocol details"
+    ],
+    "figure_refs": [
+      "Figure 2D"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Hands-on time study of manual vs ACCS passaging",
+    "goal": "Measure total duration and hands-on time for passaging a 96-well plate manually versus with ACCS.",
+    "section_refs": [
+      "s3.11.2",
+      "s3.10.1",
+      "s3.2"
+    ],
+    "shared_refs": [
+      "s3.8",
+      "s3.9"
+    ],
+    "unresolved_refs": [
+      "Procedures as in the seeding accuracy comparison experiments"
+    ],
+    "figure_refs": [
+      "Figure 3A"
+    ],
+    "liquid_handling": "partly"
+  },
+  {
+    "title": "OpenCell imaging plate seeding and FOV scoring (ACCS vs manual)",
+    "goal": "Compare imaging site quality (FOV scores) of OpenCell plates seeded by ACCS versus manually.",
+    "section_refs": [
+      "s3.10.2",
+      "s3.2",
+      "s3.4.5",
+      "s3.10.1"
+    ],
+    "shared_refs": [
+      "s3.8",
+      "s3.9",
+      "s3.7"
+    ],
+    "unresolved_refs": [
+      "FOV scoring model and microscopy automation described in Ref. 4",
+      "Supplementary A for ACCS protocol details"
+    ],
+    "figure_refs": [
+      "Figure 3B",
+      "Figure 3C"
+    ],
+    "liquid_handling": "partly"
+  }
+]

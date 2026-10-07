@@ -1,0 +1,21 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "fetch",
+      "value": "https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0015944_MagMAXCORE_NA_Kit_UG.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0015944_MagMAXCORE_NA_Kit_UG.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019096_TaqMan2019nCoVAssayKit_PI.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://assets.thermofisher.com/TFS-Assets/LSG/manuals/MAN0019096_TaqMan2019nCoVAssayKit_PI.pdf"
+    }
+  ]
+}

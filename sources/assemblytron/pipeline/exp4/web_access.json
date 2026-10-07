@@ -1,0 +1,209 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "fetch",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4567319/"
+    },
+    {
+      "kind": "search",
+      "value": ""
+    },
+    {
+      "kind": "fetch",
+      "value": "https://doi.org/10.1371/journal.pone.0137652"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://doi.org/10.1371/journal.pone.0137652"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4567319/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0137652"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0137652"
+    },
+    {
+      "kind": "search",
+      "value": "NEB Q5 High-Fidelity DNA Polymerase protocol M0491 reaction setup extension time 20-30 s/kb"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/protocols/pcr-using-q5-high-fidelity-dna-polymerase-m0491?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/products/pcr-qpcr-and-amplification-technologies/q5-high-fidelity-dna-polymerases/q5-high-fidelity-dna-polymerases"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/PCR-with-Q5-Polymerase-M0491-imsua5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://wiki.rice.edu/confluence/pages/viewpage.action?pageId=25370815"
+    },
+    {
+      "kind": "result",
+      "value": "https://genexpress.cl/wp-content/uploads/2025/01/pcr-using-q5-high-fidelity-dna-polymerase-m0491.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/-/media/nebus/files/manuals/manuale0555.pdf?rev=627d55764b62404e9bf1a0526034f173&hash=DFACB338D5D2B1F1799FABE40FFECBB5"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.org/mediawiki/2017/a/ad/Q5_Hi_Fi_2X_Master_Mix_Protocol.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/tools-and-resources/video-library/important-tips-for-q5-polymerase"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/pcr-using-q5-hot-start-high-fidelity-dna-polymeras-bfknjkve.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb-online.de/wp-content/uploads/2017/08/New-England-Biolabs_PCR_Brochure_D1708.pdf"
+    },
+    {
+      "kind": "search",
+      "value": "NEB Phusion High-Fidelity DNA Polymerase protocol M0530 reaction setup 20 s/kb"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/products/m0530-phusion-high-fidelity-dna-polymerase"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/protocols/pcr-protocol-m0530?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.org/mediawiki/2014/0/03/Protocol_for_Phusion_PCR.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/363095353_PCR_Protocol_for_Phusion_High-Fidelity_DNA_Polymerase_M0530_v3"
+    },
+    {
+      "kind": "result",
+      "value": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012393_Phusion_HighFidelity_DNAPolymerase_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb-online.de/wp-content/uploads/2017/08/New-England-Biolabs_PCR_Brochure_D1708.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ulab360.com/files/prod/manuals/201301/06/429815001.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://thetomwilliamslab.com/wp-content/uploads/2012/08/phusion-high-fidelity-polymerase.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.biocompare.com/12917-High-Fidelity-Polymerases/1683606-Phusion-HighFidelity-DNA-Polymerase/"
+    },
+    {
+      "kind": "result",
+      "value": "https://wiki.rice.edu/confluence/pages/viewpage.action?pageId=25370815"
+    },
+    {
+      "kind": "search",
+      "value": "Zymo DNA Clean & Concentrator-5 protocol binding buffer 5:1 PCR elution 6 µL"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.zymoresearch.com/products/dna-clean-concentrator-5"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_d4003t_d4003_d4004_d4013_d4014_dna_clean_concentrator_-5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_D4003T_D4003_D4004_D4013_D4014_DNA_Clean_Concentrator_-5_ver_1_2_1_LKN-SW__1.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_d4023_d4024_zr-96_dna_clean_concentrator-5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_r1013_r1014_r1015_r1016_rna_clean_concentrator-5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_d4031_d4032_dna_clean_concentrator-500.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://labscoop.com/us/en/product/zmr/zymo-research/d4014-dna-clean-concentrator-5-capped"
+    },
+    {
+      "kind": "result",
+      "value": "https://files.zymoresearch.com/protocols/_d7010_d7011_ssdnarna_clean_concentrator.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/Zymo-Research-DNA-Clean-Concentrator-egbbbsn.pdf"
+    },
+    {
+      "kind": "search",
+      "value": "NEB Q5 High-Fidelity DNA Polymerase protocol M0491 reaction setup extension time 20-30 s/kb"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/protocols/pcr-using-q5-high-fidelity-dna-polymerase-m0491?pdf=true"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/products/pcr-qpcr-and-amplification-technologies/q5-high-fidelity-dna-polymerases"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/PCR-with-Q5-Polymerase-M0491-imsua5.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://wiki.rice.edu/confluence/pages/viewpage.action?pageId=25370815"
+    },
+    {
+      "kind": "result",
+      "value": "https://genexpress.cl/wp-content/uploads/2025/01/pcr-using-q5-high-fidelity-dna-polymerase-m0491.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en/-/media/nebus/files/manuals/manuale0555.pdf?rev=627d55764b62404e9bf1a0526034f173&hash=DFACB338D5D2B1F1799FABE40FFECBB5"
+    },
+    {
+      "kind": "result",
+      "value": "https://static.igem.org/mediawiki/2017/a/ad/Q5_Hi_Fi_2X_Master_Mix_Protocol.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb.com/en-us/tools-and-resources/video-library/important-tips-for-q5-polymerase"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.protocols.io/view/pcr-using-q5-hot-start-high-fidelity-dna-polymeras-bfknjkve.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.neb-online.de/wp-content/uploads/2017/08/New-England-Biolabs_PCR_Brochure_D1708.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.zymoresearch.com/products/dna-clean-concentrator-5-capped-columns"
+    }
+  ]
+}

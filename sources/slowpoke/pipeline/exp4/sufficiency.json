@@ -1,0 +1,98 @@
+{
+  "verdict": "reject",
+  "summary": "The Golden Gate reaction setup for the Flex (12 µL, 25 fmol of each plasmid, 1.2 µL enzyme mix, 25 × 37 °C 2 min / 16 °C 5 min, 60 °C 5 min) and the DreamTaq colony-PCR volumes are given. The paper does not identify the 62 six-part combinations, the six-part backbone(s), the colony-PCR primers or cycling programme, how colony templates were made, or the Sanger sequencing method. These are in the SI or absent, and guessing them would change what the 62-assembly screen measures, so the experiment cannot be run faithfully from the text.",
+  "gaps": [
+    {
+      "detail": "Identity and layout of the 62 six-part assemblies (which type 1/2/3a/3b/4a/4b parts, which endolysin or scFv, which signal peptide or tag, and the plate map)",
+      "why_needed": "The experiment is defined by the specific part combinations; without them the 62 constructs and the expected band sizes cannot be defined.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Destination backbone(s) for the six-part assembly, and whether the pWS064 GFP-dropout vector was used",
+      "why_needed": "The backbone is the vector part of the BsaI reaction and sets the antibiotic marker, the selection plates and the colony PCR product size. The text only says 'backbone plasmids' and refers to Fig 5B, and the high-throughput Flex run is not stated to use pWS064.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Colony PCR primer sequences and concentrations for the six-part constructs",
+      "why_needed": "Primer identity determines amplicon size and what counts as a correct assembly. The paper defers primers to Table S1, which is not in the provided text.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Colony PCR thermal cycling programme (annealing temperature, extension time, cycle number) for the Flex/DreamTaq workflow",
+      "why_needed": "The paper says 'according to the manufacturer's protocol' with extension and annealing adjusted to fragment size and primers, but gives no values. A six-part TU amplicon can be several kb long.",
+      "status": "assumable",
+      "resolution": "The DreamTaq manual gives the generic programme: 95 °C for 1–3 min; 25–40 cycles of 95 °C 30 s, Tm−5 °C 30 s, 72 °C 1 min per kb for products above 2 kb; final extension 72 °C for 5–15 min. Tm and amplicon length still depend on the unknown primers, so only the programme template is resolved.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012704_DreamTaq_Green_PCR_MasterMix_K1081_UG.pdf"
+    },
+    {
+      "detail": "Colony PCR primer final concentration and the water/primer/2× master mix split in the 13 µL master mix volume (Flex)",
+      "why_needed": "The paper gives 13 µL of master mix plus 2 µL of colony template (15 µL total) but not the composition, which it defers to Table S5 (not provided).",
+      "status": "assumable",
+      "resolution": "Use 7.5 µL of 2× DreamTaq master mix (1×), primers at 0.2–0.5 µM final within the manual's 0.1–1.0 µM range, and water to 13 µL, with 2 µL of colony template.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012704_DreamTaq_Green_PCR_MasterMix_K1081_UG.pdf (range); split is standard practice"
+    },
+    {
+      "detail": "Preparation of the colony template plate (what the colony is resuspended in and the volume per well, and whether the same pick also seeds a culture)",
+      "why_needed": "The PCR template is '2 µL from the colony template plates', but the picking and resuspension medium are not described.",
+      "status": "assumable",
+      "resolution": "Resuspend each picked colony in about 20–50 µL of sterile water per well of a 96-well PCR plate (a standard-practice assumption), then use 2 µL as template.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "E. coli transformation procedure on the Flex (cell volume, DNA volume, ice and heat-shock times, recovery medium and time, plating volume per well)",
+      "why_needed": "The paper says only that the reaction 'was directly used to transform E. coli' (NEB Turbo or 5-alpha F'Iq) and plated on 6-well plates with 5 mL LB agar plus antibiotic. No volumes or times are given.",
+      "status": "assumable",
+      "resolution": "NEB Turbo protocol: thaw 50 µL of cells on ice and add 1–5 µL of DNA. Keep on ice for 30 min, heat shock at 42 °C for exactly 30 s, then on ice for 5 min. Add 950 µL of SOC and recover at 37 °C for 60 min with shaking at 250 rpm. Plate dilutions on warm selective plates. NEB's Golden Gate manual uses 2 µL of assembly into 50 µL of cells and plates 50–100 µL of outgrowth for multi-insert assemblies. For 6-well plates with 5 mL agar, a scaled-down cell volume (for example 5–10 µL of cells with 1–2 µL of assembly) and a small plated volume are likely, but the paper does not state them.",
+      "source": "https://www.neb.com/protocols/1/01/01/high-efficiency-transformation-protocol-c2984 ; NEB E1601 manual https://www.neb.com/en/-/media/nebus/files/manuals/manuale1601.pdf"
+    },
+    {
+      "detail": "Identity of the Flex 'Golden Gate Enzyme Mix' and the exact buffer, ligase and BsaI used",
+      "why_needed": "The Methods list both 'BsaI-HF and T4 ligase' and the 'NEBridge Golden Gate Assembly Kit (BsaI-HF v2)'. The Flex reaction uses '1.2 µL of Golden Gate Enzyme Mix' in 1× T4 ligase buffer.",
+      "status": "resolved",
+      "resolution": "The enzyme mix is the NEBridge Golden Gate Enzyme Mix (BsaI-HFv2) from NEB #E1601. It is used with 1× T4 DNA Ligase Buffer (10× stock; 1.2 µL in the 12 µL reaction). The kit manual suggests 1–2 µL of enzyme mix per 20 µL reaction. For 2–10 inserts it suggests (37 °C 1 min, 16 °C 1 min) × 30 then 60 °C 5 min, so the paper's 2 min / 5 min × 25 programme is the paper's own choice.",
+      "source": "https://www.neb.com/en/-/media/nebus/files/manuals/manuale1601.pdf"
+    },
+    {
+      "detail": "Stock concentrations or dilutions of the plasmid parts that give 25 fmol each, and the water and buffer volumes in the 12 µL reaction",
+      "why_needed": "The paper gives only the amount (25 fmol) and the final volume (12 µL). The part stock concentrations and the Table S5 volumes are not provided.",
+      "status": "assumable",
+      "resolution": "Normalise the parts plate to a working concentration so that 1 µL delivers 25 fmol (for example 25 nM), or use a larger volume of a diluted stock. Add 1.2 µL of 10× T4 ligase buffer and water first, then plasmids, then 1.2 µL of enzyme mix, as the paper orders them.",
+      "source": "standard practice; order of addition from s2.4"
+    },
+    {
+      "detail": "Selection antibiotic for the six-part backbone and plate incubation time",
+      "why_needed": "The paper lists chloramphenicol 34 µg/mL, ampicillin 100 µg/mL and kanamycin 50 µg/mL generically, and gives no incubation time.",
+      "status": "assumable",
+      "resolution": "Use the antibiotic matching the destination backbone marker (the paper does not say which one it is). Incubate overnight at 37 °C, as in the NEB plating protocol.",
+      "source": "s2.2; https://www.neb.com/en/-/media/nebus/files/manuals/manuale1601.pdf"
+    },
+    {
+      "detail": "Sanger sequencing method (plasmid prep or miniprep, sequencing primers, sequencing provider) for the 22 plasmids checked",
+      "why_needed": "Fig 5C reports a Sanger-verified subset, but the method is not described anywhere in the text.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Plasmid purification and strain storage (overnight culture volume, miniprep kit, glycerol stocks)",
+      "why_needed": "Needed to get sequencing-ready plasmid from colonies. The paper does not describe it.",
+      "status": "assumable",
+      "resolution": "Grow positive colonies in 3 mL of selective LB at 37 °C and 250 rpm (from s2.2). Use a standard commercial miniprep kit per its manufacturer's instructions, and make 15–25% glycerol stocks stored at −80 °C. The kit and glycerol percentage are not from the paper.",
+      "source": "s2.2 for culture conditions; otherwise standard practice"
+    },
+    {
+      "detail": "Number of colonies picked per assembly and the success criterion for colony PCR",
+      "why_needed": "This determines how the 55/57 success rate is calculated.",
+      "status": "resolved",
+      "resolution": "One colony per assembly was tested by PCR (Fig 5C legend), and a subset of 22 plasmids was checked by Sanger sequencing. How a correct band was defined (expected size) depends on the unknown primers and constructs.",
+      "source": "Figure 5C legend in the provided paper text"
+    }
+  ],
+  "retrieved_details": "From the paper (s2.4, s2.5): Flex Golden Gate is 12 µL with 25 fmol of each entry plasmid and backbone, 1.2 µL Golden Gate Enzyme Mix, 1× T4 ligase buffer. Add buffer and water first, then plasmids, then enzymes. Cycle 25× (37 °C 2 min, 16 °C 5 min), then 60 °C 5 min. Transform E. coli (NEB Turbo or 5-alpha F'Iq) directly and plate on 6-well plates with 5 mL LB agar plus antibiotic. Colony PCR on Flex uses DreamTaq 2× master mix: 13 µL master mix (water, primers, 2× mix) plus 2 µL colony template, cycled in a benchtop thermocycler. Fig 5C legend: one colony per assembly was tested by PCR, and 22 plasmids were Sanger sequenced.\n\nFrom NEB E1601 manual (https://www.neb.com/en/-/media/nebus/files/manuals/manuale1601.pdf): the NEBridge Golden Gate Assembly Kit (BsaI-HFv2) uses 10× T4 DNA Ligase Buffer and 1–2 µL of enzyme mix per 20 µL reaction. For 2–10 inserts it suggests (37 °C 1 min, 16 °C 1 min) × 30, then 60 °C 5 min. Transformation protocol (written for 10-beta cells): 50 µL of cells on ice 10 min, 2 µL of assembly, ice 30 min, 42 °C for 30 s, ice 5 min, 950 µL of outgrowth medium at 37 °C for 60 min with shaking at 250 rpm. Plate 50–100 µL for multi-insert assemblies and incubate overnight at 37 °C. NEB states that NEB 5-alpha and NEB Turbo cells can also be used.\n\nFrom NEB Turbo C2984 protocol (https://www.neb.com/protocols/1/01/01/high-efficiency-transformation-protocol-c2984): 50 µL of cells with 1–5 µL of DNA (1 pg–100 ng). Ice 30 min, heat shock at exactly 42 °C for exactly 30 s, ice 5 min, 950 µL of room-temperature SOC at 37 °C for 60 min with shaking at 250 rpm. Warm the plates to 37 °C and plate serial dilutions.\n\nFrom DreamTaq Green PCR Master Mix manual (https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012704_DreamTaq_Green_PCR_MasterMix_K1081_UG.pdf): 2× mix is 25 µL per 50 µL reaction. Primers 0.1–1.0 µM each. Cycling is 95 °C for 1–3 min; 25–40 cycles of 95 °C 30 s, Tm−5 °C 30 s, 72 °C 1 min per kb for products over 2 kb; final extension 72 °C for 5–15 min. Load 5–15 µL directly on a gel. Note that the manual covers the 'Green' DreamTaq master mix, while the paper says only 'DreamTaq Master Mix', so the dye-containing Green version is an assumption.\n\nNot retrievable without the paper's SI (Tables S1 and S5, Fig S3), which were not used: primer sequences, six-part part identities, backbone, Table S5 volumes, colony PCR programme, Sanger method."
+}

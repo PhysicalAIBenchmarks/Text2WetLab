@@ -1,0 +1,133 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.13"
+   ],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/pipette-tool-change",
+   "commit": "version 3",
+   "files": [
+    {
+     "bytes": 42367,
+     "name": "20mm Height Boost.STEP",
+     "sha256": "0c0b5a7acaa06254fe1b3f7babc30763f467dab4269abed4b8180cd7e21e9b59"
+    },
+    {
+     "bytes": 3166884,
+     "name": "2mL Vials Holder.STL",
+     "sha256": "585e39d4e6f05e862d2dcffe0563e9b0a77f1e319e67c161bb0ec588306b6c93"
+    },
+    {
+     "bytes": 5559,
+     "name": "CameraServer.py",
+     "sha256": "0963793fcd55769b8ddabdad567c8b6a623f3306fc85b90811d8606283183a0f"
+    },
+    {
+     "bytes": 105214,
+     "name": "Deck Plate Adapter.STEP",
+     "sha256": "2ee7df6fa1d46ea634b68df914b1205d4ca4fd5141b5d8eda470a63659ff34b0"
+    },
+    {
+     "bytes": 3583,
+     "name": "Hydrogel_Screening_Testing_Using_Pick-and-Place_Apparatus.py",
+     "sha256": "b75139e427ffb510f80ec6d34793dd13e7ff9af79009c17f77a9a73adca12e60"
+    },
+    {
+     "bytes": 649,
+     "name": "Labware Positions.json",
+     "sha256": "de6e294f73c6af1ba23c9f83eed8af8d8b7c0b828eec7e3cef0bfa906674c9fb"
+    },
+    {
+     "bytes": 170872,
+     "name": "Pick-and-Place Apparatus.STEP",
+     "sha256": "9f319ada8259d1f929b4edc665472b1c5106b91a719c7b0cccdf9514e295f250"
+    },
+    {
+     "bytes": 41774,
+     "name": "Pick-and-place holder.STEP",
+     "sha256": "e1d6088f8b363a2163de76bfa08f623f14c8358178bc4a070824fd530da200bf"
+    },
+    {
+     "bytes": 1608,
+     "name": "calab_8_tuberack_20000ul.json",
+     "sha256": "73313de5a6f80e2de18cd55d47b1f9e3d66ff6209d15ba27db13d60f3cf68dbd"
+    },
+    {
+     "bytes": 645,
+     "name": "hardwarex_camera_rack.json",
+     "sha256": "d83c35c9ed44e96e91e22a042552eeaedcc0799dbc3373058de0785111264f0e"
+    }
+   ],
+   "host": "data.mendeley.com",
+   "licence": "CC BY 4.0",
+   "note": "Two ~57 MB demo MP4s skipped; CameraServer.py is the socket camera server; Hydrogel_Screening... .py is the OT-2 protocol",
+   "opentrons_py_files": 2,
+   "py_files": 2,
+   "redistributable": "yes",
+   "repo": "mendeley:xc5488grcv",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 3456,
+   "status": "downloaded",
+   "url": "https://doi.org/10.17632/xc5488grcv.3"
+  }
+ ],
+ "doi_primary": "10.1016/j.ohx.2025.e00653",
+ "dois": [
+  "10.1016/j.ohx.2025.e00653"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Validation 8.1; Figs 4-5; Hydrogel_Screening_Testing_Using_Pick-and-Place_Apparatus.py",
+   "id": "alginate_ion_concentration_bead_imaging",
+   "liquid_handling": "mostly",
+   "title": "High-throughput alginate (0.5-2.0%) x CaCl2 (0.1-10%) bead formation in 96-well plate, imaged in situ by camera tool on OT-2"
+  },
+  {
+   "evidence": "Validation 8.2; Fig. 6",
+   "id": "alginate_hydrogel_edta_disintegration",
+   "liquid_handling": "mostly",
+   "title": "Time-lapse imaging of 1.5% alginate / 1.0% Ca hydrogel disintegration after 200 mM EDTA addition"
+  }
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 37,
+  "source": "europepmc:PMC12181777"
+ },
+ "journal": "",
+ "note": "Hardware paper (HardwareX). Code in Mendeley Data xc5488grcv v3 (no GitHub named in paper); PDF only via bot-blocked sources",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 6389052,
+  "licence": "cc by",
+  "pages": 14,
+  "redistributable": "yes",
+  "sha256": "902f3987a19511689f0f6b17943a0bb2d8b1c9f6c08c32733dc4c863c3f27dcf",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12181777?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12181777.1/PMC12181777.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12181777.1/PMC12181777.1.pdf"
+ },
+ "pmcid": "PMC12181777",
+ "slug": "pipette-tool-change",
+ "title": "Leveraging flexible pipette-based tool changes to transform liquid handling systems into dual-function sample preparation and imaging platforms",
+ "year": "2025"
+}

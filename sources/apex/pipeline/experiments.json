@@ -1,0 +1,123 @@
+[
+  {
+    "title": "Optimisation of transformation volume in DH5α (HV/MV/LV) with automated heat shock",
+    "goal": "Measure transformation efficiency of pEX05 and pEX01 in DH5α at high, medium and low miniaturised volumes to select a reagent-saving configuration.",
+    "section_refs": [
+      "s4.2",
+      "s2.2",
+      "s2.3",
+      "s4.3"
+    ],
+    "shared_refs": [
+      "s4.1",
+      "s2.6"
+    ],
+    "unresolved_refs": [
+      "Table 1 volumes not available",
+      "Protocol 1 and 2 details in Supplementary File 1",
+      "supplier's competent cell protocol volumes"
+    ],
+    "figure_refs": [
+      "Figure 3A",
+      "Figure 3B",
+      "Figure 3C"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Automated vs manual transformation efficiency across plasmid sizes (2.7-17.7 kb)",
+    "goal": "Compare TE of APEX Protocol 1/2 (LV) with manual supplier protocol in DH5α using eight equimolar plasmids of different sizes.",
+    "section_refs": [
+      "s4.2",
+      "s2.2",
+      "s2.3",
+      "s4.3"
+    ],
+    "shared_refs": [
+      "s4.1"
+    ],
+    "unresolved_refs": [
+      "manual transformation per supplier's protocol",
+      "Protocol 1 and 2 details in Supplementary File 1",
+      "dilution details 'see Methods'"
+    ],
+    "figure_refs": [
+      "Figure 4A",
+      "Figure 4B",
+      "Figure 4C"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Validation of colony sampling, microculturing and sfGFP expression in BL21(DE3)",
+    "goal": "Test single-pierce and spiral colony sampling at high and low colony density, then overnight culture and L-arabinose induction of sfGFP, measuring OD600 and fluorescence.",
+    "section_refs": [
+      "s4.2",
+      "s2.2",
+      "s2.3",
+      "s2.4",
+      "s2.5",
+      "s4.4"
+    ],
+    "shared_refs": [
+      "s4.1"
+    ],
+    "unresolved_refs": [
+      "Protocols 2, 3 and 4 details in Supplementary File 1",
+      "overnight culture conditions not specified"
+    ],
+    "figure_refs": [
+      "Figure 5A",
+      "Figure 5B",
+      "Figure 5C"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Automated colony PCR sample preparation to confirm sfGFP plasmid",
+    "goal": "Verify that sampled colonies carry the sfGFP insert via colony PCR prepared by APEX Protocol 5 and agarose gel analysis.",
+    "section_refs": [
+      "s2.2",
+      "s2.3",
+      "s2.4"
+    ],
+    "shared_refs": [
+      "s4.1"
+    ],
+    "unresolved_refs": [
+      "Protocol 5 in Supplementary File 1",
+      "PCR conditions and primers not given",
+      "agarose gel methods not described"
+    ],
+    "figure_refs": [
+      "Supplementary Figure 1"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "End-to-end protein expression and SDS-PAGE: APEX vs manual for Sfp, CVTA and PKS targets",
+    "goal": "Compare automated and manual workflows for transformation, microculture (0.5 and 1 mL), IPTG induction and soluble protein analysis for 29-222 kDa proteins.",
+    "section_refs": [
+      "s4.2",
+      "s2.2",
+      "s2.3",
+      "s2.4",
+      "s2.5",
+      "s4.5"
+    ],
+    "shared_refs": [
+      "s4.1"
+    ],
+    "unresolved_refs": [
+      "Protocols 1-4 and 6 details in Supplementary File 1",
+      "manual workflow per standard procedure"
+    ],
+    "figure_refs": [
+      "Figure 6A",
+      "Figure 6B",
+      "Figure 6C",
+      "Figure 6D"
+    ],
+    "liquid_handling": "partly"
+  }
+]

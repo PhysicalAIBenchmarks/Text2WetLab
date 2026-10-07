@@ -1,0 +1,45 @@
+[
+  {
+    "title": "High-throughput isolate cultivation, automated DNA extraction, Hackflex library prep and whole-genome sequencing of Pan gut isolates",
+    "goal": "Validate a low-cost OpenTrons-based workflow that takes gut bacterial isolates from colony picking through DNA extraction, library prep and sequencing, and assess yield at each QC stage.",
+    "section_refs": [
+      "s5.2",
+      "s5.3",
+      "s5.4"
+    ],
+    "shared_refs": [
+      "s5",
+      "s5.1"
+    ],
+    "unresolved_refs": [
+      "Media recipes 'derived from [33]'",
+      "Detailed OpenTrons extraction and library prep protocols are in the GitHub repository",
+      "DNA extraction adapted from Oberacker et al. [40]",
+      "Hackflex protocol [41]; full details in repository",
+      "Media composition in Table S4"
+    ],
+    "figure_refs": [
+      "Figure 1",
+      "Figure 2",
+      "Figure 3",
+      "Figure 4"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Metagenome sequencing of wild chimpanzee and bonobo fecal samples",
+    "goal": "Generate metagenomic reads from the source fecal samples to check that isolate genomes originated from those samples and to estimate isolate relative abundance.",
+    "section_refs": [
+      "s5.1"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "Illumina Equivalent library prep method at the Cornell Biotechnology Research Center",
+      "Qiagen PowerSoil extraction per kit"
+    ],
+    "figure_refs": [
+      "Figure 2A"
+    ],
+    "liquid_handling": "little"
+  }
+]

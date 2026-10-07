@@ -1,0 +1,89 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/polar-robot-1/aidenlab__BEAR",
+   "commit": "3637940319cd174e26b4ebf4615a9bb8e4a270a6",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 2,
+   "redistributable": "yes",
+   "repo": "aidenlab/BEAR",
+   "robot_mentions": [],
+   "size_kb": 62618,
+   "status": "cloned",
+   "url": "https://github.com/aidenlab/BEAR"
+  },
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/polar-robot-1/aidenlab__PAP",
+   "commit": "ddc995b264e7e22af4151161e2abd68f87493b6f",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 1,
+   "redistributable": "no",
+   "repo": "aidenlab/PAP",
+   "robot_mentions": [],
+   "size_kb": 4325,
+   "status": "cloned",
+   "url": "https://github.com/aidenlab/PAP"
+  }
+ ],
+ "doi_primary": "10.1371/journal.pone.0294283",
+ "dois": [
+  "10.1371/journal.pone.0294283"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "protocols.io POLARtron (10.17504/protocols.io.81wgbp8jqvpk/v2) materials list; PLOS ONE methods use Quick-RNA Viral kit R1034 manually",
+   "id": "polartron-1",
+   "liquid_handling": "mostly",
+   "title": "RNA extraction from swab VTM with Zymo Quick-DNA/RNA Viral MagBead kit"
+  },
+  {
+   "evidence": "PLOS ONE 2023 Methods; protocols.io POLARtron",
+   "id": "polartron-2",
+   "liquid_handling": "mostly",
+   "title": "Reverse transcription, ARTIC V3 multiplex PCR, tagmentation library prep (Illumina Nextera Flex), pooling/cleanup"
+  }
+ ],
+ "fulltext": {
+  "legends": 9,
+  "sections": 22,
+  "source": "europepmc:PMC10688730"
+ },
+ "journal": "",
+ "note": "IDENTIFIED (medium-low confidence): POLAR paper, PLOS ONE 18(11) e0294283, CC BY; the Opentrons variant POLARtron exists only as a protocols.io protocol (CC BY, 'In development'). Neither the paper (0 mentions of Opentrons) nor repos aidenlab/BEAR (MIT) / aidenlab/PAP (no licence) contain OT-2 scripts; no 'robot 1'/'robot 2' wording found. OT-2 code NOT found.",
+ "open_access": true,
+ "origin": [
+  "other Claude session"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2563380,
+  "licence": "cc by",
+  "pages": 24,
+  "redistributable": "yes",
+  "sha256": "b7e2aa84e440e52cbacd4e0bcf6c018ae7b6650cc0fd4299b28c08be165751c7",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0294283&type=printable"
+   }
+  ],
+  "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0294283&type=printable"
+ },
+ "pmcid": "PMC10688730",
+ "slug": "polar-robot-1",
+ "title": "A rapid, low-cost, and highly sensitive SARS-CoV-2 diagnostic based on whole-genome sequencing (POLAR; automated variant POLARtron on protocols.io)",
+ "year": "2023"
+}

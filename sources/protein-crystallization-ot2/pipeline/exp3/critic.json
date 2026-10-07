@@ -1,0 +1,48 @@
+{
+  "verdict": "major_issues",
+  "summary": "The volumes, layout and drop composition match the paper (300–350 µL HR2-805 in 10 µL steps, 50 µL acetate at pH 4.6/4.7/4.8/4.8, water to 400 µL, 2 µL protein + 2 µL reservoir, Duck tape, 24 h). The problems are in the protocol's structure. The pedestal drops are modeled as two separate transfers, which does not reproduce the single-tip aspiration the paper describes. The human arm applies a swirl that the paper's HEWL reservoirs did not need, and the equivalent OT-2 step is omitted. The 3 OT-2 plates and 9 human plates are only described in prose, so the comparison is not actually laid out. Timing, blinding and plate-ordering details are also inconsistent or missing.",
+  "issues": [
+    {
+      "step": 16,
+      "severity": "major",
+      "issue": "The paper aspirates 2 µL protein and then 2 µL reservoir in the same p10 tip and dispenses the 4 µL together onto the pedestal. Here they are two separate transfers (16 then 17) with all 24 protein transfers listed before any reservoir transfer. This reads as 24 protein drops followed by 24 reservoir additions, which would change drop mixing and evaporation timing. The 'same tip' note is only a comment.",
+      "suggestion": "Combine into one per-well operation: aspirate 2 µL HEWL, then 2 µL of that well's reservoir in the same tip, then dispense 4 µL onto the pedestal, with a new tip per well. Alternatively, state explicitly that steps 16/17 are interleaved per well."
+    },
+    {
+      "step": 37,
+      "severity": "major",
+      "issue": "The human arm repeats the split-transfer ordering (all 24 protein drops, then all reservoir additions) at steps 37/38. This differs from the paper's per-well 'protein then reservoir' sequence and from the OT-2 arm's intended behavior, so it biases the OT-2 vs human comparison.",
+      "suggestion": "Make the human arm per-well: 2 µL HEWL, then 2 µL reservoir, dispensed onto the pedestal, well by well, matching the OT-2 workflow."
+    },
+    {
+      "step": 36,
+      "severity": "minor",
+      "issue": "The human arm gets an explicit swirl step, but the OT-2 arm has no mixing step. The paper says HEWL reservoirs needed no mixing on the OT-2, so the arms are treated differently. The swirl is also placed after water addition, which is a reasonable point, but it is not stated how the OT-2 reservoirs are homogenized.",
+      "suggestion": "Either label the swirl as a human-only assumption affecting setup time, or apply the same handling to both arms. Make clear that the OT-2 does no mixing."
+    },
+    {
+      "step": 39,
+      "severity": "major",
+      "issue": "The replication is not represented. Only one OT-2 plate and one human plate are written out. The comparison used 3 OT-2 plates and 9 human plates from 3 people, and only a single sentence in step 39 says to repeat. The sealed single-plate flow in steps 1–40 does not make clear that the human plates should be set up on the same day, from the same stocks, in randomized order.",
+      "suggestion": "Add explicit plate labels (OT2-1..3, person1-3 x 3) and a randomized or interleaved setup order. Note that the OT-2 plate numbering (the original plus two additional) is as stated in the paper."
+    },
+    {
+      "step": 18,
+      "severity": "minor",
+      "issue": "Step 1 starts the timer before the labware and tip setup/verification, while the assumption says setup time runs from the start of reservoir preparation. The paper's 31 min for the OT-2 appears to cover the run. Including adapter mounting and calibration would inflate the OT-2 time, and the human start (step 21) is not equivalent.",
+      "suggestion": "Move the timer start to the beginning of the first reservoir transfer (after deck setup and calibration) for the OT-2, and define the same start point for humans. Note that the paper's 31 min is the OT-2 run time."
+    },
+    {
+      "step": 20,
+      "severity": "minor",
+      "issue": "The scoring criterion is assumed (stereomicroscope, present/absent), but the paper's Fig. 5 reports wells with crystals at 24 h. The protocol says blinding is 'ideally' done but does not provide a mechanism, and the plates are taped, so blinding to setup method is not guaranteed.",
+      "suggestion": "Specify random plate codes assigned at sealing and kept by a third person, and score all 12 plates in one session by the same observer."
+    },
+    {
+      "step": 11,
+      "severity": "minor",
+      "issue": "The OT-2 uses one water transfer per column (5 steps). The 10 µL water transfer is within the p300 Gen2 minimum volume range limit (p300 Gen2 minimum is 20 µL), and 10–30 µL volumes are poorly accuracy-rated on the p300. The note says the 10 µL step 'could use the p10' only in the assumptions, not in the steps.",
+      "suggestion": "Specify the p10 Gen1 for water volumes under 20 µL (steps 14–15, 20 and 10 µL) or the p300 only for 30 µL and above, and state this in the step notes. Also flag that p10 Gen1 handles up to 10 µL per aspirate."
+    }
+  ]
+}

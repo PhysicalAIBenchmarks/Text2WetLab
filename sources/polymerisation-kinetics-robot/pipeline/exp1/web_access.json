@@ -1,0 +1,185 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "search",
+      "value": "Van de Reydt Junkers Polym. Chem. 2023 14 1622 Opentrons OT-2 polymerisation oxygen tolerant 48 well"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13103962/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.polymatter.net/publications"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/sc/article/17/22/10992/1231860/A-robotic-approach-to-polymerisation-kinetics-a"
+    },
+    {
+      "kind": "result",
+      "value": "https://par.nsf.gov/servlets/purl/10249188"
+    },
+    {
+      "kind": "result",
+      "value": "https://polymeric.mat.ethz.ch/publications.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2504.14110"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/en/content/articlepdf/2023/py/d3py00261f"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/en/content/articlepdf/2023/py/d2py01383e"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7616994/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11258787/"
+    },
+    {
+      "kind": "search",
+      "value": "Opentrons OT-2 48-well reactor plate shaker radical copolymerisation reactivity ratios NMR tube holder 3D-printed toluene"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.rsc.org/suppdata/d3/sc/d3sc06133g/d3sc06133g1.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/scientific-contributions/Tanja-Junkers-2125808815"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13103962/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/42039784/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/science/article/pii/S2472630325000263"
+    },
+    {
+      "kind": "result",
+      "value": "https://chemrxiv.org/doi/pdf/10.26434/chemrxiv-2025-n95kk"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.researchgate.net/publication/392607398_A_3D-Printed_Plate_Handler_for_Automated_Handling_of_Well_Plates_on_the_Opentrons_OT-2"
+    },
+    {
+      "kind": "result",
+      "value": "https://docs.opentrons.com/ot-2/modules/heater-shaker/"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2504.14110"
+    },
+    {
+      "kind": "result",
+      "value": "https://opentrons.com/robots/ot-2"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pubs.rsc.org/en/content/articlepdf/2023/py/d2py01531e"
+    },
+    {
+      "kind": "search",
+      "value": "Van de Reydt Marom Saunderson Boley Junkers Polym. Chem. 2023 Opentrons high throughput polymerization"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13103962/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/sc/article/17/22/10992/1231860/A-robotic-approach-to-polymerisation-kinetics-a"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/la/content/forwardlinks?doi=10.1039%2Fd2py00147k"
+    },
+    {
+      "kind": "result",
+      "value": "https://advanced.onlinelibrary.wiley.com/doi/10.1002/aidi.202500248"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/en/content/articlelanding/2023/py/d2py01531e"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/en/content/articlehtml/2025/py/d5py00148j"
+    },
+    {
+      "kind": "result",
+      "value": "https://onlinelibrary.wiley.com/doi/abs/10.1002/mren.202400021"
+    },
+    {
+      "kind": "result",
+      "value": "https://research.monash.edu/en/publications/a-predictive-machine-learning-model-for-propagation-rate-coeffici/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.polymatter.net/publications"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2602.17595"
+    },
+    {
+      "kind": "search",
+      "value": "Junkers Opentrons OT-2 48-well EquaVAP reactor heating aluminium sealing polymerisation toluene AIBN 70 °C"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13103962/"
+    },
+    {
+      "kind": "result",
+      "value": "https://docs.opentrons.com/ot-2/modules/heater-shaker/"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/42039784/"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2504.14110"
+    },
+    {
+      "kind": "result",
+      "value": "https://shop.opentrons.com/ot-2-robot"
+    },
+    {
+      "kind": "result",
+      "value": "https://insights.opentrons.com/ot-2-lp"
+    },
+    {
+      "kind": "result",
+      "value": "https://arxiv.org/pdf/2606.11150"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubs.rsc.org/sc/article/17/22/10992/1231860/A-robotic-approach-to-polymerisation-kinetics-a"
+    },
+    {
+      "kind": "result",
+      "value": "https://opentrons.com/products/modules/temperature/"
+    },
+    {
+      "kind": "result",
+      "value": "https://mikrolab.dk/en/ot-206.html"
+    }
+  ]
+}

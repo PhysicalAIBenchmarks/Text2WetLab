@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text2WetLab Leaderboard</title>
+  <style>
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --accent:    #388bfd;
+      --accent2:   #58a6ff;
+
+      --score-100: #22c55e;
+      --score-95:  #4ade80;
+      --score-90:  #a3e635;
+      --score-85:  #facc15;
+      --score-80:  #fb923c;
+      --score-low: #f87171;
+
+      --rank-1: #ffd700;
+      --rank-2: #c0c0c0;
+      --rank-3: #cd7f32;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── layout ── */
+    header {
+      background: linear-gradient(135deg, #0d1117 0%, #1c2333 50%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 24px 40px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(56, 139, 253, 0.15);
+      border: 1px solid rgba(56, 139, 253, 0.4);
+      color: var(--accent2);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #e6edf3 0%, #58a6ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 680px;
+      margin: 0 auto 24px;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .header-meta span { display: flex; align-items: center; gap: 6px; }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .btn:hover { border-color: var(--accent2); background: var(--surface2); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn.primary:hover { background: var(--accent2); }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    section { margin-bottom: 64px; }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2 .icon { font-size: 18px; }
+
+    /* ── summary cards ── */
+    .summary-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .card.rank-1::before { background: var(--rank-1); }
+    .card.rank-2::before { background: var(--rank-2); }
+    .card.rank-3::before { background: var(--rank-3); }
+
+    .card .rank {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .card .model-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .card .score-big {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1;
+      margin: 12px 0 6px;
+    }
+
+    .card .cost {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .card.rank-1 .score-big { color: var(--rank-1); }
+    .card.rank-2 .score-big { color: var(--rank-2); }
+    .card.rank-3 .score-big { color: var(--rank-3); }
+
+    /* ── tables ── */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead th {
+      background: var(--surface2);
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    thead th:not(:first-child) { text-align: center; }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(88, 166, 255, 0.04); }
+
+    tbody td {
+      padding: 13px 16px;
+      vertical-align: middle;
+    }
+
+    tbody td:not(:first-child) { text-align: center; }
+
+    .task-name {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+      color: var(--accent2);
+    }
+
+    .score-cell {
+      font-weight: 600;
+      font-size: 15px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .score-pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    /* row-level bold for winner */
+    .winner { font-weight: 700; }
+
+    .mean-row td {
+      background: var(--surface2);
+      font-weight: 700;
+      font-size: 15px;
+      border-top: 2px solid var(--border);
+    }
+
+    .cost-row td {
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ── score colors ── */
+    .s100 { color: var(--score-100); }
+    .s95  { color: var(--score-95);  }
+    .s90  { color: var(--score-90);  }
+    .s85  { color: var(--score-85);  }
+    .s80  { color: var(--score-80);  }
+    .slow { color: var(--score-low); }
+
+    /* ── gallery ── */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .gallery-card .gc-header {
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .gc-title {
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 13px;
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    .gc-desc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .gallery-card .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface2);
+    }
+
+    .tab-btn {
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .tab-btn.active {
+      color: var(--accent2);
+      border-bottom-color: var(--accent2);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .gallery-card img, .gallery-card video {
+      width: 100%;
+      display: block;
+    }
+
+    .gallery-card img { max-height: 340px; object-fit: contain; background: #000; }
+
+    /* 2D examples grid */
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .ex-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .ex-card img {
+      width: 100%;
+      display: block;
+      max-height: 200px;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .ex-card .ex-label {
+      padding: 8px 12px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── notes ── */
+    .note-box {
+      background: rgba(56, 139, 253, 0.07);
+      border: 1px solid rgba(56, 139, 253, 0.25);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-top: 16px;
+      line-height: 1.7;
+    }
+
+    .note-box p + p { margin-top: 8px; }
+
+    /* ── footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent2); }
+
+    /* ── responsive ── */
+    @media (max-width: 600px) {
+      .gallery { grid-template-columns: 1fr; }
+      .summary-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Benchmark Results &bull; 2026-10-04</div>
+  <h1>Text2WetLab Leaderboard</h1>
+  <p>
+    AI agents write Opentrons OT-2 protocols for 7 wet-lab tasks.
+    Each protocol is graded by a simulated robot + LLM judge. Pass@1, 1 attempt per task.
+  </p>
+  <div class="header-meta">
+    <span>7 tasks</span>
+    <span>3 models</span>
+    <span>pass@1</span>
+    <span>Harbor + Modal sandboxes</span>
+    <span>Claude Code agent</span>
+  </div>
+  <nav>
+    <a class="btn primary" href="https://github.com/PhysicalAIBenchmarks/Text2WetLab" target="_blank">
+      GitHub
+    </a>
+    <a class="btn" href="https://physicalaibenchmarks.github.io/Text2WetLab/" target="_blank">
+      Home
+    </a>
+    <a class="btn" href="../results/summary.json" target="_blank">
+      Raw JSON
+    </a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ═══════ SUMMARY CARDS ═══════ -->
+  <section>
+    <h2><span class="icon">🏆</span> Overall Rankings</h2>
+
+    <div class="summary-cards">
+      <div class="card rank-1">
+        <div class="rank">#1 &bull; Gold</div>
+        <div class="model-name">Claude Opus 5.5</div>
+        <div class="score-big">0.935</div>
+        <div class="cost">mean pass@1 &bull; $1.25 / run</div>
+      </div>
+      <div class="card rank-2">
+        <div class="rank">#2 &bull; Silver</div>
+        <div class="model-name">Claude Sonnet 5.5</div>
+        <div class="score-big">0.910</div>
+        <div class="cost">mean pass@1 &bull; $0.41 / run</div>
+      </div>
+      <div class="card rank-3">
+        <div class="rank">#3 &bull; Bronze</div>
+        <div class="model-name">Claude Fable 5.1</div>
+        <div class="score-big">0.882</div>
+        <div class="cost">mean pass@1 &bull; $3.69 / run</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ PER-TASK TABLE ═══════ -->
+  <section>
+    <h2><span class="icon">📊</span> Per-Task Scores</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Opus 5.5</th>
+            <th>Sonnet 5.5</th>
+            <th>Fable 5.1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="task-name">a1-a12-100ul</td>
+            <td class="score-cell s100 winner">1.000</td>
+            <td class="score-cell s90">0.917</td>
+            <td class="score-cell s80">0.833</td>
+          </tr>
+          <tr>
+            <td class="task-name">split-200ul-two-wells</td>
+            <td class="score-cell s100 winner">1.000</td>
+            <td class="score-cell s100 winner">1.000</td>
+            <td class="score-cell s90">0.917</td>
+          </tr>
+          <tr>
+            <td class="task-name">ampure-bead-cleanup</td>
+            <td class="score-cell s95">0.944</td>
+            <td class="score-cell s85">0.889</td>
+            <td class="score-cell s100 winner">1.000</td>
+          </tr>
+          <tr>
+            <td class="task-name">colony-pcr-screening</td>
+            <td class="score-cell s100 winner">1.000</td>
+            <td class="score-cell s85">0.875</td>
+            <td class="score-cell s85">0.875</td>
+          </tr>
+          <tr>
+            <td class="task-name">ecoli-heat-shock-transformation</td>
+            <td class="score-cell s80">0.714</td>
+            <td class="score-cell s85 winner">0.857</td>
+            <td class="score-cell s80">0.714</td>
+          </tr>
+          <tr>
+            <td class="task-name">golden-gate-assembly</td>
+            <td class="score-cell s100 winner">1.000</td>
+            <td class="score-cell s100 winner">1.000</td>
+            <td class="score-cell s100 winner">1.000</td>
+          </tr>
+          <tr>
+            <td class="task-name">opentrons-rna-extraction</td>
+            <td class="score-cell s85 winner">0.889</td>
+            <td class="score-cell s80">0.833</td>
+            <td class="score-cell s80">0.833</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="mean-row">
+            <td>Mean (pass@1)</td>
+            <td class="s100">0.935</td>
+            <td class="s95">0.910</td>
+            <td class="s90">0.882</td>
+          </tr>
+          <tr class="cost-row">
+            <td>Agent cost (USD)</td>
+            <td>$1.25</td>
+            <td>$0.41</td>
+            <td>$3.69</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="note-box">
+      <p>
+        <strong>No trial failed a deterministic or critical check.</strong>
+        All 21 protocols simulated and passed every end-state check —
+        every point lost came from the LLM judge (claude-sonnet-5-5).
+      </p>
+      <p>
+        Common judge deductions: mixing competent cells with no operator pause (heat-shock);
+        one tip for all 96 master-mix dispenses (colony PCR); recovering 100 µL where the authors' code takes 80 µL
+        (RNA extraction); aspiration heights near beads (AMPure).
+        With pass@1 and an LLM judge, differences of ~0.1 between models are within noise.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════ 3D RENDER SHOWCASE ═══════ -->
+  <section>
+    <h2><span class="icon">🔬</span> 3D Protocol Renders — Key Tasks</h2>
+    <p style="color:var(--muted);font-size:14px;margin-bottom:24px;">
+      Robot motion rendered from the simulated Opentrons OT-2 run log.
+      Toggle between the frame strip (key moments) and the animated GIF.
+    </p>
+
+    <div class="gallery">
+
+      <!-- E. coli heat-shock transformation -->
+      <div class="gallery-card">
+        <div class="gc-header">
+          <div class="gc-title">ecoli-heat-shock-transformation</div>
+          <div class="gc-desc">E. coli heat shock with SOC recovery — hardest task (mean 0.762)</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab(this, 'hs-frames')">Key frames</button>
+          <button class="tab-btn" onclick="switchTab(this, 'hs-gif')">Animation</button>
+        </div>
+        <div id="hs-frames" class="tab-content active">
+          <img src="../assets/examples3d/ecoli-heat-shock-transformation_frames.png"
+               alt="E. coli heat shock transformation — key frames" loading="lazy" />
+        </div>
+        <div id="hs-gif" class="tab-content">
+          <img src="../assets/examples3d/ecoli-heat-shock-transformation.gif"
+               alt="E. coli heat shock transformation — animation" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Golden Gate assembly -->
+      <div class="gallery-card">
+        <div class="gc-header">
+          <div class="gc-title">golden-gate-assembly</div>
+          <div class="gc-desc">Four-fragment chromoprotein plasmid assembly (AssemblyTron) — perfect 1.000 all models</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab(this, 'gg-frames')">Key frames</button>
+          <button class="tab-btn" onclick="switchTab(this, 'gg-gif')">Animation</button>
+        </div>
+        <div id="gg-frames" class="tab-content active">
+          <img src="../assets/examples3d/golden-gate-assembly_frames.png"
+               alt="Golden Gate assembly — key frames" loading="lazy" />
+        </div>
+        <div id="gg-gif" class="tab-content">
+          <img src="../assets/examples3d/golden-gate-assembly.gif"
+               alt="Golden Gate assembly — animation" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Colony PCR screening -->
+      <div class="gallery-card">
+        <div class="gc-header">
+          <div class="gc-title">colony-pcr-screening</div>
+          <div class="gc-desc">Q5 Hot Start master mix — Opus scores perfect 1.000</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab(this, 'cpcr-frames')">Key frames</button>
+          <button class="tab-btn" onclick="switchTab(this, 'cpcr-gif')">Animation</button>
+        </div>
+        <div id="cpcr-frames" class="tab-content active">
+          <img src="../assets/examples3d/colony-pcr-screening_frames.png"
+               alt="Colony PCR screening — key frames" loading="lazy" />
+        </div>
+        <div id="cpcr-gif" class="tab-content">
+          <img src="../assets/examples3d/colony-pcr-screening.gif"
+               alt="Colony PCR screening — animation" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- AMPure bead cleanup -->
+      <div class="gallery-card">
+        <div class="gc-header">
+          <div class="gc-title">ampure-bead-cleanup</div>
+          <div class="gc-desc">Magnetic bead cleanup of PCR products — Fable scores perfect 1.000</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab(this, 'amp-frames')">Key frames</button>
+          <button class="tab-btn" onclick="switchTab(this, 'amp-gif')">Animation</button>
+        </div>
+        <div id="amp-frames" class="tab-content active">
+          <img src="../assets/examples3d/ampure-bead-cleanup_frames.png"
+               alt="AMPure bead cleanup — key frames" loading="lazy" />
+        </div>
+        <div id="amp-gif" class="tab-content">
+          <img src="../assets/examples3d/ampure-bead-cleanup.gif"
+               alt="AMPure bead cleanup — animation" loading="lazy" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════ ALL TASKS 2D GIF GALLERY ═══════ -->
+  <section>
+    <h2><span class="icon">🎞</span> All Tasks — 2D Animated Protocols</h2>
+    <p style="color:var(--muted);font-size:14px;margin-bottom:20px;">
+      Top-down 2D view of the OT-2 deck for all seven benchmark tasks.
+    </p>
+
+    <div class="examples-grid">
+      <div class="ex-card">
+        <img src="../assets/examples/a1-a12-100ul.gif" alt="a1-a12-100ul" loading="lazy" />
+        <div class="ex-label">a1-a12-100ul</div>
+      </div>
+      <div class="ex-card">
+        <img src="../assets/examples/split-200ul-two-wells.gif" alt="split-200ul-two-wells" loading="lazy" />
+        <div class="ex-label">split-200ul-two-wells</div>
+      </div>
+      <div class="ex-card">
+        <img src="../assets/examples/ampure-bead-cleanup.gif" alt="ampure-bead-cleanup" loading="lazy" />
+        <div class="ex-label">ampure-bead-cleanup</div>
+      </div>
+      <div class="ex-card">
+        <img src="../assets/examples/colony-pcr-screening.gif" alt="colony-pcr-screening" loading="lazy" />
+        <div class="ex-label">colony-pcr-screening</div>
+      </div>
+      <div class="ex-card">
+        <img src="../assets/examples/ecoli-heat-shock-transformation.gif" alt="ecoli-heat-shock-transformation" loading="lazy" />
+        <div class="ex-label">ecoli-heat-shock-transformation</div>
+      </div>
+      <div class="ex-card">
+        <img src="../assets/examples/golden-gate-assembly.gif" alt="golden-gate-assembly" loading="lazy" />
+        <div class="ex-label">golden-gate-assembly</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ GRADING OVERVIEW ═══════ -->
+  <section>
+    <h2><span class="icon">⚙️</span> How Grading Works</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Grader</th>
+            <th>Critical cap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>a1-a12-100ul</td>
+            <td>Simulator + end-state checks + LLM judge</td>
+            <td>0.3 if labware / end-state / safety check fails</td>
+          </tr>
+          <tr>
+            <td>split-200ul-two-wells</td>
+            <td>Simulator + end-state checks + LLM judge</td>
+            <td>0.3 if labware / end-state / safety check fails</td>
+          </tr>
+          <tr>
+            <td>ampure-bead-cleanup</td>
+            <td>Simulator + end-state checks + LLM judge</td>
+            <td>0.3 if labware / end-state / safety check fails</td>
+          </tr>
+          <tr>
+            <td>colony-pcr-screening</td>
+            <td>Simulator + end-state checks + LLM judge (+ paper)</td>
+            <td>0.3 if labware / end-state / safety check fails</td>
+          </tr>
+          <tr>
+            <td>ecoli-heat-shock-transformation</td>
+            <td>Simulator + end-state checks + LLM judge</td>
+            <td>0.3 if labware / end-state / safety check fails</td>
+          </tr>
+          <tr>
+            <td>golden-gate-assembly</td>
+            <td>Simulator + end-state checks + LLM judge (+ paper)</td>
+            <td>0.3 if labware / end-state / safety check fails</td>
+          </tr>
+          <tr>
+            <td>opentrons-rna-extraction</td>
+            <td>Simulator + 16 run-log checks + LLM judge</td>
+            <td>0.3 if critical check fails (sample count, step order, cross-contamination…)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box">
+      <p>
+        The LLM judge is <strong>claude-sonnet-5-5</strong>, scoring 6–9 rubric items at 0, 0.5 or 1.
+        It sees the instruction, check results, and reference protocol.
+        The final reward is the mean rubric score, capped at 0.3 if a critical check fails.
+      </p>
+      <p>
+        Oracle solutions scored 0.89–1.0. Deliberately broken oracles scored 0.3–0.72,
+        confirming the grader is discriminative.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    <a href="https://github.com/PhysicalAIBenchmarks/Text2WetLab" target="_blank">
+      PhysicalAIBenchmarks / Text2WetLab
+    </a>
+    &nbsp;&bull;&nbsp;
+    Evaluated 2026-10-04
+    &nbsp;&bull;&nbsp;
+    <a href="https://physicalaibenchmarks.github.io/Text2WetLab/" target="_blank">
+      physicalaibenchmarks.github.io/Text2WetLab
+    </a>
+  </p>
+</footer>
+
+<script>
+  function switchTab(btn, targetId) {
+    // find parent gallery-card
+    const card = btn.closest('.gallery-card');
+    // deactivate all tabs in this card
+    card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    card.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    // activate clicked
+    btn.classList.add('active');
+    card.querySelector('#' + targetId).classList.add('active');
+  }
+</script>
+
+</body>
+</html>

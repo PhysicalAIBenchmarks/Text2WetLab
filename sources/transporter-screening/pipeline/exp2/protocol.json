@@ -1,0 +1,985 @@
+{
+  "title": "Screening of an E. coli transporter knockout library (Keio) in sub-inhibitory antimicrobials on the Growth Profiler 960 (shown for one compound, azithromycin 7.5 mg/L; 5 library plates x 2 replicates)",
+  "containers": [
+    {
+      "name": "stock_plate_1",
+      "kind": "plate_96",
+      "description": "Library glycerol stock plate 1 (transporter knockouts)",
+      "assumed": true
+    },
+    {
+      "name": "stock_plate_2",
+      "kind": "plate_96",
+      "description": "Library glycerol stock plate 2",
+      "assumed": true
+    },
+    {
+      "name": "stock_plate_3",
+      "kind": "plate_96",
+      "description": "Library glycerol stock plate 3",
+      "assumed": true
+    },
+    {
+      "name": "stock_plate_4",
+      "kind": "plate_96",
+      "description": "Library glycerol stock plate 4",
+      "assumed": true
+    },
+    {
+      "name": "stock_plate_5",
+      "kind": "plate_96",
+      "description": "Library glycerol stock plate 5",
+      "assumed": true
+    },
+    {
+      "name": "culture_plate_1",
+      "kind": "plate_96_deep",
+      "description": "Deep-well overnight culture of library plate 1",
+      "assumed": false
+    },
+    {
+      "name": "culture_plate_2",
+      "kind": "plate_96_deep",
+      "description": "Deep-well overnight culture of library plate 2",
+      "assumed": false
+    },
+    {
+      "name": "culture_plate_3",
+      "kind": "plate_96_deep",
+      "description": "Deep-well overnight culture of library plate 3",
+      "assumed": false
+    },
+    {
+      "name": "culture_plate_4",
+      "kind": "plate_96_deep",
+      "description": "Deep-well overnight culture of library plate 4",
+      "assumed": false
+    },
+    {
+      "name": "culture_plate_5",
+      "kind": "plate_96_deep",
+      "description": "Deep-well overnight culture of library plate 5",
+      "assumed": false
+    },
+    {
+      "name": "assay_A_plate_1",
+      "kind": "plate_96",
+      "description": "CR1496c growth plate, replicate A, library plate 1",
+      "assumed": false
+    },
+    {
+      "name": "assay_A_plate_2",
+      "kind": "plate_96",
+      "description": "CR1496c growth plate, replicate A, library plate 2",
+      "assumed": false
+    },
+    {
+      "name": "assay_A_plate_3",
+      "kind": "plate_96",
+      "description": "CR1496c growth plate, replicate A, library plate 3",
+      "assumed": false
+    },
+    {
+      "name": "assay_A_plate_4",
+      "kind": "plate_96",
+      "description": "CR1496c growth plate, replicate A, library plate 4",
+      "assumed": false
+    },
+    {
+      "name": "assay_A_plate_5",
+      "kind": "plate_96",
+      "description": "CR1496c growth plate, replicate A, library plate 5",
+      "assumed": false
+    },
+    {
+      "name": "assay_B_plate_1",
+      "kind": "plate_96",
+      "description": "CR1496c growth plate, replicate B, library plate 1",
+      "assumed": false
+    },
+    {
+      "name": "assay_B_plate_2",
+      "kind": "plate_96",
+      "description": "CR1496c growth plate, replicate B, library plate 2",
+      "assumed": false
+    },
+    {
+      "name": "assay_B_plate_3",
+      "kind": "plate_96",
+      "description": "CR1496c growth plate, replicate B, library plate 3",
+      "assumed": false
+    },
+    {
+      "name": "assay_B_plate_4",
+      "kind": "plate_96",
+      "description": "CR1496c growth plate, replicate B, library plate 4",
+      "assumed": false
+    },
+    {
+      "name": "assay_B_plate_5",
+      "kind": "plate_96",
+      "description": "CR1496c growth plate, replicate B, library plate 5",
+      "assumed": false
+    },
+    {
+      "name": "LB_reservoir",
+      "kind": "reservoir",
+      "description": "LB medium (refilled as needed)",
+      "assumed": false
+    },
+    {
+      "name": "glycerol_reservoir",
+      "kind": "reservoir",
+      "description": "50% glycerol (refilled as needed)",
+      "assumed": false
+    },
+    {
+      "name": "azithro_stock",
+      "kind": "tube_1.5ml",
+      "description": "Azithromycin 1000x stock (7.5 mg/mL) for 7.5 mg/L final",
+      "assumed": true
+    },
+    {
+      "name": "abx_LB_reservoir_A",
+      "kind": "reservoir",
+      "description": "LB + antibiotic for replicate A plates (5 plates)",
+      "assumed": true
+    },
+    {
+      "name": "abx_LB_reservoir_B",
+      "kind": "reservoir",
+      "description": "LB + antibiotic for replicate B plates (5 plates)",
+      "assumed": true
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "stock_plate_1",
+      "wells": [
+        "A1:H12"
+      ],
+      "reagent": "E. coli Keio transporter knockout glycerol stocks (library plate 1; H12 left empty as blank)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "stock_plate_2",
+      "wells": [
+        "A1:H12"
+      ],
+      "reagent": "E. coli Keio transporter knockout glycerol stocks (library plate 2; H12 left empty as blank)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "stock_plate_3",
+      "wells": [
+        "A1:H12"
+      ],
+      "reagent": "E. coli Keio transporter knockout glycerol stocks (library plate 3; H12 left empty as blank)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "stock_plate_4",
+      "wells": [
+        "A1:H12"
+      ],
+      "reagent": "E. coli Keio transporter knockout glycerol stocks (library plate 4; H12 left empty as blank)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "stock_plate_5",
+      "wells": [
+        "A1:H12"
+      ],
+      "reagent": "E. coli Keio transporter knockout glycerol stocks (library plate 5; H12 left empty as blank)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "LB_reservoir",
+      "wells": [],
+      "reagent": "LB (Lennox: 10 g/L tryptone, 5 g/L yeast extract, 5 g/L NaCl)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "glycerol_reservoir",
+      "wells": [],
+      "reagent": "50% glycerol",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "azithro_stock",
+      "wells": [],
+      "reagent": "Azithromycin 7.5 mg/mL in DMSO (1000x)",
+      "volume_ul": null,
+      "assumed": true
+    }
+  ],
+  "steps": [
+    {
+      "kind": "transfer",
+      "source": "LB_reservoir",
+      "source_wells": [],
+      "dest": "culture_plate_1",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 1000.0,
+      "reagent": "LB",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "inoculating deep-well plates with 1 mL Lucia Broth (LB)",
+      "assumed": false,
+      "note": "Pre-fill deep-well plate"
+    },
+    {
+      "kind": "transfer",
+      "source": "LB_reservoir",
+      "source_wells": [],
+      "dest": "culture_plate_2",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 1000.0,
+      "reagent": "LB",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "inoculating deep-well plates with 1 mL Lucia Broth (LB)",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "LB_reservoir",
+      "source_wells": [],
+      "dest": "culture_plate_3",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 1000.0,
+      "reagent": "LB",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "inoculating deep-well plates with 1 mL Lucia Broth (LB)",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "LB_reservoir",
+      "source_wells": [],
+      "dest": "culture_plate_4",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 1000.0,
+      "reagent": "LB",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "inoculating deep-well plates with 1 mL Lucia Broth (LB)",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "LB_reservoir",
+      "source_wells": [],
+      "dest": "culture_plate_5",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 1000.0,
+      "reagent": "LB",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "inoculating deep-well plates with 1 mL Lucia Broth (LB)",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "stock_plate_1",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "culture_plate_1",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Glycerol stock of library plate 1",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "from glycerol stocks of the transporter library",
+      "assumed": true,
+      "note": "Inoculum volume not stated; 5 µL assumed. Empty stock well H12 gives an uninoculated blank."
+    },
+    {
+      "kind": "transfer",
+      "source": "stock_plate_2",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "culture_plate_2",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Glycerol stock of library plate 2",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "from glycerol stocks of the transporter library",
+      "assumed": true,
+      "note": "Inoculum volume assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "stock_plate_3",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "culture_plate_3",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Glycerol stock of library plate 3",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "from glycerol stocks of the transporter library",
+      "assumed": true,
+      "note": "Inoculum volume assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "stock_plate_4",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "culture_plate_4",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Glycerol stock of library plate 4",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "from glycerol stocks of the transporter library",
+      "assumed": true,
+      "note": "Inoculum volume assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "stock_plate_5",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "culture_plate_5",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 5.0,
+      "reagent": "Glycerol stock of library plate 5",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "from glycerol stocks of the transporter library",
+      "assumed": true,
+      "note": "Inoculum volume assumed"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate culture_plate_1 to culture_plate_5 overnight (16-20 h) at 37 °C with agitation (about 220-250 rpm)",
+      "source_quote": "The inoculated LB was grown overnight under agitation at 37 °C.",
+      "assumed": true,
+      "note": "Duration and shaking speed assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "glycerol_reservoir",
+      "source_wells": [],
+      "dest": "culture_plate_1",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 1000.0,
+      "reagent": "50% glycerol",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "the cultures were mixed with 1 mL 50% glycerol",
+      "assumed": true,
+      "note": "Mix cycle number assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "glycerol_reservoir",
+      "source_wells": [],
+      "dest": "culture_plate_2",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 1000.0,
+      "reagent": "50% glycerol",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "the cultures were mixed with 1 mL 50% glycerol",
+      "assumed": true,
+      "note": "Mix cycle number assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "glycerol_reservoir",
+      "source_wells": [],
+      "dest": "culture_plate_3",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 1000.0,
+      "reagent": "50% glycerol",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "the cultures were mixed with 1 mL 50% glycerol",
+      "assumed": true,
+      "note": "Mix cycle number assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "glycerol_reservoir",
+      "source_wells": [],
+      "dest": "culture_plate_4",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 1000.0,
+      "reagent": "50% glycerol",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "the cultures were mixed with 1 mL 50% glycerol",
+      "assumed": true,
+      "note": "Mix cycle number assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "glycerol_reservoir",
+      "source_wells": [],
+      "dest": "culture_plate_5",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 1000.0,
+      "reagent": "50% glycerol",
+      "mix_cycles": 5,
+      "action": "",
+      "source_quote": "the cultures were mixed with 1 mL 50% glycerol",
+      "assumed": true,
+      "note": "Mix cycle number assumed"
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_plate_1",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "assay_A_plate_1",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 3.0,
+      "reagent": "Culture:glycerol mix, library plate 1",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "by dispensing a 3 µL droplet of the culture and glycerol mixture into the bottom of the well",
+      "assumed": false,
+      "note": "20 µL multichannel pipette; droplet deposited at well bottom"
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_plate_1",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "assay_B_plate_1",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 3.0,
+      "reagent": "Culture:glycerol mix, library plate 1",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "by dispensing a 3 µL droplet of the culture and glycerol mixture into the bottom of the well",
+      "assumed": false,
+      "note": "Replicate B"
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_plate_2",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "assay_A_plate_2",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 3.0,
+      "reagent": "Culture:glycerol mix, library plate 2",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "by dispensing a 3 µL droplet of the culture and glycerol mixture into the bottom of the well",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_plate_2",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "assay_B_plate_2",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 3.0,
+      "reagent": "Culture:glycerol mix, library plate 2",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "by dispensing a 3 µL droplet of the culture and glycerol mixture into the bottom of the well",
+      "assumed": false,
+      "note": "Replicate B"
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_plate_3",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "assay_A_plate_3",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 3.0,
+      "reagent": "Culture:glycerol mix, library plate 3",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "by dispensing a 3 µL droplet of the culture and glycerol mixture into the bottom of the well",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_plate_3",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "assay_B_plate_3",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 3.0,
+      "reagent": "Culture:glycerol mix, library plate 3",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "by dispensing a 3 µL droplet of the culture and glycerol mixture into the bottom of the well",
+      "assumed": false,
+      "note": "Replicate B"
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_plate_4",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "assay_A_plate_4",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 3.0,
+      "reagent": "Culture:glycerol mix, library plate 4",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "by dispensing a 3 µL droplet of the culture and glycerol mixture into the bottom of the well",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_plate_4",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "assay_B_plate_4",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 3.0,
+      "reagent": "Culture:glycerol mix, library plate 4",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "by dispensing a 3 µL droplet of the culture and glycerol mixture into the bottom of the well",
+      "assumed": false,
+      "note": "Replicate B"
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_plate_5",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "assay_A_plate_5",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 3.0,
+      "reagent": "Culture:glycerol mix, library plate 5",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "by dispensing a 3 µL droplet of the culture and glycerol mixture into the bottom of the well",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_plate_5",
+      "source_wells": [
+        "A1:H12"
+      ],
+      "dest": "assay_B_plate_5",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 3.0,
+      "reagent": "Culture:glycerol mix, library plate 5",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "by dispensing a 3 µL droplet of the culture and glycerol mixture into the bottom of the well",
+      "assumed": false,
+      "note": "Replicate B"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Store the 10 loaded assay plates (assay_A_plate_1-5, assay_B_plate_1-5) at -20 °C for up to 3 weeks (or at -80 °C for longer storage) until the assay",
+      "source_quote": "These loaded plates were then stored at −20 °C for up to 3 weeks or −80 °C for longer storage.",
+      "assumed": false,
+      "note": "Plates assumed sealed or covered during storage"
+    },
+    {
+      "kind": "transfer",
+      "source": "LB_reservoir",
+      "source_wells": [],
+      "dest": "abx_LB_reservoir_A",
+      "dest_wells": [],
+      "volume_ul": 146853.0,
+      "reagent": "LB",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "adding 297 µL LB, containing the appropriate dose of antibiotics",
+      "assumed": true,
+      "note": "Bulk antibiotic-LB for 5 plates x 96 wells x 297 µL plus about 3% overage"
+    },
+    {
+      "kind": "transfer",
+      "source": "azithro_stock",
+      "source_wells": [],
+      "dest": "abx_LB_reservoir_A",
+      "dest_wells": [],
+      "volume_ul": 147.0,
+      "reagent": "Azithromycin 7.5 mg/mL stock",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "containing the appropriate dose of antibiotics",
+      "assumed": true,
+      "note": "Final 7.5 mg/L azithromycin (Table 1); 0.1% solvent"
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "abx_LB_reservoir_A",
+      "dest_wells": [],
+      "volume_ul": 1000.0,
+      "reagent": "",
+      "mix_cycles": 10,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Mix the antibiotic-LB thoroughly"
+    },
+    {
+      "kind": "transfer",
+      "source": "LB_reservoir",
+      "source_wells": [],
+      "dest": "abx_LB_reservoir_B",
+      "dest_wells": [],
+      "volume_ul": 146853.0,
+      "reagent": "LB",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "adding 297 µL LB, containing the appropriate dose of antibiotics",
+      "assumed": true,
+      "note": "Bulk antibiotic-LB for replicate B plates"
+    },
+    {
+      "kind": "transfer",
+      "source": "azithro_stock",
+      "source_wells": [],
+      "dest": "abx_LB_reservoir_B",
+      "dest_wells": [],
+      "volume_ul": 147.0,
+      "reagent": "Azithromycin 7.5 mg/mL stock",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "containing the appropriate dose of antibiotics",
+      "assumed": true,
+      "note": "Final 7.5 mg/L"
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "abx_LB_reservoir_B",
+      "dest_wells": [],
+      "volume_ul": 1000.0,
+      "reagent": "",
+      "mix_cycles": 10,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Bring the stored assay plates to room temperature (thaw the 3 µL droplets) before adding medium",
+      "source_quote": "",
+      "assumed": true,
+      "note": "The paper does not say whether plates are thawed first"
+    },
+    {
+      "kind": "transfer",
+      "source": "abx_LB_reservoir_A",
+      "source_wells": [],
+      "dest": "assay_A_plate_1",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 297.0,
+      "reagent": "LB + azithromycin 7.5 mg/L",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The growth assays were initiated by adding 297 µL LB, containing the appropriate dose of antibiotics to the pre-inoculated plates",
+      "assumed": false,
+      "note": "300 µL multichannel; no mixing"
+    },
+    {
+      "kind": "transfer",
+      "source": "abx_LB_reservoir_A",
+      "source_wells": [],
+      "dest": "assay_A_plate_2",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 297.0,
+      "reagent": "LB + azithromycin 7.5 mg/L",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The growth assays were initiated by adding 297 µL LB, containing the appropriate dose of antibiotics to the pre-inoculated plates",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "abx_LB_reservoir_A",
+      "source_wells": [],
+      "dest": "assay_A_plate_3",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 297.0,
+      "reagent": "LB + azithromycin 7.5 mg/L",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The growth assays were initiated by adding 297 µL LB, containing the appropriate dose of antibiotics to the pre-inoculated plates",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "abx_LB_reservoir_A",
+      "source_wells": [],
+      "dest": "assay_A_plate_4",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 297.0,
+      "reagent": "LB + azithromycin 7.5 mg/L",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The growth assays were initiated by adding 297 µL LB, containing the appropriate dose of antibiotics to the pre-inoculated plates",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "abx_LB_reservoir_A",
+      "source_wells": [],
+      "dest": "assay_A_plate_5",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 297.0,
+      "reagent": "LB + azithromycin 7.5 mg/L",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The growth assays were initiated by adding 297 µL LB, containing the appropriate dose of antibiotics to the pre-inoculated plates",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "abx_LB_reservoir_B",
+      "source_wells": [],
+      "dest": "assay_B_plate_1",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 297.0,
+      "reagent": "LB + azithromycin 7.5 mg/L",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The growth assays were initiated by adding 297 µL LB, containing the appropriate dose of antibiotics to the pre-inoculated plates",
+      "assumed": false,
+      "note": "Replicate B"
+    },
+    {
+      "kind": "transfer",
+      "source": "abx_LB_reservoir_B",
+      "source_wells": [],
+      "dest": "assay_B_plate_2",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 297.0,
+      "reagent": "LB + azithromycin 7.5 mg/L",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The growth assays were initiated by adding 297 µL LB, containing the appropriate dose of antibiotics to the pre-inoculated plates",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "abx_LB_reservoir_B",
+      "source_wells": [],
+      "dest": "assay_B_plate_3",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 297.0,
+      "reagent": "LB + azithromycin 7.5 mg/L",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The growth assays were initiated by adding 297 µL LB, containing the appropriate dose of antibiotics to the pre-inoculated plates",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "abx_LB_reservoir_B",
+      "source_wells": [],
+      "dest": "assay_B_plate_4",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 297.0,
+      "reagent": "LB + azithromycin 7.5 mg/L",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The growth assays were initiated by adding 297 µL LB, containing the appropriate dose of antibiotics to the pre-inoculated plates",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "abx_LB_reservoir_B",
+      "source_wells": [],
+      "dest": "assay_B_plate_5",
+      "dest_wells": [
+        "A1:H12"
+      ],
+      "volume_ul": 297.0,
+      "reagent": "LB + azithromycin 7.5 mg/L",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The growth assays were initiated by adding 297 µL LB, containing the appropriate dose of antibiotics to the pre-inoculated plates",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal all 10 assay plates with CR1396b Sandwich covers immediately after medium addition",
+      "source_quote": "and sealing with CR1396b Sandwich covers (Enzyscreen, NL, Heemstede)",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Load all 10 sealed plates into the Growth Profiler 960; run at 37 °C, 225 rpm shaking, imaging every 20 min for 48 h; convert G-values to OD600 with OD600 = 0.0158*(G - G_blank)^0.9854 using the uninoculated H12 wells as blank",
+      "source_quote": "The Growth Profiler 960 was set to 37 °C with 225 rpm shaking (recommended settings for E. coli), with pictures taken every 20 min.",
+      "assumed": true,
+      "note": "48 h run length assumed from the 48 h MIC readout"
+    }
+  ],
+  "assumptions": [
+    "Scope: the full screen uses 18 antimicrobials plus an antibiotic-free LB condition, each on 5 library plates in duplicate (10 Growth Profiler plates per condition). Only one condition, azithromycin 7.5 mg/L, is written out. Repeat the antibiotic-LB preparation and plate-filling steps for each other compound at its Table 1 screening concentration (mg/L: cefiderocol 0.25, cefoperazone 0.25, chloramphenicol 1.25, ceftriaxone 1, D-cycloserine 6.25, flumequine 1.5, gentamicin 2, levofloxacin 0.125, meropenem 0.03125, ofloxacin 0.0625, ornidazole 400, paraquat 67, fosfomycin 25, rifampicin 12.5, streptomycin 6.25, trimethoprim 0.25, zidovudine 100) (https://www.mdpi.com/2079-6382/11/8/1129 Table 1).",
+    "Table 1 values are used where legends disagree: azithromycin 7.5 mg/L (Fig 6 legend says 400 mg/L) and paraquat 67 mg/L (Fig 7 legend says 32 mg/L).",
+    "Azithromycin was sourced from Tokyo Chemical Industries; Sigma supplied the other compounds except rifampicin and ceftriaxone, which also came from TCI.",
+    "'Lucia Broth (LB)' is assumed to be standard Lennox LB (10 g/L tryptone, 5 g/L yeast extract, 5 g/L NaCl), autoclaved, no supplements (https://www.sigmaaldrich.com/US/en/product/sigma/l3022).",
+    "Antibiotic stock: assumed 1000x stock (7.5 mg/mL azithromycin) in DMSO, or the minimum solvent needed, filter-sterilised and diluted 1:1000 into LB (final solvent 0.1%, at most 1% v/v). A matching solvent control is advised but not included. One bulk antibiotic-LB per replicate set (5 plates x 96 x 297 µL = 142.56 mL, made up to 147 mL with about 3% overage); reservoir capacity is 290 mL.",
+    "Library layout: the 5 library plates (447 Keio transporter knockouts plus BW1556 WT; refs 19 and 20 in the paper) are laid out A1:H12; well H12 is assumed empty in each stock plate and acts as the uninoculated blank for G_blank. WT wells are assumed present on every plate. Replicate A and replicate B are separate full sets of 5 plates (10 plates in the Growth Profiler 960). Keep a well-to-strain map. Missed-inoculation wells (growth in one replicate only) are excluded in analysis.",
+    "Glycerol stock to deep-well plate inoculum volume (5 µL) is not stated and is assumed. Overnight culture assumed 16-20 h at about 220-250 rpm; OD was not measured or normalised. Final 25% glycerol after mixing gives 2 mL per deep well, at the plate working capacity.",
+    "Mix cycles after glycerol addition (5) and after antibiotic addition to the reservoir (10 at 1000 µL) are assumed.",
+    "The 3 µL culture:glycerol mix is dispensed with the OT-2 20 µL multichannel pipette (touching the tip to the well bottom so the droplet is deposited); 297 µL antibiotic-LB with the 300 µL multichannel. Assume a fresh tip per column or reservoir fill, default OT-2 flow rates, gentle dispense, no mixing. Scripts at github.com/ljm176/TransporterScreening were not consulted.",
+    "Plates are assumed thawed at room temperature before LB addition; the paper does not say whether they are thawed.",
+    "Sterilisation: the manufacturer lists CR1496c polystyrene plates as single-use gamma-sterilised and not autoclavable, so fresh plates are assumed (https://www.enzyscreen.com/product/polystyrene-transparent-square-96-half-deepwell-microplates-CR1496c/). If reused, wash, rinse and UV-treat. CR1396b covers can be autoclaved wrapped for 20-30 min at 120 °C with a dry cycle (or oven-dried 1 h at 100-110 °C), or the seal wiped with water-ethanol; no dishwasher (https://www.enzyscreen.com/article/maintenance-sterilisation-and-use-of-sandwich-covers/).",
+    "Run duration 48 h (about 145 images) is assumed from the 48 h MIC readout. The OD conversion uses the paper's a = 0.0158 and b = 0.9854, so no new calibration is needed (https://www.enzyscreen.com/strain-calibration/).",
+    "Volumes up to 146.9 mL are moved reservoir to reservoir as single transfers for simplicity; in practice they are poured or pumped. LB and glycerol reservoirs are treated as ample stocks and refilled as needed.",
+    "The WT MIC determination (two-fold dilution in LB, OD at 48 h, MIC <10% of antibiotic-free OD) and data analysis are not part of this protocol."
+  ]
+}

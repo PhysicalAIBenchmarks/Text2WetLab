@@ -1,0 +1,104 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 22
+  },
+  "checks": [
+    {
+      "name": "simulator_ran",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tip_before_aspirate",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_overdispense",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_aspirate_from_empty_well",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "tip_dropped_at_end",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no_cross_contamination",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "end_state:plasmid_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:cells_rack",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "judge": {
+    "items": [
+      {
+        "id": "dna_addition",
+        "score": 1,
+        "evidence": "p20 aspirates 2 uL from plasmid_plate A1 and dispenses into tubes_1_5ml_1 A1; end-state checks pass."
+      },
+      {
+        "id": "heat_shock",
+        "score": 1,
+        "evidence": "The Step 2 comment records 42 C for 45 s then ice for 2 min, placed after DNA addition and before SOC."
+      },
+      {
+        "id": "soc_recovery",
+        "score": 1,
+        "evidence": "p300 moves 250 uL from soc_reservoir A1 to the cells tube after the heat shock, and the Step 4 comment records 37 C, 60 min, 250 rpm."
+      },
+      {
+        "id": "tip_usage",
+        "score": 1,
+        "evidence": "p20 and p300 each pick up a fresh tip and drop it; tip_dropped_at_end and no_cross_contamination pass."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 1,
+        "evidence": "Steps are in the right order and the comments are accurate; the extra 3x10 uL mix and the pause do not change volumes or outcome, and all checks pass."
+      }
+    ],
+    "scores": {
+      "dna_addition": 1.0,
+      "heat_shock": 1.0,
+      "soc_recovery": 1.0,
+      "tip_usage": 1.0,
+      "fidelity_to_task": 1.0
+    },
+    "summary": "The protocol performs the DNA addition, SOC addition, and the heat shock and outgrowth records in the correct order with fresh tips, and all measured checks pass. A small extra mix and a pause were added, which do not change the end state.",
+    "model": "claude-sonnet-5-5"
+  },
+  "critical_failures": [],
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "checks_frac": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "deterministic_reward": 1.0,
+    "judge_mean": 1.0,
+    "critical_fail": 0.0,
+    "rubric_dna_addition": 1.0,
+    "rubric_heat_shock": 1.0,
+    "rubric_soc_recovery": 1.0,
+    "rubric_tip_usage": 1.0,
+    "rubric_fidelity_to_task": 1.0
+  }
+}

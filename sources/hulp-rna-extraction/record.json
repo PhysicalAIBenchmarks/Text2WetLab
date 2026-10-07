@@ -1,0 +1,74 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.2"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/hulp-rna-extraction/HULPopentrons__RNA_extraction_OT2opentrons",
+   "commit": "8703f8930b648c101c7dac6c9efc58fd01bc2358",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 1,
+   "py_files": 1,
+   "redistributable": "no",
+   "repo": "HULPopentrons/RNA_extraction_OT2opentrons",
+   "robot_mentions": [],
+   "size_kb": 428,
+   "status": "cloned",
+   "url": "https://github.com/HULPopentrons/RNA_extraction_OT2opentrons"
+  }
+ ],
+ "doi_primary": "10.1371/journal.pone.0246302",
+ "dois": [
+  "10.1371/journal.pone.0246302"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "pipeline data/pipeline_runs/10.1371_journal.pone.0246302/experiments.json, experiment 1; sections ['s2.4', 's2.3', 's2.5']",
+   "id": "exp1",
+   "liquid_handling": "mostly",
+   "title": "Extraction efficiency of in-house vs commercial protocols using spiked mock samples (TaqMan control)"
+  },
+  {
+   "evidence": "pipeline data/pipeline_runs/10.1371_journal.pone.0246302/experiments.json, experiment 2; sections ['s2.1', 's2.3', 's2.5']",
+   "id": "exp2",
+   "liquid_handling": "mostly",
+   "title": "RNA extraction from clinical nasopharyngeal swabs with three protocols followed by SARS-CoV-2 RT-qPCR"
+  }
+ ],
+ "fulltext": {
+  "legends": 2,
+  "sections": 16,
+  "source": "plos:plosone"
+ },
+ "journal": "",
+ "note": "Harbor task source | Paper names github.com/HULPopentrons/RNA_extraction_OT2opentrons (1 py file, no licence file; not redistributable).",
+ "open_access": true,
+ "origin": [
+  "lLegon; Harbor task (Mohammed Alshehri)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 945171,
+  "licence": "cc by",
+  "pages": 10,
+  "redistributable": "yes",
+  "sha256": "d7f54f252ba69f3a310d3d171f9624239414cf1236cc0f0428cf1991c679c3cc",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0246302&type=printable"
+   }
+  ],
+  "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0246302&type=printable"
+ },
+ "pmcid": "PMC7886139",
+ "slug": "hulp-rna-extraction",
+ "title": "Automated low-cost SARS-CoV-2 RNA extraction protocols",
+ "year": "2021"
+}

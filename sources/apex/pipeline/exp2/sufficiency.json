@@ -1,0 +1,70 @@
+{
+  "verdict": "reject",
+  "summary": "The transformation, spotting and manual-comparison parameters are mostly given or recoverable. But the identities of the eight test plasmids (pEX01–pEX08) and their antibiotic markers sit in Table 2, which is only an image. Without them the plasmids can't be matched to antibiotics, and the equimolar series can't be built or its sizes verified. The antibiotic-to-concentration mapping in the text is also garbled.",
+  "gaps": [
+    {
+      "detail": "Identity, size, backbone and antibiotic-resistance marker of each plasmid pEX01–pEX08 (Table 2)",
+      "why_needed": "Each plasmid must be plated on the correct antibiotic. The 2.7–17.7 kb size series defines the experiment, and equimolar DNA stocks (1.5e-4 pmol per µl) can't be prepared without the sizes and sources. The text only says pUC19 came from NEB, pJKR-H-araC from Addgene #62563, and pEX04/06/07/08/09 from the Campopiano lab. pEX02, pEX03 and pEX05 are not described, and the only link between a plasmid and its marker is Table 2.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Which antibiotic (carbenicillin, kanamycin, zeocin, chloramphenicol) is used at which concentration",
+      "why_needed": "The sentence listing concentrations (100, 50, 25, 25 µg/ml) is garbled, and chloramphenicol appears twice. The mapping of antibiotic to concentration can't be read reliably, and there is no mapping of antibiotic to plasmid.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Manual transformation method ('manufacturer's protocol'; 50 µl cells, 250 µl SOC)",
+      "why_needed": "The manual arm needs ice incubation, heat-shock time and temperature, ice recovery, SOC outgrowth and shaking conditions. The cells were prepared in-house by the Hanahan method, so which 'manufacturer' protocol applies is ambiguous.",
+      "status": "assumable",
+      "resolution": "Use the Thermo Fisher DH5α subcloning-efficiency protocol: 50 µl cells plus 1 µl DNA, 30 min on ice, 42 °C heat shock, 2 min on ice, then SOC outgrowth at 37 °C for 1 h with shaking at 225 rpm. Thermo's FAQ gives 30 s heat shock for a 50 µl volume, which also matches the APEX default. The user guide itself says 20 s, and only 250 µl of SOC is added, as the paper states.",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0018593_DH5alpha_competent_cells_sub_UG.pdf ; https://www.thermofisher.com/order/catalog/product/EC0111/faqs"
+    },
+    {
+      "detail": "APEX Protocol 1 LV configuration volumes and DNA amount",
+      "why_needed": "Defines the automated reaction.",
+      "status": "resolved",
+      "resolution": "1 µl DNA at 1.5e-4 pmol, 10 µl competent cells, 50 µl SOC. Cells incubated at 4 °C for 30 min, heat shocked at 42 °C for 30 s, recovered at 37 °C for 1 h (thermocycler).",
+      "source": "Figure 4 legend; s2.2"
+    },
+    {
+      "detail": "Plating/spotting parameters",
+      "why_needed": "Spot volume, dilution of pEX01 and pEX02, plate format and agar-height calculation.",
+      "status": "resolved",
+      "resolution": "Spot 5 µl on antibiotic LB agar (1.5% agar) in an 8×12 OmniTray. pEX01 is diluted 4-fold and pEX02 2-fold before spotting. Agar density is 0.911 g/cm³ for rectangular plates. Agar height = agar weight / (base area × density).",
+      "source": "s2.3; s4.1; Figure 4 legend; Figure 2 legend"
+    },
+    {
+      "detail": "Diluent for the 2-fold and 4-fold dilutions of pEX01 and pEX02 transformations, and the diluent for the DNA stocks",
+      "why_needed": "The diluent is not stated, but it does not change the measurement.",
+      "status": "assumable",
+      "resolution": "Dilute the transformation recovery culture with SOC or LB. Dilute the DNA in nuclease-free water or TE.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Agar volume per plate, drying and plate incubation conditions, and CFU counting timing",
+      "why_needed": "Agar height and the spotting z-position depend on the agar fill volume, and colony counting depends on the incubation conditions.",
+      "status": "assumable",
+      "resolution": "Pour the same volume into each OmniTray and measure it by weighing. Incubate plates overnight at 37 °C (about 16 h) and image them. The paper states imaging with a Syngene NuGenius and counting with ImageJ.",
+      "source": "standard practice; s4.3"
+    },
+    {
+      "detail": "Thermocycler lid temperature, ramp rates, and plate/tube format for the transformation",
+      "why_needed": "Not given in the main text, and the supplementary file is excluded. The heat-shock result depends on rapid temperature changes.",
+      "status": "assumable",
+      "resolution": "Use a lid at about 50–105 °C with the fastest ramp. Use a skirted PCR plate with a sealing film.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Normalised TE equations (normalised for aliquot of competent cells and cell-to-DNA ratio)",
+      "why_needed": "The equations are images and are not reproduced in the text. This affects only the analysis and not bench execution.",
+      "status": "assumable",
+      "resolution": "Compute TE as CFU/µg DNA. Normalise it within each method and experiment, given that equimolar DNA of different plasmid sizes is used. Exact normalisation can't be verified.",
+      "source": "s4.3 (equation not available)"
+    }
+  ],
+  "retrieved_details": "Competent cells (s4.2): inoculate a single DH5α colony into 5 ml LB overnight at 37 °C. Dilute 100-fold into 50 ml LB and grow at 37 °C, 300 rpm to OD600 0.4. Incubate on ice for 20 min and spin at 4000 ×g, 4 °C, 10 min. Resuspend by the Hanahan method in 2 ml of 0.1 M CaCl2 with 15% glycerol, and store at −80 °C.\nMedia (s4.1): LB is 5 g/l yeast extract, 10 g/l tryptone, 10 g/l NaCl. SOC is 2.5 g/l yeast extract, 10 g/l tryptone, 10 mM NaCl, 10 mM KCl, 20 mM glucose, 10 mM MgSO4 and 10 mM MgCl2. LB agar is LB with 1.5% agar.\nAPEX LV configuration (Fig. 4): 1 µl DNA at 1.5e-4 pmol, 10 µl cells, 50 µl SOC. Cells incubated at 4 °C for 30 min, heat shocked at 42 °C for 30 s, recovered with SOC at 37 °C for 1 h. 5 µl spotted. Biological triplicates (rows A–C) and technical triplicates (columns 1–3).\nManual method (Fig. 4): 50 µl cells and 250 µl SOC following the manufacturer's protocol. The Thermo DH5α user guide (https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0018593_DH5alpha_competent_cells_sub_UG.pdf) gives:\n- 50 µl cells in chilled tubes, 1–5 µl DNA, flick to mix.\n- 30 min on ice.\n- 42 °C water bath for 20 s (Thermo FAQ, https://www.thermofisher.com/order/catalog/product/EC0111/faqs: 30 s for a 50 µl volume).\n- 2 min on ice.\n- Add pre-warmed medium (950 µl in the guide; 250 µl per the paper).\n- Shake at 225 rpm at 37 °C for 1 h.\nAgar density is 0.911 g/cm³ (rectangular plates) and 0.954 g/cm³ (round plates).\nPlate imaging was with a Syngene NuGenius, and colonies were counted with ImageJ.\nThe plasmid table (Table 2) is image-only, so plasmid markers and sizes are unavailable. Because the plasmid details, and the matching of antibiotics to plasmids and concentrations, can't be reconstructed from the text, the experiment can't be run faithfully."
+}

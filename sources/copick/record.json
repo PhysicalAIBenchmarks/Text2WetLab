@@ -1,0 +1,82 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.0"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/copick/sysbio-cnb__COPICK",
+   "commit": "c850ce57652e6aafbc6e25043cfbea7e39362017",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 2,
+   "py_files": 25,
+   "redistributable": "yes",
+   "repo": "sysbio-cnb/COPICK",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 102066,
+   "status": "cloned",
+   "url": "https://github.com/sysbio-cnb/COPICK"
+  }
+ ],
+ "doi_primary": "10.3389/fbioe.2023.1202836",
+ "dois": [
+  "10.3389/fbioe.2023.1202836"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "pipeline experiments.json; robot picks colonies by vision, OT-2 used as gantry; Results",
+   "id": "copick-exp1",
+   "liquid_handling": "little",
+   "title": "Raw colony picking benchmark (no screening) of E. coli and P. putida plates"
+  },
+  {
+   "evidence": "pipeline experiments.json",
+   "id": "copick-exp2",
+   "liquid_handling": "little",
+   "title": "Color-based cherry-picking of blue vs white E. coli DH5a colonies on X-gal plates"
+  },
+  {
+   "evidence": "pipeline experiments.json",
+   "id": "copick-exp3",
+   "liquid_handling": "little",
+   "title": "Fluorescence-based cherry-picking of GFP-positive P. putida colonies"
+  }
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 23,
+  "source": "europepmc:PMC10315574"
+ },
+ "journal": "Frontiers in Bioengineering and Biotechnology",
+ "note": "dropped from benchmark: vision-guided, not liquid handling | PDF from Frontiers /pdf URL (plain browser UA); repo MIT, only 2 of 25 .py files import opentrons (colony_picking_jupyter.py, test_transillum_omnitray_v3.py); orchestration is Jupyter.",
+ "open_access": true,
+ "origin": [
+  "other Claude session"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3174998,
+  "licence": "cc by",
+  "pages": 12,
+  "redistributable": "yes",
+  "sha256": "8c8e4b295ebfcbe47eda1478cc21883d53f8bc8d18b4bc3d47c6aeec5921ef0e",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": true,
+    "ok": true,
+    "url": "https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2023.1202836/pdf"
+   }
+  ],
+  "url": "https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2023.1202836/pdf"
+ },
+ "pmcid": "PMC10315574",
+ "slug": "copick",
+ "title": "COPICK: vision-guided colony picking",
+ "year": "2023"
+}

@@ -1,0 +1,97 @@
+{
+  "code": [
+    {
+      "api_levels": [],
+      "archived": false,
+      "cache_path": "~/.cache/text2wetlab-ingest/code/pipetting-speed-ot2/bioinfo-tsukuba__PlateShuttle",
+      "commit": "525efe7f6e0fdf398afc387b927a9313e59f0119",
+      "default_branch": "main",
+      "host": "github.com",
+      "licence": "MIT",
+      "opentrons_py_files": 0,
+      "py_files": 0,
+      "redistributable": "yes",
+      "repo": "bioinfo-tsukuba/PlateShuttle",
+      "robot_mentions": [],
+      "size_kb": 10418,
+      "status": "cloned",
+      "url": "https://github.com/bioinfo-tsukuba/PlateShuttle"
+    },
+    {
+      "api_levels": [
+        "2.13"
+      ],
+      "archived": false,
+      "cache_path": "~/.cache/text2wetlab-ingest/code/pipetting-speed-ot2/bioinfo-tsukuba__OT2_pipspd_paper",
+      "commit": "820ccb5b06ead02a4a34cce560d7905364ec9d1b",
+      "default_branch": "main",
+      "host": "github.com",
+      "licence": "none",
+      "opentrons_py_files": 9,
+      "py_files": 10,
+      "redistributable": "no",
+      "repo": "bioinfo-tsukuba/OT2_pipspd_paper",
+      "robot_mentions": [
+        "OT-2"
+      ],
+      "size_kb": 22069,
+      "status": "cloned",
+      "url": "https://github.com/bioinfo-tsukuba/OT2_pipspd_paper"
+    }
+  ],
+  "doi_primary": "10.17912/micropub.biology.001566",
+  "dois": [
+    "10.17912/micropub.biology.001566"
+  ],
+  "fulltext": {
+    "legends": 1,
+    "sections": 8,
+    "source": "europepmc:PMC12117386"
+  },
+  "journal": "",
+  "note": "Code repos: OT2_pipspd_paper (analysis + OT-2 protocols, no licence) and PlateShuttle (MIT, hardware/firmware). Extra dataset DOI 10.22002/82xv5-wk067 (Caltech, supplementary table only, not downloaded)",
+  "open_access": true,
+  "origin": [
+    "Amass BiomedCore search (2026-10-03)"
+  ],
+  "paper_licence": "cc by",
+  "pdf": {
+    "bytes": 5592449,
+    "licence": "cc by",
+    "pages": 9,
+    "redistributable": "yes",
+    "sha256": "0e2c6eb3055ad218e47d4971f94d9a6c4904daead1b725f431c193e88a961caa",
+    "status": "downloaded",
+    "tried": [
+      {
+        "http": 200,
+        "manual": true,
+        "ok": true,
+        "url": "https://www.micropublication.org/static/pdf/micropub-biology-001566.pdf"
+      },
+      {
+        "note": "PMC/EuropePMC 403; used micropublication.org/static/pdf/micropub-biology-001566.pdf (CC BY)",
+        "ok": true
+      }
+    ],
+    "url": "https://www.micropublication.org/static/pdf/micropub-biology-001566.pdf"
+  },
+  "pmcid": "PMC12117386",
+  "slug": "pipetting-speed-ot2",
+  "title": "Investigating the effects of liquid handling robot pipetting speed on yeast growth and gene expression using growth assays and RNA-seq",
+  "year": "2025",
+  "experiments_hint": [
+    {
+      "id": "pipetting_speed_yeast_spot_growth_assay",
+      "title": "Yeast liquid culture pipetted at 50/130/210/290 uL/s, normalised by A620 via PlateShuttle, diluted and spotted on YPD agar; time-lapse colony growth",
+      "liquid_handling": "mostly",
+      "evidence": "Methods \"Execution of experiments with OT-2\", run_first_half.py / run_second_half.py; Fig. 1A-C"
+    },
+    {
+      "id": "pipetting_speed_rnaseq_sampling",
+      "title": "Same pipetting-speed conditions with samples collected for RNA-seq (24 samples)",
+      "liquid_handling": "partly",
+      "evidence": "Description paragraph on RNA-seq; Fig. 1D-G"
+    }
+  ]
+}

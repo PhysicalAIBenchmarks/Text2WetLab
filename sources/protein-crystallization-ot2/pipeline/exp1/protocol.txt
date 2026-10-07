@@ -1,0 +1,68 @@
+Food dye color-gradient mock sitting drop plate on the OT-2 vs manual pipetting (24-well CrysChem format)
+
+Containers:
+- reservoir_plate: 96-deep-well plate (2 mL) — Hampton CrysChem 24-well plate (HR3-159) on the 3D-printed adapter. Moat reservoirs are mapped to wells A1:D6 (4 rows x 6 columns). A 400 µL fill exceeds the 360 µL plate_96 working capacity, so a deep-well container stands in for the CrysChem plate. [assumed]
+- pedestal_plate: 96-well plate — Raised center pedestals (sitting drop wells) of the same CrysChem plate, mapped to wells A1:D6. Each pedestal sits inside the matching reservoir well of reservoir_plate. Modeled as a separate container only to track contents. [assumed]
+- water_tube: 15 mL tube — DI water for filling reservoirs to 400 µL (about 6 mL needed) [assumed]
+- red_dye_tube: 15 mL tube — Pure red food dye stock (about 1.8 mL needed) [assumed]
+- blue_dye_tube: 15 mL tube — Pure blue food dye stock (about 1.8 mL needed) [assumed]
+- yellow_dye_tube: 1.5 mL tube — Yellow dye stock standing in for purified protein (about 120 µL needed plus dead volume) [assumed]
+
+Starting contents:
+- water_tube: stock DI water [assumed]
+- red_dye_tube: stock red food dye stock (pure) [assumed]
+- blue_dye_tube: stock blue food dye stock (pure) [assumed]
+- yellow_dye_tube: stock yellow food dye stock [assumed]
+
+Steps:
+1. MANUAL: Set up the OT-2 with a p10 gen1 pipette on the left mount and a p300 gen2 pipette on the right mount. Clip the 3D-printed PLA CrysChem adapter (Cryschem_Plate_Adapter_V1.stl) into two deck slots and seat the Hampton CrysChem 24-well plate (HR3-159) on it. Upload the custom labware .json definition (well A1 at x 30.5, y 12.5, z 6.1 mm) to the OT-2. Load GEB PT0010-9B-NS 10 µL tips (p10) and Opentrons 999-00081 200 µL tips (p300). Place the water, red, blue and yellow dye tubes in the tube rack and set the tube geometry in the Python 3.9 script so the tips do not fully submerge. Note: Deck positions, tube type and rack layout are assumed (Fig. 3 and Supp. Fig. 3 not available as text). The p300 handles transfers of 30 µL and above. [assumed]
+2. Transfer 400 µL of DI water from water_tube to reservoir_plate well A1. Note: Water per well = 400 - blue - red. Added first, before the dyes (order assumed). Volumes above 200 µL are split into several aspirations of the 200 µL tip. [assumed]
+3. Transfer 370 µL of DI water from water_tube to reservoir_plate well A2. Note: Water = 400 - 30 (blue) - 0 (red). [assumed]
+4. Transfer 340 µL of DI water from water_tube to reservoir_plate well A3. Note: Water = 400 - 60 - 0. [assumed]
+5. Transfer 310 µL of DI water from water_tube to reservoir_plate well A4. Note: Water = 400 - 90 - 0. [assumed]
+6. Transfer 280 µL of DI water from water_tube to reservoir_plate well A5. Note: Water = 400 - 120 - 0. [assumed]
+7. Transfer 250 µL of DI water from water_tube to reservoir_plate wells A6, D1 (each well). Note: A6: 400 - 150 - 0 = 250. D1: 400 - 0 - 150 = 250. [assumed]
+8. Transfer 350 µL of DI water from water_tube to reservoir_plate well B1. Note: Water = 400 - 0 - 50. [assumed]
+9. Transfer 320 µL of DI water from water_tube to reservoir_plate well B2. Note: Water = 400 - 30 - 50. [assumed]
+10. Transfer 290 µL of DI water from water_tube to reservoir_plate well B3. Note: Water = 400 - 60 - 50. [assumed]
+11. Transfer 260 µL of DI water from water_tube to reservoir_plate well B4. Note: Water = 400 - 90 - 50. [assumed]
+12. Transfer 230 µL of DI water from water_tube to reservoir_plate well B5. Note: Water = 400 - 120 - 50. [assumed]
+13. Transfer 200 µL of DI water from water_tube to reservoir_plate well B6. Note: Water = 400 - 150 - 50. [assumed]
+14. Transfer 300 µL of DI water from water_tube to reservoir_plate well C1. Note: Water = 400 - 0 - 100. [assumed]
+15. Transfer 270 µL of DI water from water_tube to reservoir_plate well C2. Note: Water = 400 - 30 - 100. [assumed]
+16. Transfer 240 µL of DI water from water_tube to reservoir_plate well C3. Note: Water = 400 - 60 - 100. [assumed]
+17. Transfer 210 µL of DI water from water_tube to reservoir_plate well C4. Note: Water = 400 - 90 - 100. [assumed]
+18. Transfer 180 µL of DI water from water_tube to reservoir_plate well C5. Note: Water = 400 - 120 - 100. [assumed]
+19. Transfer 150 µL of DI water from water_tube to reservoir_plate well C6. Note: Water = 400 - 150 - 100. [assumed]
+20. Transfer 220 µL of DI water from water_tube to reservoir_plate well D2. Note: Water = 400 - 30 - 150. [assumed]
+21. Transfer 190 µL of DI water from water_tube to reservoir_plate well D3. Note: Water = 400 - 60 - 150. [assumed]
+22. Transfer 160 µL of DI water from water_tube to reservoir_plate well D4. Note: Water = 400 - 90 - 150. [assumed]
+23. Transfer 130 µL of DI water from water_tube to reservoir_plate well D5. Note: Water = 400 - 120 - 150. [assumed]
+24. Transfer 100 µL of DI water from water_tube to reservoir_plate well D6. Note: Water = 400 - 150 - 150 = 100 (minimum water volume). [assumed]
+25. Transfer 50 µL of red food dye stock from red_dye_tube to reservoir_plate wells B1:B6 (each well). Note: Row B = 50 µL red. Row A = 0 µL red, so no transfer. Fresh tip per dye color.
+26. Transfer 100 µL of red food dye stock from red_dye_tube to reservoir_plate wells C1:C6 (each well). Note: Row C = 100 µL red.
+27. Transfer 150 µL of red food dye stock from red_dye_tube to reservoir_plate wells D1:D6 (each well). Note: Row D = 150 µL red.
+28. Transfer 30 µL of blue food dye stock from blue_dye_tube to reservoir_plate wells A2:D2 (each well). Note: Column 2 = 30 µL blue. Column 1 = 0 µL blue, so no transfer.
+29. Transfer 60 µL of blue food dye stock from blue_dye_tube to reservoir_plate wells A3:D3 (each well). Note: Column 3 = 60 µL blue.
+30. Transfer 90 µL of blue food dye stock from blue_dye_tube to reservoir_plate wells A4:D4 (each well). Note: Column 4 = 90 µL blue.
+31. Transfer 120 µL of blue food dye stock from blue_dye_tube to reservoir_plate wells A5:D5 (each well). Note: Column 5 = 120 µL blue.
+32. Transfer 150 µL of blue food dye stock from blue_dye_tube to reservoir_plate wells A6:D6 (each well). Note: Column 6 = 150 µL blue.
+33. Mix reservoir_plate wells A1:D6 by pipetting 200 µL up and down 4 times. Note: The mixing procedure is described only in Results, which was not provided. Assumed p300, 200 µL (the 200 µL tip maximum), 4 cycles, tip about 1-2 mm above the moat bottom, default flow rates, slow dispense to limit bubbles. [assumed]
+34. MANUAL: Flatten the reservoir surfaces: after mixing, check each of the 24 reservoirs for bubbles and an uneven meniscus. Pop any bubbles with a clean tip, or do a slow touch-off just under the liquid surface, then let the plate settle for about 1 min on the deck so the surfaces are level and the colors look uniform. Note: The paper does not describe the flattening step. This is an assumed standard-practice step, cosmetic for a dye-mixing check. [assumed]
+35. Transfer 5 µL of yellow food dye stock from yellow_dye_tube to pedestal_plate wells A1:D6 (each well). Note: First half of a combined step. One p10 tip per well aspirates 5 µL yellow, then 5 µL reservoir, and dispenses the 10 µL onto the pedestal. Do this well by well, not as two separate passes. The p10 is the assumed pipette.
+36. Transfer 5 µL of mixed reservoir solution (red/blue/water) from reservoir_plate wells A1:D6 to pedestal_plate wells A1:D6 (each well). Note: Second half of the combined step. 5 µL from each reservoir is drawn into the same tip that already holds the 5 µL yellow, giving 10 µL per pedestal. Each reservoir goes to its own pedestal (A1 to A1, and so on).
+37. MANUAL: Prepare the comparison plate by hand: an experienced user sets up a second CrysChem 24-well plate with the same layout (blue 0-150 µL in 30 µL steps by column, red 0-150 µL in 50 µL steps by row, water to 400 µL, mixed by pipetting). Then deposit 5 µL yellow dye plus 5 µL of each reservoir into the matching pedestal, using manual P10/P200/P1000 pipettes and the same dye stocks as the robot plate. Note: The manual procedure is not described in the text, only shown in Fig. 4. Pipettes, order and timing are assumed. [assumed]
+38. MANUAL: Photograph both the OT-2 plate and the manual plate from above on a white background under the same lighting, right after setup. No seal and no incubation are needed for the dye mock plate. Compare the blue gradient (left to right), the red gradient (top to bottom) and the yellow pedestal drops. Note: Imaging details and the absence of sealing are assumed. The crystallization runs seal with Duck HP260 tape, but this dye plate is not stated to be sealed. [assumed]
+
+Assumptions:
+- The OT-2 setup, tips, adapter and labware JSON come from the paper (s2.1-s2.2): p10 gen1 left, p300 gen2 right, GEB PT0010-9B-NS 10 µL tips, Opentrons 999-00081 200 µL tips, HR3-159 CrysChem 24-well plate on the PLA adapter. Full text (PMC12229254) could not be retrieved, so Fig. 3 and Supp. Fig. 3 details are assumed.
+- Container adaptation: the CrysChem 24-well plate is not an available container kind. Moat reservoirs are modeled as wells A1:D6 of a plate_96_deep container (400 µL exceeds the 360 µL plate_96 capacity). Pedestals are modeled as wells A1:D6 of a separate plate_96 container (10 µL).
+- Layout: 4 rows (A-D) x 6 columns (1-6). Blue 0, 30, 60, 90, 120, 150 µL for columns 1-6. Red 0, 50, 100, 150 µL for rows A-D. Water = 400 - blue - red, giving 100-400 µL. 0 µL additions are skipped. Layout derived from s2.4.
+- Water is added first, then red, then blue, then mixed (order is standard practice). Dyes and water go into the moat, not the pedestal. Water is split into per-well transfers because volumes differ per well.
+- Reservoir mixing parameters are assumed because the paper defers them to Results, which was not provided: p300, 200 µL mix volume, 4 cycles (range 3-5), tip about 1-2 mm above the moat bottom, default flow rates, slow dispense.
+- The reservoir surface flattening step is not described in s2.1-s2.4. It is assumed to be a post-mixing bubble pop or touch-off, followed by a short settle, to level the surface. Cosmetic for this check.
+- Dye identity and concentration are not given (only 'pure' red and blue stocks and a 'yellow dye stock solution'). Assumed commercial liquid food dyes in DI water, giving clear color at 30-150 µL in 400 µL. The same stocks are used for the robot and manual plates. Stocks are set to null (ample) volume. Needed amounts: about 1.8 mL red, 1.8 mL blue, 6 mL water, 120 µL yellow.
+- Source labware and pipette allocation are assumed: dyes and water in 15 mL tubes and yellow in a 1.5 mL tube in a rack, with liquid height tracked from tube geometry. The p300 (200 µL tips) handles about 30 µL and above and splits volumes over 200 µL into multiple aspirations. The p10 handles the 5 µL yellow and 5 µL reservoir aspirations into one tip. A fresh tip is used for each distinct dye. Tip rack and tube rack deck positions are assumed.
+- Combined yellow plus reservoir transfer: the paper aspirates 5 µL yellow and then 5 µL reservoir into the same tip and dispenses 10 µL onto the pedestal. It is expressed as two transfer steps for the schema, but is one tip pass per well.
+- The manual comparison plate procedure is assumed (same layout and volumes, manual pipettes, mixing by pipetting). Only the outcome is shown in Fig. 4.
+- Imaging is assumed (top-down photographs on a white background, same lighting). No sealing or incubation is assumed for the dye plate.

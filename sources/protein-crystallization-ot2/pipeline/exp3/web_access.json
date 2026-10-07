@@ -1,0 +1,113 @@
+{
+  "flags": [],
+  "events": [
+    {
+      "kind": "fetch",
+      "value": "https://hamptonresearch.com/uploads/support_materials/HR7-110_UG.pdf"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://hamptonresearch.com/uploads/support_materials/HR7-110_UG.pdf"
+    },
+    {
+      "kind": "search",
+      "value": "Hampton Research 15-Minute Lysozyme Crystallization Reagent HR2-805 composition"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/uploads/cg_pdf/CG101_Seeding_2020.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/product-Lysozyme-524.html"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/uploads/support_materials/HR7-108_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/uploads/support_materials/HR2-133_Binder.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/uploads/support_materials/HR2-701_UserGuide.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/uploads/support_materials/HR7-110_UG.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://hamptonresearch.com/uploads/cg_pdf/CG101_COMPLETE_2019.pdf"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/9592506"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11278898"
+    },
+    {
+      "kind": "result",
+      "value": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8304193"
+    },
+    {
+      "kind": "search",
+      "value": "Automation of protein crystallization scaleup via Opentrons-2 liquid handling human vs OT-2 HEWL crystals time experience"
+    },
+    {
+      "kind": "result",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12229254/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.sciencedirect.com/science/article/pii/S2472630325000263"
+    },
+    {
+      "kind": "result",
+      "value": "https://slas-technology.org/article/S2472-6303(25)00026-3/fulltext"
+    },
+    {
+      "kind": "result",
+      "value": "https://pubmed.ncbi.nlm.nih.gov/40101838"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12229254/"
+    },
+    {
+      "kind": "result",
+      "value": "https://insights.opentrons.com/lp/automating-protein-crystallization-on-the-ot-2-liquid-handler/"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.slas-technology.org/article/S2472-6303(24)00087-6/fulltext"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.selectscience.net/product/ot-2"
+    },
+    {
+      "kind": "result",
+      "value": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12635289/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12229254/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12229254/"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.sciencedirect.com/science/article/pii/S2472630325000263"
+    },
+    {
+      "kind": "fetch",
+      "value": "https://www.sciencedirect.com/science/article/pii/S2472630325000263"
+    }
+  ]
+}

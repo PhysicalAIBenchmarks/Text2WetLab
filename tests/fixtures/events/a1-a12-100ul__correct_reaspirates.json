@@ -1,0 +1,145 @@
+{
+"task": "a1-a12-100ul",
+"mutant": "correct_reaspirates",
+"expected_pass": true,
+"events": [
+{
+"kind": "pick",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1
+},
+{
+"kind": "aspirate",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 300.0,
+"well": "A1",
+"labware": "Agilent 1 Well Reservoir 290 mL on slot 3"
+},
+{
+"kind": "dispense",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A1",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "dispense",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A2",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "dispense",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A3",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "aspirate",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 300.0,
+"well": "A1",
+"labware": "Agilent 1 Well Reservoir 290 mL on slot 3"
+},
+{
+"kind": "dispense",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A4",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "dispense",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A5",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "dispense",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A6",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "aspirate",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 300.0,
+"well": "A1",
+"labware": "Agilent 1 Well Reservoir 290 mL on slot 3"
+},
+{
+"kind": "dispense",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A7",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "dispense",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A8",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "dispense",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A9",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "aspirate",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 300.0,
+"well": "A1",
+"labware": "Agilent 1 Well Reservoir 290 mL on slot 3"
+},
+{
+"kind": "dispense",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A10",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "dispense",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A11",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "dispense",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1,
+"volume": 100.0,
+"well": "A12",
+"labware": "Corning 96 Well Plate 360 \u00b5L Flat on slot 2"
+},
+{
+"kind": "drop",
+"instrument": "P300 Single-Channel GEN2 on right mount",
+"channels": 1
+}
+]
+}

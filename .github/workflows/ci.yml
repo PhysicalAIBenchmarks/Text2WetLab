@@ -1,0 +1,23 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      MUJOCO_GL: osmesa
+      PYOPENGL_PLATFORM: osmesa
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: OpenGL for headless MuJoCo
+        run: sudo apt-get update && sudo apt-get install -y libosmesa6-dev libgl1
+      - run: uv sync --group dev --group eval
+      - run: uv run pytest -q
+      - name: Dataset publish allowlist (no hidden files, no third-party refs)
+        run: uv run python scripts/deploy_hf.py --dry-run | tail -1

@@ -1,0 +1,152 @@
+YTK Level 1 TU assembly on OT-2 (Golden Gate, E. coli transformation, colony PCR) and yeast sfGFP promoter-strength readout
+
+Containers:
+- water_tube: 50 mL tube — Sterile nuclease-free water [assumed]
+- ggbuf_tube: 1.5 mL tube — 10x T4 ligase buffer (with ATP) [assumed]
+- bsai_tube: 1.5 mL tube — BsaI-HF, 20 U/µL [assumed]
+- t4lig_tube: 1.5 mL tube — T4 DNA ligase, 400 U/µL [assumed]
+- gfp_tube: 1.5 mL tube — YTK type 3 GFP part plasmid, 50 fmol/µL [assumed]
+- term_tube: 1.5 mL tube — YTK type 4 terminator part plasmid, 50 fmol/µL [assumed]
+- bb_tube: 1.5 mL tube — pWS064 backbone plasmid, 50 fmol/µL [assumed]
+- promoter_plate: 96-well plate — 19 YTK promoter part plasmids (one per well), 50 fmol/µL [assumed]
+- gg_mm_tube: 1.5 mL tube — Golden Gate master mix without promoter [assumed]
+- gg_plate: 96-well plate — Golden Gate reactions (10 µL), 19 constructs [assumed]
+- cells_tube: 1.5 mL tube — Chemically competent NEB 5-alpha F'Iq E. coli, kept on ice [assumed]
+- transform_plate: 96-well plate — E. coli transformation/recovery plate [assumed]
+- soc_tube: 15 mL tube — Room-temperature SOC [assumed]
+- agar_plate: 96-well plate — 96-well plate with LB agar + ampicillin (miniaturized replacement for 6-well plates) [assumed]
+- template_plate: 96-well plate — Colony templates for colony PCR (colony resuspended in water) [assumed]
+- phire_tube: 1.5 mL tube — Phire Plant Direct PCR 2x Master Mix
+- primer_f_tube: 1.5 mL tube — Colony PCR forward primer, 10 µM [assumed]
+- primer_r_tube: 1.5 mL tube — Colony PCR reverse primer, 10 µM [assumed]
+- pcr_mm_tube: 1.5 mL tube — Colony PCR master mix [assumed]
+- pcr_plate: 96-well plate — Colony PCR reactions (10 µL)
+- lb_amp_tube: 50 mL tube — LB + ampicillin 100 µg/mL [assumed]
+- lb_culture_plate: 96-deep-well plate (2 mL) — Overnight E. coli cultures for miniprep [assumed]
+- plasmid_plate: 96-well plate — Miniprep eluates (plasmid DNA) [assumed]
+- rcutsmart_tube: 1.5 mL tube — 10x rCutSmart buffer
+- noti_tube: 1.5 mL tube — NotI-HF, 20 U/µL
+- digest_mm_tube: 1.5 mL tube — NotI-HF digest master mix [assumed]
+- digest_plate: 96-well plate — NotI linearization reactions (20 µL) [assumed]
+- yeast_cells_tube: 15 mL tube — LiOAc-washed S. cerevisiae BY4741 cells in 0.1 M LiOAc
+- ssdna_tube: 1.5 mL tube — Boiled salmon sperm DNA (Invitrogen, 10 mg/mL, boiled and chilled) [assumed]
+- ss_mix_tube: 1.5 mL tube — Salmon sperm DNA + water mix [assumed]
+- peg_tube: 15 mL tube — 50% PEG-3350
+- lioac_tube: 1.5 mL tube — 1 M LiOAc
+- peg_lioac_tube: 15 mL tube — PEG/LiOAc mix (260 µL 50% PEG-3350 + 36 µL 1 M LiOAc per reaction)
+- cacl2_tube: 15 mL tube — 5 mM CaCl2
+- yeast_tf_plate: 96-deep-well plate (2 mL) — Yeast LiOAc transformation reactions [assumed]
+- sc_leu_agar_plate: 96-well plate — 96-well plate with SC-Leu agar (miniaturized selective dropout plates) [assumed]
+- sc_leu_reservoir: reservoir — Liquid SC-Leu medium [assumed]
+- preculture_plate: 96-deep-well plate (2 mL) — Overnight yeast precultures, 3 independent colonies per construct [assumed]
+- growth_plate: 96-deep-well plate (2 mL) — 6 h yeast cultures for flow cytometry [assumed]
+- pbs_reservoir: reservoir — PBS
+- fc_plate: 96-well plate — Flow cytometry plate, 1/100 dilution in PBS, 200 µL
+- waste: waste container — Liquid waste
+
+Starting contents:
+- water_tube: stock sterile water [assumed]
+- ggbuf_tube: stock 10x T4 ligase buffer [assumed]
+- bsai_tube: stock BsaI-HF (20 U/µL)
+- t4lig_tube: stock T4 DNA ligase (400 U/µL)
+- gfp_tube: stock YTK type 3 GFP plasmid, 50 fmol/µL [assumed]
+- term_tube: stock YTK type 4 terminator plasmid, 50 fmol/µL [assumed]
+- bb_tube: stock pWS064 backbone plasmid, 50 fmol/µL [assumed]
+- promoter_plate wells A1:H2, A3:C3: 20 µL YTK promoter plasmid (19 different promoters, one per well, construct 1-19 in column-major order), 50 fmol/µL [assumed]
+- cells_tube: 250 µL NEB 5-alpha F'Iq competent E. coli [assumed]
+- soc_tube: 4000 µL SOC medium [assumed]
+- agar_plate wells A1:H2, A3:C3: 170 µL LB agar + ampicillin 100 µg/mL [assumed]
+- phire_tube: stock Phire Plant Direct PCR 2x Master Mix
+- primer_f_tube: stock colony PCR forward primer 10 µM [assumed]
+- primer_r_tube: stock colony PCR reverse primer 10 µM [assumed]
+- lb_amp_tube: stock LB + ampicillin 100 µg/mL [assumed]
+- rcutsmart_tube: stock 10x rCutSmart buffer
+- noti_tube: stock NotI-HF (20 U/µL)
+- ssdna_tube: stock boiled salmon sperm DNA [assumed]
+- peg_tube: stock 50% PEG-3350
+- lioac_tube: stock 1 M LiOAc
+- cacl2_tube: stock 5 mM CaCl2
+- sc_leu_agar_plate wells A1:H2, A3:C3: 170 µL SC-Leu agar (CSM-Leu, 0.17% YNB, 0.5% ammonium sulfate, 2% glucose, 2% agar) [assumed]
+- sc_leu_reservoir: stock liquid SC-Leu medium [assumed]
+- pbs_reservoir: stock PBS
+
+Steps:
+1. Transfer 84 µL of water from water_tube to gg_mm_tube. Note: Master mix for 21 reactions (19 + 2 overage); 4 µL water per reaction [assumed]
+2. Transfer 21 µL of 10x T4 ligase buffer from ggbuf_tube to gg_mm_tube. Note: 1 µL per reaction x 21 [assumed]
+3. Transfer 10.5 µL of BsaI-HF from bsai_tube to gg_mm_tube. Note: 0.5 µL per reaction x 21
+4. Transfer 10.5 µL of T4 DNA ligase from t4lig_tube to gg_mm_tube. Note: 0.5 µL per reaction x 21
+5. Transfer 21 µL of type 3 GFP plasmid from gfp_tube to gg_mm_tube. Note: 1 µL of 50 fmol/µL per reaction x 21 [assumed]
+6. Transfer 21 µL of type 4 terminator plasmid from term_tube to gg_mm_tube. Note: 1 µL per reaction x 21 [assumed]
+7. Transfer 21 µL of pWS064 backbone plasmid from bb_tube to gg_mm_tube. Note: 1 µL per reaction x 21; total master mix 189 µL [assumed]
+8. Mix gg_mm_tube by pipetting 100 µL up and down 5 times. [assumed]
+9. Transfer 9 µL of Golden Gate master mix from gg_mm_tube to gg_plate wells A1:H2, A3:C3 (each well). Note: Plate wells used instead of single tubes [assumed]
+10. Transfer 1 µL of promoter plasmid from promoter_plate wells A1:H2, A3:C3 to gg_plate wells A1:H2, A3:C3 (each well), then mix 3 times. Note: Well-to-well pairing, 1 µL (50 fmol) of each promoter [assumed]
+11. MANUAL: Seal gg_plate and thermocycle (Opentrons thermocycler or benchtop): 25 cycles of 37 °C for 2 min and 16 °C for 5 min, then 60 °C for 5 min to denature the enzymes.
+12. Transfer 10 µL of competent E. coli from cells_tube to transform_plate wells A1:H2, A3:C3 (each well). Note: NEB 5-alpha protocol scaled 1/5 (50 µL to 10 µL); keep plate cold [assumed]
+13. Transfer 1 µL of Golden Gate reaction from gg_plate wells A1:H2, A3:C3 to transform_plate wells A1:H2, A3:C3 (each well). Note: 1 µL DNA to 10 µL cells (NEB: 1-5 µL to 50 µL, scaled); do not vortex or mix by pipetting [assumed]
+14. MANUAL: Seal transform_plate; incubate on ice 30 min; heat shock at 42 °C for 30 s; return to ice for 5 min. Note: NEB 5-alpha protocol [assumed]
+15. Transfer 190 µL of SOC from soc_tube to transform_plate wells A1:H2, A3:C3 (each well). Note: NEB 950 µL SOC scaled 1/5 [assumed]
+16. MANUAL: Seal transform_plate and incubate 60 min at 37 °C with shaking at 250 rpm. Note: NEB 5-alpha recovery [assumed]
+17. Transfer 10 µL of transformed E. coli recovery culture from transform_plate wells A1:H2, A3:C3 to agar_plate wells A1:H2, A3:C3 (each well). Note: 6-well plate adapted to 96-well agar (area-scaled); plating volume assumed [assumed]
+18. MANUAL: Let spots absorb, incubate agar_plate inverted overnight at 37 °C; image under daylight and blue light; identify white (non-fluorescent) colonies, green colonies are intact-vector false positives. [assumed]
+19. Transfer 20 µL of water from water_tube to template_plate wells A1:H2, A3:C3 (each well). Note: Colony resuspension volume assumed [assumed]
+20. MANUAL: Pick one white colony from each agar_plate well (same well position) with a tip and resuspend in the matching template_plate well. Note: One colony per construct (19 total) assumed [assumed]
+21. Transfer 63 µL of water from water_tube to pcr_mm_tube. Note: 3 µL per reaction x 21 [assumed]
+22. Transfer 105 µL of Phire Plant Direct 2x master mix from phire_tube to pcr_mm_tube. Note: 5 µL per 10 µL reaction x 21 [assumed]
+23. Transfer 10.5 µL of forward primer 10 µM from primer_f_tube to pcr_mm_tube. Note: 0.5 µM final [assumed]
+24. Transfer 10.5 µL of reverse primer 10 µM from primer_r_tube to pcr_mm_tube. Note: 0.5 µM final; master mix total 189 µL [assumed]
+25. Mix pcr_mm_tube by pipetting 100 µL up and down 5 times. [assumed]
+26. Transfer 9 µL of colony PCR master mix from pcr_mm_tube to pcr_plate wells A1:H2, A3:C3 (each well).
+27. Transfer 1 µL of colony template from template_plate wells A1:H2, A3:C3 to pcr_plate wells A1:H2, A3:C3 (each well), then mix 3 times.
+28. MANUAL: Seal pcr_plate and thermocycle (Opentrons thermocycler or benchtop): 98 °C 5 min; ~30 cycles of 98 °C 5 s, primer-specific annealing 5 s, 72 °C extension per amplicon size; final 72 °C 1 min. Note: Cycle numbers/times not stated; initial denaturation from Phire guide [assumed]
+29. MANUAL: Load PCR products directly on an agarose gel (master mix contains loading dye); score by band size to confirm insert versus GFP-dropout vector; keep only PCR-positive constructs. Note: In this protocol all 19 are carried forward [assumed]
+30. Transfer 1800 µL of LB + ampicillin from lb_amp_tube to lb_culture_plate wells A1:H2, A3:C3 (each well). Note: 3 mL tubes adapted to 1.8 mL in deep-well plate (capacity limit) [assumed]
+31. Transfer 5 µL of colony suspension from template_plate wells A1:H2, A3:C3 to lb_culture_plate wells A1:H2, A3:C3 (each well). Note: Inoculation of PCR-positive colonies [assumed]
+32. MANUAL: Seal with gas-permeable film; incubate lb_culture_plate overnight at 37 °C, 250 rpm; pellet and miniprep with a silica kit following manufacturer's instructions; elute ~30 µL per construct into plasmid_plate (same well positions). Note: Miniprep not described in paper; expected ~100 ng/µL [assumed]
+33. Transfer 147 µL of water from water_tube to digest_mm_tube. Note: 21 digests; 7 µL per reaction [assumed]
+34. Transfer 42 µL of 10x rCutSmart buffer from rcutsmart_tube to digest_mm_tube. Note: 2 µL per 20 µL digest [assumed]
+35. Transfer 21 µL of NotI-HF from noti_tube to digest_mm_tube. Note: 1 µL (20 U) per reaction [assumed]
+36. Mix digest_mm_tube by pipetting 100 µL up and down 5 times. [assumed]
+37. Transfer 10 µL of miniprepped plasmid from plasmid_plate wells A1:H2, A3:C3 to digest_plate wells A1:H2, A3:C3 (each well). Note: About 1 µg DNA assumed [assumed]
+38. Transfer 10 µL of NotI-HF digest master mix from digest_mm_tube to digest_plate wells A1:H2, A3:C3 (each well), then mix 5 times. [assumed]
+39. MANUAL: Seal digest_plate; incubate 37 °C for 1 h; heat-inactivate 65 °C for 20 min. Note: Time/temperature not in paper [assumed]
+40. MANUAL: Prepare yeast cells: grow BY4741 overnight in YPD at 30 °C; dilute 1:100 into fresh YPD (15 mL per culture, enough cultures pooled to give ≥2.2 mL of resuspended cells); incubate at 30 °C for 4-6 h to OD600 0.8-1.0; harvest cells; wash with 0.1 M LiOAc (1 mL); resuspend in 0.1 M LiOAc to 100 µL per transformation (2.2 mL total for 21 transformations) in yeast_cells_tube. Note: Scale of culture and wash volume assumed [assumed]
+41. Transfer 100 µL of BY4741 cells in 0.1 M LiOAc from yeast_cells_tube to yeast_tf_plate wells A1:H2, A3:C3 (each well). Note: Resuspend cells by mixing before aspirating
+42. MANUAL: Centrifuge yeast_tf_plate 3000 x g for 5 min. Note: Speed/time assumed [assumed]
+43. Transfer 95 µL of LiOAc supernatant from yeast_tf_plate wells A1:H2, A3:C3 to waste. Note: Removed leaving the pellet; aspirate slowly from the well side [assumed]
+44. Transfer 210 µL of boiled salmon sperm DNA from ssdna_tube to ss_mix_tube. Note: 10 µL per reaction x 21 [assumed]
+45. Transfer 924 µL of water from water_tube to ss_mix_tube. Note: 44 µL per reaction x 21 [assumed]
+46. Mix ss_mix_tube by pipetting 500 µL up and down 5 times. [assumed]
+47. Transfer 54 µL of salmon sperm DNA + water from ss_mix_tube to yeast_tf_plate wells A1:H2, A3:C3 (each well). [assumed]
+48. Transfer 10 µL of NotI-linearized plasmid (~500 ng) from digest_plate wells A1:H2, A3:C3 to yeast_tf_plate wells A1:H2, A3:C3 (each well), then mix 10 times. Note: 10 µL of ~50 ng/µL digest assumed; mixing resuspends the pellet; 64 µL DNA mix total [assumed]
+49. Transfer 5460 µL of 50% PEG-3350 from peg_tube to peg_lioac_tube. Note: 260 µL x 21; viscous, use slow aspirate/dispense
+50. Transfer 756 µL of 1 M LiOAc from lioac_tube to peg_lioac_tube. Note: 36 µL x 21
+51. Mix peg_lioac_tube by pipetting 1000 µL up and down 10 times. [assumed]
+52. Transfer 296 µL of PEG/LiOAc from peg_lioac_tube to yeast_tf_plate wells A1:H2, A3:C3 (each well), then mix 10 times. Note: Total 460 µL per well
+53. MANUAL: Seal yeast_tf_plate; heat shock at 42 °C for 40 min; centrifuge 3000 x g for 5 min to pellet. Note: Centrifuge speed/time assumed
+54. Transfer 440 µL of supernatant from yeast_tf_plate wells A1:H2, A3:C3 to waste. Note: Leave the pellet undisturbed [assumed]
+55. Transfer 200 µL of 5 mM CaCl2 from cacl2_tube to yeast_tf_plate wells A1:H2, A3:C3 (each well), then mix 10 times.
+56. Transfer 10 µL of transformed yeast from yeast_tf_plate wells A1:H2, A3:C3 to sc_leu_agar_plate wells A1:H2, A3:C3 (each well). Note: Whole-plate plating adapted to 10 µL spots on 96-well agar [assumed]
+57. MANUAL: Incubate sc_leu_agar_plate inverted at 30 °C for 2-4 days until colonies appear.
+58. Transfer 1000 µL of SC-Leu medium from sc_leu_reservoir to preculture_plate wells A1:H2, A3:C3, A5:H6, A7:C7, A9:H10, A11:C11 (each well). Note: Layout: construct 1-19 in column-major order in 3 blocks (replicate 1: A1:H2,A3:C3; replicate 2: A5:H6,A7:C7; replicate 3: A9:H10,A11:C11) [assumed]
+59. MANUAL: Inoculate each preculture_plate well with one independent colony from the matching sc_leu_agar_plate construct (3 different colonies per construct if available); seal with gas-permeable film; grow overnight at 30 °C with shaking. Note: Medium, vessel and shaking not stated [assumed]
+60. Transfer 975 µL of SC-Leu medium from sc_leu_reservoir to growth_plate wells A1:H2, A3:C3, A5:H6, A7:C7, A9:H10, A11:C11 (each well). [assumed]
+61. Transfer 25 µL of overnight yeast preculture from preculture_plate wells A1:H2, A3:C3, A5:H6, A7:C7, A9:H10, A11:C11 to growth_plate wells A1:H2, A3:C3, A5:H6, A7:C7, A9:H10, A11:C11 (each well), then mix 3 times. Note: 1:40 dilution assumed to give OD600 ~0.1-0.2; adjust to measured OD [assumed]
+62. MANUAL: Incubate growth_plate at 30 °C with shaking for 6 h. [assumed]
+63. Transfer 198 µL of PBS from pbs_reservoir to fc_plate wells A1:H2, A3:C3, A5:H6, A7:C7, A9:H10, A11:C11 (each well).
+64. Transfer 2 µL of 6 h yeast culture from growth_plate wells A1:H2, A3:C3, A5:H6, A7:C7, A9:H10, A11:C11 to fc_plate wells A1:H2, A3:C3, A5:H6, A7:C7, A9:H10, A11:C11 (each well), then mix 3 times.
+65. MANUAL: Read fc_plate on an Attune NxT Acoustic Focusing Cytometer with autosampler: FSC 300 V, SSC 350 V, BL1 500 V (sfGFP); record 10,000 events per sample. Note: Sample draw volume and flow rate not stated
+
+Assumptions:
+- Part identities for Figure 2A are not visible; each construct is assumed to be 1 promoter (19 different type 2 promoter plasmids) + type 3 GFP + type 4 terminator + pWS064 backbone (4 plasmids per reaction); one promoter per well, construct 1-19 in column-major well order A1:H2 then A3:C3.
+- Part stocks normalized to 50 fmol/µL so 1 µL gives 50 fmol each; 10x NEB T4 ligase buffer (1 µL) and water (4 µL) fill the 10 µL reaction (standard practice; enzyme units match NEB stock concentrations). Master mix made for 21 reactions (19 + 2 overage); GG performed in 96-well plate wells instead of single tubes.
+- Ranges like A1:H2 are expanded column-major (A1..H1, A2..H2); source and destination lists pair in the same order.
+- E. coli transformation (NEB 5-alpha high-efficiency protocol, https://www.neb.com/en/protocols/high-efficiency-transformation-protocol-c2987?pdf=true): 30 min ice, 42 °C 30 s, 5 min ice, SOC, 37 °C 60 min at 250 rpm. NEB Turbo protocol assumed equivalent; strain used for YTK OT-2 run not stated so 5-alpha F'Iq was chosen. Volumes scaled down 1/5 for the miniaturized format: 10 µL cells, 1 µL GG reaction, 190 µL SOC.
+- 6-well plates with 5 mL LB agar adapted to 96-well agar plates (170 µL agar per well, area-scaled to ~0.32 cm²); 10 µL of the recovery culture plated per well (assumed). Ampicillin 100 µg/mL assumed for the pWS064 Level 1 vector (the paper lists it among its antibiotics; confirm on plasmid record). Competent cells, SOC and plates are assumed commercial/prepared stocks.
+- Colony PCR: colony resuspended in 20 µL water in a 96-well plate, 1 µL used (assumed; Phire dilution buffer is an alternative per https://tools.thermofisher.com/content/sfs/manuals/MAN0012959_Phire_Plant_Direct_PCR_MasterMixes_UG.pdf). Reaction scaled from the Phire user guide: 10 µL reaction = 5 µL 2x master mix, 0.5 µM each primer (0.5 µL of 10 µM), sample, water to volume; master mix 9 µL + 1 µL template as in paper. Cycling: initial denaturation 98 °C for 5 min per Phire guide; remaining cycle count, annealing and extension times were not retrieved and are assumed to be set by amplicon size and primer Tm per the manual. Primers (Table S1) assumed to flank the insertion site; one white colony per construct (19) used.
+- Plasmid prep: 3 mL LB cultures adapted to 1.8 mL in a 96-deep-well plate; the whole plate is inoculated assuming all 19 are PCR positive; silica miniprep, ~100 ng/µL eluate assumed. NotI-HF digest: ~1 µg in 20 µL, 10 µL plasmid + 7 µL water + 2 µL 10x rCutSmart + 1 µL NotI-HF (20 U), 37 °C 1 h; 65 °C 20 min heat-kill assumed.
+- Yeast transformation volumes follow the paper (100 µL cells, 64 µL DNA mix incl. ~500 ng linearized DNA and 10 µL ssDNA, 296 µL PEG/LiOAc, 42 °C 40 min, 200 µL 5 mM CaCl2) in a deep-well plate. DNA mix water 44 µL assumed so that 10 µL digest (~500 ng assumed) + 10 µL ssDNA + 44 µL water = 64 µL. Wash volume (1 mL), culture scale (pooled 15 mL cultures to supply 19 reactions), centrifuge 3000 x g 5 min, supernatant removal volumes and ssDNA 10 mg/mL stock boiled and chilled on ice are assumed.
+- Selective dropout plates adapted to 96-well SC-Leu agar (170 µL per well); 10 µL of the 200 µL transformation spotted per well instead of whole-volume plating (assumed). SC-Leu uses CSM-Leu at manufacturer-recommended concentration (~0.7 g/L, assumed) with the paper's 0.17% YNB, 0.5% ammonium sulfate, 2% glucose, 2% agar.
+- Flow cytometry cultures: 3 independent colonies per construct (triplicates; 57 wells) in SC-Leu in 96-deep-well plates, 1 mL overnight preculture at 30 °C with shaking, diluted 1:40 (25 µL into 975 µL) into fresh SC-Leu targeting OD600 0.1-0.2 (assumed), grown 6 h at 30 °C with shaking. Layout: replicate 1 in A1:H2 + A3:C3, replicate 2 in A5:H6 + A7:C7, replicate 3 in A9:H10 + A11:C11 (construct order identical in each block). No untransformed BY4741 control is included.
+- Flow readout: 2 µL culture into 198 µL PBS (1/100) in 96-well plate; voltages per paper (FSC 300 V, SSC 350 V, BL1 500 V), 10,000 events; autosampler draw volume, flow rate, rinse and gating are not specified and analysis is not included.
+- Thermocycling steps (GG, colony PCR) are manual steps in the Opentrons thermocycler or benchtop cycler; plate sealing, centrifugation, shaking and picking are manual.

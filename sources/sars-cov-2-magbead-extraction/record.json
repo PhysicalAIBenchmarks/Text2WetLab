@@ -1,0 +1,78 @@
+{
+ "code": [],
+ "doi_primary": "10.3390/v12080863",
+ "dois": [
+  "10.3390/v12080863"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Methods 2.2",
+   "id": "magbead-extraction-96well",
+   "liquid_handling": "mostly",
+   "title": "Magnetic bead RNA extraction in 96-well plate (manual multichannel / Liquidator 96)"
+  },
+  {
+   "evidence": "Methods 2.3",
+   "id": "qiacube-extraction",
+   "liquid_handling": "little",
+   "title": "RNA extraction with QIAcube (comparator)"
+  },
+  {
+   "evidence": "Methods 2.4, 2.5",
+   "id": "rtqpcr-e-gene",
+   "liquid_handling": "partly",
+   "title": "RT-qPCR plate set-up (E gene) and MS2 spike-in detection limit"
+  },
+  {
+   "evidence": "Methods 2.6, 2.7",
+   "id": "rt-lamp-colorimetric-fluorescent",
+   "liquid_handling": "partly",
+   "title": "Colorimetric and fluorescent RT-LAMP set-up"
+  }
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 15,
+  "source": "europepmc:PMC7472728"
+ },
+ "journal": "",
+ "note": "CC BY but MDPI/Europe PMC PDF blocked (403/406); manual protocol, no code in text.",
+ "open_access": true,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2560271,
+  "licence": "cc by",
+  "pages": 13,
+  "redistributable": "yes",
+  "sha256": "a8470d85b72294827d36b7f073923c94b3878bf7d7a08df9767c9936337dafbc",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://www.mdpi.com/1999-4915/12/8/863/pdf?version=1597404140"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7472728?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7472728.1/PMC7472728.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7472728.1/PMC7472728.1.pdf"
+ },
+ "pmcid": "PMC7472728",
+ "slug": "sars-cov-2-magbead-extraction",
+ "title": "SARS-CoV-2 RNA Extraction Using Magnetic Beads for Rapid Large-Scale Testing by RT-qPCR and RT-LAMP",
+ "year": "2020"
+}

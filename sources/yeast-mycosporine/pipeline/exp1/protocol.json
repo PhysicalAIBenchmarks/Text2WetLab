@@ -1,0 +1,1154 @@
+{
+  "title": "Yeast strain engineering and LC-HRMS detection of 4-DG and mycosporine-glycine (MG) in SC.L2, SC.L3, SC.L6 and SC.L26",
+  "containers": [
+    {
+      "name": "bsaI_tube",
+      "kind": "tube_1.5ml",
+      "description": "BsaI-HF v2 enzyme (NEBridge Golden Gate kit)",
+      "assumed": true
+    },
+    {
+      "name": "ligase_tube",
+      "kind": "tube_1.5ml",
+      "description": "T4 DNA ligase",
+      "assumed": true
+    },
+    {
+      "name": "ligbuffer_tube",
+      "kind": "tube_1.5ml",
+      "description": "T4 ligase buffer",
+      "assumed": true
+    },
+    {
+      "name": "link_vector_tube",
+      "kind": "tube_1.5ml",
+      "description": "Destination vector (e.g. link-021/022/024/027), BsaI-compatible",
+      "assumed": true
+    },
+    {
+      "name": "type3_insert_tube",
+      "kind": "tube_1.5ml",
+      "description": "Type-3 intermediate plasmid carrying gene flanked by BsaI sites (xyl1-3, Np.mysA-C)",
+      "assumed": true
+    },
+    {
+      "name": "water_tube",
+      "kind": "tube_15ml",
+      "description": "Sterile nuclease-free water",
+      "assumed": true
+    },
+    {
+      "name": "gg_tube",
+      "kind": "tube_1.5ml",
+      "description": "Golden Gate assembly reaction (20 uL; repeated per cassette)",
+      "assumed": true
+    },
+    {
+      "name": "peg_tube",
+      "kind": "tube_50ml",
+      "description": "50% PEG3350",
+      "assumed": true
+    },
+    {
+      "name": "liac_tube",
+      "kind": "tube_15ml",
+      "description": "1 M lithium acetate",
+      "assumed": true
+    },
+    {
+      "name": "ssdna_tube",
+      "kind": "tube_1.5ml",
+      "description": "2 mg/mL salmon-sperm ssDNA",
+      "assumed": true
+    },
+    {
+      "name": "pCRCT_HIS3_tube",
+      "kind": "tube_1.5ml",
+      "description": "pCRCT-HIS3 (gRNA/Cas9, URA3)",
+      "assumed": true
+    },
+    {
+      "name": "pCRCT_308a_tube",
+      "kind": "tube_1.5ml",
+      "description": "pCRCT-308a",
+      "assumed": true
+    },
+    {
+      "name": "pCRCT_NQM1_tube",
+      "kind": "tube_1.5ml",
+      "description": "pCRCT-NQM1",
+      "assumed": true
+    },
+    {
+      "name": "pCRCT_YP_tube",
+      "kind": "tube_1.5ml",
+      "description": "pCRCT-YP",
+      "assumed": true
+    },
+    {
+      "name": "insert_XYL_tube",
+      "kind": "tube_1.5ml",
+      "description": "PCR-linearized XYL1-XYL2-XYL3 cassettes with HIS3 homology arms",
+      "assumed": true
+    },
+    {
+      "name": "insert_mysAB_tube",
+      "kind": "tube_1.5ml",
+      "description": "PCR-linearized mysA + mysB cassettes with 308 homology arms",
+      "assumed": true
+    },
+    {
+      "name": "insert_mysBA_tube",
+      "kind": "tube_1.5ml",
+      "description": "PCR-linearized second copy mysB + mysA with NQM1 homology arms",
+      "assumed": true
+    },
+    {
+      "name": "insert_mysC_tube",
+      "kind": "tube_1.5ml",
+      "description": "PCR-linearized mysC cassette with YP homology arms",
+      "assumed": true
+    },
+    {
+      "name": "tf_L2_tube",
+      "kind": "tube_1.5ml",
+      "description": "SC.L1 competent cell pellet (transformation to give SC.L2)",
+      "assumed": true
+    },
+    {
+      "name": "tf_L3_tube",
+      "kind": "tube_1.5ml",
+      "description": "SC.L2 competent cell pellet (transformation to give SC.L3)",
+      "assumed": true
+    },
+    {
+      "name": "tf_L6_tube",
+      "kind": "tube_1.5ml",
+      "description": "SC.L3 competent cell pellet (transformation to give SC.L6)",
+      "assumed": true
+    },
+    {
+      "name": "tf_L26_tube",
+      "kind": "tube_1.5ml",
+      "description": "SC.L6 competent cell pellet (transformation to give SC.L26)",
+      "assumed": true
+    },
+    {
+      "name": "medium_reservoir",
+      "kind": "reservoir",
+      "description": "SC-Ura medium with 12 g/L glucose and 8 g/L xylose",
+      "assumed": true
+    },
+    {
+      "name": "pre_L2_tube",
+      "kind": "tube_15ml",
+      "description": "Overnight pre-culture of SC.L2",
+      "assumed": true
+    },
+    {
+      "name": "pre_L3_tube",
+      "kind": "tube_15ml",
+      "description": "Overnight pre-culture of SC.L3",
+      "assumed": true
+    },
+    {
+      "name": "pre_L6_tube",
+      "kind": "tube_15ml",
+      "description": "Overnight pre-culture of SC.L6",
+      "assumed": true
+    },
+    {
+      "name": "pre_L26_tube",
+      "kind": "tube_15ml",
+      "description": "Overnight pre-culture of SC.L26",
+      "assumed": true
+    },
+    {
+      "name": "culture_plate",
+      "kind": "plate_96",
+      "description": "48 h production cultures (adapted from 250 mL flasks); rows A-D = SC.L2, SC.L3, SC.L6, SC.L26, columns 1-3 = biological replicates",
+      "assumed": true
+    },
+    {
+      "name": "filter_plate",
+      "kind": "plate_96",
+      "description": "0.22 um filter plate for clarifying extracts",
+      "assumed": true
+    },
+    {
+      "name": "lcms_plate",
+      "kind": "plate_96",
+      "description": "Collection plate for filtered extracts for LC-HRMS",
+      "assumed": true
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "bsaI_tube",
+      "wells": [],
+      "reagent": "BsaI-HF v2",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "ligase_tube",
+      "wells": [],
+      "reagent": "T4 DNA ligase",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "ligbuffer_tube",
+      "wells": [],
+      "reagent": "T4 DNA ligase buffer",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "link_vector_tube",
+      "wells": [],
+      "reagent": "Destination vector plasmid (link-0xx)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "type3_insert_tube",
+      "wells": [],
+      "reagent": "Type-3 intermediate plasmid with gene",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "water_tube",
+      "wells": [],
+      "reagent": "Sterile water",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "peg_tube",
+      "wells": [],
+      "reagent": "50% PEG3350",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "liac_tube",
+      "wells": [],
+      "reagent": "1 M LiAc",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "ssdna_tube",
+      "wells": [],
+      "reagent": "2 mg/mL ssDNA",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "pCRCT_HIS3_tube",
+      "wells": [],
+      "reagent": "pCRCT-HIS3 plasmid (250 ng/uL)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "pCRCT_308a_tube",
+      "wells": [],
+      "reagent": "pCRCT-308a plasmid (250 ng/uL)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "pCRCT_NQM1_tube",
+      "wells": [],
+      "reagent": "pCRCT-NQM1 plasmid (250 ng/uL)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "pCRCT_YP_tube",
+      "wells": [],
+      "reagent": "pCRCT-YP plasmid (250 ng/uL)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "insert_XYL_tube",
+      "wells": [],
+      "reagent": "Linear XYL1-3 insert DNA (500 ng/uL)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "insert_mysAB_tube",
+      "wells": [],
+      "reagent": "Linear mysA+mysB insert DNA (500 ng/uL)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "insert_mysBA_tube",
+      "wells": [],
+      "reagent": "Linear mysB+mysA (2nd copy) insert DNA (500 ng/uL)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "insert_mysC_tube",
+      "wells": [],
+      "reagent": "Linear mysC insert DNA (500 ng/uL)",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "tf_L2_tube",
+      "wells": [],
+      "reagent": "SC.L1 (CEN.PK2 tal1 delta) competent cells, pellet from 5-10 mL culture at OD600 0.5-0.8",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "tf_L3_tube",
+      "wells": [],
+      "reagent": "SC.L2 competent cells, pellet from 5-10 mL culture at OD600 0.5-0.8",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "tf_L6_tube",
+      "wells": [],
+      "reagent": "SC.L3 competent cells, pellet from 5-10 mL culture at OD600 0.5-0.8",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "tf_L26_tube",
+      "wells": [],
+      "reagent": "SC.L6 competent cells, pellet from 5-10 mL culture at OD600 0.5-0.8",
+      "volume_ul": null,
+      "assumed": true
+    },
+    {
+      "container": "medium_reservoir",
+      "wells": [],
+      "reagent": "SC-Ura medium (1.7 g/L YNB, 5 g/L ammonium sulfate, 1.29 g/L DO supplement -Ura, 12 g/L glucose, 8 g/L xylose)",
+      "volume_ul": null,
+      "assumed": false
+    }
+  ],
+  "steps": [
+    {
+      "kind": "transfer",
+      "source": "bsaI_tube",
+      "source_wells": [],
+      "dest": "gg_tube",
+      "dest_wells": [],
+      "volume_ul": 1.0,
+      "reagent": "BsaI-HF v2",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The expression vectors were constructed using the NEBridge® Golden Gate Assembly Kit (BsaI-HF® v2).",
+      "assumed": true,
+      "note": "Volumes from the published version of the paper; one reaction shown, repeat for each cassette."
+    },
+    {
+      "kind": "transfer",
+      "source": "ligase_tube",
+      "source_wells": [],
+      "dest": "gg_tube",
+      "dest_wells": [],
+      "volume_ul": 1.0,
+      "reagent": "T4 DNA ligase",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The expression vectors were constructed using the NEBridge® Golden Gate Assembly Kit (BsaI-HF® v2).",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ligbuffer_tube",
+      "source_wells": [],
+      "dest": "gg_tube",
+      "dest_wells": [],
+      "volume_ul": 2.0,
+      "reagent": "T4 ligase buffer",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The expression vectors were constructed using the NEBridge® Golden Gate Assembly Kit (BsaI-HF® v2).",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "link_vector_tube",
+      "source_wells": [],
+      "dest": "gg_tube",
+      "dest_wells": [],
+      "volume_ul": 2.0,
+      "reagent": "Destination vector (link-0xx)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Plasmids link-021, link-022, link-024, link-027 and (see Table 2) contain various promoter and terminator elements, with BsaI sites compatible to the intermediate plasmids.",
+      "assumed": true,
+      "note": "Volume assumed so vector:insert is 1:2 molar."
+    },
+    {
+      "kind": "transfer",
+      "source": "type3_insert_tube",
+      "source_wells": [],
+      "dest": "gg_tube",
+      "dest_wells": [],
+      "volume_ul": 2.0,
+      "reagent": "Type-3 intermediate plasmid (gene flanked by BsaI sites)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The sequences were flanked with BsaI restriction sites on both termini and assembled onto the intermediate plasmid (type-3).",
+      "assumed": true,
+      "note": "Volume assumed (insert at 2x molar excess)."
+    },
+    {
+      "kind": "transfer",
+      "source": "water_tube",
+      "source_wells": [],
+      "dest": "gg_tube",
+      "dest_wells": [],
+      "volume_ul": 12.0,
+      "reagent": "Water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Brings reaction to 20 uL."
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "gg_tube",
+      "dest_wells": [],
+      "volume_ul": 10.0,
+      "reagent": "",
+      "mix_cycles": 3,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Gentle pipette mixing."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Thermocycle gg_tube: 30 cycles of 5 min at 37 C then 5 min at 16 C. Transform into E. coli DH5alpha, miniprep, verify by Sanger sequencing; linearize inserts by PCR with homology arms and prepare competent yeast cells of the parent strains (5-10 mL culture, OD600 0.5-0.8).",
+      "source_quote": "The expression vectors were constructed using the NEBridge® Golden Gate Assembly Kit (BsaI-HF® v2).",
+      "assumed": true,
+      "note": "Cycling from the published version; PCR linearization and competent cell preparation assumed."
+    },
+    {
+      "kind": "transfer",
+      "source": "peg_tube",
+      "source_wells": [],
+      "dest": "tf_L2_tube",
+      "dest_wells": [],
+      "volume_ul": 250.0,
+      "reagent": "50% PEG3350",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The knockout of Tal1 and Nqm1 and the genomic insertion of xyl1-3 and mysA-C in S.cerevisiae were implemented using CRISPR-Cas9.29",
+      "assumed": true,
+      "note": "Step 2 transformation (SC.L1 to SC.L2, HIS3::XYL1-3). Conditions from the published version."
+    },
+    {
+      "kind": "transfer",
+      "source": "liac_tube",
+      "source_wells": [],
+      "dest": "tf_L2_tube",
+      "dest_wells": [],
+      "volume_ul": 36.0,
+      "reagent": "1 M LiAc",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ssdna_tube",
+      "source_wells": [],
+      "dest": "tf_L2_tube",
+      "dest_wells": [],
+      "volume_ul": 10.0,
+      "reagent": "2 mg/mL ssDNA",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "pCRCT_HIS3_tube",
+      "source_wells": [],
+      "dest": "tf_L2_tube",
+      "dest_wells": [],
+      "volume_ul": 1.0,
+      "reagent": "pCRCT-HIS3 (250 ng)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": "Stock concentration assumed 250 ng/uL."
+    },
+    {
+      "kind": "transfer",
+      "source": "insert_XYL_tube",
+      "source_wells": [],
+      "dest": "tf_L2_tube",
+      "dest_wells": [],
+      "volume_ul": 4.0,
+      "reagent": "Linear XYL1-3 insert (2000 ng)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": "Stock concentration assumed 500 ng/uL."
+    },
+    {
+      "kind": "transfer",
+      "source": "water_tube",
+      "source_wells": [],
+      "dest": "tf_L2_tube",
+      "dest_wells": [],
+      "volume_ul": 59.0,
+      "reagent": "Water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Brings mix to 360 uL."
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "tf_L2_tube",
+      "dest_wells": [],
+      "volume_ul": 200.0,
+      "reagent": "",
+      "mix_cycles": 10,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Resuspend pellet."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate tf_L2_tube at 42 C for 40 min. Plate on SC-Ura, then verify SC.L2 clones by colony PCR and Sanger sequencing; prepare competent cells of SC.L2 for the next step (loss of pCRCT plasmid between steps not specified).",
+      "source_quote": "followed by verification procedures including colony PCR and sequencing.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "peg_tube",
+      "source_wells": [],
+      "dest": "tf_L3_tube",
+      "dest_wells": [],
+      "volume_ul": 250.0,
+      "reagent": "50% PEG3350",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The knockout of Tal1 and Nqm1 and the genomic insertion of xyl1-3 and mysA-C in S.cerevisiae were implemented using CRISPR-Cas9.29",
+      "assumed": true,
+      "note": "Step 3 transformation (SC.L2 to SC.L3, 308::mysA + mysB)."
+    },
+    {
+      "kind": "transfer",
+      "source": "liac_tube",
+      "source_wells": [],
+      "dest": "tf_L3_tube",
+      "dest_wells": [],
+      "volume_ul": 36.0,
+      "reagent": "1 M LiAc",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ssdna_tube",
+      "source_wells": [],
+      "dest": "tf_L3_tube",
+      "dest_wells": [],
+      "volume_ul": 10.0,
+      "reagent": "2 mg/mL ssDNA",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "pCRCT_308a_tube",
+      "source_wells": [],
+      "dest": "tf_L3_tube",
+      "dest_wells": [],
+      "volume_ul": 1.0,
+      "reagent": "pCRCT-308a (250 ng)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "insert_mysAB_tube",
+      "source_wells": [],
+      "dest": "tf_L3_tube",
+      "dest_wells": [],
+      "volume_ul": 4.0,
+      "reagent": "Linear mysA+mysB insert (2000 ng)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "water_tube",
+      "source_wells": [],
+      "dest": "tf_L3_tube",
+      "dest_wells": [],
+      "volume_ul": 59.0,
+      "reagent": "Water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "tf_L3_tube",
+      "dest_wells": [],
+      "volume_ul": 200.0,
+      "reagent": "",
+      "mix_cycles": 10,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate tf_L3_tube at 42 C for 40 min. Plate on SC-Ura, verify SC.L3 clones by colony PCR and Sanger sequencing; prepare competent cells of SC.L3.",
+      "source_quote": "followed by verification procedures including colony PCR and sequencing.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "peg_tube",
+      "source_wells": [],
+      "dest": "tf_L6_tube",
+      "dest_wells": [],
+      "volume_ul": 250.0,
+      "reagent": "50% PEG3350",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The knockout of Tal1 and Nqm1 and the genomic insertion of xyl1-3 and mysA-C in S.cerevisiae were implemented using CRISPR-Cas9.29",
+      "assumed": true,
+      "note": "Step 4 transformation (SC.L3 to SC.L6, NQM1::mysB + mysA, NQM1 disrupted)."
+    },
+    {
+      "kind": "transfer",
+      "source": "liac_tube",
+      "source_wells": [],
+      "dest": "tf_L6_tube",
+      "dest_wells": [],
+      "volume_ul": 36.0,
+      "reagent": "1 M LiAc",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ssdna_tube",
+      "source_wells": [],
+      "dest": "tf_L6_tube",
+      "dest_wells": [],
+      "volume_ul": 10.0,
+      "reagent": "2 mg/mL ssDNA",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "pCRCT_NQM1_tube",
+      "source_wells": [],
+      "dest": "tf_L6_tube",
+      "dest_wells": [],
+      "volume_ul": 1.0,
+      "reagent": "pCRCT-NQM1 (250 ng)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "insert_mysBA_tube",
+      "source_wells": [],
+      "dest": "tf_L6_tube",
+      "dest_wells": [],
+      "volume_ul": 4.0,
+      "reagent": "Linear mysB+mysA insert (2000 ng)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "water_tube",
+      "source_wells": [],
+      "dest": "tf_L6_tube",
+      "dest_wells": [],
+      "volume_ul": 59.0,
+      "reagent": "Water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "tf_L6_tube",
+      "dest_wells": [],
+      "volume_ul": 200.0,
+      "reagent": "",
+      "mix_cycles": 10,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate tf_L6_tube at 42 C for 40 min. Plate on SC-Ura, verify SC.L6 clones by colony PCR and Sanger sequencing; prepare competent cells of SC.L6.",
+      "source_quote": "followed by verification procedures including colony PCR and sequencing.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "peg_tube",
+      "source_wells": [],
+      "dest": "tf_L26_tube",
+      "dest_wells": [],
+      "volume_ul": 250.0,
+      "reagent": "50% PEG3350",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "The knockout of Tal1 and Nqm1 and the genomic insertion of xyl1-3 and mysA-C in S.cerevisiae were implemented using CRISPR-Cas9.29",
+      "assumed": true,
+      "note": "Step 5 transformation (SC.L6 to SC.L26, YP::mysC)."
+    },
+    {
+      "kind": "transfer",
+      "source": "liac_tube",
+      "source_wells": [],
+      "dest": "tf_L26_tube",
+      "dest_wells": [],
+      "volume_ul": 36.0,
+      "reagent": "1 M LiAc",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "ssdna_tube",
+      "source_wells": [],
+      "dest": "tf_L26_tube",
+      "dest_wells": [],
+      "volume_ul": 10.0,
+      "reagent": "2 mg/mL ssDNA",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "pCRCT_YP_tube",
+      "source_wells": [],
+      "dest": "tf_L26_tube",
+      "dest_wells": [],
+      "volume_ul": 1.0,
+      "reagent": "pCRCT-YP (250 ng)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "insert_mysC_tube",
+      "source_wells": [],
+      "dest": "tf_L26_tube",
+      "dest_wells": [],
+      "volume_ul": 4.0,
+      "reagent": "Linear mysC insert (2000 ng)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "For genomic insertion, the corresponding DNA fragment and the pCRCT plasmids30 (Table 2) were chemically transformed into S.cerevisiae",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "water_tube",
+      "source_wells": [],
+      "dest": "tf_L26_tube",
+      "dest_wells": [],
+      "volume_ul": 59.0,
+      "reagent": "Water",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "mix",
+      "source": null,
+      "source_wells": [],
+      "dest": "tf_L26_tube",
+      "dest_wells": [],
+      "volume_ul": 200.0,
+      "reagent": "",
+      "mix_cycles": 10,
+      "action": "",
+      "source_quote": "",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate tf_L26_tube at 42 C for 40 min. Plate on SC-Ura, verify SC.L26 clones by colony PCR and Sanger sequencing. Streak verified SC.L2, SC.L3, SC.L6 and SC.L26 colonies for pre-cultures.",
+      "source_quote": "followed by verification procedures including colony PCR and sequencing.",
+      "assumed": false,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "medium_reservoir",
+      "source_wells": [],
+      "dest": "pre_L2_tube",
+      "dest_wells": [],
+      "volume_ul": 3000.0,
+      "reagent": "SC-Ura medium (12 g/L glucose, 8 g/L xylose)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "S. cerevisiae strains were cultured in SC culture medium without uracil (1.7 g/L yeast nitrogen base without amino acids, 5 g/L Ammonium sulfate and 1.29 g/L DO Supplement -Ura) containing total of 12g/L of glucose and 8g/L xylose.",
+      "assumed": true,
+      "note": "Pre-culture volume assumed."
+    },
+    {
+      "kind": "transfer",
+      "source": "medium_reservoir",
+      "source_wells": [],
+      "dest": "pre_L3_tube",
+      "dest_wells": [],
+      "volume_ul": 3000.0,
+      "reagent": "SC-Ura medium (12 g/L glucose, 8 g/L xylose)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "S. cerevisiae strains were cultured in SC culture medium without uracil (1.7 g/L yeast nitrogen base without amino acids, 5 g/L Ammonium sulfate and 1.29 g/L DO Supplement -Ura) containing total of 12g/L of glucose and 8g/L xylose.",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "medium_reservoir",
+      "source_wells": [],
+      "dest": "pre_L6_tube",
+      "dest_wells": [],
+      "volume_ul": 3000.0,
+      "reagent": "SC-Ura medium (12 g/L glucose, 8 g/L xylose)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "S. cerevisiae strains were cultured in SC culture medium without uracil (1.7 g/L yeast nitrogen base without amino acids, 5 g/L Ammonium sulfate and 1.29 g/L DO Supplement -Ura) containing total of 12g/L of glucose and 8g/L xylose.",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "medium_reservoir",
+      "source_wells": [],
+      "dest": "pre_L26_tube",
+      "dest_wells": [],
+      "volume_ul": 3000.0,
+      "reagent": "SC-Ura medium (12 g/L glucose, 8 g/L xylose)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "S. cerevisiae strains were cultured in SC culture medium without uracil (1.7 g/L yeast nitrogen base without amino acids, 5 g/L Ammonium sulfate and 1.29 g/L DO Supplement -Ura) containing total of 12g/L of glucose and 8g/L xylose.",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Inoculate one colony each of SC.L2, SC.L3, SC.L6 and SC.L26 into pre_L2_tube, pre_L3_tube, pre_L6_tube and pre_L26_tube. Incubate overnight at 30 C, 200 rpm. Measure OD600 and dilute each with medium to OD600 1.0.",
+      "source_quote": "S. cerevisiae strains were cultured in SC culture medium without uracil",
+      "assumed": true,
+      "note": "Pre-culture and OD adjustment assumed; 30 C and 200 rpm from the published version."
+    },
+    {
+      "kind": "transfer",
+      "source": "medium_reservoir",
+      "source_wells": [],
+      "dest": "culture_plate",
+      "dest_wells": [
+        "A1:D3"
+      ],
+      "volume_ul": 180.0,
+      "reagent": "SC-Ura medium (12 g/L glucose, 8 g/L xylose)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "containing total of 12g/L of glucose and 8g/L xylose.",
+      "assumed": true,
+      "note": "Adapted from 100 mL in a 250 mL flask to 200 uL per well; wells A1:D3 only."
+    },
+    {
+      "kind": "transfer",
+      "source": "pre_L2_tube",
+      "source_wells": [],
+      "dest": "culture_plate",
+      "dest_wells": [
+        "A1:A3"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "SC.L2 pre-culture (OD600 1.0)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "S. cerevisiae strains were cultured in SC culture medium without uracil",
+      "assumed": true,
+      "note": "Start OD600 about 0.1."
+    },
+    {
+      "kind": "transfer",
+      "source": "pre_L3_tube",
+      "source_wells": [],
+      "dest": "culture_plate",
+      "dest_wells": [
+        "B1:B3"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "SC.L3 pre-culture (OD600 1.0)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "S. cerevisiae strains were cultured in SC culture medium without uracil",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "pre_L6_tube",
+      "source_wells": [],
+      "dest": "culture_plate",
+      "dest_wells": [
+        "C1:C3"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "SC.L6 pre-culture (OD600 1.0)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "S. cerevisiae strains were cultured in SC culture medium without uracil",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "transfer",
+      "source": "pre_L26_tube",
+      "source_wells": [],
+      "dest": "culture_plate",
+      "dest_wells": [
+        "D1:D3"
+      ],
+      "volume_ul": 20.0,
+      "reagent": "SC.L26 pre-culture (OD600 1.0)",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "S. cerevisiae strains were cultured in SC culture medium without uracil",
+      "assumed": true,
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Seal culture_plate with a gas-permeable seal and incubate for 48 h at 30 C with shaking at 200 rpm.",
+      "source_quote": "suspension of the S.cerevisiae cultures were harvested and freeze-thawed twice after 48 hours of fermentation.",
+      "assumed": true,
+      "note": "Temperature and shaking from the published version; plate format assumed."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Freeze-thaw culture_plate (whole culture, wells A1:D3) twice: -80 C then thaw at 25 C.",
+      "source_quote": "suspension of the S.cerevisiae cultures were harvested and freeze-thawed twice after 48 hours of fermentation.",
+      "assumed": false,
+      "note": "Freeze/thaw temperatures from the published version."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Centrifuge culture_plate for 10 min at the maximum speed allowed by the plate rotor (about 4000 x g).",
+      "source_quote": "After centrifugation, the supernatant was retained",
+      "assumed": true,
+      "note": "Published 10000 rpm for 10 min is not possible for a plate; the plate-rotor speed is an adaptation."
+    },
+    {
+      "kind": "transfer",
+      "source": "culture_plate",
+      "source_wells": [
+        "A1:D3"
+      ],
+      "dest": "filter_plate",
+      "dest_wells": [
+        "A1:D3"
+      ],
+      "volume_ul": 150.0,
+      "reagent": "Culture supernatant",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "the supernatant was retained and filtered with 0.22 um filtration membrane.",
+      "assumed": true,
+      "note": "Well-to-well pairing in order; pellet left in the plate."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Filter filter_plate (0.22 um) into lcms_plate wells A1:D3 by vacuum or centrifugation. Seal lcms_plate and store at -20 C until LC-HRMS.",
+      "source_quote": "The processed samples were stored at -20°C before the LC-HRMS analysis.",
+      "assumed": true,
+      "note": "Filter-plate format assumed."
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": null,
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Inject 1 uL per sample (neat filtered supernatant from lcms_plate A1:D3) onto a UPLC HSS T3 column (2.5 um, 100 x 2.1 mm) at 25 C on a Vanquish Flex UHPLC with a Q-Exactive Plus (HESI, ESI+ 3.0 kV and ESI- -2.8 kV in one run, capillary and heater 350 C, sheath/aux/sweep gas 50/15/2 AU, S-lens RF 50%). Mobile phase A 0.1% formic acid in water, B acetonitrile, 0.2 mL/min; gradient: 0-5 min 1% B, 5-7 min 1-30% B, 7-9 min 30-99% B, 9-10 min 99% B, 10-10.1 min 99-1% B, 10.1-15 min 1% B. Full scan m/z 100-800 at 70,000 resolution (AGC 3e6, max injection time 100 ms); MS2 isolation window 4.0 m/z, 17,500 resolution, AGC 1e5, max injection time 50 ms, stepped NCE 30/40/50 eV, N2 collision gas. UV detection at 334 nm. Extract ion chromatograms at m/z 188.08-189.08 (4-DG, about 3.24 min) and m/z 245.10-246.10 (MG, about 2.93 min); compare relative peak areas among strains.",
+      "source_quote": "The injection volume was 1 µL. UV absorption was set at a fixed wavelength of 334 nm.",
+      "assumed": false,
+      "note": "No standards described for 4-DG or MG; relative peak areas only (Fig. 2B). Shinorine and porphyra-334 standards (s4.8) are not used here."
+    }
+  ],
+  "assumptions": [
+    "Golden Gate details (20 uL: 1 uL BsaI-HF v2, 1 uL T4 ligase, 2 uL buffer, vector:insert 1:2, 30 cycles of 5 min 37 C / 5 min 16 C, DH5alpha transformation, Sanger verification) come from the published version (https://pmc.ncbi.nlm.nih.gov/articles/PMC11983340/). The 2 uL vector, 2 uL insert and 12 uL water split is assumed. One reaction is shown and is repeated for each cassette.",
+    "Yeast CRISPR transformation conditions (250 uL 50% PEG3350, 36 uL 1 M LiAc, 10 uL 2 mg/mL ssDNA, 250 ng pCRCT, 2000 ng linear insert, 42 C 40 min, selection on -Ura, colony PCR and Sanger) come from the published version, because refs 29 and 30 were not retrieved. Stock concentrations of 250 ng/uL (pCRCT) and 500 ng/uL (insert) and 59 uL water to reach 360 uL are assumed. Transformations are shown in 1.5 mL tubes with competent cell pellets from 5-10 mL cultures at OD600 0.5-0.8.",
+    "Strain lineage (CEN.PK2 -> SC.L1 tal1 delta -> SC.L2 HIS3::XYL1-3 -> SC.L3 308::mysA+mysB -> SC.L6 NQM1::mysB+mysA -> SC.L26 YP::mysC) is from the published version Tables 1 and 2 (Tables are images in the preprint). SC.L1 is assumed available from an earlier TAL1 knockout. Curing of pCRCT between steps is not described.",
+    "gRNA sequences, homology-arm lengths (about 40-500 bp), locus coordinates and PCR linearization of inserts are not stated; design 20-nt gRNAs for HIS3, 308a, NQM1 and YPRCd15c, and functionally equivalent strains are acceptable. Competent cell preparation is assumed.",
+    "Carbon source: the preprint uses 12 g/L glucose + 8 g/L xylose, whereas the published version lists 2% glucose; the preprint medium is used here. Medium also assumed to contain the standard SC-Ura supplements; the published version's supplement mix of 1.4 g/L -His/-Trp/-Leu/-Ura plus 380 mg/L Leu, 76 mg/L Trp and 76 mg/L His can be used instead of the preprint's 1.29 g/L DO Supplement -Ura.",
+    "Culture adapted from 100 mL SC-Ura in a 250 mL flask (30 C, 200 rpm, 48 h; published version) to 200 uL per well in a 96-well plate (180 uL medium + 20 uL inoculum), with a gas-permeable seal. Evaporation and aeration differ from flasks.",
+    "Plate layout: culture_plate A1:A3 = SC.L2, B1:B3 = SC.L3, C1:C3 = SC.L6, D1:D3 = SC.L26 (n = 3 biological replicates each). The same layout is kept in filter_plate and lcms_plate.",
+    "Inoculation: overnight pre-culture in 3 mL SC-Ura (30 C, 200 rpm), adjusted to OD600 1.0 and diluted 1:10 into the culture well to start OD600 about 0.1, identical for all strains (standard practice).",
+    "Extraction: two freeze-thaw cycles at -80 C / 25 C, centrifugation and 0.22 um filtration follow the published version (10000 rpm, 10 min). Centrifugation is adapted to a plate rotor (about 4000 x g, 10 min), and 150 uL supernatant is transferred to a 0.22 um filter plate and filtered into the collection plate; both are assumptions. Samples are stored at -20 C.",
+    "LC-HRMS parameters are as in the preprint s4.7. Neat filtered supernatant is injected; peaks are identified by EIC and MS2 and compared by relative peak area, since no 4-DG or MG standards are described. The 0.1 mg/mL shinorine and porphyra-334 standards in s4.8 are not used for this experiment, and no statistical analysis is included.",
+    "Reagent stocks (BsaI, ligase, buffer, plasmids, inserts, PEG, LiAc, ssDNA) are assumed to be available in tubes with ample volume; container names are assumed."
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the core quantities for the OT-2 Golden Gate reaction, thermocycling, yeast LiOAc transformation, NotI linearization (enzyme and buffer only) and cytometer voltages. The deferred or omitted steps are E. coli transformation, Phire colony PCR conditions, yeast culture for cytometry and the gating, and these can be filled from NEB and Thermo manuals or from standard practice. None of the gaps is a missing reagent identity or concentration that would invalidate the promoter-strength readout. Two caveats: my tool quota ran out before I could fetch the full Phire cycling table, and the 'previously described' gating reference has no citation number and could not be traced.",
+  "gaps": [
+    {
+      "detail": "E. coli transformation procedure (cell volume, GG reaction volume, ice time, heat shock, SOC recovery, plating volume onto 6-well 5 mL LB agar plates)",
+      "why_needed": "The paper only says the Golden Gate mix was used directly to transform NEB Turbo or NEB 5-alpha cells, then plated. The procedure and volumes are needed to get colonies.",
+      "status": "resolved",
+      "resolution": "NEB 5-alpha high-efficiency protocol: add 1-5 µL DNA to a 50 µL cell vial, flick 4-5 times (do not vortex), 30 min on ice, heat shock at 42 °C for 30 s, 5 min on ice, add 950 µL room-temperature SOC, 37 °C for 60 min at 250 rpm, spread 50-100 µL onto pre-warmed selective plates, incubate overnight at 37 °C. For the miniaturized OT-2 format, scale the cell and SOC volumes down proportionally (assumption). Which of the two strains was used for the YTK OT-2 run is not stated, so use either. I did not fetch the NEB Turbo-specific protocol and assume it is equivalent.",
+      "source": "https://www.neb.com/en/protocols/high-efficiency-transformation-protocol-c2987?pdf=true"
+    },
+    {
+      "detail": "Plasmid stock concentrations and per-component volumes of the 10 µL Golden Gate reaction (50 fmol of each entry plasmid and backbone)",
+      "why_needed": "The paper gives 50 fmol per plasmid, 0.5 µL BsaI, 0.5 µL T4 ligase and 1× T4 ligase buffer in 10 µL. The stock concentrations and water volume are in Table S5, which I may not use.",
+      "status": "assumable",
+      "resolution": "Normalize each part stock to a convenient concentration, e.g. 50 fmol/µL for 1 µL per part. For a 4-plasmid reaction this is 1 µL 10× T4 ligase buffer (with ATP), 4 µL DNA, 0.5 µL BsaI-HF, 0.5 µL T4 ligase and about 4 µL water. The enzyme volumes match NEB stocks (10 U from 20 U/µL BsaI-HF; 200 U from 400 U/µL T4 ligase), so 10× NEB T4 ligase buffer is assumed.",
+      "source": "standard practice; enzyme units from s2.4"
+    },
+    {
+      "detail": "Identity of the 19 promoter, GFP-dropout and terminator parts and the pWS064 antibiotic marker",
+      "why_needed": "The assembly combinations and the correct selection plates are needed. Figure 2A lists the parts, and the section text does not.",
+      "status": "assumable",
+      "resolution": "Take the part list from Figure 2A (not visible in the text I was given). For the plates, assume Level 1 YTK-type vectors are ampicillin (100 µg/mL), because the paper's 3 listed antibiotics include ampicillin 100 µg/mL; confirm the marker on the pWS064 plasmid record before plating. Entry-level parts are chloramphenicol-resistant (34 µg/mL).",
+      "source": "s2.1, s2.2, Figure 2A legend; standard YTK design"
+    },
+    {
+      "detail": "Colony template preparation for colony PCR (how a picked colony is resuspended and in what volume)",
+      "why_needed": "1 µL of template from 'colony template plates' is added to each reaction, but the paper does not say how the plate was made.",
+      "status": "assumable",
+      "resolution": "Pick each white colony with a tip, resuspend in about 20 µL sterile water (or Phire Dilution Buffer) in a 96-well plate, and use 1 µL as template. The Phire manual's dilution-and-storage protocol uses Dilution Buffer for the template.",
+      "source": "standard practice; https://tools.thermofisher.com/content/sfs/manuals/MAN0012959_Phire_Plant_Direct_PCR_MasterMixes_UG.pdf"
+    },
+    {
+      "detail": "Phire Plant Direct colony PCR reaction composition and cycling ('according to the manufacturer's protocol')",
+      "why_needed": "The paper gives only 9 µL master mix plus 1 µL template. The primer concentration, cycling program, annealing temperature and extension time are needed.",
+      "status": "resolved",
+      "resolution": "From the Phire manual: the 20 µL reaction is 10 µL 2X master mix, 0.5 µM of each primer and sample, made up with water. A 10 µL reaction scales the same way (5 µL 2X mix, 0.5 µM primers). Initial denaturation is 98 °C for 5 min, denaturation is at 98 °C, and Phire annealing temperatures differ from Taq, so use the manual's Tm rules. I did not retrieve the full cycle table (cycle count, annealing and extension times), so take those from the manual and set extension by amplicon size, as the paper itself says it did. The master mix contains gel loading dye, so run products directly on a gel.",
+      "source": "https://tools.thermofisher.com/content/sfs/manuals/MAN0012959_Phire_Plant_Direct_PCR_MasterMixes_UG.pdf"
+    },
+    {
+      "detail": "Colony PCR primer sequences (Table S1) and the resulting amplicon sizes",
+      "why_needed": "They are needed to choose annealing temperatures and extension times and to read the gel. Table S1 is supplementary and I may not use it.",
+      "status": "assumable",
+      "resolution": "Use standard primers flanking the Level 1 insertion site in the backbone, so the amplicon size distinguishes the insert from the GFP-dropout vector. Score white colonies by the expected band size. This is a verification step and does not affect the yeast promoter-strength readout.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Plasmid extraction (miniprep) from selected E. coli colonies and NotI-HF linearization conditions",
+      "why_needed": "500 ng of linearized DNA is needed for the yeast transformation. The paper names NotI-HF with rCutSmart but gives no miniprep method, amount, volume, time or temperature.",
+      "status": "assumable",
+      "resolution": "Grow PCR-positive white colonies in 3 mL selective LB at 37 °C, 250 rpm, overnight (s2.2), then use a standard silica miniprep kit. Digest at 37 °C for 1 h with NotI-HF in 1× rCutSmart, using about 10 U per µg DNA in 20-50 µL (NEB standard, not retrieved). Use the digest directly or after a heat-kill. Confirm that the digest is complete.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Yeast LiOAc transformation: wash volumes, boiled salmon sperm DNA concentration, pre-heat-shock incubation, and plating volume",
+      "why_needed": "Most quantities are given (100 µL cells, 500 ng DNA, 10 µL ssDNA, 296 µL PEG/LiOAc, 42 °C for 40 min, 200 µL 5 mM CaCl2, 30 °C for 2-4 days). Wash volumes, the ssDNA concentration and the plating volume are not.",
+      "status": "assumable",
+      "resolution": "Wash in 1 mL 0.1 M LiOAc. Assume the Invitrogen ssDNA is the 10 mg/mL stock, boiled for 5 min and chilled on ice. Mix thoroughly after adding PEG/LiOAc. Plate the whole 200 µL on SC-Leu plates. For SC-Leu, use CSM-Leu at the manufacturer's recommended g/L (about 0.7 g/L, assumed), with the paper's 0.17% YNB, 0.5% ammonium sulfate, 2% glucose and 2% agar. Keep the paper's 42 °C for 40 min as written.",
+      "source": "s2.2, s2.6; standard practice"
+    },
+    {
+      "detail": "Yeast culture conditions before flow cytometry (medium, inoculum density, vessel, volume, shaking)",
+      "why_needed": "The paper says samples were taken at 6 h of mid-exponential cultivation and diluted 1/100 in PBS to 200 µL. It does not say how the cultures were started, and medium and inoculum density affect fluorescence.",
+      "status": "assumable",
+      "resolution": "Grow overnight in SC-Leu (or YPD) at 30 °C with shaking. Dilute to about OD600 0.1-0.2 in fresh medium in a 96-deep-well plate or tubes, grow at 30 °C for 6 h, then dilute 1:100 into PBS (2 µL culture into 198 µL) in a 96-well plate. Run all 19 strains, three replicates each, under identical conditions, with untransformed BY4741 as an autofluorescence control. The paper does not state this control; it is my addition.",
+      "source": "s2.8; standard practice"
+    },
+    {
+      "detail": "Flow cytometry acquisition and gating details (Attune NxT sample draw volume and flow rate, first FSC/SSC cell gate, and the 'previously described' gating approach)",
+      "why_needed": "Voltages are given (FSC 300 V, SSC 350 V, BL1 500 V, 10,000 events, singlets by FSC-H × FSC-A). The gating reference has no citation number, so I could not trace it.",
+      "status": "assumable",
+      "resolution": "Use the stated voltages, collect 10,000 events, and gate cells on FSC-A/SSC-A, then singlets on FSC-H vs FSC-A. Report median BL1-A (the 488 nm/530 nm channel). Use a standard autosampler draw volume and flow rate, such as 25-50 µL at 25-200 µL/min. Mix before acquisition and run a rinse between wells. These settings affect only analysis, not the reported ranking of promoter strength.",
+      "source": "s2.8; standard practice"
+    },
+    {
+      "detail": "Thermocycling conditions for Golden Gate and heat inactivation",
+      "why_needed": "They determine assembly efficiency.",
+      "status": "resolved",
+      "resolution": "25 cycles of 37 °C for 2 min then 16 °C for 5 min, then 60 °C for 5 min. Use this directly in the Opentrons thermocycler or a benchtop one.",
+      "source": "s2.4"
+    }
+  ],
+  "retrieved_details": "1) NEB 5-alpha high-efficiency transformation (https://www.neb.com/en/protocols/high-efficiency-transformation-protocol-c2987?pdf=true): store cells at -80 °C; add 1-5 µL DNA to 50 µL cells and flick to mix (do not vortex); 30 min on ice; 42 °C for exactly 30 s; 5 min on ice; add 950 µL room-temperature SOC; 37 °C for 60 min at 250 rpm; spread 50-100 µL on pre-warmed selection plates; grow overnight at 37 °C (or 24-36 h at 30 °C). The NEB Turbo protocol was not fetched and is assumed equivalent. 2) Phire Plant Direct PCR Master Mix user guide (https://tools.thermofisher.com/content/sfs/manuals/MAN0012959_Phire_Plant_Direct_PCR_MasterMixes_UG.pdf): 20 µL reaction is 10 µL 2X master mix, 0.5 µM each primer, sample, and water to volume; initial denaturation 98 °C for 5 min; denaturation at 98 °C; annealing temperatures differ from Taq; the master mix contains gel loading dye; the Dilution and Storage protocol (colony or tissue in Dilution Buffer) is recommended for difficult samples and for reusing the same sample. The remaining cycle parameters were not retrieved. 3) From the paper (s2.4-s2.8): OT-2 Golden Gate was 10 µL with 50 fmol of each plasmid, 0.5 µL BsaI-HF (10 U), 0.5 µL T4 ligase (200 U) and 1× T4 ligase buffer, with the master mix made without custom DNA parts. Cycling was 25 × (37 °C for 2 min, 16 °C for 5 min), then 60 °C for 5 min, then direct transformation and plating on 6-well plates with 5 mL LB agar and antibiotic. Antibiotics: chloramphenicol 34, ampicillin 100, kanamycin 50 µg/mL. Colony PCR on OT-2 used Phire Plant Direct with 9 µL master mix plus 1 µL colony template. Assembled YTK plasmids were linearized with NotI-HF in rCutSmart. Yeast: BY4741 grown in YPD at 30 °C, diluted 1:100 into 15 mL YPD, grown 4-6 h to OD600 0.8-1.0; washed and resuspended in 0.1 M LiOAc to 100 µL per transformation; the pellet was resuspended in 64 µL DNA mix (500 ng linearized DNA, 10 µL boiled salmon sperm DNA, water); 296 µL PEG/LiOAc (260 µL 50% PEG-3350 + 36 µL 1 M LiOAc); 42 °C for 40 min; pelleted and resuspended in 200 µL 5 mM CaCl2; plated on SC-Leu (CSM-Leu, 0.17% YNB, 0.5% ammonium sulfate, 2% glucose, 2% agar) at 30 °C for 2-4 days. Flow cytometry: Attune NxT with autosampler; cultures sampled at 6 h; 1/100 dilution into PBS to 200 µL in a 96-well plate; yeast FSC 300 V, SSC 350 V, BL1 500 V; 10,000 events; singlets gated by FSC-H × FSC-A; triplicates."
+}

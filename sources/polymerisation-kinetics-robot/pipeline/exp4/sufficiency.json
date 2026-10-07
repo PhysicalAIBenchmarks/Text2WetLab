@@ -1,0 +1,70 @@
+{
+  "verdict": "proceed_with_assumptions",
+  "summary": "The paper gives the core design: 20 variants (4 f10 levels × 5 AIBN levels), 400 µL per well, toluene, 75 °C for 2 h, a sealed 48-vial reactor, and t0/t1 NMR sampling. The fine details are not stated, and the SI tables that would hold some of them were not used. They are standard-practice or inferable, and none changes what the experiment measures. My searches of cited work (Van de Reydt 2023, Yeow 2018) found no procedural details.",
+  "gaps": [
+    {
+      "detail": "Total monomer concentration",
+      "why_needed": "It sets the monomer and solvent volumes in each 400 µL well. The text says 2 M in the design section (s2.3) but 4 M in the s2.5 discussion.",
+      "status": "assumable",
+      "resolution": "Use 2 M total monomer in toluene, as in the design section, which describes the standard workflow. The 4 M figure in s2.5 is probably a typo, but this is not confirmed.",
+      "source": "s2.3 (2 M, 400 µL per well); conflicts with s2.5 (4 M)"
+    },
+    {
+      "detail": "f10 levels for the five pairs other than BMA-BA",
+      "why_needed": "The feed compositions must be dispensed. The text says 4 levels spanning 0.1 to 0.8, and the details are deferred to SI Tables S4-S8.",
+      "status": "assumable",
+      "resolution": "Use f10 = 0.10, 0.30, 0.50 and 0.80 of M1, as in Table 1 for BMA-BA. Use the same 5 AIBN levels: 0.05, 0.25, 0.5, 1.0 and 2.0 wt% relative to total monomer. Keep the monomer indexing from Table 2 (M1 listed first).",
+      "source": "s2.3 and Table 1 in the paper; SI Tables S4-S8 not used"
+    },
+    {
+      "detail": "AIBN stock solution concentration, solvent and dispensed volume",
+      "why_needed": "AIBN must be delivered accurately as wt% relative to monomer, over a 40-fold range (0.05 to 2 wt%).",
+      "status": "assumable",
+      "resolution": "Prepare AIBN stock(s) in toluene. Compute the volume per well from the wt% of total monomer mass. Use more than one stock concentration so that dispensed volumes stay pipettable on the OT-2.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Monomer purification (inhibitor removal), reagent grades and suppliers",
+      "why_needed": "Inhibitor affects the polymerisation rate and the conversions reached.",
+      "status": "assumable",
+      "resolution": "Pass BMA, BA, St, MMA and GMA through basic alumina to remove inhibitor. Recrystallise AIBN, or use it as received. Use anhydrous or HPLC-grade toluene.",
+      "source": "standard practice"
+    },
+    {
+      "detail": "Deoxygenation procedure",
+      "why_needed": "Oxygen inhibition at microlitre scale would change the conversions.",
+      "status": "assumable",
+      "resolution": "The text implies no separate degassing. It cites high AIBN loadings of 0.05 to 2 wt% for polymerising through oxygen, and the vials are sealed under compression. Run without degassing, and keep the time monomer mixtures stay unsealed during dispensing short, as the paper states.",
+      "source": "s2.3 and s2.1"
+    },
+    {
+      "detail": "Reactor and sealing specifics (48-vial reactor model, vial type, seal or cap type, compression method)",
+      "why_needed": "The paper attributes the absence of monomer evaporation to the compressive sealing, so the sealing matters for data quality.",
+      "status": "assumable",
+      "resolution": "Use a 48-position vial reactor block, with vials sealed under strong compressive force across the whole plate. Check by running a no-AIBN control and comparing t0 and t1 NMR.",
+      "source": "s2.1; no model stated in the paper"
+    },
+    {
+      "detail": "Plate shaker settings (shaking speed, ramp and equilibration time)",
+      "why_needed": "Mixing and temperature control during the 2 h reaction.",
+      "status": "assumable",
+      "resolution": "Heat to 75 °C for 2 h on a heater-shaker at moderate shaking, about 500 to 800 rpm. Equilibrate the temperature before loading. Cool or quench at the end.",
+      "source": "temperature and time from s2.3 and Table 2; shaking speed is standard practice"
+    },
+    {
+      "detail": "NMR sampling details (aliquot volume from each well, deuterated solvent, dilution volume, tube dimensions, quenching of t1 samples, acquisition parameters)",
+      "why_needed": "The t0 and t1 vinyl-peak integrals give f1, F and X.",
+      "status": "assumable",
+      "resolution": "Take a small aliquot, about 10 to 20 µL, from each vial at t0 and t1 into the cut NMR tube. Dilute with CDCl3 to about 0.6 mL. Quench t1 by cooling and dilution, optionally with inhibitor (BHT or hydroquinone). Run quantitative 1H NMR with a relaxation delay of at least 5 × T1. Use the non-overlapping vinyl signals of each monomer. The NMR tubes are cut to clear the pipette heads (s2.1).",
+      "source": "standard practice; tube cutting from s2.1"
+    },
+    {
+      "detail": "OT-2 hardware and settings (pipette model, tips, aspiration speeds for volatile and viscous monomers, labware definitions for the custom 3D-printed NMR holder)",
+      "why_needed": "Accurate dispensing of microlitre volumes of volatile monomers.",
+      "status": "assumable",
+      "resolution": "Use a P20 or P300 single-channel pipette with slow aspiration and dispense, a pre-wet step and an air gap. Pipette on a randomised well layout from the CSV, with two-stage dispensing: stock solutions, then the mixtures.",
+      "source": "standard practice; control by Python script with a csv input and randomised well positions (s2.1)"
+    }
+  ],
+  "retrieved_details": "No external source gave extra protocol details. Details taken from the paper: workflow (s2.1): Python protocol via SSH; CSV-driven mixture preparation, randomised well positions, t0 NMR samples taken, then the reactor is moved to a plate shaker; after reaction it returns to the OT-2 for t1 NMR samples. NMR tubes are cut to length. Design (s2.3): 20 reactions per pair (4 f10 levels, 0.1 to 0.8, × 5 AIBN levels 0.05, 0.25, 0.5, 1.0, 2.0 wt% of total monomer); 2 M total monomer; 400 µL per well; toluene; 75 °C; 2 h; 40 NMR samples per experiment. The reactor is sealed under strong compression. Pairs and indexing (Table 2): BMA-BA, BMA-St, St-BA, St-MMA, GMA-BA, GMA-St. Analysis: Contour (IUPAC, EVM/NLLS, JCI) with absolute errors of 0.05 on X and f1. Per the paper, results using given f10 and experimental f10 did not differ significantly. Evaporation control: run a no-AIBN plate and compare t0 and t1 NMR. Checked, no usable procedure found: Van de Reydt 2023 (https://pubs.rsc.org/py/article-abstract/14/14/1622/779926/A-Predictive-machine-learning-model-for) and Yeow 2018 review."
+}

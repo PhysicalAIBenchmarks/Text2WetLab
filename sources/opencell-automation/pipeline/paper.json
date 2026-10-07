@@ -1,0 +1,474 @@
+{
+  "doi": "10.1093/pnasnexus/pgaf385",
+  "title": "Open-source cell culture automation system with integrated cell counting for passaging microplate cultures",
+  "abstract": "AbstractTissue culture in 96-well microplates is conventionally a tedious, highly manual process sensitive to individual technique and experimenter error. Here, we describe the Automated Cell Culture Splitter, a system for passaging plates of adherent or suspension cells, for routine culture maintenance or specialized applications such as seeding plates for microscopy. The system is built around the Opentrons OT-2 liquid handling robot and incorporates a novel on-deck imaging-based cell counter which allows it to compensate for density disparities across a source plate and control the number of cells seeded on a per-well basis. We find this solution can cut hands-on time by 61% and the results compare favorably to our existing manual cell culture processes in terms of both seeding density precision and biological outcomes, achieving a control of seeding density with a well-to-well coefficient of variation under 11%. The system is designed to be adaptable and an accessible entry point into automation for high-throughput cell culture; to that end, all of the source code and hardware designs are released under open source licenses.",
+  "source": "europepmc:PMC12750449",
+  "sections": [
+    {
+      "id": "s1",
+      "heading": "Introduction",
+      "kind": "intro",
+      "text": "Cell culture is a fundamental task in vast areas of biological research but is notoriously labor-intensive, particularly in the case of high-throughput methodologies where large numbers of samples are cultured in parallel. Reliance on manual methods can be a throughput bottleneck, a resource drain and a source of error and variability.\nFor instance, when manually passaging cells in 96-well plates, it is common practice to visually estimate cell density in each well based on the apparent degree of confluency of the cell layer, in order to group wells of similar density together and choose appropriate dilution factors for seeding. However, the results of such visual methods are often inconsistent—even for the same experimenter viewing the same image twice (1, 2). In addition, subtle differences in individual technique at various steps can have marked effects on downstream results.\nMeanwhile, many experiments depend on tight control over parameters such as cell density. For example, differences in seeding density can affect overall growth and confound drug sensitivity assays (3). Another example, and the original driver of the work described here, are high-throughput imaging campaigns such as OpenCell (4), which includes 3D live fluorescence imaging of thousands of endogenously tagged cell lines. In such campaigns, reproducible imaging results are contingent on achieving an optimal and uniform cell density in each well (5).\nLaboratory automation is increasingly used to address the reproducibility needs of cell culture assays (6), including robotics-assisted workflows for the culture of cells and organoids (7–9). Increasingly, laboratory robotics is supported by a growing ecosystem of open-source hardware platforms that facilitate access and simplify integration with other workflows (10–14).\nHere, we present the Automated Cell Culture Splitter (ACCS), an open-source benchtop system for automating the passaging of adherent or suspension cells in 96-well plates. ACCS leverages a liquid handling robot (Opentrons OT-2) and a custom cell counting instrument which allows it to adjust seeding volumes according to cell density on a per-well basis. A single installation can passage 2–3 source plates in a working day, and the process requires minimal intervention once a run is started. The system fits inside a biosafety cabinet, and can be adapted to other uses as needs arise.\nWe are releasing the hardware designs and software source code for ACCS along with under open-source licenses, along with additional documentation to guide prospective builders, for others in the research community to leverage and build upon."
+    },
+    {
+      "id": "s2",
+      "heading": "Results",
+      "kind": "results",
+      "text": ""
+    },
+    {
+      "id": "s2.1",
+      "heading": "Results > System overview",
+      "kind": "results",
+      "text": "Figure 1 gives a high-level overview of the major components of the ACCS system. The design and function of each of the components described below is elaborated upon further in Materials and methods; hardware components are shown in more detail in Fig. 4."
+    },
+    {
+      "id": "s2.1.1",
+      "heading": "Results > System overview > Hardware",
+      "kind": "results",
+      "text": "The major hardware components of ACCS include a minimally modified pipetting robot (Opentrons OT-2), a temperature-controlled heat block (Opentrons Temperature Module, or “Tempdeck”), and a custom instrument for measuring cell concentrations (Cell Counting Imager, or CCI). Additional custom hardware components are: An adapter to hold the source plate at an incline, a high capacity bin for tip waste, a reagent trough riser, and a pipette position calibration tool.\nThe CCI is placed in one of the labware “slots” on the OT-2 deck. It measures cell concentrations in eight samples at once, to calculate the appropriate volumes of cell suspension to seed a specified number of cells in each well. Essentially, it is an inverted darkfield microscope featuring a custom flow cell with eight chambers and a motorized linear stage that positions the optical system to image each chamber. The flow cell is mounted on top of the CCI and has a row of ports to allow the multichannel pipette on the robot to inject samples from one column of the source plate at a time. Software on a host computer controls the CCI and processes the resulting images to produce cell concentration measurements.\nThe ACCS system requires <3 feet of lateral bench space and can be placed on a standard lab bench or inside a biosafety cabinet with a typical >24 in deep work area. Operation is managed via a desktop computer."
+    },
+    {
+      "id": "s2.1.2",
+      "heading": "Results > System overview > Software",
+      "kind": "results",
+      "text": "ACCS includes a suite of custom software components that work together as a system. A protocol setup software tool takes run parameters from the user via an interactive form and generates a unique script file to run on the OT-2. An “alert bot” program we add to the OT-2 captures important messages from the protocol script and alerts the operator(s) on a dedicated Slack channel. Finally, the CCI is managed by a dedicated control program running on the same computer used for protocol setup. This program directs the stage movement, captures images, processes them to count cells, and reports cell concentration calculations back to the protocol script running on the robot.\nFor protocol development, a custom offline analysis tool simulates protocols and checks key results such as final liquid volumes and mixtures, pipette tip usage, etc."
+    },
+    {
+      "id": "s2.2",
+      "heading": "Results > Operator workflow",
+      "kind": "results",
+      "text": "Two of the most common day-to-day use cases for ACCS are routine culture maintenance and seeding of microscopy plates. This section focuses on a master protocol (named cci_normalization) which covers these uses. Other ACCS protocols offer alternative functionalities, such as seeding by fixed volumes instead of using the CCI, and ad hoc modified protocols are sometimes made for specific needs.\nTo start a typical passaging run the operator follows these steps: (i) inspect, clean and install the CCI flow cell; (ii) prepare the trash bin liner and install all labware (tipracks, plates, reagent reservoir) on the OT-2 deck; (iii) start the CCI software, (iv) set up the protocol script as described below; and finally (v) start the run via the Opentrons app.\nPreparation of the CCI flow cell includes checking for damage, cleaning the top and bottom surfaces, and removing the liquid from the channels. The reagent reservoir is filled with necessary reagents (DPBS, trypsin, growth media, water, cleaning detergent) in a standardized format. Reservoirs can be filled in bulk ahead of time, sealed, and stored under refrigeration to reduce setup time.\nThe protocol script setup process starts with the operator filling out a browser-based setup form, then the ACCS software assembles a unique script file with the instructions for the robot to carry out the protocol as well as metadata about the run for later reference. The Opentrons desktop app is used as normal to send the script to the robot and start the run. While individual protocol scripts can be reused, in practice a new script is usually generated each time to capture and save specific run details, such as identities of the plates, etc. Once started, the process requires minimal intervention, allowing the operator to work on other tasks. Alerts are sent to a Slack channel for protocol start, completion, and any situations requiring operator attention.\nSupplementary D is an example SOP document explaining the operator steps to run the cci_normalization protocol in detail."
+    },
+    {
+      "id": "s2.3",
+      "heading": "Results > Cell density-related metrics",
+      "kind": "results",
+      "text": "In many cases, the quality of downstream results may depend on consistently seeding cells at a particular density. A key feature of the system is the ability to compensate for variation in cell density between wells on the source plate by measuring the concentration of resuspended cells in each source well and using that information to transfer the appropriate volume of media and cell suspension to the destination well. Here, we examine aspects of the system’s quantitative performance with respect to this task."
+    },
+    {
+      "id": "s2.3.1",
+      "heading": "Results > Cell density-related metrics > Basic CCI cell counting performance",
+      "kind": "results",
+      "text": "The system’s ability to seed a controlled number of cells in each output well is dependent on being able to accurately measure the concentration of cells in suspension in the source well after dissociation.\nThe basic counting performance of the CCI, in particular the linearity and dispersion of measurement values, was characterized by measuring a series of prepared HEK293T stocks in parallel on both the CCI and a flow cytometer, with the latter being used as a ground truth for cell concentrations. Results are illustrated in Fig. 2A.\nIt should be noted that the variance in CCI readings here is potentially exaggerated by the fact that measurements were aggregated over multiple cycles of sampling with significant time in between; the measurement procedure is described in greater detail in Materials and Methods.\nAlthough in principle, we can calculate the volume “seen” by the imager from design parameters, in practice we use an empirical calibration against a chosen reference instrument to compensate for non-ideal factors (software over-/undercounting, flow cell thickness variation, etc.); the slope of the fit line through the data in Fig. 2A is equal to this “calibration factor,” which represents the ratio of physical volume to image pixels in the analyzed portion of the image. In practice, we currently do not find per-flow-cell or per-channel calibration worthwhile as counting variation is dominated by other influences (sampling error, biological variation, etc.)."
+    },
+    {
+      "id": "s2.3.2",
+      "heading": "Results > Cell density-related metrics > Control of seeding density",
+      "kind": "results",
+      "text": "To examine how consistently the system can actually seed cells at a specified density, we first seeded a test plate with an artificially large spread of cell densities (which we call “Challenge Plate”), incubated it overnight, then used ACCS to passage that plate into a U-bottom plate with a fixed seeding target, and finally counted a sample of cells in each output plate well by flow cytometry to determine the cell concentration. The seeding target was set at 12.5k cells/well in 200 μL total media volume, similar to values we use when seeding microscopy plates for OpenCell.\nFigure 2B shows the results from three such experiments; Fig. 2C further illustrates the ability of the system to produce well controlled seeding densities from highly disparate input, comparing the cell concentrations measured by flow cytometry in one of the output plates to those measured in the corresponding input plate by the CCI during the harvesting and passaging process."
+    },
+    {
+      "id": "s2.3.3",
+      "heading": "Results > Cell density-related metrics > Seeding density consistency compared to manual method",
+      "kind": "results",
+      "text": "For the system to be useful it should perform at least as well as the manual method in seeding cells at a consistent density, so we directly compared plates seeded manually to plates seeded using ACCS on the basis of viable cell density.\nMultiple plates were seeded both by hand and using ACCS, using the same Challenge Plate configuration and seeding target as in the previous experiment, and incubated overnight. The plates were then analyzed using a CellTiter-Glo ATP assay the following day to assess the relative density of viable cells in each well. As illustrated in Fig. 2D, the resulting data shows that the plates processed by the automated system had tighter distributions (54% lower coefficient of variation on average) compared to those produced by visually estimating confluency for each well and passaging by hand."
+    },
+    {
+      "id": "s2.4",
+      "heading": "Results > Throughput and hands-on time",
+      "kind": "results",
+      "text": "For many pipetting tasks, a skilled human experimenter can move more quickly than the OT-2. However, the throughput benefit of the automated system lies in the reduced active engagement time for the operator. Manually passaging a single plate may take an hour or more of continuous work, while using ACCS can reduce this to under 30 min of hands-on time (depending on experience level and circumstances), with a typical end-to-end time of under 3 h.\nThe tradeoff is illustrated in Fig. 3A, which shows the range in hands-on and end-to-end time for two subjects using ACCS to passage a plate, compared to three subjects passaging by hand. While the end-to-end time for a run, including the setup, teardown, and robot operation, is significantly longer than for the manual process, there is a substantial period of “walk-away” time during which the operator is able to attend to other tasks (potentially including setting up parallel runs on additional robots)."
+    },
+    {
+      "id": "s2.5",
+      "heading": "Results > Outcomes in a practical scenario",
+      "kind": "results",
+      "text": "One of the original driving use cases for ACCS was preparing plates for the high throughput imaging pipeline in OpenCell. At the start of the imaging process, custom microscope automation software takes a set of images of the DAPI-stained nuclei over a grid of candidate sites in the middle of each well, in order to assess local cell density. A supervised machine learning model, trained on representative images of desired density, assigns an “FOV score” to each field of view (FOV) (see Ref. (4) for further detail) which is used to select the most favorable sites at which to run a full multidimensional acquisition. Scores range from −1.0 to 1.0, and in practice only FOVs with positive scores are considered usable. Typically, the four highest-scoring sites in each well are selected; therefore, the following analyses consider the aggregate of all FOV scores from each plate which fell in the four highest in their corresponding well. Sites which could not be scored are treated here as having a score of −1.\nFigure 3B illustrates the distribution of FOV scores for selected imaging sites (4 highest-scoring sites per well) for the four most recent imaging runs on ACCS-seeded copies of a particular OpenCell plate, compared to historical data from two copies of the same plate (only two such datasets exist for comparison) that were seeded manually. Meanwhile Fig. 3C visually illustrates the relationship between FOV scores and the spatial distribution of nuclei as well as the range of quality observed on the best ACCS-seeded copy vs. the best manually seeded copy. On the whole, the datasets from ACCS-seeded plates collectively had a 92% “keeper rate” (score>0) compared to 52% for the most successful hand-seeded plate."
+    },
+    {
+      "id": "s3",
+      "heading": "Materials and methods",
+      "kind": "materials|methods",
+      "text": ""
+    },
+    {
+      "id": "s3.1",
+      "heading": "Materials and methods > Overview of system components",
+      "kind": "materials|methods",
+      "text": "The ACCS system comprises several major hardware and software components: the robot protocol suite and underlying software framework, the Cell Counting Imager (CCI) with its associated flow cell and control software, and a small number of bespoke hardware accessories to adapt the OT-2 to the task of passaging 96-well plates.\nThe following subsections give a brief, high-level description of the aforementioned components. Additional technical details and practical guidance for assembling a complete system are provided in the ACCS Integrator’s Manual (Supplementary B). The design, construction, and operation of the CCI is described in the Cell Counting Imager Technical Manual (Supplementary C)."
+    },
+    {
+      "id": "s3.2",
+      "heading": "Materials and methods > ACCS automated passaging protocol",
+      "kind": "materials|methods",
+      "text": "In brief, a standard ACCS passaging protocol consists of similar steps to what would be done by hand. The robot uses the multichannel pipette to wash the cells, trypsinize the cells, quench the trypsin, and resuspend the cells, then for each column on the source plate it takes cell concentration measurements using the CCI and transfers the appropriate amount of cell suspension into the destination plate with the single-channel pipette according to the specified seeding target.\nSee the Supplementary Materials and Methods (Supplementary A) for an in-depth description of typical steps in an ACCS protocol."
+    },
+    {
+      "id": "s3.3",
+      "heading": "Materials and methods > Protocol run-time framework and tooling",
+      "kind": "materials|methods",
+      "text": "The OT-2 features a Python scripting API as the primary means to develop custom protocols. The ACCS protocol framework wraps and extends the Opentrons API, abstracts certain common operations, and adds various extra facilities for configuration, logging, and offline analysis. It also includes special features such as a mechanism for allowing tipracks to be replenished during a run and a mode that allows moving the Gen2 pipette plungers at significantly higher speeds than normally possible. The latter was crucial for reaching the flow rates necessary for effective dissociation of cells.\nACCS protocol scripts automatically generate a “paper trail” on the robot’s filesystem for every run, including a record of log messages, a JSON file with summary information, and a copy of the script itself. The logging system also feeds messages to a Slack bot that alerts users to critical events.\nThe user-facing protocol setup tool presents a browser-based form for data entry and outputs a self-contained protocol script file which is unique to a given run and contains all of the necessary framework code, all user-entered parameters, and the code for the protocol itself.\nFor offline development, a custom analysis tool extends the simulation functionality of the Opentrons software and allows tracking the movement and mixture of liquids as well as pipette tip usage and can be used to “sanity check” protocols or, for example, to predict the amount of reagents and pipette tips needed for a given run."
+    },
+    {
+      "id": "s3.4",
+      "heading": "Materials and methods > The cell counting imager",
+      "kind": "materials|methods",
+      "text": ""
+    },
+    {
+      "id": "s3.4.1",
+      "heading": "Materials and methods > The cell counting imager > High-level description",
+      "kind": "materials|methods",
+      "text": "Figure 4A identifies the major components of the Cell Counting Imager. The CCI is essentially an inverted darkfield microscope with 4× magnification and a motorized stage, built in a compact form factor which mounts in an SBS compatible slot on the deck of the OT-2. Cell samples are loaded in a purpose-made flow cell (see “CCI flow cell”) by the robot’s multichannel pipette, images are taken of each chamber, then the fluid channels are flushed out by the pipette before loading the next sample. Images are processed to produce a cell density measurement for each channel."
+    },
+    {
+      "id": "s3.4.2",
+      "heading": "Materials and methods > The cell counting imager > Optical system",
+      "kind": "materials|methods",
+      "text": "Figure 4B shows the main components of the CCI optical system. The CCI uses a commercial 4X plan objective to image cells resting on the bottom of the flow cell chambers. The optical system is L-shaped to satisfy mechanical constraints, with a first surface mirror used to orient the objective vertically. Samples are illuminated by a ring of eight 740 nm near-IR LEDs and a 700 nm longpass filter in front of the camera is used to minimize the influence of ambient light. Images are captured by a Basler acA5472-5gm monochrome CMOS camera. Focus adjustment is provided by a 3D-printed knob and collar."
+    },
+    {
+      "id": "s3.4.3",
+      "heading": "Materials and methods > The cell counting imager > CCI flow cell",
+      "kind": "materials|methods",
+      "text": "The CCI flow cell is a hemocytometer-like device with a row of eight imaging chambers and channels allowing samples to be injected and flushed out. The camera’s nominal FOV is a ∼2.4 mm × 3.6 mm rectangle within each 6 mm × 2.7 mm chamber. After masking, CCI images effectively cover about 1 μL of sample volume.\nAn exploded view of the flow cell is shown in Fig. 4C. The construction consists of two poly(methyl methacrylate) (PMMA) plates sandwiching a ∼0.24 mm thick adhesive spacer layer that forms the fluid paths. The flow cell was designed to be manufacturable using a consumer-level CO2 laser cutter, however the PMMA plates are currently produced by CNC machining.\nA “pipette interface” device molded from elastomeric material is bonded to the top side of the flow cell, and is used to form a seal with the pipette tips for the robot to inject liquid into the flow cell. A “nozzle strip” device is attached to the drain ports in order to prevent the liquid in the flow cell channels from wetting the outside surface of the flow cell and seeping out. This is accomplished using small exit holes surrounded by a super-hydrophobic surface produced using a laser cutter in a manner similar to that described in Ref. (15)."
+    },
+    {
+      "id": "s3.4.4",
+      "heading": "Materials and methods > The cell counting imager > Mechanical design and electronics",
+      "kind": "materials|methods",
+      "text": "The frame of the CCI is made up of machined aluminum plates. The mechanical structure of the optical system is a combination of ThorLabs components and custom machined parts. A pair of linear rails support a single axis positioning stage which is driven by a small (NEMA 8) stepper motor via a timing belt. A Pololu Tic T249 stepper motor controller powers the motor.\nThe darkfield illuminator contains eight LEDs and a current regulator circuit in a 3D printed frame which attaches to the nose of the objective.\nThe flow cell is attached to the top of the CCI using thumbscrews and a 3D printed fixture which also protects the pipette interface from misaligned pipette tips. A removable 3D-printed waste trough mounts beneath the flow cell to collect fluid from the drain ports."
+    },
+    {
+      "id": "s3.4.5",
+      "heading": "Materials and methods > The cell counting imager > Control software and image processing",
+      "kind": "materials|methods",
+      "text": "The control of the CCI stage and processing of images is handled by a Python program on the same computer used to set up the OT-2. The software exposes a simple HTTP API that services requests from the protocol script running on the robot. After priming the CCI flow cell with DPBS, the protocol script commands the CCI to perform a “background scan,” which takes an image of each channel with no cells present. Then, after loading each sample, the protocol script commands the CCI to perform a “counting scan,” after which it receives back the calculated cell concentration values for each channel. All images captured are stored on disk for potential later review, alongside diagnostic plots and measurement values.\nFigure 5A illustrates what the CCI camera “sees” when imaging a sample. The image processing steps used to measure cell concentration are outlined in Fig. 5B. Each sample image is preprocessed to remove artifacts using a series of masking strategies to exclude problematic areas or features, then a cell detection routine based on cross-correlation and local peak finding is used to identify the locations of cells in the “valid” parts of the image, and finally a cell concentration value is calculated taking into account the volume represented by the “valid” areas of the image.\nMost parameters for the various image processing steps are controlled by configuration files, allowing for per-instrument tuning or switching between cell types. Generally, objects with a similar or larger diameter to HEK293 cells (∼15 μm) (16) and a sufficient reflective signature should be suitable. The CCI is typically used with cell concentrations between roughly 50 k and 500 k cells/mL. The useful lower bound is dictated by the acceptable error for the application; for example, the best-case statistically achievable CV is ∼10% at a sample concentration around 100 k cells/mL and gets worse with decreasing concentration. The upper limit of cell concentration that the software can reliably process has not been explored. For a more thorough discussion of CCI image processing, see the CCI Technical Manual (Supplement C)."
+    },
+    {
+      "id": "s3.5",
+      "heading": "Materials and methods > OT-2 robot configuration and modifications",
+      "kind": "materials|methods",
+      "text": "The liquid handling platform for ACCS consists of an Opentrons OT-2 liquid pipetting robot with one Opentrons P300 Gen2 8-channel pipette and one P300 Gen2 single-channel pipette.\nA small set of passive add-on hardware components are used in addition to the CCI (see “Add-on hardware”). These items are simply placed in position and can be easily removed in order to use the OT-2 for other purposes. The only physical modification made to the robot, which is easily reversible, is the removal of the built-in trash bin.\nThe Opentrons robot software and desktop app version used for ACCS are version 4.7 (newer versions have not yet been tested). One file is added to the root filesystem on the robot to enable the ACCS Slack alert bot to run as a system service (optional). Otherwise, all ACCS related files are contained to the user-writeable area used by the onboard Jupyter Notebook environment."
+    },
+    {
+      "id": "s3.6",
+      "heading": "Materials and methods > Add-on hardware",
+      "kind": "materials|methods",
+      "text": "The ACCS system also includes a few additional custom hardware components as seen in seen in Fig. 4D–G: An adapter block (Fig. 4D) goes between the source plate and the Opentrons Temperature Module in order to hold the source plate at an 8° tilt while maintaining thermal contact. The tilt allows the pipettes to fully aspirate the well contents and to dispense PBS down the sidewall for the washing steps. The geometry of 96 well plate wells allows us to avoid the complexity of a variable tilt mechanism as commonly seen in automated cell culture systems (7, 17), since the well bottoms remain covered by media despite tilting.\nA calibration tool (Fig. 4E) is used during the Opentrons labware calibration workflow to help position the pipette correctly with respect to the source plate location.\nThe reagent trough riser (Fig. 4F) holds the reagent trough in an elevated position and makes it much easier to install and access compared to mounting it directly on the robot deck.\nThe extended tip waste bin (Fig. 4G) replaces the OT-2’s original waste bin in order to accommodate the large amount of tips used in the passaging protocols."
+    },
+    {
+      "id": "s3.7",
+      "heading": "Materials and methods > Instruments and third party software",
+      "kind": "materials|methods",
+      "text": "Cell concentration measurements for preparing dilutions were performed using a Invitrogen Countess II FL automated cell counter (AMQAF1000) and disposable counting chamber slides (C10228).\nFlow cytometry measurements were performed using a Becton Dickinson FACSymphony A1 flow cytometer with High Throughput Sampler, using FACSDiva software for data acquisition. Analysis was done with Python and the FlowKit library (18).\nLuminescence measurements were performed using a Molecular Devices Spectramax i3x multimode microplate reader and SoftMax Pro 7 software.\nLive cell imaging is carried out on an Andor Dragonfly high speed confocal microscope system using the microscopy automation software developed for OpenCell (https://github.com/czbiohub-sf/2021-opencell-microscopy-automation).\nData visualizations including those included in this manuscript were generated using Python and matplotlib (19)."
+    },
+    {
+      "id": "s3.8",
+      "heading": "Materials and methods > Reagents and cultures",
+      "kind": "materials|methods",
+      "text": "Live cells used for ACCS quantitative performance testing were wild type HEK293T cells, except that one run of the seeding density control experiment (corresponding to dataset “A” in Fig. 2B) was carried out with a HEK293T cell line expressing the split fluorescent protein mNG1-10. For both manual and automated protocols, cells are washed with DPBS without calcium and magnesium (Gibco, 14190-144); the dissociation agent is 0.25% Trypsin-EDTA (Gibco, 25200-056).\nGrowth media for ACCS operations (except where otherwise noted) consists of DMEM, high glucose with GlutaMAX (Gibco, 10566-016); plus 10% v/v fetal bovine serum (FBS); plus 25 mM HEPES (Gibco, 15630-080) plus 100 U/mL penicillin–streptomycin (Gibco, 15140-122). Media used to seed imaging plates contains a greater portion of FBS at 20% v/v. Media used during manual passaging omits HEPES. Media used for Hoechst staining and live cell imaging substitutes DMEM without phenol red.\nFor nuclear staining prior to live cell imaging, Hoechst 33342 (Thermo Fisher, H3570) is used at 1 ng/μL in phenol red-free medium as described above.\nFibronectin used in imaging plate treatment is Corning 356008.\nThe internal cleaning agent for the CCI flow cell is Contrad 70, 10% v/v in deionized water.\nFor counting using the Countess II FL, cells were stained with 0.4% trypan blue (Invitrogen, included with counting slides C10228)."
+    },
+    {
+      "id": "s3.9",
+      "heading": "Materials and methods > Consumable labware",
+      "kind": "materials|methods",
+      "text": "Routine culture maintenance uses BioLite 96-well plastic microwell plates (Thermo-Fisher, 130188). Imaging plates are Cellview 96-well glass-bottom plate (Greiner Bio-One, 655891).\nPlates for ATP assays used opaque white tissue culture-treated polystyrene plates (Falcon, 353296). Plate seals used during measurement were Bio-Rad Microseal ’B’ optically clear PCR plate sealing film (MSB1001)."
+    },
+    {
+      "id": "s3.10",
+      "heading": "Materials and methods > Manual cell culture protocols",
+      "kind": "materials|methods",
+      "text": ""
+    },
+    {
+      "id": "s3.10.1",
+      "heading": "Materials and methods > Manual cell culture protocols > Passaging of adherent HEK cells in 96 well plates",
+      "kind": "materials|methods",
+      "text": "All incubation steps are at nominally 37°C and 5% CO2.\nThe source plate is inspected in brightfield at 4× magnification, the confluency of cells in each well is estimated, wells with similar confluency are grouped together (typically no more than 4 or 5 groups), and a split factor is assigned to each group. The plate is returned to the incubator and pipette tips are arrayed according to the well positions for each group.\nThe old media is removed from the wells and the cells are washed with 100 μL of DPBS. To avoid dislodging the cell layer, washing is done by holding the plate at an incline, gently dispensing DPBS onto the sidewall of the well, and aspirating from the bottom corner.\nFifty microliters of dissociation reagent are added and the plate is incubated for 5 min. Then, 200 μL of growth media is added to quench the dissociation reagent and the well is mixed through several pipette strokes to help dissociate the cells. Finally, working in rows, the prearrayed tips are used to transfer a volume of media to the destination plate followed by a volume of cell suspension from the source plate."
+    },
+    {
+      "id": "s3.10.2",
+      "heading": "Materials and methods > Manual cell culture protocols > Live cell imaging preparation",
+      "kind": "materials|methods",
+      "text": "Glass-bottom plates intended for imaging are treated before seeding by filling with 70 μL of fibronectin solution at 50 μg/mL and incubating at ambient temperature for 45 min, then washing with 100 μL of DPBS. Plates prepared well ahead of the time of use are filled with media and stored at 4 °C.\nPrior to imaging, cells undergo nuclear staining and media replacement as follows: Media is removed from the plate and replaced with a staining medium containing Hoechst 33342 nucleic acid stain, the plate is incubated for 30 min at 37 °C, then the staining medium is removed and replaced with phenol red-free imaging medium (see “Reagents and cultures”). The plate is incubated for at least 3 h before starting imaging."
+    },
+    {
+      "id": "s3.11",
+      "heading": "Materials and methods > ACCS performance testing procedures",
+      "kind": "materials|methods",
+      "text": ""
+    },
+    {
+      "id": "s3.11.1",
+      "heading": "Materials and methods > ACCS performance testing procedures > “Challenge plate”: spatially randomized test plate",
+      "kind": "materials|methods",
+      "text": "For experiments related to seeding density control, we used a “Challenge Plate” which is a plate seeded with a randomized arrangement of different cell densities. A Challenge Plate is prepared using a purpose-made ACCS protocol script which seeds from a reservoir of prepared cell stock using the single-channel pipette. The plate map consists of four well groups arranged in a pseudorandom pattern across the plate, with each being seeded at a different relative density ranging linearly from 50% to 100%. Supplementary Fig. S1 illustrates the layout of the Challenge Plate.\nCells are manually harvested from a flask and diluted to prepare a 20 mL cell stock at nominally 200 k cells/mL, from which the robot seeds between 100 and 200 μL into each well (corresponding to a range of 20 k to 40 k cells), topping up with media to 200 μL total volume. The plate is incubated for ∼24 h before use."
+    },
+    {
+      "id": "s3.11.2",
+      "heading": "Materials and methods > ACCS performance testing procedures > Procedure for hands-on time study",
+      "kind": "materials|methods",
+      "text": "For the time study comparing the overall duration and “hands-on” time for manual passaging compared to using ACCS, three different individuals passaged a plate manually and two different individuals (at the time of writing this was everyone available and proficient in operating the system) used ACCS to do the same. Both processes were carried out in the same way as for the seeding accuracy comparison experiments as described in “Procedure for comparative seeding accuracy tests by ATP assay,” except that a normal culture plate was used for the output plate and there were no special reserved wells.\nStarting conditions were as follows: biosafety cabinet open, wiped down and “warmed up” ahead of time; reagents ready at appropriate temperatures (media and dissociation reagent warmed to 37 °C, all others RT); all necessary equipment and consumables staged within reach.\nAn observer marked the time at transition points between tasks in each process. Timing for both conditions started when the operator first touched any piece of equipment and ended when the biosafety cabinet sash was finally shut after cleanup. Durations between these time points were grouped into four categories of activities, as enumerated below:\n“Setup/annotation” includes loading and arranging labware in the cabinet; inspecting the plate and planning split factors (“Manual” condition); and all steps to set up the robot, Cell Counting Imager and software for the run (“ACCS” condition). “Teardown/cleanup” encompasses all tasks following the final liquid transfers into the destination plate, including the final inspection of the plate in the case of the “Manual” condition. For the “Manual” condition only, “Pipette tip arraying” represents the process of prearranging pipette tips in racks to facilitate multichannel pipetting, and “Manual passaging” encompasses the pipetting and other manual steps following tip arraying and prior to final inspection of the plate."
+    },
+    {
+      "id": "s3.11.3",
+      "heading": "Materials and methods > ACCS performance testing procedures > Procedure for CCI counting performance measurements",
+      "kind": "materials|methods",
+      "text": "For the CCI counting characterization experiment, a master stock of HEK293T cells was harvested from a flask and cell concentration was measured using a Countess II automated cell counter. This stock was then used to produce a set of test samples of 15 mL each with nominal concentrations linearly covering a range from 100 k to 400 k cells/mL, along with a negative control sample consisting of pure media. From each stock, a 2 mL aliquot was separated for measurement by the flow cytometer and the remainder was loaded into a well in a 12-well reservoir for measurement by the CCI.\nFor the flow cytometry measurements, 100 μL of Countbright Absolute Counting Beads was added to each sample, then the samples were distributed into columns of 8 × 250 μL on a U-bottom plate (Corning, 3799) for loading by the High-Throughput Sampler of a BD FACSymphony A1 flow cytometer. From the first three rows, measurements were taken with a sample volume of 150 μL at a rate of 3.0 μL/s.\nFor the CCI measurements, a purpose-made ACCS protocol script was used to cycle through the samples a total of 4 times, mixing each well and then loading the CCI, to produce 32 (8 flow cell channels × 4 repeats) measurements for each sample. Results are summarized in Fig. 2A."
+    },
+    {
+      "id": "s3.11.4",
+      "heading": "Materials and methods > ACCS performance testing procedures > Procedure for flow cytometry-based seeding accuracy tests",
+      "kind": "materials|methods",
+      "text": "ACCS was used to passage cells from a Challenge Plate, using CCI measurements to control seeding density, into a U-bottom plate for counting by flow cytometry, with a target of 12.5k cells/well. The ACCS run was configured as normal except that Gibco Anti-Clumping Agent (00-10057AE) was added at 1% v/v to the media in the reservoir in an effort to minimize cell aggregation and adhesion. An example of the distribution of cell concentration values reported by the CCI during this process is illustrated in Fig. 2C(a). Upon completion of the run, 20 μL of Countbright Absolute Counting Beads (Invitrogen, C36950) was added to each well in column 4 of the plate for QC purposes, then all wells were resuspended by triturating with a 12-channel manual pipette immediately prior to transferring to the flow cytometer. Measurement of the cell concentration in each well on the output plate was performed using a BD FACSymphony A1 flow cytometer with High-Throughput Sampler. 60 μL was sampled from each well at a rate of 3.0 μL/s—see Supplementary Materials and methods (Supplementary A) for full instrument configuration. The distribution of cell concentration values calculated from flow cytometry data for columns 1–3 and 5–12 is illustrated in Fig. 2B. The analysis automatically excluded wells for which either the cell concentration in the source plate was too low (requiring an aliquot greater than 180 μL, the approximate practical limit we have found on the amount of cell suspension the system can reliably aspirate from the source plate without creating air bubbles), or for which the flow cytometer failed to load the sample properly (we detect this particular failure mode by an anomalous range of event timestamps in the output data)."
+    },
+    {
+      "id": "s3.11.5",
+      "heading": "Materials and methods > ACCS performance testing procedures > Procedure for comparative seeding accuracy tests by ATP assay",
+      "kind": "materials|methods",
+      "text": "For these tests, the “subject” (ACCS or human volunteer) was directed to passage a provided Challenge Plate into an empty assay plate with a target of 12.5k cells/well, except for designated reference/control wells as described below. The plate was then incubated overnight and an ATP assay (CellTiter-Glo) was used to measure variation in seeding density across the plate. This measurement strategy was chosen rather than measuring concentration in suspension immediately after seeding in order to focus on the number of live cells delivered and to account for the common shortcut of dispensing the same amount of media to all wells when passaging by hand.\nEach plate contained 8 “ref hi” wells and 8 “ref lo” wells seeded from prepared stocks with 20 k and 10 k cells, respectively, 2 “no reagent” control wells, 2 “no cells” wells, and 76 sample wells for the performance measurement. For the “no cells” condition, the wells were filled with 200 μL of media instead of seeding with cells. For the “no reagent” condition, the wells were seeded normally but no media was removed or reagent added for the assay. Supplementary Fig. S2 illustrates the layout of these assay plates.\nCellTiter-Glo reagent was prepared in advance per the manufacturer’s instructions (20) and frozen in 10 mL aliquots at −20 °C. Ahead of each test, these were placed in a 37 °C bead bath just long enough to thaw, then allowed to naturally equilibrate to ambient temperature for at least 1 h before use.\nOne hundred microliters of media were removed from each well using the OT-2, excluding wells C3 and F7 by removing the corresponding tips from the tiprack, then 100 μL of CellTiter-Glo reagent were gently added to the plate manually, working column-wise and again excluding C3 and F7. A transparent plate seal was applied and the plate was moved to the plate reader as quickly as practical.\nThe plate reader was programmed to first perform 2 min of orbital shaking at “high” intensity and then take measurements of the plate every 2 min for 60 min total. We use the measurement at the +60 min time point for analysis as past experience with this assay has shown that results at the +10 min time point (per the vendor’s SOP) can be more sensitive to effects of pipetting technique, physical plate handling, temperature variation, etc. Measurements were carried out in top read mode with an integration time of 500 ms and a read height of 6.51 mm."
+    },
+    {
+      "id": "s4",
+      "heading": "Discussion",
+      "kind": "discussion",
+      "text": ""
+    },
+    {
+      "id": "s4.1",
+      "heading": "Discussion > Cell viability",
+      "kind": "discussion",
+      "text": "A key area of concern when developing the system was any potential impacts on cell viability. As illustrated in the Results section, in the present design, cells spend considerably more time in ambient atmosphere when using ACCS compared to when splitting by hand. For this reason, we proactively include HEPES as a pH buffer in the growth media (see “Reagents and cultures”).\nIn our routine usage of the system with HEK293T cells, we have not observed any obvious defects in morphology or growth attributable to this difference in environmental exposure. In an informal blind comparison where lab members and colleagues viewed random pairs of microscopy images of cells from one plate seeded using ACCS and a second plate seeded by hand, neither set was consistently identified as subjectively better or worse in terms of morphological features. The assay results used to compare seeding accuracy (see Fig. 2D) suggest that there is no significant deficit in overnight recovery and growth for cells passaged by the robot. In Supplementary E, we explore viability over longer culture times and observe no detriment attributable to robotic passaging."
+    },
+    {
+      "id": "s4.2",
+      "heading": "Discussion > Other use cases and cell types",
+      "kind": "discussion",
+      "text": "While our routine usage of the system has been limited to HEK293 cells thus far, we approached the system design with consideration of potential future application to other cell types. Broadly, the current embodiment is suited to adherent or suspension cells cultured in liquid media which can tolerate being outside of the incubator for 2 to 3 h. The handling steps in each protocol are driven by an extensive set of configuration values (e.g. trypsin volume, incubation temperature, number of mixing cycles, etc.) which can be adjusted for best results with a given cell type. Image processing parameters for the CCI are similarly configurable. A single exploratory test with HuH-7 cells showed that they could be counted by the CCI and survived automated passaging using standard settings, but further work to qualify and optimize the system for this application remains to be done."
+    },
+    {
+      "id": "s4.3",
+      "heading": "Discussion > Practical impact",
+      "kind": "discussion",
+      "text": "Although this article has focused primarily on potential gains in efficiency and throughput, increased automation in cell culture has occupational health implications as well. Intensive manual pipetting work has long been established as a significant risk factor for work-related musculoskeletal disorders (WMSD) in laboratory workers (21–23). Further compounding the issue, most cell culture operations are carried out in a hood or biosafety cabinet; this imposes additional constraints on users’ posture and movements and is itself implicated as a risk factor for WMSD (24). There is therefore an obvious benefit to handing off the most repetitive pipetting tasks in cell culture work to robotics.\nACCS is part of a growing field of open-source, “DIY” automation solutions (11, 25) aimed at bringing throughput gains to biology research in a collaborative, accessible, and adaptable way, in contrast to high-end proprietary solutions offered by industry. For maximum reach, we have attempted to minimize hardware complexity as much as possible. The cost of the ACCS hardware is not trivial (at time of writing, the list price for the OT-2 and pipettes is $18,250 (26)), but an automated liquid handler would have a great deal of practical value in the lab aside from running ACCS protocols, so the cost can be amortized over many different applications (alternatively, emerging DIY solutions for automated pipetting (13) could provide a future path to reduce the overall hardware cost). The CCI flow cell can be reused for at least several weeks and tens of cycles, and can be fabricated for under $50 per unit. The system can also be used without a CCI for passaging at fixed split ratios.\nWe find that training new operators can typically be done in one or two hands-on practice runs. Upkeep primarily consists of the normal maintenance requirements for the Opentrons equipment, occasional fabrication of a new CCI flow cell and waste trough, and any spot cleaning needed due to spills.\nIn our own usage of the system, we find that the automated method offers a significant benefit in time savings, compared to the manual method. The consistency and parametric control it enables is instrumental in optimizing parameters for sensitive downstream applications. By making the system open-source we hope to share these potential benefits as well as promote further interest and collaboration in small-scale “DIY” automation solutions not only in cell culture but more broadly in life sciences research."
+    },
+    {
+      "id": "s5",
+      "heading": "Supplementary Material",
+      "kind": "supplementary-material",
+      "text": "pgaf385_Supplementary_Data"
+    },
+    {
+      "id": "b1",
+      "heading": "Supplementary Material",
+      "kind": "",
+      "text": "Supplementary material is available at PNAS Nexus online."
+    },
+    {
+      "id": "b2",
+      "heading": "Funding",
+      "kind": "",
+      "text": "This project was internally funded by Chan Zuckerberg Biohub San Francisco."
+    },
+    {
+      "id": "b3",
+      "heading": "Author Contributions",
+      "kind": "",
+      "text": "Conceptualization: R.G.-S. and M.L.; Data curation: G.C., S.V., A.T., J.P.C., P.R., and G.B.; Formal analysis: G.C., S.V., A.T., J.P.C., P.R., and G.B.; Funding acquisition: R.G.-S. and M.L.; Investigation: G.C., S.V., A.T., P.L., J.P.C., P.R., A.J., and G.B.; Methodology: R.G.-S., G.C., S.V., A.T., P.L., and M.L.; Project administration: R.G.-S. and M.L.; Resources: R.G.-S. and M.L.; Software: G.C., P.L., J.P.C., and A.J.; Supervision: R.G.-S. and M.L.; Validation: R.G.-S., G.C., S.V., A.T., P.L., J.P.C., P.R., G.B., and M.L.; Visualization: G.C., S.V., A.T., J.P.C., P.R., and G.B.; Writing—original draft: G.C. and S.V.; Writing—review & editing: R.G.-S., G.C., S.V., and M.L."
+    },
+    {
+      "id": "b4",
+      "heading": "Preprints",
+      "kind": "",
+      "text": "This manuscript was posted on a preprint server: https://doi.org/10.1101/2024.12.27.629034"
+    },
+    {
+      "id": "b5",
+      "heading": "Data Availability",
+      "kind": "data-availability",
+      "text": "All raw data and analysis code underlying the findings and figures presented here, source code for the ACCS software components and links to documentation and CAD models can be found at https://github.com/czbiohub-sf/2024-accs-pub."
+    }
+  ],
+  "legends": [
+    {
+      "id": "pgaf385-F1",
+      "label": "Fig. 1.",
+      "title": "",
+      "text": "Major components. The system is built around an Opentrons OT-2 pipetting robot. The Cell Counting Imager (CCI) occupies a slot on the OT-2 deck and counts cells in samples from the source plate. A custom flow cell attaches to the top of the CCI and is loaded by the multichannel pipette. Additional custom hardware components are detailed in Fig. 4. Inset: software overview. Shaded boxes denote ACCS custom software components. Key interactions: a) Operator fills out the protocol setup form to generate a protocol script; b) Operator loads the protocol script into the Opentrons app, then c) sends it to the robot and starts the run; d) The protocol script running on the robot sends requests to the CCI server, which in turn e) controls the CCI hardware, captures and analyzes images, and returns cell counts; f) The protocol script emits log events which are received by the alert bot and g) broadcast to operators via Slack as appropriate."
+    },
+    {
+      "id": "pgaf385-F2",
+      "label": "Fig. 2.",
+      "title": "",
+      "text": "A) CCI counting performance. Distribution of CCI readings for each dilution plotted against cell concentration values obtained by bead-corrected flow cytometry measurements, with a linear regression through the origin used to generate the “calibration factor” for the CCI (the slope of the fit line); B) Cell density target performance. Distribution of cell concentrations measured in three test plates seeded by ACCS, using an artificially diverse source plate, as measured by flow cytometry (“FC”) immediately after seeding; C) Input plate vs. output plate cell concentration. Distribution of source plate cell concentration readings from the CCI compared to concentration measurements taken from the output plate by flow cytometry (“FC”), for the dataset corresponding to sample A in B); D) Seeding density consistency for ACCS vs. manual process. Distribution of raw luminance values from an ATP assay (CellTiter-Glo) used as a proxy for relative cell density for three plates seeded manually based on visual assessment of the confluency of the source wells (a)–c)) and three plates seeded automatically by ACCS (d)–f))."
+    },
+    {
+      "id": "pgaf385-F3",
+      "label": "Fig. 3.",
+      "title": "",
+      "text": "A) Total duration and walk-away time. Illustration of the tradeoff between end-to-end duration and hands-on time for passaging of a 96-well plate by the conventional method, with split factors determined by visual confluency estimation (samples A–C, corresponding to three different testees), compared to performing the same task using ACCS (samples D–E, corresponding to two different ACCS operators); B) OpenCell imaging FOV score performance. Comparison of FOV score distributions obtained from two imaging runs where the imaging plate was seeded manually, followed by four consecutive and most recent runs (with the same plate layout) where the plate was seeded using ACCS; C) Example imaging results for manually seeded and ACCS-seeded wells. A selection of Z-projections generated from the DAPI channel data for image stacks acquired from a manually seeded plate (left, corresponding to “M2” in subfigure B) and an ACCS-seeded plate (right, corresponding to “A4”). To illustrate the range of results obtained for each condition, as well as the relationship between image features and FOV score, images are programmatically selected based on their corresponding FOV scores to represent “high” (90th percentile), median, and “low” (10th percentile) scores for each dataset."
+    },
+    {
+      "id": "pgaf385-F4",
+      "label": "Fig. 4.",
+      "title": "",
+      "text": "A) CCI key mechanical components: (a) flow cell, detailed in (C), (b) pipette tip guide and flow cell hold down fixture, (c) waste trough, (d) optical system—detailed in B), (e) linear stage carries the optical system, (f) timing belt system moves the stage, g) stepper motor drives the timing belt; C) CCI flow cell construction: (a) Pipette tip interface is made of elastomer material and mates with the tips on the multichannel pipette for injection of samples, (b) Top and bottom slides form the outer structure and optical windows of the flow cell; (c) Spacer layer forms the flow channels and imaging chambers, (d) Drain port strip prevents “wicking” of fluid out of the flow cell; D) Inclined thermal block adapter holds the source plate at a fixed angle on the Tempdeck; E) Pipette position calibration tool facilitates calibrating the coordinates of the source plate in the Opentrons labware calibration workflow; F) Reagent trough riser eases access to the reagent trough by locating it in an elevated position and allowing it to simply drop into place rather than interacting with spring clips on the OT-2 deck; G) High capacity replacement tip waste bin is required in order to accommodate the large amount of tips used in passaging protocols."
+    },
+    {
+      "id": "pgaf385-F5",
+      "label": "Fig. 5.",
+      "title": "",
+      "text": "CCI counting process. A) CCI performing an imaging cycle, with inset showing an example of what the CCI camera sees; B) CCI image processing overview. Simplified high-level outline of processing steps. Each “foreground” image (sample to be measured) is aligned against a stored “background” image (cell-free reference) and then a mask is generated to exclude problematic fixed (e.g. flow cell debris) or transient (e.g. air bubbles) features from the analyzed volume. An additional fixed pattern is added to the mask to exclude areas outside the image circle or close to the channel walls. Finally, the cell detection routine processes the foreground image to count cells within the image regions deemed “valid” per the mask."
+    }
+  ],
+  "references": [
+    {
+      "id": "pgaf385-B1",
+      "label": "1",
+      "citation": "Thrive Bioscience . 2024 . Variability in cell confluency: comparison of human and CellAssist assessments. [accessed 2024 Mar 20]. http://www.thrivebio.com/wp-content/uploads/2024/10/Cell-Confluence-Assessment.pdf .",
+      "doi": ""
+    },
+    {
+      "id": "pgaf385-B2",
+      "label": "2",
+      "citation": "Topman G , Sharabani-Yosef O , Gefen A . 2011 . A method for quick, low-cost automated confluency measurements . Microsc Microanal . 17 ( 6 ): 915 – 922 . 10.1017/S1431927611012153 . 22032200",
+      "doi": "10.1017/S1431927611012153"
+    },
+    {
+      "id": "pgaf385-B3",
+      "label": "3",
+      "citation": "Hafner M , Niepel M , Sorger PK . 2017 . Alternative drug sensitivity metrics improve preclinical cancer pharmacogenomics . Nat Biotechnol . 35 ( 6 ): 500 – 502 . 10.1038/nbt.3882 . 28591115 PMC5668135",
+      "doi": "10.1038/nbt.3882"
+    },
+    {
+      "id": "pgaf385-B4",
+      "label": "4",
+      "citation": "Cho NH , et al 2022 . OpenCell: endogenous tagging for the cartography of human cellular organization . Science . 375 ( 6585 ): eabi6983 . 10.1126/science.abi6983 . 35271311 PMC9119736",
+      "doi": "10.1126/science.abi6983"
+    },
+    {
+      "id": "pgaf385-B5",
+      "label": "5",
+      "citation": "Bray M-A , et al 2016 . Cell painting, a high-content image-based assay for morphological profiling using multiplexed fluorescent dyes . Nat Protoc . 11 ( 9 ): 1757 – 1774 . 10.1038/nprot.2016.105 . 27560178 PMC5223290",
+      "doi": "10.1038/nprot.2016.105"
+    },
+    {
+      "id": "pgaf385-B6",
+      "label": "6",
+      "citation": "Kempner M , Felder RA . 2002 . A review of cell culture automation . J Lab Autom . 7 ( 2 ): 56 – 62 . 10.1016/S1535-5535-04-00183-2 .",
+      "doi": "10.1016/S1535-5535-04-00183-2"
+    },
+    {
+      "id": "pgaf385-B7",
+      "label": "7",
+      "citation": "Gregor BW , et al 2024 . Automated human induced pluripotent stem cell culture and sample preparation for 3D live-cell microscopy . Nat Protoc . 19 ( 2 ): 565 – 594 . 10.1038/s41596-023-00912-w . 38087082",
+      "doi": "10.1038/s41596-023-00912-w"
+    },
+    {
+      "id": "pgaf385-B8",
+      "label": "8",
+      "citation": "Louey A , Hernández D , Pébay A , Daniszewski M . 2021 . Automation of organoid cultures: current protocols and applications . SLAS Discov . 26 ( 9 ): 1138 – 1147 . 10.1177/24725552211024547 . 34167363",
+      "doi": "10.1177/24725552211024547"
+    },
+    {
+      "id": "pgaf385-B9",
+      "label": "9",
+      "citation": "Tischler J , et al 2022 . An automated do-it-yourself system for dynamic stem cell and organoid culture in standard multi-well plates . Cell Rep Methods . 2 ( 7 ): 100244 . 10.1016/j.crmeth.2022.100244 . 35880022 PMC9308133",
+      "doi": "10.1016/j.crmeth.2022.100244"
+    },
+    {
+      "id": "pgaf385-B10",
+      "label": "10",
+      "citation": "Angers K , et al 2025 . RoboCulture: a robotics platform for automated biological experimentation . ArXiv , 10.48550/arXiv.2505.14941 .",
+      "doi": "10.48550/arXiv.2505.14941"
+    },
+    {
+      "id": "pgaf385-B11",
+      "label": "11",
+      "citation": "Dettinger P , et al 2022 . Open-source personal pipetting robots with live-cell incubation and microscopy compatibility . Nat Commun . 13 ( 1 ): 2999 . 10.1038/s41467-022-30643-7 . 35637179 PMC9151679",
+      "doi": "10.1038/s41467-022-30643-7"
+    },
+    {
+      "id": "pgaf385-B12",
+      "label": "12",
+      "citation": "Eggert S , Mieszczanek P , Meinert C , Hutmacher DW . 2020 . OpenWorkstation: a modular open-source technology for automated in vitro workflows . HardwareX . 8 : e00152 . 10.1016/j.ohx.2020.e00152 . 35498237 PMC9041211",
+      "doi": "10.1016/j.ohx.2020.e00152"
+    },
+    {
+      "id": "pgaf385-B13",
+      "label": "13",
+      "citation": "Naranbat D , Phelps B , Murphy J , Tripathi A . 2025 . How to convert a 3d printer to a personal automated liquid handler for life science workflows . SLAS Technol . 30 ( 1 ): 100239 . 10.1016/j.slast.2024.100239 . 39732397",
+      "doi": "10.1016/j.slast.2024.100239"
+    },
+    {
+      "id": "pgaf385-B14",
+      "label": "14",
+      "citation": "Wierenga RP , Golas SM , Ho W , Coley CW , Esvelt KM . 2023 . PyLabRobot: an open-source, hardware-agnostic interface for liquid-handling robots and accessories . Device . 1 ( 4 ): 100111 . 10.1016/j.device.2023.100111 .",
+      "doi": "10.1016/j.device.2023.100111"
+    },
+    {
+      "id": "pgaf385-B15",
+      "label": "15",
+      "citation": "Riveiro A , et al 2020 . Influence of laser texturing on the wettability of PTFE . Appl Surf Sci . 515 : 145984 . 10.1016/j.apsusc.2020.145984 .",
+      "doi": "10.1016/j.apsusc.2020.145984"
+    },
+    {
+      "id": "pgaf385-B16",
+      "label": "16",
+      "citation": "Blumlein A , Williams N , McManus JJ . 2022 . The mechanical properties of individual cell spheroids . Sci Rep . 7 ( 1 ): 7346 . 10.1038/s41598-017-07813-5 . PMC5544704 28779182",
+      "doi": "10.1038/s41598-017-07813-5"
+    },
+    {
+      "id": "pgaf385-B17",
+      "label": "17",
+      "citation": "Terstegge S , et al 2007 . Automated maintenance of embryonic stem cell cultures . Biotechnol Bioeng . 96 ( 1 ): 195 – 201 . 10.1002/bit.21061 . 16960892",
+      "doi": "10.1002/bit.21061"
+    },
+    {
+      "id": "pgaf385-B18",
+      "label": "18",
+      "citation": "White S , et al 2021 . FlowKit: a python toolkit for integrated manual and automated cytometry analysis workflows . Front Immunol . 12 : 768541 . 10.3389/fimmu.2021.768541 . 34804056 PMC8602902",
+      "doi": "10.3389/fimmu.2021.768541"
+    },
+    {
+      "id": "pgaf385-B19",
+      "label": "19",
+      "citation": "Caswell TA , et al 2023 . matplotlib/matplotlib: REL: v3.7.3 . 10.5281/ZENODO.8336761 .",
+      "doi": "10.5281/ZENODO.8336761"
+    },
+    {
+      "id": "pgaf385-B20",
+      "label": "20",
+      "citation": "Promega Inc . 2023 . CellTiter-Glo luminescent cell viability assay technical bulletin. Literature # TB288. [accessed 2023 Dec 21]. https://www.promega.com/-/media/files/resources/protocols/technical-bulletins/0/celltiter-glo-luminescent-cell-viability-assay-protocol.pdf .",
+      "doi": ""
+    },
+    {
+      "id": "pgaf385-B21",
+      "label": "21",
+      "citation": "Björksten MG , Almby B , Jansson ES . 1994 . Hand and shoulder ailments among laboratory technicians using modern plunger-operated pipettes . Appl Ergon . 25 ( 2 ): 88 – 94 . 10.1016/0003-6870(94)90069-8 . 15676954",
+      "doi": "10.1016/0003-6870(94)90069-8"
+    },
+    {
+      "id": "pgaf385-B22",
+      "label": "22",
+      "citation": "David G , Buckle P . 1997 . A questionnaire survey of the ergonomic problems associated with pipettes and their usage with specific reference to work-related upper limb disorders . Appl Ergon . 28 ( 4 ): 257 – 262 . 10.1016/S0003-6870(97)00002-1 . 9414365",
+      "doi": "10.1016/S0003-6870(97)00002-1"
+    },
+    {
+      "id": "pgaf385-B23",
+      "label": "23",
+      "citation": "Holm JW , Mortensen OS , Gyntelberg F . 2016 . Upper limb disorders among biomedical laboratory workers using pipettes . Cogent Med . 3 ( 1 ): 1256849 . 10.1080/2331205X.2016.1256849 .",
+      "doi": "10.1080/2331205X.2016.1256849"
+    },
+    {
+      "id": "pgaf385-B24",
+      "label": "24",
+      "citation": "Maulik S , De A , Iqbal R . Work related musculoskeletal disorders among medical laboratory technicians. In: 2012 Southeast Asian Network of Ergonomics Societies Conference (SEANES) . IEEE; 2012. p. 1–6. 10.1109/SEANES.2012.6299585 .",
+      "doi": "10.1109/SEANES.2012.6299585"
+    },
+    {
+      "id": "pgaf385-B25",
+      "label": "25",
+      "citation": "Heins ZJ , et al 2019 . Designing automated, high-throughput, continuous cell growth experiments using eVOLVER . J Vis Exp . ( 147 ): 59652 . 10.3791/59652 . PMC6738936 31157778",
+      "doi": "10.3791/59652"
+    },
+    {
+      "id": "pgaf385-B26",
+      "label": "26",
+      "citation": "Opentrons Labworks Inc . 2024 . OT-2 Robot. Online; accessed 17 November 2024 .",
+      "doi": ""
+    }
+  ]
+}

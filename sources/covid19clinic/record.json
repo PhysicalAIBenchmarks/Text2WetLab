@@ -1,0 +1,159 @@
+{
+  "code": [
+    {
+      "api_levels": [
+        "2.0",
+        "2.2",
+        "2.7"
+      ],
+      "archived": false,
+      "cache_path": "~/.cache/text2wetlab-ingest/code/covid19clinic/CDB-coreBM__covid19clinic",
+      "commit": "4e05150797e021ed3b0d985d9b10957679adbfc9",
+      "default_branch": "master",
+      "host": "github.com",
+      "licence": "GPL-3.0",
+      "opentrons_py_files": 45,
+      "py_files": 52,
+      "redistributable": "no",
+      "repo": "CDB-coreBM/covid19clinic",
+      "robot_mentions": [
+        "OT-2"
+      ],
+      "size_kb": 30614,
+      "status": "cloned",
+      "url": "https://github.com/CDB-coreBM/covid19clinic"
+    },
+    {
+      "api_levels": [
+        "2.0",
+        "2.2",
+        "2.7"
+      ],
+      "archived": false,
+      "cache_path": "~/.cache/text2wetlab-ingest/code/covid19clinic/CDB-coreBM__covid19clinic",
+      "commit": "4e05150797e021ed3b0d985d9b10957679adbfc9",
+      "default_branch": "master",
+      "host": "github.com",
+      "licence": "GPL-3.0",
+      "opentrons_py_files": 45,
+      "py_files": 52,
+      "redistributable": "no",
+      "repo": "CDB-coreBM/covid19clinic",
+      "robot_mentions": [
+        "OT-2"
+      ],
+      "size_kb": 30614,
+      "status": "cloned",
+      "url": "https://github.com/CDB-coreBM/covid19clinic/wiki"
+    },
+    {
+      "api_levels": [],
+      "archived": false,
+      "cache_path": "~/.cache/text2wetlab-ingest/code/covid19clinic/kkdey__Robocov",
+      "commit": "9fd6d200ed7cbf88a7e492d497b62c3b88de115a",
+      "default_branch": "master",
+      "host": "github.com",
+      "licence": "none",
+      "opentrons_py_files": 0,
+      "py_files": 0,
+      "redistributable": "no",
+      "repo": "kkdey/Robocov",
+      "robot_mentions": [],
+      "size_kb": 8156,
+      "status": "cloned",
+      "url": "https://github.com/kkdey/Robocov"
+    },
+    {
+      "api_levels": [],
+      "archived": false,
+      "cache_path": "~/.cache/text2wetlab-ingest/code/covid19clinic/theosanderson__tube_checkout",
+      "commit": "0bb5f6d76ed6a5b5b75f449b74ea9733960e1320",
+      "default_branch": "master",
+      "host": "github.com",
+      "licence": "none",
+      "opentrons_py_files": 0,
+      "py_files": 0,
+      "redistributable": "no",
+      "repo": "theosanderson/tube_checkout",
+      "robot_mentions": [],
+      "size_kb": 29251,
+      "status": "cloned",
+      "url": "https://github.com/theosanderson/tube_checkout"
+    }
+  ],
+  "doi_primary": "10.1371/journal.pone.0252509",
+  "dois": [
+    "10.1371/journal.pone.0252509"
+  ],
+  "fulltext": {
+    "legends": 2,
+    "sections": 22,
+    "source": "europepmc:PMC8279358"
+  },
+  "journal": "",
+  "note": "no paper cited",
+  "open_access": true,
+  "origin": [
+    "Amass BiomedCore search (2026-10-03)"
+  ],
+  "paper_licence": "cc by",
+  "pdf": {
+    "bytes": 817267,
+    "licence": "cc by",
+    "pages": 11,
+    "redistributable": "yes",
+    "sha256": "11209427b8d6daf98f61da4b785f3bbf90f8e61152dafc845f4774149c3eb14d",
+    "status": "downloaded",
+    "tried": [
+      {
+        "http": 403,
+        "manual": false,
+        "ok": false,
+        "url": "https://europepmc.org/articles/PMC8279358?pdf=render"
+      },
+      {
+        "http": 403,
+        "manual": false,
+        "ok": false,
+        "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC8279358&blobtype=pdf"
+      },
+      {
+        "http": 200,
+        "manual": false,
+        "ok": true,
+        "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0252509&type=printable"
+      }
+    ],
+    "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0252509&type=printable"
+  },
+  "pmcid": "PMC8279358",
+  "slug": "covid19clinic",
+  "title": "Implementation of an open-source robotic platform for SARS-CoV-2 testing by real-time RT-PCR",
+  "year": "2021",
+  "experiments_hint": [
+    {
+      "id": "extraction-qpcr-setup",
+      "title": "OT-2 station A/B: lysis/reagent dispensing, nucleic acid extraction and qPCR plate set-up (circuit with KingFisher)",
+      "liquid_handling": "mostly",
+      "evidence": "Methods 2.2.1; Results 3.1"
+    },
+    {
+      "id": "circuit-clinical-evaluation",
+      "title": "OT-2/KingFisher pathogen circuit evaluation in clinical setting",
+      "liquid_handling": "partly",
+      "evidence": "Methods 2.2.2; Results 3.2"
+    },
+    {
+      "id": "circuit-comparison-viral-pathogen-ii",
+      "title": "Comparison of OT-2-KF pathogen circuit vs viral pathogen II kit",
+      "liquid_handling": "partly",
+      "evidence": "Results 3.3"
+    },
+    {
+      "id": "framework-calibration",
+      "title": "Liquid-class framework: height adjustment, reagent classes, custom labware",
+      "liquid_handling": "partly",
+      "evidence": "Methods 2.1.1-2.1.5"
+    }
+  ]
+}

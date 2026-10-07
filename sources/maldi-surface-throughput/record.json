@@ -1,0 +1,79 @@
+{
+ "code": [],
+ "doi_primary": "10.1021/jasms.3c00062",
+ "dois": [
+  "10.1021/jasms.3c00062"
+ ],
+ "experiments_hint": [
+  {
+   "evidence": "Methods 2.5; Results 3.2-3.3; Fig. 3-4",
+   "id": "spotting",
+   "liquid_handling": "mostly",
+   "title": "OT-2 automated 2 uL spotting of extracted serum/standards onto imprinted PARAFILM and porous PTFE plates for DESI-MS (~16 min/plate)"
+  },
+  {
+   "evidence": "Methods 2.4; mostly manual",
+   "id": "extraction",
+   "liquid_handling": "little",
+   "title": "Biphasic (Bligh-Dyer) horse serum lipid/metabolite extraction and internal-standard spiking"
+  }
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1021/jasms.3c00062:\n  europepmc: Server error '500 ' for url 'https:/",
+  "source": null
+ },
+ "journal": "",
+ "note": " Text read from PMC open-data .txt (TDM). ACS PDF 403 (paywalled). Code: Supporting Info contains Opentrons_codeJSON and custom labware (.ZIP/.JSON), STL files; not obtainable (not OA supplement); no repository named.",
+ "open_access": false,
+ "origin": [
+  "Amass BiomedCore search (2026-10-03)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "author manuscript (NIHMS2121765), PMC TDM licence; no PDF on the PMC open-data bucket",
+  "redistributable": "no",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12765230?pdf=render"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12765230.1/PMC12765230.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12765230.2/PMC12765230.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12765230.3/PMC12765230.3.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC12765230&blobtype=pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://pubs.acs.org/doi/pdf/10.1021/jasms.3c00062"
+   }
+  ]
+ },
+ "pmcid": "PMC12765230",
+ "slug": "maldi-surface-throughput",
+ "title": "Customized Surface Design to Increase Throughput of Ambient Ionization Mass Spectrometry Lipidomics",
+ "year": "2023"
+}

@@ -1,0 +1,84 @@
+{
+  "verdict": "reject",
+  "summary": "The paper gives the thermocycling, DpnI, cleanup, transformation and plating conditions, and the cited IVA paper fills most generic gaps. It does not state the template plasmid, the mutation, the primer sequences, the fragment lengths, the annealing temperatures or the extension times for this one-pot IVA site-directed mutagenesis. The first three are in supplementary files that are not part of the text and that I was told not to use. Without them, guessing would change what is being tested, so the experiment cannot be run as published.",
+  "gaps": [
+    {
+      "detail": "Identity of the template plasmid(s) for the one-pot IVA mutagenesis (Assemblies 1 and 2)",
+      "why_needed": "The template determines the primers, fragment sizes, antibiotic selection and the sequencing readout. The text says only 'a construct frequently used in the Wright Plant Synthetic Biology Lab'. The plasmid list in s2.2 (pGP8A-ARF19, -ARF5-pdar, -ARF7-pdar and the chromoprotein plasmids) does not say which was used.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Primer sequences and the specific mutation(s) introduced in Assembly 1 and Assembly 2",
+      "why_needed": "The mutation and the 20+ bp overlapping primers define the experiment. Without them, mutagenesis efficiency and sequence correctness (2/6 and 3/6 correct colonies) cannot be reproduced. The text points only to Table S1 and File S7 for primers and Files S5/S6 for sequencing.",
+      "status": "missing",
+      "resolution": "",
+      "source": "Supplementary files only; not used per instructions"
+    },
+    {
+      "detail": "Fragment lengths and annealing temperatures for the two one-pot fragments, and PCR extension times",
+      "why_needed": "Annealing temperatures come from the AssemblyTron/j5 optimal-annealing algorithm, and extension times are 'as specified by AssemblyTron'. Neither is given. The only size information is that the fragments in Lane 2 differ by about 1000 bp, and that the two fragments in Lane 1 are about the same size. These values cannot be derived without the primers and amplicon sizes.",
+      "status": "missing",
+      "resolution": "",
+      "source": ""
+    },
+    {
+      "detail": "Which polymerase (Phusion or Q5) and which cycle number (34 or 36) were used for this experiment",
+      "why_needed": "s2.3 gives both options for all PCRs. The choice affects extension rate and fidelity.",
+      "status": "assumable",
+      "resolution": "Use Phusion HF (the IVA reference's polymerase) with 34 cycles, 98°C denaturation and 72°C extension at about 30 s/kb. This is the paper's general program: 30 s 98°C, then 34 cycles of 10 s 98°C, 30 s annealing, extension at 72°C, then 5 min 72°C.",
+      "source": "s2.3; standard practice; https://doi.org/10.1038/srep27459"
+    },
+    {
+      "detail": "PCR reaction composition for one-pot IVA (template amount, buffer, dNTPs, polymerase amount)",
+      "why_needed": "Needed to set up the 25 µL PCR. The paper gives only 25 µL, 0.1 µM primers and 0.5 ng linearized template.",
+      "status": "resolved",
+      "resolution": "25 µL reaction, 0.1 µM each primer, Phusion HF. The IVA paper uses 1 ng template, or 0.5 ng of each template for multi-fragment reactions; the AssemblyTron paper uses 0.5 ng linearized template. Phusion buffer and dNTPs follow the manufacturer's recommendations, which are not fetched here.",
+      "source": "s2.3; https://doi.org/10.1038/srep27459"
+    },
+    {
+      "detail": "DpnI digestion and cleanup",
+      "why_needed": "Removes template, which would otherwise give false-positive colonies.",
+      "status": "resolved",
+      "resolution": "Add 19 µL water, 5 µL rCutSmart and 1 µL DpnI to the 25 µL PCR. Incubate 30 min at 37°C, then inactivate 20 min at 65°C. Clean up on a Zymo DNA Clean & Concentrator-5 column and elute in 10 µL molecular-grade water. Use 5 µL for NanoDrop and the rest for transformation. Column binding and wash steps follow the Zymo manual, which was not fetched.",
+      "source": "s2.3 (paper text)"
+    },
+    {
+      "detail": "Transformation procedure",
+      "why_needed": "Defines the efficiency measurement.",
+      "status": "resolved",
+      "resolution": "Transform the eluate into 50 µL TOP10 chemically competent cells (Hanahan method, 8.47e8 CFU/µg). Incubate 30 min on ice, heat shock 60 s at 42°C, and recover 60 min at 37°C with 250 µL medium. For Fig. 4 the medium was SOC with catabolite repression (SOB+CR in the paper's wording). Plate 50–200 µL of the base mix or a 10x dilution on LB agar with the appropriate antibiotic (kanamycin 50 µg/mL or ampicillin 100 µg/mL). Incubate overnight at 37°C. Count colonies and report CFU/µg DNA plated.",
+      "source": "s2.1, s2.3"
+    },
+    {
+      "detail": "Antibiotic for selecting the mutagenesis construct, and exact plating volume and dilution",
+      "why_needed": "Selection and countable colonies depend on them. Which antibiotic applies depends on the unidentified template backbone.",
+      "status": "assumable",
+      "resolution": "Use the antibiotic matching the template backbone (kanamycin 50 µg/mL or ampicillin 100 µg/mL). Plate 50–200 µL, with a 10x dilution if colonies are expected to be too dense. The paper reports efficiency of about 10^2 CFU/µg, so plating 200 µL undiluted is reasonable.",
+      "source": "s2.1, s2.3, s3.3; standard practice"
+    },
+    {
+      "detail": "Gel verification of fragments (Fig. 4A)",
+      "why_needed": "Confirms the fragment sizes before transformation.",
+      "status": "assumable",
+      "resolution": "Run a small aliquot of the DpnI-digested PCR on a 1% agarose gel in 1x TAE stained with GelRed, with NEB 1 kb Plus ladder. Image on an iBright. The aliquot volume and voltage are not given; assume about 2–5 µL and 100 V for 30–45 min.",
+      "source": "s2.1, s3.3; standard practice"
+    },
+    {
+      "detail": "Sequence verification procedure",
+      "why_needed": "Defines how correct mutagenesis was scored.",
+      "status": "assumable",
+      "resolution": "Pick 6 colonies per assembly, miniprep with NEB Monarch kit, and run Sanger sequencing. Align in ApE and score for the intended mutation. Primers and sequencing service are not specified.",
+      "source": "s2.1, s2.3, s3.3; standard practice"
+    },
+    {
+      "detail": "OT-2 deck layout, labware, pipette types and tube positions",
+      "why_needed": "Needed to set up the liquid-handling run.",
+      "status": "assumable",
+      "resolution": "The deck layout is generated by the AssemblyTron setup script as reagent_setup and reactions_setup files (Tables S3 and S4), which are not in the text. Assume a standard OT-2 layout, with PCR tubes moved manually to a Bio-Rad C100 gradient thermocycler.",
+      "source": "s2.4; standard practice"
+    }
+  ],
+  "retrieved_details": "From García-Nafría et al. 2016 (IVA cloning), https://doi.org/10.1038/srep27459 (methods). PCR was 25 µL with Phusion HF (NEB), 0.1 µM primers and 1 ng template (0.5 ng each for multi-fragment). Program: 30 s 95°C; 18 cycles of 10 s 95°C, 30 s 60°C, 4 min 72°C; final 5 min 72°C. Primers were designed to bind the template at 60°C. Add 1 µL FastDigest DpnI and incubate 15 min at 37°C. For insertions, deletions and mutagenesis, 2 µL of PCR was transformed into 100 µL RbCl competent cells. All mixes sat 15 min at 4°C, then 30 s at 42°C, then 45 min recovery at 37°C with 200 µL SOC. The whole volume was plated on LB agar with antibiotic and incubated overnight at 37°C. The paper counted colonies and checked constructs by restriction digest and/or Sanger sequencing. The highest template amount that gave no false-positive colonies after DpnI digestion was identified in the optimisation experiment (primers without overlap, 0–50 ng). Overlap design: the mutation is encoded in the forward primer, with inverse amplification outside the original codon. AssemblyTron adaptations (s2.3): Phusion or Q5, 34 or 36 cycles at 98°C denaturation, 0.5 ng linearized template, 19 µL water + 5 µL rCutSmart + 1 µL DpnI added to the 25 µL PCR, 30 min 37°C, 20 min 65°C. Zymo DNA Clean & Concentrator-5, 10 µL elution, 50 µL TOP10, 30 min on ice, 60 s at 42°C, 60 min at 37°C with 250 µL SOC-CR, then plating 50–200 µL. Results to compare: efficiency about 10^2 CFU/µg; Sanger-confirmed correct colonies were 2/6 for Assembly 1 and 3/6 for Assembly 2. Errors were wild-type sequence or random indels. Not recoverable from the text: template, mutation, primers, fragment sizes, annealing temperatures and extension times."
+}

@@ -1,0 +1,54 @@
+{
+  "verdict": "major_issues",
+  "summary": "The PCR and DpnI master-mix arithmetic checks out (20.5 + 2.5 + 2 = 25 µL; 19 + 5 + 1 = 25 µL; 18× scaling is correct), and the transformation and cell numbers match the paper. However, there are several problems. The Fig 5A gel verification is missing. Fragments are pooled in equal volumes, which departs from the paper's length-proportional pooling. The ~305 µL transformation volume does not fit a standard 96-well plate. The gradient layout does not match how a gradient thermocycler works. The automated check finding at step 28 comes from the manual elution not being modelled. There are also a few minor handling and scoring issues.",
+  "issues": [
+    {
+      "step": 28,
+      "severity": "minor",
+      "issue": "The automated check flags a draw from eluate_plate A1 before anything was put there. The cause is that step 26 is a MANUAL column elution into eluate_plate, so the checker never sees the plate being filled. The protocol does not declare eluate_plate contents at that point.",
+      "suggestion": "Declare eluate_plate A1:D1 as holding 10 µL purified pooled fragments after step 26, for example as a manual-step output or starting content. Then state that step 27 removes 5 µL, leaving about 5 µL for step 28."
+    },
+    {
+      "step": 0,
+      "severity": "major",
+      "issue": "The gel electrophoresis check of the amplified fragments (Fig 5A, 'Correct bands were amplified') is missing. The paper's methods use 1% agarose TAE gels with GelRed and the NEB 1 kb plus ladder, and Fig 4 states that a small fraction was analysed after PCR/DpnI.",
+      "suggestion": "After step 20, add a manual step taking a small aliquot (for example 2–5 µL) of each of the 16 DpnI-treated PCRs. Run it on a 1% agarose/TAE gel with GelRed and the 1 kb plus ladder, and image it before pooling. The 30 µL left in each well after pooling is enough. Mark the aliquot volume as assumed."
+    },
+    {
+      "step": 21,
+      "severity": "major",
+      "issue": "Steps 21–24 pool equal 20 µL volumes of each fragment. The paper says fragments are combined 'using volumes proportional to fragment length' to approximate equimolar amounts. Equal volumes of a large backbone and small promoter/terminator fragments give very unequal molar ratios and could depress assembly efficiency. The step is flagged as a placeholder but is left unresolved.",
+      "suggestion": "Compute pooling volumes proportional to each amplicon's length, using the lengths from the j5 design or a gel estimate. Keep the total pooled volume within what the Zymo DCC-5 column can take. State the chosen volumes explicitly and mark them as assumed. The same volumes must be used in steps 21–24."
+    },
+    {
+      "step": 30,
+      "severity": "major",
+      "issue": "transform_plate is a generic 96-well plate, but each well would hold about 55 µL of cells and DNA plus 250 µL of LB, roughly 305 µL. That exceeds a standard 96-well PCR plate (about 200 µL). The same plate is used for ice incubation, heat shock and 37°C shaking, and a plate on a block will not reach 42°C within 60 s the way a tube does.",
+      "suggestion": "Use a 2 mL deep-well plate for recovery, or run the transformation in tubes and add the LB to them. Alternatively, do the ice incubation and heat shock in thin-walled tubes or a PCR plate, then move the cells to a deep-well plate or tubes before adding LB. Define the container type and capacity. Specify how the 42°C, 60 s heat shock is delivered."
+    },
+    {
+      "step": 14,
+      "severity": "minor",
+      "issue": "The plate layout (rows = constructs, columns = fragments 1–4) conflicts with the claim that each well gets its own gradient temperature. A Bio-Rad gradient block varies temperature across columns, so all wells in a column share one temperature. Fragments 2–4 from different chromoprotein templates may use different primers (for example the CDS). The paper used individual tubes assigned to gradient positions. The annealing and extension values are also not concrete ('~15–30 s' minimum).",
+      "suggestion": "Assign wells so that primer pairs with similar optimal Ta share a column, or use 100 µL tubes placed at specific gradient positions as in the paper. Give the actual annealing temperature for each column or tube, and a fixed extension time per fragment (for example 30 s/kb of amplicon, with a stated minimum). Mark all of these as assumed."
+    },
+    {
+      "step": 32,
+      "severity": "minor",
+      "issue": "The scoring note says 'blue = template backbone'. That does not apply to the aeBlue construct, where blue is the correct colour, so backbone carry-over cannot be distinguished there. The CFU/µg calculation is also not spelled out. It needs the DNA mass transformed (5 µL × NanoDrop concentration) and the fraction of the recovery plated (200/305).",
+      "suggestion": "Add a scoring note for the aeBlue construct. For example, state that blue colonies cannot be separated from backbone-template background there, or add a different check. Spell out CFU/µg = colonies ÷ (ng DNA transformed × 200/305 ÷ 1000), and note that eluate recovery may be below 10 µL, so quantify what was actually used."
+    },
+    {
+      "step": 6,
+      "severity": "minor",
+      "issue": "The master mix containing Q5 polymerase, and later the DpnI mix, sit on the deck at room temperature during dispensing with no cooling. Pipetting from the same tube across 16 wells takes time.",
+      "suggestion": "Keep pcr_mm, dpni_mix and the enzymes on a cold block (4°C) during setup. Use a fresh tip for each template and each mixing step (steps 8–13, 19) to avoid cross-contamination between wells."
+    },
+    {
+      "step": 27,
+      "severity": "minor",
+      "issue": "A Zymo DCC-5 elution in 10 µL water typically recovers only about 8–9 µL. After removing 5 µL for NanoDrop, there may be less than the 5 µL assumed in step 28.",
+      "suggestion": "Note that the actual eluate volume may be smaller. Measure it, or add a few µL of water if needed, and record the volume actually transformed so CFU/µg is accurate."
+    }
+  ]
+}
