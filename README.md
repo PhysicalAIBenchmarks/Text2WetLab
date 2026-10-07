@@ -8,7 +8,7 @@ E. O'Leary · M. Alshehri · L. Legon
 
 **PhysicalAIBenchmarks** · 2026
 
-[**Preprint**](docs/preprint/preprint.html) · [Results report](results/runs/2026-10-07-openrouter/REPORT.md) · [Trailer](results/trailer.mp4) · [Runbook](docs/harbor-runbook.md) · [PLR coverage](https://physicalaibenchmarks.github.io/Text2WetLab/plr_coverage_table.html)
+[**Preprint**](https://physicalaibenchmarks.github.io/Text2WetLab/docs/preprint/preprint.html) · [**Leaderboard**](https://physicalaibenchmarks.github.io/Text2WetLab/leaderboard.html) · [Results report](results/runs/2026-10-07-openrouter/REPORT.md) · [Trailer](results/trailer.mp4) · [Runbook](docs/harbor-runbook.md) · [PLR coverage](https://physicalaibenchmarks.github.io/Text2WetLab/plr_coverage_table.html) · [All links](docs/urls.md)
 
 <a href="results/trailer.mp4"><img src="assets/trailer_preview.gif" width="760" alt="Text2WetLab trailer preview"></a>
 
