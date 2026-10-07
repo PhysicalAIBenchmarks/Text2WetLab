@@ -4,7 +4,7 @@
 
 ### Benchmarking LLM agents on turning lab protocols and papers into robot code
 
-N. O'Leary · E. O'Leary · M. Alshehri · L. Sturdy
+E. O'Leary · M. Alshehri · L. Legon
 
 **PhysicalAIBenchmarks** · 2026
 
@@ -280,7 +280,7 @@ scripts/               ingest.py, build_master_csv.py, make_trailer.py, deploy_h
 ```bibtex
 @misc{text2wetlab2026,
   title  = {Text2WetLab: Benchmarking LLM Agents on Turning Lab Protocols and Papers into Robot Code},
-  author = {O'Leary, N. and O'Leary, E. and Alshehri, M. and Sturdy, L.},
+  author = {O'Leary, Evan and Alshehri, Mohammed and Legon, Laurence},
   year   = {2026},
   url    = {https://github.com/PhysicalAIBenchmarks/Text2WetLab}
 }
