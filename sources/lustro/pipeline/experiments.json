@@ -1,0 +1,130 @@
+[
+  {
+    "title": "Lustro automated light induction and fluorescence readout of CRY2PHR/CIB1 split TF versus controls",
+    "goal": "Demonstrate that the Lustro platform measures light-induced mScarlet expression from a split TF compared with negative, reporter-only and constitutive controls.",
+    "section_refs": [
+      "s4.1",
+      "s4.2",
+      "s4.3",
+      "s4.4"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "transformation 'according to an established LiAc/SS carrier DNA/PEG protocol'",
+      "optoPlate 'constructed and calibrated according to previously published methods'"
+    ],
+    "figure_refs": [
+      "Figure 1C"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "Time-course of CRY2(535)/CIB1 split TF induction under different light regimes",
+    "goal": "Measure dynamics of light-induced gene expression every 30 min for 16 h under various pulse/interpulse programs.",
+    "section_refs": [
+      "s4.1",
+      "s4.2",
+      "s4.3",
+      "s4.4"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "optoPlate calibration 'according to previously published methods'"
+    ],
+    "figure_refs": [
+      "Figure 2",
+      "Figure S3"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "mRuby2 photoactivation kinetics with staggered light-off timing",
+    "goal": "Characterize the blue-light-induced transient fluorescence increase of constitutive pRPL18B-mRuby2 and its decay half-life.",
+    "section_refs": [
+      "s4.1",
+      "s4.2",
+      "s4.3",
+      "s4.4"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure S4"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "Screening of transformants for light-induced fold change (eMagA/eMagB split TF)",
+    "goal": "Identify transformants (likely single-copy integrants) by comparing light vs dark fluorescence fold change.",
+    "section_refs": [
+      "s4.1",
+      "s4.2",
+      "s4.3",
+      "s4.4"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "transformation 'according to an established LiAc/SS carrier DNA/PEG protocol'",
+      "cloning 'as previously described'"
+    ],
+    "figure_refs": [
+      "Figure 3B",
+      "Figure S6"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "Promoter-strength combinations of DBD and AD components in eMagA/eMagB split TF",
+    "goal": "Determine how relative expression of the split TF components affects light-induced fold change in reporter fluorescence.",
+    "section_refs": [
+      "s4.1",
+      "s4.2",
+      "s4.3",
+      "s4.4"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "cloning 'as previously described'"
+    ],
+    "figure_refs": [
+      "Figure 3C"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "Light intensity dose response of different optical dimerizer split TFs",
+    "goal": "Compare light sensitivity of CRY2 and eMag variant split TFs across light intensities.",
+    "section_refs": [
+      "s4.1",
+      "s4.2",
+      "s4.3",
+      "s4.4"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "optoPlate calibration 'according to previously published methods'"
+    ],
+    "figure_refs": [
+      "Figure 3D"
+    ],
+    "liquid_handling": "little"
+  },
+  {
+    "title": "eMagBM versus eMagB split TF characterization and induction regime tuning",
+    "goal": "Test whether the engineered eMagBM gives higher light-induced expression and how pulse programs and promoter strengths tune it.",
+    "section_refs": [
+      "s4.1",
+      "s4.2",
+      "s4.3",
+      "s4.4"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [],
+    "figure_refs": [
+      "Figure 4B",
+      "Figure 4C",
+      "Figure S7"
+    ],
+    "liquid_handling": "little"
+  }
+]

@@ -1,0 +1,118 @@
+[
+  {
+    "title": "Bacteriophage plaque assay in 24-well plates with two-plate simultaneous pipetting",
+    "goal": "Demonstrate that Pyhamilton can pipette over two 24-well plates simultaneously (doubling speed) and confirm dilutions and agar solidification via M13 plaque assays.",
+    "section_refs": [
+      "s4.2.1",
+      "s4.2.2"
+    ],
+    "shared_refs": [
+      "s4.1",
+      "s4.2.6.2"
+    ],
+    "unresolved_refs": [
+      "Table EV2 pipetting parameters",
+      "maintenance antibiotics concentrations not specified"
+    ],
+    "figure_refs": [
+      "Figure 1B",
+      "Figure 1C"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Population dynamics / dye point-spread simulation in a 96-well plate",
+    "goal": "Show flexible matrix-defined bi-directional liquid transfers between wells to simulate migration/diffusion (bounded and unbounded) across a 96-well plate.",
+    "section_refs": [
+      "s4.2.1",
+      "s4.2.3"
+    ],
+    "shared_refs": [],
+    "unresolved_refs": [
+      "dye identity/volume not stated",
+      "transfer matrices in Appendix Fig S2 and Table EV2"
+    ],
+    "figure_refs": [
+      "Figure 1E",
+      "Figure 1F",
+      "Figure 1G"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "On-deck 24-well turbidostats with peristaltic pump media delivery and feedback control",
+    "goal": "Maintain bacterial cultures at a constant OD setpoint using real-time plate reader measurements and a feedback transfer function.",
+    "section_refs": [
+      "s4.2.1",
+      "s4.2.4",
+      "s4.2.4.1",
+      "s4.2.4.2",
+      "s4.2.5.1"
+    ],
+    "shared_refs": [
+      "s4.1",
+      "s4.2.2"
+    ],
+    "unresolved_refs": [
+      "pump configuration details: see DeBenedictis et al, 2020",
+      "setpoint/strain preparation not detailed"
+    ],
+    "figure_refs": [
+      "Figure 1H",
+      "Figure 1I",
+      "Figure 1J"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "High-throughput asynchronous turbidostat validation (cross-contamination and equilibration)",
+    "goal": "Validate up to 480 asynchronous turbidostats: absence of cross-contamination with RFP/YFP/CFP/no-FP/no-bacteria grid and convergence to setpoint from different starting ODs.",
+    "section_refs": [
+      "s4.2.1",
+      "s4.2.4",
+      "s4.2.4.1",
+      "s4.2.4.2",
+      "s4.2.6.1",
+      "s4.2.6.2"
+    ],
+    "shared_refs": [
+      "s4.1"
+    ],
+    "unresolved_refs": [
+      "deck layout 'as described in Fig 2A'",
+      "Appendix Figs S5 and S6 methods for growth-rate variation, back-contamination, 2-day runs"
+    ],
+    "figure_refs": [
+      "Figure 2A",
+      "Figure 2B",
+      "Figure 2C",
+      "Figure 2D"
+    ],
+    "liquid_handling": "mostly"
+  },
+  {
+    "title": "Metabolic fitness landscape of E. coli BL21 CFP in 100 modified M9 media (C/N/P gradients) in triplicate turbidostats",
+    "goal": "Map growth rate and fluorescent protein production across carbon, nitrogen, and phosphorus gradients using 300 turbidostats maintained for 36 h.",
+    "section_refs": [
+      "s4.2.1",
+      "s4.2.4",
+      "s4.2.4.1",
+      "s4.2.4.2",
+      "s4.2.6.1",
+      "s4.2.6.2"
+    ],
+    "shared_refs": [
+      "s4.1"
+    ],
+    "unresolved_refs": [
+      "'Supplemental methods' for media compositions and feedback control",
+      "deck organization per Fig 2A"
+    ],
+    "figure_refs": [
+      "Figure 3B",
+      "Figure 3C",
+      "Figure 3D"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

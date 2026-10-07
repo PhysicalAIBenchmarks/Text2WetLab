@@ -1,0 +1,115 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/chory-2021-hamilton/dgretton__pyhamilton_population_dynamics",
+   "commit": "e2f08dcbaf87f942f4c91f0d3a1f58a3c0fa2e1f",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 1,
+   "redistributable": "yes",
+   "repo": "dgretton/pyhamilton_population_dynamics",
+   "robot_mentions": [],
+   "size_kb": 32,
+   "status": "cloned",
+   "url": "https://github.com/dgretton/pyhamilton_population_dynamics"
+  },
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/chory-2021-hamilton/dgretton__many_asynchronous_turbidostats",
+   "commit": "175c26edf8e32bba21d19f7f333e2708c97aab3c",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 12,
+   "redistributable": "yes",
+   "repo": "dgretton/many_asynchronous_turbidostats",
+   "robot_mentions": [],
+   "size_kb": 41,
+   "status": "cloned",
+   "url": "https://github.com/dgretton/many_asynchronous_turbidostats"
+  },
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/chory-2021-hamilton/dgretton__roboplaque",
+   "commit": "149931dd853b63beeeb1de1ad08fc5033c51fccb",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 3,
+   "redistributable": "yes",
+   "repo": "dgretton/roboplaque",
+   "robot_mentions": [],
+   "size_kb": 433,
+   "status": "cloned",
+   "url": "https://github.com/dgretton/roboplaque"
+  },
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/chory-2021-hamilton/dgretton__platereader",
+   "commit": "8ba4dc8bbaa34d2149facca40a05f93cd80762ec",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 5,
+   "redistributable": "yes",
+   "repo": "dgretton/platereader",
+   "robot_mentions": [],
+   "size_kb": 32,
+   "status": "cloned",
+   "url": "https://github.com/dgretton/platereader"
+  }
+ ],
+ "doi_primary": "10.15252/msb.20209942",
+ "dois": [
+  "10.15252/msb.20209942"
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 31,
+  "source": "europepmc:PMC7993322"
+ },
+ "journal": "",
+ "note": "Hamilton STARlet + BMG CLARIOstar",
+ "open_access": true,
+ "origin": [
+  "L_other (non-Opentrons) candidates, 2026-10-04"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3889470,
+  "licence": "cc by",
+  "pages": 10,
+  "redistributable": "yes",
+  "sha256": "d9fb7c653333c9824422340f16b0b3329de022daa0a7676211373c302c3d5304",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 405,
+    "manual": false,
+    "ok": false,
+    "url": "https://dspace.mit.edu/bitstream/1721.1/134094/2/msb.20209942.pdf"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://europepmc.org/articles/PMC7993322?pdf=render"
+   }
+  ],
+  "url": "https://europepmc.org/articles/PMC7993322?pdf=render"
+ },
+ "pmcid": "PMC7993322",
+ "slug": "chory-2021-hamilton",
+ "title": "Enabling high-throughput biology with flexible open-source automation",
+ "year": "2021"
+}

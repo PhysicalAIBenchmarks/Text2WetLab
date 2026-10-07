@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Cell Painting screen of 5259 SPECS compounds in U2OS cells",
+    "goal": "Generate morphological profiles (CellProfiler features, grit scores, radar charts, t-SNE) for 5259 compounds on U2OS cells so that compounds with similar morphology to JQ1, I-BET151, Vemurafenib, Crizotinib and Panobinostat can be identified.",
+    "section_refs": [
+      "s5.2",
+      "s5.3",
+      "s5.4",
+      "s5.5"
+    ],
+    "shared_refs": [
+      "s5.8",
+      "s5.9"
+    ],
+    "unresolved_refs": [
+      "Cell painting 'according to a protocol previously described [35] with minor modifications'",
+      "CellProfiler pipeline 'detailed in [37]'",
+      "Grit score calculation 'as previously described [40]'"
+    ],
+    "figure_refs": [
+      "Figure 2D",
+      "Figure 2E",
+      "Figure 3A"
+    ],
+    "liquid_handling": "mostly"
+  }
+]

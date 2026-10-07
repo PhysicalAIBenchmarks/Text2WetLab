@@ -1,0 +1,92 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/aros-cellpainting/pharmbio__aros",
+   "commit": "c4caec91d8cbde9c45d201ec3f7711ff88edcf80",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "pharmbio/aros",
+   "robot_mentions": [],
+   "size_kb": 21,
+   "status": "cloned",
+   "url": "https://github.com/pharmbio/aros"
+  },
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/aros-cellpainting/pharmbio__robotlab",
+   "commit": "d2aa090c6fed9ab2bca6b90d1c2792c34b151fb4",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 84,
+   "redistributable": "yes",
+   "repo": "pharmbio/robotlab",
+   "robot_mentions": [],
+   "size_kb": 27317,
+   "status": "cloned",
+   "url": "https://github.com/pharmbio/robotlab"
+  },
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/aros-cellpainting/camilla-johansson__integrate-cp-tpp",
+   "commit": "ec4540c23bfbc4ca40ea01c7e45d1a4cb81660da",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 5,
+   "redistributable": "no",
+   "repo": "camilla-johansson/integrate-cp-tpp",
+   "robot_mentions": [],
+   "size_kb": 179611,
+   "status": "cloned",
+   "url": "https://github.com/camilla-johansson/integrate-cp-tpp"
+  }
+ ],
+ "doi_primary": "10.1101/2025.05.30.657006",
+ "dois": [
+  "10.1101/2025.05.30.657006"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 22,
+  "source": "biorxiv"
+ },
+ "journal": "bioRxiv",
+ "note": "Liconic STX",
+ "open_access": false,
+ "origin": [
+  "L_other (non-Opentrons) candidates, 2026-10-04"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3584664,
+  "licence": "cc by",
+  "pages": 17,
+  "redistributable": "yes",
+  "sha256": "9637b4791c20fbb1feba12d116cb855297ddc590ed9fa25e8f7ec041aefd9a9d",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.biorxiv.org/content/biorxiv/early/2025/06/02/2025.05.30.657006.full.pdf"
+   }
+  ],
+  "url": "https://www.biorxiv.org/content/biorxiv/early/2025/06/02/2025.05.30.657006.full.pdf"
+ },
+ "pmcid": "",
+ "slug": "aros-cellpainting",
+ "title": "Integrating Cell Painting and Thermal Proteome Profiling for Inference of Targets and Mechanisms of Action",
+ "year": "2025"
+}
