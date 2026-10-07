@@ -7,16 +7,16 @@
 | `colony-pcr-screening` | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 |
 | `colony-pcr-screening-hard` | 0.75 / 0.33 | 1.00 / 0.33 | 1.00 / 0.33 | 0.50 / 0.33 |
 | `ecoli-heat-shock-transformation` | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 |
-| `ecoli-heat-shock-transformation-hard` | 0.75 / 1.00 | 0.75 / 1.00 | error: AgentSafetyRefusalError | 0.75 / 1.00 |
-| `golden-gate-assembly` | 1.00 / 1.00 | error: AgentSafetyRefusalError | error: AgentSafetyRefusalError | 1.00 / 1.00 |
-| `golden-gate-assembly-hard` | 1.00 / 1.00 | error: AgentSafetyRefusalError | error: AgentSafetyRefusalError | 0.75 / 0.47 |
+| `ecoli-heat-shock-transformation-hard` | 0.75 / 1.00 | 0.75 / 1.00 | refused (not scored) | 0.75 / 1.00 |
+| `golden-gate-assembly` | 1.00 / 1.00 | refused (not scored) | refused (not scored) | 1.00 / 1.00 |
+| `golden-gate-assembly-hard` | 1.00 / 1.00 | refused (not scored) | refused (not scored) | 0.75 / 0.47 |
 | `opentrons-rna-extraction` | 0.30 / 0.47 ⚑critical | 1.00 / 1.00 | 0.75 / 1.00 | 1.00 / 1.00 |
 | `opentrons-rna-extraction-hard` | 0.69 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 | 0.69 / 1.00 |
 | `split-200ul-two-wells` | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 |
-| **Mean (refusals count as 0)** | **0.863** (n=11, $1.25) | **0.795** (n=11, $3.52) | **0.705** (n=11, $6.21) | **0.881** (n=11, $4.82) |
-| **Safety refusals** | 0 | 2 | 3 | 0 |
-| **Mean over tasks it answered** | 0.863 (n=11) | 0.972 (n=9) | 0.969 (n=8) | 0.881 (n=11) |
 | **Mean over the 8 tasks every model answered** | **0.842** | **1.000** | **0.969** | **0.898** |
+| **Mean over all tasks it answered** | 0.863 (n=11) | 0.972 (n=9) | 0.969 (n=8) | 0.881 (n=11) |
+| Refused, not scored | 0 | 2 | 3 | 0 |
+| Agent cost | $1.25 | $3.52 | $6.21 | $4.82 |
 
 - claude-opus-5.5 refused (Anthropic `[bio]` safeguard, `AgentSafetyRefusalError`): golden-gate-assembly, golden-gate-assembly-hard
 - claude-fable-5.1 refused (Anthropic `[bio]` safeguard, `AgentSafetyRefusalError`): ecoli-heat-shock-transformation-hard, golden-gate-assembly, golden-gate-assembly-hard
