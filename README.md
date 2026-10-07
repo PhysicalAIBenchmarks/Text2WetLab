@@ -244,6 +244,10 @@ ANTHROPIC_BASE_URL=https://openrouter.ai/api ANTHROPIC_AUTH_TOKEN=$OPENROUTER_AP
   harbor run -p tasks -a claude-code -m anthropic/claude-sonnet-5.5 -n 4 -y   # agent via OpenRouter too
 ```
 
+On a Mac with Colima, keep `-o` (the jobs folder) under your home directory: Colima only shares `$HOME` with its VM,
+so a jobs folder in `/tmp` gets an empty `verifier/` and every trial fails with `RewardFileNotFoundError`. On a small
+machine, `--override-cpus 2 --override-memory-mb 2560` lets the tasks fit (they ask for 4 CPUs and 8 GB).
+
 OpenRouter uses its own model names (`anthropic/claude-sonnet-5.5`, not `claude-sonnet-5-5`). Set `JUDGE_MODEL` to change
 the judge model on either provider. Results are only comparable with §5 when the judge model is the same.
 
