@@ -46,6 +46,15 @@ jobs:
       - id: list
         run: echo "names=$(ls tasks | jq -R . | jq -sc .)" >> "$GITHUB_OUTPUT"
 
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: The GitHub Pages site builds from the committed results
+        run: python scripts/build_site.py --out _site && test -s _site/leaderboard.html && test -s _site/index.html
   harbor-build:
     # Every task's sandbox image must build. No secrets: safe on fork PRs.
     needs: tasks
