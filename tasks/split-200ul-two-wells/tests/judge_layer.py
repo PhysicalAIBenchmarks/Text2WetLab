@@ -11,10 +11,28 @@ end-state checks then describe one reference implementation and are evidence, no
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 
-JUDGE_MODEL = "claude-sonnet-5-5"
+JUDGE_MODEL = os.environ.get("JUDGE_MODEL") or "claude-sonnet-5-5"
+OPENROUTER_URL = "https://openrouter.ai/api"      # OpenRouter's Anthropic-compatible Messages API
+OPENROUTER_MODELS = {"claude-sonnet-5-5": "anthropic/claude-sonnet-5.5", "claude-opus-5-5": "anthropic/claude-opus-5.5",
+                     "claude-fable-5-1": "anthropic/claude-fable-5.1"}
+
+
+def judge_client():
+    """(client, model, provider). ANTHROPIC_API_KEY wins, so published scores keep the same judge endpoint;
+    OPENROUTER_API_KEY is the alternative: the same Claude model through OpenRouter."""
+    import anthropic
+
+    if os.environ.get("ANTHROPIC_API_KEY"):
+        return anthropic.Anthropic(), JUDGE_MODEL, "anthropic"
+    if key := os.environ.get("OPENROUTER_API_KEY"):
+        os.environ.pop("ANTHROPIC_API_KEY", None)          # Harbor passes it through as "" when unset
+        return (anthropic.Anthropic(auth_token=key, base_url=OPENROUTER_URL),
+                OPENROUTER_MODELS.get(JUDGE_MODEL, JUDGE_MODEL), "openrouter")
+    raise RuntimeError("no judge key: set ANTHROPIC_API_KEY or OPENROUTER_API_KEY")
 CRITICAL_CAP = 0.3
 CORE_WEIGHT = 0.75
 SAFETY_CHECKS = {"no_cross_contamination", "tip_before_aspirate", "no_aspirate_from_empty_well", "no_overdispense"}
@@ -100,8 +118,6 @@ def is_critical(name: str, level: str = "easy") -> bool:
 
 
 def judge(tests: Path, checks: list[dict], protocol: str, paper: Path) -> dict:
-    import anthropic
-
     rubric = load_rubric(tests)
     hard = rubric["level"] == "hard"
     has_paper = paper.exists()
@@ -116,12 +132,15 @@ def judge(tests: Path, checks: list[dict], protocol: str, paper: Path) -> dict:
         protocol=protocol,
     )
     ids = {r["id"] for r in rubric["items"]}
-    client = anthropic.Anthropic()
+    try:
+        client, model, provider = judge_client()
+    except Exception as exc:
+        return {"error": f"{type(exc).__name__}: {exc}"}
     last_error = None
     for _ in range(3):
         try:
             message = client.messages.create(
-                model=JUDGE_MODEL, max_tokens=4000,
+                model=model, max_tokens=4000,
                 tools=[GRADE_TOOL], tool_choice={"type": "auto"},
                 messages=[{"role": "user", "content": prompt}],
             )
@@ -133,7 +152,8 @@ def judge(tests: Path, checks: list[dict], protocol: str, paper: Path) -> dict:
                 raise ValueError(f"bad rubric scores: {scores}")
             return {"items": data["items"], "scores": scores, "summary": data.get("summary"),
                     "level": rubric["level"], "score": round(weighted_score(rubric, scores), 4),
-                    "weights": {r["id"]: round(r["weight"], 4) for r in rubric["items"]}}
+                    "weights": {r["id"]: round(r["weight"], 4) for r in rubric["items"]},
+                    "model": model, "provider": provider}
         except Exception as exc:  # retry malformed or transient judge responses
             last_error = f"{type(exc).__name__}: {exc}"
     return {"error": last_error}

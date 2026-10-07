@@ -217,7 +217,7 @@ A model's RNA-extraction score moves by 0.2 (one judge item) between rounds, whi
 
 ## 7. Reproducing
 
-**Requirements:** Python 3.12+, [uv](https://docs.astral.sh/uv/) or pip, Docker or a [Modal](https://modal.com) account, and `ANTHROPIC_API_KEY` (used by the agent and every judge).
+**Requirements:** Python 3.12+, [uv](https://docs.astral.sh/uv/) or pip, Docker or a [Modal](https://modal.com) account, and either `ANTHROPIC_API_KEY` or `OPENROUTER_API_KEY` (used by the agent and every judge).
 
 ```bash
 git clone https://github.com/PhysicalAIBenchmarks/Text2WetLab.git && cd Text2WetLab
@@ -230,6 +230,22 @@ harbor run -p tasks             -a claude-code -m anthropic/claude-sonnet-5-5 -e
 harbor run -p tasks -i '*-hard' -a claude-code -m anthropic/claude-sonnet-5-5 -e modal -n 4  -y   # hard only
 harbor run -p tasks/opentrons-rna-extraction-hard -a claude-code -m anthropic/claude-opus-5-5 -k 3 -e modal -y   # pass@k
 ```
+
+**With an OpenRouter key instead.** The judge uses `OPENROUTER_API_KEY` whenever `ANTHROPIC_API_KEY` is unset, and
+reaches the same Claude Sonnet 5.5 through OpenRouter's Anthropic-compatible API. Every verdict records which
+provider judged it. Claude Code, the agent, takes OpenRouter the same way:
+
+```bash
+export OPENROUTER_API_KEY=sk-or-...
+harbor run -p tasks -a oracle -n 4 -y -o jobs --job-name oracle          # judge via OpenRouter
+python scripts/check_oracle_rewards.py jobs/oracle                       # the CI gate
+
+ANTHROPIC_BASE_URL=https://openrouter.ai/api ANTHROPIC_AUTH_TOKEN=$OPENROUTER_API_KEY ANTHROPIC_API_KEY= \
+  harbor run -p tasks -a claude-code -m anthropic/claude-sonnet-5.5 -n 4 -y   # agent via OpenRouter too
+```
+
+OpenRouter uses its own model names (`anthropic/claude-sonnet-5.5`, not `claude-sonnet-5-5`). Set `JUDGE_MODEL` to change
+the judge model on either provider. Results are only comparable with §5 when the judge model is the same.
 
 **Preprint:** [`docs/preprint/preprint.html`](docs/preprint/preprint.html) (7 pages; figures from `make_figures.py`). The PDF is attached to GitHub releases rather than committed (the repo bans tracked PDFs).
 

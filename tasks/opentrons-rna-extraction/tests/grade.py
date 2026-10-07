@@ -32,7 +32,10 @@ REFERENCE = TESTS / "reference_protocol.py"
 VARIANT = TESTS / "variant.json"
 OT_PYTHON = os.environ.get("OT_PYTHON", "/opt/ot/bin/python")
 OUT = Path(os.environ.get("VERIFIER_OUT", "/logs/verifier"))
-JUDGE_MODEL = "claude-sonnet-5-5"
+JUDGE_MODEL = os.environ.get("JUDGE_MODEL") or "claude-sonnet-5-5"
+OPENROUTER_URL = "https://openrouter.ai/api"      # OpenRouter's Anthropic-compatible Messages API
+OPENROUTER_MODELS = {"claude-sonnet-5-5": "anthropic/claude-sonnet-5.5", "claude-opus-5-5": "anthropic/claude-opus-5.5",
+                     "claude-fable-5-1": "anthropic/claude-fable-5.1"}
 CRITICAL_CAP = 0.3
 CRITICAL_CHECKS = {
     "48_samples_to_odd_columns", "step_order", "supernatant_removed_each_step",
@@ -126,10 +129,25 @@ def simulate() -> dict:
         return {"ok": False, "error": f"simulator produced no result (exit {proc.returncode}): {proc.stderr[-2000:]}"}
 
 
-def judge(context: dict) -> dict:
+def judge_client():
+    """(client, model, provider). ANTHROPIC_API_KEY wins, so published scores keep the same judge endpoint;
+    OPENROUTER_API_KEY is the alternative: the same Claude model through OpenRouter."""
     import anthropic
 
-    client = anthropic.Anthropic()
+    if os.environ.get("ANTHROPIC_API_KEY"):
+        return anthropic.Anthropic(), JUDGE_MODEL, "anthropic"
+    if key := os.environ.get("OPENROUTER_API_KEY"):
+        os.environ.pop("ANTHROPIC_API_KEY", None)          # Harbor passes it through as "" when unset
+        return (anthropic.Anthropic(auth_token=key, base_url=OPENROUTER_URL),
+                OPENROUTER_MODELS.get(JUDGE_MODEL, JUDGE_MODEL), "openrouter")
+    raise RuntimeError("no judge key: set ANTHROPIC_API_KEY or OPENROUTER_API_KEY")
+
+
+def judge(context: dict) -> dict:
+    try:
+        client, model, provider = judge_client()
+    except Exception as exc:
+        return {"error": f"{type(exc).__name__}: {exc}"}
     rubric = load_rubric()
     easy = rubric["level"] == "easy"
     prompt = PROMPT.format(
@@ -143,7 +161,7 @@ def judge(context: dict) -> dict:
     for _ in range(3):
         try:
             message = client.messages.create(
-                model=JUDGE_MODEL, max_tokens=4000,
+                model=model, max_tokens=4000,
                 tools=[GRADE_TOOL], tool_choice={"type": "auto"},
                 messages=[{"role": "user", "content": prompt}],
             )
@@ -157,7 +175,8 @@ def judge(context: dict) -> dict:
             score = sum(r["weight"] * scores[r["id"]] for r in rubric["items"])
             return {"items": data["items"], "scores": scores, "summary": data.get("summary"), "raw": text,
                     "level": rubric["level"], "score": round(score, 4),
-                    "weights": {r["id"]: round(r["weight"], 4) for r in rubric["items"]}}
+                    "weights": {r["id"]: round(r["weight"], 4) for r in rubric["items"]},
+                    "model": model, "provider": provider}
         except Exception as exc:  # retry malformed or transient judge responses
             last_error = f"{type(exc).__name__}: {exc}"
     return {"error": last_error}
