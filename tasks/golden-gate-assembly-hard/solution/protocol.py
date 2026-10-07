@@ -97,7 +97,7 @@ def run(protocol):
     p20.transfer(2.0, [lw_pcr_plate['A1'], lw_pcr_plate['C1'], lw_pcr_plate['D1'], lw_pcr_plate['G1']], [lw_assembly_plate['A1'], lw_assembly_plate['B1'], lw_assembly_plate['C1'], lw_assembly_plate['D1']], new_tip='always')
     # step 24: transfer
     p20.reset_tipracks(); p300.reset_tipracks()
-    p20.transfer(1.0, lw_tubes_1_5ml_1['D2'], [lw_assembly_plate['A1'], lw_assembly_plate['B1'], lw_assembly_plate['C1'], lw_assembly_plate['D1']], new_tip='once', mix_after=(5, 1.0))
+    p20.transfer(1.0, lw_tubes_1_5ml_1['D2'], [lw_assembly_plate['A1'], lw_assembly_plate['B1'], lw_assembly_plate['C1'], lw_assembly_plate['D1']], new_tip='always', mix_after=(5, 1.0))
     # step 25: manual
     p20.reset_tipracks(); p300.reset_tipracks()
     protocol.comment('Run Golden Gate program on assembly_plate in the Opentrons thermocycler module: 30 cycles of 37°C 5 min then 16°C 5 min; then 60°C 5 min; hold at 4°C. Lid about 85°C. If no module is available, pause and move reactions to another thermocycler.')

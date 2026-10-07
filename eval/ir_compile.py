@@ -40,7 +40,10 @@ def compile_ir(proto: Protocol, deck: dict) -> str:
             mix = f", mix_after=({s.mix_cycles}, {min(s.volume_ul, 300)})" if s.mix_cycles else ""
             if len({p[0] for p in ps}) == 1:
                 dests = ", ".join(real(s.dest, d) for _, d in ps)
-                lines.append(f"    {pip}.transfer({s.volume_ul}, {real(s.source, ps[0][0])}, [{dests}], new_tip='once'{mix})")
+                # one tip may serve every destination only if it never touches their contents; mixing after a
+                # dispense does, so each mixed destination gets a fresh tip (else it carries one sample into the next)
+                tip = "always" if s.mix_cycles and len(ps) > 1 else "once"
+                lines.append(f"    {pip}.transfer({s.volume_ul}, {real(s.source, ps[0][0])}, [{dests}], new_tip='{tip}'{mix})")
             else:
                 srcs = ", ".join(real(s.source, a) for a, _ in ps)
                 dests = ", ".join(real(s.dest, d) for _, d in ps)

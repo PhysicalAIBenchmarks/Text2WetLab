@@ -84,3 +84,25 @@ def test_simulator_errors_are_recorded_by_type_never_by_their_random_message():
     b = a.replace("f190f402-8e71", "0a1b2c3d-4e5f").replace("10, 4", "11, 9")
     assert error_kind(a) == error_kind(b) == "TipNotAttachedError"
     assert error_kind("RuntimeError: /x is not a directory") == "RuntimeError"
+
+
+def test_module_labware_named_the_api_2_14_way_still_maps_to_the_deck():
+    """From API 2.14 the simulator keys labware on a module as '<label> on ThermocyclerContext at <slot> lw <label>' while
+    its pipetting events say '<label> on <slot>'. A correct deck must not fail on that (Opus 5.5 hit it on ecoli-hard)."""
+    from spec_check import labware_names
+    run = {"labware": {"tp on ThermocyclerContext at Thermocycler Module GEN1 on 7 lw tp": "biorad_96_wellplate_200ul_pcr",
+                       "plasmids on 1": "biorad_96_wellplate_200ul_pcr"}}
+    assert labware_names(run) == {"tp on Thermocycler Module GEN1 on 7": "biorad_96_wellplate_200ul_pcr",
+                                  "plasmids on 1": "biorad_96_wellplate_200ul_pcr"}
+
+
+def test_a_tip_that_mixed_in_one_sample_cannot_go_on_to_the_next():
+    """new_tip='once' + mix_after across wells carries sample A into stock and sample B (the old ampure reference did)."""
+    from spec_check import cross_contamination
+    pick, drop = {"kind": "pick"}, {"kind": "drop"}
+    asp = lambda w, lw="plate": {"kind": "aspirate", "labware": lw, "well": w}
+    disp = lambda w, lw="plate": {"kind": "dispense", "labware": lw, "well": w}
+    multi_dispense = [pick, asp("A1", "res"), disp("A1"), disp("A2"), asp("A1", "res"), disp("A3"), drop]
+    mix_then_next = [pick, asp("A1", "res"), disp("A1"), asp("A1"), disp("A1"), asp("A1", "res"), disp("A2"), drop]
+    assert cross_contamination(multi_dispense) == []
+    assert cross_contamination(mix_then_next) != []

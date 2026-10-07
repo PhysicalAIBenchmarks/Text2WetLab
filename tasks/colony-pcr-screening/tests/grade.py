@@ -72,7 +72,7 @@ def grade(protocol: Path = PROTOCOL) -> tuple[dict, dict]:
     if os.environ.get("SKIP_JUDGE") == "1":
         record["judge"] = {"skipped": "SKIP_JUDGE=1"}
         return rewards, record
-    verdict = judge(TESTS, res["checks"], protocol.read_text(), Path("/data/paper.txt"))
+    verdict = judge(TESTS, res["checks"], protocol.read_text(), Path(os.environ.get("DATA_DIR", "/data")) / "paper.txt")
     record["judge"] = {"model": JUDGE_MODEL} | verdict   # judge() records the provider and its model name
     if "error" in verdict:
         rewards["judge_error"] = 1.0             # a judge outage must not zero a correct protocol

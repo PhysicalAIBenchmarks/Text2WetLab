@@ -135,21 +135,26 @@ def replay(events: list[dict], initial: dict | None = None, ample: frozenset = f
 
 
 def cross_contamination(events: list[dict]) -> list:
-    """(event index, well) where a tip that already drew from one well draws from a different one. A tip may go back to
-    wells it dispensed into (mixing) and to the one well it started from (multi-dispense), nothing else."""
-    bad, sources, own = [], set(), set()
+    """(event index, well) where one tip carries liquid between wells it should not. A tip may go back to wells it
+    dispensed into (mixing) and to the one well it started from (multi-dispense). Once it has mixed in a well (drawn
+    from a well it dispensed into), it carries that well's contents: dispensing into any other well, or drawing from
+    any other well (the stock included), is contamination until a fresh tip."""
+    bad, sources, own, carried = [], set(), set(), set()
     for i, e in enumerate(events):
-        if e["kind"] == "pick":
-            sources, own = set(), set()
-        elif e["kind"] == "drop":
-            sources, own = set(), set()
+        if e["kind"] in ("pick", "drop"):
+            sources, own, carried = set(), set(), set()
         elif e["kind"] == "dispense":
-            own.add((e["labware"], e["well"]))
+            key = (e["labware"], e["well"])
+            if carried - {key}:
+                bad.append((i, key[1]))
+            own.add(key)
         elif e["kind"] == "aspirate":
             key = (e["labware"], e["well"])
-            if sources and key not in sources and key not in own:
+            if (sources and key not in sources and key not in own) or carried - {key}:
                 bad.append((i, key[1]))
-            if key not in own:
+            if key in own:
+                carried.add(key)
+            else:
                 sources.add(key)
     return bad
 
@@ -173,11 +178,25 @@ def _map_containers(proto: Protocol, events) -> dict:
     return mapping
 
 
+MODULE_LABWARE = re.compile(r"^(?P<label>.+?) on \w+Context at (?P<where>.+?) lw .*$")
+
+
+def labware_names(run: dict) -> dict:
+    """run["labware"] with module labware named the way the pipetting events name it. From API 2.14 the simulator keys
+    labware on a module as "<label> on ThermocyclerContext at Thermocycler Module GEN1 on 7 lw <label>" while its
+    aspirate/dispense events say "<label> on Thermocycler Module GEN1 on 7"; without this a correct deck fails."""
+    out = {}
+    for name, load in (run.get("labware") or {}).items():
+        m = MODULE_LABWARE.match(name)
+        out[f"{m['label']} on {m['where']}" if m else name] = load
+    return out
+
+
 def _deck_mapping(proto, run, deck, add):
     """With a deck (fixed layout, see eval/deck.py): container -> (run labware string, {IR well -> real well}).
     A container is only mapped if the protocol loaded a labware under the deck's label AND that labware really is the
     deck's load name, so a plate labelled as a reservoir (or the reverse) cannot stand in for it."""
-    loadnames = run.get("labware", {})
+    loadnames = labware_names(run)
     used = {s.source for s in proto.steps if s.source} | {s.dest for s in proto.steps if s.dest}
     mapping = {}
     for cname, spec in deck["containers"].items():
@@ -207,7 +226,7 @@ def check(proto: Protocol, run: dict, free_wells: frozenset = frozenset(), deck:
         add("simulator_ran", False, error_kind(run.get("error", "")))
         return {"passed": False, "checks": checks}
     add("simulator_ran", True)
-    events, loadnames = run["events"], run.get("labware") or None
+    events, loadnames = run["events"], labware_names(run) or None
     kinds = {c.name: c.kind for c in proto.containers}
     states, _ = timeline(proto)
     if deck:
