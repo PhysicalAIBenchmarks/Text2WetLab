@@ -3,6 +3,11 @@
 
 Reward = weighted rubric score from tests/rubric.json (robot practice, tips/contamination and fidelity 25% each; the
 task-specific items share the other 25%), capped at 0.3 if a critical run-log check fails.
+
+deterministic_reward is always recorded once the simulator passes: 1.0 if no critical run-log check fails, otherwise
+0.5 x the fraction of checks passed. It becomes the reward when SKIP_JUDGE=1 (oracle checks in CI) and when the judge call
+fails (judge_error=1 still flags it). Paths can be overridden for local runs: TESTS_DIR, DATA_DIR, PROTOCOL_PATH,
+VERIFIER_OUT, OT_PYTHON.
 """
 from __future__ import annotations
 
@@ -14,17 +19,19 @@ import shutil
 import subprocess
 import sys
 
-sys.path.insert(0, "/tests")
+TESTS = Path(os.environ.get("TESTS_DIR", "/tests"))
+DATA = Path(os.environ.get("DATA_DIR", "/data"))
+sys.path.insert(0, str(TESTS))
 from checks import analyze  # noqa: E402
 from anti_hack import tripped  # noqa: E402
 
-PROTOCOL = Path("/app/protocol.py")
-LABWARE = "/data/labware"
-PAPER = Path("/data/paper.txt")
-REFERENCE = Path("/tests/reference_protocol.py")
-VARIANT = Path("/tests/variant.json")
-OT_PYTHON = "/opt/ot/bin/python"
-OUT = Path("/logs/verifier")
+PROTOCOL = Path(os.environ.get("PROTOCOL_PATH", "/app/protocol.py"))
+LABWARE = str(DATA / "labware")
+PAPER = DATA / "paper.txt"
+REFERENCE = TESTS / "reference_protocol.py"
+VARIANT = TESTS / "variant.json"
+OT_PYTHON = os.environ.get("OT_PYTHON", "/opt/ot/bin/python")
+OUT = Path(os.environ.get("VERIFIER_OUT", "/logs/verifier"))
 JUDGE_MODEL = "claude-sonnet-5-5"
 CRITICAL_CAP = 0.3
 CRITICAL_CHECKS = {
@@ -35,7 +42,7 @@ CRITICAL_CHECKS = {
 SAFE_ENV_KEYS = ["PATH", "HOME", "LANG", "LC_ALL"]
 SUSPICIOUS = re.compile(r"broker|_implementation|_core\b|\.commands\.|publish\(|monkey|__dict__|setattr\(")
 
-RUBRIC_FILE = Path("/tests/rubric.json")
+RUBRIC_FILE = TESTS / "rubric.json"
 CORE_WEIGHT = 0.75  # robot practice, tips/contamination and fidelity share 75%; the task items share the other 25%
 
 
@@ -108,7 +115,7 @@ def simulate() -> dict:
     env = {key: os.environ[key] for key in SAFE_ENV_KEYS if key in os.environ}
     try:
         proc = subprocess.run(
-            [OT_PYTHON, "/tests/runlog.py", str(PROTOCOL), LABWARE],
+            [OT_PYTHON, str(TESTS / "runlog.py"), str(PROTOCOL), LABWARE],
             capture_output=True, text=True, timeout=600, env=env, cwd="/tmp",
         )
     except subprocess.TimeoutExpired:
@@ -181,8 +188,13 @@ def main() -> int:
             record["checks"] = measured
             rewards["checks_frac"] = round(measured["checks_passed"] / measured["checks_total"], 4)
             (OUT / "events.json").write_text(json.dumps(sim["events"]))
-            verdict = judge({
-                "task": Path("/tests/instruction.md").read_text() if Path("/tests/instruction.md").exists() else "(see paper)",
+            critical = sorted(c["name"] for c in measured["checks"] if not c["pass"] and c["name"] in CRITICAL_CHECKS)
+            record["critical_failures"] = critical
+            rewards["critical_fail"] = float(bool(critical))
+            rewards["deterministic_reward"] = 1.0 if not critical else round(0.5 * rewards["checks_frac"], 4)
+            skip = os.environ.get("SKIP_JUDGE") == "1"
+            verdict = {"skipped": "SKIP_JUDGE=1"} if skip else judge({
+                "task": (TESTS / "instruction.md").read_text() if (TESTS / "instruction.md").exists() else "(see paper)",
                 "paper": PAPER.read_text(),
                 "reference": REFERENCE.read_text(),
                 "simulation": "PASSED (opentrons_simulate completed without error)",
@@ -190,15 +202,12 @@ def main() -> int:
                 "protocol": code,
             })
             record["judge"] = verdict
-            if "error" in verdict:
-                rewards["judge_error"] = 1.0
+            if skip or "error" in verdict:
+                rewards["judge_error"] = float("error" in verdict)   # a judge outage must not zero a correct protocol
+                rewards["reward"] = rewards["deterministic_reward"]
             else:
                 score = verdict["score"]
                 rewards["judge_score"] = score
-                critical = sorted(c["name"] for c in measured["checks"]
-                                  if not c["pass"] and c["name"] in CRITICAL_CHECKS)
-                record["critical_failures"] = critical
-                rewards["critical_fail"] = float(bool(critical))
                 rewards["reward"] = round(min(score, CRITICAL_CAP) if critical else score, 4)
                 for key, score in verdict["scores"].items():
                     rewards[f"rubric_{key}"] = score
