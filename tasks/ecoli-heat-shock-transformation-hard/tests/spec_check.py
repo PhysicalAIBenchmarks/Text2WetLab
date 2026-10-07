@@ -215,7 +215,8 @@ def _deck_mapping(proto, run, deck, add):
     return mapping
 
 
-def check(proto: Protocol, run: dict, free_wells: frozenset = frozenset(), deck: dict | None = None) -> dict:
+def check(proto: Protocol, run: dict, free_wells: frozenset = frozenset(), deck: dict | None = None,
+          not_from_paper: frozenset = frozenset()) -> dict:
     """Verdict for one simulated run against an IR. `run` is simulate()'s result; `deck` pins every container to a labware."""
     checks = []
 
@@ -261,6 +262,9 @@ def check(proto: Protocol, run: dict, free_wells: frozenset = frozenset(), deck:
     for cname, lab in mapping.items():
         if kinds[cname] in ("reservoir", "waste"):
             continue
+        if cname in not_from_paper:  # paper-only task whose paper does not fix this container's volumes: rubric only
+            na.append(f"end_state:{cname} (the source paper does not determine these volumes; judged by the rubric)")
+            continue
         want = {(tube_well[cname] if w == "" and tube_well.get(cname) else w): v for (cn, w), v in final.items() if cn == cname and v}
         only = tube_well.get(cname)        # tubes share a rack: look at this tube's well only
         got = {w: round(v, 6) for (lb, w), v in st.wells.items() if lb == lab and v > 1e-9 and (lb, w) not in ample and (only is None or w == only)}
@@ -274,6 +278,14 @@ def check(proto: Protocol, run: dict, free_wells: frozenset = frozenset(), deck:
         na.append("end_state (no IR container matched a unique run labware)")
     return {"passed": all(c["pass"] for c in checks), "checks": checks, "not_applicable": na,
             "aspirations": st.aspirations}
+
+
+def not_from_paper(task_dir) -> frozenset:
+    """Containers whose end state the task's source paper does not determine, from task.toml [checks]."""
+    import tomllib
+
+    f = pathlib.Path(task_dir) / "task.toml"
+    return frozenset(tomllib.loads(f.read_text()).get("checks", {}).get("not_from_paper", [])) if f.exists() else frozenset()
 
 
 def free_wells(task_dir) -> frozenset:

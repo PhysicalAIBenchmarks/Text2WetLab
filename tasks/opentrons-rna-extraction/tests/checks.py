@@ -35,7 +35,9 @@ def close(value: float, target: float) -> bool:
     return abs(value - target) <= TOLERANCE * target
 
 
-def analyze(events: list[dict]) -> dict:
+def analyze(events: list[dict], level: str = "easy") -> dict:
+    """Run-log checks. level "hard" (paper only) drops recover_about_80ul: the paper says only "collect the
+    supernatant" after a 100 uL elution, and the 80 uL is in the authors' code, not in anything the agent is given."""
     time = 0.0
     magnet = False
     engaged_at = 0.0
@@ -271,9 +273,6 @@ def analyze(events: list[dict]) -> dict:
         check("elution_100ul", fraction(lambda w: volumes_ok(w, ["elution"]))),
         check("elution_off_magnet_then_90s_on", fraction(elution_magnet)),
         check("recover_70_100ul_one_well_each", fraction(recovery)),
-        check("recover_about_80ul", fraction(recovery_leaves_beads),
-              "70-90 uL of the 100 uL eluate (~80 uL in the paper and the task); "
-              + "{}/{} sample wells".format(*fraction(recovery_leaves_beads))),
         check("distinct_elution_wells", len(targets) == N_SAMPLES and len(set(targets)) == N_SAMPLES,
               f"{len(set(targets))} distinct elution wells"),
         check("elution_plate_4C_before_recovery", cold, f"temperatures set: {temps}"),
@@ -284,6 +283,10 @@ def analyze(events: list[dict]) -> dict:
         check("reservoir_columns_within_15ml", all(v <= RESERVOIR_WELL_UL * (1 + TOLERANCE / 5) for v in drawn.values()),
               "uL drawn per reservoir column: " + ", ".join(f"{c}: {v:g}" for c, v in sorted(drawn.items()))),
     ]
+    if level == "easy":  # the easy task's step 13 says "Transfer 80 uL of eluate"
+        checks.append(check("recover_about_80ul", fraction(recovery_leaves_beads),
+                            "70-90 uL of the 100 uL eluate, as the task's step 13 says; "
+                            + "{}/{} sample wells".format(*fraction(recovery_leaves_beads))))
     example = sample_wells[0] if sample_wells else None
     return {
         "checks": checks,
