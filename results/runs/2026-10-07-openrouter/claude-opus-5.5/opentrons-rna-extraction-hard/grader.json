@@ -1,0 +1,192 @@
+{
+  "variant": "reference",
+  "judge_model": "claude-sonnet-5-5",
+  "suspicious_tokens": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 1398
+  },
+  "checks": {
+    "checks": [
+      {
+        "name": "48_samples_to_odd_columns",
+        "pass": true,
+        "detail": "48 tubes -> 48 wells, odd columns only: True"
+      },
+      {
+        "name": "step_order",
+        "pass": true,
+        "detail": "expected per well: beads > isopropanol > sample > remove > ethanol > remove > ethanol > remove > elution > recover"
+      },
+      {
+        "name": "binding_volumes_40_250_250",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "mix_5x_after_sample",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "incubation_5min_before_magnet",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "magnet_4min_before_first_removal",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "supernatant_removed_each_step",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "magnet_engaged_for_all_removals",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "two_500ul_ethanol_washes",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "air_dry_4min",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "elution_100ul",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "elution_off_magnet_then_90s_on",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "recover_70_100ul_one_well_each",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "distinct_elution_wells",
+        "pass": true,
+        "detail": "48 distinct elution wells"
+      },
+      {
+        "name": "elution_plate_4C_before_recovery",
+        "pass": true,
+        "detail": "temperatures set: [(0.0, 4.0)]"
+      },
+      {
+        "name": "fresh_tip_per_sample_no_cross_contact",
+        "pass": true,
+        "detail": "48 distinct tips for 48 sample transfers; violations: []"
+      }
+    ],
+    "checks_passed": 16,
+    "checks_total": 16,
+    "total_delay_min": 15.0,
+    "example_well": "A1",
+    "example_sequence": [
+      "beads 40uL",
+      "isopropanol 250uL",
+      "sample 250uL",
+      "remove 540uL (magnet)",
+      "ethanol 500uL (magnet)",
+      "remove 500uL (magnet)",
+      "ethanol 500uL (magnet)",
+      "remove 500uL (magnet)",
+      "elution 100uL",
+      "recover 100uL (magnet)"
+    ]
+  },
+  "critical_failures": [],
+  "judge": {
+    "items": [
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "apiLevel 2.13, all volumes within pipette ranges (multi splits 500 into 2\u00d7250? split gives \u2264200 each), no well overfilled, simulator passed and tempdeck set to 4 C."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "Check fresh_tip_per_sample_no_cross_contact passed (48 distinct tips); p1000 fresh tip per sample, multi fresh tip per column for removals/elution/recovery, every path ends with drop_tip."
+      },
+      {
+        "id": "fidelity_to_paper",
+        "score": 0,
+        "evidence": "Recovers the full 100 \u00b5L eluate (m300.aspirate(ELUTION_VOL...) in step 9) rather than ~80 \u00b5L, and adds an unspecified 10\u00d7 bead-resuspension mix/bead pre-mixes, so not fully faithful."
+      },
+      {
+        "id": "sample_handling",
+        "score": 1,
+        "evidence": "Check 48_samples_to_odd_columns passed; tubes mapped one-to-one to wells in columns 1,3,...,11 and eluates to same-position elution wells (distinct_elution_wells passed)."
+      },
+      {
+        "id": "binding_and_separation",
+        "score": 1,
+        "evidence": "Beads 40, isopropanol 250, sample 250 in order, p1000.mix(5,...), 5 min delay, magdeck.engage then 4 min delay, then 540 \u00b5L removed to waste with magnet on (all checks passed)."
+      },
+      {
+        "id": "washes_and_drying",
+        "score": 1,
+        "evidence": "Two 500 \u00b5L ethanol washes each removed with magnet engaged, 4 min delay, magdeck.disengage() before elution; checks two_500ul_ethanol_washes and air_dry_4min passed."
+      },
+      {
+        "id": "elution_recovery",
+        "score": 0,
+        "evidence": "Elution recovery aspirates 100 \u00b5L (ELUTION_VOL) from the 100 \u00b5L elution rather than about 80 \u00b5L, risking bead carryover and deviating from the ~80 \u00b5L specification."
+      }
+    ],
+    "scores": {
+      "robot_practice": 1.0,
+      "tips_and_contamination": 1.0,
+      "fidelity_to_paper": 0.0,
+      "sample_handling": 1.0,
+      "binding_and_separation": 1.0,
+      "washes_and_drying": 1.0,
+      "elution_recovery": 0.0
+    },
+    "summary": "The protocol passes all measured checks and handles binding, washes, drying and tips correctly. It recovers the full 100 \u00b5L of eluate instead of about 80 \u00b5L, so elution_recovery and fidelity fail.",
+    "raw": "{\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"apiLevel 2.13, all volumes within pipette ranges (multi splits 500 into 2\\u00d7250? split gives \\u2264200 each), no well overfilled, simulator passed and tempdeck set to 4 C.\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"Check fresh_tip_per_sample_no_cross_contact passed (48 distinct tips); p1000 fresh tip per sample, multi fresh tip per column for removals/elution/recovery, every path ends with drop_tip.\"}, {\"id\": \"fidelity_to_paper\", \"score\": 0, \"evidence\": \"Recovers the full 100 \\u00b5L eluate (m300.aspirate(ELUTION_VOL...) in step 9) rather than ~80 \\u00b5L, and adds an unspecified 10\\u00d7 bead-resuspension mix/bead pre-mixes, so not fully faithful.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"Check 48_samples_to_odd_columns passed; tubes mapped one-to-one to wells in columns 1,3,...,11 and eluates to same-position elution wells (distinct_elution_wells passed).\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Beads 40, isopropanol 250, sample 250 in order, p1000.mix(5,...), 5 min delay, magdeck.engage then 4 min delay, then 540 \\u00b5L removed to waste with magnet on (all checks passed).\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 \\u00b5L ethanol washes each removed with magnet engaged, 4 min delay, magdeck.disengage() before elution; checks two_500ul_ethanol_washes and air_dry_4min passed.\"}, {\"id\": \"elution_recovery\", \"score\": 0, \"evidence\": \"Elution recovery aspirates 100 \\u00b5L (ELUTION_VOL) from the 100 \\u00b5L elution rather than about 80 \\u00b5L, risking bead carryover and deviating from the ~80 \\u00b5L specification.\"}], \"summary\": \"The protocol passes all measured checks and handles binding, washes, drying and tips correctly. It recovers the full 100 \\u00b5L of eluate instead of about 80 \\u00b5L, so elution_recovery and fidelity fail.\"}",
+    "level": "hard",
+    "score": 0.6875,
+    "weights": {
+      "robot_practice": 0.25,
+      "tips_and_contamination": 0.25,
+      "fidelity_to_paper": 0.25,
+      "sample_handling": 0.0625,
+      "binding_and_separation": 0.0625,
+      "washes_and_drying": 0.0625,
+      "elution_recovery": 0.0625
+    },
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "openrouter"
+  },
+  "rewards": {
+    "reward": 0.6875,
+    "sim_pass": 1.0,
+    "checks_frac": 1.0,
+    "judge_score": 0.6875,
+    "suspicious_code": 0.0,
+    "judge_error": 0.0,
+    "hack_detected": 0.0,
+    "critical_fail": 0.0,
+    "deterministic_reward": 1.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_tips_and_contamination": 1.0,
+    "rubric_fidelity_to_paper": 0.0,
+    "rubric_sample_handling": 1.0,
+    "rubric_binding_and_separation": 1.0,
+    "rubric_washes_and_drying": 1.0,
+    "rubric_elution_recovery": 0.0
+  }
+}

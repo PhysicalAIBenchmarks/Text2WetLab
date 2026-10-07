@@ -1,0 +1,127 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 2411
+  },
+  "checks": [
+    {
+      "name": "simulator_ran",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tip_before_aspirate",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_overdispense",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_aspirate_from_empty_well",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "tip_dropped_at_end",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no_cross_contamination",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "end_state:colony_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:pcr_plate",
+      "pass": false,
+      "detail": "expected {'A1': 20.0, 'A2': 20.0, 'A3': 20.0, 'A4': 20.0, 'A5': 20.0, 'A6': 20.0, 'A7': 20.0, 'A8': 20.0, 'A9': 20.0, 'A10': 20.0, 'A11': 20.0, 'A12': 20.0, 'B1"
+    },
+    {
+      "name": "end_state:primer_plate",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "judge": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "items": [
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "apiLevel 2.15; all volumes (5, 4, 1 \u00b5L) are handled by the P20 within its range, the 10 \u00b5L wells are far below capacity, and the right labware is used."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "One tip is reused only for master mix into empty wells. Fresh tips are used for every primer and every colony transfer, and every tip is dropped. The tip_before_aspirate, tip_dropped_at_end and no_cross_contamination checks passed."
+      },
+      {
+        "id": "fidelity_to_paper",
+        "score": 1,
+        "evidence": "The agent follows the paper's OT-2 order (mix first, then 1 \u00b5L colony) for a 10 \u00b5L reaction. It assembles the 9 \u00b5L mix in the well as 5 \u00b5L Q5 plus 4 \u00b5L primers and states this adaptation and its primer-concentration assumption in comments. The thermocycling comment is a Q5-adapted program."
+      },
+      {
+        "id": "reaction_setup",
+        "score": 1,
+        "evidence": "Each well gets 5 \u00b5L Q5 2x (1x final), 4 \u00b5L of its own primer pair and 1 \u00b5L colony template added last, giving a 10 \u00b5L reaction."
+      },
+      {
+        "id": "sample_mapping",
+        "score": 1,
+        "evidence": "zip(primers, dests) and zip(colonies, dests) over wells() map A1 to A1 and so on across all 96 wells, each used once."
+      },
+      {
+        "id": "thermocycling",
+        "score": 1,
+        "evidence": "A comment records sealing the plate, then 98 C for 3 min, 30 cycles of 98 C/60 C/72 C, 72 C for 2 min, and a 4 C hold, which suits Q5."
+      }
+    ],
+    "scores": {
+      "robot_practice": 1.0,
+      "tips_and_contamination": 1.0,
+      "fidelity_to_paper": 1.0,
+      "reaction_setup": 1.0,
+      "sample_mapping": 1.0,
+      "thermocycling": 1.0
+    },
+    "summary": "The protocol sets up 96 ten-\u00b5L colony PCRs with correct mapping, sensible tip handling and a Q5-appropriate thermocycling comment. The only failed check was the pcr_plate end state, which expects 20 \u00b5L per well. The rubric accepts a 10 \u00b5L reaction, so I did not penalise it.",
+    "level": "hard",
+    "score": 1.0,
+    "weights": {
+      "robot_practice": 0.25,
+      "tips_and_contamination": 0.25,
+      "fidelity_to_paper": 0.25,
+      "reaction_setup": 0.0833,
+      "sample_mapping": 0.0833,
+      "thermocycling": 0.0833
+    },
+    "provider": "openrouter"
+  },
+  "critical_failures": [],
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "checks_frac": 0.8889,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "deterministic_reward": 0.3333,
+    "judge_score": 1.0,
+    "critical_fail": 0.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_tips_and_contamination": 1.0,
+    "rubric_fidelity_to_paper": 1.0,
+    "rubric_reaction_setup": 1.0,
+    "rubric_sample_mapping": 1.0,
+    "rubric_thermocycling": 1.0
+  }
+}

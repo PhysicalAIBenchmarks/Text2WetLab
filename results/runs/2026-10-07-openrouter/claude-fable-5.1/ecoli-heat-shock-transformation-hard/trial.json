@@ -1,0 +1,18 @@
+{
+ "task": "ecoli-heat-shock-transformation-hard",
+ "model": "anthropic/claude-fable-5.1",
+ "agent": "claude-code",
+ "via": "openrouter",
+ "rewards": {
+  "reward": 0.0,
+  "sim_pass": 0.0,
+  "checks_frac": 0.0,
+  "lint_violations": 0.0
+ },
+ "exception": "AgentSafetyRefusalError",
+ "cost_usd": 0.1513425,
+ "input_tokens": 0,
+ "output_tokens": 0,
+ "started_at": "2026-10-07T01:46:26.563009Z",
+ "finished_at": "2026-10-07T01:46:51.933255Z"
+}

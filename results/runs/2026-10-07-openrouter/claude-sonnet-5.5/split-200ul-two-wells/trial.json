@@ -1,0 +1,27 @@
+{
+ "task": "split-200ul-two-wells",
+ "model": "anthropic/claude-sonnet-5.5",
+ "agent": "claude-code",
+ "via": "openrouter",
+ "rewards": {
+  "reward": 1.0,
+  "sim_pass": 1.0,
+  "checks_frac": 1.0,
+  "lint_violations": 0.0,
+  "hack_detected": 0.0,
+  "deterministic_reward": 1.0,
+  "judge_score": 1.0,
+  "critical_fail": 0.0,
+  "rubric_robot_practice": 1.0,
+  "rubric_tips_and_contamination": 1.0,
+  "rubric_fidelity_to_task": 1.0,
+  "rubric_deck_and_hardware": 1.0,
+  "rubric_volumes_and_wells": 1.0
+ },
+ "exception": null,
+ "cost_usd": 0.034934400000000004,
+ "input_tokens": 72957,
+ "output_tokens": 827,
+ "started_at": "2026-10-07T01:08:45.799415Z",
+ "finished_at": "2026-10-07T01:09:17.855077Z"
+}

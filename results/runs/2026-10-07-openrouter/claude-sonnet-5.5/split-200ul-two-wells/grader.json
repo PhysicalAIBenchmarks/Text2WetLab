@@ -1,0 +1,109 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 6
+  },
+  "checks": [
+    {
+      "name": "simulator_ran",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tip_before_aspirate",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_overdispense",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_aspirate_from_empty_well",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "tip_dropped_at_end",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no_cross_contamination",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "end_state:plate",
+      "pass": true,
+      "detail": "expected volumes [100.0, 100.0], got [100.0, 100.0] (positions free)"
+    }
+  ],
+  "judge": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "items": [
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "apiLevel 2.15 is valid, the p300 handles 100 \u00b5L, and the protocol uses the correct labware. The simulator shows no overdispense or empty-well aspiration."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "One tip is picked up before any aspiration and dropped at the end. Both dispenses go into empty wells with no tip contact, and the checks tip_before_aspirate, tip_dropped_at_end and no_cross_contamination all pass."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 1,
+        "evidence": "The protocol makes two 100 \u00b5L transfers from reservoir A1 to plate A1 and B1, in order, with the p300. It adds nothing else, and the end-state check passes."
+      },
+      {
+        "id": "deck_and_hardware",
+        "score": 1,
+        "evidence": "Labware is loaded in slots 1, 2, 10 and 11 with the specified load names. The reservoir and plate carry the labels 'reservoir' and 'plate'. The p20 is on the left and the p300 on the right with matching tip racks."
+      },
+      {
+        "id": "volumes_and_wells",
+        "score": 1,
+        "evidence": "The p300 aspirates 100 \u00b5L from reservoir A1 twice and dispenses 100 \u00b5L into plate A1 and B1. No other wells are touched, and end_state shows [100, 100]."
+      }
+    ],
+    "scores": {
+      "robot_practice": 1.0,
+      "tips_and_contamination": 1.0,
+      "fidelity_to_task": 1.0,
+      "deck_and_hardware": 1.0,
+      "volumes_and_wells": 1.0
+    },
+    "summary": "The protocol passes every measured check. It performs the two 100 \u00b5L transfers with the p300 using a single tip that is dropped at the end.",
+    "level": "easy",
+    "score": 1.0,
+    "weights": {
+      "robot_practice": 0.25,
+      "tips_and_contamination": 0.25,
+      "fidelity_to_task": 0.25,
+      "deck_and_hardware": 0.125,
+      "volumes_and_wells": 0.125
+    },
+    "provider": "openrouter"
+  },
+  "critical_failures": [],
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "checks_frac": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "deterministic_reward": 1.0,
+    "judge_score": 1.0,
+    "critical_fail": 0.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_tips_and_contamination": 1.0,
+    "rubric_fidelity_to_task": 1.0,
+    "rubric_deck_and_hardware": 1.0,
+    "rubric_volumes_and_wells": 1.0
+  }
+}

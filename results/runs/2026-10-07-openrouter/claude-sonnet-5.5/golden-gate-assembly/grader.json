@@ -1,0 +1,195 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 569
+  },
+  "checks": [
+    {
+      "name": "simulator_ran",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tip_before_aspirate",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_overdispense",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_aspirate_from_empty_well",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "tip_dropped_at_end",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no_cross_contamination",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "end_state:water",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:q5_buffer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:dntp",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:q5_pol",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:pcr_mm",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:primer_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:template_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:pcr_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:rcutsmart",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:dpni",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:t4_buffer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:gg_enzyme",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:assembly_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:cells_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:lb_dextrose",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "judge": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "items": [
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "apiLevel 2.15 is allowed. Volumes go to the p20 for 20 \u00b5L or less and the p300 for more (e.g. p300 for 106, 40 and 250 \u00b5L; p20 for 1\u201319 \u00b5L). All measured checks pass, with no overfilled wells and the correct labware."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "Every transfer uses new_tip='always' and every mix is wrapped in pick_up_tip/drop_tip. The tip_before_aspirate, tip_dropped_at_end and no_cross_contamination checks all pass."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 1,
+        "evidence": "All 33 steps appear in order with the exact quantities and sources/destinations. The manual steps are recorded with protocol.comment. The only free choice is the 10 \u00b5L mix volume in step 24, which the task leaves open."
+      },
+      {
+        "id": "pcr_setup",
+        "score": 1,
+        "evidence": "The master mix (106/40/4/2 \u00b5L, mixed 5\u00d7 at 100 \u00b5L) is made in D1. 19 \u00b5L goes to each of A1:G1, then 2.5 \u00b5L forward primer, 2.5 \u00b5L reverse primer and 1 \u00b5L template from A1,A1,B1,C1,A1,A1,D1 in order, mixed 3\u00d7 at 15 \u00b5L. The pcr_plate end-state check passes."
+      },
+      {
+        "id": "dpni_and_cleanup",
+        "score": 1,
+        "evidence": "19 \u00b5L water, 5 \u00b5L rCutSmart and 1 \u00b5L DpnI go to A1:G1, mixed 3\u00d7 at 30 \u00b5L. The 37/65\u00b0C incubation and the Zymo cleanup are recorded with comments in order."
+      },
+      {
+        "id": "assembly_mix",
+        "score": 1,
+        "evidence": "Each assembly well gets 7 \u00b5L water, 2 \u00b5L T4 buffer, 3 \u00b5L fragment 2, 2 \u00b5L fragment 5, 3 \u00b5L fragment 6, 2 \u00b5L of fragments 1/3/4/7 and 1 \u00b5L enzyme mix (mixed 5\u00d7), totalling 20 \u00b5L. The assembly_plate check passes."
+      },
+      {
+        "id": "cycling_and_transformation",
+        "score": 1,
+        "evidence": "The Golden Gate program and the cleanup are recorded with comments. 5 \u00b5L of assembly goes to cells A1:D1, then the ice/heat-shock comment, then 250 \u00b5L LB to each well, then the recovery and plating comments. The cells_plate check passes."
+      }
+    ],
+    "scores": {
+      "robot_practice": 1.0,
+      "tips_and_contamination": 1.0,
+      "fidelity_to_task": 1.0,
+      "pcr_setup": 1.0,
+      "dpni_and_cleanup": 1.0,
+      "assembly_mix": 1.0,
+      "cycling_and_transformation": 1.0
+    },
+    "summary": "The protocol simulates cleanly and every measured check passes. It follows all 33 steps in order with the correct volumes, fresh tips throughout, and the manual steps recorded as comments.",
+    "level": "easy",
+    "score": 1.0,
+    "weights": {
+      "robot_practice": 0.25,
+      "tips_and_contamination": 0.25,
+      "fidelity_to_task": 0.25,
+      "pcr_setup": 0.0625,
+      "dpni_and_cleanup": 0.0625,
+      "assembly_mix": 0.0625,
+      "cycling_and_transformation": 0.0625
+    },
+    "provider": "openrouter"
+  },
+  "critical_failures": [],
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "checks_frac": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "deterministic_reward": 1.0,
+    "judge_score": 1.0,
+    "critical_fail": 0.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_tips_and_contamination": 1.0,
+    "rubric_fidelity_to_task": 1.0,
+    "rubric_pcr_setup": 1.0,
+    "rubric_dpni_and_cleanup": 1.0,
+    "rubric_assembly_mix": 1.0,
+    "rubric_cycling_and_transformation": 1.0
+  }
+}

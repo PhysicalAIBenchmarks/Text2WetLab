@@ -1,0 +1,122 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 12
+  },
+  "checks": [
+    {
+      "name": "simulator_ran",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tip_before_aspirate",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_overdispense",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_aspirate_from_empty_well",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "tip_dropped_at_end",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no_cross_contamination",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "end_state:plasmid_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:cells_rack",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "judge": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "items": [
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "apiLevel 2.15 valid, 2 uL via p20 and 250 uL via p300, labware loaded with labels, no capacity issues; all checks pass."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "transfer with new_tip='always' picks up and drops tips for each step; tip_before_aspirate, tip_dropped_at_end, no_cross_contamination all pass."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 1,
+        "evidence": "All four steps performed in order with exact quantities and the comments match the task text verbatim; nothing extra added."
+      },
+      {
+        "id": "dna_addition",
+        "score": 1,
+        "evidence": "p20.transfer(2, plasmid_plate['A1'], cells) with cells=tubes['A1']."
+      },
+      {
+        "id": "heat_shock",
+        "score": 1,
+        "evidence": "protocol.comment records heat shock 42\u00b0C 45 s then ice 2 min after DNA addition and before SOC."
+      },
+      {
+        "id": "soc_recovery",
+        "score": 1,
+        "evidence": "p300.transfer(250, soc_reservoir['A1'], cells) after heat shock, followed by comment for 37\u00b0C 60 min 250 rpm incubation."
+      }
+    ],
+    "scores": {
+      "robot_practice": 1.0,
+      "tips_and_contamination": 1.0,
+      "fidelity_to_task": 1.0,
+      "dna_addition": 1.0,
+      "heat_shock": 1.0,
+      "soc_recovery": 1.0
+    },
+    "summary": "The protocol simulates cleanly and all measured checks pass. It follows the task steps in order with the correct quantities, pipettes and comments.",
+    "level": "easy",
+    "score": 1.0,
+    "weights": {
+      "robot_practice": 0.25,
+      "tips_and_contamination": 0.25,
+      "fidelity_to_task": 0.25,
+      "dna_addition": 0.0833,
+      "heat_shock": 0.0833,
+      "soc_recovery": 0.0833
+    },
+    "provider": "openrouter"
+  },
+  "critical_failures": [],
+  "rewards": {
+    "reward": 1.0,
+    "sim_pass": 1.0,
+    "checks_frac": 1.0,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "deterministic_reward": 1.0,
+    "judge_score": 1.0,
+    "critical_fail": 0.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_tips_and_contamination": 1.0,
+    "rubric_fidelity_to_task": 1.0,
+    "rubric_dna_addition": 1.0,
+    "rubric_heat_shock": 1.0,
+    "rubric_soc_recovery": 1.0
+  }
+}

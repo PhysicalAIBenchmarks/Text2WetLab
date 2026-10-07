@@ -1,0 +1,192 @@
+{
+  "variant": "reference",
+  "judge_model": "claude-sonnet-5-5",
+  "suspicious_tokens": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 1356
+  },
+  "checks": {
+    "checks": [
+      {
+        "name": "48_samples_to_odd_columns",
+        "pass": true,
+        "detail": "48 tubes -> 48 wells, odd columns only: True"
+      },
+      {
+        "name": "step_order",
+        "pass": true,
+        "detail": "expected per well: beads > isopropanol > sample > remove > ethanol > remove > ethanol > remove > elution > recover"
+      },
+      {
+        "name": "binding_volumes_40_250_250",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "mix_5x_after_sample",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "incubation_5min_before_magnet",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "magnet_4min_before_first_removal",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "supernatant_removed_each_step",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "magnet_engaged_for_all_removals",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "two_500ul_ethanol_washes",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "air_dry_4min",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "elution_100ul",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "elution_off_magnet_then_90s_on",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "recover_70_100ul_one_well_each",
+        "pass": true,
+        "detail": "48/48 sample wells"
+      },
+      {
+        "name": "distinct_elution_wells",
+        "pass": true,
+        "detail": "48 distinct elution wells"
+      },
+      {
+        "name": "elution_plate_4C_before_recovery",
+        "pass": true,
+        "detail": "temperatures set: [(0.0, 4.0)]"
+      },
+      {
+        "name": "fresh_tip_per_sample_no_cross_contact",
+        "pass": true,
+        "detail": "48 distinct tips for 48 sample transfers; violations: []"
+      }
+    ],
+    "checks_passed": 16,
+    "checks_total": 16,
+    "total_delay_min": 15.0,
+    "example_well": "A1",
+    "example_sequence": [
+      "beads 40uL",
+      "isopropanol 250uL",
+      "sample 250uL",
+      "remove 540uL (magnet)",
+      "ethanol 500uL (magnet)",
+      "remove 500uL (magnet)",
+      "ethanol 500uL (magnet)",
+      "remove 500uL (magnet)",
+      "elution 100uL",
+      "recover 80uL (magnet)"
+    ]
+  },
+  "critical_failures": [],
+  "judge": {
+    "items": [
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "apiLevel 2.9 with metadata. Volumes are split into 125, 166.7 and 180 \u00b5L chunks for the 200 \u00b5L tips, and all volumes are within pipette ranges (40, 80, 100 \u00b5L on the p300 multi; 250 \u00b5L on the p1000). The maximum well load is about 1.5 mL in the 2.4 mL waste wells, and the simulation passed."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "The check fresh_tip_per_sample_no_cross_contact passed (48 distinct tips, no violations). Reagent tips only aspirate from the reservoir and dispense at top(-3) of the wells. Every tip is dropped, and supernatant removal and recovery use a fresh tip per column."
+      },
+      {
+        "id": "fidelity_to_task",
+        "score": 0,
+        "evidence": "Metadata attributes the paper to 'Lopez-Fernandez et al.', but the paper is by L\u00e1zaro-Perona et al., so the metadata is inaccurate. The code also adds an unrequested 5\u00d7150 \u00b5L bead-slurry mix in the reservoir."
+      },
+      {
+        "id": "sample_handling",
+        "score": 1,
+        "evidence": "The checks 48_samples_to_odd_columns and distinct_elution_wells passed. Samples map column-wise from the two racks to the odd columns of the plate on the magnetic module, and each recovers to its own elution well."
+      },
+      {
+        "id": "binding_and_separation",
+        "score": 1,
+        "evidence": "Order is beads 40, isopropanol 250, then sample 250 with p1000.mix(5, 250). This is followed by a 5 min delay, mag_mod.engage() and a 4 min delay, then removal of 540 \u00b5L to waste with the magnet on. The checks binding_volumes, mix_5x, incubation and magnet_4min passed."
+      },
+      {
+        "id": "washes_and_drying",
+        "score": 1,
+        "evidence": "Two 500 \u00b5L ethanol washes, each removed with the magnet engaged, then a 4 min delay with the magnet still on, then disengage. The checks two_500ul_ethanol_washes and air_dry_4min passed."
+      },
+      {
+        "id": "elution_recovery",
+        "score": 1,
+        "evidence": "The magnet is disengaged, then 100 \u00b5L elution buffer is added and mixed 10\u00d780. Next come a 30 s delay, engage and a 90 s delay, then 80 \u00b5L is recovered to distinct elution wells after set_temperature(4). The elution and recover checks passed."
+      }
+    ],
+    "scores": {
+      "robot_practice": 1.0,
+      "tips_and_contamination": 1.0,
+      "fidelity_to_task": 0.0,
+      "sample_handling": 1.0,
+      "binding_and_separation": 1.0,
+      "washes_and_drying": 1.0,
+      "elution_recovery": 1.0
+    },
+    "summary": "The protocol simulates cleanly and passes all 16 measured checks, with correct volumes, magnet use, timing and tip handling. It fails the all-or-nothing fidelity item because the metadata names the wrong paper author and the code adds an unrequested bead-mixing step.",
+    "raw": "{\"items\": [{\"id\": \"robot_practice\", \"score\": 1, \"evidence\": \"apiLevel 2.9 with metadata. Volumes are split into 125, 166.7 and 180 \\u00b5L chunks for the 200 \\u00b5L tips, and all volumes are within pipette ranges (40, 80, 100 \\u00b5L on the p300 multi; 250 \\u00b5L on the p1000). The maximum well load is about 1.5 mL in the 2.4 mL waste wells, and the simulation passed.\"}, {\"id\": \"tips_and_contamination\", \"score\": 1, \"evidence\": \"The check fresh_tip_per_sample_no_cross_contact passed (48 distinct tips, no violations). Reagent tips only aspirate from the reservoir and dispense at top(-3) of the wells. Every tip is dropped, and supernatant removal and recovery use a fresh tip per column.\"}, {\"id\": \"fidelity_to_task\", \"score\": 0, \"evidence\": \"Metadata attributes the paper to 'Lopez-Fernandez et al.', but the paper is by L\\u00e1zaro-Perona et al., so the metadata is inaccurate. The code also adds an unrequested 5\\u00d7150 \\u00b5L bead-slurry mix in the reservoir.\"}, {\"id\": \"sample_handling\", \"score\": 1, \"evidence\": \"The checks 48_samples_to_odd_columns and distinct_elution_wells passed. Samples map column-wise from the two racks to the odd columns of the plate on the magnetic module, and each recovers to its own elution well.\"}, {\"id\": \"binding_and_separation\", \"score\": 1, \"evidence\": \"Order is beads 40, isopropanol 250, then sample 250 with p1000.mix(5, 250). This is followed by a 5 min delay, mag_mod.engage() and a 4 min delay, then removal of 540 \\u00b5L to waste with the magnet on. The checks binding_volumes, mix_5x, incubation and magnet_4min passed.\"}, {\"id\": \"washes_and_drying\", \"score\": 1, \"evidence\": \"Two 500 \\u00b5L ethanol washes, each removed with the magnet engaged, then a 4 min delay with the magnet still on, then disengage. The checks two_500ul_ethanol_washes and air_dry_4min passed.\"}, {\"id\": \"elution_recovery\", \"score\": 1, \"evidence\": \"The magnet is disengaged, then 100 \\u00b5L elution buffer is added and mixed 10\\u00d780. Next come a 30 s delay, engage and a 90 s delay, then 80 \\u00b5L is recovered to distinct elution wells after set_temperature(4). The elution and recover checks passed.\"}], \"summary\": \"The protocol simulates cleanly and passes all 16 measured checks, with correct volumes, magnet use, timing and tip handling. It fails the all-or-nothing fidelity item because the metadata names the wrong paper author and the code adds an unrequested bead-mixing step.\"}",
+    "level": "easy",
+    "score": 0.75,
+    "weights": {
+      "robot_practice": 0.25,
+      "tips_and_contamination": 0.25,
+      "fidelity_to_task": 0.25,
+      "sample_handling": 0.0625,
+      "binding_and_separation": 0.0625,
+      "washes_and_drying": 0.0625,
+      "elution_recovery": 0.0625
+    },
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "openrouter"
+  },
+  "rewards": {
+    "reward": 0.75,
+    "sim_pass": 1.0,
+    "checks_frac": 1.0,
+    "judge_score": 0.75,
+    "suspicious_code": 0.0,
+    "judge_error": 0.0,
+    "hack_detected": 0.0,
+    "critical_fail": 0.0,
+    "deterministic_reward": 1.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_tips_and_contamination": 1.0,
+    "rubric_fidelity_to_task": 0.0,
+    "rubric_sample_handling": 1.0,
+    "rubric_binding_and_separation": 1.0,
+    "rubric_washes_and_drying": 1.0,
+    "rubric_elution_recovery": 1.0
+  }
+}

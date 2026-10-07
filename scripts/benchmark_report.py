@@ -87,7 +87,19 @@ def main():
         rs = [by[(m, k)]["rewards"].get("reward", 0.0) for k in tasks if (m, k) in by]
         cost = sum(by[(m, k)]["cost"] or 0 for k in tasks if (m, k) in by)
         means.append(f"**{sum(rs) / max(len(rs), 1):.3f}** (n={len(rs)}, ${cost:.2f})")
-    out.append("| **Mean** | " + " | ".join(means) + " |\n")
+    out.append("| **Mean (refusals count as 0)** | " + " | ".join(means) + " |")
+    refused = {m: [k for k in tasks if (m, k) in by and by[(m, k)]["exception"] == "AgentSafetyRefusalError"] for m in models}
+    answered = {m: [k for k in tasks if (m, k) in by and not by[(m, k)]["exception"]] for m in models}
+    common = [k for k in tasks if all(k in answered[m] for m in models)]
+    mean = lambda m, ks: sum(by[(m, k)]["rewards"].get("reward", 0.0) for k in ks) / max(len(ks), 1)
+    out.append("| **Safety refusals** | " + " | ".join(str(len(refused[m])) for m in models) + " |")
+    out.append("| **Mean over tasks it answered** | " + " | ".join(f"{mean(m, answered[m]):.3f} (n={len(answered[m])})" for m in models) + " |")
+    out.append(f"| **Mean over the {len(common)} tasks every model answered** | "
+               + " | ".join(f"**{mean(m, common):.3f}**" for m in models) + " |\n")
+    for m in models:
+        if refused[m]:
+            out.append(f"- {m} refused (Anthropic `[bio]` safeguard, `AgentSafetyRefusalError`): {', '.join(refused[m])}")
+    out.append("")
 
     out.append("## Per risk: checks passed / checks run (all tasks)\n")
     out.append("| Risk | What it guards against | " + " | ".join(models) + " |\n|---|---|" + "---|" * len(models))

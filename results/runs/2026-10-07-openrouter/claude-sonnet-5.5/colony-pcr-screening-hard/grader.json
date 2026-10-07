@@ -1,0 +1,127 @@
+{
+  "lint": [],
+  "traps": [],
+  "simulation": {
+    "ok": true,
+    "n_commands": 2280
+  },
+  "checks": [
+    {
+      "name": "simulator_ran",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tip_before_aspirate",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_overdispense",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_aspirate_from_empty_well",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "tip_dropped_at_end",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no_cross_contamination",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "end_state:colony_plate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "end_state:pcr_plate",
+      "pass": false,
+      "detail": "expected {'A1': 20.0, 'A2': 20.0, 'A3': 20.0, 'A4': 20.0, 'A5': 20.0, 'A6': 20.0, 'A7': 20.0, 'A8': 20.0, 'A9': 20.0, 'A10': 20.0, 'A11': 20.0, 'A12': 20.0, 'B1"
+    },
+    {
+      "name": "end_state:primer_plate",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "judge": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "items": [
+      {
+        "id": "robot_practice",
+        "score": 1,
+        "evidence": "apiLevel 2.15, all volumes of 1-5 uL handled by the p20, tips dropped, and all simulator checks pass; no well is overfilled (10 uL total)."
+      },
+      {
+        "id": "tips_and_contamination",
+        "score": 1,
+        "evidence": "A fresh tip is used for every primer and every template transfer. One tip serves the master mix into empty wells. Checks tip_before_aspirate, no_cross_contamination and tip_dropped_at_end all pass."
+      },
+      {
+        "id": "fidelity_to_paper",
+        "score": 0,
+        "evidence": "The agent invents a 4 uL primer-pair volume, assuming the primers are pre-diluted, and the total is 10 uL. The 5 uL of 2x master mix is also an unstated assumption. The end_state pcr_plate check fails against the reference, which uses 18 uL master mix + 1 uL primer + 1 uL template."
+      },
+      {
+        "id": "reaction_setup",
+        "score": 1,
+        "evidence": "Each well gets 5 uL 2x master mix, then 4 uL of its primer pair, then 1 uL template, for a 10 uL reaction. The master mix goes in before the template."
+      },
+      {
+        "id": "sample_mapping",
+        "score": 1,
+        "evidence": "zip(primer_plate.wells(), dest) and zip(colony_plate.wells(), dest) map each source well to the matching PCR well for all 96 wells, with none skipped or reused."
+      },
+      {
+        "id": "thermocycling",
+        "score": 1,
+        "evidence": "Comments record plate sealing, then 98 C 3 min, 30 cycles of 98 C/annealing 55-65 C/72 C, a 72 C 2 min final extension and a 4 C hold. The annealing temperature is given only as a range, which suits Q5 with primer-dependent annealing."
+      }
+    ],
+    "scores": {
+      "robot_practice": 1.0,
+      "tips_and_contamination": 1.0,
+      "fidelity_to_paper": 0.0,
+      "reaction_setup": 1.0,
+      "sample_mapping": 1.0,
+      "thermocycling": 1.0
+    },
+    "summary": "The protocol is mechanically sound. It has fresh tips, correct 96-well mapping, an appropriate master mix \u2192 primer \u2192 template order, and a recorded seal and thermocycling program. It fails the all-or-nothing fidelity item because it assumes a 4 uL pre-diluted primer volume and a 5 uL master mix volume that the paper does not support, so the plate quantities differ from the reference.",
+    "level": "hard",
+    "score": 0.75,
+    "weights": {
+      "robot_practice": 0.25,
+      "tips_and_contamination": 0.25,
+      "fidelity_to_paper": 0.25,
+      "reaction_setup": 0.0833,
+      "sample_mapping": 0.0833,
+      "thermocycling": 0.0833
+    },
+    "provider": "openrouter"
+  },
+  "critical_failures": [],
+  "rewards": {
+    "reward": 0.75,
+    "sim_pass": 1.0,
+    "checks_frac": 0.8889,
+    "lint_violations": 0.0,
+    "hack_detected": 0.0,
+    "deterministic_reward": 0.3333,
+    "judge_score": 0.75,
+    "critical_fail": 0.0,
+    "rubric_robot_practice": 1.0,
+    "rubric_tips_and_contamination": 1.0,
+    "rubric_fidelity_to_paper": 0.0,
+    "rubric_reaction_setup": 1.0,
+    "rubric_sample_mapping": 1.0,
+    "rubric_thermocycling": 1.0
+  }
+}
