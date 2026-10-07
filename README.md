@@ -18,7 +18,7 @@ E. O'Leary · M. Alshehri · L. Legon
 
 ---
 
-> **Abstract.** Frontier language models write Opentrons OT-2 Python that runs in the simulator, but wet-lab correctness depends on tacit knowledge the simulator does not check: which cells must not be pipette-mixed, how much eluate to leave behind with the beads, how much liquid a reservoir well can hold. **Text2WetLab** is a set of 11 [Harbor](https://github.com/laude-institute/harbor) tasks at two levels: *easy* tasks give the exact steps; *paper-only* ("hard") tasks give only a goal, a fixed deck and the source paper. A layered verifier scores each protocol with a lint gate, 10 reward-hacking traps, the Opentrons simulator, deterministic checks against a ground-truth protocol IR, and a pass/fail LLM rubric (majority of three judge calls) in which three core items carry 75% of the reward. We validate the verifier with every reference solution (11/11 pass) and 152 broken or cheating protocols of 18 kinds (none scores above 0.47), fix six grader faults that the model runs exposed, and audit the paper-only tasks so that every quantity they grade is in the paper or the brief, which found and fixed two more. Running the same Claude Code agent with four models through OpenRouter, GPT-6.1 Sol scores 0.881, Claude Sonnet 5.5 0.863, Opus 5.5 0.795 and Fable 5.1 0.705, but Opus and Fable lose 5 trials to Anthropic safety refusals on molecular-cloning prompts; on the 8 tasks every model answered the order is Opus 1.000, Fable 0.969, GPT 0.898, Sonnet 0.842. No model failed the simulator or a trap, and the only physical-safety failure is one reservoir overdraw. Easy tasks are nearly solved; the paper-only tasks separate the models, and the commonest failure is inventing steps and quantities the paper does not support. Five of the 44 scores are provisional until a re-judge with the audited verifier (§6).
+> **Abstract.** Frontier language models write Opentrons OT-2 Python that runs in the simulator, but wet-lab correctness depends on tacit knowledge the simulator does not check: which cells must not be pipette-mixed, how much eluate to leave behind with the beads, how much liquid a reservoir well can hold. **Text2WetLab** is a set of 11 [Harbor](https://github.com/laude-institute/harbor) tasks at two levels: *easy* tasks give the exact steps; *paper-only* ("hard") tasks give only a goal, a fixed deck and the source paper. A layered verifier scores each protocol with a lint gate, 10 reward-hacking traps, the Opentrons simulator, deterministic checks against a ground-truth protocol IR, and a pass/fail LLM rubric (majority of three judge calls) in which three core items carry 75% of the reward. We validate the verifier with every reference solution (11/11 pass) and 152 broken or cheating protocols of 18 kinds (none scores above 0.47), fix six grader faults that the model runs exposed, and audit the paper-only tasks so that every quantity they grade is in the paper or the brief, which found and fixed two more. Running the same Claude Code agent with four models through OpenRouter, and scoring only the tasks a model answered (a safety refusal is the provider's policy, not a protocol), Claude Opus 5.5 scores 1.000 on the 8 tasks every model answered, Fable 5.1 0.969, GPT-6.1 Sol 0.898 and Sonnet 5.5 0.842; Opus and Fable refused 5 molecular-cloning prompts between them, which are reported but not scored. No model failed the simulator or a trap, and the only physical-safety failure is one reservoir overdraw. Easy tasks are nearly solved; the paper-only tasks separate the models, and the commonest failure is inventing steps and quantities the paper does not support. Five of the 44 scores are provisional until a re-judge with the audited verifier (§6).
 
 ---
 
@@ -252,17 +252,16 @@ The agent gets the instruction, `/data` and a shell, and must leave `/app/protoc
 
 <div align="center">
 
-**Table 6.** Summary. Agent cost is for all 11 trials. † Includes provisional scores (§6).
+**Table 6.** Summary. Refused tasks are not scored; the first row is the headline. Agent cost is for every trial run. † Includes provisional scores (§6).
 
 | | Sonnet 5.5 | Opus 5.5 | Fable 5.1 | GPT-6.1 Sol |
 |---|:---:|:---:|:---:|:---:|
-| Mean reward, refusals as 0 (n = 11) | 0.863 | 0.795 | 0.705 | **0.881** |
-| Mean over tasks the model answered | 0.863 (11) | **0.972** (9) | 0.969 (8) | 0.881 (11) |
-| Mean over the 8 tasks all models answered | 0.842 | **1.000** | 0.969 | 0.898 |
+| **Mean over the 8 tasks all models answered** | 0.842 | **1.000** | 0.969 | 0.898 |
+| Mean over all tasks the model answered | 0.863 (11) | **0.972** (9) | 0.969 (8) | 0.881 (11) |
 | Easy tasks, answered | 0.900 (7) | **1.000** (6) | 0.958 (6) | **1.000** (7) |
 | Paper-only tasks, answered | 0.797 (4)† | 0.917 (3) | **1.000** (2) | 0.672 (4)† |
 | `fidelity_to_paper` passed (hard) | 1/4 | 2/3 | 2/2 | 0/4 |
-| Safety refusals | **0** | 2 | 3 | **0** |
+| Refused, not scored | 0 | 2 | 3 | 0 |
 | Simulator failures, traps, lint violations | 0 | 0 | 0 | 0 |
 | Agent cost (USD) | **1.25** | 3.52 | 6.21 | 4.82 |
 
@@ -272,13 +271,13 @@ Six of the seven easy tasks are saturated: every model that answered them scored
 
 ### 5.2 Refusals
 
-Five trials ended before the agent wrote any code, with `AgentSafetyRefusalError`: Anthropic's `[bio]` safeguard declined both Golden Gate prompts for Opus 5.5 and Fable 5.1, and the paper-only E. coli transformation prompt for Fable 5.1. Sonnet 5.5 and GPT-6.1 Sol answered all 11. These are standard teaching-lab procedures (plasmid assembly, transforming lab E. coli), so the refusals are false positives, but they are a property of the deployed model and we report them as they happened; we did not rephrase prompts to get around the filter.
+Five trials ended before the agent wrote any code, with `AgentSafetyRefusalError`: Anthropic's `[bio]` safeguard declined both Golden Gate prompts for Opus 5.5 and Fable 5.1, and the paper-only E. coli transformation prompt for Fable 5.1. Sonnet 5.5 and GPT-6.1 Sol answered all 11. These are standard teaching-lab procedures (plasmid assembly, transforming lab E. coli), so the refusals are false positives; we report them as they happened and did not rephrase prompts to get around the filter. **A refused task is not scored.** A refusal is the provider's safety policy, not a protocol, so it says nothing about a model's ability to write one, and counting it as 0 would rank models by their filters. Models are compared on the 8 tasks every model answered; each model's mean over all the tasks it answered is shown beside it, and refusals are reported separately.
 
-<p align="center"><img src="docs/preprint/figures/run_means_cost.png" width="100%" alt="Mean reward under three ways of counting refusals, and cost against reward"></p>
+<p align="center"><img src="docs/preprint/figures/run_means_cost.png" width="100%" alt="Mean reward over the tasks all models answered, all tasks answered, easy and paper-only; cost against reward"></p>
 
-<p align="center"><sub><b>Figure 7 | Refusals change the ranking.</b> <b>a,</b> Mean reward per model with refusals counted as 0, over the tasks each model answered, and over the 8 tasks all four answered. Counting refusals as failures ranks GPT-6.1 Sol and Sonnet first; comparing like with like ranks Opus first. <b>b,</b> Agent cost for the 11 trials against mean reward (refusals as 0). Refused trials cost almost nothing, so Fable's $6.21 is for 8 answered tasks.</sub></p>
+<p align="center"><sub><b>Figure 7 | Scores without refusals.</b> <b>a,</b> Mean reward over the 8 tasks all four models answered (the headline), over every task each model answered, and over the easy and paper-only tasks it answered. <b>b,</b> Agent cost for the tasks each model answered against its headline score. Refused trials cost almost nothing, so Fable's $6.21 is for 8 tasks.</sub></p>
 
-Which mean to quote depends on the question. For "which model can I hand this lab's protocols to", refusals are failures and GPT-6.1 Sol leads, with Sonnet close behind at a quarter of the cost. For "which model writes better protocols when it answers", the like-for-like comparison applies and Opus leads, on 8 tasks and one attempt each.
+On the 8 tasks all four answered, Opus scores 1.000 and Fable 0.969, ahead of GPT-6.1 Sol (0.898) and Sonnet (0.842). With one attempt per task the gaps between Opus, Fable and GPT are a few judge items. Sonnet is the cheapest by far ($1.25 for 11 tasks), and Sonnet and GPT are the only models that answered every task, which matters to a lab that needs all of its protocols automated even though it is not part of the score.
 
 ### 5.3 Per risk: where points were and were not lost
 
@@ -320,7 +319,7 @@ Every failed check and rubric item, with each judge vote and its evidence, is in
 ## 6. Discussion and limitations
 
 - **The paper is the hard part.** Easy tasks are nearly saturated; the paper-only tasks separate models, and the dominant failure there is inventing steps or quantities the paper does not support. GPT-6.1 Sol, perfect on easy tasks, fails `fidelity_to_paper` on all four paper-only ones (two provisional). The paper-only level is the one to grow, and every new task has to pass the audit first.
-- **Refusals confound capability.** Two of four models refused standard molecular-cloning protocols. Any leaderboard on this benchmark has to say how it counts refusals (§5.2).
+- **Refusals are not scored, but they are not free.** Two of four models refused standard molecular-cloning protocols. We exclude refused tasks from every score (§5.2), which makes the headline a comparison on 8 tasks, not 11; every new model can only shrink that set, so we also report each model's mean over all the tasks it answered, and its refusals.
 - **Judge noise is real and now measured.** Three calls per protocol disagreed on 7 items across the run (each vote is in the grader record), and a single call had scored identical colony-PCR recipes differently. The majority vote absorbs this, but all signal still comes from one judge, a Claude model that also judges a non-Claude model; a second judge from another provider would show whether that matters.
 - **Ground truth comes from the easy task.** Three of the four paper-only tasks reuse their easy task's ground truth. That is only fair where the paper fixes the same quantities; the audit now enforces it, and it is why colony-PCR-hard no longer grades its reaction volume deterministically.
 - **Provisional scores.** Five scores, listed with reasons in [`PROVISIONAL.json`](results/runs/2026-10-07-openrouter/PROVISIONAL.json), were judged before the audit or with fewer than three votes: Sonnet and GPT on RNA-hard and colony-PCR-hard, and Sonnet on ecoli-hard (one vote). They are marked † on the leaderboard. The OpenRouter key ran out of credit before they could be re-judged; `python scripts/regrade_jobs.py <jobs> --judge --all` does it for about $2.

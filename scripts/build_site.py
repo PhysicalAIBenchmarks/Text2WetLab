@@ -169,11 +169,11 @@ code {{ font-family:'JetBrains Mono',monospace; font-size:.92em; }}
 </header>
 
 <h2>Overall</h2>
-<p class="sub">Anthropic's biosecurity filter refused some standard cloning prompts, so the ranking depends on how a refusal counts.</p>
-<div class="modes" role="group" aria-label="How to count refusals">
-  <button type="button" data-key="all" aria-pressed="true">Refusals count as 0</button>
-  <button type="button" data-key="answered" aria-pressed="false">Tasks each model answered</button>
-  <button type="button" data-key="common" aria-pressed="false">The {d["n_common"]} tasks all answered</button>
+<p class="sub">Refused tasks are not scored: a refusal is the provider's safety policy, not a protocol. Models are ranked on the
+{d["n_common"]} tasks every model answered; refusals are listed beside the score.</p>
+<div class="modes" role="group" aria-label="Which tasks to average">
+  <button type="button" data-key="common" aria-pressed="true">The {d["n_common"]} tasks all models answered</button>
+  <button type="button" data-key="answered" aria-pressed="false">All tasks each model answered</button>
 </div>
 <div class="rank" id="rank"></div>
 
@@ -194,6 +194,7 @@ with its evidence is in the <a href="{report}">full report</a>.</p>
 </div>
 <script>
 const ROWS = {rows_json};
+const NCOMMON = {d["n_common"]};
 const rank = document.getElementById('rank');
 function fmt(v) {{ return v === null ? '–' : v.toFixed(3); }}
 function draw(key) {{
@@ -203,8 +204,8 @@ function draw(key) {{
       <div class="pos">${{i + 1}}</div>
       <div class="model">${{r.name}}</div>
       <div class="bar" aria-hidden="true"><i style="width:${{(r[key] ?? 0) * 100}}%"></i></div>
-      <div class="num">${{fmt(r[key])}}<small>${{key === 'answered' ? r.n_answered + ' tasks' : 'mean'}}</small></div>
-      <div class="num extra">${{r.refusals}}<small>refusals</small></div>
+      <div class="num">${{fmt(r[key])}}<small>${{key === 'answered' ? r.n_answered + ' tasks' : NCOMMON + ' tasks'}}</small></div>
+      <div class="num extra">${{r.refusals}}<small>refused, not scored</small></div>
       <div class="num extra">$${{r.cost.toFixed(2)}}<small>agent cost</small></div>
     </div>`).join('');
 }}
@@ -212,7 +213,7 @@ document.querySelectorAll('.modes button').forEach(b => b.addEventListener('clic
   document.querySelectorAll('.modes button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
   draw(b.dataset.key);
 }}));
-draw('all');
+draw('common');
 </script>
 </body>
 </html>

@@ -22,10 +22,10 @@ a ground-truth protocol representation, and a pass/fail rubric scored by a langu
 three calls. We validate the verifier from both sides: all 11 reference solutions pass, 152 broken or cheating
 protocols of 18 kinds all fail (none scores above 0.47), a close reading of the model runs exposed six grader
 faults, and an audit requiring every quantity a paper-only task grades to be in its paper or brief found two more;
-all eight are fixed. Running one agent harness (Claude Code) with four models through one API, GPT-6.1 Sol scores
-0.881, Claude Sonnet 5.5 0.863, Opus 5.5 0.795 and Fable 5.1 0.705, but Opus and Fable lose five trials to safety
-refusals on standard molecular-cloning prompts; on the eight tasks every model answered the order reverses (Opus
-1.000, Fable 0.969, GPT 0.898, Sonnet 0.842). No model failed the simulator or a trap, and only one broke a physical
+all eight are fixed. Running one agent harness (Claude Code) with four models through one API, and scoring only the
+tasks a model answered, Claude Opus 5.5 scores 1.000 on the eight tasks every model answered, Fable 5.1 0.969, GPT-6.1
+Sol 0.898 and Sonnet 5.5 0.842. Opus and Fable refused five standard molecular-cloning prompts between them; a refusal
+is the provider's safety policy, not a protocol, so these are reported but not scored. No model failed the simulator or a trap, and only one broke a physical
 safety rule. Easy tasks are nearly solved; the paper-only tasks separate the models, and their commonest failure is
 inventing steps and quantities that the paper does not support. Five of the 44 scores are provisional until a
 re-judge with the audited verifier.
@@ -276,17 +276,16 @@ tasks; below, paper-only tasks.](../docs/preprint/figures/run_rewards.png)
 
 <div align="center">
 
-**Table 4.** Summary. Agent cost is for all 11 trials. † Includes provisional scores (Section 8).
+**Table 4.** Summary. Refused tasks are not scored; the first row is the headline. † Includes provisional scores (Section 8).
 
 | | Sonnet 5.5 | Opus 5.5 | Fable 5.1 | GPT-6.1 Sol |
 |---|:---:|:---:|:---:|:---:|
-| Mean reward, refusals as 0 | 0.863 | 0.795 | 0.705 | **0.881** |
-| Mean over tasks answered | 0.863 (11) | **0.972** (9) | 0.969 (8) | 0.881 (11) |
-| Mean over the 8 tasks all answered | 0.842 | **1.000** | 0.969 | 0.898 |
+| **Mean over the 8 tasks all answered** | 0.842 | **1.000** | 0.969 | 0.898 |
+| Mean over all tasks answered | 0.863 (11) | **0.972** (9) | 0.969 (8) | 0.881 (11) |
 | Easy tasks, answered | 0.900 | **1.000** | 0.958 | **1.000** |
 | Paper-only tasks, answered | 0.797† | 0.917 | **1.000** | 0.672† |
 | `fidelity_to_paper` passed | 1/4 | 2/3 | 2/2 | 0/4 |
-| Safety refusals | **0** | 2 | 3 | **0** |
+| Refused, not scored | 0 | 2 | 3 | 0 |
 | Agent cost (USD) | **1.25** | 3.52 | 6.21 | 4.82 |
 
 </div>
@@ -295,15 +294,18 @@ tasks; below, paper-only tasks.](../docs/preprint/figures/run_rewards.png)
 GPT-6.1 Sol and Opus were perfect on every easy task they answered. The models separate on RNA extraction and on the hard tasks,
 where 8 of 13 answered trials failed `fidelity_to_paper`.
 
-**Refusals change the ranking.** Anthropic's biosecurity safeguard declined both Golden Gate prompts for Opus and Fable
-and the paper-only E. coli transformation prompt for Fable. These are teaching-lab procedures, so the refusals are false
-positives, but they are a property of the deployed model; we report them as they happened and did not rephrase prompts.
-Counted as failures, they put GPT-6.1 Sol and Sonnet first; excluded, Opus leads (Figure 4). ABC-Bench reports refusals on
+**Refused tasks are not scored.** Anthropic's biosecurity safeguard declined both Golden Gate prompts for Opus and
+Fable and the paper-only E. coli transformation prompt for Fable. These are teaching-lab procedures, so the refusals are
+false positives; we report them as they happened and did not rephrase prompts. A refusal is the provider's policy, not
+a protocol, and says nothing about a model's ability to write one, so we compare models on the eight tasks all four
+answered and report refusals separately (Figure 4). Opus leads there, with Fable, GPT and Sonnet a few judge items
+behind; Sonnet is the cheapest, and Sonnet and GPT are the only models that answered every task. ABC-Bench reports refusals on
 its dual-use screening-evasion task, where the tested Anthropic and OpenAI frontier models refused every sample
 [@liu2026abcbench]; ours fall on benign tasks.
 
-![**Figure 4.** (a) Mean reward with refusals counted as 0, over the tasks each model answered, and over the eight
-tasks all four answered. (b) Agent cost for 11 trials against mean reward.](../docs/preprint/figures/run_means_cost.png)
+![**Figure 4.** (a) Mean reward over the eight tasks all four models answered (the headline), over every task each
+model answered, and over the easy and paper-only tasks it answered. (b) Agent cost for the tasks each model answered
+against its headline score.](../docs/preprint/figures/run_means_cost.png)
 
 **The mechanical layers are solved; the signal is in the judge.** No model crashed the simulator, tripped a trap or
 broke the lint gate, and the only physical-safety failure is Sonnet's reservoir overdraw (Figure 5). End-state misses are
@@ -353,8 +355,9 @@ wet-lab execution of the generated protocols and non-Opentrons instruments are f
 Text2WetLab measures whether agents turn lab protocols and papers into robot code that does what the paper describes,
 not merely code that runs. Frontier models clear the mechanical layers and nearly solve step-by-step tasks, but when
 they must read the paper they add steps and quantities of their own. Safety refusals on routine molecular biology
-currently move the leaderboard more than capability does. And the grader is itself an artefact to validate: ours
-needed six fixes that only real model output revealed.
+are common enough that a benchmark has to keep them out of its scores and report them on their own. And the grader is
+itself an artefact to validate: ours needed eight fixes, found only by reading real model output and auditing the
+ground truth against the papers.
 
 ## Data and code availability
 

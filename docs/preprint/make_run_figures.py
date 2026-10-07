@@ -73,16 +73,17 @@ ax.set_yticks(range(len(rows)), rows, fontsize=8.5)
 ax.tick_params(length=0); [s.set_visible(False) for s in ax.spines.values()]
 ax.text(len(MODELS) - .4, (len(EASY) - 1) / 2, "EASY\nstep by step", rotation=90, va="center", ha="left", fontsize=7.5, color=MUTED)
 ax.text(len(MODELS) - .4, len(EASY) + (len(HARD) - 1) / 2, "HARD\npaper only", rotation=90, va="center", ha="left", fontsize=7.5, color=MUTED)
-foot = "  ·  ".join(f"{NAME[m]}: {mean([reward(m, k) if not refused(m, k) else 0 for k in TASKS]):.3f}" for m in MODELS)
-ax.text((len(MODELS) - 1) / 2, len(rows) - .1, "Mean, refusals as 0:  " + foot, ha="center", va="top", fontsize=8, color=INK2)
+foot = "  ·  ".join(f"{NAME[m]}: {mean([reward(m, k) for k in common]):.3f}" for m in MODELS)
+ax.text((len(MODELS) - 1) / 2, len(rows) - .1, f"Mean over the {len(common)} tasks all answered:  " + foot, ha="center", va="top", fontsize=8, color=INK2)
 fig.savefig(OUT / "run_rewards.png"); plt.close(fig)
 
 
 # Figure 8: how the mean depends on refusals, and what it cost
 fig, (a, b) = plt.subplots(1, 2, figsize=(9.2, 3.4), gridspec_kw={"width_ratios": [1.35, 1]})
-rules = [("Refusals count as 0", lambda m: mean([0 if refused(m, k) else reward(m, k) for k in TASKS])),
-         ("Tasks the model answered", lambda m: mean([reward(m, k) for k in answered[m]])),
-         (f"The {len(common)} tasks all answered", lambda m: mean([reward(m, k) for k in common]))]
+rules = [(f"The {len(common)} tasks\nall answered", lambda m: mean([reward(m, k) for k in common])),
+         ("All tasks the\nmodel answered", lambda m: mean([reward(m, k) for k in answered[m]])),
+         ("Easy tasks\nanswered", lambda m: mean([reward(m, k) for k in answered[m] if k in EASY])),
+         ("Paper-only tasks\nanswered", lambda m: mean([reward(m, k) for k in answered[m] if k in HARD]))]
 w = .8 / len(MODELS)
 for j, m in enumerate(MODELS):
     vals = [f(m) for _, f in rules]
@@ -92,18 +93,18 @@ for j, m in enumerate(MODELS):
         a.text(x, v - .012, f"{v:.2f}", ha="center", va="top", fontsize=6.5, color="white", fontweight="bold")
 a.set_xticks(range(len(rules)), [r for r, _ in rules], fontsize=8)
 a.set_ylim(.5, 1.0); a.set_ylabel("Mean reward"); ygrid(a)
-a.legend(loc="upper center", bbox_to_anchor=(.5, -.12), ncol=len(MODELS), fontsize=7.5)
-a.set_title("Ranking flips with how refusals are counted"); panel(a, "a")
+a.legend(loc="upper center", bbox_to_anchor=(.5, -.2), ncol=len(MODELS), fontsize=7.5)
+a.set_title("Refused tasks are not scored"); panel(a, "a")
 for m in MODELS:
     cost = sum(trials[(m, k)].get("cost_usd") or 0 for k in TASKS)
     v = rules[0][1](m)
     b.scatter(cost, v, s=90, color=COL[m], zorder=3)
     nref = sum(refused(m, k) for k in TASKS)
-    b.annotate(f"{NAME[m]}\n{nref} refusal{'s' * (nref != 1)}", (cost, v), xytext=(8, -4), textcoords="offset points", fontsize=8, color=INK2)
-b.set_xlabel("Agent cost for all 11 tasks (USD)"); b.set_ylabel("Mean reward (refusals as 0)")
+    b.annotate(f"{NAME[m]}\n{nref} refused, not scored" if nref else NAME[m], (cost, v), xytext=(8, -4), textcoords="offset points", fontsize=8, color=INK2)
+b.set_xlabel("Agent cost for the tasks it answered (USD)"); b.set_ylabel(f"Mean over the {len(common)} tasks all answered")
 costs = [sum(trials[(m, k)].get("cost_usd") or 0 for k in TASKS) for m in MODELS]
 vals = [rules[0][1](m) for m in MODELS]
-b.set_xlim(0, max(costs) * 1.3); b.set_ylim(min(vals) - .05, min(1.0, max(vals) + .05)); ygrid(b); xgrid(b)
+b.set_xlim(0, max(costs) * 1.45); b.set_ylim(min(vals) - .05, min(1.02, max(vals) + .05)); ygrid(b); xgrid(b)
 b.set_title("Cost against reward"); panel(b, "b")
 fig.tight_layout(); fig.savefig(OUT / "run_means_cost.png"); plt.close(fig)
 
