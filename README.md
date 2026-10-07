@@ -8,7 +8,7 @@ E. O'Leary · M. Alshehri · L. Legon
 
 **PhysicalAIBenchmarks** · 2026
 
-[**Results report**](results/runs/2026-10-07-openrouter/REPORT.md) · [Trailer](results/trailer.mp4) · [Runbook](docs/harbor-runbook.md) · [PLR coverage](https://physicalaibenchmarks.github.io/Text2WetLab/plr_coverage_table.html)
+[**Preprint**](docs/preprint/preprint.html) · [Results report](results/runs/2026-10-07-openrouter/REPORT.md) · [Trailer](results/trailer.mp4) · [Runbook](docs/harbor-runbook.md) · [PLR coverage](https://physicalaibenchmarks.github.io/Text2WetLab/plr_coverage_table.html)
 
 <a href="results/trailer.mp4"><img src="assets/trailer_preview.gif" width="760" alt="Text2WetLab trailer preview"></a>
 
@@ -250,7 +250,7 @@ The agent gets the instruction, `/data` and a shell, and must leave `/app/protoc
 
 </div>
 
-Five of the seven easy tasks are saturated: every model that answered scored 1.0. The models separate on RNA extraction and on the hard tasks, where 8 of 13 answered trials failed `fidelity_to_paper` (§5.4). GPT-6.1 Sol is perfect on the easy tasks and weakest on the hard ones (0.672), where it adds steps of its own; Fable is perfect on the two hard tasks it answered but refused the other two. With one attempt per cell, single-task differences of 0.25 (one core item) are within run-to-run noise.
+Six of the seven easy tasks are saturated: every model that answered them scored 1.0. The models separate on RNA extraction and on the hard tasks, where 8 of 13 answered trials failed `fidelity_to_paper` (§5.4). GPT-6.1 Sol is perfect on the easy tasks and weakest on the hard ones (0.672), where it adds steps of its own; Fable is perfect on the two hard tasks it answered but refused the other two. With one attempt per cell, single-task differences of 0.25 (one core item) are within run-to-run noise.
 
 ### 5.2 Refusals
 

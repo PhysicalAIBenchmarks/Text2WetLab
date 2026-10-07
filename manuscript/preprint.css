@@ -1,0 +1,23 @@
+/* Typesetting for docs/preprint/preprint.html (embedded by build.sh). */
+:root { --ink: #1d1c1a; --muted: #5b5a55; --rule: #d9d7cf; --bg: #fdfcf8; --accent: #2a78d6; }
+@media (prefers-color-scheme: dark) { :root { --ink: #e9e7e1; --muted: #a8a59c; --rule: #3a3934; --bg: #161613; --accent: #7fb8e6; } }
+html { background: var(--bg); }
+body { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; color: var(--ink); background: var(--bg);
+       font: 17px/1.6 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+header#title-block-header { text-align: center; margin-bottom: 2.5rem; }
+h1.title { font-size: 1.7rem; line-height: 1.25; text-wrap: balance; margin-bottom: .6rem; }
+p.author { margin: 0; color: var(--muted); display: inline; }
+p.author + p.author::before { content: " · "; }
+p.date { color: var(--muted); font-size: .9rem; }
+h2 { font-size: 1.25rem; margin-top: 2.4rem; border-bottom: 1px solid var(--rule); padding-bottom: .2rem; }
+h3 { font-size: 1.05rem; margin-top: 1.6rem; }
+a { color: var(--accent); }
+figure { margin: 1.8rem 0; }
+figure img { width: 100%; height: auto; border-radius: 4px; background: #fff; }
+figcaption { font-size: .85rem; color: var(--muted); line-height: 1.45; }
+table { border-collapse: collapse; font-size: .82rem; margin: .8rem auto 1.6rem; display: block; overflow-x: auto;
+        font-variant-numeric: tabular-nums; }
+th, td { border-bottom: 1px solid var(--rule); padding: .35rem .55rem; vertical-align: top; text-align: left; }
+th { border-bottom: 2px solid var(--ink); }
+code { font-size: .86em; }
+.csl-entry { font-size: .85rem; margin-bottom: .45rem; padding-left: 1.5rem; text-indent: -1.5rem; }
