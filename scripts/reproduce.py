@@ -29,7 +29,7 @@ import tempfile
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path[:0] = [str(ROOT), str(ROOT / "eval"), str(ROOT / "scripts")]
 OT = pathlib.Path(os.environ.get("OT_VENV", pathlib.Path.home() / "Desktop/ot-sim-venv"))
-HARBOR = ROOT / "tasks/opentrons-rna-extraction/harbor"
+HARBOR = ROOT / "tasks/opentrons-rna-extraction"
 
 
 def sha(data: bytes) -> str:
@@ -75,7 +75,7 @@ def stage_simulate():
             ("tests/fixtures/a1_a12/good_protocol.py", None),
             ("tests/fixtures/a1_a12/bad_protocol.py", None),
             ("sources/hulp-rna-extraction/code/viral_rna_extraction_protocol.py", harbor_lab),
-            ("tasks/opentrons-rna-extraction/harbor/solution/protocol.py", harbor_lab)]
+            ("tasks/opentrons-rna-extraction/solution/protocol.py", harbor_lab)]
     jobs += [(str(p.relative_to(ROOT)), None) for p in sorted((ROOT / "sources/dna-bot/code/scripts").glob("*.py"))]
     jobs += [(str(p.relative_to(ROOT)), str(ROOT / "sources/botany/code/labware")) for p in sorted((ROOT / "sources/botany/code/scripts").glob("*.py"))]
     jobs += [(str(p.relative_to(ROOT)), None) for p in sorted((ROOT / "sources/transporter-screening/code/scripts").glob("*.py"))]
@@ -104,7 +104,7 @@ def stage_simulate():
                             "events_sha": sha(json.dumps(j["events"], sort_keys=True).encode())}
             else:
                 out[rel] = {"ok": False, "why": classify(j["error"])}
-    h, s = "sources/hulp-rna-extraction/code/viral_rna_extraction_protocol.py", "tasks/opentrons-rna-extraction/harbor/solution/protocol.py"
+    h, s = "sources/hulp-rna-extraction/code/viral_rna_extraction_protocol.py", "tasks/opentrons-rna-extraction/solution/protocol.py"
     out["_harbor_solution_trace_equals_author_script_trace"] = bool(h in events and s in events and events[h] == events[s])
     return out
 

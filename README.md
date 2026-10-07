@@ -8,7 +8,7 @@ E. O'Leary · M. Alshehri · L. Legon
 
 **PhysicalAIBenchmarks** · 2026
 
-[**Preprint (PDF)**](docs/preprint/Text2WetLab_preprint.pdf) · [Leaderboard](https://physicalaibenchmarks.github.io/Text2WetLab/leaderboard.html) · [Interactive results](docs/harbor-results/model_comparison.html) · [Trailer](results/trailer.mp4) · [Runbook](docs/harbor-runbook.md) · [PLR coverage](https://physicalaibenchmarks.github.io/Text2WetLab/plr_coverage_table.html)
+[**Preprint**](docs/preprint/preprint.html) · [Leaderboard](https://physicalaibenchmarks.github.io/Text2WetLab/docs/leaderboard.html) · [Interactive results](docs/harbor-results/model_comparison.html) · [Trailer](results/trailer.mp4) · [Runbook](docs/harbor-runbook.md) · [PLR coverage](https://physicalaibenchmarks.github.io/Text2WetLab/plr_coverage_table.html)
 
 <a href="results/trailer.mp4"><img src="assets/trailer_preview.gif" width="760" alt="Text2WetLab trailer preview"></a>
 
@@ -231,7 +231,7 @@ harbor run -p tasks -i '*-hard' -a claude-code -m anthropic/claude-sonnet-5-5 -e
 harbor run -p tasks/opentrons-rna-extraction-hard -a claude-code -m anthropic/claude-opus-5-5 -k 3 -e modal -y   # pass@k
 ```
 
-**Preprint:** [`docs/preprint/Text2WetLab_preprint.pdf`](docs/preprint/Text2WetLab_preprint.pdf) (7 pages; source `preprint.html`, figures from `make_figures.py`).
+**Preprint:** [`docs/preprint/preprint.html`](docs/preprint/preprint.html) (7 pages; figures from `make_figures.py`). The PDF is attached to GitHub releases rather than committed (the repo bans tracked PDFs).
 
 **Expected oracle scores:** 1.0 on the 6 easy IR tasks. RNA extraction (both levels) scores about 0.69, because the authors' script labels the ethanol "absolute" instead of 70% and has a "Pause for 30 seconds" comment with no matching delay. The hard oracles have not yet been scored by the live judge.
 

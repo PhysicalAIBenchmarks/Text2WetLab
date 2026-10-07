@@ -4,10 +4,10 @@
 Reward = weighted judge rubric score (see judge_layer.py: robot practice, tips/contamination and fidelity 25% each,
 task-specific items share the other 25%), capped at 0.3 if a critical check fails; 0 if lint or simulation fails.
 On hard (paper-level) tasks the end-state checks are evidence for the judge, not critical (see judge_layer.is_critical).
-Original deterministic description:
 
-Reward: 1.0 if every check passes; otherwise up to 0.5 for the fraction of end-state checks right (halved if a safety rule
-was broken); 0 if the file fails the lint, the simulator fails, or nothing was written. There is no LLM judge, so a judge outage cannot zero a correct protocol.
+deterministic_reward is always recorded: 1.0 if every check passes; otherwise up to 0.5 for the fraction of end-state
+checks right (halved if a safety rule was broken). It becomes the reward when SKIP_JUDGE=1 (oracle checks in CI, the
+adversarial harness) and when the judge call fails; the latter also sets judge_error=1 so analyses can exclude it.
 Paths can be overridden for local runs: TESTS_DIR, PROTOCOL_PATH, VERIFIER_OUT, OT_PYTHON, RUNLOG.
 """
 import json
@@ -69,11 +69,13 @@ def grade(protocol: Path = PROTOCOL) -> tuple[dict, dict]:
     rewards["reward"] = 1.0 if res["passed"] else round(0.5 * frac * (0.5 if safety_broken else 1.0), 4)
     record["checks"] = res["checks"]
     rewards["deterministic_reward"] = rewards["reward"]
+    if os.environ.get("SKIP_JUDGE") == "1":
+        record["judge"] = {"skipped": "SKIP_JUDGE=1"}
+        return rewards, record
     verdict = judge(TESTS, res["checks"], protocol.read_text(), Path("/data/paper.txt"))
     record["judge"] = verdict | {"model": JUDGE_MODEL}
     if "error" in verdict:
-        rewards["judge_error"] = 1.0
-        rewards["reward"] = 0.0
+        rewards["judge_error"] = 1.0             # a judge outage must not zero a correct protocol
         return rewards, record
     score = verdict["score"]
     level = load_rubric(TESTS)["level"]

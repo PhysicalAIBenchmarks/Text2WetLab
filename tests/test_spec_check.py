@@ -74,7 +74,7 @@ def test_eight_channel_events_touch_all_rows():
 
 def test_eval_runlog_is_identical_to_the_harbor_graders_copy():
     """The Harbor task ships its own runlog.py (it runs in Docker). Both must parse the log the same way."""
-    assert (ROOT / "eval/runlog.py").read_bytes() == (ROOT / "tasks/opentrons-rna-extraction/harbor/tests/runlog.py").read_bytes()
+    assert (ROOT / "eval/runlog.py").read_bytes() == (ROOT / "tasks/split-200ul-two-wells/tests/runlog.py").read_bytes()
 
 
 def test_simulator_errors_are_recorded_by_type_never_by_their_random_message():

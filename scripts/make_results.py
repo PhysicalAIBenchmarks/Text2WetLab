@@ -74,7 +74,7 @@ def main():
     for task in sorted((ROOT / "tasks").iterdir()):
         out = R / task.name
         out.mkdir(parents=True, exist_ok=True)
-        h, ir = task / "harbor", task / "public/ir.json"
+        h, ir = task, task / "public/ir.json"
         res = {"task": task.name, "grader": "LLM judge + 16 checks" if not ir.exists() else "deterministic end-state checker"}
         res["oracle"] = [trial_row(j, d, r) for j, d, r in jobs(f"oracle-{task.name}")]
         res["trials"] = [trial_row(j, d, r) for j, d, r in jobs(f"agent-*-{task.name}")]

@@ -13,15 +13,21 @@ ALL = sorted(p for p in TASKS.iterdir() if p.is_dir())
 SLUGS = {s["slug"] for s in json.loads((ROOT / "sources/sources.json").read_text())}
 
 
+HARBOR = {"task.toml", "instruction.md", "environment", "solution", "tests"}
+SPEC = {"public", "private"}       # public/ is the source spec (published); private/ is never published
+
+
 @pytest.mark.parametrize("task", ALL, ids=lambda p: p.name)
-def test_every_task_is_split_into_public_private_harbor(task):
-    """public/ is published, private/ and harbor/ are not. Nothing else lives loose in the folder except the manifest."""
-    assert {p.name for p in task.iterdir()} - {"__pycache__"} <= {"task.toml", "public", "private", "harbor"}
-    assert (task / "public/instruction.md").read_text().strip()
+def test_every_task_is_a_harbor_task_with_an_optional_public_spec(task):
+    """tasks/<task>/ is the Harbor task itself; public/ and private/ hold the spec it was made from. Nothing else."""
+    assert {p.name for p in task.iterdir()} - {"__pycache__"} <= HARBOR | SPEC
+    for need in ("task.toml", "instruction.md", "environment/Dockerfile", "tests/test.sh", "solution/solve.sh"):
+        assert (task / need).exists(), f"{task.name}/{need}"
     meta = tomllib.loads((task / "task.toml").read_text())
-    assert meta["task"]["name"] == task.name
-    if (task / "public/ir.json").exists():       # the Harbor task is specified by its instruction and grader instead
+    assert meta["task"]["name"] == f"text2wetlab/{task.name}"           # Harbor's org/name rule
+    if (task / "public/ir.json").exists():
         assert (task / "public/assumptions.md").exists()
+        assert (task / "public/instruction.md").read_text().strip() in (task / "instruction.md").read_text()
         proto = Protocol.model_validate_json((task / "public/ir.json").read_text())
         names = {c.name for c in proto.containers}
         assert set(meta.get("checks", {}).get("free_wells", [])) <= names
@@ -41,38 +47,36 @@ def test_a_task_says_where_it_came_from(task):
         assert s["slug"] in SLUGS and s["relation"], f"{task.name}: {s}"
 
 
-def test_a_harbor_folder_is_a_complete_harbor_task():
+def test_the_grader_reads_the_brief_the_agent_got():
+    """The LLM judge reads a copy of the brief from tests/; that copy was dropped once between two commits."""
     for task in ALL:
-        h = task / "harbor"
-        if h.exists():
-            for need in ("task.toml", "instruction.md", "environment/Dockerfile", "tests/test.sh", "solution/solve.sh"):
-                assert (h / need).exists(), f"{task.name}/harbor/{need}"
-            meta = tomllib.loads((h / "task.toml").read_text())
-            assert re.fullmatch(r"[\w-]+/[\w-]+", meta["task"]["name"])      # Harbor's org/name rule
+        copy = task / "tests/instruction.md"
+        if copy.exists():
+            assert copy.read_text() == (task / "instruction.md").read_text(), task.name
 
 
-def test_the_task_text_reaches_the_agent_and_the_grader():
-    """The brief must contain the public instruction. The RNA task's brief IS the instruction and its LLM judge reads a
-    third copy from tests/; that copy was dropped once between two commits."""
-    for task in ALL:
-        h = task / "harbor"
-        if not h.exists():
-            continue
-        want = (task / "public/instruction.md").read_text().strip()
-        assert want in (h / "instruction.md").read_text(), task.name
-        grade = h / "tests/grade.py"
-        if "/tests/instruction.md" in grade.read_text():
-            assert (h / "tests/instruction.md").read_text().strip() == want, task.name
+VENDORED = {"spec_check.py": "eval/spec_check.py", "protocol_lint.py": "eval/protocol_lint.py",
+            "paper2protocol/models.py": "paper2protocol/models.py", "paper2protocol/check.py": "paper2protocol/check.py",
+            "paper2protocol/timeline.py": "paper2protocol/timeline.py", "paper2protocol/__init__.py": "paper2protocol/__init__.py"}
+
+
+@pytest.mark.parametrize("task", ALL, ids=lambda p: p.name)
+def test_vendored_checker_copies_match_the_repo(task):
+    """Graders run in the sandbox with copies of the checker. A copy that drifts silently changes how the task is graded."""
+    for rel, src in VENDORED.items():
+        copy = task / "tests" / rel
+        if copy.exists():
+            assert copy.read_text() == (ROOT / src).read_text(), f"{task.name}/tests/{rel} differs from {src}"
 
 
 def test_no_layer_scheme_is_left():
     assert not [p.name for p in TASKS.iterdir() if p.name in ("L1", "L2")]
     assert not list(TASKS.glob("*/input.nl.txt"))
-    assert not [p for p in TASKS.glob("*/*") if p.name in ("ir.json", "instruction.md", "assumptions.md", "solution", "tests")]
+    assert not list(TASKS.glob("*/harbor")), "the task folder is the Harbor task; harbor/ subfolders were retired"
 
 
 def test_every_path_a_task_readme_tells_you_to_run_exists():
-    for readme in TASKS.glob("*/harbor/README.md"):
+    for readme in TASKS.glob("*/README.md"):
         for path in re.findall(r"(?:-p|--path)\s+(tasks/[\w./-]+)", readme.read_text()):
             assert (ROOT / path).exists(), f"{readme.relative_to(ROOT)} runs {path}, which does not exist"
 

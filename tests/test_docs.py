@@ -3,7 +3,7 @@ import re
 
 ROOT = pathlib.Path(__file__).parent.parent
 DOCS = [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md")), ROOT / "sources/CODE.md", ROOT / "sources/README.md", ROOT / "paper2protocol/README.md",
-        *sorted((ROOT / "tasks").glob("*/harbor/README.md"))]  # task READMEs hold the commands people actually run
+        *sorted((ROOT / "tasks").glob("*/README.md"))]  # task READMEs hold the commands people actually run
 LINK = re.compile(r"\]\(([^)#\s]+)")
 
 

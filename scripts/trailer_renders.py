@@ -14,7 +14,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-RNA_LABWARE = "tasks/opentrons-rna-extraction/harbor/environment/data/labware"
+RNA_LABWARE = "tasks/opentrons-rna-extraction/environment/data/labware"
 
 # name: (commit or None for the working tree, protocol path, labware dir or None)
 RENDERS = {
@@ -23,7 +23,7 @@ RENDERS = {
     "r7-rna-opus": ("48836f1", "results/claude-opus-5-5/opentrons-rna-extraction/protocol.py", RNA_LABWARE),
     "r5-rna-sonnet": ("8beadb3", "results/claude-sonnet-5-5/opentrons-rna-extraction/protocol.py", RNA_LABWARE),
     "gt-ecoli": (None, "tasks/ecoli-heat-shock-transformation/solution/protocol.py", None),
-    "gt-rna": (None, "tasks/opentrons-rna-extraction/harbor/solution/protocol.py", RNA_LABWARE),  # the authors' HULP script
+    "gt-rna": (None, "tasks/opentrons-rna-extraction/solution/protocol.py", RNA_LABWARE),  # the authors' HULP script
 }
 
 

@@ -16,17 +16,17 @@ IR_TASKS = sorted(p for p in TASKS.iterdir() if (p / "public/ir.json").exists())
 OT = pathlib.Path(os.environ.get("OT_VENV", pathlib.Path.home() / "Desktop/ot-sim-venv")) / "bin/python"
 
 
-def test_generated_harbor_folders_are_current():
+def test_ir_derived_task_files_are_current():
     r = subprocess.run([sys.executable, str(ROOT / "scripts/make_harbor.py"), "--check"], capture_output=True, text=True)
     assert r.returncode == 0, r.stderr
 
 
 @pytest.mark.parametrize("task", IR_TASKS, ids=lambda p: p.name)
 def test_every_ir_task_has_the_same_harbor_files(task):
-    h = task / "harbor"
+    h = task
     for rel in ("instruction.md", "task.toml", "environment/Dockerfile", "solution/protocol.py", "solution/solve.sh", "tests/test.sh",
                 "tests/grade.py", "tests/deck.json", "tests/ir.json", "tests/spec_check.py", "tests/runlog.py", "tests/protocol_lint.py"):
-        assert (h / rel).exists(), f"{task.name}/harbor/{rel}"
+        assert (h / rel).exists(), f"{task.name}/{rel}"
     deck = json.loads((h / "tests/deck.json").read_text())
     brief = (h / "instruction.md").read_text()
     for spec in deck["slots"].values():

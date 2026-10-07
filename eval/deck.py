@@ -1,6 +1,6 @@
 """A fixed OT-2 deck for an IR: which labware sits in which slot, under which label, and where each tube is.
 
-    plan_deck(protocol) -> dict      (JSON-serialisable; written to harbor/tests/deck.json and shown in the agent brief)
+    plan_deck(protocol) -> dict      (JSON-serialisable; written to tasks/<task>/tests/deck.json and shown in the agent brief)
 
 Every IR container becomes one labware, except tubes, which are packed into racks. The labware label IS the IR
 container name (or the rack's name), so the checker can map the simulator's events back to IR containers without

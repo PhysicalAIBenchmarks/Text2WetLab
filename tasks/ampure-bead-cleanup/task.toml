@@ -9,6 +9,8 @@ keywords = ["opentrons", "ot-2", "lab-automation", "protocol-generation"]
 
 [metadata]
 level = "easy"
+steps = 13
+containers = 6
 source = "handwritten"
 deck = "specified"
 grading = "simulator gate + end-state checks + Sonnet 5.5 rubric judge (75% core: robot practice, tips/contamination, fidelity; 25% task-specific)"
@@ -28,3 +30,10 @@ cpus = 4
 memory_mb = 8192
 storage_mb = 10240
 gpus = 0
+
+[checks]
+free_wells = []
+
+[[source]]
+slug = "pioneer-ngs"
+relation = "claimed source, NOT supported: the repo has no AMPure step (Hamilton, PyLabRobot)"

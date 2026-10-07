@@ -62,12 +62,13 @@ def attacks(code: str, deck: dict) -> dict[str, str | None]:
 
 
 def run_one(task: pathlib.Path, name: str, code: str) -> dict:
-    h = task / "harbor"
+    h = task
     with tempfile.TemporaryDirectory() as d:
         proto = pathlib.Path(d, "protocol.py")
         proto.write_text(code)
         env = dict(os.environ, TESTS_DIR=str(h / "tests"), PROTOCOL_PATH=str(proto), VERIFIER_OUT=d,
-                   OT_PYTHON=str(OT_VENV / "bin/python"), RUNLOG=str(h / "tests/runlog.py"))
+                   OT_PYTHON=str(OT_VENV / "bin/python"), RUNLOG=str(h / "tests/runlog.py"),
+                   DATA_DIR=str(h / "environment/data"), SKIP_JUDGE="1")  # attacks target the deterministic layers; the judge is not a defence
         r = subprocess.run([sys.executable, str(h / "tests/grade.py")], capture_output=True, text=True, env=env, timeout=900)
         try:
             rec = json.loads(pathlib.Path(d, "result.json").read_text())
@@ -84,7 +85,7 @@ def main():
     a = ap.parse_args()
     results = {}
     for task in sorted((ROOT / "tasks").iterdir()):
-        h = task / "harbor"
+        h = task
         if not (h / "tests/deck.json").exists() or (a.tasks and task.name not in a.tasks):
             continue
         code = (h / "solution/protocol.py").read_text()

@@ -1,7 +1,7 @@
 schema_version = "1.4"
 
 [task]
-name = "opentrons/rna-extraction-hard"
+name = "text2wetlab/opentrons-rna-extraction-hard"
 version = "0.1.0"
 description = "Write an Opentrons OT-2 Python protocol for the paper's 48-sample magnetic-bead SARS-CoV-2 RNA extraction."
 authors = [{ name = "Mohammed" }]
@@ -9,6 +9,7 @@ keywords = ["opentrons", "ot-2", "lab-automation", "protocol-generation", "rna-e
 
 [metadata]
 level = "hard"
+source = "paper"
 source_paper = "doi:10.1371/journal.pone.0246302"
 reference_protocol = "https://github.com/HULPopentrons/RNA_extraction_OT2opentrons/blob/master/viral_rna_extraction_protocol.py"
 grading = "simulator gate + run-log checks + Sonnet 5.5 rubric judge (75% core: robot practice, tips/contamination, fidelity; 25% task-specific)"
@@ -28,3 +29,8 @@ cpus = 4
 memory_mb = 8192
 storage_mb = 10240
 gpus = 0
+
+[[source]]
+slug = "hulp-rna-extraction"
+experiment = "exp2"
+relation = "paper-only variant of opentrons-rna-extraction; base task: same paper (Harbor task)"

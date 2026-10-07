@@ -18,13 +18,16 @@ OUT = ROOT / "docs/task-sources.md"
 OUT_JSON = ROOT / "sources/task_sources.json"
 # task -> (vendored script or None, why not / note)
 REF = {
-    "opentrons-rna-extraction": ("sources/hulp-rna-extraction/code/viral_rna_extraction_protocol.py", "the oracle in `harbor/solution/` is this script, re-saved"),
+    "opentrons-rna-extraction": ("sources/hulp-rna-extraction/code/viral_rna_extraction_protocol.py", "the oracle in `solution/` is this script, re-saved"),
     "colony-pcr-screening": ("sources/slowpoke/code/Colony_PCR/colony_PCR_workflow_OT2.py", "the task is inspired by it; its numbers differ"),
     "golden-gate-assembly": (None, "AssemblyTron generates protocols; not vendored (102 .py files)"),
     "ecoli-heat-shock-transformation": (None, "APEX is AGPL-3.0: cannot be vendored"),
     "ampure-bead-cleanup": (None, "no supported source: the claimed repo has no AMPure step"),
     "split-200ul-two-wells": ("tasks/split-200ul-two-wells/private/solution/protocol.py", "handwritten oracle (private, never published)"),
     "a1-a12-100ul": (None, "handwritten, no reference script; checked by spec_check fixtures"),
+    # a <task>-hard variant gives the agent the paper instead of the steps; it shares its base task's reference,
+    # except heat-shock, whose hard variant is a different protocol (APEX protocol 1)
+    "ecoli-heat-shock-transformation-hard": (None, "APEX protocol 1 (the paper the agent gets); AGPL-3.0: cannot be vendored"),
 }
 
 
@@ -36,14 +39,14 @@ def render() -> str:
     rows, feeds = [], {}
     for t in sorted((ROOT / "tasks").iterdir()):
         meta = tomllib.loads((t / "task.toml").read_text())
-        nl = link("instruction.md", f"tasks/{t.name}/public/instruction.md")
+        nl = link("instruction.md", f"tasks/{t.name}/public/instruction.md" if (t / "public").exists() else f"tasks/{t.name}/instruction.md")
         srcs = meta.get("source", [])
         for x in srcs:
             feeds.setdefault(x["slug"], []).append(t.name)
         first = srcs[0] if srcs else None
         if first and first.get("experiment", "").startswith("exp") and meta["metadata"]["source"] == "paper2protocol":
             nl += " · " + link("protocol.txt", f"sources/{first['slug']}/pipeline/{first['experiment']}/protocol.txt")
-        ref_path, note = REF[t.name]
+        ref_path, note = REF.get(t.name) or REF[t.name.removesuffix("-hard")]
         pdfs, papers, upstream = [], [], []
         for s in srcs:
             rec = json.loads((ROOT / f"sources/{s['slug']}/record.json").read_text())

@@ -23,7 +23,7 @@ sys.path[:0] = [str(ROOT), str(ROOT / "eval")]
 from paper2protocol.models import Protocol  # noqa: E402
 from spec_check import check, error_kind, free_wells, simulate  # noqa: E402
 
-HARBOR = ROOT / "tasks/opentrons-rna-extraction/harbor"
+HARBOR = ROOT / "tasks/opentrons-rna-extraction"
 spec = importlib.util.spec_from_file_location("harbor_checks", HARBOR / "tests/checks.py")
 harbor_checks = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(harbor_checks)
