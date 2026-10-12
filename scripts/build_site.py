@@ -188,7 +188,7 @@ with its evidence is in the <a href="{report}">full report</a>.</p>
 <h2>How to read it</h2>
 <div class="notes">
   <div class="note"><b>Reward</b>Rubric score: three core items at 25% each (robot practice, tips and contamination, fidelity to the task or paper) and task items sharing 25%. A failed critical check caps it at 0.30.</div>
-  <div class="note"><b>Verifier</b>Lint gate, 10 reward-hacking traps, the Opentrons 7.5 simulator and deterministic checks against the ground truth come first. All 11 reference solutions pass; 152 broken or cheating protocols all fail.</div>
+  <div class="note"><b>Verifier</b>Lint gate, 9 reward-hacking traps, the Opentrons 7.5 simulator and deterministic checks against the ground truth come first. All 11 reference solutions pass; 152 broken or cheating protocols all fail.</div>
   <div class="note"><b>Provisional (†)</b>{d["n_provisional"]} scores were judged before the paper-only audit removed two requirements the papers do not support, or with fewer than three judge votes. Hover a † for the reason; they are re-judged in the next run.</div>
 </div>
 </div>

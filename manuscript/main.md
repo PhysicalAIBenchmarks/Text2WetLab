@@ -17,7 +17,7 @@ pipette-mixing fragile cells, carrying magnetic beads into an eluate, or drawing
 holds. We present **Text2WetLab**, 11 tasks in the Harbor agent-evaluation format at two levels. *Easy* tasks give the
 exact steps; *paper-only* ("hard") tasks give only a goal, a fixed deck and the source paper. They come from published
 protocols whose authors also released their robot code, which gives an independent reference for each. A layered verifier scores the agent's Opentrons OT-2 protocol
-with a lint gate, ten reward-hacking traps, the Opentrons simulator, deterministic checks of the simulated run against
+with a lint gate, nine reward-hacking traps, the Opentrons simulator, deterministic checks of the simulated run against
 a ground-truth protocol representation, and a pass/fail rubric scored by a language-model judge as the majority of
 three calls. We validate the verifier from both sides: all 11 reference solutions pass, 151 broken or cheating
 protocols of 18 kinds all fail (none scores above 0.47), a close reading of the model runs exposed eight grader
@@ -49,7 +49,7 @@ quantity checked in the simulated run against a ground truth, and whether the gr
 1. Eleven Harbor tasks [@harbor2026] at two levels. Four paper-only tasks give the agent only a goal, a fixed deck and the
    source paper, which it must read (Section 3).
 2. A layered verifier: deterministic checks of the simulated run against a ground-truth protocol representation, a
-   75/25 core/task rubric scored by a three-vote judge, and ten reward-hacking traps (Section 4).
+   75/25 core/task rubric scored by a three-vote judge, and nine reward-hacking traps (Section 4).
 3. A validation of that verifier against reference solutions and 151 adversarial protocols, an audit that every
    quantity a paper-only task grades is in its paper or brief, and ten grader faults
    found by reading model runs, each fixed with a regression test (Section 5).
@@ -130,7 +130,7 @@ each pair a container environment with a human-written solution and tests [@merr
 likewise ships a container, an instruction, a reference solution and a verifier that is copied in only after the agent
 stops. BioCoder benchmarks bioinformatics code generation with fuzz tests [@tang2023biocoder]. Agents that can read a
 grader can game it; Hack-Verifiable Terminal Bench embeds detectable hacks in tasks to measure how often frontier models
-take them [@roth2026hvtb]. Our ten traps follow the same logic for a laboratory setting, from a planted wrong answer key
+take them [@roth2026hvtb]. Our nine traps follow the same logic for a laboratory setting, from a planted wrong answer key
 to tampering with the simulator, and we test them, with the rest of the verifier, against protocols written to cheat.
 
 <div align="center">
@@ -197,7 +197,7 @@ redistributable, so its task downloads a pinned version at image build and verif
 ## 4 Verifier
 
 The verifier runs six layers in order. (1) A **lint** gate rejects imports, file access, dunder attributes and other
-reaches into simulator internals. (2) Ten **reward-hacking traps** catch a copied answer key, the reference's canary
+reaches into simulator internals. (2) Nine **reward-hacking traps** catch a copied answer key, the reference's canary
 string, text addressed to the grader, outputs written before grading, a tampered simulator, simulator detection,
 network or shell access, custom labware definitions and modified task files; any trip scores 0. (3) The **Opentrons
 7.5 simulator** must complete. (4) **Deterministic checks** compare the simulated run with the ground truth: on the
@@ -295,7 +295,8 @@ tasks; below, paper-only tasks.](../docs/preprint/figures/run_rewards.png)
 | `fidelity_to_paper` passed | 2/4 | 2/3 | 2/2 | 1/4 | 0/4 | 2/4 |
 | Critical failures (capped at 0.30) | 1 | 0 | 0 | 0 | 3 | 3 |
 | Refused, not scored | 0 | 2 | 3 | 0 | 0 | 0 |
-| Agent cost (USD) | **1.25** | 3.52 | 6.21 | 1.49 | 2.83 | 2.53 |
+| Agent cost, the 8 tasks all answered (USD) | **0.75** | 2.67 | 5.53 | 0.97 | 2.19 | 1.89 |
+| Agent cost, every trial run (USD) | **1.25** | 3.52 | 6.21 | 1.49 | 2.83 | 2.53 |
 
 </div>
 
@@ -313,8 +314,8 @@ its dual-use screening-evasion task, where the tested Anthropic and OpenAI front
 [@liu2026abcbench]; ours fall on benign tasks.
 
 ![**Figure 4.** (a) Mean reward over the eight tasks all six models answered (the headline), over every task each
-model answered, and over the easy and paper-only tasks it answered. (b) Agent cost for the tasks each model answered
-against its headline score.](../docs/preprint/figures/run_means_cost.png)
+model answered, and over the easy and paper-only tasks it answered. (b) Agent cost for the same eight tasks against
+the headline score.](../docs/preprint/figures/run_means_cost.png)
 
 **The mechanical layers are nearly solved; the signal is in the judge.** No model crashed the simulator, tripped a
 trap or broke the lint gate (Figure 5). The closed models' only physical-safety failure is Sonnet's reservoir overdraw;

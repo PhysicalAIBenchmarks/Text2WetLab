@@ -23,30 +23,30 @@ body { margin:0; background:var(--page); font:15px/1.4 system-ui,-apple-system,"
 .levels div { flex:1; font-size:12px; color:var(--ink2); border-left:3px solid var(--line); padding-left:8px; }
 </style></head>
 <body><div class="wrap">
-  <div class="band">1 · Build tasks from papers</div>
+  <div class="band">A · Build tasks from papers</div>
   <div class="row">
-    <div class="stage"><h3><span class="key" style="background:var(--orange)"></span>Paper + authors' code</h3><p>36 papers, 123 experiments in <code>sources/</code>. Code kept aside as an independent check, never an input.</p></div>
+    <div class="stage"><h3><span class="key" style="background:var(--orange)"></span>Paper + authors' robot code</h3><p>36 papers, 123 experiments. The authors' code is kept aside as an independent check, never an input.</p></div>
     <div class="arrow">→</div>
-    <div class="stage"><h3><span class="key" style="background:var(--orange)"></span>paper2protocol</h3><p><code>list</code> the experiments, <code>assess</code> if one has enough detail, <code>convert</code> it to instructions + a protocol IR.</p></div>
+    <div class="stage"><h3><span class="key" style="background:var(--orange)"></span>Extraction</h3><p>An LLM pipeline lists the experiments, keeps those with enough detail, and writes each as instructions and a structured protocol (ground truth).</p></div>
     <div class="arrow">→</div>
-    <div class="stage"><h3><span class="key" style="background:var(--orange)"></span>Harbor task</h3><p>Fixed deck, reference protocol, <code>rubric.json</code>, 10 traps.</p>
-      <div class="levels"><div><b>Easy</b>: exact steps and quantities</div><div><b>Hard</b>: goal + paper at <code>/data</code></div></div></div>
+    <div class="stage"><h3><span class="key" style="background:var(--orange)"></span>Task</h3><p>A fixed deck, a reference protocol, a grading rubric and 9 reward-hacking traps.</p>
+      <div class="levels"><div><b>Easy</b>: every step and quantity given</div><div><b>Paper-only</b>: a goal and the paper</div></div></div>
   </div>
   <div class="down">↓</div>
-  <div class="band">2 · Run the agent in a Harbor sandbox (Modal or Docker)</div>
+  <div class="band">B · Run the agent in an isolated sandbox, then grade</div>
   <div class="row">
-    <div class="stage"><h3><span class="key" style="background:var(--blue)"></span>Claude Code agent</h3><p>Reads <code>instruction.md</code> (and the paper on hard tasks), writes <code>/app/protocol.py</code>. Opus 5.5, Sonnet 5.5, Fable 5.1.</p></div>
+    <div class="stage"><h3><span class="key" style="background:var(--blue)"></span>LLM agent</h3><p>Reads the task (and the paper, on paper-only tasks) and writes an OT-2 Python protocol. Six models from four providers, all run in the same Claude Code harness.</p></div>
     <div class="arrow">→</div>
-    <div class="stage" style="flex:2.6"><h3><span class="key" style="background:var(--aqua)"></span>Verifier <code>tests/test.sh</code>, copied in only after the agent finishes</h3>
+    <div class="stage" style="flex:2.6"><h3><span class="key" style="background:var(--aqua)"></span>Verifier, copied into the sandbox only after the agent finishes</h3>
       <div class="layers">
-        <div class="layer"><b>Lint</b><span>fail → 0</span></div>
-        <div class="layer"><b>Hack traps</b><span>10 traps, any → 0</span></div>
-        <div class="layer"><b>Simulator</b><span><code>opentrons_simulate</code>, fail → 0</span></div>
-        <div class="layer"><b>Checks</b><span>end state or run log</span></div>
+        <div class="layer"><b>Lint</b><span>unsafe code → 0</span></div>
+        <div class="layer"><b>Traps</b><span>9 traps, any → 0</span></div>
+        <div class="layer"><b>Simulator</b><span>Opentrons simulator, error → 0</span></div>
+        <div class="layer"><b>Checks</b><span>end state vs ground truth; tips, contamination</span></div>
         <div class="layer judge"><b>LLM judge</b><span>3 core items 75%, task items 25%, each pass/fail</span></div>
-        <div class="layer cap"><b>Critical cap</b><span>reward ≤ 0.3</span></div>
+        <div class="layer cap"><b>Critical cap</b><span>critical fail → ≤ 0.3</span></div>
       </div></div>
     <div class="arrow">→</div>
-    <div class="stage" style="flex:.8"><h3>reward.json</h3><p>0 to 1, plus every rubric item and trap.</p></div>
+    <div class="stage" style="flex:.8"><h3>Reward</h3><p>0 to 1, with every check, rubric item and trap recorded.</p></div>
   </div>
 </div></body></html>
