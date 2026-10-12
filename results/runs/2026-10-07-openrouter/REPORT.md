@@ -46,7 +46,7 @@
 | `magnet_engaged_for_all_removals` | RNA run-log check | 2/2 | 2/2 | 2/2 | 2/2 | 2/2 | 2/2 |
 | `mix_5x_after_sample` | RNA run-log check | 2/2 | 2/2 | 2/2 | 2/2 | 2/2 | 2/2 |
 | `recover_70_100ul_one_well_each` | RNA run-log check | 2/2 | 2/2 | 2/2 | 2/2 | 2/2 | 2/2 |
-| `recover_about_80ul` | RNA run-log check | - | - | - | - | 1/1 | 1/1 |
+| `recover_about_80ul` | RNA run-log check | 1/1 | 1/1 | 1/1 | 1/1 | 1/1 | 1/1 |
 | `reservoir_columns_within_15ml` | RNA run-log check | 1/2 | 2/2 | 2/2 | 2/2 | 1/2 | 1/2 |
 | `step_order` | RNA run-log check | 2/2 | 2/2 | 2/2 | 2/2 | 2/2 | 2/2 |
 | `supernatant_removed_each_step` | RNA run-log check | 2/2 | 2/2 | 2/2 | 2/2 | 2/2 | 2/2 |
