@@ -1,0 +1,69 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.24"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/blots-ot2/eyaplab__BLOTS-OT2",
+   "commit": "58ade714bf217efad3fa84b33a55ce4b2f2447fb",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 1,
+   "py_files": 1,
+   "redistributable": "no",
+   "repo": "eyaplab/BLOTS-OT2",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 13,
+   "status": "cloned",
+   "url": "https://github.com/eyaplab/BLOTS-OT2"
+  }
+ ],
+ "doi_primary": "10.1002/cpz1.70454",
+ "dois": [
+  "10.1002/cpz1.70454"
+ ],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 131,
+  "source": "europepmc:PMC13528971"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc",
+ "pdf": {
+  "bytes": 1359717,
+  "licence": "cc by-nc",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "71997d9ea0452f5e71de19eab495b9d17ffbeb2c0582276d386700bd60559b28",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://europepmc.org/articles/PMC13528971?pdf=render"
+   }
+  ],
+  "url": "https://europepmc.org/articles/PMC13528971?pdf=render"
+ },
+ "pmcid": "PMC13528971",
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/blots-ot2",
+ "title": "Bacterial Lysis Observation Over Time Assay (BLOTS) for High-Throughput Isolation and Screening",
+ "year": "2026"
+}

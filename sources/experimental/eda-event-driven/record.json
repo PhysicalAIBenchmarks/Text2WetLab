@@ -1,0 +1,77 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/eda-event-driven/wl-stepp__eda_plugin",
+   "commit": "94b042401ae774fbac381952203350f4b30bbe0a",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "BSD-3-Clause",
+   "opentrons_py_files": 0,
+   "py_files": 44,
+   "redistributable": "yes",
+   "repo": "wl-stepp/eda_plugin",
+   "robot_mentions": [],
+   "size_kb": 126068,
+   "status": "cloned",
+   "url": "https://github.com/wl-stepp/eda_plugin"
+  }
+ ],
+ "doi_primary": "10.1038/s41592-022-01589-x",
+ "dois": [
+  "10.1038/s41592-022-01589-x"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 8,
+  "sections": 34,
+  "source": "europepmc:PMC7613693"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "bytes": 2362726,
+  "licence": "",
+  "pages": null,
+  "redistributable": "unknown",
+  "sha256": "718d4199b0fb77aee8b43e4f2fae11318fd2ec7421b1168a14431cbefa5fe50a",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": false,
+    "url": "https://www.nature.com/articles/s41592-022-01589-x.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7613693?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7613693.1/PMC7613693.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7613693.1/PMC7613693.1.pdf"
+ },
+ "pmcid": "PMC7613693",
+ "readiness": "ready",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/eda-event-driven",
+ "title": "Event-driven acquisition for content-enriched microscopy",
+ "year": "2022"
+}

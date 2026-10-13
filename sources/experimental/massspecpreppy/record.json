@@ -1,0 +1,67 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.12",
+    "2.13"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/massspecpreppy/stemicha__MassSpecPreppy",
+   "commit": "1d3e1c558c6f033c279b58b54e3cb02c7f5dafeb",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "GPL-3.0",
+   "opentrons_py_files": 10,
+   "py_files": 10,
+   "redistributable": "no",
+   "repo": "stemicha/MassSpecPreppy",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 23272,
+   "status": "cloned",
+   "url": "https://github.com/stemicha/MassSpecPreppy"
+  }
+ ],
+ "doi_primary": "10.1002/pmic.202300294",
+ "dois": [
+  "10.1002/pmic.202300294"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "github",
+  "web"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1002/pmic.202300294:\n  europepmc: no Europe PMC full text for this DO",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "licence": "cc by-nc-nd",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/pmic.202300294"
+   }
+  ]
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "partly_verified",
+ "slug": "experimental/massspecpreppy",
+ "title": "MassSpecPreppy - an end-to-end solution for automated protein concentration determination and flexible sample digestion for proteomics",
+ "year": "2024"
+}

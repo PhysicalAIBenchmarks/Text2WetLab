@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/flyspresso-embryo-ihc/janelia-pypi__hybridizer_python",
+   "commit": "5f21f4d0dd2ef446e6b9aebb1d5b94526ac4131e",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "unclear",
+   "opentrons_py_files": 0,
+   "py_files": 4,
+   "redistributable": "no",
+   "repo": "janelia-pypi/hybridizer_python",
+   "robot_mentions": [],
+   "size_kb": 56,
+   "status": "cloned",
+   "url": "https://github.com/janelia-pypi/hybridizer_python"
+  }
+ ],
+ "doi_primary": "10.1038/s41598-021-89676-5",
+ "dois": [
+  "10.1038/s41598-021-89676-5"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 31,
+  "source": "europepmc:PMC8119710"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 9374172,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "8ade28a84a1bb9380c363be5aadd133c9f6b169dfc3abacad194e9e8f157ce98",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s41598-021-89676-5.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s41598-021-89676-5.pdf"
+ },
+ "pmcid": "PMC8119710",
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/flyspresso-embryo-ihc",
+ "title": "An open-source semi-automated robotics pipeline for embryo immunohistochemistry",
+ "year": "2021"
+}

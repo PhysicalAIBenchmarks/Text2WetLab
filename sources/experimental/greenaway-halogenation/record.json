@@ -1,0 +1,55 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.9"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/greenaway-halogenation/GreenawayLab__automated_halogenation_of_pharmaceuticals",
+   "commit": "b78bd71e409c26f356ec6071fd1b2c75a4ba2535",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "BSD-3-Clause",
+   "opentrons_py_files": 9,
+   "py_files": 11,
+   "redistributable": "yes",
+   "repo": "GreenawayLab/automated_halogenation_of_pharmaceuticals",
+   "robot_mentions": [],
+   "size_kb": 28972,
+   "status": "cloned",
+   "url": "https://github.com/GreenawayLab/automated_halogenation_of_pharmaceuticals"
+  }
+ ],
+ "dois": [
+  "10.26434/chemrxiv.15000393"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github",
+  "web"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.26434/chemrxiv.15000393:\n  europepmc: no Europe PMC full text for thi",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/greenaway-halogenation",
+ "title": "An automated platform for tailored late-stage halogenation of pharmaceuticals",
+ "year": ""
+}

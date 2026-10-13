@@ -1,0 +1,44 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.0"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/detectr-covid-ot2/tsdobbs__mammoth-COVID19-assay-OT2",
+   "commit": "447008ce24f6b1740fcbea040a5d0eb664f3b083",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 2,
+   "py_files": 2,
+   "redistributable": "no",
+   "repo": "tsdobbs/mammoth-COVID19-assay-OT2",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 907,
+   "status": "cloned",
+   "url": "https://github.com/tsdobbs/mammoth-COVID19-assay-OT2"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/detectr-covid-ot2",
+ "title": "Mammoth DETECTR COVID-19 assay on OT-2",
+ "year": ""
+}

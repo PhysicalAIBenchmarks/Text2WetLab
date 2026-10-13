@@ -1,0 +1,59 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/clairify-xdl/ac-rad__xdl-generation",
+   "commit": "1d75c294bf67e14bbacb049995f7defffb13984f",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 9,
+   "redistributable": "yes",
+   "repo": "ac-rad/xdl-generation",
+   "robot_mentions": [],
+   "size_kb": 1043,
+   "status": "cloned",
+   "url": "https://github.com/ac-rad/xdl-generation"
+  }
+ ],
+ "dois": [
+  "10.1007/s10514-023-10136-2"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1007/s10514-023-10136-2:\n  europepmc: no Europe PMC full text for thi",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": false,
+    "url": "https://link.springer.com/content/pdf/10.1007/s10514-023-10136-2.pdf"
+   }
+  ]
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "protocol_language",
+ "simulator": "not run",
+ "slug": "experimental/clairify-xdl",
+ "title": "Large language models for chemistry robotics (CLAIRify: NL -> XDL)",
+ "year": ""
+}

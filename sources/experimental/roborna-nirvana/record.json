@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/roborna-nirvana/strubelab__roboRNA",
+   "commit": "42a432153362299dea8d8e8a5c840a2dd4bc3337",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "strubelab/roboRNA",
+   "robot_mentions": [],
+   "size_kb": 100940,
+   "status": "cloned",
+   "url": "https://github.com/strubelab/roboRNA"
+  }
+ ],
+ "doi_primary": "10.1038/s41598-023-47190-w",
+ "dois": [
+  "10.1038/s41598-023-47190-w"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 18,
+  "source": "europepmc:PMC10663496"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1776221,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "03fcf27a698f773fc54880cd14610d37bbd2a449da9c37758c368d1e33e98882",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s41598-023-47190-w.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s41598-023-47190-w.pdf"
+ },
+ "pmcid": "PMC10663496",
+ "readiness": "partial",
+ "robot_platform": "tecan",
+ "simulator": "not run",
+ "slug": "experimental/roborna-nirvana",
+ "title": "An open-source, automated, and cost-effective platform for COVID-19 diagnosis and rapid portable genomic surveillance using nanopore sequencing",
+ "year": "2023"
+}

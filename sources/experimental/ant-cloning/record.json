@@ -1,0 +1,56 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.2"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/ant-cloning/ljm176__ANTCloning",
+   "commit": "e33484f3f365afed54da1cdd0e1dc1a89d3d980a",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 10,
+   "py_files": 10,
+   "redistributable": "no",
+   "repo": "ljm176/ANTCloning",
+   "robot_mentions": [],
+   "size_kb": 313,
+   "status": "cloned",
+   "url": "https://github.com/ljm176/ANTCloning"
+  }
+ ],
+ "doi_primary": "10.1021/acssynbio.0c00240",
+ "dois": [
+  "10.1021/acssynbio.0c00240"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github",
+  "web"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1021/acssynbio.0c00240:\n  europepmc: no Europe PMC full text for this",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "partly_verified",
+ "slug": "experimental/ant-cloning",
+ "title": "Automated cloning by natural transformation (ANT) OT-2 workflow",
+ "year": "2020"
+}

@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/ipsc-robot-pyhamilton/stefangolas__iPSC-Robot",
+   "commit": "46389d64d0998061e82f45c613e25d7a3425cde9",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 6,
+   "redistributable": "no",
+   "repo": "stefangolas/iPSC-Robot",
+   "robot_mentions": [],
+   "size_kb": 170,
+   "status": "cloned",
+   "url": "https://github.com/stefangolas/iPSC-Robot"
+  }
+ ],
+ "doi_primary": "10.1101/2020.12.18.423371",
+ "dois": [
+  "10.1101/2020.12.18.423371"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "fulltext": {
+  "legends": 0,
+  "sections": 0,
+  "source": "biorxiv"
+ },
+ "journal": "bioRxiv",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "bytes": 1514439,
+  "licence": "",
+  "pages": null,
+  "redistributable": "unknown",
+  "sha256": "15588ceb8d888421f058727d239f6575c324449a1944b563b1198f6899285977",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.biorxiv.org/content/biorxiv/early/2020/12/19/2020.12.18.423371.full.pdf"
+   }
+  ],
+  "url": "https://www.biorxiv.org/content/biorxiv/early/2020/12/19/2020.12.18.423371.full.pdf"
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "hamilton",
+ "simulator": "not run",
+ "slug": "experimental/ipsc-robot-pyhamilton",
+ "title": "Automated hiPSC culture and sample preparation for 3D live cell microscopy",
+ "year": "2020"
+}

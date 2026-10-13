@@ -1,0 +1,86 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/sdl-guide-gormley/GormleyLab__SDLGuide",
+   "commit": "0e05c18ee6c38f3db193a7a7ddd10be1f1d2e60d",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 8,
+   "redistributable": "yes",
+   "repo": "GormleyLab/SDLGuide",
+   "robot_mentions": [],
+   "size_kb": 69054,
+   "status": "cloned",
+   "url": "https://github.com/GormleyLab/SDLGuide"
+  }
+ ],
+ "doi_primary": "10.1039/d5dd00525f",
+ "dois": [
+  "10.1039/d5dd00525f"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "web"
+ ],
+ "fulltext": {
+  "legends": 8,
+  "sections": 25,
+  "source": "europepmc:PMC13071554"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "licence": "cc by",
+  "redistributable": "unknown",
+  "status": "not_found",
+  "tried": [
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13071554.1/PMC13071554.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13071554.2/PMC13071554.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13071554.3/PMC13071554.3.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC13071554&blobtype=pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "http://pubs.rsc.org/en/content/articlepdf/2026/DD/D5DD00525F"
+   }
+  ]
+ },
+ "pmcid": "PMC13071554",
+ "readiness": "partial",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/sdl-guide-gormley",
+ "title": "A user's guide to your first self-driving liquid handling lab",
+ "year": "2026"
+}

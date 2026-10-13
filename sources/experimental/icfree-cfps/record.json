@@ -1,0 +1,72 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/icfree-cfps/brsynth__icfree-ml",
+   "commit": "d436e7f8dd052bf17fbab26a41e6251f1aa3175b",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 21,
+   "redistributable": "yes",
+   "repo": "brsynth/icfree-ml",
+   "robot_mentions": [],
+   "size_kb": 5747,
+   "status": "cloned",
+   "url": "https://github.com/brsynth/icfree-ml"
+  }
+ ],
+ "doi_primary": "10.1016/j.isci.2025.113599",
+ "dois": [
+  "10.1016/j.isci.2025.113599"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "web"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 33,
+  "source": "europepmc:PMC12529354"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 5096186,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "9c45756014dbc1faddd16abe2addebae98de620d513d15c536c4e243835a94d0",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12529354?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12529354.1/PMC12529354.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12529354.1/PMC12529354.1.pdf"
+ },
+ "pmcid": "PMC12529354",
+ "readiness": "partial",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/icfree-cfps",
+ "title": "An AI-driven workflow for the accelerated optimization of cell-free protein synthesis",
+ "year": "2025"
+}

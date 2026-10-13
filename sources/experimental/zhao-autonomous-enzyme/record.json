@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/zhao-autonomous-enzyme/Zhao-Group__closed-loop",
+   "commit": "9eb76ba84c2f639bfb36ede2651292cd9cd20af2",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 26,
+   "redistributable": "yes",
+   "repo": "Zhao-Group/closed-loop",
+   "robot_mentions": [],
+   "size_kb": 88,
+   "status": "cloned",
+   "url": "https://github.com/Zhao-Group/closed-loop"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-025-61209-y",
+ "dois": [
+  "10.1038/s41467-025-61209-y"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 27,
+  "source": "europepmc:PMC12215622"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "bytes": 2511419,
+  "licence": "cc by-nc-nd",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "5dd3a003650325b8ea937647c634c3e21d0eaf490ea5a7d0443fd7ef8aae46d5",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12215622?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12215622.1/PMC12215622.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12215622.1/PMC12215622.1.pdf"
+ },
+ "pmcid": "PMC12215622",
+ "readiness": "partial",
+ "robot_platform": "scheduling",
+ "simulator": "not run",
+ "slug": "experimental/zhao-autonomous-enzyme",
+ "title": "A generalized platform for artificial intelligence-powered autonomous enzyme engineering (iBioFAB)",
+ "year": "2025"
+}

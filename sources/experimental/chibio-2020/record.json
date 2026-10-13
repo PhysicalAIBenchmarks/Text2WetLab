@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/chibio-2020/HarrisonSteel__ChiBio",
+   "commit": "c4e6950ac2b5a9c980aeb2d0a78ad793f5f896de",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 1,
+   "redistributable": "no",
+   "repo": "HarrisonSteel/ChiBio",
+   "robot_mentions": [],
+   "size_kb": 126,
+   "status": "cloned",
+   "url": "https://github.com/HarrisonSteel/ChiBio"
+  }
+ ],
+ "doi_primary": "10.1371/journal.pbio.3000794",
+ "dois": [
+  "10.1371/journal.pbio.3000794"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 24,
+  "source": "europepmc:PMC7419009"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1945541,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "b97d4c43984146a5debb2856505f8f423a467b2b54be22c7163f9ed85bfb488e",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7419009?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7419009.1/PMC7419009.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7419009.1/PMC7419009.1.pdf"
+ },
+ "pmcid": "PMC7419009",
+ "readiness": "partial",
+ "robot_platform": "bioreactor",
+ "simulator": "not run",
+ "slug": "experimental/chibio-2020",
+ "title": "In situ characterisation and manipulation of biological systems with Chi.Bio",
+ "year": "2020"
+}

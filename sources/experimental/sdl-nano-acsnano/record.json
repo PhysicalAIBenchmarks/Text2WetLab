@@ -1,0 +1,58 @@
+{
+ "code": [
+  {
+   "status": "no public code",
+   "url": "none found"
+  }
+ ],
+ "doi_primary": "10.1021/acsnano.4c17504",
+ "dois": [
+  "10.1021/acsnano.4c17504"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 41,
+  "source": "europepmc:PMC11912568"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 7091872,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "1a79a6c11a4611a928ab738a868d9a99ce6d5c8106e6382411740e1b6e6d517b",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11912568?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11912568.1/PMC11912568.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11912568.1/PMC11912568.1.pdf"
+ },
+ "pmcid": "PMC11912568",
+ "readiness": "no",
+ "robot_platform": "synthesis",
+ "simulator": "not run",
+ "slug": "experimental/sdl-nano-acsnano",
+ "title": "A Self-Driving Lab for Nano- and Advanced Materials Synthesis",
+ "year": "2025"
+}

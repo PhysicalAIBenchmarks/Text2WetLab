@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/aquarium/aquariumbio__aquarium",
+   "commit": "325c06d426d6633ec4b3bebd4e2359473b0b5133",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "yes",
+   "repo": "aquariumbio/aquarium",
+   "robot_mentions": [],
+   "size_kb": 34662,
+   "status": "cloned",
+   "url": "https://github.com/aquariumbio/aquarium"
+  }
+ ],
+ "doi_primary": "10.1093/synbio/ysad005",
+ "dois": [
+  "10.1093/synbio/ysad005"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 44,
+  "source": "europepmc:PMC10105856"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc",
+ "pdf": {
+  "bytes": 2252664,
+  "licence": "cc by-nc",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "939c0df4dabc75e565f10c018a7c1ca832d22f75f1c7f45695272c9662602595",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC10105856?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10105856.1/PMC10105856.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10105856.1/PMC10105856.1.pdf"
+ },
+ "pmcid": "PMC10105856",
+ "readiness": "partial",
+ "robot_platform": "protocol_language",
+ "simulator": "not run",
+ "slug": "experimental/aquarium",
+ "title": "Aquarium laboratory operating system (UW BIOFAB) - used in SD2 robustness studies",
+ "year": "2023"
+}

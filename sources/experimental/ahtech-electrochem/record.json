@@ -1,0 +1,73 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/ahtech-electrochem/Liu-Lab-JHU__AHTech",
+   "commit": "d70696e49a2aded3436bdbd9c9b4a7652f20d1a4",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 4,
+   "py_files": 10,
+   "redistributable": "yes",
+   "repo": "Liu-Lab-JHU/AHTech",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 2299,
+   "status": "cloned",
+   "url": "https://github.com/Liu-Lab-JHU/AHTech"
+  }
+ ],
+ "doi_primary": "10.1126/sciadv.adu4391",
+ "dois": [
+  "10.1126/sciadv.adu4391"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 22,
+  "source": "europepmc:PMC13109943"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc",
+ "pdf": {
+  "bytes": 1833045,
+  "licence": "cc by-nc",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "3eaf7524dbe6c555d5223a9cd321078063f8e3c9adb9964dac6a0ff41d6a63d5",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC13109943?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13109943.1/PMC13109943.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13109943.1/PMC13109943.1.pdf"
+ },
+ "pmcid": "PMC13109943",
+ "readiness": "partial",
+ "robot_platform": "characterisation",
+ "simulator": "not run",
+ "slug": "experimental/ahtech-electrochem",
+ "title": "A high-throughput experimentation platform for data-driven discovery in electrochemistry (AHTech)",
+ "year": "2025"
+}

@@ -1,0 +1,45 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.24"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/ot2-proteomics-thesis/martineingolfsrud__Opentrons-OT-2-performance-assessment",
+   "commit": "b711145a925b3c8d58e5ac0e0739b2d720a53f71",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 12,
+   "py_files": 12,
+   "redistributable": "no",
+   "repo": "martineingolfsrud/Opentrons-OT-2-performance-assessment",
+   "robot_mentions": [
+    "Flex",
+    "OT-2"
+   ],
+   "size_kb": 992,
+   "status": "cloned",
+   "url": "https://github.com/martineingolfsrud/Opentrons-OT-2-performance-assessment"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/ot2-proteomics-thesis",
+ "title": "Automated Versus Manual Proteomics Sample Preparation: A Comparative Evaluation of Liquid Handling Workflows (MSc thesis)",
+ "year": ""
+}

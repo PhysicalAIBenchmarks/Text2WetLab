@@ -1,0 +1,76 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.10"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/tape-organoid-barcoding/TAPE-Lab__OT-2_Code",
+   "commit": "8e8b387d53d99447331280a84adebae11062a21e",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 7,
+   "py_files": 7,
+   "redistributable": "no",
+   "repo": "TAPE-Lab/OT-2_Code",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 164,
+   "status": "cloned",
+   "url": "https://github.com/TAPE-Lab/OT-2_Code"
+  }
+ ],
+ "doi_primary": "10.1038/s41592-020-0737-8",
+ "dois": [
+  "10.1038/s41592-020-0737-8"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github",
+  "web"
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 32,
+  "source": "europepmc:PMC7060080"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "bytes": 3802066,
+  "licence": "",
+  "pages": null,
+  "redistributable": "unknown",
+  "sha256": "e354411bdbb5f768ee1f1dd7a91fafc6211d1332c019473ab32519123848515f",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7060080?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7060080.1/PMC7060080.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7060080.1/PMC7060080.1.pdf"
+ },
+ "pmcid": "PMC7060080",
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/tape-organoid-barcoding",
+ "title": "Cell-type-specific signaling networks in heterocellular organoids (TOBis barcoding / robotic organoid extraction)",
+ "year": "2020"
+}

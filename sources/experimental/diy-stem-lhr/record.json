@@ -1,0 +1,47 @@
+{
+ "code": [],
+ "doi_primary": "10.1371/journal.pone.0275688",
+ "dois": [
+  "10.1371/journal.pone.0275688"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 17,
+  "source": "europepmc:PMC9645590"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3377066,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "fe97b9fcc18b186e6db6415b28810ed72245547f9537fd69b1f706140671ba23",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0275688&type=printable"
+   }
+  ],
+  "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0275688&type=printable"
+ },
+ "pmcid": "PMC9645590",
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/diy-stem-lhr",
+ "title": "DIY liquid handling robots for integrated STEM education and life science research",
+ "year": "2022"
+}

@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/brightfield-biofilm/BridgesLabCMU__Brightfield-biofilm-assay",
+   "commit": "c37c99e1515da05c10c263fccc018d8f3edee298",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "BridgesLabCMU/Brightfield-biofilm-assay",
+   "robot_mentions": [],
+   "size_kb": 45671,
+   "status": "cloned",
+   "url": "https://github.com/BridgesLabCMU/Brightfield-biofilm-assay"
+  }
+ ],
+ "doi_primary": "10.1128/mbio.00448-26",
+ "dois": [
+  "10.1128/mbio.00448-26"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 21,
+  "source": "europepmc:PMC13251385"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 5865819,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "ac2d0c38174c4908124f87966502c9cbf2d2179f2da940f70f4af45523f25539",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC13251385?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13251385.1/PMC13251385.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13251385.1/PMC13251385.1.pdf"
+ },
+ "pmcid": "PMC13251385",
+ "readiness": "partial",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/brightfield-biofilm",
+ "title": "Label-free microscopy enables high-throughput identification of genes controlling biofilm development",
+ "year": "2026"
+}

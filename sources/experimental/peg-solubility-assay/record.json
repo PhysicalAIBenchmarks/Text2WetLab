@@ -1,0 +1,64 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.5"
+   ],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/peg-solubility-assay/ch__sormanni",
+   "commit": "dd8018d2dac08baa56aaf4f3b025936d6fcf75f6",
+   "host": "gitlab.developers.cam.ac.uk",
+   "licence": "none",
+   "opentrons_py_files": 3,
+   "py_files": 4,
+   "redistributable": "no",
+   "repo": "ch/sormanni/peg-solubility-assay",
+   "robot_mentions": [],
+   "status": "cloned (partial: code, configs and docs only)",
+   "url": "https://gitlab.developers.cam.ac.uk/ch/sormanni/peg-solubility-assay"
+  }
+ ],
+ "doi_primary": "10.1038/s41598-021-01126-4",
+ "dois": [
+  "10.1038/s41598-021-01126-4"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 30,
+  "source": "europepmc:PMC8578320"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2472812,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "0fcf78faecf7a9ead907ce384a45a2d47b8e909e181ed6a03d453b35a5972e99",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s41598-021-01126-4.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s41598-021-01126-4.pdf"
+ },
+ "pmcid": "PMC8578320",
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/peg-solubility-assay",
+ "title": "An open-source automated PEG precipitation assay to measure the relative solubility of proteins with low material requirement",
+ "year": "2021"
+}

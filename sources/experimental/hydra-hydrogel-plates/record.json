@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/hydra-hydrogel-plates/Synthetic-Physiology-Lab__hydra-hts-hydrogel-analysis",
+   "commit": "7e4e4076db4d91b315777a8f785ffb3f9f3a2725",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 2,
+   "redistributable": "no",
+   "repo": "Synthetic-Physiology-Lab/hydra-hts-hydrogel-analysis",
+   "robot_mentions": [],
+   "size_kb": 11,
+   "status": "cloned",
+   "url": "https://github.com/Synthetic-Physiology-Lab/hydra-hts-hydrogel-analysis"
+  }
+ ],
+ "doi_primary": "10.1038/s44172-025-00575-3",
+ "dois": [
+  "10.1038/s44172-025-00575-3"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 41,
+  "source": "europepmc:PMC12749810"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 12012463,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "776e8ebb9705945eb210a58e6a5ecdb4d3e89473e4b6025151945b295f03b6a7",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12749810?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12749810.1/PMC12749810.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12749810.1/PMC12749810.1.pdf"
+ },
+ "pmcid": "PMC12749810",
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/hydra-hydrogel-plates",
+ "title": "Fabrication of cell culture hydrogels by robotic liquid handling automation for high-throughput drug testing",
+ "year": "2025"
+}

@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/labdroid-phenol-chloroform/zenodo-5733820",
+   "files": 1,
+   "files_downloaded": 1,
+   "files_skipped_size": [],
+   "host": "doi.org",
+   "licence": "cc-by-4.0",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "zenodo:5733820",
+   "robot_mentions": [],
+   "size_kb": 29,
+   "status": "downloaded",
+   "url": "https://doi.org/10.5281/zenodo.5733820"
+  }
+ ],
+ "doi_primary": "10.12688/f1000research.109251.1",
+ "dois": [
+  "10.12688/f1000research.109251.1"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 14,
+  "source": "europepmc:PMC8931447"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2121661,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "91a83611542594409b057cb7de60ae58e2f9374210d2723125379e81714b429d",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://f1000research.com/articles/11-240/v1/pdf"
+   }
+  ],
+  "url": "https://f1000research.com/articles/11-240/v1/pdf"
+ },
+ "pmcid": "PMC8931447",
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/labdroid-phenol-chloroform",
+ "title": "Automated phenol-chloroform extraction of high molecular weight genomic DNA for use in long-read single-molecule sequencing",
+ "year": "2022"
+}

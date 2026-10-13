@@ -1,0 +1,28 @@
+{
+ "code": [
+  {
+   "host": "huggingface.co",
+   "status": "not code: dataset",
+   "url": "https://huggingface.co/datasets/Opentrons/PhysicalAI"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "flex",
+ "simulator": "not run",
+ "slug": "experimental/opentrons-physicalai-hf",
+ "title": "Opentrons/PhysicalAI (Hugging Face dataset of Flex teleoperation episodes)",
+ "year": ""
+}

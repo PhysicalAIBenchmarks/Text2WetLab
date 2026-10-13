@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/aurora-materials/PalmSens__MethodSCRIPT_Examples",
+   "commit": "1aa78fc195e34cb03acd08ec96ee887a76fa3150",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "unclear",
+   "opentrons_py_files": 0,
+   "py_files": 14,
+   "redistributable": "no",
+   "repo": "PalmSens/MethodSCRIPT_Examples",
+   "robot_mentions": [],
+   "size_kb": 20834,
+   "status": "cloned",
+   "url": "https://github.com/PalmSens/MethodSCRIPT_Examples"
+  }
+ ],
+ "doi_primary": "10.1021/acsami.5c02605",
+ "dois": [
+  "10.1021/acsami.5c02605"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 15,
+  "source": "europepmc:PMC12067375"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 7008228,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "60f8512cdd9190f01176d0ec0b8a914c02612d4ea3fa9f44422ffb2f2b49b8e7",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12067375?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12067375.1/PMC12067375.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12067375.1/PMC12067375.1.pdf"
+ },
+ "pmcid": "PMC12067375",
+ "readiness": "no",
+ "robot_platform": "characterisation",
+ "simulator": "not run",
+ "slug": "experimental/aurora-materials",
+ "title": "AURORA - An Automatic Robotic Platform for Materials Discovery",
+ "year": "2025"
+}

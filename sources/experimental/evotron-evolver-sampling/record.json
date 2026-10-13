@@ -1,0 +1,70 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.0"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/evotron-evolver-sampling/santkumar__evotron",
+   "commit": "7bc0f1f36c8363dd0810ddb8be9856fa958d17e1",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 2,
+   "py_files": 4,
+   "redistributable": "no",
+   "repo": "santkumar/evotron",
+   "robot_mentions": [],
+   "size_kb": 3093,
+   "status": "cloned",
+   "url": "https://github.com/santkumar/evotron"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-022-32392-z",
+ "dois": [
+  "10.1038/s41467-022-32392-z"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "github",
+  "nonlh",
+  "web"
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 34,
+  "source": "europepmc:PMC9381578"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3235131,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "8f740aeb1332dab0cd189105f6cfbf2d43716bac958892783eb6a0eb607e2b22",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s41467-022-32392-z.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s41467-022-32392-z.pdf"
+ },
+ "pmcid": "PMC9381578",
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/evotron-evolver-sampling",
+ "title": "Dynamic cybergenetic control of bacterial co-culture composition via optogenetic feedback",
+ "year": "2022"
+}

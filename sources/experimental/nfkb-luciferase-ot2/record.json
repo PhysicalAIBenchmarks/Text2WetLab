@@ -1,0 +1,35 @@
+{
+ "code": [],
+ "doi_primary": "10.1016/j.slast.2024.100155",
+ "dois": [
+  "10.1016/j.slast.2024.100155"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1016/j.slast.2024.100155:\n  europepmc: no Europe PMC full text for th",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "licence": "cc by-nc-nd",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/nfkb-luciferase-ot2",
+ "title": "Luciferase reporter assay for NF-kB activation automated by an open-source liquid handling platform",
+ "year": "2024"
+}

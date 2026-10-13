@@ -1,0 +1,58 @@
+{
+ "code": [
+  {
+   "status": "no public code",
+   "url": "none found"
+  }
+ ],
+ "doi_primary": "10.1093/nsr/nwac190",
+ "dois": [
+  "10.1093/nsr/nwac190"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 16,
+  "source": "europepmc:PMC9674120"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1633381,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "577858778bcd1ef236658ce7c093fc667694985bea08fe32f0f02bbbd193834b",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC9674120?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9674120.1/PMC9674120.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9674120.1/PMC9674120.1.pdf"
+ },
+ "pmcid": "PMC9674120",
+ "readiness": "no",
+ "robot_platform": "synthesis",
+ "simulator": "not run",
+ "slug": "experimental/ai-chemist-ustc",
+ "title": "An all-round AI-Chemist with a scientific mind",
+ "year": "2022"
+}

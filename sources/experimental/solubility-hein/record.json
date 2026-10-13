@@ -1,0 +1,68 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/solubility-hein/heingroup__automated_solubility_h1",
+   "commit": "54af0348984cfdd574e0780879e08dd8b04d3878",
+   "host": "gitlab.com",
+   "licence": "GPL-3.0",
+   "opentrons_py_files": 0,
+   "py_files": 53,
+   "redistributable": "no",
+   "repo": "heingroup/automated_solubility_h1",
+   "robot_mentions": [],
+   "status": "cloned (partial: code, configs and docs only)",
+   "url": "https://gitlab.com/heingroup/automated_solubility_h1"
+  }
+ ],
+ "doi_primary": "10.1016/j.isci.2021.102176",
+ "dois": [
+  "10.1016/j.isci.2021.102176"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 8,
+  "sections": 30,
+  "source": "europepmc:PMC7921605"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "bytes": 2759620,
+  "licence": "cc by-nc-nd",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "fa224d86c209819a172e243662fb6c45bfd7b23445c6aae42a0d3bcb7b9a1498",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7921605?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7921605.1/PMC7921605.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7921605.1/PMC7921605.1.pdf"
+ },
+ "pmcid": "PMC7921605",
+ "readiness": "partial",
+ "robot_platform": "characterisation",
+ "simulator": "not run",
+ "slug": "experimental/solubility-hein",
+ "title": "Automated solubility screening platform using computer vision",
+ "year": "2021"
+}

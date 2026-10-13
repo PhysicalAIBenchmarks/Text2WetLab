@@ -1,0 +1,40 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/autoprotocol-python/autoprotocol__autoprotocol-python",
+   "commit": "4795408f8a814fc7e3e70d54ada64da5ca125161",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "unclear",
+   "opentrons_py_files": 0,
+   "py_files": 46,
+   "redistributable": "no",
+   "repo": "autoprotocol/autoprotocol-python",
+   "robot_mentions": [],
+   "size_kb": 4471,
+   "status": "cloned",
+   "url": "https://github.com/autoprotocol/autoprotocol-python"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "protocol_language",
+ "simulator": "not run",
+ "slug": "experimental/autoprotocol-python",
+ "title": "Autoprotocol-python (Strateos/Transcriptic protocol IR)",
+ "year": ""
+}

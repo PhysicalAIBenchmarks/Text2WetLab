@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/fish-fluidics/dzhaojie__Fluidics-system-for-FISH",
+   "commit": "7e7971b46a98a0035f7fd6710f885483a9e4701a",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "yes",
+   "repo": "dzhaojie/Fluidics-system-for-FISH",
+   "robot_mentions": [],
+   "size_kb": 7704,
+   "status": "cloned",
+   "url": "https://github.com/dzhaojie/Fluidics-system-for-FISH"
+  }
+ ],
+ "doi_primary": "10.1016/j.ohx.2022.e00343",
+ "dois": [
+  "10.1016/j.ohx.2022.e00343"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 33,
+  "sections": 33,
+  "source": "europepmc:PMC9358477"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "bytes": 6218810,
+  "licence": "cc by-nc-nd",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "b8cf553c0b8397270cfa53a9ba10f9086064d205176ca885595e1a287e30b74d",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC9358477?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9358477.1/PMC9358477.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9358477.1/PMC9358477.1.pdf"
+ },
+ "pmcid": "PMC9358477",
+ "readiness": "partial",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/fish-fluidics",
+ "title": "An open source 16-channel fluidics system for automating sequential FISH-based imaging",
+ "year": "2022"
+}

@@ -1,0 +1,57 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.20",
+    "2.28"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/flat-agar-celegans-ot2/Arcadia-Science__menisquish-flat-agar",
+   "commit": "73368d5f2e65af7c40560b0387522a2e503c0547",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 3,
+   "py_files": 4,
+   "redistributable": "yes",
+   "repo": "Arcadia-Science/menisquish-flat-agar",
+   "robot_mentions": [
+    "Flex"
+   ],
+   "size_kb": 2749,
+   "status": "cloned",
+   "url": "https://github.com/Arcadia-Science/menisquish-flat-agar"
+  }
+ ],
+ "dois": [
+  "10.57844/arcadia-h01v-2nxt"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.57844/arcadia-h01v-2nxt:\n  europepmc: no Europe PMC full text for thi",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/flat-agar-celegans-ot2",
+ "title": "Flat agar and optimized media enable high-throughput C. elegans imaging in 96-well plates",
+ "year": ""
+}

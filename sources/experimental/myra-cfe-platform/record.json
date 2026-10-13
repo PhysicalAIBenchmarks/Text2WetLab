@@ -1,0 +1,72 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/myra-cfe-platform/Mo42-mb__Myra_automation",
+   "commit": "48fd760d983610169a3794ec5e1da05709129ca0",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 3,
+   "redistributable": "no",
+   "repo": "Mo42-mb/Myra_automation",
+   "robot_mentions": [],
+   "size_kb": 33,
+   "status": "cloned",
+   "url": "https://github.com/Mo42-mb/Myra_automation"
+  }
+ ],
+ "doi_primary": "10.1093/synbio/ysag010",
+ "dois": [
+  "10.1093/synbio/ysag010"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "web"
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 21,
+  "source": "europepmc:PMC13561876"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1435611,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "66329e4f03e856996fbde1c00881a870e84a3c8adf90fdcef2c31eb31b0c2fe5",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC13561876?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13561876.1/PMC13561876.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13561876.1/PMC13561876.1.pdf"
+ },
+ "pmcid": "PMC13561876",
+ "readiness": "partial",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/myra-cfe-platform",
+ "title": "A liquid handling platform for standardized quantification of cell-free enzymatic activity",
+ "year": "2026"
+}

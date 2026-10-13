@@ -1,0 +1,47 @@
+{
+ "code": [],
+ "doi_primary": "10.1038/s41598-021-02742-w",
+ "dois": [
+  "10.1038/s41598-021-02742-w"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 9,
+  "source": "europepmc:PMC8636496"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1823028,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "f7756b235ad3551d1ddb28064ab75afcc6e630e72a9d5437e29191bc8088d617",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s41598-021-02742-w.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s41598-021-02742-w.pdf"
+ },
+ "pmcid": "PMC8636496",
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/kitfree-rna-extraction",
+ "title": "A high-throughput pipeline for scalable kit-free RNA extraction",
+ "year": "2021"
+}

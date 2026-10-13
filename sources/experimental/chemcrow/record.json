@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/chemcrow/ur-whitelab__chemcrow-public",
+   "commit": "e7ebd5193334ac1d8dea137b635721c7cb470d33",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 27,
+   "redistributable": "yes",
+   "repo": "ur-whitelab/chemcrow-public",
+   "robot_mentions": [],
+   "size_kb": 6059,
+   "status": "cloned",
+   "url": "https://github.com/ur-whitelab/chemcrow-public"
+  }
+ ],
+ "doi_primary": "10.1038/s42256-024-00832-8",
+ "dois": [
+  "10.1038/s42256-024-00832-8"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 53,
+  "source": "europepmc:PMC11116106"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2396611,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "3b97df0a3d4fa1c73cd7ad97b60ea129388ece2b6b505aefa30a809b67946993",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11116106?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11116106.1/PMC11116106.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11116106.1/PMC11116106.1.pdf"
+ },
+ "pmcid": "PMC11116106",
+ "readiness": "partial",
+ "robot_platform": "synthesis",
+ "simulator": "not run",
+ "slug": "experimental/chemcrow",
+ "title": "Augmenting large language models with chemistry tools (ChemCrow)",
+ "year": "2024"
+}

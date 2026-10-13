@@ -1,0 +1,84 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/aml-drug-synergy-pyhamilton/stefangolas__drug_dilutions",
+   "commit": "e3fa6548642ef7c1647744f947db5dfd68f4db31",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 2,
+   "redistributable": "no",
+   "repo": "stefangolas/drug_dilutions",
+   "robot_mentions": [],
+   "size_kb": 698,
+   "status": "cloned",
+   "url": "https://github.com/stefangolas/drug_dilutions"
+  }
+ ],
+ "doi_primary": "10.1016/j.slasd.2023.04.004",
+ "dois": [
+  "10.1016/j.slasd.2023.04.004"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1016/j.slasd.2023.04.004:\n  europepmc: Server error '500 ' for url 'h",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "licence": "cc by-nc-nd",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC10449086?pdf=render"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10449086.1/PMC10449086.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10449086.2/PMC10449086.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10449086.3/PMC10449086.3.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC10449086&blobtype=pdf"
+   }
+  ]
+ },
+ "pmcid": "PMC10449086",
+ "readiness": "partial",
+ "robot_platform": "hamilton",
+ "simulator": "not run",
+ "slug": "experimental/aml-drug-synergy-pyhamilton",
+ "title": "High-throughput approaches to uncover synergistic drug combinations in leukemia",
+ "year": "2023"
+}

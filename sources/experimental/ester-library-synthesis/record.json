@@ -1,0 +1,62 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.0"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/ester-library-synthesis/rz-flask__concise-ester-library-synthesis",
+   "commit": "137e0592b396594c92ec09159c0ceeeea5c2d963",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 3,
+   "py_files": 3,
+   "redistributable": "yes",
+   "repo": "rz-flask/concise-ester-library-synthesis",
+   "robot_mentions": [],
+   "size_kb": 10,
+   "status": "cloned",
+   "url": "https://github.com/rz-flask/concise-ester-library-synthesis"
+  }
+ ],
+ "doi_primary": "10.1039/d2cc05670d",
+ "dois": [
+  "10.1039/d2cc05670d"
+ ],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1039/d2cc05670d:\n  europepmc: no Europe PMC full text for this DOI\nDo",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "http://pubs.rsc.org/en/content/articlepdf/2023/CC/D2CC05670D"
+   }
+  ]
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/ester-library-synthesis",
+ "title": "Repurposing amine and carboxylic acid building blocks with an automatable esterification reaction",
+ "year": "2023"
+}

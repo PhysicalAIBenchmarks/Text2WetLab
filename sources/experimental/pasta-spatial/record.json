@@ -1,0 +1,95 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.7"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/pasta-spatial/SizunJiangLab__PASTA",
+   "commit": "c19210f08dea21fb259e2a1063162f0c4e50edba",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 1,
+   "py_files": 1,
+   "redistributable": "no",
+   "repo": "SizunJiangLab/PASTA",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 2949,
+   "status": "cloned",
+   "url": "https://github.com/SizunJiangLab/PASTA"
+  }
+ ],
+ "doi_primary": "10.1038/s41592-026-03200-z",
+ "dois": [
+  "10.1038/s41592-026-03200-z"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "github"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1038/s41592-026-03200-z:\n  europepmc: Server error '500 ' for url 'ht",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC13539481?pdf=render"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13539481.1/PMC13539481.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13539481.2/PMC13539481.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13539481.3/PMC13539481.3.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC13539481&blobtype=pdf"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": false,
+    "url": "https://www.nature.com/articles/s41592-026-03200-z.pdf"
+   }
+  ]
+ },
+ "pmcid": "PMC13539481",
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/pasta-spatial",
+ "title": "PASTA: versatile tyramide-oligonucleotide amplification for multimodal spatial biology",
+ "year": "2026"
+}

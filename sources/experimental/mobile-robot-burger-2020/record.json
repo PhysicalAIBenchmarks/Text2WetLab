@@ -1,0 +1,51 @@
+{
+ "code": [
+  {
+   "status": "no public code",
+   "url": "none public (ROS code not released)"
+  }
+ ],
+ "doi_primary": "10.1038/s41586-020-2442-2",
+ "dois": [
+  "10.1038/s41586-020-2442-2"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1038/s41586-020-2442-2:\n  europepmc: no Europe PMC full text for this",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "bytes": 1985168,
+  "licence": "",
+  "pages": null,
+  "redistributable": "unknown",
+  "sha256": "4aeb478c4fac0c1a97d91487cd79f848e0b2f14d7b85184b14c24cf96b4ff50e",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://strathprints.strath.ac.uk/74759/1/Burger_etal_Nature_2020_A_mobile_robotic.pdf"
+   }
+  ],
+  "url": "https://strathprints.strath.ac.uk/74759/1/Burger_etal_Nature_2020_A_mobile_robotic.pdf"
+ },
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "plate_transport",
+ "simulator": "not run",
+ "slug": "experimental/mobile-robot-burger-2020",
+ "title": "A mobile robotic chemist (Burger et al.)",
+ "year": "2020"
+}

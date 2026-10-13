@@ -1,0 +1,35 @@
+{
+ "code": [],
+ "doi_primary": "10.1016/j.diagmicrobio.2026.117519",
+ "dois": [
+  "10.1016/j.diagmicrobio.2026.117519"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1016/j.diagmicrobio.2026.117519:\n  europepmc: no Europe PMC full text",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "flex",
+ "simulator": "not run",
+ "slug": "experimental/swabseq-flex",
+ "title": "Automated implementation of the SwabSeq COVID-19 diagnostic assay on the opentrons flex liquid-handling robot",
+ "year": "2026"
+}

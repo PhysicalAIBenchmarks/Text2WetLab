@@ -1,0 +1,40 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/xchem-opentrons/xchem__opentrons",
+   "commit": "3cc288e567414f25813d7ace26cbf643348ce321",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "Apache-2.0",
+   "opentrons_py_files": 114,
+   "py_files": 125,
+   "redistributable": "yes",
+   "repo": "xchem/opentrons",
+   "robot_mentions": [],
+   "size_kb": 202,
+   "status": "cloned",
+   "url": "https://github.com/xchem/opentrons"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/xchem-opentrons",
+ "title": "XChem Opentrons reaction liquid-handling toolkit",
+ "year": ""
+}

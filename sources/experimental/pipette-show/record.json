@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/pipette-show/Global-Biofoundries-Alliance__pipette-show",
+   "commit": "db8e2543a00dcaf6723102b4c72bd3463abc56eb",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "yes",
+   "repo": "Global-Biofoundries-Alliance/pipette-show",
+   "robot_mentions": [],
+   "size_kb": 47466,
+   "status": "cloned",
+   "url": "https://github.com/Global-Biofoundries-Alliance/pipette-show"
+  }
+ ],
+ "doi_primary": "10.1021/acssynbio.1c00494",
+ "dois": [
+  "10.1021/acssynbio.1c00494"
+ ],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "fulltext": {
+  "legends": 2,
+  "sections": 10,
+  "source": "europepmc:PMC8859850"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1681329,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "4a724061156e2d33502f05f24af7fce2778fac7f88efc08c53f851498e1261df",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC8859850?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8859850.1/PMC8859850.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8859850.1/PMC8859850.1.pdf"
+ },
+ "pmcid": "PMC8859850",
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/pipette-show",
+ "title": "Pipette Show: An Open Source Web Application to Support Pipetting into Microplates",
+ "year": "2022"
+}

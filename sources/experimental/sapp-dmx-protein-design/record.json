@@ -1,0 +1,73 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.5"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/sapp-dmx-protein-design/bwicky__SAPP_DMX",
+   "commit": "70b695f55a765289b212143e120a0af65bdefba5",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 1,
+   "py_files": 7,
+   "redistributable": "yes",
+   "repo": "bwicky/SAPP_DMX",
+   "robot_mentions": [],
+   "size_kb": 7468,
+   "status": "cloned",
+   "url": "https://github.com/bwicky/SAPP_DMX"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-026-76740-9",
+ "dois": [
+  "10.1038/s41467-026-76740-9"
+ ],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 37,
+  "source": "europepmc:PMC13586242"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2128497,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "7631a95745ac6dba497b3f77491a2d4ed1acac44118de9c0df6416b6c037a7cf",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC13586242?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13586242.1/PMC13586242.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13586242.1/PMC13586242.1.pdf"
+ },
+ "pmcid": "PMC13586242",
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/sapp-dmx-protein-design",
+ "title": "Accelerating protein design by scaling experimental characterization",
+ "year": "2026"
+}

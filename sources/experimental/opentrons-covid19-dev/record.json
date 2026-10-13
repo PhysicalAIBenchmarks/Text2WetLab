@@ -1,0 +1,43 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.0",
+    "2.2"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/opentrons-covid19-dev/Opentrons__covid19",
+   "commit": "67a6a76bffdc2d000a9fe89161152c39f027e490",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "Apache-2.0",
+   "opentrons_py_files": 53,
+   "py_files": 53,
+   "redistributable": "yes",
+   "repo": "Opentrons/covid19",
+   "robot_mentions": [],
+   "size_kb": 33222,
+   "status": "cloned",
+   "url": "https://github.com/Opentrons/covid19"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/opentrons-covid19-dev",
+ "title": "Opentrons/covid19 (OT-2 COVID-19 RT-qPCR station development repo, Opentrons + Open Medicine Institute)",
+ "year": ""
+}

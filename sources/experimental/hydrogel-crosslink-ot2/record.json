@@ -1,0 +1,40 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/hydrogel-crosslink-ot2/JamesSummers240__Semi-autonomous-synthesis-and-modelling-of-chemically-cross-linked-hydrogels-",
+   "commit": "e1a74a0e517f6f56b7c03a6e7e3570cb285d7633",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 1,
+   "py_files": 2,
+   "redistributable": "no",
+   "repo": "JamesSummers240/Semi-autonomous-synthesis-and-modelling-of-chemically-cross-linked-hydrogels-",
+   "robot_mentions": [],
+   "size_kb": 3,
+   "status": "cloned",
+   "url": "https://github.com/JamesSummers240/Semi-autonomous-synthesis-and-modelling-of-chemically-cross-linked-hydrogels-"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/hydrogel-crosslink-ot2",
+ "title": "Semi-autonomous synthesis and modelling of chemically cross-linked hydrogels (OT-2)",
+ "year": ""
+}
