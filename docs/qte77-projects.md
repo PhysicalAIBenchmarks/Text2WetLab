@@ -1,6 +1,6 @@
 # qte77's lab-automation projects: research notes and how they meet Text2WetLab
 
-Four public repositories by qte77, read on 2026-10-11 at their `main` heads, with their test suites run locally. Together
+Four public repositories by Andre Slavik ([qte77](https://github.com/qte77) on GitHub), read on 2026-10-11 at their `main` heads, with their test suites run locally. Together
 they are the pieces of one planned system: an open, sub-$1k self-driving lab that runs a closed
 *perceive → decide → act → record* loop. The plan is set out in the write-up
 [Building a Trustworthy Agent Loop for a Physical Lab](https://qte77.github.io/open-self-driving-lab-agent-loop/).
