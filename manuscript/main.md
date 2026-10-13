@@ -11,25 +11,17 @@ link-citations: true
 
 ## Abstract
 
-Language-model agents now write the Python that drives laboratory liquid handlers, and the code they write usually runs.
-Running is not the same as being right: a protocol can pass the vendor's simulator and still ruin the experiment by
-pipette-mixing fragile cells, carrying magnetic beads into an eluate, or drawing more liquid from a reservoir than it
-holds. We present **Text2WetLab**, 11 tasks in the Harbor agent-evaluation format at two levels. *Easy* tasks give the
-exact steps; *paper-only* ("hard") tasks give only a goal, a fixed deck and the source paper. They come from published
-protocols whose authors also released their robot code, which gives an independent reference for each. A layered verifier scores the agent's Opentrons OT-2 protocol
-with a lint gate, nine reward-hacking traps, the Opentrons simulator, deterministic checks of the simulated run against
-a ground-truth protocol representation, and a pass/fail rubric scored by a language-model judge as the majority of
-three calls. We validate the verifier from both sides: all 11 reference solutions pass, 151 broken or cheating
-protocols of 18 kinds all fail (none scores above 0.47), a close reading of the model runs exposed eight grader
-faults, and an audit requiring every quantity a paper-only task grades to be in its paper or brief found two more;
-all ten are fixed. Running one agent harness (Claude Code) with six models through one API, and scoring only the
-tasks a model answered, Claude Opus 5.5 scores 1.000 on the eight tasks every model answered, Fable 5.1 0.969, GPT-6.1
-Sol 0.938, Sonnet 5.5 0.881, Qwen3.8-2.4T-A95B 0.832 and DeepSeek V4 Pro 0.755. Opus and Fable refused five standard
-molecular-cloning prompts between them; a refusal is the provider's safety policy, not a protocol, so these are
-reported but not scored. No model failed the simulator or a trap. The physical-safety failures are three reservoir
-overdraws and, in the two open-weight models only, four cross-contaminations. Easy tasks are nearly solved; the
-paper-only tasks separate the models, and their commonest failure is inventing steps and quantities that the paper
-does not support. A repeat run of one model moved its mean by 0.08 and one task by 0.70.
+Language models can write Opentrons OT-2 Python that runs in the simulator, but a protocol that runs can still ruin an
+experiment: it can mix fragile cells, carry beads into the eluate, or draw more from a reservoir than it holds. We
+present **Text2WetLab**, a benchmark of 11 tasks: 7 *easy* tasks that give every step, and 4 *paper-only* tasks that
+give only a goal and the source paper. A layered verifier grades each protocol with a code lint, nine reward-hacking
+traps, the Opentrons simulator, deterministic checks of the robot's end state against a ground truth, and a language-model
+judge scoring a pass/fail rubric. Every reference solution passes, and none of 151 deliberately broken or cheating
+protocols scores above 0.47. We ran six models from four providers in one agent harness, scoring only the tasks each
+model answered. On the eight tasks all six answered, mean reward ranges from 1.000 (Claude Opus 5.5) to 0.755 (DeepSeek
+V4 Pro), and no model failed the simulator or a trap. Easy tasks are close to solved; the paper-only tasks separate the
+models, and the commonest failure is adding steps or quantities the paper does not support. A repeat run of one model
+changed single-task scores by up to 0.70, so close scores cannot be ranked from one attempt.
 
 ## 1 Introduction
 
@@ -39,10 +31,23 @@ these. The second is biological: a protocol that runs perfectly and still ruins 
 cells, carries beads into the eluate, or adds reagents in the wrong order. Nothing in the robot's API marks these as
 errors, and a silent failure produces data rather than an exception [@setty2026aegis].
 
-Agents are now routinely asked to write such code, from research systems [@boiko2023coscientist; @jiang2026protopilot;
-@gao2025labscriptai] to biosecurity evaluations [@liu2026abcbench]. Most evaluations of that code ask whether it passes
-the simulator or a set of device-level gates. Text2WetLab asks whether it does what the paper describes, with every
-quantity checked in the simulated run against a ground truth, and whether the grader that says so can be trusted.
+Language models have written OT-2 scripts from goal-oriented instructions since GPT-4 [@inagaki2023llmrobotic], and
+agents now write such code in research systems [@boiko2023coscientist; @jiang2026protopilot; @gao2025labscriptai;
+@panapitiya2026autolabs] and biosecurity evaluations [@liu2026abcbench]. Benchmarks of protocol knowledge grade text:
+multiple-choice answers, pseudocode, error finding or rewritten protocols [@laurent2024labbench;
+@odonoghue2023bioplanner; @ivanov2024biolpbench; @sivakumar2026benchbench]. Benchmarks of protocol-to-code systems
+score generated scripts mainly by whether they run in simulation or pass device-level checks, with a few protocols
+tested at the bench [@gao2025labscriptai; @jiang2026protopilot; @liu2026abcbench]. AEGIS, closest in intent, catches
+code that is valid but breaks the assay, with assay rules and a language-model checker, but it validates protocols it
+is given rather than evaluating the agents that write them [@setty2026aegis]. None of these asks an agent to read a
+paper and then checks, well by well, whether the robot would do what the paper describes.
+
+Text2WetLab does. Each task gives the agent a fixed deck layout, so the grader can find every piece of labware, and
+asks for a complete OT-2 protocol. Tasks come from papers whose authors also published robot code, which gives an
+independent reference for each. On easy tasks the instruction lists every step; on paper-only tasks the agent gets a
+goal and the paper, and must extract the procedure itself. A layered verifier checks the simulated run against a ground
+truth, has a language-model judge score what the simulator cannot see, and is itself tested against protocols written
+to fail or to cheat.
 
 **Contributions.**
 
@@ -55,13 +60,14 @@ quantity checked in the simulated run against a ground truth, and whether the gr
    found by reading model runs, each fixed with a regression test (Section 5).
 4. A comparison of six models from four providers, two of them open-weight, in one agent harness, broken down by task,
    risk and rubric item, with safety refusals reported separately from capability, and a repeat run that measures
-   single-attempt noise and a parallel cloud backend (Sections 6 and 7).
+   single-attempt noise (Sections 6 and 7).
 
 ## 2 Related work
 
 Work on language models for wet-lab protocols spans four questions: whether a model *knows* protocols, whether it can
-*write executable robot code* for one, whether such code can be *checked* before it runs, and whether agents can be
-*evaluated* without gaming the evaluation. Table 1 places the closest benchmarks side by side.
+*write executable robot code* for one, whether such code can be *checked* for safety before or while it runs, and whether
+agents can be *evaluated* without gaming the evaluation. Table 1 sets every work discussed here against what
+Text2WetLab covers.
 
 ### 2.1 Protocol knowledge and planning
 
@@ -73,13 +79,19 @@ description and a list of admissible functions; one generated protocol was run i
 that models do well on comprehension but drop on tasks that need deep reasoning, quantitative precision and safety
 awareness [@liu2025bioprobench]. BenchBench-Protocol reconstructs 149 rubric-graded modification tasks from changes
 scientists made to published protocols during real work; the best model reaches 59.2% of the rubric
-[@sivakumar2026benchbench]. These benchmarks grade text. Text2WetLab grades the code an agent writes by executing it in
+[@sivakumar2026benchbench]. BioLP-bench plants many harmless changes and one fatal error in each protocol and asks
+the model to find the error; only one model matched human experts [@ivanov2024biolpbench]. These benchmarks grade text. Text2WetLab grades the code an agent writes by executing it in
 the instrument's simulator and comparing the resulting liquid state with a ground truth, so a quantity is wrong only if
 the robot would move the wrong volume.
 
 ### 2.2 From protocols to robot code
 
-Coscientist showed a GPT-4 agent planning chemistry experiments and writing the code that ran a pipetting robot
+Inagaki et al. first showed GPT-4 writing OT-2 scripts from goal-oriented instructions, with simulator feedback; it
+struggled on complex protocols and sometimes worked around errors instead of implementing the step
+[@inagaki2023llmrobotic]. CLAIRify turns instructions into the chemistry language XDL, feeding a syntax verifier's
+errors back to the model until the plan is valid, and runs the result on a robot through a task-and-motion planner
+[@skreta2023clairify]. PyLabRobot gives one Python interface to Hamilton, Tecan and Opentrons robots, which makes
+code from a language model portable across them [@wierenga2023pylabrobot]. Coscientist showed a GPT-4 agent planning chemistry experiments and writing the code that ran a pipetting robot
 [@boiko2023coscientist]. ProtoCode fine-tunes language models to turn PCR protocols from the literature into a
 machine-readable intermediate representation, and from it into thermal-cycler files [@jiang2024protocode]; Text2WetLab's
 task construction uses the same idea, an intermediate representation between paper and robot, but as ground truth for
@@ -87,7 +99,7 @@ grading rather than as model output. CRISPR-GPT [@qu2025crisprgpt], BioMARS [@qi
 [@hsu2026prism] are agent systems that design experiments and drive instruments, evaluated through case studies and
 laboratory runs.
 
-Three recent systems come with protocol-to-code benchmarks. LabscriptAI evaluates 55 tasks at four difficulty levels on
+Five recent systems come with protocol-to-code benchmarks. LabscriptAI evaluates 55 tasks at four difficulty levels on
 Opentrons, Hamilton and Tecan platforms, scored by simulation pass rate; it reaches 89.1% against 20-45% for direct
 model baselines and 76.3% for Opentrons' commercial generator [@gao2025labscriptai]. ProtoPilot spans 294 tasks from 98
 gold-standard protocols with expert rubrics, device-level validity gates (syntax, parameter alignment with the device
@@ -95,12 +107,16 @@ SOP, slot conflicts, pipetting volume bounds and labware compatibility) and wet-
 rate of 88.24% against 32.35% for OpenTrons-AI [@jiang2026protopilot]. ABC-Bench asks agents, among its three tasks, to
 write an OT-2 script for a Gibson assembly from a fixed deck and the kit manual; scripts are checked in simulation, all
 tested agents beat the median human expert baseliner, and scripts from one model assembled DNA correctly in three
-wet-lab runs [@liu2026abcbench]. Text2WetLab differs in what it checks and what it gives the agent. Simulation pass
+wet-lab runs [@liu2026abcbench]. AutoLabs turns a dialogue with the user into protocol files for a high-throughput
+liquid handler and scores them against expert procedures on five experiments, reaching an F1 above 0.89
+[@panapitiya2026autolabs]. ProtoAct grounds 22 annotated cell-culture protocols into JSON robot action calls, scored for
+action recognition, parameters and sequence, and runs them in simulation and on a robot [@liu2026protoact].
+Text2WetLab differs in what it checks and what it gives the agent. Simulation pass
 rates and device gates reward code that runs; our deterministic layer asks whether each well ends with the volume the
-protocol specifies, and our rubric asks whether the steps match the paper. All three systems are given a protocol or a
-short prompt; our hard tasks give only a goal and the paper, so the agent must extract the procedure itself.
+protocol specifies, and our rubric asks whether the steps match the paper. These systems are given a protocol, a prompt or a
+dialogue; our paper-only tasks give only a goal and the paper, so the agent must extract the procedure itself.
 
-### 2.3 Checking protocols before they run
+### 2.3 Safety: checking protocols before and while they run
 
 AEGIS is the closest work in intent [@setty2026aegis]. It names the failure mode Text2WetLab measures, OT-2 protocols
 that are syntactically valid but violate assay-specific invariants, and guards against it with a database of 22
@@ -112,14 +128,19 @@ The two are complementary: our verifier's deterministic layer and rubric play th
 language-model checker, but against a per-task ground truth rather than per-assay rules, and our adversarial suite
 (Section 5) is the analogue of its injected bugs. Several of the faults we found by reading model runs, such as a tip
 that mixes in one well and moves to the next, or a reservoir drawn beyond its capacity, are the kind of invariant AEGIS
-encodes as rules.
+encodes as rules. LabGuard compiles natural-language laboratory rules into runtime guards for embodied agents, from
+812 annotations of 203 rules [@yang2026labguard]. LabSafety Bench [@zhou2026labsafety] and LABSHIELD
+[@sun2026labshield] test whether models know laboratory hazards, with questions and multimodal scenarios grounded in
+OSHA and GHS standards; no model passes 70% on hazard identification in the first. These test safety knowledge or guard
+an agent's actions; our physical-safety checks test what the agent's own protocol does.
 
 ### 2.4 Embodied laboratory robotics
 
 Pipette provides a simulation platform, over 100 editable wet-lab assets and a 12-task embodied benchmark for learning
 robot-arm policies, where vision-language-action models reach 44-72% success with simulation augmentation
 [@liu2026pipette]. RoboCulture automates a 15-hour yeast culture with a general-purpose arm, vision and force feedback
-[@angers2025roboculture]. These evaluate motor control; Text2WetLab evaluates the program a liquid handler runs, and
+[@angers2025roboculture]. WetRobo gives a coding agent a reproducible robot kit and evaluates the programs it writes
+on three manipulation tasks in two laboratories [@oikawa2026wetrobo]. These evaluate motor control; Text2WetLab evaluates the program a liquid handler runs, and
 takes the robot's motion as given. A recent survey places both strands in the longer history of AI scientists
 [@king2026aiscientists].
 
@@ -135,20 +156,32 @@ to tampering with the simulator, and we test them, with the rest of the verifier
 
 <div align="center">
 
-**Table 1.** Benchmarks closest to Text2WetLab. "Executed" means the output is run, in simulation or on hardware, as
-part of scoring.
+**Table 1.** What each work covers, against Text2WetLab. "Run during scoring" means the output is executed, in
+simulation or on hardware, as part of grading. "Grader attacked" means the grader itself is tested against outputs
+built to fail or to cheat.
 
-| Work | Input | Output | Executed | Scoring | Size |
-|---|---|---|---|---|---|
-| LAB-Bench [@laurent2024labbench] | Questions on literature, figures, databases, sequences | Multiple-choice answer | No | Exact answer | >2,400 questions |
-| BioPlanner / BioProt [@odonoghue2023bioplanner] | Protocol description and admissible functions | Pseudocode | One protocol in the lab | Comparison with reference pseudocode | Protocol dataset |
-| BioProBench [@liu2025bioprobench] | Human-written protocols | Procedural reasoning answers | No | Task metrics | 523,784 instances |
-| BenchBench-Protocol [@sivakumar2026benchbench] | Published protocol and a modification request | Modified protocol text | No | Weighted expert rubric | 149 tasks |
-| LabscriptAI [@gao2025labscriptai] | Short prompt (mean 91 tokens) | Opentrons, Hamilton or Tecan script | Platform simulators | Simulation pass rate | 55 tasks |
-| ProtoPilot [@jiang2026protopilot] | Experimental intent or protocol | Protocol, SOPs and device code | Device gates; wet-lab tests | Expert rubric, device-level gates | 294 tasks |
-| ABC-Bench, liquid handling [@liu2026abcbench] | Fixed deck and kit manual | OT-2 Gibson assembly script | Simulator; 3 wet-lab runs | Simulation checks | 1 of 3 tasks |
-| AEGIS, Layer 1 [@setty2026aegis] | OT-2 protocol | Rule violations | No | F1 against injected bugs | 24 protocols |
-| **Text2WetLab** | Task steps (easy) or goal and paper (hard), fixed deck | OT-2 protocol written by an agent in a sandbox | Opentrons simulator | End state against ground truth, safety checks, 3-vote rubric, traps; verifier tested adversarially | 11 tasks |
+<!-- coverage-table: keep identical to README.md Appendix F (tests/test_docs_sync.py) -->
+| Work | What is scored | Run during scoring | The agent works from | Graded against | Physical-safety checks | Grader attacked | Size |
+|---|---|---|---|---|---|---|---|
+| LAB-Bench [@laurent2024labbench] | Multiple-choice answers | No | Questions | Answer key | – | – | >2,400 questions |
+| BioLP-bench [@ivanov2024biolpbench] | The one error that breaks a protocol | No | A protocol with planted errors | Planted error | – | – | Lab protocols |
+| BioPlanner [@odonoghue2023bioplanner] | Pseudocode | One protocol in the lab | Description and admissible functions | Reference pseudocode | – | – | Protocol dataset |
+| BioProBench [@liu2025bioprobench] | Text answers | No | Protocols | Task metrics | – | – | 523,784 instances |
+| BenchBench-Protocol [@sivakumar2026benchbench] | Modified protocol text | No | A protocol and a change request | Expert rubric | – | – | 149 tasks |
+| LabSafety Bench [@zhou2026labsafety] | Answers on hazards | No | Questions and scenarios | Expert answers | Knowledge only | – | 765 questions, 404 scenarios |
+| LABSHIELD [@sun2026labshield] | Safety reasoning and plans | No | Multimodal lab tasks | Standards (OSHA, GHS) | Knowledge only | – | 164 tasks |
+| Inagaki et al. [@inagaki2023llmrobotic] | OT-2 Python | Simulator | Goal-oriented instructions | Case studies | – | – | Case studies |
+| CLAIRify [@skreta2023clairify] | Chemistry plans (XDL) | Real robot via a planner | Instructions | Syntax verifier | – | – | Chemistry experiments |
+| LabscriptAI [@gao2025labscriptai] | Opentrons, Hamilton, Tecan scripts | Platform simulators | Short prompt | Simulation pass rate | Biosecurity screening | – | 55 tasks |
+| ProtoPilot [@jiang2026protopilot] | Protocol, SOPs and device code | Device gates; wet-lab tests | Intent or protocol | Expert rubric and device gates | Volume bounds, slot conflicts | – | 294 tasks |
+| ABC-Bench, liquid handling [@liu2026abcbench] | OT-2 Gibson assembly script | Simulator; 3 wet-lab runs | Fixed deck and kit manual | Simulation checks | – | – | 1 of 3 tasks |
+| AutoLabs [@panapitiya2026autolabs] | Liquid-handler protocol files | No | Dialogue with the user | Expert procedures (F1, amount error) | – | – | 5 experiments |
+| ProtoAct [@liu2026protoact] | JSON robot action calls | Simulation and a real robot | Free-form protocols | Annotated actions | – | – | 22 protocols |
+| AEGIS [@setty2026aegis] | Rule violations in given code | Runtime monitor on the robot | An OT-2 protocol | Planted bugs (F1) | 22 assay rules | Validator tested on planted bugs | 24 protocols |
+| LabGuard [@yang2026labguard] | Runtime guards from lab rules | Embodied agents | Natural-language rules | Annotations (F1) | Rules become guards | – | 812 annotations |
+| Pipette [@liu2026pipette] | Robot-arm policies | Simulation | Task goals | Task success | – | – | 12 tasks |
+| WetRobo [@oikawa2026wetrobo] | Robot-arm programs from a coding agent | Real robots, two labs | Task descriptions | Task success | – | – | 3 tasks |
+| **Text2WetLab** | OT-2 protocol written by an agent | Opentrons simulator | Task steps, or a goal and the paper | Every well's end state against a ground truth; 3-vote rubric | 5 rules, critical cap | 9 traps; 151 attacks | 11 tasks |
 
 </div>
 
@@ -156,24 +189,27 @@ part of scoring.
 
 ### 3.1 Tasks
 
-![**Figure 1.** Text2WetLab pipeline. Top: tasks are built from papers. `paper2protocol` extracts each experiment's
-liquid handling into instructions and a protocol intermediate representation (IR) without reading the authors' code, so
-that code stays an independent check. Bottom: an agent writes `/app/protocol.py` in a Harbor sandbox; the verifier is
-copied in only after it finishes.](../docs/figures/fig1_pipeline.png)
+![**Figure 1.** Text2WetLab pipeline. (A) Building a task. A language-model pipeline extracts each experiment's
+liquid handling from the paper into step-by-step instructions and a structured protocol, an intermediate representation
+(IR) that serves as the ground truth. It never reads the authors' robot code, so that code stays an independent check.
+(B) Running and grading a task. The agent works in an isolated container and writes an OT-2 Python protocol. Only after
+it finishes is the verifier copied in. The verifier rejects unsafe code and reward hacking, runs the protocol in the
+Opentrons simulator, compares the simulated end state with the ground truth, and has a language-model judge score a
+rubric. A failed critical check caps the reward at 0.3.](../docs/figures/fig1_pipeline.png)
 
 Each task fixes the deck, so the grader can locate every labware by its label, and asks for a complete OT-2 protocol
-[@opentrons2026api]. Easy tasks give the deck, the starting contents and every step with its quantity. Hard tasks give
-the deck, the starting contents, a one-paragraph goal and the paper as text. Seven tasks are easy and four are hard
-(Table 2): every protocol has an easy task, and the four with a source paper also have a hard one. The hard tasks come from four papers that published OT-2 code: a Golden Gate cloning and colony-PCR workflow
+[@opentrons2026api]. Easy tasks give the deck, the starting contents and every step with its quantity. Paper-only tasks give
+the deck, the starting contents, a one-paragraph goal and the paper as text. Seven tasks are easy and four are paper-only
+(Table 2): every protocol has an easy task, and the four with a source paper also have a paper-only one. The paper-only tasks come from four papers that published OT-2 code: a Golden Gate cloning and colony-PCR workflow
 [@malci2026slowpoke], AssemblyTron [@bryant2022assemblytron], the APEX automated protein-expression pipeline
 [@kasprzyk2024apex] and a low-cost SARS-CoV-2 RNA extraction [@lazaroperona2021rna]. The source corpus behind the tasks
-covers 48 papers.
+covers 48 papers and 166 experiments.
 
 <div align="center">
 
-**Table 2.** The 11 tasks: seven protocols, each with an easy task, four of which also have a paper-only ("hard") task.
+**Table 2.** The 11 tasks: seven protocols, each with an easy task, four of which also have a paper-only task.
 
-| Protocol | Source | Easy task | Hard task |
+| Protocol | Source | Easy task | Paper-only task |
 |---|---|---|---|
 | 100 µL from a reservoir to wells A1 to A12 | handwritten | `a1-a12-100ul` | – |
 | Split 200 µL into two 100 µL wells | handwritten | `split-200ul-two-wells` | – |
@@ -188,7 +224,7 @@ covers 48 papers.
 
 ### 3.2 What the agent sees
 
-The agent sees the instruction, `/data` (the paper on hard tasks) and a planted wrong answer key at
+The agent sees the instruction, `/data` (the paper on paper-only tasks) and a planted wrong answer key at
 `/app/solution_hint.py`. The ground truth (`ir.json`, `deck.json`, `checks.json`), the rubric, the reference protocol
 and the grader are copied in only after the agent stops. The IR-derived files are generated from the same IR, and
 continuous integration checks that every copy of the grader is identical across tasks. The APEX paper is not
@@ -206,14 +242,15 @@ physical safety rules (a tip before every aspiration, no overdispense, no aspira
 no cross-contamination); on RNA extraction, 18 run-log checks of volumes, order, incubation, magnet and drying times,
 recovery, temperature, tips and reservoir capacity. (5) A **language-model judge** (Claude Sonnet 5.5) scores each rubric
 item pass or fail in three independent calls and takes the majority per item. Easy tasks are judged against the task
-text and hard tasks against the paper; the judge sees the check results, the reference protocol and the agent's code.
+text and paper-only tasks against the paper; the judge sees the check results, the reference protocol and the agent's code.
 (6) A failed **critical** check (deck, cross-contamination, pipetting without a tip, aspirating from an empty well,
 overdispensing, and for RNA sample count, step order, supernatant removal, washes, recovery and reservoir capacity) caps
-the reward at 0.3. On hard tasks end-state checks are evidence for the judge rather than critical, because a paper can
+the reward at 0.3. On paper-only tasks end-state checks are evidence for the judge rather than critical, because a paper can
 support quantities other than the reference's.
 
 Every task has three core rubric items worth 25% each: `robot_practice`, `tips_and_contamination` and an all-or-nothing
-`fidelity_to_task` (easy) or `fidelity_to_paper` (hard). Its task-specific items share the remaining 25%.
+`fidelity_to_task` (easy) or `fidelity_to_paper` (paper-only), which also fails a comment that claims an action the
+code does not perform. Its task-specific items share the remaining 25%.
 
 ## 5 Does the verifier grade correctly?
 
@@ -232,29 +269,12 @@ and the loaded labware unchanged is reported as not applicable rather than score
 attack does; the best-scoring attack gets 0.47, and every attack on the grader scores 0. Outlined: halving every volume
 on colony-PCR-hard gives the paper's own 10 µL reaction, a valid protocol that must score 1.](../docs/preprint/figures/grader_validation.png)
 
-**Model runs taught the verifier.** We read every failed check and rubric item from the runs in Section 7 and confirmed
-each against the protocol. Eight faults turned up (Table 3), two of them in the open-weight models' runs. A second check, `tests/test_hard_tasks.py`, requires every
-volume a paper-only task grades deterministically to be in its paper or brief, or to follow from quoted facts by
-arithmetic the test spells out; it found two more. Each fix has a regression test.
-
-<div align="center">
-
-**Table 3.** Grader faults found by reading the model runs (rows 1-6 and 9-10) and by the paper-only audit (rows 7-8).
-
-| Fault | Found in | Fix |
-|---|---|---|
-| Labware on a module is named differently at API ≥ 2.14; a correct protocol failed its deck and end-state checks | Opus, ecoli-hard (0.30, really 0.75) | Both naming schemes read; controls run at API 2.13, 2.14 and 2.15 |
-| A tip that mixed in one well and moved to the next was not flagged | The judge, on the AMPure reference | Checker tracks what a tip carries; references regenerated |
-| No reservoir-volume check: 16 mL drawn from a 15 mL well passed | Sonnet, RNA easy | New critical check of net volume per reservoir column |
-| On the easy RNA task, whose brief says 80 µL, the recovery check accepted 70-100 µL | Identical recoveries judged pass and fail | New 70-90 µL check, easy task only |
-| One judge call scored identical recipes differently | Colony-PCR-hard | Three calls, majority per item; primer volume left to the agent, as the deck gives no concentration |
-| End-state details truncated to 160 characters | Every colony-hard report | Full expected and measured values |
-| RNA-hard's rubric required 80 µL recovered; the paper says only "collect the supernatant" | Sonnet, GPT marked down | Any full recovery passes on the paper-only task |
-| Colony-PCR-hard graded the easy task's 20 µL reaction; the paper's is 10 µL, with no primer concentration on the deck | Every model "failed" it | No exact volumes: every well must get all three inputs, alike, 10-25 µL |
-| The lint gate refused Opentrons' documented `pipette.tip_racks = [...]` | DeepSeek, a correct protocol scored 0 | Documented pipette settings allowed; patching classes or modules still refused |
-| Mixing a source well before drawing from it (resuspending a colony) was flagged as contamination | DeepSeek, colony-hard (0.30, really 1.00) | Only mixing in a destination makes a tip carry |
-
-</div>
+**Model runs taught the verifier.** Validation also ran in the other direction. We read every failed check and rubric
+item from the runs in Section 7 and confirmed each against the protocol. This found eight grader faults, in both
+directions: correct protocols marked down (a lint rule that refused a documented pipette setting) and wrong ones passed
+(no check on how much a reservoir well can give). A second check, `tests/test_hard_tasks.py`, requires every volume a
+paper-only task grades deterministically to be in its paper or brief, or to follow from quoted facts by arithmetic the
+test spells out; it found two more. All ten are fixed, each with a regression test (Appendix A).
 
 **Is the paper-only level valid?** After the two fixes, all four paper-only tasks pass the audit. Heat-shock-hard has
 its own ground truth from the APEX paper: temperatures and times in the text, volumes in a figure caption. Golden-Gate-
@@ -284,7 +304,7 @@ tasks; below, paper-only tasks.](../docs/preprint/figures/run_rewards.png)
 
 <div align="center">
 
-**Table 4.** Summary. Refused tasks are not scored; the first row is the headline.
+**Table 3.** Summary. Refused tasks are not scored; the first row is the headline.
 
 | | Sonnet 5.5 | Opus 5.5 | Fable 5.1 | GPT-6.1 Sol | Qwen3.8-2.4T | DeepSeek V4 Pro |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -301,24 +321,32 @@ tasks; below, paper-only tasks.](../docs/preprint/figures/run_rewards.png)
 </div>
 
 **Easy tasks are nearly solved.** Four of the seven easy tasks gave every model full marks, and GPT-6.1 Sol and Opus
-were perfect on every easy task they answered. The models separate on RNA extraction and on the hard tasks, where 12 of
+were perfect on every easy task they answered. The models separate on RNA extraction and on the paper-only tasks, where 12 of
 21 answered trials failed `fidelity_to_paper`. The two open-weight models trail on both levels.
 
 **Refused tasks are not scored.** Anthropic's biosecurity safeguard declined both Golden Gate prompts for Opus and
-Fable and the paper-only E. coli transformation prompt for Fable. These are teaching-lab procedures, so the refusals are
-false positives; we report them as they happened and did not rephrase prompts. A refusal is the provider's policy, not
+Fable and the paper-only E. coli transformation prompt for Fable. These are routine molecular-biology procedures, but
+they produce genetically modified organisms, and the same steps could assemble or transform hazardous sequences, so we
+do not call the refusals false positives. They are inconsistent, though: Opus answered the paper-only transformation
+prompt that Fable refused, and both answered the easy one. With one attempt each, we cannot tell whether the safeguard
+is non-deterministic or differs between models. We report refusals as they happened and did not rephrase prompts. A refusal is the provider's policy, not
 a protocol, and says nothing about a model's ability to write one, so we compare models on the eight tasks all six
 answered and report refusals separately (Figure 4). Opus leads there, with Fable, GPT and Sonnet a few judge items
 behind, then Qwen and DeepSeek; Sonnet is the cheapest, and four of the six models answered every task. ABC-Bench reports refusals on
 its dual-use screening-evasion task, where the tested Anthropic and OpenAI frontier models refused every sample
-[@liu2026abcbench]; ours fall on benign tasks.
+[@liu2026abcbench]; ours fall on routine cloning and transformation.
 
 ![**Figure 4.** (a) Mean reward over the eight tasks all six models answered (the headline), over every task each
 model answered, and over the easy and paper-only tasks it answered. (b) Agent cost for the same eight tasks against
 the headline score.](../docs/preprint/figures/run_means_cost.png)
 
-**The mechanical layers are nearly solved; the signal is in the judge.** No model crashed the simulator, tripped a
-trap or broke the lint gate (Figure 5). The closed models' only physical-safety failure is Sonnet's reservoir overdraw;
+**The mechanical layers are nearly solved; fidelity is not.** No model crashed the simulator, tripped a trap or broke
+the lint gate (Figure 5). That is partly the prompt: every easy task's instruction tells the agent to run
+`opentrons_simulate` and requires the protocol to simulate without errors, and the agent can run it in the sandbox.
+The paper-only instructions do not say this, and every paper-only protocol also ran, but we have not tested agents
+without a simulator to hand. Most other points are lost on `fidelity_to_paper`, which asks whether the protocol is the
+paper's method, with every step present and in order. It is the item that matters most: a protocol that runs safely
+but departs from the paper is not a usable protocol. The closed models' only physical-safety failure is Sonnet's reservoir overdraw;
 Qwen and DeepSeek overdraw the same reservoir and add the run's only cross-contaminations. End-state misses are GPT's
 and Qwen's Golden-Gate-hard plates.
 
@@ -332,14 +360,16 @@ Golden Gate. *Overdrawing a reservoir* (Sonnet, Qwen, DeepSeek): six sample colu
 onto four ethanol wells draw 16 mL from a 15 mL well. *One tip from the reaction back to the stock* (Qwen on both Golden
 Gate tasks, DeepSeek on AMPure and Golden-Gate-hard): `transfer(..., new_tip='once', mix_after=...)` mixes in each
 reaction and returns the same tip to the enzyme or bead stock, carrying every reaction into it. *Wrong metadata*: Fable credits the RNA paper to the wrong
-authors. Two choices that looked like errors are not: recovering the whole 100 µL eluate on RNA-hard and building the
-paper's 10 µL colony-PCR reaction both follow the paper, and every trial graded before the audit has been re-judged.
+authors. Building the paper's 10 µL colony-PCR reaction, which the grader once marked down, follows the paper, and every
+affected trial has been re-judged. Recovering the whole 100 µL of eluate on RNA-hard, as Sonnet, Opus and GPT do, is
+accepted by the grader because the paper says only "collect the supernatant", but it is poor OT-2 practice: a person can
+steer the tip around the bead pellet, while the robot works blind from its calibration and cannot take the full volume
+without disturbing the beads. The authors' own script takes 80 µL.
 
-**One attempt is noisy, and the cloud is faster.** Qwen run a second time on Modal, everything else unchanged, scored
-0.805 against 0.728 locally; four tasks changed, by up to 0.70 (RNA extraction 0.30 to 1.00). Gaps of under about 0.1
-between models are within this noise. With all 11 tasks in parallel Modal finished in 31.9 minutes against 54.7 for local
-Docker two at a time, despite about 1.5 minutes of image build per sandbox; the wall clock is then the slowest trial, and
-DeepSeek, without a slow trial, finished all 11 in 12 minutes.
+**One attempt is noisy.** Qwen run a second time, everything else unchanged (on Modal rather than local Docker;
+Appendix B), scored 0.805 against 0.728; four tasks changed, by up to 0.70 (RNA extraction 0.30 to 1.00). Part of the
+size of these swings comes from the scoring: one failed critical check caps a trial at 0.30, while a mistake no critical
+check catches may cost a single rubric item. One attempt per cell is not enough to rank models whose scores are close.
 
 ## 8 Discussion and limitations
 
@@ -360,8 +390,26 @@ that also judges a non-Claude model. A second judge from another provider, as AE
 which is fair only where the paper fixes the same quantities. The audit now enforces that; where the paper fixes less,
 as in colony-PCR-hard, the checks fall back to what it does fix.
 
-**Scope.** One robot (OT-2), one simulator, one agent harness, six models, one attempt per cell (one model repeated). Repeated attempts for every model,
-wet-lab execution of the generated protocols and non-Opentrons instruments are future work.
+**One attempt is not enough.** We have not run enough repeats to say which gaps between models are meaningful.
+Repeated attempts would give confidence intervals and significance tests, and are the next run.
+
+**One harness, one prompt.** Every model runs inside Claude Code, which Anthropic's models are likely tuned for, so the
+comparison may favour them; running the tasks without a harness, or in each provider's own agent, would measure this.
+The easy-task instructions also tell the agent to run the simulator. We have not compared instructions without this, or
+with more guidance against common pitfalls, so the simulator pass rate is that of a prompted agent with a simulator, not
+of the model alone.
+
+**Fixed decks and published code.** Every task fixes the deck so the grader can find labware by label; in practice,
+choosing the layout and labware is part of the job, and a task that leaves it to the agent needs a grader that matches
+labware by role. Tasks come from papers whose authors published robot code. That code may be in the models' training
+data, and authors who publish code may also describe their procedures more completely than most; tasks from
+unpublished protocols, from collaborating labs or written for the benchmark, would test both.
+
+**Full recovery from beads.** The paper-only RNA rubric accepts recovering the whole 100 µL of eluate because the paper
+gives no volume, though an OT-2 cannot do this without disturbing the beads. `robot_practice` should fail it.
+
+**Scope.** One robot (OT-2), one simulator, one agent harness, six models, one attempt per cell (one model repeated).
+Wet-lab execution of the generated protocols and non-Opentrons instruments are future work.
 
 ## 9 Conclusion
 
@@ -377,5 +425,33 @@ ground truth against the papers.
 Tasks, verifier, reference solutions, adversarial suite, every graded protocol and grader record, and the scripts that
 produce every table and figure are at <https://github.com/PhysicalAIBenchmarks/Text2WetLab> under the MIT licence.
 Paper text and third-party code keep their own licences; only CC BY and CC0 paper text is redistributed.
+
+## Appendix A: Grader faults found and fixed
+
+<div align="center">
+
+**Table A1.** Grader faults found by reading the model runs (rows 1-6 and 9-10) and by the paper-only audit (rows 7-8).
+Each has a regression test.
+
+| Fault | Found in | Fix |
+|---|---|---|
+| Labware on a module is named differently at API ≥ 2.14; a correct protocol failed its deck and end-state checks | Opus, ecoli-hard (0.30, really 0.75) | Both naming schemes read; controls run at API 2.13, 2.14 and 2.15 |
+| A tip that mixed in one well and moved to the next was not flagged | The judge, on the AMPure reference | Checker tracks what a tip carries; references regenerated |
+| No reservoir-volume check: 16 mL drawn from a 15 mL well passed | Sonnet, RNA easy | New critical check of net volume per reservoir column |
+| On the easy RNA task, whose brief says 80 µL, the recovery check accepted 70-100 µL | Identical recoveries judged pass and fail | New 70-90 µL check, easy task only |
+| One judge call scored identical recipes differently | Colony-PCR-hard | Three calls, majority per item; primer volume left to the agent, as the deck gives no concentration |
+| End-state details truncated to 160 characters | Every colony-hard report | Full expected and measured values |
+| RNA-hard's rubric required 80 µL recovered; the paper says only "collect the supernatant" | Sonnet, GPT marked down | Any full recovery passes on the paper-only task |
+| Colony-PCR-hard graded the easy task's 20 µL reaction; the paper's is 10 µL, with no primer concentration on the deck | Every model "failed" it | No exact volumes: every well must get all three inputs, alike, 10-25 µL |
+| The lint gate refused Opentrons' documented `pipette.tip_racks = [...]` | DeepSeek, a correct protocol scored 0 | Documented pipette settings allowed; patching classes or modules still refused |
+| Mixing a source well before drawing from it (resuspending a colony) was flagged as contamination | DeepSeek, colony-hard (0.30, really 1.00) | Only mixing in a destination makes a tip carry |
+
+</div>
+
+## Appendix B: Local Docker or Modal
+
+With all 11 tasks in parallel, Modal finished Qwen's run in 31.9 minutes against 54.7 for local Docker two at a time,
+despite about 1.5 minutes of image build per sandbox; the wall clock is then the slowest trial (a 28-minute agent
+session on RNA extraction). DeepSeek, without a slow trial, finished all 11 tasks on Modal in 12 minutes.
 
 ## References

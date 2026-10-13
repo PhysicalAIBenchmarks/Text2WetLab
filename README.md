@@ -26,7 +26,7 @@ E. O'Leary · M. Alshehri · L. Legon
 
 Automating a published protocol on a liquid-handling robot is a translation problem with two failure modes. The first is mechanical: code that crashes, over-aspirates or runs out of tips. Simulators catch these. The second is biological: a protocol that runs perfectly and still ruins the experiment because it mixes fragile cells, carries beads into the eluate, or adds reagents in the wrong order. Nothing in the robot's API marks these as errors.
 
-Existing benchmarks mostly measure the first kind, or measure knowledge rather than code. LAB-Bench, BioPlanner, BioProBench and BenchBench-Protocol grade text: multiple-choice answers, pseudocode, or rewritten protocols. Systems that turn protocols into robot code, such as LabscriptAI, ProtoPilot and ABC-Bench, score generated scripts mainly by whether they run in simulation or pass device-level checks (syntax, slot conflicts, volume bounds), with a few protocols tested at the bench. AEGIS is the closest in intent: it names the failure of OT-2 code that is valid but breaks the assay, and catches it with a database of assay rules and a language-model checker. It validates protocols it is given, though, rather than evaluating the agents that write them. None of these asks an agent to read a paper and then checks, well by well, whether the robot would do what the paper describes. Full related work, with references, is in §2 of the [preprint](https://physicalaibenchmarks.github.io/Text2WetLab/docs/preprint/preprint.html).
+Language models have written OT-2 scripts from instructions since GPT-4 (Inagaki et al., 2023), but existing benchmarks mostly measure the first kind of failure, or measure knowledge rather than code. LAB-Bench, BioPlanner, BioLP-bench, BioProBench and BenchBench-Protocol grade text: multiple-choice answers, pseudocode, error finding, or rewritten protocols. Systems that turn protocols into robot code, such as LabscriptAI, ProtoPilot, ABC-Bench and AutoLabs, score generated scripts mainly by whether they run in simulation or pass device-level checks (syntax, slot conflicts, volume bounds), with a few protocols tested at the bench. AEGIS is the closest in intent: it names the failure of OT-2 code that is valid but breaks the assay, and catches it with a database of assay rules and a language-model checker. It validates protocols it is given, though, rather than evaluating the agents that write them. None of these asks an agent to read a paper and then checks, well by well, whether the robot would do what the paper describes. Appendix F sets 18 related works against what Text2WetLab covers; the full related work, with references, is in §2 of the [preprint](https://physicalaibenchmarks.github.io/Text2WetLab/docs/preprint/preprint.html).
 
 Text2WetLab measures the second kind of failure. Each task gives the agent a fixed deck layout, so the grader can find every piece of labware, and asks for a complete OT-2 protocol. Tasks come from papers whose authors also published robot code, which lets us compare generated protocols with what was actually run at the bench. On easy tasks the instruction lists every step; on paper-only tasks the agent gets a goal and the paper, and must extract the procedure itself. A layered verifier checks the simulated run against a ground truth and has an LLM judge score what the simulator cannot see.
 
@@ -388,9 +388,9 @@ Each run writes `jobs/<job-name>/`, with `agent/` (transcript, tokens, cost) and
 
 <p align="center"><img src="docs/preprint/figures/fig6_corpus.png" width="100%" alt="Source corpus: papers by year, liquid handling per experiment, paper2protocol outcome"></p>
 
-<p align="center"><sub><b>Figure B1 | Source corpus.</b> <b>a,</b> Papers by year (n = 36). <b>b,</b> Experiments by share of liquid handling (n = 123). <b>c,</b> <code>paper2protocol</code> outcome per experiment: 29 converted to an IR, 21 rejected as under-specified.</sub></p>
+<p align="center"><sub><b>Figure B1 | Source corpus.</b> <b>a,</b> Papers by year (n = 48). <b>b,</b> Experiments by share of liquid handling (n = 166). <b>c,</b> <code>paper2protocol</code> outcome per experiment: 29 converted to an IR, 21 rejected as under-specified.</sub></p>
 
-[`paper2protocol/`](paper2protocol/) turns a DOI, URL, title or PDF into liquid-handling instructions and a protocol IR. [`sources/`](sources/) holds one folder per paper (36 papers, 123 experiments in [`sources/master.csv`](sources/master.csv)); PDFs and author code stay in a cache outside the repo because licences differ.
+[`paper2protocol/`](paper2protocol/) turns a DOI, URL, title or PDF into liquid-handling instructions and a protocol IR. [`sources/`](sources/) holds one folder per paper (48 papers, 166 experiments in [`sources/master.csv`](sources/master.csv)); PDFs and author code stay in a cache outside the repo because licences differ.
 
 ```bash
 python -m paper2protocol list <doi-or-pdf>        # experiments in a paper
@@ -456,6 +456,37 @@ scripts/               make_harbor.py, benchmark_report.py, regrade_jobs.py, har
 Modal is 1.7× faster for Qwen, and would be faster still without a single slow trial: run in parallel, the wall clock
 is the slowest task (a 28-minute agent session on RNA extraction), and each sandbox spends about 1.5 minutes building
 its image where local Docker reuses a cached one.
+
+### F. Related work coverage
+
+<div align="center">
+
+**Table F1.** What each related work covers, against Text2WetLab. "Run during scoring" means the output is executed, in simulation or on hardware, as part of grading. "Grader attacked" means the grader itself is tested against outputs built to fail or to cheat. References and discussion: §2 of the [preprint](https://physicalaibenchmarks.github.io/Text2WetLab/docs/preprint/preprint.html).
+
+<!-- coverage-table: keep identical to manuscript/main.md Table 1 (tests/test_docs_sync.py) -->
+| Work | What is scored | Run during scoring | The agent works from | Graded against | Physical-safety checks | Grader attacked | Size |
+|---|---|---|---|---|---|---|---|
+| LAB-Bench | Multiple-choice answers | No | Questions | Answer key | – | – | >2,400 questions |
+| BioLP-bench | The one error that breaks a protocol | No | A protocol with planted errors | Planted error | – | – | Lab protocols |
+| BioPlanner | Pseudocode | One protocol in the lab | Description and admissible functions | Reference pseudocode | – | – | Protocol dataset |
+| BioProBench | Text answers | No | Protocols | Task metrics | – | – | 523,784 instances |
+| BenchBench-Protocol | Modified protocol text | No | A protocol and a change request | Expert rubric | – | – | 149 tasks |
+| LabSafety Bench | Answers on hazards | No | Questions and scenarios | Expert answers | Knowledge only | – | 765 questions, 404 scenarios |
+| LABSHIELD | Safety reasoning and plans | No | Multimodal lab tasks | Standards (OSHA, GHS) | Knowledge only | – | 164 tasks |
+| Inagaki et al. | OT-2 Python | Simulator | Goal-oriented instructions | Case studies | – | – | Case studies |
+| CLAIRify | Chemistry plans (XDL) | Real robot via a planner | Instructions | Syntax verifier | – | – | Chemistry experiments |
+| LabscriptAI | Opentrons, Hamilton, Tecan scripts | Platform simulators | Short prompt | Simulation pass rate | Biosecurity screening | – | 55 tasks |
+| ProtoPilot | Protocol, SOPs and device code | Device gates; wet-lab tests | Intent or protocol | Expert rubric and device gates | Volume bounds, slot conflicts | – | 294 tasks |
+| ABC-Bench, liquid handling | OT-2 Gibson assembly script | Simulator; 3 wet-lab runs | Fixed deck and kit manual | Simulation checks | – | – | 1 of 3 tasks |
+| AutoLabs | Liquid-handler protocol files | No | Dialogue with the user | Expert procedures (F1, amount error) | – | – | 5 experiments |
+| ProtoAct | JSON robot action calls | Simulation and a real robot | Free-form protocols | Annotated actions | – | – | 22 protocols |
+| AEGIS | Rule violations in given code | Runtime monitor on the robot | An OT-2 protocol | Planted bugs (F1) | 22 assay rules | Validator tested on planted bugs | 24 protocols |
+| LabGuard | Runtime guards from lab rules | Embodied agents | Natural-language rules | Annotations (F1) | Rules become guards | – | 812 annotations |
+| Pipette | Robot-arm policies | Simulation | Task goals | Task success | – | – | 12 tasks |
+| WetRobo | Robot-arm programs from a coding agent | Real robots, two labs | Task descriptions | Task success | – | – | 3 tasks |
+| **Text2WetLab** | OT-2 protocol written by an agent | Opentrons simulator | Task steps, or a goal and the paper | Every well's end state against a ground truth; 3-vote rubric | 5 rules, critical cap | 9 traps; 151 attacks | 11 tasks |
+
+</div>
 
 ## Citation
 

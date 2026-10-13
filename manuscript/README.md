@@ -1,13 +1,17 @@
 # Preprint
 
-The Text2WetLab paper. `main.md` is the source (pandoc Markdown with `[@key]` citations), `refs.bib` the references,
-`preprint.css` the typesetting.
+The Text2WetLab paper. `main.md` is the only source (pandoc Markdown with `[@key]` citations), `refs.bib` the references,
+`preprint.css` the typesetting. The HTML preprint, the PDF and `main.tex` are all generated from it by `build.sh`; never
+edit them by hand. The README is the one other hand-written document that reports the same results, and
+`tests/test_docs_sync.py` fails when the two drift apart (task, trap, attack and corpus counts, headline scores, the
+related-work coverage table, citations, and a stale build).
 
 | File | What it is |
 |---|---|
-| `main.md` | Abstract, introduction, related work (Table 1 compares the closest benchmarks), benchmark, verifier, verifier validation, setup, results, discussion |
-| `refs.bib` | 25 references. arXiv entries come from the arXiv API and published papers from Crossref, so titles, authors and years are as the publisher records them |
-| `build.sh` | Renders [`docs/preprint/preprint.html`](../docs/preprint/preprint.html): one self-contained file, figures embedded, citations resolved |
+| `main.md` | Abstract, introduction, related work (Table 1: what each of 18 related works covers), benchmark, verifier, verifier validation, setup, results, discussion, appendices |
+| `refs.bib` | 35 references, each checked against its arXiv, bioRxiv or publisher page |
+| `build.sh` | Renders [`docs/preprint/preprint.html`](../docs/preprint/preprint.html) (one self-contained file, figures embedded, citations resolved) and `main.tex` (natbib, with `refs.bib`); `--pdf` also prints the PDF |
+| `main.tex` | Generated LaTeX for submission. Compile with `refs.bib` alongside |
 
 ```bash
 bash manuscript/build.sh

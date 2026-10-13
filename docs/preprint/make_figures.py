@@ -2,7 +2,7 @@
 
     uv run --no-project --with matplotlib python docs/preprint/make_figures.py
 
-Reads docs/harbor-results/analysis/{rounds,errors}.json and sources/master.csv; writes docs/preprint/figures/*.png.
+Reads results/archive/2026-10-04-harbor-results/analysis/{rounds,errors}.json and sources/master.csv; writes docs/preprint/figures/*.png.
 """
 import collections, csv, json, pathlib, statistics
 
@@ -11,7 +11,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-A = ROOT / "docs/harbor-results/analysis"
+A = ROOT / "results/archive/2026-10-04-harbor-results/analysis"
 OUT = ROOT / "docs/preprint/figures"
 OUT.mkdir(parents=True, exist_ok=True)
 
