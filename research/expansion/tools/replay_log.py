@@ -184,7 +184,7 @@ async def main(events_path, task, label, per_event, out_path, state_path):
         pass
     await page.add_style_tag(content="#stats-panel,#scale-bar,#zoom-controls,#home-button,#navbar-device-tools{display:none!important}")
     await asyncio.sleep(1.0)
-    await page.evaluate("() => plrViewer.focus('ot2_deck', 'iso')")
+    await page.evaluate("n => plrViewer.focus(n, 'iso')", getattr(rp, "focus_name", "ot2_deck"))
     await asyncio.sleep(0.5)
     await page.keyboard.press("Escape")
     await page.evaluate("""() => { const d = document.createElement('div'); d.id = 'cap';
