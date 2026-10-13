@@ -1,0 +1,451 @@
+{
+ "model": {
+  "bodies": 17,
+  "geoms": 82,
+  "joints": 4,
+  "actuators": 4,
+  "cameras": 5,
+  "meshes": 0,
+  "timestep_s": 0.002,
+  "geoms_with_collision_enabled": 82
+ },
+ "joint_ranges_m": {
+  "j_tc_lid": [
+   0.0,
+   0.06
+  ],
+  "j_x": [
+   -0.29,
+   0.29
+  ],
+  "j_y": [
+   -0.24,
+   0.24
+  ],
+  "j_z": [
+   -0.38,
+   0.02
+  ]
+ },
+ "camera_mean_brightness_0_255": {
+  "iso": 0.0,
+  "side": 0.0,
+  "top": 87.83,
+  "front": 0.0,
+  "deck": 0.03,
+  "free (fallback)": 30.95
+ },
+ "gantry_by_slot": {
+  "1": {
+   "commanded_joint_xyz": [
+    -0.152,
+    -0.34,
+    -0.17
+   ],
+   "joint_xyz_after_apply_event_budget": [
+    -0.0127,
+    -0.1546,
+    -0.371
+   ],
+   "joint_xyz_after_6s_more": [
+    -0.13,
+    -0.24,
+    -0.3688
+   ],
+   "slot_centre_xy": [
+    -0.152,
+    -0.17
+   ],
+   "tip_xy": [
+    -0.13,
+    -0.07
+   ],
+   "tip_error_mm": 102.4,
+   "tip_z": -0.152,
+   "contacts": 12
+  },
+  "2": {
+   "commanded_joint_xyz": [
+    0.0,
+    -0.34,
+    -0.17
+   ],
+   "joint_xyz_after_apply_event_budget": [
+    -0.1214,
+    -0.24,
+    -0.3685
+   ],
+   "joint_xyz_after_6s_more": [
+    -0.019,
+    -0.24,
+    -0.3688
+   ],
+   "slot_centre_xy": [
+    0.0,
+    -0.17
+   ],
+   "tip_xy": [
+    -0.019,
+    -0.07
+   ],
+   "tip_error_mm": 101.8,
+   "tip_z": -0.152,
+   "contacts": 12
+  },
+  "3": {
+   "commanded_joint_xyz": [
+    0.152,
+    -0.34,
+    -0.17
+   ],
+   "joint_xyz_after_apply_event_budget": [
+    -0.0014,
+    -0.24,
+    -0.3685
+   ],
+   "joint_xyz_after_6s_more": [
+    0.1279,
+    -0.24,
+    -0.3688
+   ],
+   "slot_centre_xy": [
+    0.152,
+    -0.17
+   ],
+   "tip_xy": [
+    0.128,
+    -0.07
+   ],
+   "tip_error_mm": 102.8,
+   "tip_z": -0.152,
+   "contacts": 12
+  },
+  "4": {
+   "commanded_joint_xyz": [
+    -0.152,
+    -0.255,
+    -0.17
+   ],
+   "joint_xyz_after_apply_event_budget": [
+    0.1064,
+    -0.24,
+    -0.3687
+   ],
+   "joint_xyz_after_6s_more": [
+    -0.1115,
+    -0.24,
+    -0.3688
+   ],
+   "slot_centre_xy": [
+    -0.152,
+    -0.085
+   ],
+   "tip_xy": [
+    -0.111,
+    -0.07
+   ],
+   "tip_error_mm": 43.7,
+   "tip_z": -0.152,
+   "contacts": 12
+  },
+  "5": {
+   "commanded_joint_xyz": [
+    0.0,
+    -0.255,
+    -0.17
+   ],
+   "joint_xyz_after_apply_event_budget": [
+    -0.1069,
+    -0.24,
+    -0.3685
+   ],
+   "joint_xyz_after_6s_more": [
+    -0.0168,
+    -0.24,
+    -0.3688
+   ],
+   "slot_centre_xy": [
+    0.0,
+    -0.085
+   ],
+   "tip_xy": [
+    -0.017,
+    -0.07
+   ],
+   "tip_error_mm": 22.7,
+   "tip_z": -0.152,
+   "contacts": 12
+  },
+  "6": {
+   "commanded_joint_xyz": [
+    0.152,
+    -0.255,
+    -0.17
+   ],
+   "joint_xyz_after_apply_event_budget": [
+    0.0003,
+    -0.24,
+    -0.3685
+   ],
+   "joint_xyz_after_6s_more": [
+    0.1282,
+    -0.24,
+    -0.3688
+   ],
+   "slot_centre_xy": [
+    0.152,
+    -0.085
+   ],
+   "tip_xy": [
+    0.128,
+    -0.07
+   ],
+   "tip_error_mm": 28.3,
+   "tip_z": -0.152,
+   "contacts": 12
+  },
+  "7": {
+   "commanded_joint_xyz": [
+    -0.152,
+    -0.17,
+    -0.17
+   ],
+   "joint_xyz_after_apply_event_budget": [
+    0.1072,
+    -0.2086,
+    -0.3698
+   ],
+   "joint_xyz_after_6s_more": [
+    -0.1075,
+    -0.17,
+    -0.3708
+   ],
+   "slot_centre_xy": [
+    -0.152,
+    0.0
+   ],
+   "tip_xy": [
+    -0.107,
+    -0.0
+   ],
+   "tip_error_mm": 45.0,
+   "tip_z": -0.154,
+   "contacts": 16
+  },
+  "8": {
+   "commanded_joint_xyz": [
+    0.0,
+    -0.17,
+    -0.17
+   ],
+   "joint_xyz_after_apply_event_budget": [
+    -0.104,
+    -0.17,
+    -0.3706
+   ],
+   "joint_xyz_after_6s_more": [
+    -0.018,
+    -0.17,
+    -0.3708
+   ],
+   "slot_centre_xy": [
+    0.0,
+    0.0
+   ],
+   "tip_xy": [
+    -0.018,
+    -0.0
+   ],
+   "tip_error_mm": 18.0,
+   "tip_z": -0.154,
+   "contacts": 16
+  },
+  "9": {
+   "commanded_joint_xyz": [
+    0.152,
+    -0.17,
+    -0.17
+   ],
+   "joint_xyz_after_apply_event_budget": [
+    -0.0009,
+    -0.17,
+    -0.3706
+   ],
+   "joint_xyz_after_6s_more": [
+    0.1264,
+    -0.17,
+    -0.3693
+   ],
+   "slot_centre_xy": [
+    0.152,
+    0.0
+   ],
+   "tip_xy": [
+    0.126,
+    -0.0
+   ],
+   "tip_error_mm": 26.0,
+   "tip_z": -0.152,
+   "contacts": 16
+  },
+  "10": {
+   "commanded_joint_xyz": [
+    -0.152,
+    -0.085,
+    -0.17
+   ],
+   "joint_xyz_after_apply_event_budget": [
+    0.1055,
+    -0.1247,
+    -0.37
+   ],
+   "joint_xyz_after_6s_more": [
+    -0.1116,
+    -0.085,
+    -0.3688
+   ],
+   "slot_centre_xy": [
+    -0.152,
+    0.085
+   ],
+   "tip_xy": [
+    -0.112,
+    0.085
+   ],
+   "tip_error_mm": 40.0,
+   "tip_z": -0.152,
+   "contacts": 12
+  },
+  "11": {
+   "commanded_joint_xyz": [
+    0.0,
+    -0.085,
+    -0.17
+   ],
+   "joint_xyz_after_apply_event_budget": [
+    -0.107,
+    -0.085,
+    -0.3685
+   ],
+   "joint_xyz_after_6s_more": [
+    -0.0168,
+    -0.085,
+    -0.3688
+   ],
+   "slot_centre_xy": [
+    0.0,
+    0.085
+   ],
+   "tip_xy": [
+    -0.017,
+    0.085
+   ],
+   "tip_error_mm": 17.0,
+   "tip_z": -0.152,
+   "contacts": 12
+  },
+  "12": {
+   "commanded_joint_xyz": [
+    0.152,
+    -0.085,
+    -0.17
+   ],
+   "joint_xyz_after_apply_event_budget": [
+    0.0003,
+    -0.085,
+    -0.3685
+   ],
+   "joint_xyz_after_6s_more": [
+    0.1271,
+    -0.085,
+    -0.3693
+   ],
+   "slot_centre_xy": [
+    0.152,
+    0.085
+   ],
+   "tip_xy": [
+    0.127,
+    0.085
+   ],
+   "tip_error_mm": 25.0,
+   "tip_z": -0.152,
+   "contacts": 16
+  }
+ },
+ "joint_xyz_for_two_wells_in_slot_2": {
+  "A1": [
+   0.0959,
+   -0.2149,
+   -0.3695
+  ],
+  "H12": [
+   0.0658,
+   -0.2398,
+   -0.3684
+  ]
+ },
+ "what_stops_the_gantry": {
+  "z_column_mass_kg": 0.2,
+  "SAFE_Z": {
+   "commanded": -0.02,
+   "j_z": -0.3544,
+   "tip_z": -0.1374,
+   "contacts": 16,
+   "actuator_force_N": 2674.9
+  },
+  "WORK_Z": {
+   "commanded": -0.17,
+   "j_z": -0.3693,
+   "tip_z": -0.1523,
+   "contacts": 16,
+   "actuator_force_N": 1594.6
+  },
+  "SAFE_Z, gravity off": {
+   "commanded": -0.02,
+   "j_z": -0.3618,
+   "contacts": 16
+  },
+  "contacts off": {
+   "commanded_xyz": [
+    -0.152,
+    -0.17,
+    -0.02
+   ],
+   "joint_xyz": [
+    -0.152,
+    -0.17,
+    -0.5169
+   ]
+  },
+  "contacts off, x after the 100-step budget": {
+   "commanded": 0.152,
+   "j_x": 0.1421
+  }
+ },
+ "liquid_bookkeeping": {
+  "pipette_uL_after_aspirating_5000": 5000.0,
+  "source_well_uL_after_aspirating_from_empty": 0.0,
+  "state_tracks_slot5_C7_uL": 100.0,
+  "well_geoms_that_change_colour": [
+   "w_A1",
+   "w_B1",
+   "w_C1",
+   "w_D1",
+   "w_E1",
+   "w_F1",
+   "w_G1",
+   "w_H1"
+  ]
+ },
+ "own_parser_on_opentrons_7_5": {
+  "log_lines": 27,
+  "aspirate_lines": 12,
+  "dispense_lines": 12,
+  "events_parsed": {
+   "pick": 1,
+   "drop": 1
+  },
+  "sample_line": "Aspirating 100.0 uL from A1 of reservoir on 1 at 92.86 uL/sec"
+ }
+}
