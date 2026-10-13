@@ -1,9 +1,21 @@
 {
  "code": [
   {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/synthetic-cells-robotics/IdoGalil__syn-cells-classification",
+   "commit": "8c9de52560dc6cb2be23b0f8dd8c853c7576b7d5",
+   "default_branch": "main",
    "host": "github.com",
-   "status": "not found (404 or private)",
-   "url": "https://github.com/IdoGalil/syn"
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 3,
+   "redistributable": "no",
+   "repo": "IdoGalil/syn-cells-classification",
+   "robot_mentions": [],
+   "size_kb": 64194,
+   "status": "cloned",
+   "url": "https://github.com/IdoGalil/syn-cells-classification"
   }
  ],
  "doi_primary": "10.1002/adbi.202400671",

@@ -19,6 +19,13 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 EXP = ROOT / "research/expansion"
 DEST = ROOT / "sources/experimental"
+# Code links the searches got wrong, resolved by hand (2026-10-13): an organisation link or a renamed repository.
+CODE_FIXES = {
+    "archemist": "https://github.com/cooper-group-uol-robotics/archemist",
+    "takahashi-turbidostat": "https://github.com/Flexostat/Flexostat-interface",
+    "synthetic-cells-robotics": "https://github.com/IdoGalil/syn-cells-classification",
+}
+FETCHED = ("cloned", "downloaded", "not code", "no public code")
 
 
 def candidates():
@@ -35,7 +42,7 @@ def candidates():
             continue
         out.append({
             "slug": r["id"], "dois": [doi] if doi else [], "title": r.get("title") or "", "paper_url": r.get("paper_url"),
-            "known_code": [r["code_url"]] if r.get("code_url") else [], "found_by": r.get("found_by", []),
+            "known_code": [CODE_FIXES.get(r["id"]) or r["code_url"]] if r.get("code_url") else [], "found_by": r.get("found_by", []),
             "readiness": r.get("readiness"), "robot_platform": r.get("robot_platform") or r.get("task_type"),
             "code_licence": r.get("code_license"), "simulator": (ver.get(r["id"]) or {}).get("status", "not run"),
             "origin": ["expansion search 2026-10-12 (experimental)"],
@@ -48,6 +55,8 @@ def main():
     ap.add_argument("--registry-only", action="store_true")
     ap.add_argument("--only", nargs="*")
     ap.add_argument("--force", action="store_true")
+    ap.add_argument("--refetch-code", action="store_true",
+                    help="re-run only candidates whose code was not fetched, keeping their PDF (no PDF re-download)")
     a = ap.parse_args()
     cands = candidates()
     DEST.mkdir(parents=True, exist_ok=True)
@@ -59,14 +68,22 @@ def main():
         if a.only and c["slug"] not in a.only:
             continue
         rec_path = DEST / c["slug"] / "record.json"
-        if rec_path.exists() and not a.force:
+        if a.refetch_code:
+            if not rec_path.exists():
+                continue
+            old = json.loads(rec_path.read_text())
+            if all(str(x.get("status", "")).startswith(FETCHED) for x in old.get("code", [])) and c["slug"] not in CODE_FIXES:
+                continue
+            old["code"] = [x for x in old.get("code", []) if str(x.get("status", "")).startswith(FETCHED)]
+            rec_path.write_text(json.dumps(old, indent=1, ensure_ascii=False, sort_keys=True) + "\n")
+        elif rec_path.exists() and not a.force:
             continue
         cmd = [sys.executable, str(ROOT / "scripts/ingest.py"), f"experimental/{c['slug']}", "--title", c["title"]]
         for d in c["dois"]:
             cmd += ["--doi", d]
         for u in c["known_code"]:
             cmd += ["--code-url", u]
-        if not c["dois"]:
+        if not c["dois"] or a.refetch_code:
             cmd += ["--no-pdf"]
         try:
             p = subprocess.run(cmd, capture_output=True, text=True, timeout=900)

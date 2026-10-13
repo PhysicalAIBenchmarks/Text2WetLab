@@ -2,7 +2,7 @@
  "code": [
   {
    "host": "huggingface.co",
-   "status": "non-github: needs manual download",
+   "status": "not code: dataset",
    "url": "https://huggingface.co/datasets/Opentrons/PhysicalAI"
   }
  ],

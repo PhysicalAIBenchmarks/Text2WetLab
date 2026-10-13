@@ -1,8 +1,17 @@
 {
  "code": [
   {
+   "api_levels": [],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/openflexure-autofocus/openflexure__openflexure-microscope-server",
+   "commit": "4b2f7eb0ba3068f1beb781e3454b63e5535eacbd",
    "host": "gitlab.com",
-   "status": "non-github: needs manual download",
+   "licence": "GPL-3.0",
+   "opentrons_py_files": 0,
+   "py_files": 95,
+   "redistributable": "no",
+   "repo": "openflexure/openflexure-microscope-server",
+   "robot_mentions": [],
+   "status": "cloned (partial: code, configs and docs only)",
    "url": "https://gitlab.com/openflexure/openflexure-microscope-server"
   }
  ],

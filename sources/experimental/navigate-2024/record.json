@@ -1,14 +1,20 @@
 {
  "code": [
   {
+   "api_levels": [],
    "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/navigate-2024/TheDeanLab__navigate",
+   "commit": "da14920d7b40d048a5d2225a7846d11f78e05212",
    "default_branch": "develop",
    "host": "github.com",
-   "licence": "unclear",
-   "redistributable": "no",
+   "licence": "BSD-3-Clause",
+   "opentrons_py_files": 0,
+   "py_files": 498,
+   "redistributable": "yes",
    "repo": "TheDeanLab/navigate",
+   "robot_mentions": [],
    "size_kb": 444685,
-   "status": "skipped: 434 MB exceeds the clone limit",
+   "status": "cloned (partial: code, configs and docs only)",
    "url": "https://github.com/TheDeanLab/navigate"
   }
  ],

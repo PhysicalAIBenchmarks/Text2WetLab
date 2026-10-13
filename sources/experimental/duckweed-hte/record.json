@@ -1,8 +1,20 @@
 {
  "code": [
   {
+   "api_levels": [],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/duckweed-hte/zenodo-8060938",
+   "files": 2,
+   "files_downloaded": 2,
+   "files_skipped_size": [],
    "host": "doi.org",
-   "status": "non-github: needs manual download",
+   "licence": "mit-license",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "zenodo:8060938",
+   "robot_mentions": [],
+   "size_kb": 4,
+   "status": "downloaded",
    "url": "https://doi.org/10.5281/zenodo.8060938"
   }
  ],

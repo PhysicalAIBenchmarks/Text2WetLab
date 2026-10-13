@@ -1,14 +1,20 @@
 {
  "code": [
   {
+   "api_levels": [],
    "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/findus/FBarthels__FINDUS",
+   "commit": "ec5df076bab124d1a7adec654500ea6f5a8d34ac",
    "default_branch": "master",
    "host": "github.com",
    "licence": "GPL-3.0",
+   "opentrons_py_files": 0,
+   "py_files": 4,
    "redistributable": "no",
    "repo": "FBarthels/FINDUS",
+   "robot_mentions": [],
    "size_kb": 518718,
-   "status": "skipped: 506 MB exceeds the clone limit",
+   "status": "cloned (partial: code, configs and docs only)",
    "url": "https://github.com/FBarthels/FINDUS"
   }
  ],

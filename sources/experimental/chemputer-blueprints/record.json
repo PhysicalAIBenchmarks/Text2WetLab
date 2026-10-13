@@ -1,8 +1,17 @@
 {
  "code": [
   {
+   "api_levels": [],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/chemputer-blueprints/croningroup__chemputer",
+   "commit": "6d60e8da7218a589b9c8715a239956601b17cd07",
    "host": "gitlab.com",
-   "status": "non-github: needs manual download",
+   "licence": "unclear",
+   "opentrons_py_files": 0,
+   "py_files": 155,
+   "redistributable": "no",
+   "repo": "croningroup/chemputer/xdl",
+   "robot_mentions": [],
+   "status": "cloned (partial: code, configs and docs only)",
    "url": "https://gitlab.com/croningroup/chemputer/xdl"
   }
  ],

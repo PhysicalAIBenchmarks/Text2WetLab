@@ -1,8 +1,20 @@
 {
  "code": [
   {
+   "api_levels": [],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/star-hardwarex/zenodo-10048123",
+   "files": 1,
+   "files_downloaded": 1,
+   "files_skipped_size": [],
    "host": "doi.org",
-   "status": "non-github: needs manual download",
+   "licence": "cc-by-4.0",
+   "opentrons_py_files": 0,
+   "py_files": 1,
+   "redistributable": "no",
+   "repo": "zenodo:10048123",
+   "robot_mentions": [],
+   "size_kb": 9785,
+   "status": "downloaded",
    "url": "https://doi.org/10.5281/zenodo.10048123"
   }
  ],

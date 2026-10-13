@@ -1,8 +1,20 @@
 {
  "code": [
   {
+   "api_levels": [],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/bioclonebot/osf-qdp7v",
+   "files": 161,
+   "files_downloaded": 161,
+   "files_skipped_size": [],
    "host": "osf.io",
-   "status": "non-github: needs manual download",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "osf:qdp7v",
+   "robot_mentions": [],
+   "size_kb": 151344,
+   "status": "downloaded",
    "url": "https://osf.io/qdp7v"
   }
  ],

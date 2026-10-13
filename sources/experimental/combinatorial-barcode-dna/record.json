@@ -1,8 +1,16 @@
 {
  "code": [
   {
+   "files": 1,
+   "files_downloaded": 0,
+   "files_skipped_size": [
+    "combinatorial_barcode_scripts.zip"
+   ],
    "host": "doi.org",
-   "status": "non-github: needs manual download",
+   "licence": "cc-by-4.0",
+   "repo": "zenodo:7415652",
+   "size_kb": 0,
+   "status": "zenodo: no files within the size limit",
    "url": "https://doi.org/10.5281/zenodo.7415652"
   }
  ],

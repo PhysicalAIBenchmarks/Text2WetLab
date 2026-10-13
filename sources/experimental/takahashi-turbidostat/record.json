@@ -1,9 +1,21 @@
 {
  "code": [
   {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/takahashi-turbidostat/Flexostat__Flexostat-interface",
+   "commit": "f5097f4f0571766d13a3009691352923b25b1d4d",
+   "default_branch": "master",
    "host": "github.com",
-   "status": "non-github: needs manual download",
-   "url": "https://github.com/klavinslab (location unverified)"
+   "licence": "BSD-3-Clause",
+   "opentrons_py_files": 0,
+   "py_files": 23,
+   "redistributable": "yes",
+   "repo": "Flexostat/Flexostat-interface",
+   "robot_mentions": [],
+   "size_kb": 125,
+   "status": "cloned",
+   "url": "https://github.com/Flexostat/Flexostat-interface"
   }
  ],
  "doi_primary": "10.1021/sb500165g",

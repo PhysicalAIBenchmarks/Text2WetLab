@@ -1,14 +1,20 @@
 {
  "code": [
   {
+   "api_levels": [],
    "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/ada-thin-films/berlinguette__ada",
+   "commit": "9a88c8d020e5bcd32c69092f349b56acb0adadf2",
    "default_branch": "master",
    "host": "github.com",
    "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 49,
    "redistributable": "yes",
    "repo": "berlinguette/ada",
+   "robot_mentions": [],
    "size_kb": 654854,
-   "status": "skipped: 639 MB exceeds the clone limit",
+   "status": "cloned (partial: code, configs and docs only)",
    "url": "https://github.com/berlinguette/ada"
   }
  ],

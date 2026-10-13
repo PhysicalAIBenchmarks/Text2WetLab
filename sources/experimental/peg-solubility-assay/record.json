@@ -1,8 +1,19 @@
 {
  "code": [
   {
+   "api_levels": [
+    "2.5"
+   ],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/peg-solubility-assay/ch__sormanni",
+   "commit": "dd8018d2dac08baa56aaf4f3b025936d6fcf75f6",
    "host": "gitlab.developers.cam.ac.uk",
-   "status": "non-github: needs manual download",
+   "licence": "none",
+   "opentrons_py_files": 3,
+   "py_files": 4,
+   "redistributable": "no",
+   "repo": "ch/sormanni/peg-solubility-assay",
+   "robot_mentions": [],
+   "status": "cloned (partial: code, configs and docs only)",
    "url": "https://gitlab.developers.cam.ac.uk/ch/sormanni/peg-solubility-assay"
   }
  ],

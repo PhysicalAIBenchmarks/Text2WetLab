@@ -1,14 +1,20 @@
 {
  "code": [
   {
+   "api_levels": [],
    "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/panda-bear/BU-KABlab__PANDA-BEAR",
+   "commit": "11e70281fbb8617aeb798575a66c91d42f91cc82",
    "default_branch": "main",
    "host": "github.com",
    "licence": "GPL-2.0",
+   "opentrons_py_files": 1,
+   "py_files": 266,
    "redistributable": "no",
    "repo": "BU-KABlab/PANDA-BEAR",
+   "robot_mentions": [],
    "size_kb": 2215320,
-   "status": "skipped: 2163 MB exceeds the clone limit",
+   "status": "cloned (partial: code, configs and docs only)",
    "url": "https://github.com/BU-KABlab/PANDA-BEAR"
   }
  ],

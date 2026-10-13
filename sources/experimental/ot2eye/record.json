@@ -1,14 +1,20 @@
 {
  "code": [
   {
+   "api_levels": [],
    "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/ot2eye/bioinfo-tsukuba__ot2eye",
+   "commit": "c672fcdf72059cbf2388bb5bba3562667e5cea6a",
    "default_branch": "main",
    "host": "github.com",
    "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 4,
    "redistributable": "yes",
    "repo": "bioinfo-tsukuba/ot2eye",
+   "robot_mentions": [],
    "size_kb": 484740,
-   "status": "skipped: 473 MB exceeds the clone limit",
+   "status": "cloned (partial: code, configs and docs only)",
    "url": "https://github.com/bioinfo-tsukuba/ot2eye"
   }
  ],

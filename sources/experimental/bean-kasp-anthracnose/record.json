@@ -1,14 +1,20 @@
 {
  "code": [
   {
+   "api_levels": [],
    "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/bean-kasp-anthracnose/McGillHaricots__peas-andlove",
+   "commit": "43d4beb8c4a0437c938fc37dbf57a4a769cfc6c1",
    "default_branch": "master",
    "host": "github.com",
    "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 22,
    "redistributable": "no",
    "repo": "McGillHaricots/peas-andlove",
+   "robot_mentions": [],
    "size_kb": 951155,
-   "status": "skipped: 928 MB exceeds the clone limit",
+   "status": "cloned (partial: code, configs and docs only)",
    "url": "https://github.com/McGillHaricots/peas-andlove"
   }
  ],

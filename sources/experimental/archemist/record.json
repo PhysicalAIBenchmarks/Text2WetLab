@@ -1,9 +1,21 @@
 {
  "code": [
   {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/archemist/cooper-group-uol-robotics__archemist",
+   "commit": "52cbf816dbb42097417c00a8b6c0c7860ae7a388",
+   "default_branch": "master",
    "host": "github.com",
-   "status": "non-github: needs manual download",
-   "url": "https://github.com/ARChemist (unverified)"
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 221,
+   "redistributable": "yes",
+   "repo": "cooper-group-uol-robotics/archemist",
+   "robot_mentions": [],
+   "size_kb": 99391,
+   "status": "cloned",
+   "url": "https://github.com/cooper-group-uol-robotics/archemist"
   }
  ],
  "dois": [

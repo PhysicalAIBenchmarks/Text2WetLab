@@ -3211,7 +3211,7 @@
   "title": "ARChemist: Autonomous Robotic Chemistry System Architecture (Fakhruldeen et al.)",
   "paper_url": "https://arxiv.org/abs/2204.13571",
   "known_code": [
-   "https://github.com/ARChemist (unverified)"
+   "https://github.com/cooper-group-uol-robotics/archemist"
   ],
   "found_by": [
    "nonlh"
@@ -4240,7 +4240,7 @@
   "title": "Scaling Up Synthetic Cell Production Using Robotics and Machine Learning Toward Therapeutic Applications",
   "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078883/",
   "known_code": [
-   "https://github.com/IdoGalil/syn"
+   "https://github.com/IdoGalil/syn-cells-classification"
   ],
   "found_by": [
    "amass"
@@ -4261,7 +4261,7 @@
   "title": "A low cost, customizable turbidostat for use in synthetic circuit characterization",
   "paper_url": "https://pubs.acs.org/doi/10.1021/sb500165g",
   "known_code": [
-   "https://github.com/klavinslab (location unverified)"
+   "https://github.com/Flexostat/Flexostat-interface"
   ],
   "found_by": [
    "nonlh"

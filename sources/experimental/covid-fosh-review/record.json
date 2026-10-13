@@ -2,7 +2,7 @@
  "code": [
   {
    "host": "www.protocols.io",
-   "status": "non-github: needs manual download",
+   "status": "not code: protocol text",
    "url": "https://www.protocols.io/groups/opentrons-covid19-testing"
   }
  ],

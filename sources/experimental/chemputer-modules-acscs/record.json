@@ -2,7 +2,8 @@
  "code": [
   {
    "host": "gitlab.com",
-   "status": "non-github: needs manual download",
+   "repo": "croningroup/chemputer",
+   "status": "clone failed: fatal: could not read Username for 'https://gitlab.com': Device not configured",
    "url": "https://gitlab.com/croningroup/chemputer"
   }
  ],

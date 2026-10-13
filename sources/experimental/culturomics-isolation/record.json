@@ -1,14 +1,24 @@
 {
  "code": [
   {
+   "api_levels": [
+    "2.11",
+    "2.20",
+    "2.9"
+   ],
    "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/culturomics-isolation/microenvgen__Culturomics",
+   "commit": "9c4aefcbbcf7aba76dc1fa38c41e9fd118b26df9",
    "default_branch": "main",
    "host": "github.com",
    "licence": "none",
+   "opentrons_py_files": 11,
+   "py_files": 22,
    "redistributable": "no",
    "repo": "microenvgen/Culturomics",
+   "robot_mentions": [],
    "size_kb": 812131,
-   "status": "skipped: 793 MB exceeds the clone limit",
+   "status": "cloned (partial: code, configs and docs only)",
    "url": "https://github.com/microenvgen/Culturomics"
   }
  ],

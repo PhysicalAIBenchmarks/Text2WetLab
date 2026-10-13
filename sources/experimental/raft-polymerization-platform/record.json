@@ -1,8 +1,20 @@
 {
  "code": [
   {
+   "api_levels": [],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/raft-polymerization-platform/zenodo-7379060",
+   "files": 1,
+   "files_downloaded": 1,
+   "files_skipped_size": [],
    "host": "doi.org",
-   "status": "non-github: needs manual download",
+   "licence": "other-open",
+   "opentrons_py_files": 0,
+   "py_files": 4,
+   "redistributable": "no",
+   "repo": "zenodo:7379060",
+   "robot_mentions": [],
+   "size_kb": 1042,
+   "status": "downloaded",
    "url": "https://doi.org/10.5281/zenodo.7379060"
   }
  ],
