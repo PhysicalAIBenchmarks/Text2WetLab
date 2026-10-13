@@ -93,10 +93,15 @@
     "name": "reservoir_columns_within_15ml",
     "pass": true,
     "detail": "uL drawn per reservoir column: 2: 1920, 4: 4800, 6: 6000, 7: 6000, 9: 12000, 10: 12000, 11: 12000, 12: 12000"
+   },
+   {
+    "name": "recover_about_80ul",
+    "pass": true,
+    "detail": "70-90 uL of the 100 uL eluate, as the task's step 13 says; 48/48 sample wells"
    }
   ],
-  "checks_passed": 17,
-  "checks_total": 17,
+  "checks_passed": 18,
+  "checks_total": 18,
   "total_delay_min": 15.0,
   "example_well": "A1",
   "example_sequence": [
