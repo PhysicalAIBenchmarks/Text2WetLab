@@ -1,0 +1,59 @@
+{
+ "code": [
+  {
+   "host": "",
+   "status": "non-github: needs manual download",
+   "url": "see paper repository (OSF/Zenodo, not verified)"
+  }
+ ],
+ "doi_primary": "10.1016/j.ohx.2025.e00670",
+ "dois": [
+  "10.1016/j.ohx.2025.e00670"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 35,
+  "sections": 31,
+  "source": "europepmc:PMC12341735"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 6896920,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "cc2d271dde2fa2536700a4969c11852dce17f78b8b162f299a762891cc3c466a",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12341735?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12341735.1/PMC12341735.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12341735.1/PMC12341735.1.pdf"
+ },
+ "pmcid": "PMC12341735",
+ "readiness": "no",
+ "robot_platform": "bioreactor",
+ "simulator": "not run",
+ "slug": "experimental/bio-spec-hardwarex",
+ "title": "BIO-SPEC: An open-source bench-top parallel bioreactor system",
+ "year": "2025"
+}

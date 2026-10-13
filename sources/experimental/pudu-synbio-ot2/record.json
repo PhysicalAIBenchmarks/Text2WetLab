@@ -1,0 +1,50 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.13",
+    "2.14",
+    "2.20",
+    "2.21",
+    "2.22",
+    "2.23"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/pudu-synbio-ot2/RudgeLab__PUDU",
+   "commit": "1214d2f9efd557aa84bc96502379554174355eae",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 28,
+   "py_files": 38,
+   "redistributable": "yes",
+   "repo": "RudgeLab/PUDU",
+   "robot_mentions": [
+    "Flex",
+    "OT-2"
+   ],
+   "size_kb": 5658,
+   "status": "cloned",
+   "url": "https://github.com/RudgeLab/PUDU"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/pudu-synbio-ot2",
+ "title": "PUDU (Protocol Unified Design Unit) - OT-2 synthetic biology workflows",
+ "year": ""
+}

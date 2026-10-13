@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "archived": false,
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "redistributable": "no",
+   "repo": "microenvgen/Culturomics",
+   "size_kb": 812131,
+   "status": "skipped: 793 MB exceeds the clone limit",
+   "url": "https://github.com/microenvgen/Culturomics"
+  }
+ ],
+ "doi_primary": "10.1002/imo2.70037",
+ "dois": [
+  "10.1002/imo2.70037"
+ ],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "fulltext": {
+  "legends": 1,
+  "sections": 21,
+  "source": "europepmc:PMC12805989"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1554429,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "c5909ae05e267a411b35b0d1edd8acc5b22c4fc53580a86369e2cae31c210d6b",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12805989?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12805989.1/PMC12805989.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12805989.1/PMC12805989.1.pdf"
+ },
+ "pmcid": "PMC12805989",
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "partly_verified",
+ "slug": "experimental/culturomics-isolation",
+ "title": "Modular automated high-throughput isolation and phylogenetic identification of bacteria from complex communities",
+ "year": "2025"
+}

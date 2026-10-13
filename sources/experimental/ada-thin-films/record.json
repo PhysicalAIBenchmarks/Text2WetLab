@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "archived": false,
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "redistributable": "yes",
+   "repo": "berlinguette/ada",
+   "size_kb": 654854,
+   "status": "skipped: 639 MB exceeds the clone limit",
+   "url": "https://github.com/berlinguette/ada"
+  }
+ ],
+ "doi_primary": "10.1126/sciadv.aaz8867",
+ "dois": [
+  "10.1126/sciadv.aaz8867"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 22,
+  "source": "europepmc:PMC7220369"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc",
+ "pdf": {
+  "bytes": 708811,
+  "licence": "cc by-nc",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "2a19ea229d3fed824cb40a2fe84165ad2d3cff937079c1708a4f086af7c7e321",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7220369?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7220369.1/PMC7220369.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7220369.1/PMC7220369.1.pdf"
+ },
+ "pmcid": "PMC7220369",
+ "readiness": "partial",
+ "robot_platform": "synthesis",
+ "simulator": "not run",
+ "slug": "experimental/ada-thin-films",
+ "title": "Self-driving laboratory for accelerated discovery of thin-film materials (Ada)",
+ "year": "2020"
+}

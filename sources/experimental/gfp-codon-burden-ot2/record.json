@@ -1,0 +1,75 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.18"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/gfp-codon-burden-ot2/alexismhill3__gfp_deoptimization_burden",
+   "commit": "80cddc02491db83dd2c682500b9b32a6d97f156c",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 63,
+   "py_files": 200,
+   "redistributable": "yes",
+   "repo": "alexismhill3/gfp_deoptimization_burden",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 63594,
+   "status": "cloned",
+   "url": "https://github.com/alexismhill3/gfp_deoptimization_burden"
+  }
+ ],
+ "doi_primary": "10.1186/s13036-025-00521-z",
+ "dois": [
+  "10.1186/s13036-025-00521-z"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 14,
+  "source": "europepmc:PMC12100883"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "bytes": 2240328,
+  "licence": "cc by-nc-nd",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "2809c99b5403fb038af36ce17774131b02a5e3a09589a34b598dd4decc1e685c",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12100883?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12100883.1/PMC12100883.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12100883.1/PMC12100883.1.pdf"
+ },
+ "pmcid": "PMC12100883",
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "partly_verified",
+ "slug": "experimental/gfp-codon-burden-ot2",
+ "title": "Codon usage modulates the relationship between the burden and yield of protein overexpression",
+ "year": "2025"
+}

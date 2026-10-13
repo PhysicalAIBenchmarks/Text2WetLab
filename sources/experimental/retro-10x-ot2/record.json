@@ -1,0 +1,43 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.12"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/retro-10x-ot2/retrobiosciences__opentrons-10x",
+   "commit": "5fcab28493ee8d85522a7cc939fe7e37d17d0520",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 1,
+   "py_files": 1,
+   "redistributable": "no",
+   "repo": "retrobiosciences/opentrons-10x",
+   "robot_mentions": [],
+   "size_kb": 5544,
+   "status": "cloned",
+   "url": "https://github.com/retrobiosciences/opentrons-10x"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github",
+  "web"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/retro-10x-ot2",
+ "title": "OT-2 10x scRNA-seq library prep (Retro Biosciences)",
+ "year": ""
+}

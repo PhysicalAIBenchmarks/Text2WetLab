@@ -1,0 +1,51 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.0",
+    "2.11",
+    "2.12",
+    "2.13",
+    "2.18",
+    "2.20",
+    "2.27",
+    "2.9"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/nioz-ot2-database/MolLabNIOZ__OT2",
+   "commit": "80f3cb4eb9524a09abb8353945c932c3e111efb4",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 213,
+   "py_files": 222,
+   "redistributable": "no",
+   "repo": "MolLabNIOZ/OT2",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 120811,
+   "status": "cloned",
+   "url": "https://github.com/MolLabNIOZ/OT2"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/nioz-ot2-database",
+ "title": "MolLabNIOZ/OT2 protocol database (NIOZ molecular ecology)",
+ "year": ""
+}

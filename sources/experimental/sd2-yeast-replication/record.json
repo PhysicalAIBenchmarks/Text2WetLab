@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/sd2-yeast-replication/rpgoldman__replication-paper-data-analysis",
+   "commit": "62e46526a829b1b0f215f50bc04384ab56d0487f",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "BSD-3-Clause",
+   "opentrons_py_files": 0,
+   "py_files": 3,
+   "redistributable": "yes",
+   "repo": "rpgoldman/replication-paper-data-analysis",
+   "robot_mentions": [],
+   "size_kb": 12529,
+   "status": "cloned",
+   "url": "https://github.com/rpgoldman/replication-paper-data-analysis"
+  }
+ ],
+ "doi_primary": "10.1093/synbio/ysac018",
+ "dois": [
+  "10.1093/synbio/ysac018"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 11,
+  "sections": 35,
+  "source": "europepmc:PMC9583850"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3330153,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "8112d64574dc0ce915fda93a389a4399ea4ea2345cf1128fb37dc1b577a8b974",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC9583850?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9583850.1/PMC9583850.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9583850.1/PMC9583850.1.pdf"
+ },
+ "pmcid": "PMC9583850",
+ "readiness": "partial",
+ "robot_platform": "protocol_language",
+ "simulator": "not run",
+ "slug": "experimental/sd2-yeast-replication",
+ "title": "Highly-automated, high-throughput replication of yeast-based logic circuit design assessments (SD2/Strateos/Aquarium)",
+ "year": "2022"
+}

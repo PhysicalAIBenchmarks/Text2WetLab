@@ -1,0 +1,52 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/chemos2-atlas/aspuru-guzik-group__atlas",
+   "commit": "ebb1f4f728107f759c48289c2faecfa3af19254f",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 90,
+   "redistributable": "yes",
+   "repo": "aspuru-guzik-group/atlas",
+   "robot_mentions": [],
+   "size_kb": 28124,
+   "status": "cloned",
+   "url": "https://github.com/aspuru-guzik-group/atlas"
+  }
+ ],
+ "dois": [
+  "10.1039/D4DD00115J"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1039/D4DD00115J:\n  europepmc: no Europe PMC full text for this DOI\nDo",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/chemos2-atlas",
+ "title": "Atlas: a brain for self-driving laboratories (BO library used in ChemOS 2.0 campaigns)",
+ "year": ""
+}

@@ -1,0 +1,53 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/robochem/Noel-Research-Group__Robochem_v1.0",
+   "commit": "2983246c2df0d4d08ff39651282b938e50ae8490",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 61,
+   "redistributable": "yes",
+   "repo": "Noel-Research-Group/Robochem_v1.0",
+   "robot_mentions": [],
+   "size_kb": 14804,
+   "status": "cloned",
+   "url": "https://github.com/Noel-Research-Group/Robochem_v1.0"
+  }
+ ],
+ "doi_primary": "10.1126/science.adj1817",
+ "dois": [
+  "10.1126/science.adj1817"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1126/science.adj1817:\n  europepmc: no Europe PMC full text for this D",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "synthesis",
+ "simulator": "not run",
+ "slug": "experimental/robochem",
+ "title": "Automated self-optimization, intensification, and scale-up of photocatalysis in flow (RoboChem)",
+ "year": "2024"
+}

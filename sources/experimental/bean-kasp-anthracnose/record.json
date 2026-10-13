@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "archived": false,
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "redistributable": "no",
+   "repo": "McGillHaricots/peas-andlove",
+   "size_kb": 951155,
+   "status": "skipped: 928 MB exceeds the clone limit",
+   "url": "https://github.com/McGillHaricots/peas-andlove"
+  }
+ ],
+ "doi_primary": "10.1186/s13007-023-01071-5",
+ "dois": [
+  "10.1186/s13007-023-01071-5"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 32,
+  "source": "europepmc:PMC10546687"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1262229,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "ea8a956c58941db322d9eb447e6f955ead3a152638d8caddc6946b4d907e3629",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC10546687?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10546687.1/PMC10546687.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10546687.1/PMC10546687.1.pdf"
+ },
+ "pmcid": "PMC10546687",
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/bean-kasp-anthracnose",
+ "title": "Automating high-throughput screening for anthracnose resistance in common bean using allele specific PCR",
+ "year": "2023"
+}

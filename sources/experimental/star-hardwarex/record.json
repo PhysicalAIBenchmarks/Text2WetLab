@@ -1,0 +1,59 @@
+{
+ "code": [
+  {
+   "host": "doi.org",
+   "status": "non-github: needs manual download",
+   "url": "https://doi.org/10.5281/zenodo.10048123"
+  }
+ ],
+ "doi_primary": "10.1016/j.ohx.2024.e00524",
+ "dois": [
+  "10.1016/j.ohx.2024.e00524"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 20,
+  "source": "europepmc:PMC11022082"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 7107418,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "0f1a2cb3fa2b6f28bd3c544ad0f69f7ac76f365daee716251db7a5a07f9f75b6",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11022082?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11022082.1/PMC11022082.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11022082.1/PMC11022082.1.pdf"
+ },
+ "pmcid": "PMC11022082",
+ "readiness": "partial",
+ "robot_platform": "plate_transport",
+ "simulator": "not run",
+ "slug": "experimental/star-hardwarex",
+ "title": "Sequential Treatment Application Robot (STAR) for high-replication marine experimentation",
+ "year": "2024"
+}

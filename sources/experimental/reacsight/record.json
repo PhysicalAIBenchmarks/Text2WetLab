@@ -1,0 +1,60 @@
+{
+ "code": [
+  {
+   "host": "doi.org",
+   "status": "non-github: needs manual download",
+   "url": "https://doi.org/10.5281/zenodo.4776009"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-022-31033-9",
+ "dois": [
+  "10.1038/s41467-022-31033-9"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 22,
+  "source": "europepmc:PMC9188569"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3595427,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "25f865e18254b410efdf05cf203a065f0b08ae8977a5c2c39d7b96511dbe55b2",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC9188569?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9188569.1/PMC9188569.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9188569.1/PMC9188569.1.pdf"
+ },
+ "pmcid": "PMC9188569",
+ "readiness": "partial",
+ "robot_platform": "bioreactor",
+ "simulator": "not run",
+ "slug": "experimental/reacsight",
+ "title": "Enhancing bioreactor arrays for automated measurements and reactive control with ReacSight",
+ "year": "2022"
+}

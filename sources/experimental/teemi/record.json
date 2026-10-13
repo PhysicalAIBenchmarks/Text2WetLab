@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/teemi/hiyama341__teemi",
+   "commit": "b330c661ac62b62e33f7f0341b036eddd520591e",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 65,
+   "redistributable": "yes",
+   "repo": "hiyama341/teemi",
+   "robot_mentions": [],
+   "size_kb": 123786,
+   "status": "cloned",
+   "url": "https://github.com/hiyama341/teemi"
+  }
+ ],
+ "doi_primary": "10.1371/journal.pcbi.1011929",
+ "dois": [
+  "10.1371/journal.pcbi.1011929"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 26,
+  "source": "europepmc:PMC10954146"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc0",
+ "pdf": {
+  "bytes": 1610804,
+  "licence": "cc0",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "3146615d2d0d3a6c92977f63688aa91f9981dbea6d08bba1a06fd9845bc7f301",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC10954146?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10954146.1/PMC10954146.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10954146.1/PMC10954146.1.pdf"
+ },
+ "pmcid": "PMC10954146",
+ "readiness": "partial",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/teemi",
+ "title": "teemi: open-source literate programming for iterative DBTL cycles",
+ "year": "2024"
+}

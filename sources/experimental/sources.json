@@ -1,0 +1,4334 @@
+[
+ {
+  "slug": "alabos-alab",
+  "dois": [
+   "10.1039/d4dd00129j"
+  ],
+  "title": "AlabOS: a Python-based reconfigurable workflow management framework for autonomous laboratories (A-Lab)",
+  "paper_url": "https://pubs.rsc.org/en/content/articlehtml/2024/dd/d4dd00129j",
+  "known_code": [
+   "https://github.com/CederGroupHub/alab_management"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "scheduling",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ant-cloning",
+  "dois": [
+   "10.1021/acssynbio.0c00240"
+  ],
+  "title": "Automated cloning by natural transformation (ANT) OT-2 workflow",
+  "paper_url": "https://pubs.acs.org/doi/10.1021/acssynbio.0c00240",
+  "known_code": [
+   "https://github.com/ljm176/ANTCloning"
+  ],
+  "found_by": [
+   "github",
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "partly_verified",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "autoprotocol-dnada",
+  "dois": [
+   "10.1021/acssynbio.3c00292"
+  ],
+  "title": "Automated Platform for the Plasmid Construction Process (DNAda -> Autoprotocol)",
+  "paper_url": "https://pubs.acs.org/doi/10.1021/acssynbio.3c00292",
+  "known_code": [
+   "https://github.com/JBEI/dnada"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "protocol_language",
+  "code_licence": "Apache-2.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "beckham-enzyme-pipeline",
+  "dois": [
+   "10.1038/s41598-024-64938-0"
+  ],
+  "title": "Enabling high-throughput enzyme discovery and engineering with a low-cost, robot-assisted pipeline",
+  "paper_url": "https://www.nature.com/articles/s41598-024-64938-0",
+  "known_code": [
+   "https://github.com/beckham-lab/opentrons"
+  ],
+  "found_by": [
+   "amass",
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "none (no LICENSE file)",
+  "simulator": "partly_verified",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "blots-ot2",
+  "dois": [
+   "10.1002/cpz1.70454"
+  ],
+  "title": "Bacterial Lysis Observation Over Time Assay (BLOTS) for High-Throughput Isolation and Screening",
+  "paper_url": "https://doi.org/10.1002/cpz1.70454",
+  "known_code": [
+   "https://github.com/eyaplab/BLOTS-OT2"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "cayman-his-elisa",
+  "dois": [
+   "10.17504/protocols.io.n92ld4x3nl5b"
+  ],
+  "title": "An Opentrons OT-2 workflow for the Cayman His-tag detection ELISA kit",
+  "paper_url": "https://dx.doi.org/10.17504/protocols.io.n92ld4x3nl5b",
+  "known_code": [
+   "https://github.com/Arcadia-Science/cayman-his-elisa-opentrons-workflow"
+  ],
+  "found_by": [
+   "github",
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "chemputer-acra",
+  "dois": [
+   "10.1038/s42004-026-01993-w"
+  ],
+  "title": "Verification and execution of the scientific literature via chemputation augmented by large language models",
+  "paper_url": "https://www.nature.com/articles/s42004-026-01993-w",
+  "known_code": [
+   "https://github.com/croningp/acra"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "protocol_language",
+  "code_licence": "(LICENSE present, unrecognised text)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "chemputer-blueprints",
+  "dois": [
+   "10.1038/s41467-024-54238-6"
+  ],
+  "title": "Reaction blueprints and logical control flow for parallelized chiral synthesis in the Chemputer",
+  "paper_url": "https://www.nature.com/articles/s41467-024-54238-6",
+  "known_code": [
+   "https://gitlab.com/croningroup/chemputer/xdl"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "protocol_language",
+  "code_licence": "see GitLab (unverified)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "chemputer-peptide",
+  "dois": [
+   "10.1038/s41467-025-62344-2"
+  ],
+  "title": "Universal peptide synthesis via solid-phase methods fused with chemputation",
+  "paper_url": "https://www.nature.com/articles/s41467-025-62344-2",
+  "known_code": [
+   "https://doi.org/10.5281/zenodo.15948769"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "synthesis",
+  "code_licence": "Zenodo (check)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "clairify-xdl",
+  "dois": [
+   "10.1007/s10514-023-10136-2"
+  ],
+  "title": "Large language models for chemistry robotics (CLAIRify: NL -> XDL)",
+  "paper_url": "https://link.springer.com/article/10.1007/s10514-023-10136-2",
+  "known_code": [
+   "https://github.com/ac-rad/xdl-generation"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "protocol_language",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "culturomics-isolation",
+  "dois": [
+   "10.1002/imo2.70037"
+  ],
+  "title": "Modular automated high-throughput isolation and phylogenetic identification of bacteria from complex communities",
+  "paper_url": "https://doi.org/10.1002/imo2.70037",
+  "known_code": [
+   "https://github.com/microenvgen/Culturomics"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "partly_verified",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "damplab-moclo-transformation",
+  "dois": [
+   "10.1093/synbio/ysac004"
+  ],
+  "title": "A linear programming-based strategy to save pipette tips in automated DNA assembly (with DAMP Lab MoClo/transformation workflow)",
+  "paper_url": "https://academic.oup.com/synbio/article/7/1/ysac004/6542944",
+  "known_code": [
+   "https://github.com/DAMPLAB/OT2-MoClo-Transformation-Ecoli"
+  ],
+  "found_by": [
+   "amass",
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "BSD-3-Clause",
+  "simulator": "no_protocol_found",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "eda-event-driven",
+  "dois": [
+   "10.1038/s41592-022-01589-x"
+  ],
+  "title": "Event-driven acquisition for content-enriched microscopy",
+  "paper_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7613693/",
+  "known_code": [
+   "https://github.com/wl-stepp/eda_plugin"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "imaging",
+  "code_licence": "BSD-3-Clause",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ester-library-synthesis",
+  "dois": [
+   "10.1039/d2cc05670d"
+  ],
+  "title": "Repurposing amine and carboxylic acid building blocks with an automatable esterification reaction",
+  "paper_url": "https://doi.org/10.1039/d2cc05670d",
+  "known_code": [
+   "https://github.com/rz-flask/concise-ester-library-synthesis"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "etsted",
+  "dois": [
+   "10.1038/s41592-022-01588-y"
+  ],
+  "title": "Event-triggered STED imaging",
+  "paper_url": "https://www.nature.com/articles/s41592-022-01588-y",
+  "known_code": [
+   "https://github.com/jonatanalvelid/etSTED-widget"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "imaging",
+  "code_licence": "GPL-3.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "evolver-2018",
+  "dois": [
+   "10.1038/nbt.4151"
+  ],
+  "title": "Precise, automated control of conditions for high-throughput growth of yeast and bacteria with eVOLVER",
+  "paper_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6035058/",
+  "known_code": [
+   "https://github.com/FYNCH-BIO/dpu"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "bioreactor",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "exfab-qiaseq-flex",
+  "dois": [
+   "10.17504/protocols.io.n2bvjer3pgk5"
+  ],
+  "title": "Automated QIAseq FX DNA Library Preparation on the Opentrons Flex",
+  "paper_url": "https://dx.doi.org/10.17504/protocols.io.n2bvjer3pgk5",
+  "known_code": [
+   "https://github.com/exfab/Opentrons_Flex_ExFAB"
+  ],
+  "found_by": [
+   "github",
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "flex",
+  "code_licence": "GPL-3.0",
+  "simulator": "verified",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "flat-agar-celegans-ot2",
+  "dois": [
+   "10.57844/arcadia-h01v-2nxt"
+  ],
+  "title": "Flat agar and optimized media enable high-throughput C. elegans imaging in 96-well plates",
+  "paper_url": "https://doi.org/10.57844/arcadia-h01v-2nxt",
+  "known_code": [
+   "https://github.com/Arcadia-Science/menisquish-flat-agar"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "formulations-prep-shampoo",
+  "dois": [
+   "10.1038/s41597-024-03573-w"
+  ],
+  "title": "Accelerating Formulation Design via Machine Learning: Generating a High-throughput Shampoo Formulations Dataset",
+  "paper_url": "https://www.nature.com/articles/s41597-024-03573-w",
+  "known_code": [
+   "https://github.com/sustainable-processes/formulations-prep"
+  ],
+  "found_by": [
+   "amass",
+   "github",
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "gfp-codon-burden-ot2",
+  "dois": [
+   "10.1186/s13036-025-00521-z"
+  ],
+  "title": "Codon usage modulates the relationship between the burden and yield of protein overexpression",
+  "paper_url": "https://doi.org/10.1186/s13036-025-00521-z",
+  "known_code": [
+   "https://github.com/alexismhill3/gfp_deoptimization_burden"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "partly_verified",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "greenaway-halogenation",
+  "dois": [
+   "10.26434/chemrxiv.15000393"
+  ],
+  "title": "An automated platform for tailored late-stage halogenation of pharmaceuticals",
+  "paper_url": "https://chemrxiv.org/engage/chemrxiv/article-details/15000393",
+  "known_code": [
+   "https://github.com/GreenawayLab/automated_halogenation_of_pharmaceuticals"
+  ],
+  "found_by": [
+   "github",
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "BSD-3-Clause",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "greenaway-mocs",
+  "dois": [
+   "10.1002/anie.202424270"
+  ],
+  "title": "Development of an Automated Workflow for Screening the Assembly and Host-Guest Behavior of Metal-Organic Cages",
+  "paper_url": "https://doi.org/10.1002/anie.202424270",
+  "known_code": [
+   "https://github.com/GreenawayLab/development-automated-workflow-mocs"
+  ],
+  "found_by": [
+   "github",
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "greenaway-pocs",
+  "dois": [
+   "10.1039/d3sc06133g"
+  ],
+  "title": "Streamlining the automated discovery of porous organic cages",
+  "paper_url": "https://pubs.rsc.org/en/content/articlehtml/2024/sc/d3sc06133g",
+  "known_code": [
+   "https://github.com/GreenawayLab/Streamlining-Automated-Discovery-POCs"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "hyrad-adna-capture",
+  "dois": [
+   "10.1111/1755-0998.13518"
+  ],
+  "title": "Performance and automation of ancient DNA capture with RNA hyRAD probes",
+  "paper_url": "https://doi.org/10.1111/1755-0998.13518",
+  "known_code": [
+   "https://github.com/TomaszSuchan/opentrons-hyRAD"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "verified",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "jubiotech-ot2-autoclone",
+  "dois": [
+   "10.1007/s00253-022-12017-7"
+  ],
+  "title": "Accelerated strain construction and characterization of C. glutamicum protein secretion by laboratory automation",
+  "paper_url": "https://doi.org/10.1007/s00253-022-12017-7",
+  "known_code": [
+   "https://github.com/JuBiotech/OT-2-autoclone"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "AGPL-3.0",
+  "simulator": "partly_verified",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "labop",
+  "dois": [],
+  "title": "LabOP (Laboratory Open Protocol language, formerly PAML) - iGEM interlab growth-curve/calibration protocols",
+  "paper_url": "https://bioprotocols.github.io/labop/",
+  "known_code": [
+   "https://github.com/Bioprotocols/labop"
+  ],
+  "found_by": [
+   "github",
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "protocol_language",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "lucks-cellfree-biosensor",
+  "dois": [
+   "10.1101/2024.10.13.618078"
+  ],
+  "title": "Semi-automated production of cell-free biosensors",
+  "paper_url": "https://www.biorxiv.org/content/10.1101/2024.10.13.618078v1",
+  "known_code": [
+   "https://github.com/LucksLab/Brown_Phillips_Semi-Automated_Biosensor_Manufacturing_2024"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "lysostaphin-turbidity",
+  "dois": [
+   "10.1186/s12934-025-02911-w"
+  ],
+  "title": "Turbid but accurate: automating lysostaphin quantification including uncertainty quantification",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12836826/",
+  "known_code": [
+   "https://github.com/JuBiotech/Supplement-to-Prigolovkin-et-al.-2025"
+  ],
+  "found_by": [
+   "amass",
+   "github"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "AGPL-3.0",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "mantis-shrimpy",
+  "dois": [
+   "10.1093/pnasnexus/pgae323"
+  ],
+  "title": "Mantis: High-throughput 4D imaging and analysis of the molecular and physical architecture of cells",
+  "paper_url": "https://academic.oup.com/pnasnexus/article/3/9/pgae323/7742297",
+  "known_code": [
+   "https://github.com/czbiohub-sf/shrimPy"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "imaging",
+  "code_licence": "BSD-3-Clause",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "massspecpreppy",
+  "dois": [
+   "10.1002/pmic.202300294"
+  ],
+  "title": "MassSpecPreppy - an end-to-end solution for automated protein concentration determination and flexible sample digestion for proteomics",
+  "paper_url": "https://doi.org/10.1002/pmic.202300294",
+  "known_code": [
+   "https://github.com/stemicha/MassSpecPreppy"
+  ],
+  "found_by": [
+   "amass",
+   "github",
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "GPL-3.0",
+  "simulator": "partly_verified",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "msd-biochem-assays-ot2",
+  "dois": [
+   "10.1016/j.slast.2024.100205"
+  ],
+  "title": "Automation of biochemical assays using an open-sourced, inexpensive robotic liquid handler",
+  "paper_url": "https://doi.org/10.1016/j.slast.2024.100205",
+  "known_code": [
+   "https://github.com/MSDLLCpapers/Opentrons-OT2-BioChemical-Assays"
+  ],
+  "found_by": [
+   "amass",
+   "github",
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "Apache-2.0",
+  "simulator": "verified",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "navigate-2024",
+  "dois": [
+   "10.1038/s41592-024-02413-4"
+  ],
+  "title": "Navigate: an open-source platform for smart light-sheet microscopy",
+  "paper_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11540721/",
+  "known_code": [
+   "https://github.com/TheDeanLab/navigate"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "imaging",
+  "code_licence": "BSD-style (LICENSE.md)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "openflexure-autofocus",
+  "dois": [
+   "10.1111/jmi.13064"
+  ],
+  "title": "Fast, high-precision autofocus on a motorised microscope: Automating blood sample imaging on the OpenFlexure Microscope",
+  "paper_url": "https://onlinelibrary.wiley.com/doi/10.1111/jmi.13064",
+  "known_code": [
+   "https://gitlab.com/openflexure/openflexure-microscope-server"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "imaging",
+  "code_licence": "GPL-3.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "openworkstation",
+  "dois": [
+   "10.1016/j.ohx.2020.e00152"
+  ],
+  "title": "OpenWorkstation: A modular open-source technology for automated in vitro workflows",
+  "paper_url": "https://www.sciencedirect.com/science/article/pii/S2468067220300468",
+  "known_code": [
+   "https://github.com/SebastianEggert/OpenWorkstation"
+  ],
+  "found_by": [
+   "amass",
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "plate_transport",
+  "code_licence": "CC BY-SA (repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "panda-bear",
+  "dois": [
+   "10.1039/d4mh00797b"
+  ],
+  "title": "PANDA: a self-driving lab for studying electrodeposited polymer films",
+  "paper_url": "https://pubs.rsc.org/en/content/articlehtml/2024/mh/d4mh00797b",
+  "known_code": [
+   "https://github.com/BU-KABlab/PANDA-BEAR"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "characterisation",
+  "code_licence": "GPL-3.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "plant-phenotyping-ot2",
+  "dois": [
+   "10.1002/aisy.202500624"
+  ],
+  "title": "Automated Discovery of Multicellular Behavior for Optimized Plant Growth and Climate Resilience",
+  "paper_url": "https://doi.org/10.1002/aisy.202500624",
+  "known_code": [
+   "https://github.com/Synthetic-Automated-Systems/automated_phenotyping_system"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "pycromanager-2021",
+  "dois": [
+   "10.1038/s41592-021-01087-6"
+  ],
+  "title": "Pycro-Manager: open-source software for customized and reproducible microscope control",
+  "paper_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8532176/",
+  "known_code": [
+   "https://github.com/micro-manager/pycro-manager"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "imaging",
+  "code_licence": "BSD-3-Clause",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "pymmcore-plus-mda",
+  "dois": [],
+  "title": "pymmcore-plus + useq-schema (multi-dimensional acquisition engine)",
+  "paper_url": "https://pymmcore-plus.github.io/pymmcore-plus/",
+  "known_code": [
+   "https://github.com/pymmcore-plus/pymmcore-plus"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "imaging",
+  "code_licence": "BSD-3-Clause",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "roboctab",
+  "dois": [
+   "10.3390/plants14152263"
+  ],
+  "title": "High-Throughput DNA Extraction Using Robotic Automation (RoboCTAB) for Large-Scale Genotyping",
+  "paper_url": "https://www.mdpi.com/2223-7747/14/15/2263",
+  "known_code": [
+   "https://github.com/tomstamour/RoboCTAB"
+  ],
+  "found_by": [
+   "amass",
+   "github",
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "roche-pipetting-performance-ot2",
+  "dois": [
+   "10.1016/j.slast.2024.100180"
+  ],
+  "title": "Deep integration of low-cost liquid handling robots in an industrial pharmaceutical development environment",
+  "paper_url": "https://doi.org/10.1016/j.slast.2024.100180",
+  "known_code": [
+   "https://github.com/arthur-theuer/pipetting-performance"
+  ],
+  "found_by": [
+   "amass",
+   "github"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "GPL-3.0",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "sapp-dmx-protein-design",
+  "dois": [
+   "10.1038/s41467-026-76740-9"
+  ],
+  "title": "Accelerating protein design by scaling experimental characterization",
+  "paper_url": "https://doi.org/10.1038/s41467-026-76740-9",
+  "known_code": [
+   "https://github.com/bwicky/SAPP_DMX"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "failed",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "sdl-demo-clslab",
+  "dois": [
+   "10.1016/j.matt.2022.11.007"
+  ],
+  "title": "What is a minimal working example for a self-driving laboratory? (SDL-Demo / CLSLab:Light)",
+  "paper_url": "https://www.cell.com/matter/fulltext/S2590-2385(22)00651-1",
+  "known_code": [
+   "https://github.com/sparks-baird/self-driving-lab-demo"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "characterisation",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "slab-scheduling",
+  "dois": [
+   "10.1177/24726303211021790"
+  ],
+  "title": "Optimal Scheduling for Laboratory Automation of Life Science Experiments with Time Constraints",
+  "paper_url": "https://journals.sagepub.com/doi/10.1177/24726303211021790",
+  "known_code": [
+   "https://github.com/labauto/SLab.jl"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "ready",
+  "robot_platform": "scheduling",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "tidytron",
+  "dois": [
+   "10.1016/j.slast.2023.08.007"
+  ],
+  "title": "TidyTron: Reducing lab waste using validated wash-and-reuse protocols for common plasticware in Opentrons OT-2 robots",
+  "paper_url": "https://doi.org/10.1016/j.slast.2023.08.007",
+  "known_code": [
+   "https://github.com/PlantSynBioLab/TidyTron"
+  ],
+  "found_by": [
+   "amass",
+   "web"
+  ],
+  "readiness": "ready",
+  "robot_platform": "ot2",
+  "code_licence": "Apache-2.0",
+  "simulator": "partly_verified",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "a-lab-2023",
+  "dois": [
+   "10.1038/s41586-023-06734-w"
+  ],
+  "title": "An autonomous laboratory for the accelerated synthesis of novel materials (A-Lab)",
+  "paper_url": "https://www.nature.com/articles/s41586-023-06734-w",
+  "known_code": [
+   "https://github.com/njszym/ARROWS"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "synthesis",
+  "code_licence": "none (ARROWS); see repos",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ac-training-lab",
+  "dois": [],
+  "title": "Acceleration Consortium Training Lab (remote-access SDL modules incl. Hello-World, sample transfer)",
+  "paper_url": "https://github.com/AccelerationConsortium/ac-training-lab",
+  "known_code": [
+   "https://github.com/AccelerationConsortium/ac-training-lab"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "plate_transport",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ada-thin-films",
+  "dois": [
+   "10.1126/sciadv.aaz8867"
+  ],
+  "title": "Self-driving laboratory for accelerated discovery of thin-film materials (Ada)",
+  "paper_url": "https://www.science.org/doi/10.1126/sciadv.aaz8867",
+  "known_code": [
+   "https://github.com/berlinguette/ada"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "synthesis",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "afion-plasmonic",
+  "dois": [
+   "10.1038/s41467-025-56788-9"
+  ],
+  "title": "Self-driving lab for the photochemical synthesis of plasmonic nanoparticles (AFION)",
+  "paper_url": "https://www.nature.com/articles/s41467-025-56788-9",
+  "known_code": [
+   "https://github.com/Taylorwutianyi/AFION-LAB"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "synthesis",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "agentex-genetic-codes",
+  "dois": [
+   "10.1038/s41586-026-10949-y"
+  ],
+  "title": "Automated prototyping of genetic codes",
+  "paper_url": "https://doi.org/10.1038/s41586-026-10949-y",
+  "known_code": [
+   "https://github.com/FelixRadford/AGENTEX"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ahtech-electrochem",
+  "dois": [
+   "10.1126/sciadv.adu4391"
+  ],
+  "title": "A high-throughput experimentation platform for data-driven discovery in electrochemistry (AHTech)",
+  "paper_url": "https://www.science.org/doi/10.1126/sciadv.adu4391",
+  "known_code": [
+   "https://github.com/Liu-Lab-JHU/AHTech"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "characterisation",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ai4pd-flex-protein-purification",
+  "dois": [],
+  "title": "Opentrons Flex protein purification and molecular biology scripts (AI4PD Lab)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/AI4PDLab/Opentrons_Flex_Protocols"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "flex",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "aliquot-niaid",
+  "dois": [],
+  "title": "ALIQUOT: Automated Liquid handling Infection Quantification Using OpenTrons (NIH/NIAID QVEU)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/QVEU/ALIQUOT"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "aml-drug-synergy-pyhamilton",
+  "dois": [
+   "10.1016/j.slasd.2023.04.004"
+  ],
+  "title": "High-throughput approaches to uncover synergistic drug combinations in leukemia",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10449086/",
+  "known_code": [
+   "https://github.com/stefangolas/drug_dilutions"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "partial",
+  "robot_platform": "hamilton",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "amplicon-seq-bisanz",
+  "dois": [],
+  "title": "AmpliconSeq (16S amplicon library OT-2 scripts, Bisanz lab)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/jbisanz/AmpliconSeq"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "angelovangel-ot2-ngs",
+  "dois": [],
+  "title": "angelovangel/opentrons (KAUST Bioscience core NGS/Sanger OT-2 + Flex protocols)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/angelovangel/opentrons"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "aquarium",
+  "dois": [
+   "10.1093/synbio/ysad005"
+  ],
+  "title": "Aquarium laboratory operating system (UW BIOFAB) - used in SD2 robustness studies",
+  "paper_url": "https://academic.oup.com/synbio/article/8/1/ysad005/7069301",
+  "known_code": [
+   "https://github.com/aquariumbio/aquarium"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "protocol_language",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "artic-normalisation-esr",
+  "dois": [],
+  "title": "ESR-NZ ARTIC normalisation/end-repair/barcoding (OT-2)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/ESR-NZ/opentrons_protocols"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "auto-sp-proteomics",
+  "dois": [
+   "10.1021/acs.analchem.5c00886"
+  ],
+  "title": "AUTO-SP: Automated Sample Preparation for Analyzing Proteins and Protein Modifications",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12355475/",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "autoprotocol-python",
+  "dois": [],
+  "title": "Autoprotocol-python (Strateos/Transcriptic protocol IR)",
+  "paper_url": "https://autoprotocol.org",
+  "known_code": [
+   "https://github.com/autoprotocol/autoprotocol-python"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "protocol_language",
+  "code_licence": "BSD-3-Clause (LICENSE.rst)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "bean-kasp-anthracnose",
+  "dois": [
+   "10.1186/s13007-023-01071-5"
+  ],
+  "title": "Automating high-throughput screening for anthracnose resistance in common bean using allele specific PCR",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10546687/",
+  "known_code": [
+   "https://github.com/McGillHaricots/peas-andlove"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "bear-mechanics",
+  "dois": [
+   "10.1038/s41467-024-48534-4"
+  ],
+  "title": "Superlative mechanical energy absorbing efficiency discovered through self-driving lab-human partnership (BEAR)",
+  "paper_url": "https://www.nature.com/articles/s41467-024-48534-4",
+  "known_code": [
+   "https://github.com/KelseyEng/BEAR_ADTS"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "characterisation",
+  "code_licence": "(LICENSE present, unrecognised)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "biomationscripter",
+  "dois": [],
+  "title": "BiomationScripter: Python library for scripting bio-automation protocols",
+  "paper_url": "https://biomationscripterlib.readthedocs.io",
+  "known_code": [
+   "https://github.com/intbio-ncl/BiomationScripterLib"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "brightfield-biofilm",
+  "dois": [
+   "10.1128/mbio.00448-26"
+  ],
+  "title": "Label-free microscopy enables high-throughput identification of genes controlling biofilm development",
+  "paper_url": "https://journals.asm.org/doi/10.1128/mbio.00448-26",
+  "known_code": [
+   "https://github.com/BridgesLabCMU/Brightfield-biofilm-assay"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "imaging",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "cfrna-pipeline",
+  "dois": [
+   "10.1038/s41596-023-00855-2"
+  ],
+  "title": "An inexpensive semi-automated sample processing pipeline for cell-free RNA (extraction)",
+  "paper_url": "https://doi.org/10.1038/s41596-023-00855-2",
+  "known_code": [
+   "https://github.com/miramou/cfRNA_pipeline_automation"
+  ],
+  "found_by": [
+   "amass",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "chemcrow",
+  "dois": [
+   "10.1038/s42256-024-00832-8"
+  ],
+  "title": "Augmenting large language models with chemistry tools (ChemCrow)",
+  "paper_url": "https://www.nature.com/articles/s42256-024-00832-8",
+  "known_code": [
+   "https://github.com/ur-whitelab/chemcrow-public"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "synthesis",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "chemos-2020",
+  "dois": [
+   "10.1371/journal.pone.0229862"
+  ],
+  "title": "ChemOS: An orchestration software to democratize autonomous discovery",
+  "paper_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0229862",
+  "known_code": [
+   "https://github.com/aspuru-guzik-group/ChemOS"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "scheduling",
+  "code_licence": "Apache-2.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "chemos2-atlas",
+  "dois": [
+   "10.1039/D4DD00115J"
+  ],
+  "title": "Atlas: a brain for self-driving laboratories (BO library used in ChemOS 2.0 campaigns)",
+  "paper_url": "https://pubs.rsc.org/en/content/articlehtml/2025/dd/d4dd00115j",
+  "known_code": [
+   "https://github.com/aspuru-guzik-group/atlas"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "other",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "chemputer-modules-acscs",
+  "dois": [
+   "10.1021/acscentsci.3c00304"
+  ],
+  "title": "Robotic Modules for the Programmable Chemputation of Molecules and Materials",
+  "paper_url": "https://pubs.acs.org/doi/10.1021/acscentsci.3c00304",
+  "known_code": [
+   "https://gitlab.com/croningroup/chemputer"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "synthesis",
+  "code_licence": "unverified",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "chibio-2020",
+  "dois": [
+   "10.1371/journal.pbio.3000794"
+  ],
+  "title": "In situ characterisation and manipulation of biological systems with Chi.Bio",
+  "paper_url": "https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000794",
+  "known_code": [
+   "https://github.com/HarrisonSteel/ChiBio"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "bioreactor",
+  "code_licence": "none (no LICENSE file)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "clio-electrolytes",
+  "dois": [
+   "10.1038/s41467-022-32938-1"
+  ],
+  "title": "Autonomous optimization of non-aqueous Li-ion battery electrolytes via robotic experimentation (Clio)",
+  "paper_url": "https://www.nature.com/articles/s41467-022-32938-1",
+  "known_code": [
+   "https://github.com/BattModels/Clio-PythonAPI"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "characterisation",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "coscientist",
+  "dois": [
+   "10.1038/s41586-023-06792-0"
+  ],
+  "title": "Autonomous chemical research with large language models (Coscientist)",
+  "paper_url": "https://www.nature.com/articles/s41586-023-06792-0",
+  "known_code": [
+   "https://github.com/gomesgroup/coscientist"
+  ],
+  "found_by": [
+   "amass",
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "protocol_language",
+  "code_licence": "(LICENSE present, unrecognised text)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "covid-mastermix-omix",
+  "dois": [
+   "10.1016/j.slast.2024.100195"
+  ],
+  "title": "Development and validation of automated methods for COVID-19 PCR Master Mix preparation",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11639134/",
+  "known_code": [
+   "https://github.com/Donald-OMIX/Liquid_Handler_Methods"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "partial",
+  "robot_platform": "other",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "culturomics-colony-picking",
+  "dois": [
+   "10.1038/s41587-023-01674-2"
+  ],
+  "title": "High-throughput microbial culturomics using automation and machine learning (CAMII colony picker)",
+  "paper_url": "https://www.nature.com/articles/s41587-023-01674-2",
+  "known_code": [
+   "see paper code availability (not verified)"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "imaging",
+  "code_licence": "unverified",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "damplab-taqpath-ot2",
+  "dois": [
+   "10.17504/protocols.io.brhvm366"
+  ],
+  "title": "Semi-Automated and Miniaturized SARS-CoV-2 Detection using TaqPath COVID-19 Multiplex RT-PCR (BU DAMP Lab)",
+  "paper_url": "https://doi.org/10.17504/protocols.io.brhvm366",
+  "known_code": [
+   "https://github.com/DAMPLAB/OT2-SARS-CoV2"
+  ],
+  "found_by": [
+   "github",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "daxi-lightsheet",
+  "dois": [
+   "10.1038/s41592-022-01417-2"
+  ],
+  "title": "DaXi: high-resolution, large imaging volume and multi-view single-objective light-sheet microscopy",
+  "paper_url": "https://www.nature.com/articles/s41592-022-01417-2",
+  "known_code": [
+   "https://github.com/royerlab/daxi"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "imaging",
+  "code_licence": "CC BY (repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "detectr-covid-ot2",
+  "dois": [],
+  "title": "Mammoth DETECTR COVID-19 assay on OT-2",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/tsdobbs/mammoth-COVID19-assay-OT2"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "dtu-synbio-automation",
+  "dois": [],
+  "title": "DTU Synbio lab automation protocol collection",
+  "paper_url": "https://github.com/DALSA-Lab/dtu_synbio_lab_automation",
+  "known_code": [
+   "https://github.com/DALSA-Lab/dtu_synbio_lab_automation"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "duckbot-jubilee",
+  "dois": [
+   "10.1371/journal.pone.0296717"
+  ],
+  "title": "The Duckbot: A system for automated imaging and manipulation of duckweed",
+  "paper_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0296717",
+  "known_code": [
+   "https://github.com/machineagency/duckbot"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "other",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ecoli-protein-expr-purif-ot2",
+  "dois": [],
+  "title": "OT-2 assisted recombinant protein expression and purification in E. coli (Norton-Baker)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/nortonbakerbc/opentrons"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "evogen-ot-library",
+  "dois": [],
+  "title": "EvoGenOT (UCPH EvoGenomics Opentrons protocol library)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/anttonalberdi/EvoGenOT"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "evolver-ddr-elife",
+  "dois": [
+   "10.7554/eLife.67175"
+  ],
+  "title": "Environmental fluctuations reshape an unexpected diversity-disturbance relationship in a microbial community (eVOLVER)",
+  "paper_url": "https://elifesciences.org/articles/67175",
+  "known_code": [
+   "https://github.com/khalillab/DDR-eVOLVER-model"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "bioreactor",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "evotron-evolver-sampling",
+  "dois": [
+   "10.1038/s41467-022-32392-z"
+  ],
+  "title": "Dynamic cybergenetic control of bacterial co-culture composition via optogenetic feedback",
+  "paper_url": "https://www.nature.com/articles/s41467-022-32392-z",
+  "known_code": [
+   "https://github.com/santkumar/evotron"
+  ],
+  "found_by": [
+   "amass",
+   "github",
+   "nonlh",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "exposomics-384-flex",
+  "dois": [],
+  "title": "Opentrons Flex 384-well protein-precipitation sample preparation for nontargeted exposomics",
+  "paper_url": "https://github.com/apat594/384wellplate-Exposomics-Opentrons-Protocols",
+  "known_code": [
+   "https://github.com/apat594/384wellplate-Exposomics-Opentrons-Protocols"
+  ],
+  "found_by": [
+   "github",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "flex",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "fish-fluidics",
+  "dois": [
+   "10.1016/j.ohx.2022.e00343"
+  ],
+  "title": "An open source 16-channel fluidics system for automating sequential FISH-based imaging",
+  "paper_url": "https://www.sciencedirect.com/science/article/pii/S246806722200088X",
+  "known_code": [
+   "https://github.com/dzhaojie/Fluidics-system-for-FISH"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "imaging",
+  "code_licence": "unverified",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "flex-genomics-di-omics",
+  "dois": [],
+  "title": "Opentrons Flex whole-genome / methylation / TIP-seq workflows (di-omics)",
+  "paper_url": "https://github.com/di-omics/ot-flex-automation",
+  "known_code": [
+   "https://github.com/di-omics/ot-flex-automation"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "flex",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "har1eyk-starlet-protein-extraction",
+  "dois": [],
+  "title": "hamilton-starlet-scripts (PyLabRobot STARlet protein extraction / Orange G volume tests)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/har1eyk/hamilton-starlet-scripts"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "hamilton",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "helao-async",
+  "dois": [
+   "10.1039/d3dd00193h"
+  ],
+  "title": "HELAO-async: autonomous electrochemistry/high-throughput experimentation orchestration (Caltech/TRI)",
+  "paper_url": "https://pubs.rsc.org/en/content/articlehtml/2023/dd/d3dd00193h",
+  "known_code": [
+   "https://github.com/High-Throughput-Experimentation/helao-async"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "characterisation",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ht-hcr-sea-urchin",
+  "dois": [
+   "10.1242/dev.204814"
+  ],
+  "title": "Automated, high-throughput in situ hybridization of sea urchin (Lytechinus pictus) embryos",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12516323/",
+  "known_code": [
+   "https://github.com/ylee-sio/HL_HTHCR"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "partial",
+  "robot_platform": "flex",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "hydrogel-crosslink-ot2",
+  "dois": [],
+  "title": "Semi-autonomous synthesis and modelling of chemically cross-linked hydrogels (OT-2)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/JamesSummers240/Semi-autonomous-synthesis-and-modelling-of-chemically-cross-linked-hydrogels-"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "icfree-cfps",
+  "dois": [
+   "10.1016/j.isci.2025.113599"
+  ],
+  "title": "An AI-driven workflow for the accelerated optimization of cell-free protein synthesis",
+  "paper_url": "https://doi.org/10.1016/j.isci.2025.113599",
+  "known_code": [
+   "https://github.com/brsynth/icfree-ml"
+  ],
+  "found_by": [
+   "amass",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "other",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "imperial-colony-picker",
+  "dois": [],
+  "title": "Automated colony picker add-on for the OT-2 (Imperial SSB MRes; cited by Slowpoke)",
+  "paper_url": "https://github.com/Imperial-Opentrons-Users/automated-colony-picker",
+  "known_code": [
+   "https://github.com/Imperial-Opentrons-Users/automated-colony-picker"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "imswitch",
+  "dois": [
+   "10.21105/joss.03394"
+  ],
+  "title": "ImSwitch: generalizing microscope control in Python",
+  "paper_url": "https://joss.theoj.org/papers/10.21105/joss.03394",
+  "known_code": [
+   "https://github.com/ImSwitch/ImSwitch"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "imaging",
+  "code_licence": "GPL-3.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ipsc-robot-pyhamilton",
+  "dois": [
+   "10.1101/2020.12.18.423371"
+  ],
+  "title": "Automated hiPSC culture and sample preparation for 3D live cell microscopy",
+  "paper_url": "https://doi.org/10.1101/2020.12.18.423371",
+  "known_code": [
+   "https://github.com/stefangolas/iPSC-Robot"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "hamilton",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "krisp-sars2-pooling",
+  "dois": [
+   "10.1038/s41598-021-96934-z"
+  ],
+  "title": "Implementation of an efficient SARS-CoV-2 specimen pooling strategy for high throughput diagnostic testing",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8423848/",
+  "known_code": [
+   "https://github.com/krisp-kwazulu-natal/efficient-SARS-CoV-2-pooled-testing-strategy-code"
+  ],
+  "found_by": [
+   "amass",
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "labdroid-cell-culture",
+  "dois": [
+   "10.7554/eLife.77007"
+  ],
+  "title": "Robotic search for optimal cell culture in regenerative medicine (LabDroid Maholo, iPSC-RPE)",
+  "paper_url": "https://elifesciences.org/articles/77007",
+  "known_code": [
+   "https://github.com/labauto/LabDroid_optimizer"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "other",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "labscriptai-protein-eng",
+  "dois": [
+   "10.1101/2025.09.30.679666"
+  ],
+  "title": "Autonomous liquid-handling robotics scripting through large language models enables accessible and safe protein engineering workflows",
+  "paper_url": "https://www.biorxiv.org/content/10.1101/2025.09.30.679666v1.full",
+  "known_code": [
+   "https://github.com/KRATSZ/LabScript-AI"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "other",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "llm-rdf-synthesis",
+  "dois": [
+   "10.1038/s41467-024-54457-x"
+  ],
+  "title": "An automatic end-to-end chemical synthesis development platform powered by large language models",
+  "paper_url": "https://www.nature.com/articles/s41467-024-54457-x",
+  "known_code": [
+   "https://github.com/Ruan-Yixiang/LLM-RDF"
+  ],
+  "found_by": [
+   "nonlh",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "other",
+  "code_licence": "MIT (per README badge)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "locost-covid-nanopore-ot2",
+  "dois": [],
+  "title": "Opentrons_LoCost_Covid19 (ARTIC LoCost nanopore library prep on OT-2)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/JDMirza/Opentrons_LoCost_Covid19"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "madsci-ad-sdl",
+  "dois": [
+   "10.21105/joss.09416"
+  ],
+  "title": "MADSci: A modular Python-based framework to enable autonomous science",
+  "paper_url": "https://doi.org/10.21105/joss.09416",
+  "known_code": [
+   "https://github.com/AD-SDL/MADSci"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "scheduling",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "memplex-printing",
+  "dois": [
+   "10.1038/s41467-025-59471-1"
+  ],
+  "title": "Designer artificial environments for membrane protein synthesis",
+  "paper_url": "https://www.nature.com/articles/s41467-025-59471-1",
+  "known_code": [
+   "https://github.com/ccmeyer/printing-platform"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "other",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "metclo-ot2",
+  "dois": [
+   "10.1007/978-1-0716-0908-8_9"
+  ],
+  "title": "MetCloOT2: Automated MetClo assembly on Opentrons OT-2 (MSc project, based on Lin & O Callaghan 2018/2020)",
+  "paper_url": "https://doi.org/10.1007/978-1-0716-0908-8_9",
+  "known_code": [
+   "https://github.com/Edinburgh-Genome-Foundry/OT2Metclo"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "mobile-robots-dai-2024",
+  "dois": [
+   "10.1038/s41586-024-08173-7"
+  ],
+  "title": "Autonomous mobile robots for exploratory synthetic chemistry",
+  "paper_url": "https://www.nature.com/articles/s41586-024-08173-7",
+  "known_code": [
+   "https://doi.org/10.5281/zenodo.11174257"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "plate_transport",
+  "code_licence": "Zenodo (check per record)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "myra-cfe-platform",
+  "dois": [
+   "10.1093/synbio/ysag010"
+  ],
+  "title": "A liquid handling platform for standardized quantification of cell-free enzymatic activity",
+  "paper_url": "https://academic.oup.com/synbio/article/doi/10.1093/synbio/ysag010",
+  "known_code": [
+   "https://github.com/Mo42-mb/Myra_automation"
+  ],
+  "found_by": [
+   "amass",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "other",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "myrplate-flex-casting",
+  "dois": [],
+  "title": "myrPlate engineered connective tissue casting on Opentrons Flex",
+  "paper_url": "https://github.com/Hosseinat11502/MyrplateTissueCasting-8channel1mltip-Version-15",
+  "known_code": [
+   "https://github.com/Hosseinat11502/MyrplateTissueCasting-8channel1mltip-Version-15"
+  ],
+  "found_by": [
+   "github",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "flex",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "nioz-ot2-database",
+  "dois": [],
+  "title": "MolLabNIOZ/OT2 protocol database (NIOZ molecular ecology)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/MolLabNIOZ/OT2"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "olh-turbidostat-plr",
+  "dois": [
+   "10.64898/2026.03.02.709168"
+  ],
+  "title": "A Purpose-Built Open Source Liquid Handler for Industry-Class Automated Experiments",
+  "paper_url": "https://www.biorxiv.org/content/10.64898/2026.03.02.709168v1.full",
+  "known_code": [
+   "https://github.com/chory-lab/plr-turbidostat"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "pylabrobot",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "openblend-media",
+  "dois": [
+   "10.1002/bit.27947"
+  ],
+  "title": "Modular development enables rapid design of media for alternative hosts",
+  "paper_url": "https://doi.org/10.1002/bit.27947",
+  "known_code": [
+   "https://github.com/abiedermann/openblend_public"
+  ],
+  "found_by": [
+   "amass",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "openframe-openaf",
+  "dois": [
+   "10.1111/jmi.13219"
+  ],
+  "title": "openFrame: modular open microscopy platform with single-shot optical autofocus",
+  "paper_url": "https://onlinelibrary.wiley.com/doi/10.1111/jmi.13219",
+  "known_code": [
+   "https://github.com/ImperialCollegeLondon/openAF"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "imaging",
+  "code_licence": "BSD",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "opentrons-covid19-dev",
+  "dois": [],
+  "title": "Opentrons/covid19 (OT-2 COVID-19 RT-qPCR station development repo, Opentrons + Open Medicine Institute)",
+  "paper_url": "https://www.protocols.io/groups/opentrons-covid19-testing/publications",
+  "known_code": [
+   "https://github.com/Opentrons/covid19"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "Apache-2.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "organa",
+  "dois": [
+   "10.1016/j.matt.2024.10.015"
+  ],
+  "title": "ORGANA: a robotic assistant for automated chemistry experimentation and characterization",
+  "paper_url": "https://arxiv.org/abs/2401.06949",
+  "known_code": [
+   "https://github.com/ac-rad/organa"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "synthesis",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ot2-cherrypick",
+  "dois": [
+   "10.26434/chemrxiv.15000637"
+  ],
+  "title": "OT2-CherryPick: A Zero-Install Web Platform for Orchestrating Complex Liquid Handling on the Opentrons OT-2",
+  "paper_url": "https://chemrxiv.org/doi/full/10.26434/chemrxiv.15000637/v1",
+  "known_code": [
+   "https://github.com/HiteSit/OT2_CherryPick"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "GPL-3.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ot2-moclo-jove",
+  "dois": [],
+  "title": "Modular Cloning with the OT2 (OT2_MoClo_JoVE)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/emernic/OT2_MoClo_JoVE"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ot2-proteomics-thesis",
+  "dois": [],
+  "title": "Automated Versus Manual Proteomics Sample Preparation: A Comparative Evaluation of Liquid Handling Workflows (MSc thesis)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/martineingolfsrud/Opentrons-OT-2-performance-assessment"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ot2-yeast-spot-assay",
+  "dois": [
+   "10.1016/j.slast.2022.12.001"
+  ],
+  "title": "Automation of yeast spot assays using an affordable liquid handling robot",
+  "paper_url": "https://doi.org/10.1016/j.slast.2022.12.001",
+  "known_code": [
+   "https://github.com/bioinfo-tsukuba/ot2_spot_assay"
+  ],
+  "found_by": [
+   "amass",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "pac832-galr1-ot2",
+  "dois": [],
+  "title": "PAC-832: A selective small-molecule antagonist of galanin receptor 1 (GalR1) - supplementary data and OT-2 protocols",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/douglasyao/pac-832-supplementary-data"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "parseq-pyhamilton",
+  "dois": [
+   "10.1101/2023.12.12.571337"
+  ],
+  "title": "parSEQ:  Probe and Rescue Sequencing for Advanced Variant Retrieval from DNA Pool",
+  "paper_url": "https://doi.org/10.1101/2023.12.12.571337",
+  "known_code": [
+   "https://github.com/finyl/parseq-pyhamilton"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "hamilton",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "pasta-spatial",
+  "dois": [
+   "10.1038/s41592-026-03200-z"
+  ],
+  "title": "PASTA: versatile tyramide-oligonucleotide amplification for multimodal spatial biology",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13539481/",
+  "known_code": [
+   "https://github.com/SizunJiangLab/PASTA"
+  ],
+  "found_by": [
+   "amass",
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "peg-solubility-assay",
+  "dois": [
+   "10.1038/s41598-021-01126-4"
+  ],
+  "title": "An open-source automated PEG precipitation assay to measure the relative solubility of proteins with low material requirement",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8578320/",
+  "known_code": [
+   "https://gitlab.developers.cam.ac.uk/ch/sormanni/peg-solubility-assay"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "phage-cocktails-robotics",
+  "dois": [
+   "10.1038/s41467-026-68684-x"
+  ],
+  "title": "High-throughput methods leveraging robotics and computer vision for the development of therapeutic phage cocktails",
+  "paper_url": "https://www.nature.com/articles/s41467-026-68684-x",
+  "known_code": [
+   "https://doi.org/10.5281/zenodo.17594564"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "imaging",
+  "code_licence": "check Zenodo",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "photobioreactor-fluorescence",
+  "dois": [
+   "10.3390/bios15030128"
+  ],
+  "title": "Integration of Fluorescence Spectroscopy into a Photobioreactor for the Monitoring of Cyanobacteria",
+  "paper_url": "https://www.mdpi.com/2079-6374/15/3/128",
+  "known_code": [
+   "https://github.com/borjaggarcia/fluorescence-monitoring"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "bioreactor",
+  "code_licence": "unverified",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "pioreactor",
+  "dois": [],
+  "title": "Pioreactor open-source bioreactor software (used in published studies)",
+  "paper_url": "https://docs.pioreactor.com",
+  "known_code": [
+   "https://github.com/pioreactor/pioreactor"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "bioreactor",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "polar-sarscov2-ot2",
+  "dois": [
+   "10.17504/protocols.io.bearjad6"
+  ],
+  "title": "POLAR: Pathogen-Oriented Low-cost Assembly & Re-sequencing SARS-CoV-2 (OT-2 automation)",
+  "paper_url": "https://doi.org/10.17504/protocols.io.bearjad6",
+  "known_code": [
+   "https://github.com/Zanecrc1/POLAR-SARS-CoV-2-Automation-for-OT-2"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "polybot-pedot",
+  "dois": [
+   "10.1038/s41467-024-55655-3"
+  ],
+  "title": "Autonomous platform for solution processing of electronic polymers (Polybot)",
+  "paper_url": "https://www.nature.com/articles/s41467-024-55655-3",
+  "known_code": [
+   "https://github.com/polybot-nexus/PEDOT_PSS_supporting_data"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "synthesis",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "polymerization-planner",
+  "dois": [
+   "10.1021/acspolymersau.5c00067"
+  ],
+  "title": "Automation-Assisted Photoinduced Atom Transfer Radical Polymerization",
+  "paper_url": "https://doi.org/10.1021/acspolymersau.5c00067",
+  "known_code": [
+   "https://github.com/GormleyLab/polymerization_planner"
+  ],
+  "found_by": [
+   "amass",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "other",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "pozzo-ot2-doe",
+  "dois": [],
+  "title": "Pozzo group OT-2 design-of-experiments protocols",
+  "paper_url": "https://github.com/pozzo-research-group/OT2Protocols",
+  "known_code": [
+   "https://github.com/pozzo-research-group/OT2Protocols"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "prism-protocol-gen",
+  "dois": [
+   "10.1039/d6dd00004e"
+  ],
+  "title": "PRISM: Protocol Refinement through Intelligent Simulation Modeling",
+  "paper_url": "https://doi.org/10.1039/d6dd00004e",
+  "known_code": [
+   "https://github.com/ramanathanlab/PRISM"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "pudu-synbio-ot2",
+  "dois": [],
+  "title": "PUDU (Protocol Unified Design Unit) - OT-2 synthetic biology workflows",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/RudgeLab/PUDU"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "pvlab-solubility-dropcast-ot2",
+  "dois": [],
+  "title": "PV-Lab Robotic_Liquid_Handling (MIT AMLS OT-2 solubility testing / drop casting)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/PV-Lab/Robotic_Liquid_Handling"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "pysted",
+  "dois": [
+   "10.1038/s42256-024-00903-w"
+  ],
+  "title": "Development of AI-assisted microscopy frameworks through realistic simulation with pySTED",
+  "paper_url": "https://www.nature.com/articles/s42256-024-00903-w",
+  "known_code": [
+   "https://github.com/FLClab/pySTED"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "imaging",
+  "code_licence": "CC (Attribution, check NC)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "raft-polymerization-platform",
+  "dois": [
+   "10.1039/d2dd00100d"
+  ],
+  "title": "A fully automated platform for photoinitiated RAFT polymerization",
+  "paper_url": "https://pubs.rsc.org/en/content/articlehtml/2023/dd/d2dd00100d",
+  "known_code": [
+   "https://doi.org/10.5281/zenodo.7379060"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "synthesis",
+  "code_licence": "check Zenodo",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "reacsight",
+  "dois": [
+   "10.1038/s41467-022-31033-9"
+  ],
+  "title": "Enhancing bioreactor arrays for automated measurements and reactive control with ReacSight",
+  "paper_url": "https://www.nature.com/articles/s41467-022-31033-9",
+  "known_code": [
+   "https://doi.org/10.5281/zenodo.4776009"
+  ],
+  "found_by": [
+   "amass",
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "bioreactor",
+  "code_licence": "check Zenodo",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "retro-10x-ot2",
+  "dois": [],
+  "title": "OT-2 10x scRNA-seq library prep (Retro Biosciences)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/retrobiosciences/opentrons-10x"
+  ],
+  "found_by": [
+   "github",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "robochem",
+  "dois": [
+   "10.1126/science.adj1817"
+  ],
+  "title": "Automated self-optimization, intensification, and scale-up of photocatalysis in flow (RoboChem)",
+  "paper_url": "https://www.science.org/doi/10.1126/science.adj1817",
+  "known_code": [
+   "https://github.com/Noel-Research-Group/Robochem_v1.0"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "synthesis",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "roborna-nirvana",
+  "dois": [
+   "10.1038/s41598-023-47190-w"
+  ],
+  "title": "An open-source, automated, and cost-effective platform for COVID-19 diagnosis and rapid portable genomic surveillance using nanopore sequencing",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10663496/",
+  "known_code": [
+   "https://github.com/strubelab/roboRNA"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "partial",
+  "robot_platform": "tecan",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "robotic-titration-cv-ot2",
+  "dois": [
+   "10.1039/d4dd00334a"
+  ],
+  "title": "High-throughput robotic colourimetric titrations using computer vision",
+  "paper_url": "https://doi.org/10.1039/d4dd00334a",
+  "known_code": [
+   "https://github.com/yuanlee0325/HTE-robotic-titration-using-computer-vision"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "rtwizard-antigen-ot2",
+  "dois": [],
+  "title": "rtWIZARD: OT-2 running 42 rapid antigen tests in parallel",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/BenHinnant/rtWIZARD"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "sample-protein-sdl",
+  "dois": [
+   "10.1038/s44286-023-00002-4"
+  ],
+  "title": "Self-driving laboratories to autonomously navigate the protein fitness landscape (SAMPLE)",
+  "paper_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10926838/",
+  "known_code": [
+   "https://doi.org/10.5281/zenodo.10048592"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "protocol_language",
+  "code_licence": "check Zenodo",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "sd2-yeast-replication",
+  "dois": [
+   "10.1093/synbio/ysac018"
+  ],
+  "title": "Highly-automated, high-throughput replication of yeast-based logic circuit design assessments (SD2/Strateos/Aquarium)",
+  "paper_url": "https://academic.oup.com/synbio/article/7/1/ysac018/6703309",
+  "known_code": [
+   "https://github.com/rpgoldman/replication-paper-data-analysis"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "protocol_language",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "sdl-enzyme-flex",
+  "dois": [
+   "10.1002/bit.70038"
+  ],
+  "title": "Optimized Machine Learning for Autonomous Enzymatic Reaction Intensification in a Self-Driving Lab",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12503018/",
+  "known_code": [
+   "https://github.com/putzsebastian/sdl-enzymes-optimization"
+  ],
+  "found_by": [
+   "amass",
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "flex",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "sdl-guide-gormley",
+  "dois": [
+   "10.1039/d5dd00525f"
+  ],
+  "title": "A user's guide to your first self-driving liquid handling lab",
+  "paper_url": "https://pubs.rsc.org/en/content/articlehtml/2026/dd/d5dd00525f",
+  "known_code": [
+   "https://github.com/GormleyLab/SDLGuide"
+  ],
+  "found_by": [
+   "amass",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "other",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "solubility-hein",
+  "dois": [
+   "10.1016/j.isci.2021.102176"
+  ],
+  "title": "Automated solubility screening platform using computer vision",
+  "paper_url": "https://www.cell.com/iscience/fulltext/S2589-0042(21)00144-0",
+  "known_code": [
+   "https://gitlab.com/heingroup/automated_solubility_h1"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "characterisation",
+  "code_licence": "unverified",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "spatial-tx-bravo",
+  "dois": [
+   "10.1186/s12864-020-6631-z"
+  ],
+  "title": "Automation of Spatial Transcriptomics library preparation to enable rapid and robust insights into spatial organization of tissues",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7158132/",
+  "known_code": [
+   "https://github.com/jemten/Bravo_ST"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "partial",
+  "robot_platform": "other",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "star-hardwarex",
+  "dois": [
+   "10.1016/j.ohx.2024.e00524"
+  ],
+  "title": "Sequential Treatment Application Robot (STAR) for high-replication marine experimentation",
+  "paper_url": "https://www.sciencedirect.com/science/article/pii/S2468067224000178",
+  "known_code": [
+   "https://doi.org/10.5281/zenodo.10048123"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "plate_transport",
+  "code_licence": "check Zenodo",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "tape-organoid-barcoding",
+  "dois": [
+   "10.1038/s41592-020-0737-8"
+  ],
+  "title": "Cell-type-specific signaling networks in heterocellular organoids (TOBis barcoding / robotic organoid extraction)",
+  "paper_url": "https://doi.org/10.1038/s41592-020-0737-8",
+  "known_code": [
+   "https://github.com/TAPE-Lab/OT-2_Code"
+  ],
+  "found_by": [
+   "github",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "teemi",
+  "dois": [
+   "10.1371/journal.pcbi.1011929"
+  ],
+  "title": "teemi: open-source literate programming for iterative DBTL cycles",
+  "paper_url": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011929",
+  "known_code": [
+   "https://github.com/hiyama341/teemi"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "other",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "tmt-bead-platform-ot2",
+  "dois": [
+   "10.1021/jasms.1c00077"
+  ],
+  "title": "A Semiautomated Paramagnetic Bead-Based Platform for Isobaric Tag Sample Preparation",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8210952/",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "trypanosomatid-drug-combo-ot2",
+  "dois": [],
+  "title": "OT-2 protocols for drug combination screening (Trypanosomatics Lab, UNSAM)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/FranAguero07/OT2_protocols"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ufdutton-16s-flex",
+  "dois": [],
+  "title": "UF Dutton Lab Opentrons 16S microbiome workflow (OT-2 + Flex)",
+  "paper_url": null,
+  "known_code": [
+   "https://github.com/UFDuttonLab/lab_automation_opentrons"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "flex",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "vadr-vacuum-miniprep-flex",
+  "dois": [
+   "10.64898/2026.09.16.746974"
+  ],
+  "title": "An Open-Source 3D-Printed Vacuum Manifold for Automated DNA Isolation Improves Yields in the Opentrons Flex and OT-2",
+  "paper_url": "https://doi.org/10.64898/2026.09.16.746974",
+  "known_code": [
+   "https://github.com/JackATDalton/VADR"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "flex",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "viscous-liquid-bo-ot2",
+  "dois": [
+   "10.1039/d3dd00255a"
+  ],
+  "title": "Optimization of liquid handling parameters for viscous liquid transfers with pipetting robots, a sticky situation",
+  "paper_url": "https://doi.org/10.1039/d3dd00255a",
+  "known_code": [
+   "https://github.com/Quijanove/LiqTransferOptimizer"
+  ],
+  "found_by": [
+   "github"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "worm-food-preference",
+  "dois": [
+   "10.1242/jeb.01955"
+  ],
+  "title": "C. elegans food preference protocol (bacteria and worm spotting on OT-2)",
+  "paper_url": "https://github.com/slhogle/c_elegans_food_preference_protocol",
+  "known_code": [
+   "https://github.com/slhogle/c_elegans_food_preference_protocol"
+  ],
+  "found_by": [
+   "github",
+   "web"
+  ],
+  "readiness": "partial",
+  "robot_platform": "ot2",
+  "code_licence": "GPL-3.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "zhao-autonomous-enzyme",
+  "dois": [
+   "10.1038/s41467-025-61209-y"
+  ],
+  "title": "A generalized platform for artificial intelligence-powered autonomous enzyme engineering (iBioFAB)",
+  "paper_url": "https://www.nature.com/articles/s41467-025-61209-y",
+  "known_code": [
+   "https://github.com/Zhao-Group/closed-loop"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "partial",
+  "robot_platform": "scheduling",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "adept-framework",
+  "dois": [
+   "10.1038/s42004-026-01932-9"
+  ],
+  "title": "The ADePT framework for assessing autonomous laboratory robotics",
+  "paper_url": "https://www.nature.com/articles/s42004-026-01932-9",
+  "known_code": [
+   "none found"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "n/a",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ai-chemist-ustc",
+  "dois": [
+   "10.1093/nsr/nwac190"
+  ],
+  "title": "An all-round AI-Chemist with a scientific mind",
+  "paper_url": "https://academic.oup.com/nsr/article/9/10/nwac190/6694179",
+  "known_code": [
+   "none found"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "no",
+  "robot_platform": "synthesis",
+  "code_licence": "n/a",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "archemist",
+  "dois": [
+   "10.1109/ICRA46639.2022.9811996"
+  ],
+  "title": "ARChemist: Autonomous Robotic Chemistry System Architecture (Fakhruldeen et al.)",
+  "paper_url": "https://arxiv.org/abs/2204.13571",
+  "known_code": [
+   "https://github.com/ARChemist (unverified)"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "no",
+  "robot_platform": "plate_transport",
+  "code_licence": "unverified",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "aurora-materials",
+  "dois": [
+   "10.1021/acsami.5c02605"
+  ],
+  "title": "AURORA - An Automatic Robotic Platform for Materials Discovery",
+  "paper_url": "https://pubs.acs.org/doi/10.1021/acsami.5c02605",
+  "known_code": [
+   "https://github.com/PalmSens/MethodSCRIPT_Examples"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "no",
+  "robot_platform": "characterisation",
+  "code_licence": "vendor",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "autopots-proteome",
+  "dois": [
+   "10.1021/acs.analchem.0c04240"
+  ],
+  "title": "Fully Automated Sample Processing and Analysis Workflow for Low-Input Proteome Profiling",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8140400/",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "autorelacs",
+  "dois": [
+   "10.1038/s41598-020-69443-8"
+  ],
+  "title": "AutoRELACS: automated generation and analysis of ultra-parallel ChIP-seq",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7381599/",
+  "known_code": [
+   "https://github.com/FrancescoFerrari88/AutoRELACS"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "baybe",
+  "dois": [
+   "10.1039/D5DD00050E"
+  ],
+  "title": "BayBE: Bayesian Back End for design of experiments",
+  "paper_url": "https://pubs.rsc.org/en/content/articlehtml/2025/dd/d5dd00050e",
+  "known_code": [
+   "https://github.com/emdgroup/baybe"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "Apache-2.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "bead-digestion-ann",
+  "dois": [
+   "10.1016/j.talanta.2024.125988"
+  ],
+  "title": "Refinement of paramagnetic bead-based digestion protocol for automatic sample preparation using an artificial neural network",
+  "paper_url": "https://doi.org/10.1016/j.talanta.2024.125988",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "bio-spec-hardwarex",
+  "dois": [
+   "10.1016/j.ohx.2025.e00670"
+  ],
+  "title": "BIO-SPEC: An open-source bench-top parallel bioreactor system",
+  "paper_url": "https://www.sciencedirect.com/science/article/pii/S2468067225000690",
+  "known_code": [
+   "see paper repository (OSF/Zenodo, not verified)"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "no",
+  "robot_platform": "bioreactor",
+  "code_licence": "CC BY (hardware, per HardwareX)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "bioclonebot",
+  "dois": [
+   "10.1016/j.ohx.2024.e00516"
+  ],
+  "title": "BioCloneBot: A versatile, low-cost, and open-source automated liquid handler",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10955647/",
+  "known_code": [
+   "https://osf.io/qdp7v"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "see OSF (HardwareX requires open licence)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "catib-screening",
+  "dois": [
+   "10.1186/s12934-024-02319-y"
+  ],
+  "title": "\"High-throughput screening of catalytically active inclusion bodies using laboratory automation and Bayesian optimization\"",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10894497/",
+  "known_code": [
+   "https://github.com/JuBiotech/Supplement-to-Helleckes-Kuesters-et-al.-2023"
+  ],
+  "found_by": [
+   "amass",
+   "web"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "GPL-3.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "cellfree-biosensor-ot2",
+  "dois": [
+   "10.1021/acssynbio.4c00703"
+  ],
+  "title": "Semiautomated Production of Cell-Free Biosensors",
+  "paper_url": "https://doi.org/10.1021/acssynbio.4c00703",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "cloudlab-chiral-perovskite",
+  "dois": [
+   "10.1038/s41467-020-15728-5"
+  ],
+  "title": "Autonomous discovery of optically active chiral inorganic perovskite nanocrystals through an intelligent cloud lab",
+  "paper_url": "https://www.nature.com/articles/s41467-020-15728-5",
+  "known_code": [
+   "none found"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "no",
+  "robot_platform": "synthesis",
+  "code_licence": "n/a",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "combinatorial-barcode-dna",
+  "dois": [
+   "10.3390/ijms24032549"
+  ],
+  "title": "Scalable Combinatorial Assembly of Synthetic DNA for Tracking Applications",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9917336/",
+  "known_code": [
+   "https://doi.org/10.5281/zenodo.7415652"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "CC-BY-4.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "covid-fosh-review",
+  "dois": [
+   "10.3389/fmedt.2022.969203"
+  ],
+  "title": "High-throughput and automated screening for COVID-19",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9521367/",
+  "known_code": [
+   "https://www.protocols.io/groups/opentrons-covid19-testing"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "unknown",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "curcumin-formulation-sdl",
+  "dois": [
+   "10.1039/d5dd00171d"
+  ],
+  "title": "Efficient discovery of new medicine formulations using a semi-self-driven robotic formulator",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13576497/",
+  "known_code": [
+   "https://github.com/shorthouse-lab/Ros_SDformulation"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "diy-ot-linear-motion-qpcr",
+  "dois": [
+   "10.1038/s41598-020-70465-5"
+  ],
+  "title": "Principles of computer-controlled linear motion applied to an open-source affordable liquid handler for automated micropipetting",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7424513/",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "diy-stem-lhr",
+  "dois": [
+   "10.1371/journal.pone.0275688"
+  ],
+  "title": "DIY liquid handling robots for integrated STEM education and life science research",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9645590/",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "duckweed-hte",
+  "dois": [
+   "10.1371/journal.pone.0287739"
+  ],
+  "title": "Accelerated high-throughput imaging and phenotyping system for small organisms",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10361482/",
+  "known_code": [
+   "https://doi.org/10.5281/zenodo.8060938"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "egf-sequeduct",
+  "dois": [
+   "10.1021/acssynbio.3c00589"
+  ],
+  "title": "Biofoundry-Scale DNA Assembly Validation Using Cost-Effective High-Throughput Long-Read Sequencing",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10877595/",
+  "known_code": [
+   "https://github.com/Edinburgh-Genome-Foundry/Sequeduct"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "GPL-3.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "endylab-opentrons",
+  "dois": [],
+  "title": "Endy Lab Opentrons protocol collection",
+  "paper_url": "https://github.com/EndyLab/opentrons",
+  "known_code": [
+   "https://github.com/EndyLab/opentrons"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "evobot",
+  "dois": [
+   "10.1177/2472630316689285"
+  ],
+  "title": "New Capabilities of EvoBot: A Modular, Open-Source Liquid-Handling Robot",
+  "paper_url": "https://doi.org/10.1177/2472630316689285",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "findus",
+  "dois": [
+   "10.1177/2472630319877374"
+  ],
+  "title": "FINDUS: An Open-Source 3D Printable Liquid-Handling Workstation for Laboratory Automation in Life Sciences",
+  "paper_url": "https://doi.org/10.1177/2472630319877374",
+  "known_code": [
+   "https://github.com/FBarthels/FINDUS"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "GPL-3.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "flyspresso-embryo-ihc",
+  "dois": [
+   "10.1038/s41598-021-89676-5"
+  ],
+  "title": "An open-source semi-automated robotics pipeline for embryo immunohistochemistry",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8119710/",
+  "known_code": [
+   "https://github.com/janelia-pypi/hybridizer_python"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "not checked",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "gpcr-livecell-ot2",
+  "dois": [
+   "10.1021/acssensors.2c01341"
+  ],
+  "title": "GPCR Signaling Measurement and Drug Profiling with an Automated Live-Cell Microscopy System",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9994309/",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "hydra-hydrogel-plates",
+  "dois": [
+   "10.1038/s44172-025-00575-3"
+  ],
+  "title": "Fabrication of cell culture hydrogels by robotic liquid handling automation for high-throughput drug testing",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12749810/",
+  "known_code": [
+   "https://github.com/Synthetic-Physiology-Lab/hydra-hts-hydrogel-analysis"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "illumina-dnaprep-flowbot",
+  "dois": [
+   "10.1038/s41598-024-58963-2"
+  ],
+  "title": "Automating the Illumina DNA library preparation kit for whole genome sequencing applications on the flowbot ONE liquid handler robot",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11001922/",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "kedar-balance-integration",
+  "dois": [],
+  "title": "Opentrons OT-2 mass-balance integration (application note supplement)",
+  "paper_url": "https://github.com/Kedar-Materials-by-Design-Lab/opentrons-balance",
+  "known_code": [
+   "https://github.com/Kedar-Materials-by-Design-Lab/opentrons-balance"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "kitfree-rna-extraction",
+  "dois": [
+   "10.1038/s41598-021-02742-w"
+  ],
+  "title": "A high-throughput pipeline for scalable kit-free RNA extraction",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8636496/",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "labdroid-phenol-chloroform",
+  "dois": [
+   "10.12688/f1000research.109251.1"
+  ],
+  "title": "Automated phenol-chloroform extraction of high molecular weight genomic DNA for use in long-read single-molecule sequencing",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8931447/",
+  "known_code": [
+   "https://doi.org/10.5281/zenodo.5733820"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "CC-BY-4.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "lego-lhr-stem",
+  "dois": [
+   "10.1371/journal.pbio.2001413"
+  ],
+  "title": "Liquid-handling Lego robots and experiments for STEM education and research",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5360201/",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "maple-fly-robot",
+  "dois": [
+   "10.7554/eLife.37166"
+  ],
+  "title": "MAPLE (modular automated platform for large-scale experiments), a robot for integrated organism-handling and phenotyping",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6193762/",
+  "known_code": [
+   "https://github.com/FlySorterLLC/MAPLEControlSoftware"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "not checked",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "marchantia-agro-transformation",
+  "dois": [
+   "10.1111/tpj.70118"
+  ],
+  "title": "Semi-automated workflow for high-throughput Agrobacterium-mediated plant transformation",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11993085/",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "miniaturized-16s-mosquito",
+  "dois": [
+   "10.1128/mSystems.00166-18"
+  ],
+  "title": "High-Throughput Miniaturized 16S rRNA Amplicon Library Preparation Reduces Costs while Preserving Microbiome Integrity",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6222042/",
+  "known_code": [
+   "https://www.protocols.io/view/high-throughput-miniaturized-16s-rrna-amplicon-lib-u2ieyce"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "protocols.io (CC-BY)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "mngs-384-miniaturized",
+  "dois": [
+   "10.1371/journal.pone.0206194"
+  ],
+  "title": "Miniaturization and optimization of 384-well compatible RNA sequencing library preparation",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6328170/",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "mobile-robot-burger-2020",
+  "dois": [
+   "10.1038/s41586-020-2442-2"
+  ],
+  "title": "A mobile robotic chemist (Burger et al.)",
+  "paper_url": "https://www.nature.com/articles/s41586-020-2442-2",
+  "known_code": [
+   "none public (ROS code not released)"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "no",
+  "robot_platform": "plate_transport",
+  "code_licence": "n/a",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "mxene-aerogel-al",
+  "dois": [
+   "10.1038/s41467-024-49011-8"
+  ],
+  "title": "Machine intelligence accelerated design of conductive MXene aerogels with programmable properties",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11144242/",
+  "known_code": [
+   "https://github.com/oshin71/Programmable-MXene-Aerogel"
+  ],
+  "found_by": [
+   "amass",
+   "nonlh"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "none (data Zenodo BSD-3-Clause-Clear)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "newcastle-neg-opentrons",
+  "dois": [],
+  "title": "Newcastle Network Ecology Group OT-2 protocol and labware collection",
+  "paper_url": "https://github.com/NewcastleUni-NetworkEcologyGroup/Opentrons",
+  "known_code": [
+   "https://github.com/NewcastleUni-NetworkEcologyGroup/Opentrons"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "nfkb-luciferase-ot2",
+  "dois": [
+   "10.1016/j.slast.2024.100155"
+  ],
+  "title": "Luciferase reporter assay for NF-kB activation automated by an open-source liquid handling platform",
+  "paper_url": "https://doi.org/10.1016/j.slast.2024.100155",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "opentrons-physicalai-hf",
+  "dois": [],
+  "title": "Opentrons/PhysicalAI (Hugging Face dataset of Flex teleoperation episodes)",
+  "paper_url": "https://huggingface.co/datasets/Opentrons/PhysicalAI",
+  "known_code": [
+   "https://huggingface.co/datasets/Opentrons/PhysicalAI"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "no",
+  "robot_platform": "flex",
+  "code_licence": "unstated",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "ot2eye",
+  "dois": [
+   "10.1016/j.slast.2026.100410"
+  ],
+  "title": "OT2Eye: Detection of labware conditions to monitor and extend affordable liquid-handling robots",
+  "paper_url": "https://doi.org/10.1016/j.slast.2026.100410",
+  "known_code": [
+   "https://github.com/bioinfo-tsukuba/ot2eye"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "pipette-show",
+  "dois": [
+   "10.1021/acssynbio.1c00494"
+  ],
+  "title": "Pipette Show: An Open Source Web Application to Support Pipetting into Microplates",
+  "paper_url": "https://pubs.acs.org/doi/10.1021/acssynbio.1c00494",
+  "known_code": [
+   "https://github.com/Global-Biofoundries-Alliance/pipette-show"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "plastic-substitutes-al",
+  "dois": [
+   "10.1038/s41565-024-01635-z"
+  ],
+  "title": "Machine intelligence-accelerated discovery of all-natural plastic substitutes",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11186784/",
+  "known_code": [
+   "https://github.com/chentl/MatAL"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "BSD",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "polymer-protein-hybrids",
+  "dois": [
+   "10.1002/adma.202201809"
+  ],
+  "title": "Machine Learning on a Robotic Platform for the Design of Polymer-Protein Hybrids",
+  "paper_url": "https://onlinelibrary.wiley.com/doi/10.1002/adma.202201809",
+  "known_code": [
+   "https://github.com/webbtheosim/PPH_public"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "pr-pr",
+  "dois": [
+   "10.1021/sb4001728"
+  ],
+  "title": "PR-PR: cross-platform laboratory automation system",
+  "paper_url": "https://doi.org/10.1021/sb4001728",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "tecan",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "protein-corona-ot2",
+  "dois": [
+   "10.1007/s00216-020-02726-1"
+  ],
+  "title": "Automation and low-cost proteomics for characterization of the protein corona: experimental methods for big data",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7483600/",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "proteoautonet",
+  "dois": [
+   "10.1038/s41467-026-68484-3"
+  ],
+  "title": "ProteoAutoNet: high-throughput co-eluted protein analysis with robotics and machine learning",
+  "paper_url": "https://doi.org/10.1038/s41467-026-68484-3",
+  "known_code": [
+   "https://github.com/guomics-lab/ProteoAutoNet"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "radiolabeling-psma-ot2",
+  "dois": [
+   "10.1002/jlcr.4085"
+  ],
+  "title": "Automated radiolabeling and handling of 177 Lu- and 225 Ac-PSMA-617 using a robotic pipettor",
+  "paper_url": "https://doi.org/10.1002/jlcr.4085",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "sdl-nano-acsnano",
+  "dois": [
+   "10.1021/acsnano.4c17504"
+  ],
+  "title": "A Self-Driving Lab for Nano- and Advanced Materials Synthesis",
+  "paper_url": "https://pubs.acs.org/doi/10.1021/acsnano.4c17504",
+  "known_code": [
+   "none found"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "no",
+  "robot_platform": "synthesis",
+  "code_licence": "n/a",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "snails-slow-pipetting",
+  "dois": [
+   "10.1186/s12864-021-07500-w"
+  ],
+  "title": "Consistent ultra-long DNA sequencing with automated slow pipetting",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7953553/",
+  "known_code": [
+   "https://github.com/dholab/SNAILS"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "none",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "sp3-magbead-protocol-repo",
+  "dois": [],
+  "title": "Automated magnetic bead-based digestion protocols for Opentrons OT-2 (proteomics CNB-CBM)",
+  "paper_url": "https://github.com/proteomicscnbcbm/SP3-Magnetic-Beads-Digestion-Protocol",
+  "known_code": [
+   "https://github.com/proteomicscnbcbm/SP3-Magnetic-Beads-Digestion-Protocol"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "summit-flow",
+  "dois": [
+   "10.1002/cmtd.202000051"
+  ],
+  "title": "Summit: benchmarking machine learning methods for reaction optimisation",
+  "paper_url": "https://chemistry-europe.onlinelibrary.wiley.com/doi/10.1002/cmtd.202000051",
+  "known_code": [
+   "https://github.com/sustainable-processes/summit"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "MIT",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "swabseq-flex",
+  "dois": [
+   "10.1016/j.diagmicrobio.2026.117519"
+  ],
+  "title": "Automated implementation of the SwabSeq COVID-19 diagnostic assay on the opentrons flex liquid-handling robot",
+  "paper_url": "https://doi.org/10.1016/j.diagmicrobio.2026.117519",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "flex",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "synthetic-cells-robotics",
+  "dois": [
+   "10.1002/adbi.202400671"
+  ],
+  "title": "Scaling Up Synthetic Cell Production Using Robotics and Machine Learning Toward Therapeutic Applications",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078883/",
+  "known_code": [
+   "https://github.com/IdoGalil/syn"
+  ],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "tecan",
+  "code_licence": "unknown (repo not found)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "takahashi-turbidostat",
+  "dois": [
+   "10.1021/sb500165g"
+  ],
+  "title": "A low cost, customizable turbidostat for use in synthetic circuit characterization",
+  "paper_url": "https://pubs.acs.org/doi/10.1021/sb500165g",
+  "known_code": [
+   "https://github.com/klavinslab (location unverified)"
+  ],
+  "found_by": [
+   "nonlh"
+  ],
+  "readiness": "no",
+  "robot_platform": "bioreactor",
+  "code_licence": "unverified",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "tox-pipetting-robot",
+  "dois": [
+   "10.1371/journal.pone.0179636"
+  ],
+  "title": "A versatile and low-cost open source pipetting robot for automation of toxicological and ecotoxicological bioassays",
+  "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5473567/",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "transfection-reagent-agnostic",
+  "dois": [
+   "10.1002/cpz1.968"
+  ],
+  "title": "A Novel, Fully Automated, and Reagent-Agnostic Transient Transfection Protocol",
+  "paper_url": "https://doi.org/10.1002/cpz1.968",
+  "known_code": [],
+  "found_by": [
+   "amass"
+  ],
+  "readiness": "no",
+  "robot_platform": "other",
+  "code_licence": "n/a (no repo)",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ },
+ {
+  "slug": "xchem-opentrons",
+  "dois": [],
+  "title": "XChem Opentrons reaction liquid-handling toolkit",
+  "paper_url": "https://github.com/xchem/opentrons",
+  "known_code": [
+   "https://github.com/xchem/opentrons"
+  ],
+  "found_by": [
+   "web"
+  ],
+  "readiness": "no",
+  "robot_platform": "ot2",
+  "code_licence": "Apache-2.0",
+  "simulator": "not run",
+  "origin": [
+   "expansion search 2026-10-12 (experimental)"
+  ]
+ }
+]

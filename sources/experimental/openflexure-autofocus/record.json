@@ -1,0 +1,48 @@
+{
+ "code": [
+  {
+   "host": "gitlab.com",
+   "status": "non-github: needs manual download",
+   "url": "https://gitlab.com/openflexure/openflexure-microscope-server"
+  }
+ ],
+ "doi_primary": "10.1111/jmi.13064",
+ "dois": [
+  "10.1111/jmi.13064"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1111/jmi.13064:\n  europepmc: no Europe PMC full text for this DOI\nDow",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "licence": "cc by",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://onlinelibrary.wiley.com/doi/pdf/10.1111/jmi.13064"
+   }
+  ]
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/openflexure-autofocus",
+ "title": "Fast, high-precision autofocus on a motorised microscope: Automating blood sample imaging on the OpenFlexure Microscope",
+ "year": "2022"
+}

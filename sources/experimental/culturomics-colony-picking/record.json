@@ -1,0 +1,52 @@
+{
+ "code": [
+  {
+   "host": "",
+   "status": "non-github: needs manual download",
+   "url": "see paper code availability (not verified)"
+  }
+ ],
+ "doi_primary": "10.1038/s41587-023-01674-2",
+ "dois": [
+  "10.1038/s41587-023-01674-2"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1038/s41587-023-01674-2:\n  europepmc: Server error '500 ' for url 'ht",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 5994780,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "86011be4f29b88e3d02d6a95b04358152e2b984ad345a6f0fa7097351f557ecb",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s41587-023-01674-2.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s41587-023-01674-2.pdf"
+ },
+ "pmcid": "PMC10567565",
+ "readiness": "partial",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/culturomics-colony-picking",
+ "title": "High-throughput microbial culturomics using automation and machine learning (CAMII colony picker)",
+ "year": "2023"
+}

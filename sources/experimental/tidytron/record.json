@@ -1,0 +1,74 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.2"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/tidytron/PlantSynBioLab__TidyTron",
+   "commit": "4d27169b53e8fb974aed01cd7d41d30666e9d9ca",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "Apache-2.0",
+   "opentrons_py_files": 37,
+   "py_files": 37,
+   "redistributable": "yes",
+   "repo": "PlantSynBioLab/TidyTron",
+   "robot_mentions": [],
+   "size_kb": 77,
+   "status": "cloned",
+   "url": "https://github.com/PlantSynBioLab/TidyTron"
+  }
+ ],
+ "doi_primary": "10.1016/j.slast.2023.08.007",
+ "dois": [
+  "10.1016/j.slast.2023.08.007"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "web"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 18,
+  "source": "europepmc:PMC12212179"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "bytes": 1039076,
+  "licence": "cc by-nc-nd",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "5ccd726aa4f461904c93b6f9b151342d11dfdef315e38a0fee9874031dbda2b0",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12212179?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12212179.1/PMC12212179.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12212179.1/PMC12212179.1.pdf"
+ },
+ "pmcid": "PMC12212179",
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "partly_verified",
+ "slug": "experimental/tidytron",
+ "title": "TidyTron: Reducing lab waste using validated wash-and-reuse protocols for common plasticware in Opentrons OT-2 robots",
+ "year": "2024"
+}

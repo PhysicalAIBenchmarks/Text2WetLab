@@ -1,0 +1,47 @@
+{
+ "code": [
+  {
+   "archived": false,
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "redistributable": "yes",
+   "repo": "bioinfo-tsukuba/ot2eye",
+   "size_kb": 484740,
+   "status": "skipped: 473 MB exceeds the clone limit",
+   "url": "https://github.com/bioinfo-tsukuba/ot2eye"
+  }
+ ],
+ "doi_primary": "10.1016/j.slast.2026.100410",
+ "dois": [
+  "10.1016/j.slast.2026.100410"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1016/j.slast.2026.100410:\n  europepmc: no Europe PMC full text for th",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "licence": "cc by-nc-nd",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/ot2eye",
+ "title": "OT2Eye: Detection of labware conditions to monitor and extend affordable liquid-handling robots",
+ "year": "2026"
+}

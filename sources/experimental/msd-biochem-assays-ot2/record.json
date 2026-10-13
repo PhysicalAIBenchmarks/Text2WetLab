@@ -1,0 +1,59 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.12"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/msd-biochem-assays-ot2/MSDLLCpapers__Opentrons-OT2-BioChemical-Assays",
+   "commit": "049682a0fa28be281d8c069dc08e80e2b243a246",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "Apache-2.0",
+   "opentrons_py_files": 2,
+   "py_files": 2,
+   "redistributable": "yes",
+   "repo": "MSDLLCpapers/Opentrons-OT2-BioChemical-Assays",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 21,
+   "status": "cloned",
+   "url": "https://github.com/MSDLLCpapers/Opentrons-OT2-BioChemical-Assays"
+  }
+ ],
+ "doi_primary": "10.1016/j.slast.2024.100205",
+ "dois": [
+  "10.1016/j.slast.2024.100205"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "github",
+  "web"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1016/j.slast.2024.100205:\n  europepmc: no Europe PMC full text for th",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "licence": "cc by-nc-nd",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "verified",
+ "slug": "experimental/msd-biochem-assays-ot2",
+ "title": "Automation of biochemical assays using an open-sourced, inexpensive robotic liquid handler",
+ "year": "2024"
+}

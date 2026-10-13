@@ -1,0 +1,40 @@
+{
+ "code": [
+  {
+   "host": "github.com",
+   "status": "non-github: needs manual download",
+   "url": "https://github.com/ARChemist (unverified)"
+  }
+ ],
+ "dois": [
+  "10.1109/ICRA46639.2022.9811996"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1109/ICRA46639.2022.9811996:\n  europepmc: no Europe PMC full text for",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "plate_transport",
+ "simulator": "not run",
+ "slug": "experimental/archemist",
+ "title": "ARChemist: Autonomous Robotic Chemistry System Architecture (Fakhruldeen et al.)",
+ "year": ""
+}

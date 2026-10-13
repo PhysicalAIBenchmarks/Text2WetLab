@@ -1,0 +1,76 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.8"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/lysostaphin-turbidity/JuBiotech__Supplement-to-Prigolovkin-et-al.-2025",
+   "commit": "e2d1d810b85525ec9ba481ae537a80a598376992",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "AGPL-3.0",
+   "opentrons_py_files": 1,
+   "py_files": 1,
+   "redistributable": "no",
+   "repo": "JuBiotech/Supplement-to-Prigolovkin-et-al.-2025",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 1097,
+   "status": "cloned",
+   "url": "https://github.com/JuBiotech/Supplement-to-Prigolovkin-et-al.-2025"
+  }
+ ],
+ "doi_primary": "10.1186/s12934-025-02911-w",
+ "dois": [
+  "10.1186/s12934-025-02911-w"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "github"
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 13,
+  "source": "europepmc:PMC12836826"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2623092,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "2127ce5b2c818d66974af5c3919af2453f3790df717bb18790da7fdab9194259",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12836826?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12836826.1/PMC12836826.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12836826.1/PMC12836826.1.pdf"
+ },
+ "pmcid": "PMC12836826",
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/lysostaphin-turbidity",
+ "title": "Turbid but accurate: automating lysostaphin quantification including uncertainty quantification",
+ "year": "2026"
+}

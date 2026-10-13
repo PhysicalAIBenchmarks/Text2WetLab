@@ -1,0 +1,72 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/krisp-sars2-pooling/krisp-kwazulu-natal__efficient-SARS-CoV-2-pooled-testing-strategy-code",
+   "commit": "c780540d1fda98dad5bd5cf6fdb983de0908eb91",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 4,
+   "py_files": 6,
+   "redistributable": "yes",
+   "repo": "krisp-kwazulu-natal/efficient-SARS-CoV-2-pooled-testing-strategy-code",
+   "robot_mentions": [],
+   "size_kb": 874,
+   "status": "cloned",
+   "url": "https://github.com/krisp-kwazulu-natal/efficient-SARS-CoV-2-pooled-testing-strategy-code"
+  }
+ ],
+ "doi_primary": "10.1038/s41598-021-96934-z",
+ "dois": [
+  "10.1038/s41598-021-96934-z"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "github"
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 17,
+  "source": "europepmc:PMC8423848"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2368917,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "61e89f17a12e5e4af3c76eb4d01ac62b84e688a0de77756f8c0ccbdcc8d218c1",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC8423848?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8423848.1/PMC8423848.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8423848.1/PMC8423848.1.pdf"
+ },
+ "pmcid": "PMC8423848",
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/krisp-sars2-pooling",
+ "title": "Implementation of an efficient SARS-CoV-2 specimen pooling strategy for high throughput diagnostic testing",
+ "year": "2021"
+}

@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/bear-mechanics/KelseyEng__BEAR_ADTS",
+   "commit": "621d294e2df6b7c7156f0f72dab4ec39c168fd0f",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "Unlicense",
+   "opentrons_py_files": 0,
+   "py_files": 6,
+   "redistributable": "yes",
+   "repo": "KelseyEng/BEAR_ADTS",
+   "robot_mentions": [],
+   "size_kb": 87474,
+   "status": "cloned",
+   "url": "https://github.com/KelseyEng/BEAR_ADTS"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-024-48534-4",
+ "dois": [
+  "10.1038/s41467-024-48534-4"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 16,
+  "source": "europepmc:PMC11109101"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 49219137,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "cd45627e4cfc40ccbb0aacd381375f1f0f56793194b675238e1543605ad83a3e",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11109101?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11109101.1/PMC11109101.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11109101.1/PMC11109101.1.pdf"
+ },
+ "pmcid": "PMC11109101",
+ "readiness": "partial",
+ "robot_platform": "characterisation",
+ "simulator": "not run",
+ "slug": "experimental/bear-mechanics",
+ "title": "Superlative mechanical energy absorbing efficiency discovered through self-driving lab-human partnership (BEAR)",
+ "year": "2024"
+}

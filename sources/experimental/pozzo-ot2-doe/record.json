@@ -1,0 +1,42 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/pozzo-ot2-doe/pozzo-research-group__OT2Protocols",
+   "commit": "2386dae2b7f18a8a42fb8b4a0b8d2c6b2f3ff440",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 8,
+   "py_files": 37,
+   "redistributable": "yes",
+   "repo": "pozzo-research-group/OT2Protocols",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 28952,
+   "status": "cloned",
+   "url": "https://github.com/pozzo-research-group/OT2Protocols"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/pozzo-ot2-doe",
+ "title": "Pozzo group OT-2 design-of-experiments protocols",
+ "year": ""
+}

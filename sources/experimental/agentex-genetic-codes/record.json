@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/agentex-genetic-codes/FelixRadford__AGENTEX",
+   "commit": "7a5bf4bd612fc6824f3e3c7e7592882f770930f2",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 4,
+   "py_files": 5,
+   "redistributable": "no",
+   "repo": "FelixRadford/AGENTEX",
+   "robot_mentions": [],
+   "size_kb": 53,
+   "status": "cloned",
+   "url": "https://github.com/FelixRadford/AGENTEX"
+  }
+ ],
+ "doi_primary": "10.1038/s41586-026-10949-y",
+ "dois": [
+  "10.1038/s41586-026-10949-y"
+ ],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "fulltext": {
+  "legends": 15,
+  "sections": 45,
+  "source": "europepmc:PMC13645668"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "bytes": 18098299,
+  "licence": "cc by-nc-nd",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "879e2f842d01f9b14e0bb765bf3eb9a5e7bf6fba512d71373072fb430f6e1fa5",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://europepmc.org/articles/PMC13645668?pdf=render"
+   }
+  ],
+  "url": "https://europepmc.org/articles/PMC13645668?pdf=render"
+ },
+ "pmcid": "PMC13645668",
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/agentex-genetic-codes",
+ "title": "Automated prototyping of genetic codes",
+ "year": "2026"
+}

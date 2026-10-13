@@ -1,0 +1,40 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/kedar-balance-integration/Kedar-Materials-by-Design-Lab__opentrons-balance",
+   "commit": "8e50e1ec51f5072267bd92f843b896aa85f13adf",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "Kedar-Materials-by-Design-Lab/opentrons-balance",
+   "robot_mentions": [],
+   "size_kb": 1137,
+   "status": "cloned",
+   "url": "https://github.com/Kedar-Materials-by-Design-Lab/opentrons-balance"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/kedar-balance-integration",
+ "title": "Opentrons OT-2 mass-balance integration (application note supplement)",
+ "year": ""
+}

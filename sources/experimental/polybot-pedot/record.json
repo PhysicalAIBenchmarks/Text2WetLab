@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/polybot-pedot/polybot-nexus__PEDOT_PSS_supporting_data",
+   "commit": "4bbe0271925222e99d9c01ab7f4d63a013d51ad3",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "yes",
+   "repo": "polybot-nexus/PEDOT_PSS_supporting_data",
+   "robot_mentions": [],
+   "size_kb": 1555,
+   "status": "cloned",
+   "url": "https://github.com/polybot-nexus/PEDOT_PSS_supporting_data"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-024-55655-3",
+ "dois": [
+  "10.1038/s41467-024-55655-3"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 17,
+  "source": "europepmc:PMC11833048"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3150116,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "d0db0ddeb0f9f180139c8c8a32d4fcb97d73c53a1be7f2656cc0a1568ce61617",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11833048?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11833048.1/PMC11833048.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11833048.1/PMC11833048.1.pdf"
+ },
+ "pmcid": "PMC11833048",
+ "readiness": "partial",
+ "robot_platform": "synthesis",
+ "simulator": "not run",
+ "slug": "experimental/polybot-pedot",
+ "title": "Autonomous platform for solution processing of electronic polymers (Polybot)",
+ "year": "2025"
+}

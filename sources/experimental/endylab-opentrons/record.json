@@ -1,0 +1,40 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/endylab-opentrons/EndyLab__opentrons",
+   "commit": "75d1789ad6ddef556a2c46e6608d5496f9f5ec7d",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 39,
+   "py_files": 60,
+   "redistributable": "no",
+   "repo": "EndyLab/opentrons",
+   "robot_mentions": [],
+   "size_kb": 139255,
+   "status": "cloned",
+   "url": "https://github.com/EndyLab/opentrons"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/endylab-opentrons",
+ "title": "Endy Lab Opentrons protocol collection",
+ "year": ""
+}

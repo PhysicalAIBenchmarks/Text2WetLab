@@ -1,0 +1,72 @@
+{
+ "code": [],
+ "doi_primary": "10.1007/s00216-020-02726-1",
+ "dois": [
+  "10.1007/s00216-020-02726-1"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1007/s00216-020-02726-1:\n  europepmc: Server error '500 ' for url 'ht",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7483600?pdf=render"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7483600.1/PMC7483600.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7483600.2/PMC7483600.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7483600.3/PMC7483600.3.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC7483600&blobtype=pdf"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": false,
+    "url": "https://link.springer.com/content/pdf/10.1007/s00216-020-02726-1.pdf"
+   }
+  ]
+ },
+ "pmcid": "PMC7483600",
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/protein-corona-ot2",
+ "title": "Automation and low-cost proteomics for characterization of the protein corona: experimental methods for big data",
+ "year": "2020"
+}

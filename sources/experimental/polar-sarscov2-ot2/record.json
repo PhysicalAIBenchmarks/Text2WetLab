@@ -1,0 +1,56 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.5"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/polar-sarscov2-ot2/Zanecrc1__POLAR-SARS-CoV-2-Automation-for-OT-2",
+   "commit": "df0341841597a00a4ddf1006e940504e138cfb28",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 2,
+   "py_files": 2,
+   "redistributable": "yes",
+   "repo": "Zanecrc1/POLAR-SARS-CoV-2-Automation-for-OT-2",
+   "robot_mentions": [
+    "Flex"
+   ],
+   "size_kb": 1394,
+   "status": "cloned",
+   "url": "https://github.com/Zanecrc1/POLAR-SARS-CoV-2-Automation-for-OT-2"
+  }
+ ],
+ "dois": [
+  "10.17504/protocols.io.bearjad6"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.17504/protocols.io.bearjad6:\n  europepmc: no Europe PMC full text for",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/polar-sarscov2-ot2",
+ "title": "POLAR: Pathogen-Oriented Low-cost Assembly & Re-sequencing SARS-CoV-2 (OT-2 automation)",
+ "year": ""
+}

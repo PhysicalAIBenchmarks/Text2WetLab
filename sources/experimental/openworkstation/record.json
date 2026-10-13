@@ -1,0 +1,74 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/openworkstation/SebastianEggert__OpenWorkstation",
+   "commit": "703d6fea22b22df26b132af3de64b6c87f0c79f3",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "CC-BY-SA-4.0",
+   "opentrons_py_files": 26,
+   "py_files": 55,
+   "redistributable": "no",
+   "repo": "SebastianEggert/OpenWorkstation",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 163426,
+   "status": "cloned",
+   "url": "https://github.com/SebastianEggert/OpenWorkstation"
+  }
+ ],
+ "doi_primary": "10.1016/j.ohx.2020.e00152",
+ "dois": [
+  "10.1016/j.ohx.2020.e00152"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 11,
+  "sections": 52,
+  "source": "europepmc:PMC9041211"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 4928490,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "afc98616bb912885e5255186f52005f310001b12863f72e1479ff08b1f51475c",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC9041211?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9041211.1/PMC9041211.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9041211.1/PMC9041211.1.pdf"
+ },
+ "pmcid": "PMC9041211",
+ "readiness": "ready",
+ "robot_platform": "plate_transport",
+ "simulator": "not run",
+ "slug": "experimental/openworkstation",
+ "title": "OpenWorkstation: A modular open-source technology for automated in vitro workflows",
+ "year": "2020"
+}

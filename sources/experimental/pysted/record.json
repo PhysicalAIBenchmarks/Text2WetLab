@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/pysted/FLClab__pySTED",
+   "commit": "7239e34eb4e52302de2186a57577c3b030aa0ed8",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "CC-BY-4.0",
+   "opentrons_py_files": 0,
+   "py_files": 16,
+   "redistributable": "no",
+   "repo": "FLClab/pySTED",
+   "robot_mentions": [],
+   "size_kb": 17411,
+   "status": "cloned",
+   "url": "https://github.com/FLClab/pySTED"
+  }
+ ],
+ "doi_primary": "10.1038/s42256-024-00903-w",
+ "dois": [
+  "10.1038/s42256-024-00903-w"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 10,
+  "sections": 51,
+  "source": "europepmc:PMC11491398"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "bytes": 11336966,
+  "licence": "cc by-nc-nd",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "e434a720e7b55edac5540fc8ad95a207e1195b3c4f50720c2ba8d8f2976873ac",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11491398?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11491398.1/PMC11491398.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11491398.1/PMC11491398.1.pdf"
+ },
+ "pmcid": "PMC11491398",
+ "readiness": "partial",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/pysted",
+ "title": "Development of AI-assisted microscopy frameworks through realistic simulation with pySTED",
+ "year": "2024"
+}

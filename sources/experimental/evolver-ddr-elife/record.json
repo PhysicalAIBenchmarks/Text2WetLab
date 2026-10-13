@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/evolver-ddr-elife/khalillab__DDR-eVOLVER-model",
+   "commit": "7019f031598169723a5828f3909eba1e199794d2",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "yes",
+   "repo": "khalillab/DDR-eVOLVER-model",
+   "robot_mentions": [],
+   "size_kb": 47809,
+   "status": "cloned",
+   "url": "https://github.com/khalillab/DDR-eVOLVER-model"
+  }
+ ],
+ "doi_primary": "10.7554/eLife.67175",
+ "dois": [
+  "10.7554/eLife.67175"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 23,
+  "sections": 29,
+  "source": "europepmc:PMC8460265"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1986256,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "07ac37f06d53892dcbb44fa49d2fe7df78c8ff91b164269a946ae2e9306717df",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC8460265?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8460265.1/PMC8460265.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8460265.1/PMC8460265.1.pdf"
+ },
+ "pmcid": "PMC8460265",
+ "readiness": "partial",
+ "robot_platform": "bioreactor",
+ "simulator": "not run",
+ "slug": "experimental/evolver-ddr-elife",
+ "title": "Environmental fluctuations reshape an unexpected diversity-disturbance relationship in a microbial community (eVOLVER)",
+ "year": "2021"
+}

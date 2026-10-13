@@ -1,0 +1,54 @@
+{
+ "code": [
+  {
+   "archived": false,
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "GPL-2.0",
+   "redistributable": "no",
+   "repo": "BU-KABlab/PANDA-BEAR",
+   "size_kb": 2215320,
+   "status": "skipped: 2163 MB exceeds the clone limit",
+   "url": "https://github.com/BU-KABlab/PANDA-BEAR"
+  }
+ ],
+ "doi_primary": "10.1039/d4mh00797b",
+ "dois": [
+  "10.1039/d4mh00797b"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1039/d4mh00797b:\n  europepmc: no Europe PMC full text for this DOI\nDo",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "licence": "cc by",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "http://pubs.rsc.org/en/content/articlepdf/2024/MH/D4MH00797B"
+   }
+  ]
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "characterisation",
+ "simulator": "not run",
+ "slug": "experimental/panda-bear",
+ "title": "PANDA: a self-driving lab for studying electrodeposited polymer films",
+ "year": "2024"
+}

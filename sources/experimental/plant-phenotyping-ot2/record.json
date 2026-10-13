@@ -1,0 +1,63 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.13"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/plant-phenotyping-ot2/Synthetic-Automated-Systems__automated_phenotyping_system",
+   "commit": "1c01bbed3dcb5b677fcf8a4e3c3171c605365392",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 2,
+   "py_files": 5,
+   "redistributable": "yes",
+   "repo": "Synthetic-Automated-Systems/automated_phenotyping_system",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 266243,
+   "status": "cloned",
+   "url": "https://github.com/Synthetic-Automated-Systems/automated_phenotyping_system"
+  }
+ ],
+ "dois": [
+  "10.1002/aisy.202500624"
+ ],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1002/aisy.202500624:\n  europepmc: no Europe PMC full text for this DO",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://advanced.onlinelibrary.wiley.com/doi/pdf/10.1002/aisy.202500624"
+   }
+  ]
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/plant-phenotyping-ot2",
+ "title": "Automated Discovery of Multicellular Behavior for Optimized Plant Growth and Climate Resilience",
+ "year": ""
+}

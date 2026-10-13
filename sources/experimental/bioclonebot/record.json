@@ -1,0 +1,59 @@
+{
+ "code": [
+  {
+   "host": "osf.io",
+   "status": "non-github: needs manual download",
+   "url": "https://osf.io/qdp7v"
+  }
+ ],
+ "doi_primary": "10.1016/j.ohx.2024.e00516",
+ "dois": [
+  "10.1016/j.ohx.2024.e00516"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 13,
+  "sections": 30,
+  "source": "europepmc:PMC10955647"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "bytes": 4653630,
+  "licence": "cc by-nc-nd",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "af51b52306905d75c0933f551e52d9fe2dcddeb39affccb4dd87ac94d539587c",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC10955647?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10955647.1/PMC10955647.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10955647.1/PMC10955647.1.pdf"
+ },
+ "pmcid": "PMC10955647",
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/bioclonebot",
+ "title": "BioCloneBot: A versatile, low-cost, and open-source automated liquid handler",
+ "year": "2024"
+}

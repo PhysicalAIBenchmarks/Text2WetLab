@@ -1,0 +1,42 @@
+{
+ "code": [],
+ "doi_primary": "10.1021/acssynbio.4c00703",
+ "dois": [
+  "10.1021/acssynbio.4c00703"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1021/acssynbio.4c00703:\n  europepmc: no Europe PMC full text for this",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://pubs.acs.org/doi/pdf/10.1021/acssynbio.4c00703"
+   }
+  ]
+ },
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/cellfree-biosensor-ot2",
+ "title": "Semiautomated Production of Cell-Free Biosensors",
+ "year": "2025"
+}

@@ -1,0 +1,45 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.19",
+    "2.20"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/pac832-galr1-ot2/douglasyao__pac-832-supplementary-data",
+   "commit": "59a80d8505302f9780d143e596086b7f7d620947",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 31,
+   "py_files": 31,
+   "redistributable": "no",
+   "repo": "douglasyao/pac-832-supplementary-data",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 145,
+   "status": "cloned",
+   "url": "https://github.com/douglasyao/pac-832-supplementary-data"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/pac832-galr1-ot2",
+ "title": "PAC-832: A selective small-molecule antagonist of galanin receptor 1 (GalR1) - supplementary data and OT-2 protocols",
+ "year": ""
+}

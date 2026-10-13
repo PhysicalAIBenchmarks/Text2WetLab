@@ -1,0 +1,74 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.2"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/openblend-media/abiedermann__openblend_public",
+   "commit": "a6dfa2deea30f9c234e1b0c35989dd5876bdf166",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 5,
+   "py_files": 6,
+   "redistributable": "yes",
+   "repo": "abiedermann/openblend_public",
+   "robot_mentions": [],
+   "size_kb": 29,
+   "status": "cloned",
+   "url": "https://github.com/abiedermann/openblend_public"
+  }
+ ],
+ "doi_primary": "10.1002/bit.27947",
+ "dois": [
+  "10.1002/bit.27947"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "web"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 12,
+  "source": "europepmc:PMC9298315"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3206595,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "6a158ff0b93633236c4cafca3721fef10239bc26c735dfa44cda1608ca2b0916",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC9298315?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9298315.1/PMC9298315.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9298315.1/PMC9298315.1.pdf"
+ },
+ "pmcid": "PMC9298315",
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/openblend-media",
+ "title": "Modular development enables rapid design of media for alternative hosts",
+ "year": "2022"
+}

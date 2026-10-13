@@ -1,0 +1,84 @@
+{
+ "code": [
+  {
+   "archived": false,
+   "default_branch": "develop",
+   "host": "github.com",
+   "licence": "unclear",
+   "redistributable": "no",
+   "repo": "TheDeanLab/navigate",
+   "size_kb": 444685,
+   "status": "skipped: 434 MB exceeds the clone limit",
+   "url": "https://github.com/TheDeanLab/navigate"
+  }
+ ],
+ "doi_primary": "10.1038/s41592-024-02413-4",
+ "dois": [
+  "10.1038/s41592-024-02413-4"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1038/s41592-024-02413-4:\n  europepmc: Server error '500 ' for url 'ht",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11540721?pdf=render"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11540721.1/PMC11540721.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11540721.2/PMC11540721.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11540721.3/PMC11540721.3.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC11540721&blobtype=pdf"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": false,
+    "url": "https://www.nature.com/articles/s41592-024-02413-4.pdf"
+   }
+  ]
+ },
+ "pmcid": "PMC11540721",
+ "readiness": "ready",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/navigate-2024",
+ "title": "Navigate: an open-source platform for smart light-sheet microscopy",
+ "year": "2024"
+}

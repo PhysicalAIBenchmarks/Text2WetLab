@@ -1,0 +1,45 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.20"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/exposomics-384-flex/apat594__384wellplate-Exposomics-Opentrons-Protocols",
+   "commit": "b0584daa76e9e14e836350f24cd492bb272fbfd7",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 2,
+   "py_files": 2,
+   "redistributable": "yes",
+   "repo": "apat594/384wellplate-Exposomics-Opentrons-Protocols",
+   "robot_mentions": [
+    "Flex"
+   ],
+   "size_kb": 212,
+   "status": "cloned",
+   "url": "https://github.com/apat594/384wellplate-Exposomics-Opentrons-Protocols"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github",
+  "web"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "flex",
+ "simulator": "not run",
+ "slug": "experimental/exposomics-384-flex",
+ "title": "Opentrons Flex 384-well protein-precipitation sample preparation for nontargeted exposomics",
+ "year": ""
+}

@@ -1,0 +1,57 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.15",
+    "2.24"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/ot2-cherrypick/HiteSit__OT2_CherryPick",
+   "commit": "5c3bda5b67c1ae17aa4987a44f107b4e2131fb7f",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "GPL-3.0",
+   "opentrons_py_files": 7,
+   "py_files": 127,
+   "redistributable": "no",
+   "repo": "HiteSit/OT2_CherryPick",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 5040,
+   "status": "cloned",
+   "url": "https://github.com/HiteSit/OT2_CherryPick"
+  }
+ ],
+ "dois": [
+  "10.26434/chemrxiv.15000637"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.26434/chemrxiv.15000637:\n  europepmc: no Europe PMC full text for thi",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/ot2-cherrypick",
+ "title": "OT2-CherryPick: A Zero-Install Web Platform for Orchestrating Complex Liquid Handling on the Opentrons OT-2",
+ "year": ""
+}

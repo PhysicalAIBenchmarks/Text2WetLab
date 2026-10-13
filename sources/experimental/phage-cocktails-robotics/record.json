@@ -1,0 +1,59 @@
+{
+ "code": [
+  {
+   "host": "doi.org",
+   "status": "non-github: needs manual download",
+   "url": "https://doi.org/10.5281/zenodo.17594564"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-026-68684-x",
+ "dois": [
+  "10.1038/s41467-026-68684-x"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 20,
+  "source": "europepmc:PMC12960834"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 9533173,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "21cdc9f2592439a59cf87f95bc78a10b77bcadbd9d92133534400e5e203f28e9",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12960834?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12960834.1/PMC12960834.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12960834.1/PMC12960834.1.pdf"
+ },
+ "pmcid": "PMC12960834",
+ "readiness": "partial",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/phage-cocktails-robotics",
+ "title": "High-throughput methods leveraging robotics and computer vision for the development of therapeutic phage cocktails",
+ "year": "2026"
+}

@@ -1,0 +1,47 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.0",
+    "2.12",
+    "2.2",
+    "2.7"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/evogen-ot-library/anttonalberdi__EvoGenOT",
+   "commit": "855fec9d2e47ca12b95e14dae3f43260caee4d75",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 77,
+   "py_files": 78,
+   "redistributable": "no",
+   "repo": "anttonalberdi/EvoGenOT",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 829,
+   "status": "cloned",
+   "url": "https://github.com/anttonalberdi/EvoGenOT"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/evogen-ot-library",
+ "title": "EvoGenOT (UCPH EvoGenomics Opentrons protocol library)",
+ "year": ""
+}

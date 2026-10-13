@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/labdroid-cell-culture/labauto__LabDroid_optimizer",
+   "commit": "661ef792d4b7568a2e673178d9f1e6ed3c84ab1b",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 110,
+   "redistributable": "no",
+   "repo": "labauto/LabDroid_optimizer",
+   "robot_mentions": [],
+   "size_kb": 130,
+   "status": "cloned",
+   "url": "https://github.com/labauto/LabDroid_optimizer"
+  }
+ ],
+ "doi_primary": "10.7554/eLife.77007",
+ "dois": [
+  "10.7554/eLife.77007"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 28,
+  "sections": 40,
+  "source": "europepmc:PMC9239686"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 9489408,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "8409ac6749896950b9f411dd629e787c630980f1d6d73ec64e9b944b32fbc30f",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC9239686?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9239686.1/PMC9239686.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9239686.1/PMC9239686.1.pdf"
+ },
+ "pmcid": "PMC9239686",
+ "readiness": "partial",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/labdroid-cell-culture",
+ "title": "Robotic search for optimal cell culture in regenerative medicine (LabDroid Maholo, iPSC-RPE)",
+ "year": "2022"
+}

@@ -1,0 +1,77 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/slab-scheduling/labauto__SLab.jl",
+   "commit": "f836b0bee406aa7cbbf18f2ce282ebf8de77ea63",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "yes",
+   "repo": "labauto/SLab.jl",
+   "robot_mentions": [],
+   "size_kb": 14,
+   "status": "cloned",
+   "url": "https://github.com/labauto/SLab.jl"
+  }
+ ],
+ "doi_primary": "10.1177/24726303211021790",
+ "dois": [
+  "10.1177/24726303211021790"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 21,
+  "source": "europepmc:PMC8641030"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc",
+ "pdf": {
+  "bytes": 990320,
+  "licence": "cc by-nc",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "fb5b0ab08a3c14788701f2bba66042ce7e152adaee7c5b008e78ade215274f3c",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "http://slas-technology.org/article/S2472630322011359/pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC8641030?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8641030.1/PMC8641030.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8641030.1/PMC8641030.1.pdf"
+ },
+ "pmcid": "PMC8641030",
+ "readiness": "ready",
+ "robot_platform": "scheduling",
+ "simulator": "not run",
+ "slug": "experimental/slab-scheduling",
+ "title": "Optimal Scheduling for Laboratory Automation of Life Science Experiments with Time Constraints",
+ "year": "2021"
+}

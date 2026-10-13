@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/photobioreactor-fluorescence/borjaggarcia__fluorescence-monitoring",
+   "commit": "a9381f46d59eab8629a9178c3c80ba33a18d6dfc",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 15,
+   "redistributable": "yes",
+   "repo": "borjaggarcia/fluorescence-monitoring",
+   "robot_mentions": [],
+   "size_kb": 65,
+   "status": "cloned",
+   "url": "https://github.com/borjaggarcia/fluorescence-monitoring"
+  }
+ ],
+ "doi_primary": "10.3390/bios15030128",
+ "dois": [
+  "10.3390/bios15030128"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 12,
+  "sections": 16,
+  "source": "europepmc:PMC11940672"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 5833679,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "6e8a2395b2ade0af50365aa7c00ffe0d7f21470a3da42a17401b26e568644803",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11940672?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11940672.1/PMC11940672.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11940672.1/PMC11940672.1.pdf"
+ },
+ "pmcid": "PMC11940672",
+ "readiness": "partial",
+ "robot_platform": "bioreactor",
+ "simulator": "not run",
+ "slug": "experimental/photobioreactor-fluorescence",
+ "title": "Integration of Fluorescence Spectroscopy into a Photobioreactor for the Monitoring of Cyanobacteria",
+ "year": "2025"
+}

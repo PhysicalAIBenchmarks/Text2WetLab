@@ -1,0 +1,46 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.11",
+    "2.12"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/labop/Bioprotocols__labop",
+   "commit": "2e2bd88150c71a440771fd369f40295dfd622324",
+   "default_branch": "develop",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 10,
+   "py_files": 175,
+   "redistributable": "yes",
+   "repo": "Bioprotocols/labop",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 21011,
+   "status": "cloned",
+   "url": "https://github.com/Bioprotocols/labop"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github",
+  "nonlh"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "protocol_language",
+ "simulator": "not run",
+ "slug": "experimental/labop",
+ "title": "LabOP (Laboratory Open Protocol language, formerly PAML) - iGEM interlab growth-curve/calibration protocols",
+ "year": ""
+}

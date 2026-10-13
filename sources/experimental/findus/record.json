@@ -1,0 +1,60 @@
+{
+ "code": [
+  {
+   "archived": false,
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "GPL-3.0",
+   "redistributable": "no",
+   "repo": "FBarthels/FINDUS",
+   "size_kb": 518718,
+   "status": "skipped: 506 MB exceeds the clone limit",
+   "url": "https://github.com/FBarthels/FINDUS"
+  }
+ ],
+ "doi_primary": "10.1177/2472630319877374",
+ "dois": [
+  "10.1177/2472630319877374"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1177/2472630319877374:\n  europepmc: no Europe PMC full text for this ",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "licence": "cc by-nc-nd",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "http://slas-technology.org/article/S2472630322010251/pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "http://journals.sagepub.com/doi/pdf/10.1177/2472630319877374"
+   }
+  ]
+ },
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/findus",
+ "title": "FINDUS: An Open-Source 3D Printable Liquid-Handling Workstation for Laboratory Automation in Life Sciences",
+ "year": "2020"
+}

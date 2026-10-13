@@ -1,0 +1,77 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/chemos-2020/aspuru-guzik-group__ChemOS",
+   "commit": "50117f572e95e68dc4dccb624cedb28dbfc6e419",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "unclear",
+   "opentrons_py_files": 0,
+   "py_files": 139,
+   "redistributable": "no",
+   "repo": "aspuru-guzik-group/ChemOS",
+   "robot_mentions": [],
+   "size_kb": 16918,
+   "status": "cloned",
+   "url": "https://github.com/aspuru-guzik-group/ChemOS"
+  }
+ ],
+ "doi_primary": "10.1371/journal.pone.0229862",
+ "dois": [
+  "10.1371/journal.pone.0229862"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 25,
+  "source": "europepmc:PMC7161969"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2305130,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "4af746456f8e4febd5c1ca4c49629d3940664948005a6ff07753e3632b504992",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 400,
+    "manual": false,
+    "ok": false,
+    "url": "https://storage.googleapis.com/plos-corpus-prod/10.1371/journal.pone.0229862/1/pone.0229862.pdf?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=wombat-sa%40plos-prod.iam.gserviceaccount.com%2F20210215%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20210215T065405Z&X-Goog-Expires=3600&X-Goog-SignedHeaders=host&X-Goog-Signature=2f935e3e75d9fc009f53a8f6981be89c56c2f2726ecb8cc8594c93afbd9b9beffa3a6d7876e52104ef278f75371d079d0faf95fca245f56f332e463fbcb4803c34cd9ffd8f3ecf0764edb4a4e258f2369448a1aaf847c8594415261696447c847c6a33aeb7d610d0777ecd1e318667c33572e78da4354ccf704f25ea99439e99d4e95cb64f97ef1b6b5f86c2b18ed766ea87337223b3c773be6f6ca68ca193196aaf18516b86ae206ad5e86e302531b80ebbe9e18a7759641cbf88faed232aa83610520ff5ebbfd73a8d9b722bdbb01e7b2dcaf2abae04025abb1965591188492dfcd3babe364a316aebdf167037063aa292538f368b100d02deabccac983ad8"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7161969?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7161969.1/PMC7161969.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7161969.1/PMC7161969.1.pdf"
+ },
+ "pmcid": "PMC7161969",
+ "readiness": "partial",
+ "robot_platform": "scheduling",
+ "simulator": "not run",
+ "slug": "experimental/chemos-2020",
+ "title": "ChemOS: An orchestration software to democratize autonomous discovery",
+ "year": "2020"
+}

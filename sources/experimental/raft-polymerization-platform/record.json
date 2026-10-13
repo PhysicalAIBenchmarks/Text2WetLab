@@ -1,0 +1,59 @@
+{
+ "code": [
+  {
+   "host": "doi.org",
+   "status": "non-github: needs manual download",
+   "url": "https://doi.org/10.5281/zenodo.7379060"
+  }
+ ],
+ "doi_primary": "10.1039/d2dd00100d",
+ "dois": [
+  "10.1039/d2dd00100d"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 17,
+  "source": "europepmc:PMC7616994"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2176917,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "283ae28a0bb349c172608e973536f23c4898c603dfe53aeeccf5935c9ca0713c",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7616994?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7616994.1/PMC7616994.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7616994.1/PMC7616994.1.pdf"
+ },
+ "pmcid": "PMC7616994",
+ "readiness": "partial",
+ "robot_platform": "synthesis",
+ "simulator": "not run",
+ "slug": "experimental/raft-polymerization-platform",
+ "title": "A fully automated platform for photoinitiated RAFT polymerization",
+ "year": "2023"
+}

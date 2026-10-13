@@ -1,0 +1,46 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.0",
+    "2.3",
+    "2.8"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/newcastle-neg-opentrons/NewcastleUni-NetworkEcologyGroup__Opentrons",
+   "commit": "f8d2d2950b1120f036242beca20b254a0dc89856",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 56,
+   "py_files": 57,
+   "redistributable": "no",
+   "repo": "NewcastleUni-NetworkEcologyGroup/Opentrons",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 2745,
+   "status": "cloned",
+   "url": "https://github.com/NewcastleUni-NetworkEcologyGroup/Opentrons"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/newcastle-neg-opentrons",
+ "title": "Newcastle Network Ecology Group OT-2 protocol and labware collection",
+ "year": ""
+}

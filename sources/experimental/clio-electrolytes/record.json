@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/clio-electrolytes/BattModels__Clio-PythonAPI",
+   "commit": "4989db41fcb855ac7ab873d7c1fc5d2f555472a8",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 4,
+   "redistributable": "no",
+   "repo": "BattModels/Clio-PythonAPI",
+   "robot_mentions": [],
+   "size_kb": 13,
+   "status": "cloned",
+   "url": "https://github.com/BattModels/Clio-PythonAPI"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-022-32938-1",
+ "dois": [
+  "10.1038/s41467-022-32938-1"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 25,
+  "source": "europepmc:PMC9515088"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1134113,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "58de17d3f354b547599fecb4f2e8180c63d402e732bfec8184af7bc22b78a548",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC9515088?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9515088.1/PMC9515088.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9515088.1/PMC9515088.1.pdf"
+ },
+ "pmcid": "PMC9515088",
+ "readiness": "partial",
+ "robot_platform": "characterisation",
+ "simulator": "not run",
+ "slug": "experimental/clio-electrolytes",
+ "title": "Autonomous optimization of non-aqueous Li-ion battery electrolytes via robotic experimentation (Clio)",
+ "year": "2022"
+}

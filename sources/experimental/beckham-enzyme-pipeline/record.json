@@ -1,0 +1,76 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.13"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/beckham-enzyme-pipeline/beckham-lab__opentrons",
+   "commit": "f4afa187b3cff913097e1a51ce90a28172090777",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 21,
+   "py_files": 22,
+   "redistributable": "no",
+   "repo": "beckham-lab/opentrons",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 18507,
+   "status": "cloned",
+   "url": "https://github.com/beckham-lab/opentrons"
+  }
+ ],
+ "doi_primary": "10.1038/s41598-024-64938-0",
+ "dois": [
+  "10.1038/s41598-024-64938-0"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "web"
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 34,
+  "source": "europepmc:PMC11196671"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2278683,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "b3f5b1bd3773e6834d91c032b8443135422adb59f2ed48f6aa262d04dfe3dc87",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11196671?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11196671.1/PMC11196671.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11196671.1/PMC11196671.1.pdf"
+ },
+ "pmcid": "PMC11196671",
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "partly_verified",
+ "slug": "experimental/beckham-enzyme-pipeline",
+ "title": "Enabling high-throughput enzyme discovery and engineering with a low-cost, robot-assisted pipeline",
+ "year": "2024"
+}

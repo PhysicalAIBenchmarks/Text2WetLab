@@ -1,0 +1,79 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.15",
+    "2.22"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/roboctab/tomstamour__RoboCTAB",
+   "commit": "eaf187fb6bfad3e5e4555ebe58d4e793b5309c0d",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 2,
+   "py_files": 2,
+   "redistributable": "no",
+   "repo": "tomstamour/RoboCTAB",
+   "robot_mentions": [
+    "Flex",
+    "OT-2"
+   ],
+   "size_kb": 203,
+   "status": "cloned",
+   "url": "https://github.com/tomstamour/RoboCTAB"
+  }
+ ],
+ "doi_primary": "10.3390/plants14152263",
+ "dois": [
+  "10.3390/plants14152263"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "github",
+  "web"
+ ],
+ "fulltext": {
+  "legends": 2,
+  "sections": 21,
+  "source": "europepmc:PMC12348566"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 976812,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "7c511a332acfcf02bfb56eca4eab22fa7f34ee2d2d692fa9b0e79daa718390a3",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12348566?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12348566.1/PMC12348566.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12348566.1/PMC12348566.1.pdf"
+ },
+ "pmcid": "PMC12348566",
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/roboctab",
+ "title": "High-Throughput DNA Extraction Using Robotic Automation (RoboCTAB) for Large-Scale Genotyping",
+ "year": "2025"
+}

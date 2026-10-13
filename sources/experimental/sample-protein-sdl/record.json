@@ -1,0 +1,52 @@
+{
+ "code": [
+  {
+   "host": "doi.org",
+   "status": "non-github: needs manual download",
+   "url": "https://doi.org/10.5281/zenodo.10048592"
+  }
+ ],
+ "doi_primary": "10.1038/s44286-023-00002-4",
+ "dois": [
+  "10.1038/s44286-023-00002-4"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1038/s44286-023-00002-4:\n  europepmc: Server error '500 ' for url 'ht",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3974899,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "b92d71dcea6ac40249842a4ec135a4e616f0fc518b48a6093b35e0ef1a7ebe3d",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s44286-023-00002-4.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s44286-023-00002-4.pdf"
+ },
+ "pmcid": "PMC10926838",
+ "readiness": "partial",
+ "robot_platform": "protocol_language",
+ "simulator": "not run",
+ "slug": "experimental/sample-protein-sdl",
+ "title": "Self-driving laboratories to autonomously navigate the protein fitness landscape (SAMPLE)",
+ "year": "2024"
+}

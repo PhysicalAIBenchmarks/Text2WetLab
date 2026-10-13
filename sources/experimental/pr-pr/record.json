@@ -1,0 +1,35 @@
+{
+ "code": [],
+ "doi_primary": "10.1021/sb4001728",
+ "dois": [
+  "10.1021/sb4001728"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1021/sb4001728:\n  europepmc: no Europe PMC full text for this DOI\nDow",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "tecan",
+ "simulator": "not run",
+ "slug": "experimental/pr-pr",
+ "title": "PR-PR: cross-platform laboratory automation system",
+ "year": "2014"
+}

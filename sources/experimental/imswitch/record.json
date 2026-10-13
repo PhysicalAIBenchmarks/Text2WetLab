@@ -1,0 +1,63 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/imswitch/ImSwitch__ImSwitch",
+   "commit": "37bf1df6de0ee4746b05bef9684c782e4995b2e8",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "GPL-3.0",
+   "opentrons_py_files": 0,
+   "py_files": 484,
+   "redistributable": "no",
+   "repo": "ImSwitch/ImSwitch",
+   "robot_mentions": [],
+   "size_kb": 212410,
+   "status": "cloned",
+   "url": "https://github.com/ImSwitch/ImSwitch"
+  }
+ ],
+ "dois": [
+  "10.21105/joss.03394"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.21105/joss.03394:\n  europepmc: no Europe PMC full text for this DOI\nD",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "bytes": 226297,
+  "licence": "",
+  "pages": null,
+  "redistributable": "unknown",
+  "sha256": "04d2d9be76aad49b4b445b7a0b27273c5bc478dfb4262314e2f7f0c36b355237",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://joss.theoj.org/papers/10.21105/joss.03394.pdf"
+   }
+  ],
+  "url": "https://joss.theoj.org/papers/10.21105/joss.03394.pdf"
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/imswitch",
+ "title": "ImSwitch: generalizing microscope control in Python",
+ "year": ""
+}

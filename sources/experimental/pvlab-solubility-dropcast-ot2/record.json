@@ -1,0 +1,45 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.16"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/pvlab-solubility-dropcast-ot2/PV-Lab__Robotic_Liquid_Handling",
+   "commit": "a7e1db2bca46c2bf0321481701db3cbc964f109a",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 23,
+   "py_files": 29,
+   "redistributable": "yes",
+   "repo": "PV-Lab/Robotic_Liquid_Handling",
+   "robot_mentions": [
+    "Flex",
+    "OT-2"
+   ],
+   "size_kb": 277,
+   "status": "cloned",
+   "url": "https://github.com/PV-Lab/Robotic_Liquid_Handling"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/pvlab-solubility-dropcast-ot2",
+ "title": "PV-Lab Robotic_Liquid_Handling (MIT AMLS OT-2 solubility testing / drop casting)",
+ "year": ""
+}

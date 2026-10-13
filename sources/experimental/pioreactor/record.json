@@ -1,0 +1,40 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/pioreactor/pioreactor__pioreactor",
+   "commit": "0ae14c035c8a7ae1e52f273872a46ed3fd036b1c",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 248,
+   "redistributable": "yes",
+   "repo": "pioreactor/pioreactor",
+   "robot_mentions": [],
+   "size_kb": 179854,
+   "status": "cloned",
+   "url": "https://github.com/pioreactor/pioreactor"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "bioreactor",
+ "simulator": "not run",
+ "slug": "experimental/pioreactor",
+ "title": "Pioreactor open-source bioreactor software (used in published studies)",
+ "year": ""
+}
