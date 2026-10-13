@@ -106,16 +106,17 @@ benchmark of 11 tasks: 7 <em>easy</em> tasks that give every step, and 4
 layered verifier grades each protocol with a code lint, nine
 reward-hacking traps, the Opentrons simulator, deterministic checks of
 the robot’s end state against a ground truth, and a language-model judge
-scoring a pass/fail rubric. Every reference solution passes, and none of
-151 deliberately broken or cheating protocols scores above 0.47. We ran
-six models from four providers in one agent harness, scoring only the
-tasks each model answered. On the eight tasks all six answered, mean
-reward ranges from 1.000 (Claude Opus 5.5) to 0.755 (DeepSeek V4 Pro),
-and no model failed the simulator or a trap. Easy tasks are close to
-solved; the paper-only tasks separate the models, and the commonest
-failure is adding steps or quantities the paper does not support. A
-repeat run of one model changed single-task scores by up to 0.70, so
-close scores cannot be ranked from one attempt.</p>
+scoring a pass/fail rubric. Every reference solution passes the
+deterministic checks, and none of 151 deliberately broken or cheating
+protocols scores above 0.47. We ran six models from four providers in
+one agent harness, scoring only the tasks each model answered. On the
+eight tasks all six answered, mean reward ranges from 1.000 (Claude Opus
+5.5) to 0.755 (DeepSeek V4 Pro), and no model failed the simulator or a
+trap. Easy tasks are close to solved; the paper-only tasks separate the
+models, and the commonest failure is adding steps or quantities the
+paper does not support. A repeat run of one model changed single-task
+scores by up to 0.70, so close scores cannot be ranked from one
+attempt.</p>
 <h2 id="introduction">1 Introduction</h2>
 <p>Automating a published protocol on a liquid-handling robot is a
 translation problem with two failure modes. The first is mechanical:
@@ -149,13 +150,15 @@ an agent to read a paper and then checks, well by well, whether the
 robot would do what the paper describes.</p>
 <p>Text2WetLab does. Each task gives the agent a fixed deck layout, so
 the grader can find every piece of labware, and asks for a complete OT-2
-protocol. Tasks come from papers whose authors also published robot
-code, which gives an independent reference for each. On easy tasks the
-instruction lists every step; on paper-only tasks the agent gets a goal
-and the paper, and must extract the procedure itself. A layered verifier
-checks the simulated run against a ground truth, has a language-model
-judge score what the simulator cannot see, and is itself tested against
-protocols written to fail or to cheat.</p>
+protocol. Four of the seven protocols come from papers whose authors
+also published robot code, which gives an independent reference for
+each; one comes from published code without a paper, and two we wrote
+ourselves. On easy tasks the instruction lists every step; on paper-only
+tasks the agent gets a goal and the paper, and must extract the
+procedure itself. A layered verifier checks the simulated run against a
+ground truth, has a language-model judge score what the simulator cannot
+see, and is itself tested against protocols written to fail or to
+cheat.</p>
 <p><strong>Contributions.</strong></p>
 <ol type="1">
 <li>Eleven Harbor tasks <span class="citation" data-cites="harbor2026">(<a href="#ref-harbor2026" role="doc-biblioref">Harbor Framework contributors 2026</a>)</span> at
@@ -575,7 +578,10 @@ workflow <span class="citation" data-cites="malci2026slowpoke">(<a href="#ref-ma
 2022</a>)</span>, the APEX automated protein-expression pipeline <span class="citation" data-cites="kasprzyk2024apex">(<a href="#ref-kasprzyk2024apex" role="doc-biblioref">Kasprzyk et al.
 2024</a>)</span> and a low-cost SARS-CoV-2 RNA extraction <span class="citation" data-cites="lazaroperona2021rna">(<a href="#ref-lazaroperona2021rna" role="doc-biblioref">Lázaro-Perona et
 al. 2021</a>)</span>. The source corpus behind the tasks covers 48
-papers and 166 experiments.</p>
+papers and 166 experiments, found by a semantic search of PubMed Central
+for Opentrons and liquid-handler papers; the four paper-only tasks were
+chosen from them because the authors published OT-2 code and the paper
+text can be given to the agent.</p>
 <div data-align="center">
 <p><strong>Table 2.</strong> The 11 tasks: seven protocols, each with an
 easy task, four of which also have a paper-only task.</p>
@@ -966,6 +972,23 @@ mistake no critical check catches may cost a single rubric item. One
 attempt per cell is not enough to rank models whose scores are
 close.</p>
 <h2 id="discussion-and-limitations">8 Discussion and limitations</h2>
+<p>Text2WetLab sits between the benchmarks that grade protocol knowledge
+as text and the systems that generate robot code. Knowledge benchmarks
+such as LAB-Bench <span class="citation" data-cites="laurent2024labbench">(<a href="#ref-laurent2024labbench" role="doc-biblioref">Laurent et al. 2024</a>)</span>, BioLP-bench <span class="citation" data-cites="ivanov2024biolpbench">(<a href="#ref-ivanov2024biolpbench" role="doc-biblioref">Ivanov
+2024</a>)</span>, BioProBench <span class="citation" data-cites="liu2025bioprobench">(<a href="#ref-liu2025bioprobench" role="doc-biblioref">Liu et al. 2025</a>)</span> and BenchBench-Protocol
+<span class="citation" data-cites="sivakumar2026benchbench">(<a href="#ref-sivakumar2026benchbench" role="doc-biblioref">Sivakumar et
+al. 2026</a>)</span> show whether a model understands a protocol; code
+systems and their benchmarks, such as LabscriptAI <span class="citation" data-cites="gao2025labscriptai">(<a href="#ref-gao2025labscriptai" role="doc-biblioref">Gao et al. 2025</a>)</span>, ProtoPilot <span class="citation" data-cites="jiang2026protopilot">(<a href="#ref-jiang2026protopilot" role="doc-biblioref">Jiang et al.
+2026</a>)</span>, ABC-Bench <span class="citation" data-cites="liu2026abcbench">(<a href="#ref-liu2026abcbench" role="doc-biblioref">A. B. Liu et al. 2026</a>)</span> and AutoLabs
+<span class="citation" data-cites="panapitiya2026autolabs">(<a href="#ref-panapitiya2026autolabs" role="doc-biblioref">Panapitiya et
+al. 2026</a>)</span>, show whether generated code runs and resembles an
+expert’s. Text2WetLab measures the step between them: an agent reading a
+paper, and a check, well by well, of whether the robot would do what the
+paper describes, by a grader that is itself tested against code written
+to fail or to cheat. It complements AEGIS <span class="citation" data-cites="setty2026aegis">(<a href="#ref-setty2026aegis" role="doc-biblioref">Setty et al. 2026</a>)</span>, LabGuard <span class="citation" data-cites="yang2026labguard">(<a href="#ref-yang2026labguard" role="doc-biblioref">Yang et al.
+2026</a>)</span> and the lab-safety benchmarks <span class="citation" data-cites="zhou2026labsafety sun2026labshield">(<a href="#ref-zhou2026labsafety" role="doc-biblioref"><span class="nocase">Zhou et al.</span> 2026</a>; <a href="#ref-sun2026labshield" role="doc-biblioref">Sun et al.
+2026</a>)</span>, which check protocols, actions or knowledge they are
+given rather than measuring the agents that write protocols.</p>
 <p><strong>The paper is the hard part.</strong> Easy tasks saturate; the
 paper-only tasks separate models, and their dominant failure is
 inventing steps or quantities. GPT-6.1 Sol, perfect on easy tasks,
@@ -984,9 +1007,9 @@ faults like these can be found.</p>
 disagreed on 9 of 380 items across the run, and single calls had scored
 identical recipes differently. Majority voting absorbs this, but all
 signal still comes from one judge, a Claude model that also judges a
-non-Claude model. A second judge from another provider, as AEGIS does
-with five backends <span class="citation" data-cites="setty2026aegis">(<a href="#ref-setty2026aegis" role="doc-biblioref">Setty et al. 2026</a>)</span>, would show whether
-that matters.</p>
+non-Claude model. Re-judging the run with a judge from another provider,
+as AEGIS does with five backends <span class="citation" data-cites="setty2026aegis">(<a href="#ref-setty2026aegis" role="doc-biblioref">Setty et al. 2026</a>)</span>, is the next
+step.</p>
 <p><strong>Ground truth comes from the easy task.</strong> Three of the
 four paper-only tasks reuse their easy task’s ground truth, which is
 fair only where the paper fixes the same quantities. The audit now
@@ -1007,12 +1030,12 @@ simulator, not of the model alone.</p>
 <p><strong>Fixed decks and published code.</strong> Every task fixes the
 deck so the grader can find labware by label; in practice, choosing the
 layout and labware is part of the job, and a task that leaves it to the
-agent needs a grader that matches labware by role. Tasks come from
-papers whose authors published robot code. That code may be in the
-models’ training data, and authors who publish code may also describe
-their procedures more completely than most; tasks from unpublished
-protocols, from collaborating labs or written for the benchmark, would
-test both.</p>
+agent needs a grader that matches labware by role. The four paper-based
+protocols come from papers whose authors published robot code. That code
+may be in the models’ training data, and authors who publish code may
+also describe their procedures more completely than most; tasks from
+unpublished protocols, from collaborating labs or written for the
+benchmark, would test both.</p>
 <p><strong>Full recovery from beads.</strong> The paper-only RNA rubric
 accepts recovering the whole 100 µL of eluate because the paper gives no
 volume, though an OT-2 cannot do this without disturbing the beads.
@@ -1021,6 +1044,19 @@ volume, though an OT-2 cannot do this without disturbing the beads.
 harness, six models, one attempt per cell (one model repeated). Wet-lab
 execution of the generated protocols and non-Opentrons instruments are
 future work.</p>
+<p><strong>What it enables, and what comes next.</strong> The verifier
+is a reward signal as well as a score: with its traps and adversarial
+tests it could grade reinforcement-learning rollouts for
+protocol-writing agents without being gamed. The paper-only tasks are a
+test bed for protocol-extraction systems such as ProtoAct <span class="citation" data-cites="liu2026protoact">(<a href="#ref-liu2026protoact" role="doc-biblioref"><span class="nocase">Z.
+Liu et al.</span> 2026</a>)</span> and AutoLabs <span class="citation" data-cites="panapitiya2026autolabs">(<a href="#ref-panapitiya2026autolabs" role="doc-biblioref">Panapitiya et
+al. 2026</a>)</span>, scored on the robot’s end state rather than on
+text. Next: repeated attempts with confidence intervals; a non-Claude
+judge; the same tasks without a harness and with the prompt varied;
+tasks where the agent chooses the deck and labware; protocols that were
+never published; other instruments through PyLabRobot <span class="citation" data-cites="wierenga2023pylabrobot">(<a href="#ref-wierenga2023pylabrobot" role="doc-biblioref">Wierenga et al.
+2023</a>)</span>; and running the best generated protocols at the
+bench.</p>
 <h2 id="conclusion">9 Conclusion</h2>
 <p>Text2WetLab measures whether agents turn lab protocols and papers
 into robot code that does what the paper describes, not merely code that
