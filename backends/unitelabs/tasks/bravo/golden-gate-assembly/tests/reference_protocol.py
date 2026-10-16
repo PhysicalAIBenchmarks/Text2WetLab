@@ -1,0 +1,1 @@
+# No reference: the Bravo head's Z travel leaves a mounted LT tip end at most 115.2 mm above the labware seat, lower than a 15 mL conical tube (118.6 mm), so the recovery medium cannot be reached; the 50 mL tube (114.65 mm) clears by 0.55 mm at best

@@ -1,0 +1,182 @@
+{
+ "biomek__a1-a12-100ul": {
+  "events": 48,
+  "lineage": 52,
+  "sha256": "268c1f21cfd9946f"
+ },
+ "biomek__ampure-bead-cleanup": {
+  "events": 3269,
+  "lineage": 3377,
+  "sha256": "24e67c3b77c55080"
+ },
+ "biomek__colony-pcr-screening": {
+  "events": 1249,
+  "lineage": 1448,
+  "sha256": "abfdb34581136ef6"
+ },
+ "biomek__colony-pcr-screening-hard": {
+  "events": 1249,
+  "lineage": 1448,
+  "sha256": "abfdb34581136ef6"
+ },
+ "biomek__ecoli-heat-shock-transformation": {
+  "events": 10,
+  "lineage": 17,
+  "sha256": "a613dd2e052011e7"
+ },
+ "biomek__ecoli-heat-shock-transformation-hard": {
+  "events": 67,
+  "lineage": 86,
+  "sha256": "8acf34c382d1b5d1"
+ },
+ "biomek__golden-gate-assembly": {
+  "events": 410,
+  "lineage": 540,
+  "sha256": "d4c4efa2a7357a17"
+ },
+ "biomek__golden-gate-assembly-hard": {
+  "events": 410,
+  "lineage": 540,
+  "sha256": "d4c4efa2a7357a17"
+ },
+ "biomek__split-200ul-two-wells": {
+  "events": 8,
+  "lineage": 12,
+  "sha256": "56043136a549cf5f"
+ },
+ "bravo__a1-a12-100ul": {
+  "events": 48,
+  "lineage": 52,
+  "sha256": "8d6e1a042338511f"
+ },
+ "bravo__ampure-bead-cleanup": {
+  "events": 3269,
+  "lineage": 3372,
+  "sha256": "e2f44a169f10053a"
+ },
+ "bravo__colony-pcr-screening": {
+  "events": 1249,
+  "lineage": 1448,
+  "sha256": "3805f40597ba0b25"
+ },
+ "bravo__colony-pcr-screening-hard": {
+  "events": 1249,
+  "lineage": 1448,
+  "sha256": "3805f40597ba0b25"
+ },
+ "bravo__ecoli-heat-shock-transformation-hard": {
+  "events": 67,
+  "lineage": 86,
+  "sha256": "fc92f963a053703a"
+ },
+ "bravo__split-200ul-two-wells": {
+  "events": 8,
+  "lineage": 12,
+  "sha256": "cddce3e50e94242a"
+ },
+ "evo__ampure-bead-cleanup": {
+  "events": 3269,
+  "lineage": 3381,
+  "sha256": "288fa3db3651ae24"
+ },
+ "evo__colony-pcr-screening": {
+  "events": 1249,
+  "lineage": 1450,
+  "sha256": "6813bca49a5d7fb0"
+ },
+ "evo__colony-pcr-screening-hard": {
+  "events": 1249,
+  "lineage": 1450,
+  "sha256": "6813bca49a5d7fb0"
+ },
+ "star__a1-a12-100ul": {
+  "events": 40,
+  "lineage": 48,
+  "sha256": "a6441e2447bf93c3"
+ },
+ "star__ampure-bead-cleanup": {
+  "events": 2917,
+  "lineage": 3033,
+  "sha256": "bb9b615d74b0cd04"
+ },
+ "star__colony-pcr-screening": {
+  "events": 1073,
+  "lineage": 1277,
+  "sha256": "78300c12d5981ef7"
+ },
+ "star__colony-pcr-screening-hard": {
+  "events": 1073,
+  "lineage": 1277,
+  "sha256": "78300c12d5981ef7"
+ },
+ "star__ecoli-heat-shock-transformation": {
+  "events": 10,
+  "lineage": 21,
+  "sha256": "8394927821eca7ea"
+ },
+ "star__ecoli-heat-shock-transformation-hard": {
+  "events": 67,
+  "lineage": 90,
+  "sha256": "e2fd66138ad48bc5"
+ },
+ "star__golden-gate-assembly": {
+  "events": 410,
+  "lineage": 457,
+  "sha256": "1995419c73c51d67"
+ },
+ "star__golden-gate-assembly-hard": {
+  "events": 410,
+  "lineage": 457,
+  "sha256": "1995419c73c51d67"
+ },
+ "star__split-200ul-two-wells": {
+  "events": 8,
+  "lineage": 16,
+  "sha256": "6ee2bdeab8a39f44"
+ },
+ "vantage__a1-a12-100ul": {
+  "events": 40,
+  "lineage": 47,
+  "sha256": "a6441e2447bf93c3"
+ },
+ "vantage__ampure-bead-cleanup": {
+  "events": 2917,
+  "lineage": 3032,
+  "sha256": "bb9b615d74b0cd04"
+ },
+ "vantage__colony-pcr-screening": {
+  "events": 1073,
+  "lineage": 1276,
+  "sha256": "78300c12d5981ef7"
+ },
+ "vantage__colony-pcr-screening-hard": {
+  "events": 1073,
+  "lineage": 1276,
+  "sha256": "78300c12d5981ef7"
+ },
+ "vantage__ecoli-heat-shock-transformation": {
+  "events": 10,
+  "lineage": 20,
+  "sha256": "8394927821eca7ea"
+ },
+ "vantage__ecoli-heat-shock-transformation-hard": {
+  "events": 67,
+  "lineage": 89,
+  "sha256": "e2fd66138ad48bc5"
+ },
+ "vantage__golden-gate-assembly": {
+  "events": 410,
+  "lineage": 456,
+  "sha256": "39034061f623a424"
+ },
+ "vantage__golden-gate-assembly-hard": {
+  "events": 410,
+  "lineage": 456,
+  "sha256": "39034061f623a424"
+ },
+ "vantage__split-200ul-two-wells": {
+  "events": 8,
+  "lineage": 15,
+  "sha256": "6ee2bdeab8a39f44"
+ }
+}

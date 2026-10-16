@@ -1,0 +1,7 @@
+{
+ "device": "biomek",
+ "device_name": "Beckman Biomek i-Series",
+ "feasible": true,
+ "reason": "",
+ "accept": []
+}

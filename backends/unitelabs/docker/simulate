@@ -1,0 +1,37 @@
+#!/bin/bash
+# Run a protocol on the simulated liquid handler of this task and print what the robot did, step by step, or the error.
+#
+#     simulate /app/protocol.py
+#
+# The device comes from $T2WL_DEVICE (set by the task image). This is the UniteLabs counterpart of
+# `opentrons_simulate`: it shows the run log, never the grader's checks.
+set -u
+protocol="${1:-/app/protocol.py}"
+device="${T2WL_DEVICE:?T2WL_DEVICE is not set}"
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+/opt/ul/bin/python -I /opt/ul_t2wl/runner.py "$device" "$protocol" "$tmp/result.json" >/dev/null 2>"$tmp/stderr"
+/opt/ul/bin/python -I - "$tmp/result.json" <<'EOF'
+import json, sys
+r = json.load(open(sys.argv[1]))
+if not r["ok"]:
+    print(r.get("traceback") or r["error"])
+    raise SystemExit(1)
+for e in r["events"]:
+    k, ch = e["kind"], e.get("instrument", "").replace("_", " ")
+    if k == "comment":
+        print(e["text"])
+    elif k == "pick":
+        print(f"Picking up tip ({ch})")
+    elif k == "drop":
+        print(f"Dropping tip ({ch})")
+    elif k == "mix":
+        print(f"\tMixing {e['cycles']}x {e['volume']:g} uL in {e['well']} of {e['labware']} ({ch})")
+    else:
+        verb, prep = ("Aspirating", "from") if k == "aspirate" else ("Dispensing", "into")
+        print(f"\t{verb} {e['volume']:g} uL {prep} {e['well']} of {e['labware']} ({ch})")
+print("Run completed.")
+EOF
+status=$?
+tail -n 20 "$tmp/stderr"
+exit $status
