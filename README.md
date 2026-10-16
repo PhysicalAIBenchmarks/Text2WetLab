@@ -10,9 +10,9 @@ E. O'Leary · M. Alshehri · L. Legon
 
 [**Preprint**](https://physicalaibenchmarks.github.io/Text2WetLab/docs/preprint/preprint.html) · [**Leaderboard**](https://physicalaibenchmarks.github.io/Text2WetLab/leaderboard.html) · [Results report](results/runs/2026-10-07-openrouter/REPORT.md) · [Trailer](results/trailer.mp4) · [Runbook](docs/harbor-runbook.md) · [PLR coverage](https://physicalaibenchmarks.github.io/Text2WetLab/plr_coverage_table.html) · [All links](docs/urls.md)
 
-<a href="results/trailer.mp4"><img src="assets/trailer_preview.gif" width="760" alt="Text2WetLab trailer preview"></a>
+<a href="results/hamilton_starlet_protein_extraction.mp4"><img src="assets/hamilton_starlet_preview.gif" width="760" alt="Hamilton STARlet automated protein extraction replayed in the PyLabRobot 3D visualizer"></a>
 
-<sub>Trailer preview (1:58). Click for the full video; 3-minute cut: <a href="results/trailer_3min.mp4"><code>trailer_3min.mp4</code></a>, errors cut: <a href="results/trailer_errors.mp4"><code>trailer_errors.mp4</code></a>. Built by <code>scripts/make_trailer.py</code>.</sub>
+<sub>Automated protein extraction on a Hamilton STARlet (PyLabRobot), replayed in the PyLabRobot 3D visualizer, shown at 4× speed. Click for the full video (1:29). Benchmark trailer: <a href="results/trailer.mp4"><code>trailer.mp4</code></a>, 3-minute cut: <a href="results/trailer_3min.mp4"><code>trailer_3min.mp4</code></a>, errors cut: <a href="results/trailer_errors.mp4"><code>trailer_errors.mp4</code></a>.</sub>
 
 </div>
 
