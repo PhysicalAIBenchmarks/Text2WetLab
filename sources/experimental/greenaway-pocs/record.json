@@ -1,0 +1,79 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.9"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/greenaway-pocs/GreenawayLab__Streamlining-Automated-Discovery-POCs",
+   "commit": "7a5b468ba06ac157500f1d8b73b141174d268425",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 6,
+   "py_files": 29,
+   "redistributable": "no",
+   "repo": "GreenawayLab/Streamlining-Automated-Discovery-POCs",
+   "robot_mentions": [],
+   "size_kb": 10392,
+   "status": "cloned",
+   "url": "https://github.com/GreenawayLab/Streamlining-Automated-Discovery-POCs"
+  }
+ ],
+ "doi_primary": "10.1039/d3sc06133g",
+ "dois": [
+  "10.1039/d3sc06133g"
+ ],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "fulltext": {
+  "legends": 9,
+  "sections": 18,
+  "source": "europepmc:PMC11062116"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3369080,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "3ab72e72759dbc9d036509b08c7ddde0a22930cf83226d13913f38f2cfd02dfa",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://pubs.rsc.org/en/content/articlepdf/2024/sc/d3sc06133g"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11062116?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11062116.1/PMC11062116.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11062116.1/PMC11062116.1.pdf"
+ },
+ "pmcid": "PMC11062116",
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/greenaway-pocs",
+ "title": "Streamlining the automated discovery of porous organic cages",
+ "year": "2024"
+}

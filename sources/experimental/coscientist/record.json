@@ -1,0 +1,72 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/coscientist/gomesgroup__coscientist",
+   "commit": "417e82b85743f88719ba7cf8838220fcb872e2ae",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "unclear",
+   "opentrons_py_files": 0,
+   "py_files": 3,
+   "redistributable": "no",
+   "repo": "gomesgroup/coscientist",
+   "robot_mentions": [],
+   "size_kb": 835,
+   "status": "cloned",
+   "url": "https://github.com/gomesgroup/coscientist"
+  }
+ ],
+ "doi_primary": "10.1038/s41586-023-06792-0",
+ "dois": [
+  "10.1038/s41586-023-06792-0"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 9,
+  "sections": 14,
+  "source": "europepmc:PMC10733136"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 8869905,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "09cfaa1ccf4c951eebc347bab909e1e495d6701be38d3808c38016dff35dbd4e",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC10733136?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10733136.1/PMC10733136.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10733136.1/PMC10733136.1.pdf"
+ },
+ "pmcid": "PMC10733136",
+ "readiness": "partial",
+ "robot_platform": "protocol_language",
+ "simulator": "not run",
+ "slug": "experimental/coscientist",
+ "title": "Autonomous chemical research with large language models (Coscientist)",
+ "year": "2023"
+}

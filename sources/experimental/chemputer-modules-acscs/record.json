@@ -1,0 +1,60 @@
+{
+ "code": [
+  {
+   "host": "gitlab.com",
+   "repo": "croningroup/chemputer",
+   "status": "clone failed: fatal: could not read Username for 'https://gitlab.com': Device not configured",
+   "url": "https://gitlab.com/croningroup/chemputer"
+  }
+ ],
+ "doi_primary": "10.1021/acscentsci.3c00304",
+ "dois": [
+  "10.1021/acscentsci.3c00304"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 8,
+  "sections": 13,
+  "source": "europepmc:PMC10450877"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3494124,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "f7834bb2b305c7f571da0436ffa3d3f654dcda31aca18156ef31477d865cff45",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC10450877?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10450877.1/PMC10450877.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10450877.1/PMC10450877.1.pdf"
+ },
+ "pmcid": "PMC10450877",
+ "readiness": "partial",
+ "robot_platform": "synthesis",
+ "simulator": "not run",
+ "slug": "experimental/chemputer-modules-acscs",
+ "title": "Robotic Modules for the Programmable Chemputation of Molecules and Materials",
+ "year": "2023"
+}

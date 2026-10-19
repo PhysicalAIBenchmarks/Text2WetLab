@@ -1,0 +1,94 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/pycromanager-2021/micro-manager__pycro-manager",
+   "commit": "c9c8acd1969fb5e55619d8284b6c1fd96fc236b4",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "BSD-3-Clause",
+   "opentrons_py_files": 0,
+   "py_files": 84,
+   "redistributable": "yes",
+   "repo": "micro-manager/pycro-manager",
+   "robot_mentions": [],
+   "size_kb": 42994,
+   "status": "cloned",
+   "url": "https://github.com/micro-manager/pycro-manager"
+  }
+ ],
+ "doi_primary": "10.1038/s41592-021-01087-6",
+ "dois": [
+  "10.1038/s41592-021-01087-6"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1038/s41592-021-01087-6:\n  europepmc: Server error '500 ' for url 'ht",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "bytes": 1253167,
+  "licence": "",
+  "pages": null,
+  "redistributable": "unknown",
+  "sha256": "5a39707db30ddf6d716cfa4fb32d4363e2ccd5800da8647f4d93494994c41b5d",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC8532176?pdf=render"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8532176.1/PMC8532176.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8532176.2/PMC8532176.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC8532176.3/PMC8532176.3.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC8532176&blobtype=pdf"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "http://www.nature.com/articles/s41592-021-01087-6.pdf"
+   }
+  ],
+  "url": "http://www.nature.com/articles/s41592-021-01087-6.pdf"
+ },
+ "pmcid": "PMC8532176",
+ "readiness": "ready",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/pycromanager-2021",
+ "title": "Pycro-Manager: open-source software for customized and reproducible microscope control",
+ "year": "2021"
+}

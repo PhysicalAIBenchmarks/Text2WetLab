@@ -1,0 +1,59 @@
+{
+ "code": [
+  {
+   "host": "www.protocols.io",
+   "status": "not code: protocol text",
+   "url": "https://www.protocols.io/groups/opentrons-covid19-testing"
+  }
+ ],
+ "doi_primary": "10.3389/fmedt.2022.969203",
+ "dois": [
+  "10.3389/fmedt.2022.969203"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 26,
+  "source": "europepmc:PMC9521367"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1628684,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "eb3f959260faa3a485402086475f5c84f9b43ebff69b0ba223a3b6de0bdfb99c",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC9521367?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9521367.1/PMC9521367.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9521367.1/PMC9521367.1.pdf"
+ },
+ "pmcid": "PMC9521367",
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/covid-fosh-review",
+ "title": "High-throughput and automated screening for COVID-19",
+ "year": "2022"
+}

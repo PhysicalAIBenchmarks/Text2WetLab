@@ -1,0 +1,77 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/spatial-tx-bravo/jemten__Bravo_ST",
+   "commit": "4a8a1a9f8626d00d521ad95334b266d5dca3b0b7",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "jemten/Bravo_ST",
+   "robot_mentions": [],
+   "size_kb": 34,
+   "status": "cloned",
+   "url": "https://github.com/jemten/Bravo_ST"
+  }
+ ],
+ "doi_primary": "10.1186/s12864-020-6631-z",
+ "dois": [
+  "10.1186/s12864-020-6631-z"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 27,
+  "source": "europepmc:PMC7158132"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3893058,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "1f228f14b79a12016a274bd66f1fba5f102d6eebd2060b02dd73d8adfbf7feea",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": false,
+    "url": "https://bmcgenomics.biomedcentral.com/track/pdf/10.1186/s12864-020-6631-z"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7158132?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7158132.1/PMC7158132.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7158132.1/PMC7158132.1.pdf"
+ },
+ "pmcid": "PMC7158132",
+ "readiness": "partial",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/spatial-tx-bravo",
+ "title": "Automation of Spatial Transcriptomics library preparation to enable rapid and robust insights into spatial organization of tissues",
+ "year": "2020"
+}

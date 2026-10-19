@@ -1,0 +1,72 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/mxene-aerogel-al/oshin71__Programmable-MXene-Aerogel",
+   "commit": "7a863476a0911dabd3401428601b3d048b68ee2e",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "BSD-3-Clause",
+   "opentrons_py_files": 0,
+   "py_files": 8,
+   "redistributable": "yes",
+   "repo": "oshin71/Programmable-MXene-Aerogel",
+   "robot_mentions": [],
+   "size_kb": 496,
+   "status": "cloned",
+   "url": "https://github.com/oshin71/Programmable-MXene-Aerogel"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-024-49011-8",
+ "dois": [
+  "10.1038/s41467-024-49011-8"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 27,
+  "source": "europepmc:PMC11144242"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3908686,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "d729ab71eb2d6e7dcead2d2f7b0fdbab657dbb6fb5f332613fd0b4dce71ac5ca",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11144242?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11144242.1/PMC11144242.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11144242.1/PMC11144242.1.pdf"
+ },
+ "pmcid": "PMC11144242",
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/mxene-aerogel-al",
+ "title": "Machine intelligence accelerated design of conductive MXene aerogels with programmable properties",
+ "year": "2024"
+}

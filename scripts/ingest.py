@@ -174,36 +174,170 @@ def analyse_clone(path):
     return {"py_files": len(py), "opentrons_py_files": len(ot), "api_levels": sorted(api), "robot_mentions": sorted(robots)}
 
 
-def ingest_code(url, slug):
-    host, owner, name = repo_of(url)
-    rec = {"url": url, "host": host, "status": "manual"}
-    if host != "github.com" or not owner:
-        rec["status"] = "non-github: needs manual download"
-        return rec
-    meta = gh_json(f"repos/{owner}/{name}")
-    if meta is None:
-        rec["status"] = "not found (404 or private)"
-        return rec
-    lic = (meta.get("license") or {}).get("spdx_id")
-    rec.update({"repo": f"{owner}/{name}", "default_branch": meta["default_branch"], "size_kb": meta["size"], "archived": meta["archived"],
-                "licence": lic if lic and lic != "NOASSERTION" else ("unclear" if lic else "none"),
-                "redistributable": "yes" if lic in {"MIT", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "ISC", "Unlicense", "CC0-1.0"} else "no"})
-    if meta["size"] > MAX_REPO_KB:
-        rec["status"] = f"skipped: {meta['size'] // 1024} MB exceeds the clone limit"
-        return rec
-    dest = CACHE / "code" / slug / f"{owner}__{name}"
+PERMISSIVE = {"MIT", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "ISC", "Unlicense", "CC0-1.0"}
+SPARSE = ["*.py", "*.ipynb", "*.json", "*.yaml", "*.yml", "*.toml", "*.cfg", "*.md", "*.rst", "*.txt", "*.csv", "*.xdl", "*.xml",
+          "LICENSE*", "LICENCE*", "COPYING*"]
+ARCHIVE_EXT = (".zip", ".tar.gz", ".tgz", ".tar")
+
+
+def licence_from_text(root):
+    """SPDX-ish id from a LICENSE/COPYING file, for hosts that do not report one."""
+    for f in sorted(root.rglob("*")):
+        if f.is_file() and re.match(r"(licen[cs]e|copying)", f.name, re.I) and ".git" not in f.parts:
+            t = f.read_text(errors="replace")[:4000]
+            for pat, spdx in [(r"MIT License|Permission is hereby granted, free of charge", "MIT"), (r"Apache License,? Version 2", "Apache-2.0"),
+                              (r"GNU AFFERO GENERAL PUBLIC LICENSE", "AGPL-3.0"), (r"GNU LESSER GENERAL PUBLIC", "LGPL-3.0"),
+                              (r"GNU GENERAL PUBLIC LICENSE\s+Version 3", "GPL-3.0"), (r"GNU GENERAL PUBLIC LICENSE\s+Version 2", "GPL-2.0"),
+                              (r"Redistribution and use in source and binary forms", "BSD-3-Clause"), (r"Creative Commons Attribution 4", "CC-BY-4.0"),
+                              (r"CC0|Creative Commons Zero", "CC0-1.0"), (r"unlicense\.org", "Unlicense")]:
+                if re.search(pat, t, re.I):
+                    return spdx
+            return "unclear"
+    return "none"
+
+
+def git_clone(remote, dest, partial):
+    """Shallow clone; a partial clone (sparse checkout of code, configs and docs) for repositories over the size limit."""
     if dest.exists():
         shutil.rmtree(dest)
     dest.parent.mkdir(parents=True, exist_ok=True)
-    r = subprocess.run(["git", "clone", "-q", "--depth", "1", f"https://github.com/{owner}/{name}", str(dest)], capture_output=True, text=True)
+    if not partial:
+        r = subprocess.run(["git", "clone", "-q", "--depth", "1", remote, str(dest)], capture_output=True, text=True, timeout=900)
+        return r.returncode == 0, r.stderr
+    r = subprocess.run(["git", "clone", "-q", "--depth", "1", "--filter=blob:none", "--no-checkout", remote, str(dest)],
+                       capture_output=True, text=True, timeout=900)
     if r.returncode:
-        rec["status"] = "clone failed: " + r.stderr.strip()[-100:]
+        return False, r.stderr
+    subprocess.run(["git", "-C", str(dest), "sparse-checkout", "set", "--no-cone", *SPARSE], capture_output=True, text=True)
+    r = subprocess.run(["git", "-C", str(dest), "checkout", "-q"], capture_output=True, text=True, timeout=900)
+    return r.returncode == 0, r.stderr
+
+
+def download_files(files, dest):
+    """files: [(name, url, size_bytes)]. Downloads up to MAX_REPO_KB in total and unpacks archives."""
+    if dest.exists():
+        shutil.rmtree(dest)
+    dest.mkdir(parents=True, exist_ok=True)
+    total, got, skipped = 0, [], []
+    with httpx.Client(headers=HEADERS, timeout=600, follow_redirects=True) as http:
+        for name, url, size in sorted(files, key=lambda f: (not f[0].lower().endswith(ARCHIVE_EXT + (".py",)), f[2] or 0)):
+            if (size or 0) + total > MAX_REPO_KB * 1024:
+                skipped.append(name)
+                continue
+            r = get(http, url)
+            if r is None or r.status_code != 200:
+                skipped.append(name)
+                continue
+            out = dest / pathlib.Path(name).name
+            out.write_bytes(r.content)
+            total += len(r.content)
+            got.append(name)
+            if out.name.lower().endswith(ARCHIVE_EXT):
+                try:
+                    shutil.unpack_archive(str(out), str(dest / (out.name + "_x")))
+                except Exception:
+                    pass
+    return got, skipped, total
+
+
+def zenodo_id(url):
+    m = re.search(r"zenodo\.(\d+)|zenodo\.org/(?:record|records)/(\d+)", url)
+    return (m.group(1) or m.group(2)) if m else None
+
+
+def osf_id(url):
+    m = re.search(r"osf\.io/([a-z0-9]{5})", url)
+    return m.group(1) if m else None
+
+
+def osf_files(node):
+    """Walk an OSF node's osfstorage and list (path, download url, size)."""
+    out, stack = [], [f"https://api.osf.io/v2/nodes/{node}/files/osfstorage/"]
+    with httpx.Client(headers=HEADERS, timeout=60, follow_redirects=True) as http:
+        while stack and len(out) < 2000:
+            r = get(http, stack.pop())
+            if r is None or r.status_code != 200:
+                continue
+            j = r.json()
+            for d in j.get("data", []):
+                a = d["attributes"]
+                if a["kind"] == "folder":
+                    stack.append(d["relationships"]["files"]["links"]["related"]["href"])
+                else:
+                    out.append((a["materialized_path"].lstrip("/"), d["links"]["download"], a.get("size") or 0))
+            if j.get("links", {}).get("next"):
+                stack.append(j["links"]["next"])
+    return out
+
+
+def finish(rec, dest):
+    rec.update(analyse_clone(dest))
+    rec["cache_path"] = str(dest).replace(str(pathlib.Path.home()), "~")
+    if rec.get("licence") in (None, "", "none", "unclear"):
+        rec["licence"] = licence_from_text(dest)
+    rec["redistributable"] = "yes" if rec["licence"] in PERMISSIVE else "no"
+    return rec
+
+
+def ingest_code(url, slug):
+    rec = {"url": url, "status": "manual"}
+    if not re.match(r"https?://", url or ""):
+        rec["status"] = "no public code"
+        return rec
+    host, owner, name = repo_of(url)
+    rec["host"] = host
+    if "zenodo" in url and zenodo_id(url):
+        zid = zenodo_id(url)
+        with httpx.Client(headers=HEADERS, timeout=60, follow_redirects=True) as http:
+            r = get(http, f"https://zenodo.org/api/records/{zid}")
+        if r is None or r.status_code != 200:
+            rec["status"] = "zenodo record not found"
+            return rec
+        meta = r.json()
+        files = [(f["key"], f["links"]["self"], f.get("size") or 0) for f in meta.get("files", [])]
+        dest = CACHE / "code" / slug / f"zenodo-{zid}"
+        got, skipped, total = download_files(files, dest)
+        rec.update({"repo": f"zenodo:{zid}", "licence": ((meta.get("metadata") or {}).get("license") or {}).get("id") or "",
+                    "files": len(files), "files_downloaded": len(got), "files_skipped_size": skipped, "size_kb": total // 1024})
+        rec["status"] = "downloaded" if got else "zenodo: no files within the size limit"
+        return finish(rec, dest) if got else rec
+    if "osf.io" in host and osf_id(url):
+        node = osf_id(url)
+        files = osf_files(node)
+        dest = CACHE / "code" / slug / f"osf-{node}"
+        got, skipped, total = download_files(files, dest)
+        rec.update({"repo": f"osf:{node}", "files": len(files), "files_downloaded": len(got), "files_skipped_size": skipped, "size_kb": total // 1024})
+        rec["status"] = "downloaded" if got else "osf: no files downloaded"
+        return finish(rec, dest) if got else rec
+    if host in ("huggingface.co", "www.protocols.io", "protocols.io"):
+        rec["status"] = "not code: " + ("dataset" if host == "huggingface.co" else "protocol text")
+        return rec
+    if host == "github.com" and owner and not name:
+        rec["status"] = "organisation link: name the repository with --code-url"
+        return rec
+    if not owner:
+        rec["status"] = "non-git link: needs manual download"
+        return rec
+    if host == "github.com":
+        meta = gh_json(f"repos/{owner}/{name}")
+        if meta is None:
+            rec["status"] = "not found (404 or private)"
+            return rec
+        lic = (meta.get("license") or {}).get("spdx_id")
+        rec.update({"repo": f"{owner}/{name}", "default_branch": meta["default_branch"], "size_kb": meta["size"], "archived": meta["archived"],
+                    "licence": lic if lic and lic != "NOASSERTION" else ("unclear" if lic else "none")})
+        partial = meta["size"] > MAX_REPO_KB
+    else:  # GitLab and other git hosts: owner/group path may be nested, so clone the URL as given
+        rec["repo"] = urlparse(url).path.strip("/").removesuffix(".git")
+        partial = True
+    dest = CACHE / "code" / slug / f"{owner}__{(name or 'repo')}"
+    ok, err = git_clone(url.removesuffix("/") if host != "github.com" else f"https://github.com/{owner}/{name}", dest, partial)
+    if not ok:
+        rec["status"] = "clone failed: " + err.strip()[-100:]
         return rec
     rec["commit"] = subprocess.run(["git", "-C", str(dest), "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
-    rec.update(analyse_clone(dest))
-    rec["status"] = "cloned"
-    rec["cache_path"] = str(dest).replace(str(pathlib.Path.home()), "~")
-    return rec
+    rec["status"] = "cloned (partial: code, configs and docs only)" if partial else "cloned"
+    return finish(rec, dest)
 
 
 # ---------------------------------------------------------------- merging with a previous record
@@ -229,8 +363,9 @@ def merge_prev(rec, prev):
     merged = []
     for c in rec.get("code", []):
         o = old_code.get(c.get("url"))
-        if o and (o.get("host") != "github.com" or o.get("status") == "downloaded"):
-            c = o                                   # hand-managed non-GitHub archive: never overwritten
+        fetched = str(c.get("status", "")).startswith(("cloned", "downloaded"))
+        if o and (o.get("status") == "downloaded" and not o.get("files_downloaded") or (o.get("host") != "github.com" and not fetched)):
+            c = o                                   # hand-managed archive, or a non-GitHub link this run could not fetch: kept
         elif o:
             keep = stricter(c.get("redistributable"), o.get("redistributable"))
             if keep == "no" and c.get("redistributable") != "no" and o.get("licence"):

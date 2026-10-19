@@ -1,0 +1,72 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/sdl-enzyme-flex/putzsebastian__sdl-enzymes-optimization",
+   "commit": "d51650c9054ac230284efec034c43a650cd5c4c3",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 10,
+   "redistributable": "yes",
+   "repo": "putzsebastian/sdl-enzymes-optimization",
+   "robot_mentions": [],
+   "size_kb": 109,
+   "status": "cloned",
+   "url": "https://github.com/putzsebastian/sdl-enzymes-optimization"
+  }
+ ],
+ "doi_primary": "10.1002/bit.70038",
+ "dois": [
+  "10.1002/bit.70038"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 18,
+  "source": "europepmc:PMC12503018"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2065399,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "8cfa3acfbd9d93cc94fb6a570ad986c21c80d330ce0a92a8be09a2579c2f3a6d",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12503018?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12503018.1/PMC12503018.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12503018.1/PMC12503018.1.pdf"
+ },
+ "pmcid": "PMC12503018",
+ "readiness": "partial",
+ "robot_platform": "flex",
+ "simulator": "not run",
+ "slug": "experimental/sdl-enzyme-flex",
+ "title": "Optimized Machine Learning for Autonomous Enzymatic Reaction Intensification in a Self-Driving Lab",
+ "year": "2025"
+}

@@ -1,0 +1,58 @@
+{
+ "code": [
+  {
+   "status": "no public code",
+   "url": "none found"
+  }
+ ],
+ "doi_primary": "10.1038/s42004-026-01932-9",
+ "dois": [
+  "10.1038/s42004-026-01932-9"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 8,
+  "sections": 41,
+  "source": "europepmc:PMC12923569"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 6380237,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "ba0afd45e467d6457cd1d073f8cd86343357f1881ab3ef0a98294fcf8817a23e",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12923569?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12923569.1/PMC12923569.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12923569.1/PMC12923569.1.pdf"
+ },
+ "pmcid": "PMC12923569",
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/adept-framework",
+ "title": "The ADePT framework for assessing autonomous laboratory robotics",
+ "year": "2026"
+}

@@ -1,0 +1,52 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/archemist/cooper-group-uol-robotics__archemist",
+   "commit": "52cbf816dbb42097417c00a8b6c0c7860ae7a388",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 221,
+   "redistributable": "yes",
+   "repo": "cooper-group-uol-robotics/archemist",
+   "robot_mentions": [],
+   "size_kb": 99391,
+   "status": "cloned",
+   "url": "https://github.com/cooper-group-uol-robotics/archemist"
+  }
+ ],
+ "dois": [
+  "10.1109/ICRA46639.2022.9811996"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1109/ICRA46639.2022.9811996:\n  europepmc: no Europe PMC full text for",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "plate_transport",
+ "simulator": "not run",
+ "slug": "experimental/archemist",
+ "title": "ARChemist: Autonomous Robotic Chemistry System Architecture (Fakhruldeen et al.)",
+ "year": ""
+}

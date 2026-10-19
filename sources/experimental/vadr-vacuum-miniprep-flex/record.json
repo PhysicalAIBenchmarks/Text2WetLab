@@ -1,0 +1,69 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.23"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/vadr-vacuum-miniprep-flex/JackATDalton__VADR",
+   "commit": "7a814dd871cf87495621dcf49c88d9b2019c34ec",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 1,
+   "py_files": 1,
+   "redistributable": "no",
+   "repo": "JackATDalton/VADR",
+   "robot_mentions": [
+    "Flex"
+   ],
+   "size_kb": 2721,
+   "status": "cloned",
+   "url": "https://github.com/JackATDalton/VADR"
+  }
+ ],
+ "doi_primary": "10.64898/2026.09.16.746974",
+ "dois": [
+  "10.64898/2026.09.16.746974"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 32,
+  "source": "biorxiv"
+ },
+ "journal": "bioRxiv",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "bytes": 19695399,
+  "licence": "",
+  "pages": null,
+  "redistributable": "unknown",
+  "sha256": "16f4f0d2b8eb2119cb8f45dd1c64580b44ddc9887e44bd4aca345f88be154207",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.biorxiv.org/content/10.64898/2026.09.16.746974v1.full.pdf"
+   }
+  ],
+  "url": "https://www.biorxiv.org/content/10.64898/2026.09.16.746974v1.full.pdf"
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "flex",
+ "simulator": "not run",
+ "slug": "experimental/vadr-vacuum-miniprep-flex",
+ "title": "An Open-Source 3D-Printed Vacuum Manifold for Automated DNA Isolation Improves Yields in the Opentrons Flex and OT-2",
+ "year": "2026"
+}

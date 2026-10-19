@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/memplex-printing/ccmeyer__printing-platform",
+   "commit": "35a071270529ffc125ab873d954c27f2925add49",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 15,
+   "redistributable": "yes",
+   "repo": "ccmeyer/printing-platform",
+   "robot_mentions": [],
+   "size_kb": 17099,
+   "status": "cloned",
+   "url": "https://github.com/ccmeyer/printing-platform"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-025-59471-1",
+ "dois": [
+  "10.1038/s41467-025-59471-1"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 37,
+  "source": "europepmc:PMC12065789"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 14965773,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "dec8cecbe399f66e694fcdd1032e90ce96300b039701864834ba7c62bfc692d1",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12065789?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12065789.1/PMC12065789.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12065789.1/PMC12065789.1.pdf"
+ },
+ "pmcid": "PMC12065789",
+ "readiness": "partial",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/memplex-printing",
+ "title": "Designer artificial environments for membrane protein synthesis",
+ "year": "2025"
+}

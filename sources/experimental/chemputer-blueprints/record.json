@@ -1,0 +1,68 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/chemputer-blueprints/croningroup__chemputer",
+   "commit": "6d60e8da7218a589b9c8715a239956601b17cd07",
+   "host": "gitlab.com",
+   "licence": "unclear",
+   "opentrons_py_files": 0,
+   "py_files": 155,
+   "redistributable": "no",
+   "repo": "croningroup/chemputer/xdl",
+   "robot_mentions": [],
+   "status": "cloned (partial: code, configs and docs only)",
+   "url": "https://gitlab.com/croningroup/chemputer/xdl"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-024-54238-6",
+ "dois": [
+  "10.1038/s41467-024-54238-6"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 5,
+  "source": "europepmc:PMC11599859"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1532400,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "fcb9a893490c1e20eb8986b38dbe56921b3c17fbdcfcc9d6922f45fc53c16743",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11599859?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11599859.1/PMC11599859.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11599859.1/PMC11599859.1.pdf"
+ },
+ "pmcid": "PMC11599859",
+ "readiness": "ready",
+ "robot_platform": "protocol_language",
+ "simulator": "not run",
+ "slug": "experimental/chemputer-blueprints",
+ "title": "Reaction blueprints and logical control flow for parallelized chiral synthesis in the Chemputer",
+ "year": "2024"
+}

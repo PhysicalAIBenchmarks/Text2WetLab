@@ -1,0 +1,72 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/damplab-moclo-transformation/DAMPLAB__OT2-MoClo-Transformation-Ecoli",
+   "commit": "ce49b7eb891fb16be95a269e292ec02cb4fa294f",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "BSD-3-Clause",
+   "opentrons_py_files": 3,
+   "py_files": 4,
+   "redistributable": "yes",
+   "repo": "DAMPLAB/OT2-MoClo-Transformation-Ecoli",
+   "robot_mentions": [],
+   "size_kb": 844,
+   "status": "cloned",
+   "url": "https://github.com/DAMPLAB/OT2-MoClo-Transformation-Ecoli"
+  }
+ ],
+ "doi_primary": "10.1093/synbio/ysac004",
+ "dois": [
+  "10.1093/synbio/ysac004"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "web"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 20,
+  "source": "europepmc:PMC9074407"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 862094,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "12200b23dc0f0760ba661332f4aec09822be48e883a34e97096e604f495260da",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC9074407?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9074407.1/PMC9074407.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9074407.1/PMC9074407.1.pdf"
+ },
+ "pmcid": "PMC9074407",
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "no_protocol_found",
+ "slug": "experimental/damplab-moclo-transformation",
+ "title": "A linear programming-based strategy to save pipette tips in automated DNA assembly (with DAMP Lab MoClo/transformation workflow)",
+ "year": "2022"
+}

@@ -1,0 +1,79 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/covid-mastermix-omix/Donald-OMIX__Liquid_Handler_Methods",
+   "commit": "527879af02bea49f4818b53335e382f57aa7c95b",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "Donald-OMIX/Liquid_Handler_Methods",
+   "robot_mentions": [],
+   "size_kb": 131140,
+   "status": "cloned",
+   "url": "https://github.com/Donald-OMIX/Liquid_Handler_Methods"
+  }
+ ],
+ "doi_primary": "10.1016/j.slast.2024.100195",
+ "dois": [
+  "10.1016/j.slast.2024.100195"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 12,
+  "sections": 26,
+  "source": "europepmc:PMC11639134"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "licence": "cc by",
+  "redistributable": "unknown",
+  "status": "not_found",
+  "tried": [
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11639134.1/PMC11639134.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11639134.2/PMC11639134.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11639134.3/PMC11639134.3.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC11639134&blobtype=pdf"
+   }
+  ]
+ },
+ "pmcid": "PMC11639134",
+ "readiness": "partial",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/covid-mastermix-omix",
+ "title": "Development and validation of automated methods for COVID-19 PCR Master Mix preparation",
+ "year": "2024"
+}

@@ -1,0 +1,58 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.14"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/roche-pipetting-performance-ot2/arthur-theuer__pipetting-performance",
+   "commit": "990a9207ae9fd097e1f63c0c058811a1ed9650e8",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "GPL-3.0",
+   "opentrons_py_files": 2,
+   "py_files": 9,
+   "redistributable": "no",
+   "repo": "arthur-theuer/pipetting-performance",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 2401,
+   "status": "cloned",
+   "url": "https://github.com/arthur-theuer/pipetting-performance"
+  }
+ ],
+ "doi_primary": "10.1016/j.slast.2024.100180",
+ "dois": [
+  "10.1016/j.slast.2024.100180"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "github"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1016/j.slast.2024.100180:\n  europepmc: no Europe PMC full text for th",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "licence": "cc by-nc-nd",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/roche-pipetting-performance-ot2",
+ "title": "Deep integration of low-cost liquid handling robots in an industrial pharmaceutical development environment",
+ "year": "2024"
+}

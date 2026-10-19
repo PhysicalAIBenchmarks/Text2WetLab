@@ -1,0 +1,42 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/ot2-moclo-jove/emernic__OT2_MoClo_JoVE",
+   "commit": "d3a28d409ea48e0f66b1f5cf96b4ebcf838b9513",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 3,
+   "py_files": 11,
+   "redistributable": "yes",
+   "repo": "emernic/OT2_MoClo_JoVE",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 33701,
+   "status": "cloned",
+   "url": "https://github.com/emernic/OT2_MoClo_JoVE"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/ot2-moclo-jove",
+ "title": "Modular Cloning with the OT2 (OT2_MoClo_JoVE)",
+ "year": ""
+}

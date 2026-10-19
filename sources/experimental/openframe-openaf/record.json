@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/openframe-openaf/ImperialCollegeLondon__openAF",
+   "commit": "cdf1a6102835e58463d7fa4439fc7dfa25f81eb7",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "BSD-2-Clause",
+   "opentrons_py_files": 0,
+   "py_files": 2,
+   "redistributable": "yes",
+   "repo": "ImperialCollegeLondon/openAF",
+   "robot_mentions": [],
+   "size_kb": 605,
+   "status": "cloned",
+   "url": "https://github.com/ImperialCollegeLondon/openAF"
+  }
+ ],
+ "doi_primary": "10.1111/jmi.13219",
+ "dois": [
+  "10.1111/jmi.13219"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 12,
+  "source": "europepmc:PMC10953376"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2722749,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "5a957df7b9ea84a8df9a4754be4a44b75725c4d556e189811831213465ee36c6",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC10953376?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10953376.1/PMC10953376.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10953376.1/PMC10953376.1.pdf"
+ },
+ "pmcid": "PMC10953376",
+ "readiness": "partial",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/openframe-openaf",
+ "title": "openFrame: modular open microscopy platform with single-shot optical autofocus",
+ "year": "2023"
+}

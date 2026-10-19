@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/chemputer-peptide/zenodo-15948769",
+   "files": 12,
+   "files_downloaded": 12,
+   "files_skipped_size": [],
+   "host": "doi.org",
+   "licence": "cc-by-4.0",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "zenodo:15948769",
+   "robot_mentions": [],
+   "size_kb": 24,
+   "status": "downloaded",
+   "url": "https://doi.org/10.5281/zenodo.15948769"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-025-62344-2",
+ "dois": [
+  "10.1038/s41467-025-62344-2"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 28,
+  "source": "europepmc:PMC12334676"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3390053,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "f889b5e63fc5f705c75d1a325fc3f84b71c71a687368f1183538ff37aaa04d3d",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12334676?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12334676.1/PMC12334676.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12334676.1/PMC12334676.1.pdf"
+ },
+ "pmcid": "PMC12334676",
+ "readiness": "ready",
+ "robot_platform": "synthesis",
+ "simulator": "not run",
+ "slug": "experimental/chemputer-peptide",
+ "title": "Universal peptide synthesis via solid-phase methods fused with chemputation",
+ "year": "2025"
+}

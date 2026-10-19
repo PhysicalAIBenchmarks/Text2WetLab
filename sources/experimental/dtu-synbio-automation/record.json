@@ -1,0 +1,48 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.11",
+    "2.16",
+    "2.20",
+    "2.8"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/dtu-synbio-automation/DALSA-Lab__dtu_synbio_lab_automation",
+   "commit": "1e66a1762099709e9f8882133c22f253654bb686",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 10,
+   "py_files": 13,
+   "redistributable": "yes",
+   "repo": "DALSA-Lab/dtu_synbio_lab_automation",
+   "robot_mentions": [
+    "Flex",
+    "OT-2"
+   ],
+   "size_kb": 1385,
+   "status": "cloned",
+   "url": "https://github.com/DALSA-Lab/dtu_synbio_lab_automation"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/dtu-synbio-automation",
+ "title": "DTU Synbio lab automation protocol collection",
+ "year": ""
+}

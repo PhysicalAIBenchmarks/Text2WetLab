@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/mantis-shrimpy/czbiohub-sf__shrimPy",
+   "commit": "e87d54c922681edbaf04185a32bd9b856a428560",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "BSD-3-Clause",
+   "opentrons_py_files": 0,
+   "py_files": 142,
+   "redistributable": "yes",
+   "repo": "czbiohub-sf/shrimPy",
+   "robot_mentions": [],
+   "size_kb": 5253,
+   "status": "cloned",
+   "url": "https://github.com/czbiohub-sf/shrimPy"
+  }
+ ],
+ "doi_primary": "10.1093/pnasnexus/pgae323",
+ "dois": [
+  "10.1093/pnasnexus/pgae323"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 29,
+  "source": "europepmc:PMC11393572"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc",
+ "pdf": {
+  "bytes": 30053013,
+  "licence": "cc by-nc",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "b84026e4b38348b7de9288481d7fb9a3493fbf49429db570a57fc2684f854517",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11393572?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11393572.1/PMC11393572.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11393572.1/PMC11393572.1.pdf"
+ },
+ "pmcid": "PMC11393572",
+ "readiness": "ready",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/mantis-shrimpy",
+ "title": "Mantis: High-throughput 4D imaging and analysis of the molecular and physical architecture of cells",
+ "year": "2024"
+}

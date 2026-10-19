@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/maple-fly-robot/FlySorterLLC__MAPLEControlSoftware",
+   "commit": "591eddcab80b10104d0cb67857e144edbeee6f96",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "GPL-2.0",
+   "opentrons_py_files": 0,
+   "py_files": 28,
+   "redistributable": "no",
+   "repo": "FlySorterLLC/MAPLEControlSoftware",
+   "robot_mentions": [],
+   "size_kb": 72619,
+   "status": "cloned",
+   "url": "https://github.com/FlySorterLLC/MAPLEControlSoftware"
+  }
+ ],
+ "doi_primary": "10.7554/eLife.37166",
+ "dois": [
+  "10.7554/eLife.37166"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 27,
+  "sections": 51,
+  "source": "europepmc:PMC6193762"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 5307307,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "36fe791383ddd8cf75172d7c332045dc4d00fc478b11da7be15f9aa56993dc01",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC6193762?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6193762.1/PMC6193762.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6193762.1/PMC6193762.1.pdf"
+ },
+ "pmcid": "PMC6193762",
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/maple-fly-robot",
+ "title": "MAPLE (modular automated platform for large-scale experiments), a robot for integrated organism-handling and phenotyping",
+ "year": "2018"
+}

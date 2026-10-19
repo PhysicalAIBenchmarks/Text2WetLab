@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/a-lab-2023/njszym__ARROWS",
+   "commit": "cb630e944315c8ac19f5b9a3c9d8984be93258a6",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 13,
+   "redistributable": "no",
+   "repo": "njszym/ARROWS",
+   "robot_mentions": [],
+   "size_kb": 9371,
+   "status": "cloned",
+   "url": "https://github.com/njszym/ARROWS"
+  }
+ ],
+ "doi_primary": "10.1038/s41586-023-06734-w",
+ "dois": [
+  "10.1038/s41586-023-06734-w"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 15,
+  "source": "europepmc:PMC10700133"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 10411037,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "574b5523f857b544ffdf4eff00dd742977636ba90bb09798d413237724542f7e",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC10700133?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10700133.1/PMC10700133.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10700133.1/PMC10700133.1.pdf"
+ },
+ "pmcid": "PMC10700133",
+ "readiness": "partial",
+ "robot_platform": "synthesis",
+ "simulator": "not run",
+ "slug": "experimental/a-lab-2023",
+ "title": "An autonomous laboratory for the accelerated synthesis of novel materials (A-Lab)",
+ "year": "2023"
+}

@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/evolver-2018/FYNCH-BIO__dpu",
+   "commit": "ec41600bb20ae7fdecdcbce7bd9e6807e34e0f18",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 12,
+   "redistributable": "yes",
+   "repo": "FYNCH-BIO/dpu",
+   "robot_mentions": [],
+   "size_kb": 6260,
+   "status": "cloned",
+   "url": "https://github.com/FYNCH-BIO/dpu"
+  }
+ ],
+ "doi_primary": "10.1038/nbt.4151",
+ "dois": [
+  "10.1038/nbt.4151"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 17,
+  "source": "europepmc:PMC6035058"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "bytes": 2792861,
+  "licence": "",
+  "pages": null,
+  "redistributable": "unknown",
+  "sha256": "b6f4eeda994c515b46854d056ea62290bf5024cf3b5bd424467353336f1776b2",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC6035058?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6035058.1/PMC6035058.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6035058.1/PMC6035058.1.pdf"
+ },
+ "pmcid": "PMC6035058",
+ "readiness": "ready",
+ "robot_platform": "bioreactor",
+ "simulator": "not run",
+ "slug": "experimental/evolver-2018",
+ "title": "Precise, automated control of conditions for high-throughput growth of yeast and bacteria with eVOLVER",
+ "year": "2018"
+}

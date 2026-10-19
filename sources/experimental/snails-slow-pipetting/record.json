@@ -1,0 +1,77 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/snails-slow-pipetting/dholab__SNAILS",
+   "commit": "39839691d09f5b0e3dd274c7426d4d4314d3d7f3",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 5,
+   "redistributable": "no",
+   "repo": "dholab/SNAILS",
+   "robot_mentions": [],
+   "size_kb": 4914,
+   "status": "cloned",
+   "url": "https://github.com/dholab/SNAILS"
+  }
+ ],
+ "doi_primary": "10.1186/s12864-021-07500-w",
+ "dois": [
+  "10.1186/s12864-021-07500-w"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 30,
+  "source": "europepmc:PMC7953553"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1275152,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "f1da5c699d24bfeb8bef3123e32c71524751d43db85cc3d2447674c9ce4720ba",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": false,
+    "url": "https://bmcgenomics.biomedcentral.com/counter/pdf/10.1186/s12864-021-07500-w"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7953553?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7953553.1/PMC7953553.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7953553.1/PMC7953553.1.pdf"
+ },
+ "pmcid": "PMC7953553",
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/snails-slow-pipetting",
+ "title": "Consistent ultra-long DNA sequencing with automated slow pipetting",
+ "year": "2021"
+}

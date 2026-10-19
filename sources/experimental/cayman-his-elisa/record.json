@@ -1,0 +1,57 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.20"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/cayman-his-elisa/Arcadia-Science__cayman-his-elisa-opentrons-workflow",
+   "commit": "45b29bc29da2d3dca63f7820b2cce825c4d9f39b",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 4,
+   "py_files": 4,
+   "redistributable": "yes",
+   "repo": "Arcadia-Science/cayman-his-elisa-opentrons-workflow",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 36052,
+   "status": "cloned",
+   "url": "https://github.com/Arcadia-Science/cayman-his-elisa-opentrons-workflow"
+  }
+ ],
+ "dois": [
+  "10.17504/protocols.io.n92ld4x3nl5b"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github",
+  "web"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.17504/protocols.io.n92ld4x3nl5b:\n  europepmc: no Europe PMC full text",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/cayman-his-elisa",
+ "title": "An Opentrons OT-2 workflow for the Cayman His-tag detection ELISA kit",
+ "year": ""
+}

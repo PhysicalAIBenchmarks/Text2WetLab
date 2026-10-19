@@ -1,0 +1,61 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/cfrna-pipeline/miramou__cfRNA_pipeline_automation",
+   "commit": "7682321f46e89310503f9f766e53f4b282b6fca3",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 6,
+   "py_files": 13,
+   "redistributable": "no",
+   "repo": "miramou/cfRNA_pipeline_automation",
+   "robot_mentions": [],
+   "size_kb": 1294,
+   "status": "cloned",
+   "url": "https://github.com/miramou/cfRNA_pipeline_automation"
+  }
+ ],
+ "doi_primary": "10.1038/s41596-023-00855-2",
+ "dois": [
+  "10.1038/s41596-023-00855-2"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "web"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1038/s41596-023-00855-2:\n  europepmc: no Europe PMC full text for thi",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": false,
+    "url": "https://www.nature.com/articles/s41596-023-00855-2.pdf"
+   }
+  ]
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/cfrna-pipeline",
+ "title": "An inexpensive semi-automated sample processing pipeline for cell-free RNA (extraction)",
+ "year": "2023"
+}

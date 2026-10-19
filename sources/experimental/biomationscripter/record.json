@@ -1,0 +1,46 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.0",
+    "2.10",
+    "2.11"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/biomationscripter/intbio-ncl__BiomationScripterLib",
+   "commit": "2d6b0829f0812fa510a78aa9052ea92f45ce9866",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 19,
+   "py_files": 29,
+   "redistributable": "yes",
+   "repo": "intbio-ncl/BiomationScripterLib",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 4653,
+   "status": "cloned",
+   "url": "https://github.com/intbio-ncl/BiomationScripterLib"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/biomationscripter",
+ "title": "BiomationScripter: Python library for scripting bio-automation protocols",
+ "year": ""
+}

@@ -1,0 +1,74 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.9"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/greenaway-mocs/GreenawayLab__development-automated-workflow-mocs",
+   "commit": "8df90c063af7eca3f58ad7ce1e984d9004079da1",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 5,
+   "py_files": 12,
+   "redistributable": "no",
+   "repo": "GreenawayLab/development-automated-workflow-mocs",
+   "robot_mentions": [],
+   "size_kb": 2472,
+   "status": "cloned",
+   "url": "https://github.com/GreenawayLab/development-automated-workflow-mocs"
+  }
+ ],
+ "doi_primary": "10.1002/anie.202424270",
+ "dois": [
+  "10.1002/anie.202424270"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github",
+  "web"
+ ],
+ "fulltext": {
+  "legends": 8,
+  "sections": 13,
+  "source": "europepmc:PMC12144869"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3062660,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "941d9e2e1d40172411db55f6c17ec26accf82adc953fd59a4a5da47f76afb0e3",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12144869?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12144869.1/PMC12144869.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12144869.1/PMC12144869.1.pdf"
+ },
+ "pmcid": "PMC12144869",
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/greenaway-mocs",
+ "title": "Development of an Automated Workflow for Screening the Assembly and Host-Guest Behavior of Metal-Organic Cages",
+ "year": "2025"
+}

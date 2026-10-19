@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/plastic-substitutes-al/chentl__MatAL",
+   "commit": "fc2b9f98032f22bdd4f938c14717d014f7b235f2",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "BSD-3-Clause-Clear",
+   "opentrons_py_files": 0,
+   "py_files": 10,
+   "redistributable": "no",
+   "repo": "chentl/MatAL",
+   "robot_mentions": [],
+   "size_kb": 312,
+   "status": "cloned",
+   "url": "https://github.com/chentl/MatAL"
+  }
+ ],
+ "doi_primary": "10.1038/s41565-024-01635-z",
+ "dois": [
+  "10.1038/s41565-024-01635-z"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 43,
+  "source": "europepmc:PMC11186784"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2530152,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "35048b7f9f91b18b6888fdb1ef8eac15bb284c7066b6ce99a8c42b609ffbe7f6",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s41565-024-01635-z.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s41565-024-01635-z.pdf"
+ },
+ "pmcid": "PMC11186784",
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/plastic-substitutes-al",
+ "title": "Machine intelligence-accelerated discovery of all-natural plastic substitutes",
+ "year": "2024"
+}

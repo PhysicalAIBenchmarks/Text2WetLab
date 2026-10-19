@@ -1,0 +1,42 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.10"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/locost-covid-nanopore-ot2/JDMirza__Opentrons_LoCost_Covid19",
+   "commit": "bc11e19be5fccab9d9abf328886a1177ba43b528",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 6,
+   "py_files": 6,
+   "redistributable": "no",
+   "repo": "JDMirza/Opentrons_LoCost_Covid19",
+   "robot_mentions": [],
+   "size_kb": 14330,
+   "status": "cloned",
+   "url": "https://github.com/JDMirza/Opentrons_LoCost_Covid19"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/locost-covid-nanopore-ot2",
+ "title": "Opentrons_LoCost_Covid19 (ARTIC LoCost nanopore library prep on OT-2)",
+ "year": ""
+}

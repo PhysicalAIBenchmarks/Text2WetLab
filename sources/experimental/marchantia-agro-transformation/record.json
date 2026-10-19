@@ -1,0 +1,53 @@
+{
+ "code": [],
+ "doi_primary": "10.1111/tpj.70118",
+ "dois": [
+  "10.1111/tpj.70118"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 23,
+  "source": "europepmc:PMC11993085"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 29503591,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "ec5b3827533dbdacf9972b3ccc6c229348fb67008ca491d210a4fceec8145027",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11993085?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11993085.1/PMC11993085.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11993085.1/PMC11993085.1.pdf"
+ },
+ "pmcid": "PMC11993085",
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/marchantia-agro-transformation",
+ "title": "Semi-automated workflow for high-throughput Agrobacterium-mediated plant transformation",
+ "year": "2025"
+}

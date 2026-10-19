@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/chemputer-acra/croningp__acra",
+   "commit": "723b1e282ba00c5aed1a087ba92422a3bc3ead7d",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "BSD-3-Clause",
+   "opentrons_py_files": 0,
+   "py_files": 41,
+   "redistributable": "yes",
+   "repo": "croningp/acra",
+   "robot_mentions": [],
+   "size_kb": 33637,
+   "status": "cloned",
+   "url": "https://github.com/croningp/acra"
+  }
+ ],
+ "doi_primary": "10.1038/s42004-026-01993-w",
+ "dois": [
+  "10.1038/s42004-026-01993-w"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 22,
+  "source": "europepmc:PMC13219472"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3308563,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "e6be067d784bcb490ec787e67ba2a7e2820f248ac47aeecc3d684e0108c92eb2",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC13219472?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13219472.1/PMC13219472.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13219472.1/PMC13219472.1.pdf"
+ },
+ "pmcid": "PMC13219472",
+ "readiness": "ready",
+ "robot_platform": "protocol_language",
+ "simulator": "not run",
+ "slug": "experimental/chemputer-acra",
+ "title": "Verification and execution of the scientific literature via chemputation augmented by large language models",
+ "year": "2026"
+}

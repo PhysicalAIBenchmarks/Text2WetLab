@@ -1,0 +1,52 @@
+{
+ "code": [
+  {
+   "status": "no public code",
+   "url": "none found"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-020-15728-5",
+ "dois": [
+  "10.1038/s41467-020-15728-5"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 34,
+  "source": "europepmc:PMC7184584"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2396548,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "88aed5d49f7af2cfdaad05eaca91f143ea88463968dff4a50ff9103aa79a4fc4",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s41467-020-15728-5.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s41467-020-15728-5.pdf"
+ },
+ "pmcid": "PMC7184584",
+ "readiness": "no",
+ "robot_platform": "synthesis",
+ "simulator": "not run",
+ "slug": "experimental/cloudlab-chiral-perovskite",
+ "title": "Autonomous discovery of optically active chiral inorganic perovskite nanocrystals through an intelligent cloud lab",
+ "year": "2020"
+}

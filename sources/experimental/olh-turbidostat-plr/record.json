@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/olh-turbidostat-plr/chory-lab__plr-turbidostat",
+   "commit": "410e7f49005d6ad249ba880ad1195ad9462458da",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 39,
+   "redistributable": "no",
+   "repo": "chory-lab/plr-turbidostat",
+   "robot_mentions": [],
+   "size_kb": 205,
+   "status": "cloned",
+   "url": "https://github.com/chory-lab/plr-turbidostat"
+  }
+ ],
+ "doi_primary": "10.64898/2026.03.02.709168",
+ "dois": [
+  "10.64898/2026.03.02.709168"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "fulltext": {
+  "legends": 15,
+  "sections": 18,
+  "source": "biorxiv"
+ },
+ "journal": "bioRxiv",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "bytes": 15248126,
+  "licence": "",
+  "pages": null,
+  "redistributable": "unknown",
+  "sha256": "f11970571c8f3622818554eb2df35184d6e35dbb2ccae674fa2ba608734b721b",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.biorxiv.org/content/10.64898/2026.03.02.709168v1.full.pdf"
+   }
+  ],
+  "url": "https://www.biorxiv.org/content/10.64898/2026.03.02.709168v1.full.pdf"
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "pylabrobot",
+ "simulator": "not run",
+ "slug": "experimental/olh-turbidostat-plr",
+ "title": "A Purpose-Built Open Source Liquid Handler for Industry-Class Automated Experiments",
+ "year": "2026"
+}

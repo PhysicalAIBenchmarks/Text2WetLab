@@ -1,0 +1,59 @@
+{
+ "code": [
+  {
+   "host": "www.protocols.io",
+   "status": "not code: protocol text",
+   "url": "https://www.protocols.io/view/high-throughput-miniaturized-16s-rrna-amplicon-lib-u2ieyce"
+  }
+ ],
+ "doi_primary": "10.1128/mSystems.00166-18",
+ "dois": [
+  "10.1128/mSystems.00166-18"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 4,
+  "sections": 13,
+  "source": "europepmc:PMC6222042"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1122280,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "5fd36089adb9485ef1ea63f175982884154109ea3dd122375a19ee1f0c8d9b02",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC6222042?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6222042.1/PMC6222042.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6222042.1/PMC6222042.1.pdf"
+ },
+ "pmcid": "PMC6222042",
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/miniaturized-16s-mosquito",
+ "title": "High-Throughput Miniaturized 16S rRNA Amplicon Library Preparation Reduces Costs while Preserving Microbiome Integrity",
+ "year": "2018"
+}

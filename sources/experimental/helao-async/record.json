@@ -1,0 +1,52 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/helao-async/High-Throughput-Experimentation__helao-async",
+   "commit": "cc07dbd7deaf22236b0ec4caad6f05761981b180",
+   "default_branch": "unstable",
+   "host": "github.com",
+   "licence": "unclear",
+   "opentrons_py_files": 0,
+   "py_files": 1045,
+   "redistributable": "no",
+   "repo": "High-Throughput-Experimentation/helao-async",
+   "robot_mentions": [],
+   "size_kb": 35684,
+   "status": "cloned",
+   "url": "https://github.com/High-Throughput-Experimentation/helao-async"
+  }
+ ],
+ "dois": [
+  "10.1039/d3dd00193h"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1039/d3dd00193h:\n  europepmc: no Europe PMC full text for this DOI\nDo",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "characterisation",
+ "simulator": "not run",
+ "slug": "experimental/helao-async",
+ "title": "HELAO-async: autonomous electrochemistry/high-throughput experimentation orchestration (Caltech/TRI)",
+ "year": ""
+}

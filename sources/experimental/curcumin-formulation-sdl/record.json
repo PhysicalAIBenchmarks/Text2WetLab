@@ -1,0 +1,79 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/curcumin-formulation-sdl/shorthouse-lab__Ros_SDformulation",
+   "commit": "c044c8034e348193863b9dfffe3d53dcbc823183",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 0,
+   "redistributable": "no",
+   "repo": "shorthouse-lab/Ros_SDformulation",
+   "robot_mentions": [],
+   "size_kb": 1143,
+   "status": "cloned",
+   "url": "https://github.com/shorthouse-lab/Ros_SDformulation"
+  }
+ ],
+ "doi_primary": "10.1039/d5dd00171d",
+ "dois": [
+  "10.1039/d5dd00171d"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 26,
+  "source": "europepmc:PMC13576497"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "licence": "cc by",
+  "redistributable": "unknown",
+  "status": "not_found",
+  "tried": [
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13576497.1/PMC13576497.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13576497.2/PMC13576497.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13576497.3/PMC13576497.3.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC13576497&blobtype=pdf"
+   }
+  ]
+ },
+ "pmcid": "PMC13576497",
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/curcumin-formulation-sdl",
+ "title": "Efficient discovery of new medicine formulations using a semi-self-driven robotic formulator",
+ "year": "2025"
+}

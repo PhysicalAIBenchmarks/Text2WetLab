@@ -1,0 +1,44 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.16"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/ac-training-lab/AccelerationConsortium__ac-training-lab",
+   "commit": "ffbbb0132cbcdd11ae2bdcd43e459ca8af23374d",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 5,
+   "py_files": 176,
+   "redistributable": "yes",
+   "repo": "AccelerationConsortium/ac-training-lab",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 173824,
+   "status": "cloned",
+   "url": "https://github.com/AccelerationConsortium/ac-training-lab"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "plate_transport",
+ "simulator": "not run",
+ "slug": "experimental/ac-training-lab",
+ "title": "Acceleration Consortium Training Lab (remote-access SDL modules incl. Hello-World, sample transfer)",
+ "year": ""
+}

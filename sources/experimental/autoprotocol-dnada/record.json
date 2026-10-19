@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/autoprotocol-dnada/JBEI__dnada",
+   "commit": "ec9022c83b9da58f832246c42d56be9d03db7d58",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "Apache-2.0",
+   "opentrons_py_files": 0,
+   "py_files": 208,
+   "redistributable": "yes",
+   "repo": "JBEI/dnada",
+   "robot_mentions": [],
+   "size_kb": 1471,
+   "status": "cloned",
+   "url": "https://github.com/JBEI/dnada"
+  }
+ ],
+ "doi_primary": "10.1021/acssynbio.3c00292",
+ "dois": [
+  "10.1021/acssynbio.3c00292"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 3,
+  "sections": 7,
+  "source": "europepmc:PMC10729297"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3259528,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "fe49de7b3b3408f62d4f8b56ec8f9656fd0838c02881fb10819e1f7552885133",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC10729297?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10729297.1/PMC10729297.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10729297.1/PMC10729297.1.pdf"
+ },
+ "pmcid": "PMC10729297",
+ "readiness": "ready",
+ "robot_platform": "protocol_language",
+ "simulator": "not run",
+ "slug": "experimental/autoprotocol-dnada",
+ "title": "Automated Platform for the Plasmid Construction Process (DNAda -> Autoprotocol)",
+ "year": "2023"
+}

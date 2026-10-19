@@ -1,0 +1,67 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.11"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/lucks-cellfree-biosensor/LucksLab__Brown_Phillips_Semi-Automated_Biosensor_Manufacturing_2024",
+   "commit": "939b0ac1fdc7fd8f023898eb527679f4d889f7ea",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 1,
+   "py_files": 1,
+   "redistributable": "no",
+   "repo": "LucksLab/Brown_Phillips_Semi-Automated_Biosensor_Manufacturing_2024",
+   "robot_mentions": [],
+   "size_kb": 9828,
+   "status": "cloned",
+   "url": "https://github.com/LucksLab/Brown_Phillips_Semi-Automated_Biosensor_Manufacturing_2024"
+  }
+ ],
+ "doi_primary": "10.1101/2024.10.13.618078",
+ "dois": [
+  "10.1101/2024.10.13.618078"
+ ],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "fulltext": {
+  "legends": 2,
+  "sections": 14,
+  "source": "biorxiv"
+ },
+ "journal": "bioRxiv",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1501135,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "695d9b1cad7b8e1067aeec8354a6ef4d37d4b983fee81438358d2302cfa54758",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.biorxiv.org/content/10.1101/2024.10.13.618078v1.full.pdf"
+   }
+  ],
+  "url": "https://www.biorxiv.org/content/10.1101/2024.10.13.618078v1.full.pdf"
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/lucks-cellfree-biosensor",
+ "title": "Semi-automated production of cell-free biosensors",
+ "year": "2024"
+}

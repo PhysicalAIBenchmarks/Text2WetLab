@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/etsted/jonatanalvelid__etSTED-widget",
+   "commit": "b7b2dc1ae8518881fc3aa053a43ebba125552489",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "GPL-3.0",
+   "opentrons_py_files": 0,
+   "py_files": 15,
+   "redistributable": "no",
+   "repo": "jonatanalvelid/etSTED-widget",
+   "robot_mentions": [],
+   "size_kb": 211,
+   "status": "cloned",
+   "url": "https://github.com/jonatanalvelid/etSTED-widget"
+  }
+ ],
+ "doi_primary": "10.1038/s41592-022-01588-y",
+ "dois": [
+  "10.1038/s41592-022-01588-y"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 13,
+  "sections": 44,
+  "source": "europepmc:PMC9550628"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 9704490,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "788218922d73bc627bb88b10ac88189e97386e9b010344fb24622b2c6124e24c",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s41592-022-01588-y.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s41592-022-01588-y.pdf"
+ },
+ "pmcid": "PMC9550628",
+ "readiness": "ready",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/etsted",
+ "title": "Event-triggered STED imaging",
+ "year": "2022"
+}

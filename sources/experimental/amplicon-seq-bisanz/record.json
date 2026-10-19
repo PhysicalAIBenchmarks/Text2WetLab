@@ -1,0 +1,42 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.7"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/amplicon-seq-bisanz/jbisanz__AmpliconSeq",
+   "commit": "fd7cf6412a4538e9de07aa7a49d350b7537a81ca",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 5,
+   "py_files": 5,
+   "redistributable": "no",
+   "repo": "jbisanz/AmpliconSeq",
+   "robot_mentions": [],
+   "size_kb": 3965,
+   "status": "cloned",
+   "url": "https://github.com/jbisanz/AmpliconSeq"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/amplicon-seq-bisanz",
+ "title": "AmpliconSeq (16S amplicon library OT-2 scripts, Bisanz lab)",
+ "year": ""
+}

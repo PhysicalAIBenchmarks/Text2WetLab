@@ -1,0 +1,35 @@
+{
+ "code": [],
+ "doi_primary": "10.1016/j.talanta.2024.125988",
+ "dois": [
+  "10.1016/j.talanta.2024.125988"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1016/j.talanta.2024.125988:\n  europepmc: no Europe PMC full text for ",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc",
+ "pdf": {
+  "licence": "cc by-nc",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "no",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/bead-digestion-ann",
+ "title": "Refinement of paramagnetic bead-based digestion protocol for automatic sample preparation using an artificial neural network",
+ "year": "2024"
+}

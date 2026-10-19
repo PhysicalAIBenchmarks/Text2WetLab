@@ -1,0 +1,78 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/catib-screening/JuBiotech__Supplement-to-Helleckes-Kuesters-et-al.-2023",
+   "commit": "0e74f221ebf95e25e7de90233e765cdb769f2fec",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "GPL-3.0",
+   "opentrons_py_files": 0,
+   "py_files": 4,
+   "redistributable": "no",
+   "repo": "JuBiotech/Supplement-to-Helleckes-Kuesters-et-al.-2023",
+   "robot_mentions": [],
+   "size_kb": 47929,
+   "status": "cloned",
+   "url": "https://github.com/JuBiotech/Supplement-to-Helleckes-Kuesters-et-al.-2023"
+  }
+ ],
+ "doi_primary": "10.1186/s12934-024-02319-y",
+ "dois": [
+  "10.1186/s12934-024-02319-y"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "web"
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 25,
+  "source": "europepmc:PMC10894497"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2782752,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "e8c1df16dbe6664a48d53d63e9c95de06137ad6f592b922038e1c98dd0f151e3",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": false,
+    "url": "https://microbialcellfactories.biomedcentral.com/counter/pdf/10.1186/s12934-024-02319-y"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC10894497?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10894497.1/PMC10894497.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC10894497.1/PMC10894497.1.pdf"
+ },
+ "pmcid": "PMC10894497",
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/catib-screening",
+ "title": "\"High-throughput screening of catalytically active inclusion bodies using laboratory automation and Bayesian optimization\"",
+ "year": "2024"
+}

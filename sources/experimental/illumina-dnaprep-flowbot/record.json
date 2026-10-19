@@ -1,0 +1,47 @@
+{
+ "code": [],
+ "doi_primary": "10.1038/s41598-024-58963-2",
+ "dois": [
+  "10.1038/s41598-024-58963-2"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 2,
+  "sections": 14,
+  "source": "europepmc:PMC11001922"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1266579,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "8d01cffea8083d8be3e3c4839bab1e52191ccacd7557063301c5b313984a872d",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s41598-024-58963-2.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s41598-024-58963-2.pdf"
+ },
+ "pmcid": "PMC11001922",
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/illumina-dnaprep-flowbot",
+ "title": "Automating the Illumina DNA library preparation kit for whole genome sequencing applications on the flowbot ONE liquid handler robot",
+ "year": "2024"
+}

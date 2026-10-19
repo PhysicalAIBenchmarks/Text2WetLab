@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/duckbot-jubilee/machineagency__duckbot",
+   "commit": "6890a8bda253a0efd5d902d203b014466ed959e2",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 0,
+   "py_files": 1,
+   "redistributable": "yes",
+   "repo": "machineagency/duckbot",
+   "robot_mentions": [],
+   "size_kb": 415295,
+   "status": "cloned (partial: code, configs and docs only)",
+   "url": "https://github.com/machineagency/duckbot"
+  }
+ ],
+ "doi_primary": "10.1371/journal.pone.0296717",
+ "dois": [
+  "10.1371/journal.pone.0296717"
+ ],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "fulltext": {
+  "legends": 10,
+  "sections": 8,
+  "source": "europepmc:PMC10805289"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2681746,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "34fd9a7a9a96d47d94f37d90aef8da935126d8548ad0210bb9003cf59825ba39",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0296717&type=printable"
+   }
+  ],
+  "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0296717&type=printable"
+ },
+ "pmcid": "PMC10805289",
+ "readiness": "partial",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/duckbot-jubilee",
+ "title": "The Duckbot: A system for automated imaging and manipulation of duckweed",
+ "year": "2024"
+}

@@ -1,0 +1,52 @@
+{
+ "code": [],
+ "doi_primary": "10.1021/acs.analchem.5c00886",
+ "dois": [
+  "10.1021/acs.analchem.5c00886"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1021/acs.analchem.5c00886:\n  europepmc: Server error '500 ' for url '",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 4974278,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "71141a31956c1571a2712e2596d00908311e85232a54a551a89efcea7174ba9b",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12355475?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12355475.1/PMC12355475.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12355475.1/PMC12355475.1.pdf"
+ },
+ "pmcid": "PMC12355475",
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/auto-sp-proteomics",
+ "title": "AUTO-SP: Automated Sample Preparation for Analyzing Proteins and Protein Modifications",
+ "year": "2025"
+}

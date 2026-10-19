@@ -1,0 +1,83 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.1",
+    "2.2",
+    "2.8"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/jubiotech-ot2-autoclone/JuBiotech__OT-2-autoclone",
+   "commit": "e499c1ba572dd9023c248bec07113518bd2b4a4e",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "AGPL-3.0",
+   "opentrons_py_files": 7,
+   "py_files": 8,
+   "redistributable": "no",
+   "repo": "JuBiotech/OT-2-autoclone",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 448,
+   "status": "cloned",
+   "url": "https://github.com/JuBiotech/OT-2-autoclone"
+  }
+ ],
+ "doi_primary": "10.1007/s00253-022-12017-7",
+ "dois": [
+  "10.1007/s00253-022-12017-7"
+ ],
+ "experimental": true,
+ "found_by": [
+  "web"
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 23,
+  "source": "europepmc:PMC9259529"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 4097486,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "49e7b8af0af7814d325d8db784852ac85fcbbf2ce37733d45f5e5a24816aee5d",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": false,
+    "url": "https://link.springer.com/content/pdf/10.1007/s00253-022-12017-7.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC9259529?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9259529.1/PMC9259529.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9259529.1/PMC9259529.1.pdf"
+ },
+ "pmcid": "PMC9259529",
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "partly_verified",
+ "slug": "experimental/jubiotech-ot2-autoclone",
+ "title": "Accelerated strain construction and characterization of C. glutamicum protein secretion by laboratory automation",
+ "year": "2022"
+}

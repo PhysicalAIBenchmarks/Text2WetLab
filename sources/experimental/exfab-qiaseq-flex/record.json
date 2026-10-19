@@ -1,0 +1,57 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.18"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/exfab-qiaseq-flex/exfab__Opentrons_Flex_ExFAB",
+   "commit": "30bf26a9014b1fdb0a135ddfb1135d21aab4c1f9",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "GPL-3.0",
+   "opentrons_py_files": 1,
+   "py_files": 1,
+   "redistributable": "no",
+   "repo": "exfab/Opentrons_Flex_ExFAB",
+   "robot_mentions": [
+    "Flex"
+   ],
+   "size_kb": 26,
+   "status": "cloned",
+   "url": "https://github.com/exfab/Opentrons_Flex_ExFAB"
+  }
+ ],
+ "dois": [
+  "10.17504/protocols.io.n2bvjer3pgk5"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github",
+  "web"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.17504/protocols.io.n2bvjer3pgk5:\n  europepmc: no Europe PMC full text",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "flex",
+ "simulator": "verified",
+ "slug": "experimental/exfab-qiaseq-flex",
+ "title": "Automated QIAseq FX DNA Library Preparation on the Opentrons Flex",
+ "year": ""
+}

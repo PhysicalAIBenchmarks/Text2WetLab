@@ -1,0 +1,45 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.18"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/myrplate-flex-casting/Hosseinat11502__MyrplateTissueCasting-8channel1mltip-Version-15",
+   "commit": "224bad083b0b0092d1795f6ba6d3fed401d667a7",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 3,
+   "py_files": 3,
+   "redistributable": "yes",
+   "repo": "Hosseinat11502/MyrplateTissueCasting-8channel1mltip-Version-15",
+   "robot_mentions": [
+    "Flex"
+   ],
+   "size_kb": 54815,
+   "status": "cloned",
+   "url": "https://github.com/Hosseinat11502/MyrplateTissueCasting-8channel1mltip-Version-15"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github",
+  "web"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "flex",
+ "simulator": "not run",
+ "slug": "experimental/myrplate-flex-casting",
+ "title": "myrPlate engineered connective tissue casting on Opentrons Flex",
+ "year": ""
+}

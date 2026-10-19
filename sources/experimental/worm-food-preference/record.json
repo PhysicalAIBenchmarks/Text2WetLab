@@ -1,0 +1,95 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.16"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/worm-food-preference/slhogle__c_elegans_food_preference_protocol",
+   "commit": "dec0ae98e41a4582bc573ad9ce91e05c90c38fe1",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "GPL-3.0",
+   "opentrons_py_files": 2,
+   "py_files": 2,
+   "redistributable": "no",
+   "repo": "slhogle/c_elegans_food_preference_protocol",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 216,
+   "status": "cloned",
+   "url": "https://github.com/slhogle/c_elegans_food_preference_protocol"
+  }
+ ],
+ "doi_primary": "10.1242/jeb.01955",
+ "dois": [
+  "10.1242/jeb.01955"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github",
+  "web"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1242/jeb.01955:\n  europepmc: Server error '500 ' for url 'https://www",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC1352325?pdf=render"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC1352325.1/PMC1352325.1.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC1352325.2/PMC1352325.2.pdf"
+   },
+   {
+    "http": 404,
+    "manual": false,
+    "ok": false,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC1352325.3/PMC1352325.3.pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC1352325&blobtype=pdf"
+   },
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "http://journals.biologists.com/jeb/article-pdf/209/1/89/1255771/89.pdf"
+   }
+  ]
+ },
+ "pmcid": "PMC1352325",
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/worm-food-preference",
+ "title": "C. elegans food preference protocol (bacteria and worm spotting on OT-2)",
+ "year": "2006"
+}

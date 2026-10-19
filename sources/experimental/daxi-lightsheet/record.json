@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/daxi-lightsheet/royerlab__daxi",
+   "commit": "294586d19a1f3f8c762602eeca8c1da8a1494537",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "unclear",
+   "opentrons_py_files": 0,
+   "py_files": 9,
+   "redistributable": "no",
+   "repo": "royerlab/daxi",
+   "robot_mentions": [],
+   "size_kb": 32250,
+   "status": "cloned",
+   "url": "https://github.com/royerlab/daxi"
+  }
+ ],
+ "doi_primary": "10.1038/s41592-022-01417-2",
+ "dois": [
+  "10.1038/s41592-022-01417-2"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 15,
+  "sections": 29,
+  "source": "europepmc:PMC9007742"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 5955878,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "a1606df4738f0c465a1e4398564cbb758388deda62972aed177b54e19de5467b",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.nature.com/articles/s41592-022-01417-2.pdf"
+   }
+  ],
+  "url": "https://www.nature.com/articles/s41592-022-01417-2.pdf"
+ },
+ "pmcid": "PMC9007742",
+ "readiness": "partial",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/daxi-lightsheet",
+ "title": "DaXi: high-resolution, large imaging volume and multi-view single-objective light-sheet microscopy",
+ "year": "2022"
+}

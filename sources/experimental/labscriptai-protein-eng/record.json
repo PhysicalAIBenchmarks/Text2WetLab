@@ -1,0 +1,73 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.15",
+    "2.20",
+    "2.21",
+    "2.22"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/labscriptai-protein-eng/KRATSZ__LabScript-AI",
+   "commit": "04115e4c2177d46cbf1c58397b642fb16e0c52b4",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 27,
+   "py_files": 78,
+   "redistributable": "no",
+   "repo": "KRATSZ/LabScript-AI",
+   "robot_mentions": [
+    "Flex",
+    "OT-2"
+   ],
+   "size_kb": 71367,
+   "status": "cloned",
+   "url": "https://github.com/KRATSZ/LabScript-AI"
+  }
+ ],
+ "doi_primary": "10.1101/2025.09.30.679666",
+ "dois": [
+  "10.1101/2025.09.30.679666"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "fulltext": {
+  "legends": 12,
+  "sections": 43,
+  "source": "biorxiv"
+ },
+ "journal": "bioRxiv",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "bytes": 6717782,
+  "licence": "",
+  "pages": null,
+  "redistributable": "unknown",
+  "sha256": "3a96bb5e120a79027ac15183cdc1a31dcc6f40c9e5b7b25d833276708dc088b6",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.biorxiv.org/content/10.1101/2025.09.30.679666v3.full.pdf"
+   }
+  ],
+  "url": "https://www.biorxiv.org/content/10.1101/2025.09.30.679666v3.full.pdf"
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/labscriptai-protein-eng",
+ "title": "Autonomous liquid-handling robotics scripting through large language models enables accessible and safe protein engineering workflows",
+ "year": "2025"
+}

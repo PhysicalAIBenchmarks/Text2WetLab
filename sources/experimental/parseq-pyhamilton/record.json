@@ -1,0 +1,65 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/parseq-pyhamilton/finyl__parseq-pyhamilton",
+   "commit": "202a0eb95666ab9596b7ce8995009a25c9b20f38",
+   "default_branch": "dev",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 18,
+   "redistributable": "no",
+   "repo": "finyl/parseq-pyhamilton",
+   "robot_mentions": [],
+   "size_kb": 3510,
+   "status": "cloned",
+   "url": "https://github.com/finyl/parseq-pyhamilton"
+  }
+ ],
+ "doi_primary": "10.1101/2023.12.12.571337",
+ "dois": [
+  "10.1101/2023.12.12.571337"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "fulltext": {
+  "legends": 12,
+  "sections": 33,
+  "source": "biorxiv"
+ },
+ "journal": "bioRxiv",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "bytes": 8832026,
+  "licence": "",
+  "pages": null,
+  "redistributable": "unknown",
+  "sha256": "4856aa96b19e438653f2418b36491928a89755dce2c588eec8821f07d9581ceb",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://www.biorxiv.org/content/biorxiv/early/2023/12/12/2023.12.12.571337.full.pdf"
+   }
+  ],
+  "url": "https://www.biorxiv.org/content/biorxiv/early/2023/12/12/2023.12.12.571337.full.pdf"
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "hamilton",
+ "simulator": "not run",
+ "slug": "experimental/parseq-pyhamilton",
+ "title": "parSEQ:  Probe and Rescue Sequencing for Advanced Variant Retrieval from DNA Pool",
+ "year": "2023"
+}

@@ -1,0 +1,53 @@
+{
+ "code": [],
+ "doi_primary": "10.1371/journal.pone.0206194",
+ "dois": [
+  "10.1371/journal.pone.0206194"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 10,
+  "source": "europepmc:PMC6328170"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 1932304,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "06d55cd751c5448138eda5f8ae33973360ef3c1f3f275ba1dfd70d7d01803d74",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC6328170?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6328170.1/PMC6328170.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6328170.1/PMC6328170.1.pdf"
+ },
+ "pmcid": "PMC6328170",
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/mngs-384-miniaturized",
+ "title": "Miniaturization and optimization of 384-well compatible RNA sequencing library preparation",
+ "year": "2019"
+}

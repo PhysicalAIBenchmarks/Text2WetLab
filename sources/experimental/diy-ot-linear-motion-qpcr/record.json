@@ -1,0 +1,53 @@
+{
+ "code": [],
+ "doi_primary": "10.1038/s41598-020-70465-5",
+ "dois": [
+  "10.1038/s41598-020-70465-5"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 5,
+  "sections": 24,
+  "source": "europepmc:PMC7424513"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 2825640,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "c8fefb18bd92d2db5059acd6487a5ece1e6bd4c78c53636ea53f480f20f891fa",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC7424513?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7424513.1/PMC7424513.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7424513.1/PMC7424513.1.pdf"
+ },
+ "pmcid": "PMC7424513",
+ "readiness": "no",
+ "robot_platform": "other",
+ "simulator": "not run",
+ "slug": "experimental/diy-ot-linear-motion-qpcr",
+ "title": "Principles of computer-controlled linear motion applied to an open-source affordable liquid handler for automated micropipetting",
+ "year": "2020"
+}

@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/ht-hcr-sea-urchin/ylee-sio__HL_HTHCR",
+   "commit": "83eaf3c59a9e4ebac92fa3e0fabb50d9ec098ac0",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 3,
+   "redistributable": "no",
+   "repo": "ylee-sio/HL_HTHCR",
+   "robot_mentions": [],
+   "size_kb": 73,
+   "status": "cloned",
+   "url": "https://github.com/ylee-sio/HL_HTHCR"
+  }
+ ],
+ "doi_primary": "10.1242/dev.204814",
+ "dois": [
+  "10.1242/dev.204814"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass"
+ ],
+ "fulltext": {
+  "legends": 7,
+  "sections": 20,
+  "source": "europepmc:PMC12516323"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 10818646,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "9c3885f0a643e0f09648a592eacdf6a1a5a59091e530577193073d4e74aa6e44",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC12516323?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12516323.1/PMC12516323.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12516323.1/PMC12516323.1.pdf"
+ },
+ "pmcid": "PMC12516323",
+ "readiness": "partial",
+ "robot_platform": "flex",
+ "simulator": "not run",
+ "slug": "experimental/ht-hcr-sea-urchin",
+ "title": "Automated, high-throughput in situ hybridization of sea urchin (Lytechinus pictus) embryos",
+ "year": "2025"
+}

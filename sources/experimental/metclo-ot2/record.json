@@ -1,0 +1,57 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.3"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/metclo-ot2/Edinburgh-Genome-Foundry__OT2Metclo",
+   "commit": "e4ac05c535bf8129f29883b9f5b399445165d231",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 2,
+   "py_files": 2,
+   "redistributable": "no",
+   "repo": "Edinburgh-Genome-Foundry/OT2Metclo",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 1205,
+   "status": "cloned",
+   "url": "https://github.com/Edinburgh-Genome-Foundry/OT2Metclo"
+  }
+ ],
+ "doi_primary": "10.1007/978-1-0716-0908-8_9",
+ "dois": [
+  "10.1007/978-1-0716-0908-8_9"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1007/978-1-0716-0908-8_9:\n  europepmc: no Europe PMC full text for th",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/metclo-ot2",
+ "title": "MetCloOT2: Automated MetClo assembly on Opentrons OT-2 (MSc project, based on Lin & O Callaghan 2018/2020)",
+ "year": "2020"
+}

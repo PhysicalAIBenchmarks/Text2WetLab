@@ -1,0 +1,71 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/afion-plasmonic/Taylorwutianyi__AFION-LAB",
+   "commit": "0e98561118e008d5d7c2179c5032df776e40c5ab",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 0,
+   "py_files": 20,
+   "redistributable": "no",
+   "repo": "Taylorwutianyi/AFION-LAB",
+   "robot_mentions": [],
+   "size_kb": 2777,
+   "status": "cloned",
+   "url": "https://github.com/Taylorwutianyi/AFION-LAB"
+  }
+ ],
+ "doi_primary": "10.1038/s41467-025-56788-9",
+ "dois": [
+  "10.1038/s41467-025-56788-9"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "legends": 6,
+  "sections": 34,
+  "source": "europepmc:PMC11807174"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by-nc-nd",
+ "pdf": {
+  "bytes": 2583740,
+  "licence": "cc by-nc-nd",
+  "pages": null,
+  "redistributable": "no",
+  "sha256": "5e43ec6737805fa1f685b9bd73850f220d862019b4eb9eb995f0edf8ca4877c7",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11807174?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11807174.1/PMC11807174.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11807174.1/PMC11807174.1.pdf"
+ },
+ "pmcid": "PMC11807174",
+ "readiness": "partial",
+ "robot_platform": "synthesis",
+ "simulator": "not run",
+ "slug": "experimental/afion-plasmonic",
+ "title": "Self-driving lab for the photochemical synthesis of plasmonic nanoparticles (AFION)",
+ "year": "2025"
+}

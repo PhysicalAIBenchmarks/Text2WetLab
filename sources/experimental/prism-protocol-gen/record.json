@@ -1,0 +1,63 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.12"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/prism-protocol-gen/ramanathanlab__PRISM",
+   "commit": "0f3fe4dfbbd8e022fc650794e027af5a7b6c4851",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 4,
+   "py_files": 56,
+   "redistributable": "yes",
+   "repo": "ramanathanlab/PRISM",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 138557,
+   "status": "cloned",
+   "url": "https://github.com/ramanathanlab/PRISM"
+  }
+ ],
+ "dois": [
+  "10.1039/d6dd00004e"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.1039/d6dd00004e:\n  europepmc: no Europe PMC full text for this DOI\nDo",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "http://pubs.rsc.org/en/content/articlepdf/2026/DD/D6DD00004E"
+   }
+  ]
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/prism-protocol-gen",
+ "title": "PRISM: Protocol Refinement through Intelligent Simulation Modeling",
+ "year": ""
+}

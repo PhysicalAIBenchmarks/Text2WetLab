@@ -1,0 +1,57 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.7"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/damplab-taqpath-ot2/DAMPLAB__OT2-SARS-CoV2",
+   "commit": "f9a719cbf1db7ea2d827f3574225e317c75287a2",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 2,
+   "py_files": 2,
+   "redistributable": "no",
+   "repo": "DAMPLAB/OT2-SARS-CoV2",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 448,
+   "status": "cloned",
+   "url": "https://github.com/DAMPLAB/OT2-SARS-CoV2"
+  }
+ ],
+ "dois": [
+  "10.17504/protocols.io.brhvm366"
+ ],
+ "experimental": true,
+ "found_by": [
+  "github",
+  "web"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.17504/protocols.io.brhvm366:\n  europepmc: no Europe PMC full text for",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "licence": "",
+  "redistributable": "unknown",
+  "status": "paywalled_or_not_found",
+  "tried": []
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "ot2",
+ "simulator": "not run",
+ "slug": "experimental/damplab-taqpath-ot2",
+ "title": "Semi-Automated and Miniaturized SARS-CoV-2 Detection using TaqPath COVID-19 Multiplex RT-PCR (BU DAMP Lab)",
+ "year": ""
+}

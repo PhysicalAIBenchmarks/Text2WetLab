@@ -1,0 +1,63 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/madsci-ad-sdl/AD-SDL__MADSci",
+   "commit": "b584e0f3e1c6d195ac42c1dd307f28830585c30f",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "unclear",
+   "opentrons_py_files": 0,
+   "py_files": 431,
+   "redistributable": "no",
+   "repo": "AD-SDL/MADSci",
+   "robot_mentions": [],
+   "size_kb": 74769,
+   "status": "cloned",
+   "url": "https://github.com/AD-SDL/MADSci"
+  }
+ ],
+ "dois": [
+  "10.21105/joss.09416"
+ ],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "fulltext": {
+  "error": "RuntimeError: Could not get full text for 10.21105/joss.09416:\n  europepmc: no Europe PMC full text for this DOI\nD",
+  "source": null
+ },
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pdf": {
+  "bytes": 363393,
+  "licence": "",
+  "pages": null,
+  "redistributable": "unknown",
+  "sha256": "553b1d4990f27b0cca977b26699621fda2ec5491176150f3c85d2b48de6aff4c",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://joss.theoj.org/papers/10.21105/joss.09416.pdf"
+   }
+  ],
+  "url": "https://joss.theoj.org/papers/10.21105/joss.09416.pdf"
+ },
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "scheduling",
+ "simulator": "not run",
+ "slug": "experimental/madsci-ad-sdl",
+ "title": "MADSci: A modular Python-based framework to enable autonomous science",
+ "year": ""
+}

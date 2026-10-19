@@ -1,0 +1,40 @@
+{
+ "code": [
+  {
+   "api_levels": [],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/pymmcore-plus-mda/pymmcore-plus__pymmcore-plus",
+   "commit": "f8884a64419fbbfb02a42917ed8e889e0d611bce",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "BSD-3-Clause",
+   "opentrons_py_files": 0,
+   "py_files": 141,
+   "redistributable": "yes",
+   "repo": "pymmcore-plus/pymmcore-plus",
+   "robot_mentions": [],
+   "size_kb": 3152,
+   "status": "cloned",
+   "url": "https://github.com/pymmcore-plus/pymmcore-plus"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "nonlh"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "ready",
+ "robot_platform": "imaging",
+ "simulator": "not run",
+ "slug": "experimental/pymmcore-plus-mda",
+ "title": "pymmcore-plus + useq-schema (multi-dimensional acquisition engine)",
+ "year": ""
+}

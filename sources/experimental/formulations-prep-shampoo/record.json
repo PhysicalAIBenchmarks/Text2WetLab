@@ -1,0 +1,77 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.11"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/formulations-prep-shampoo/sustainable-processes__formulations-prep",
+   "commit": "a715cec009bd651d9c3e836d6a506070cb9c5835",
+   "default_branch": "master",
+   "host": "github.com",
+   "licence": "none",
+   "opentrons_py_files": 1,
+   "py_files": 2,
+   "redistributable": "no",
+   "repo": "sustainable-processes/formulations-prep",
+   "robot_mentions": [
+    "OT-2"
+   ],
+   "size_kb": 82220,
+   "status": "cloned",
+   "url": "https://github.com/sustainable-processes/formulations-prep"
+  }
+ ],
+ "doi_primary": "10.1038/s41597-024-03573-w",
+ "dois": [
+  "10.1038/s41597-024-03573-w"
+ ],
+ "experimental": true,
+ "found_by": [
+  "amass",
+  "github",
+  "web"
+ ],
+ "fulltext": {
+  "legends": 8,
+  "sections": 23,
+  "source": "europepmc:PMC11222379"
+ },
+ "journal": "",
+ "note": "",
+ "open_access": true,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "cc by",
+ "pdf": {
+  "bytes": 3072068,
+  "licence": "cc by",
+  "pages": null,
+  "redistributable": "yes",
+  "sha256": "1e595246b57deba11126c242f9dbe009e592147c90022c2fe5c98833f24de844",
+  "status": "downloaded",
+  "tried": [
+   {
+    "http": 403,
+    "manual": false,
+    "ok": false,
+    "url": "https://europepmc.org/articles/PMC11222379?pdf=render"
+   },
+   {
+    "http": 200,
+    "manual": false,
+    "ok": true,
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11222379.1/PMC11222379.1.pdf"
+   }
+  ],
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11222379.1/PMC11222379.1.pdf"
+ },
+ "pmcid": "PMC11222379",
+ "readiness": "ready",
+ "robot_platform": "ot2",
+ "simulator": "failed",
+ "slug": "experimental/formulations-prep-shampoo",
+ "title": "Accelerating Formulation Design via Machine Learning: Generating a High-throughput Shampoo Formulations Dataset",
+ "year": "2024"
+}

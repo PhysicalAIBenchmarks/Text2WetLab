@@ -1,0 +1,46 @@
+{
+ "code": [
+  {
+   "api_levels": [
+    "2.18",
+    "2.20",
+    "2.21"
+   ],
+   "archived": false,
+   "cache_path": "~/.cache/text2wetlab-ingest/code/experimental/ai4pd-flex-protein-purification/AI4PDLab__Opentrons_Flex_Protocols",
+   "commit": "aba0edcab77168ead2e8319e68f872c3bfef9399",
+   "default_branch": "main",
+   "host": "github.com",
+   "licence": "MIT",
+   "opentrons_py_files": 7,
+   "py_files": 7,
+   "redistributable": "yes",
+   "repo": "AI4PDLab/Opentrons_Flex_Protocols",
+   "robot_mentions": [
+    "Flex"
+   ],
+   "size_kb": 28,
+   "status": "cloned",
+   "url": "https://github.com/AI4PDLab/Opentrons_Flex_Protocols"
+  }
+ ],
+ "dois": [],
+ "experimental": true,
+ "found_by": [
+  "github"
+ ],
+ "journal": "",
+ "note": "",
+ "open_access": false,
+ "origin": [
+  "expansion search 2026-10-12 (experimental)"
+ ],
+ "paper_licence": "",
+ "pmcid": null,
+ "readiness": "partial",
+ "robot_platform": "flex",
+ "simulator": "not run",
+ "slug": "experimental/ai4pd-flex-protein-purification",
+ "title": "Opentrons Flex protein purification and molecular biology scripts (AI4PD Lab)",
+ "year": ""
+}
