@@ -98,13 +98,13 @@ a.set_ylim(.5, 1.07); a.set_yticks([.5, .6, .7, .8, .9, 1.0]); a.set_ylabel("Mea
 a.legend(loc="upper center", bbox_to_anchor=(.5, -.2), ncol=(len(MODELS) + 1) // 2 if len(MODELS) > 4 else len(MODELS), fontsize=7.5)
 a.set_title("Refused tasks are not scored"); panel(a, "a")
 for m in MODELS:
-    cost = sum(trials[(m, k)].get("cost_usd") or 0 for k in TASKS)
+    cost = sum(trials[(m, k)].get("cost_usd") or 0 for k in common)
     v = rules[0][1](m)
     b.scatter(cost, v, s=90, color=COL[m], zorder=3)
     nref = sum(refused(m, k) for k in TASKS)
     b.annotate(f"{NAME[m]}, {nref} refused" if nref else NAME[m], (cost, v), xytext=(8, -3), textcoords="offset points", fontsize=7.5, color=INK2)
-b.set_xlabel("Agent cost for the tasks it answered (USD)"); b.set_ylabel(f"Mean over the {len(common)} tasks all answered")
-costs = [sum(trials[(m, k)].get("cost_usd") or 0 for k in TASKS) for m in MODELS]
+b.set_xlabel(f"Agent cost for the {len(common)} tasks all answered (USD)"); b.set_ylabel(f"Mean over the {len(common)} tasks all answered")
+costs = [sum(trials[(m, k)].get("cost_usd") or 0 for k in common) for m in MODELS]
 vals = [rules[0][1](m) for m in MODELS]
 b.set_xlim(0, max(costs) * 1.75); b.set_ylim(min(vals) - .05, min(1.02, max(vals) + .05)); ygrid(b); xgrid(b)
 b.set_title("Cost against reward"); panel(b, "b")
