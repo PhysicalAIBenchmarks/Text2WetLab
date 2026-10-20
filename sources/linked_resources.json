@@ -1,0 +1,482 @@
+{
+ "about": "External datasets, outcome models and simulators linked to Text2WetLab tasks. Links and metadata only: nothing third-party is stored in this repo. `relation` is `direct` (from a task's own source paper) or `related` (same method, different study). The `verification` block is written by scripts/check_linked_resources.py.",
+ "found": "Web search plus Zenodo, Hugging Face, PyPI, Crossref and GitHub API queries, 2026-10-13.",
+ "resources": [
+  {
+   "id": "neb-ligase-fidelity",
+   "kind": [
+    "dataset",
+    "outcome_model"
+   ],
+   "name": "T4 DNA ligase four-base overhang fidelity profile and NEBridge design tools",
+   "tasks": [
+    "golden-gate-assembly",
+    "golden-gate-assembly-hard"
+   ],
+   "relation": "related",
+   "what": "Measured ligation frequency for all 256 four-base overhangs; drives tools that predict Golden Gate assembly fidelity for a chosen overhang set (Ligase Fidelity Viewer, GetSet, SplitSet).",
+   "host": "doi",
+   "identifier": "10.1021/acssynbio.8b00333",
+   "url": "https://www.neb.com/en-us/applications/cloning-and-synthetic-biology/dna-assembly-and-cloning/golden-gate-assembly/ligase-fidelity",
+   "licence": "ACS AuthorChoice (paper); data in the paper's supporting information",
+   "redistributable": "unknown",
+   "notes": "Location and format of the raw overhang table not checked; read the supporting information before using it in a grader.",
+   "verification": {
+    "exists": true,
+    "title": "Comprehensive Profiling of Four Base Overhang Ligation Fidelity by T4 DNA Ligase and Application to DNA Assembly",
+    "journal": "ACS Synthetic Biology",
+    "year": 2018,
+    "licence_reported": "https://pubs.acs.org/page/policy/authorchoice_termsofuse.html",
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "dnacauldron",
+   "kind": [
+    "outcome_model"
+   ],
+   "name": "DNA Cauldron",
+   "tasks": [
+    "golden-gate-assembly",
+    "golden-gate-assembly-hard"
+   ],
+   "relation": "related",
+   "what": "Cloning simulation: given parts and an enzyme, predicts the constructs a Golden Gate (or Gibson, BASIC, BioBrick) assembly yields and reports assembly flaws.",
+   "host": "pypi",
+   "identifier": "dnacauldron",
+   "url": "https://github.com/Edinburgh-Genome-Foundry/DnaCauldron",
+   "licence": "MIT",
+   "redistributable": "yes",
+   "notes": "Candidate for outcome-aware grading: does the model's fragment and overhang choice assemble into the intended plasmid?",
+   "verification": {
+    "exists": true,
+    "version": "2.0.12",
+    "licence_reported": null,
+    "released": "2025-05-12T10:49:03",
+    "sdist_sha256": "c31e21b6b65e239f4be25bff886b6a1f2b9102ec7a1d27d388d9c0949838cf8f",
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "pydna",
+   "kind": [
+    "outcome_model"
+   ],
+   "name": "pydna",
+   "tasks": [
+    "colony-pcr-screening",
+    "colony-pcr-screening-hard",
+    "golden-gate-assembly",
+    "golden-gate-assembly-hard"
+   ],
+   "relation": "related",
+   "what": "In-silico PCR (primers + template -> product), restriction digestion, ligation, Gibson and Golden Gate assembly.",
+   "host": "pypi",
+   "identifier": "pydna",
+   "url": "https://github.com/pydna-group/pydna",
+   "paper_doi": "10.1186/s12859-015-0544-x",
+   "licence": "BSD",
+   "redistributable": "yes",
+   "notes": "Candidate check for colony PCR: do the primers amplify the intended product from the template?",
+   "verification": {
+    "exists": true,
+    "version": "5.5.16",
+    "licence_reported": "BSD",
+    "released": "2026-06-09T06:29:55",
+    "sdist_sha256": "244caaf598544bc1f8af95a480379e600617b243036438c065aac1187df3ad49",
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "assemblytron-zenodo",
+   "kind": [
+    "software"
+   ],
+   "name": "AssemblyTron v0.0.8 archive",
+   "tasks": [
+    "golden-gate-assembly",
+    "golden-gate-assembly-hard"
+   ],
+   "relation": "direct",
+   "what": "The archived release of the code behind the task's source paper. Software, not a results dataset.",
+   "host": "zenodo",
+   "identifier": "7250273",
+   "url": "https://doi.org/10.5281/zenodo.7250273",
+   "paper_doi": "10.1093/synbio/ysac032",
+   "licence": "Apache-2.0",
+   "redistributable": "yes",
+   "notes": "Already recorded in sources/assemblytron/record.json.",
+   "verification": {
+    "exists": true,
+    "title": "PlantSynBioLab/AssemblyTron: AssemblyTron",
+    "doi": "10.5281/zenodo.7250273",
+    "published": "2022-10-25",
+    "version": "v0.0.8",
+    "licence_reported": "other-open",
+    "resource_type": "software",
+    "files": 1,
+    "bytes": 13223833,
+    "checksums": [
+     "PlantSynBioLab/AssemblyTron-v0.0.8.zip: md5:6f4ebdb098393a6ccc89d8002a47ab1d"
+    ],
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "pcr-efficiency-cnn",
+   "kind": [
+    "outcome_model"
+   ],
+   "name": "Sequence-specific PCR amplification efficiency prediction (1D CNN)",
+   "tasks": [
+    "colony-pcr-screening",
+    "colony-pcr-screening-hard"
+   ],
+   "relation": "related",
+   "what": "Deep-learning model predicting amplification efficiency from sequence in multi-template PCR.",
+   "host": "doi",
+   "identifier": "10.1038/s41467-025-64221-4",
+   "url": "https://doi.org/10.1038/s41467-025-64221-4",
+   "licence": "CC BY 4.0 (paper)",
+   "redistributable": "unknown",
+   "notes": "Code and training-data location not checked.",
+   "verification": {
+    "exists": true,
+    "title": "Predicting sequence-specific amplification efficiency in multi-template PCR with deep learning",
+    "journal": "Nature Communications",
+    "year": 2025,
+    "licence_reported": "https://creativecommons.org/licenses/by/4.0",
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "primercast",
+   "kind": [
+    "dataset",
+    "outcome_model"
+   ],
+   "name": "PrimerCast",
+   "tasks": [
+    "colony-pcr-screening",
+    "colony-pcr-screening-hard"
+   ],
+   "relation": "related",
+   "what": "Experimental dataset of primer-target PCR reactions with amplification-efficiency labels (reported as 50,760 reactions) and a predictive model (NeurIPS 2025).",
+   "host": "github",
+   "identifier": "broadinstitute/PrimerCast",
+   "url": "https://github.com/broadinstitute/PrimerCast",
+   "licence": "MIT",
+   "redistributable": "yes",
+   "notes": "Dataset size is from the conference abstract, not counted here.",
+   "verification": {
+    "exists": true,
+    "commit": "50d357b43a727196b5ae2e1c2e7d041519243673",
+    "pushed": "2026-10-09T17:49:08Z",
+    "archived": false,
+    "licence_reported": "MIT",
+    "stars": 12,
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "liqtransferoptimizer",
+   "kind": [
+    "dataset",
+    "outcome_model"
+   ],
+   "name": "LiqTransferOptimizer",
+   "tasks": [
+    "split-200ul-two-wells",
+    "a1-a12-100ul"
+   ],
+   "relation": "related",
+   "what": "Code and collected data for optimising liquid-handling parameters for viscous liquid transfers on pipetting robots (gravimetric transfer accuracy).",
+   "host": "zenodo",
+   "identifier": "10847234",
+   "url": "https://doi.org/10.5281/zenodo.10847234",
+   "paper_doi": "10.26434/chemrxiv-2023-cbkqh",
+   "licence": "mit-license",
+   "redistributable": "yes",
+   "notes": "The closest public data on how accurately a robot delivers a commanded volume, which the Opentrons simulator does not model.",
+   "verification": {
+    "exists": true,
+    "title": "LiqTransferOptimizer_v1.0.0",
+    "doi": "10.5281/zenodo.10847234",
+    "published": "2024-03-21",
+    "version": "v1.0.0",
+    "licence_reported": "mit-license",
+    "resource_type": "software",
+    "files": 2,
+    "bytes": 487803,
+    "checksums": [
+     "LiqTransferOptimizer-1.0.0.zip: md5:6274fb267ee1261082613e4752ab8fee",
+     "LiqTransferOptimizer-1.0.0.tar.gz: md5:ddd32e601f360642082f9faa065f0fc7"
+    ],
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "opentrons-physicalai",
+   "kind": [
+    "dataset"
+   ],
+   "name": "Opentrons/PhysicalAI",
+   "tasks": [
+    "all"
+   ],
+   "relation": "related",
+   "what": "Opentrons' own robot dataset on Hugging Face (reported as Flex teleoperation episodes).",
+   "host": "huggingface",
+   "identifier": "Opentrons/PhysicalAI",
+   "url": "https://huggingface.co/datasets/Opentrons/PhysicalAI",
+   "licence": "",
+   "redistributable": "unknown",
+   "notes": "No licence stated on the dataset card. Contents not inspected.",
+   "verification": {
+    "exists": true,
+    "commit": "b4d34687f5726a45a9a18639807ba38e132b7e87",
+    "last_modified": "2026-10-13T05:30:27.000Z",
+    "licence_reported": null,
+    "files": 3754,
+    "gated": false,
+    "private": false,
+    "downloads": 1096,
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "labos-human-pipetting",
+   "kind": [
+    "dataset"
+   ],
+   "name": "labos-sim/real_human_pipetting_lerobot_anonymized",
+   "tasks": [
+    "split-200ul-two-wells",
+    "a1-a12-100ul"
+   ],
+   "relation": "related",
+   "what": "Multi-camera recordings of humans pipetting, with success/failure annotations (LeRobot format).",
+   "host": "huggingface",
+   "identifier": "labos-sim/real_human_pipetting_lerobot_anonymized",
+   "url": "https://huggingface.co/datasets/labos-sim/real_human_pipetting_lerobot_anonymized",
+   "licence": "",
+   "redistributable": "unknown",
+   "notes": "Real-world failure labels: relevant to physical faults a simulator cannot see.",
+   "verification": {
+    "exists": true,
+    "commit": "56972c40387541a7965ed6c14d58eeb38b8ca5d7",
+    "last_modified": "2026-09-13T09:44:54.000Z",
+    "licence_reported": null,
+    "files": 527,
+    "gated": false,
+    "private": false,
+    "downloads": 198,
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "agarbadge-liquid-handling",
+   "kind": [
+    "dataset"
+   ],
+   "name": "lerobotForScienceEdu/AgarBadge_v1_1st_Liquid-Handling_100_20251203",
+   "tasks": [
+    "split-200ul-two-wells",
+    "a1-a12-100ul"
+   ],
+   "relation": "related",
+   "what": "Robot liquid-handling demonstrations in LeRobot format.",
+   "host": "huggingface",
+   "identifier": "lerobotForScienceEdu/AgarBadge_v1_1st_Liquid-Handling_100_20251203",
+   "url": "https://huggingface.co/datasets/lerobotForScienceEdu/AgarBadge_v1_1st_Liquid-Handling_100_20251203",
+   "licence": "apache-2.0",
+   "redistributable": "yes",
+   "notes": "",
+   "verification": {
+    "exists": true,
+    "commit": "9cd05b495091f249fc5fef5cc050486244845d87",
+    "last_modified": "2025-12-12T01:28:11.000Z",
+    "licence_reported": "apache-2.0",
+    "files": 29,
+    "gated": false,
+    "private": false,
+    "downloads": 20,
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "autobio",
+   "kind": [
+    "simulator",
+    "dataset"
+   ],
+   "name": "AutoBio",
+   "tasks": [
+    "all"
+   ],
+   "relation": "related",
+   "what": "MuJoCo-based simulation and benchmark for robot manipulation in a biology lab (pipette aspiration, tube handling, centrifuge loading); task datasets on Hugging Face under autobio-bench.",
+   "host": "huggingface",
+   "identifier": "autobio-bench/pipette-mujoco",
+   "url": "https://huggingface.co/papers/2505.14030",
+   "licence": "mit",
+   "redistributable": "yes",
+   "notes": "Models robot manipulation, not the biology. arXiv 2505.14030.",
+   "verification": {
+    "exists": true,
+    "commit": "dcd1ba6d6f61adb2fd66491e6226dc6669e6e055",
+    "last_modified": "2025-07-10T02:52:52.000Z",
+    "licence_reported": "mit",
+    "files": 406,
+    "gated": false,
+    "private": false,
+    "downloads": 190,
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "pipette-sim",
+   "kind": [
+    "simulator"
+   ],
+   "name": "Pipette: embodied simulation platform and benchmark for wet-lab robotics",
+   "tasks": [
+    "all"
+   ],
+   "relation": "related",
+   "what": "Embodied simulation platform with 12 wet-lab tasks (sample handling, instrument interaction, lid operation, alignment).",
+   "host": "url",
+   "identifier": "arXiv:2606.12936",
+   "url": "https://arxiv.org/abs/2606.12936",
+   "licence": "",
+   "redistributable": "unknown",
+   "notes": "Code location not found.",
+   "verification": {
+    "exists": true,
+    "status": 200,
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "rna-extraction-source-paper",
+   "kind": [
+    "dataset"
+   ],
+   "name": "Source paper results: Evaluation of two automated low-cost RNA extraction protocols for SARS-CoV-2 detection",
+   "tasks": [
+    "opentrons-rna-extraction",
+    "opentrons-rna-extraction-hard"
+   ],
+   "relation": "direct",
+   "what": "Ct comparisons of the in-house OT-2 protocol against a commercial kit, reported in the paper.",
+   "host": "doi",
+   "identifier": "10.1371/journal.pone.0246302",
+   "url": "https://doi.org/10.1371/journal.pone.0246302",
+   "licence": "CC BY 4.0",
+   "redistributable": "yes",
+   "notes": "Data-availability section and supporting files not opened. The task instruction gives this paper a different title; Crossref's is the one used here.",
+   "verification": {
+    "exists": true,
+    "title": "Evaluation of two automated low-cost RNA extraction protocols for SARS-CoV-2 detection",
+    "journal": "PLOS ONE",
+    "year": 2021,
+    "licence_reported": "http://creativecommons.org/licenses/by/4.0/",
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "zenodo-rna-extraction-alt-method",
+   "kind": [
+    "dataset"
+   ],
+   "name": "RNA extraction alternative method for SARS-CoV-2 molecular diagnosis",
+   "tasks": [
+    "opentrons-rna-extraction",
+    "opentrons-rna-extraction-hard"
+   ],
+   "relation": "related",
+   "what": "Data from a different study evaluating an alternative RNA extraction method for SARS-CoV-2 diagnosis.",
+   "host": "zenodo",
+   "identifier": "5616875",
+   "url": "https://doi.org/10.5281/zenodo.5616875",
+   "licence": "cc-by-4.0",
+   "redistributable": "yes",
+   "notes": "Not the task's protocol; useful only as outcome data for the same kind of experiment.",
+   "verification": {
+    "exists": true,
+    "title": "RNA extraction alternative method for SARS-CoV-2 molecular diagnosis",
+    "doi": "10.5281/zenodo.5616875",
+    "published": "2021-10-29",
+    "version": null,
+    "licence_reported": "cc-by-4.0",
+    "resource_type": "dataset",
+    "files": 1,
+    "bytes": 16170,
+    "checksums": [
+     "Tab S1_Data.xlsx: md5:b81a3d91ece84cfe51b9420faf2411e9"
+    ],
+    "checked": "2026-10-13"
+   }
+  },
+  {
+   "id": "zenodo-rna-extraction-two-methods",
+   "kind": [
+    "dataset"
+   ],
+   "name": "Comparison of two RNA extraction methods for the molecular detection of SARS-CoV-2 from nasopharyngeal swab samples",
+   "tasks": [
+    "opentrons-rna-extraction",
+    "opentrons-rna-extraction-hard"
+   ],
+   "relation": "related",
+   "what": "Raw data of a study comparing two RNA extraction methods.",
+   "host": "zenodo",
+   "identifier": "6477268",
+   "url": "https://doi.org/10.5281/zenodo.6477268",
+   "licence": "",
+   "redistributable": "unknown",
+   "notes": "Not the task's protocol. The record exists but lists no public files (restricted or embargoed).",
+   "verification": {
+    "exists": true,
+    "title": "Comparison of two RNA extraction methods for the molecular detection of SARS-CoV-2 from nasopharyngeal swab samples",
+    "doi": "10.5281/zenodo.6477268",
+    "published": "2022-04-22",
+    "version": null,
+    "licence_reported": null,
+    "resource_type": "dataset",
+    "files": 0,
+    "bytes": 0,
+    "checksums": [],
+    "checked": "2026-10-13"
+   }
+  }
+ ],
+ "gaps": [
+  {
+   "tasks": [
+    "ecoli-heat-shock-transformation",
+    "ecoli-heat-shock-transformation-hard"
+   ],
+   "finding": "No outcome model and no public dataset of transformation efficiency found; only small experimental studies. The APEX paper reports its results in the text with no data deposit recorded."
+  },
+  {
+   "tasks": [
+    "ampure-bead-cleanup"
+   ],
+   "finding": "No quantitative model or dataset for SPRI bead clean-up found; only vendor rules of thumb (bead ratio versus retained fragment size), which vary by bead lot."
+  },
+  {
+   "tasks": [
+    "colony-pcr-screening",
+    "colony-pcr-screening-hard"
+   ],
+   "finding": "The Slowpoke paper has no data deposit recorded; the PCR resources listed are for the method in general."
+  },
+  {
+   "tasks": [
+    "all"
+   ],
+   "finding": "Nothing relevant found on Kaggle."
+  }
+ ]
+}
