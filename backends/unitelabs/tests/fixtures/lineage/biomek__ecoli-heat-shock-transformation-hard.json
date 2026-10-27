@@ -1,0 +1,2715 @@
+{
+ "comments": [
+  [
+   22,
+   "Keep transformation_plate at 4 \u00b0C (cold block or thermocycler, lid open) while pipetting."
+  ],
+  [
+   54,
+   "Thermocycler, lid closed: 4 \u00b0C 30 min with the DNA, heat shock at 42 \u00b0C for 30 s, back to 4 \u00b0C for 2 min."
+  ],
+  [
+   86,
+   "Thermocycler: recover at 37 \u00b0C for 1 h, then hold at 4 \u00b0C. Spot the transformations on selective agar."
+  ]
+ ],
+ "entities": {
+  "plasmid_plate:A1": [
+   "plasmid_plate on P1",
+   "A1"
+  ],
+  "plasmid_plate:A10": [
+   "plasmid_plate on P1",
+   "A10"
+  ],
+  "plasmid_plate:A11": [
+   "plasmid_plate on P1",
+   "A11"
+  ],
+  "plasmid_plate:A12": [
+   "plasmid_plate on P1",
+   "A12"
+  ],
+  "plasmid_plate:A2": [
+   "plasmid_plate on P1",
+   "A2"
+  ],
+  "plasmid_plate:A3": [
+   "plasmid_plate on P1",
+   "A3"
+  ],
+  "plasmid_plate:A4": [
+   "plasmid_plate on P1",
+   "A4"
+  ],
+  "plasmid_plate:A5": [
+   "plasmid_plate on P1",
+   "A5"
+  ],
+  "plasmid_plate:A6": [
+   "plasmid_plate on P1",
+   "A6"
+  ],
+  "plasmid_plate:A7": [
+   "plasmid_plate on P1",
+   "A7"
+  ],
+  "plasmid_plate:A8": [
+   "plasmid_plate on P1",
+   "A8"
+  ],
+  "plasmid_plate:A9": [
+   "plasmid_plate on P1",
+   "A9"
+  ],
+  "plasmid_plate:B1": [
+   "plasmid_plate on P1",
+   "B1"
+  ],
+  "plasmid_plate:B10": [
+   "plasmid_plate on P1",
+   "B10"
+  ],
+  "plasmid_plate:B11": [
+   "plasmid_plate on P1",
+   "B11"
+  ],
+  "plasmid_plate:B12": [
+   "plasmid_plate on P1",
+   "B12"
+  ],
+  "plasmid_plate:B2": [
+   "plasmid_plate on P1",
+   "B2"
+  ],
+  "plasmid_plate:B3": [
+   "plasmid_plate on P1",
+   "B3"
+  ],
+  "plasmid_plate:B4": [
+   "plasmid_plate on P1",
+   "B4"
+  ],
+  "plasmid_plate:B5": [
+   "plasmid_plate on P1",
+   "B5"
+  ],
+  "plasmid_plate:B6": [
+   "plasmid_plate on P1",
+   "B6"
+  ],
+  "plasmid_plate:B7": [
+   "plasmid_plate on P1",
+   "B7"
+  ],
+  "plasmid_plate:B8": [
+   "plasmid_plate on P1",
+   "B8"
+  ],
+  "plasmid_plate:B9": [
+   "plasmid_plate on P1",
+   "B9"
+  ],
+  "plasmid_plate:C1": [
+   "plasmid_plate on P1",
+   "C1"
+  ],
+  "plasmid_plate:C10": [
+   "plasmid_plate on P1",
+   "C10"
+  ],
+  "plasmid_plate:C11": [
+   "plasmid_plate on P1",
+   "C11"
+  ],
+  "plasmid_plate:C12": [
+   "plasmid_plate on P1",
+   "C12"
+  ],
+  "plasmid_plate:C2": [
+   "plasmid_plate on P1",
+   "C2"
+  ],
+  "plasmid_plate:C3": [
+   "plasmid_plate on P1",
+   "C3"
+  ],
+  "plasmid_plate:C4": [
+   "plasmid_plate on P1",
+   "C4"
+  ],
+  "plasmid_plate:C5": [
+   "plasmid_plate on P1",
+   "C5"
+  ],
+  "plasmid_plate:C6": [
+   "plasmid_plate on P1",
+   "C6"
+  ],
+  "plasmid_plate:C7": [
+   "plasmid_plate on P1",
+   "C7"
+  ],
+  "plasmid_plate:C8": [
+   "plasmid_plate on P1",
+   "C8"
+  ],
+  "plasmid_plate:C9": [
+   "plasmid_plate on P1",
+   "C9"
+  ],
+  "plasmid_plate:D1": [
+   "plasmid_plate on P1",
+   "D1"
+  ],
+  "plasmid_plate:D10": [
+   "plasmid_plate on P1",
+   "D10"
+  ],
+  "plasmid_plate:D11": [
+   "plasmid_plate on P1",
+   "D11"
+  ],
+  "plasmid_plate:D12": [
+   "plasmid_plate on P1",
+   "D12"
+  ],
+  "plasmid_plate:D2": [
+   "plasmid_plate on P1",
+   "D2"
+  ],
+  "plasmid_plate:D3": [
+   "plasmid_plate on P1",
+   "D3"
+  ],
+  "plasmid_plate:D4": [
+   "plasmid_plate on P1",
+   "D4"
+  ],
+  "plasmid_plate:D5": [
+   "plasmid_plate on P1",
+   "D5"
+  ],
+  "plasmid_plate:D6": [
+   "plasmid_plate on P1",
+   "D6"
+  ],
+  "plasmid_plate:D7": [
+   "plasmid_plate on P1",
+   "D7"
+  ],
+  "plasmid_plate:D8": [
+   "plasmid_plate on P1",
+   "D8"
+  ],
+  "plasmid_plate:D9": [
+   "plasmid_plate on P1",
+   "D9"
+  ],
+  "plasmid_plate:E1": [
+   "plasmid_plate on P1",
+   "E1"
+  ],
+  "plasmid_plate:E10": [
+   "plasmid_plate on P1",
+   "E10"
+  ],
+  "plasmid_plate:E11": [
+   "plasmid_plate on P1",
+   "E11"
+  ],
+  "plasmid_plate:E12": [
+   "plasmid_plate on P1",
+   "E12"
+  ],
+  "plasmid_plate:E2": [
+   "plasmid_plate on P1",
+   "E2"
+  ],
+  "plasmid_plate:E3": [
+   "plasmid_plate on P1",
+   "E3"
+  ],
+  "plasmid_plate:E4": [
+   "plasmid_plate on P1",
+   "E4"
+  ],
+  "plasmid_plate:E5": [
+   "plasmid_plate on P1",
+   "E5"
+  ],
+  "plasmid_plate:E6": [
+   "plasmid_plate on P1",
+   "E6"
+  ],
+  "plasmid_plate:E7": [
+   "plasmid_plate on P1",
+   "E7"
+  ],
+  "plasmid_plate:E8": [
+   "plasmid_plate on P1",
+   "E8"
+  ],
+  "plasmid_plate:E9": [
+   "plasmid_plate on P1",
+   "E9"
+  ],
+  "plasmid_plate:F1": [
+   "plasmid_plate on P1",
+   "F1"
+  ],
+  "plasmid_plate:F10": [
+   "plasmid_plate on P1",
+   "F10"
+  ],
+  "plasmid_plate:F11": [
+   "plasmid_plate on P1",
+   "F11"
+  ],
+  "plasmid_plate:F12": [
+   "plasmid_plate on P1",
+   "F12"
+  ],
+  "plasmid_plate:F2": [
+   "plasmid_plate on P1",
+   "F2"
+  ],
+  "plasmid_plate:F3": [
+   "plasmid_plate on P1",
+   "F3"
+  ],
+  "plasmid_plate:F4": [
+   "plasmid_plate on P1",
+   "F4"
+  ],
+  "plasmid_plate:F5": [
+   "plasmid_plate on P1",
+   "F5"
+  ],
+  "plasmid_plate:F6": [
+   "plasmid_plate on P1",
+   "F6"
+  ],
+  "plasmid_plate:F7": [
+   "plasmid_plate on P1",
+   "F7"
+  ],
+  "plasmid_plate:F8": [
+   "plasmid_plate on P1",
+   "F8"
+  ],
+  "plasmid_plate:F9": [
+   "plasmid_plate on P1",
+   "F9"
+  ],
+  "plasmid_plate:G1": [
+   "plasmid_plate on P1",
+   "G1"
+  ],
+  "plasmid_plate:G10": [
+   "plasmid_plate on P1",
+   "G10"
+  ],
+  "plasmid_plate:G11": [
+   "plasmid_plate on P1",
+   "G11"
+  ],
+  "plasmid_plate:G12": [
+   "plasmid_plate on P1",
+   "G12"
+  ],
+  "plasmid_plate:G2": [
+   "plasmid_plate on P1",
+   "G2"
+  ],
+  "plasmid_plate:G3": [
+   "plasmid_plate on P1",
+   "G3"
+  ],
+  "plasmid_plate:G4": [
+   "plasmid_plate on P1",
+   "G4"
+  ],
+  "plasmid_plate:G5": [
+   "plasmid_plate on P1",
+   "G5"
+  ],
+  "plasmid_plate:G6": [
+   "plasmid_plate on P1",
+   "G6"
+  ],
+  "plasmid_plate:G7": [
+   "plasmid_plate on P1",
+   "G7"
+  ],
+  "plasmid_plate:G8": [
+   "plasmid_plate on P1",
+   "G8"
+  ],
+  "plasmid_plate:G9": [
+   "plasmid_plate on P1",
+   "G9"
+  ],
+  "plasmid_plate:H1": [
+   "plasmid_plate on P1",
+   "H1"
+  ],
+  "plasmid_plate:H10": [
+   "plasmid_plate on P1",
+   "H10"
+  ],
+  "plasmid_plate:H11": [
+   "plasmid_plate on P1",
+   "H11"
+  ],
+  "plasmid_plate:H12": [
+   "plasmid_plate on P1",
+   "H12"
+  ],
+  "plasmid_plate:H2": [
+   "plasmid_plate on P1",
+   "H2"
+  ],
+  "plasmid_plate:H3": [
+   "plasmid_plate on P1",
+   "H3"
+  ],
+  "plasmid_plate:H4": [
+   "plasmid_plate on P1",
+   "H4"
+  ],
+  "plasmid_plate:H5": [
+   "plasmid_plate on P1",
+   "H5"
+  ],
+  "plasmid_plate:H6": [
+   "plasmid_plate on P1",
+   "H6"
+  ],
+  "plasmid_plate:H7": [
+   "plasmid_plate on P1",
+   "H7"
+  ],
+  "plasmid_plate:H8": [
+   "plasmid_plate on P1",
+   "H8"
+  ],
+  "plasmid_plate:H9": [
+   "plasmid_plate on P1",
+   "H9"
+  ],
+  "soc_reservoir:A1": [
+   "soc_reservoir on P3",
+   "A1"
+  ],
+  "transformation_plate:A1": [
+   "transformation_plate on P2",
+   "A1"
+  ],
+  "transformation_plate:A10": [
+   "transformation_plate on P2",
+   "A10"
+  ],
+  "transformation_plate:A11": [
+   "transformation_plate on P2",
+   "A11"
+  ],
+  "transformation_plate:A12": [
+   "transformation_plate on P2",
+   "A12"
+  ],
+  "transformation_plate:A2": [
+   "transformation_plate on P2",
+   "A2"
+  ],
+  "transformation_plate:A3": [
+   "transformation_plate on P2",
+   "A3"
+  ],
+  "transformation_plate:A4": [
+   "transformation_plate on P2",
+   "A4"
+  ],
+  "transformation_plate:A5": [
+   "transformation_plate on P2",
+   "A5"
+  ],
+  "transformation_plate:A6": [
+   "transformation_plate on P2",
+   "A6"
+  ],
+  "transformation_plate:A7": [
+   "transformation_plate on P2",
+   "A7"
+  ],
+  "transformation_plate:A8": [
+   "transformation_plate on P2",
+   "A8"
+  ],
+  "transformation_plate:A9": [
+   "transformation_plate on P2",
+   "A9"
+  ],
+  "transformation_plate:B1": [
+   "transformation_plate on P2",
+   "B1"
+  ],
+  "transformation_plate:B10": [
+   "transformation_plate on P2",
+   "B10"
+  ],
+  "transformation_plate:B11": [
+   "transformation_plate on P2",
+   "B11"
+  ],
+  "transformation_plate:B12": [
+   "transformation_plate on P2",
+   "B12"
+  ],
+  "transformation_plate:B2": [
+   "transformation_plate on P2",
+   "B2"
+  ],
+  "transformation_plate:B3": [
+   "transformation_plate on P2",
+   "B3"
+  ],
+  "transformation_plate:B4": [
+   "transformation_plate on P2",
+   "B4"
+  ],
+  "transformation_plate:B5": [
+   "transformation_plate on P2",
+   "B5"
+  ],
+  "transformation_plate:B6": [
+   "transformation_plate on P2",
+   "B6"
+  ],
+  "transformation_plate:B7": [
+   "transformation_plate on P2",
+   "B7"
+  ],
+  "transformation_plate:B8": [
+   "transformation_plate on P2",
+   "B8"
+  ],
+  "transformation_plate:B9": [
+   "transformation_plate on P2",
+   "B9"
+  ],
+  "transformation_plate:C1": [
+   "transformation_plate on P2",
+   "C1"
+  ],
+  "transformation_plate:C10": [
+   "transformation_plate on P2",
+   "C10"
+  ],
+  "transformation_plate:C11": [
+   "transformation_plate on P2",
+   "C11"
+  ],
+  "transformation_plate:C12": [
+   "transformation_plate on P2",
+   "C12"
+  ],
+  "transformation_plate:C2": [
+   "transformation_plate on P2",
+   "C2"
+  ],
+  "transformation_plate:C3": [
+   "transformation_plate on P2",
+   "C3"
+  ],
+  "transformation_plate:C4": [
+   "transformation_plate on P2",
+   "C4"
+  ],
+  "transformation_plate:C5": [
+   "transformation_plate on P2",
+   "C5"
+  ],
+  "transformation_plate:C6": [
+   "transformation_plate on P2",
+   "C6"
+  ],
+  "transformation_plate:C7": [
+   "transformation_plate on P2",
+   "C7"
+  ],
+  "transformation_plate:C8": [
+   "transformation_plate on P2",
+   "C8"
+  ],
+  "transformation_plate:C9": [
+   "transformation_plate on P2",
+   "C9"
+  ],
+  "transformation_plate:D1": [
+   "transformation_plate on P2",
+   "D1"
+  ],
+  "transformation_plate:D10": [
+   "transformation_plate on P2",
+   "D10"
+  ],
+  "transformation_plate:D11": [
+   "transformation_plate on P2",
+   "D11"
+  ],
+  "transformation_plate:D12": [
+   "transformation_plate on P2",
+   "D12"
+  ],
+  "transformation_plate:D2": [
+   "transformation_plate on P2",
+   "D2"
+  ],
+  "transformation_plate:D3": [
+   "transformation_plate on P2",
+   "D3"
+  ],
+  "transformation_plate:D4": [
+   "transformation_plate on P2",
+   "D4"
+  ],
+  "transformation_plate:D5": [
+   "transformation_plate on P2",
+   "D5"
+  ],
+  "transformation_plate:D6": [
+   "transformation_plate on P2",
+   "D6"
+  ],
+  "transformation_plate:D7": [
+   "transformation_plate on P2",
+   "D7"
+  ],
+  "transformation_plate:D8": [
+   "transformation_plate on P2",
+   "D8"
+  ],
+  "transformation_plate:D9": [
+   "transformation_plate on P2",
+   "D9"
+  ],
+  "transformation_plate:E1": [
+   "transformation_plate on P2",
+   "E1"
+  ],
+  "transformation_plate:E10": [
+   "transformation_plate on P2",
+   "E10"
+  ],
+  "transformation_plate:E11": [
+   "transformation_plate on P2",
+   "E11"
+  ],
+  "transformation_plate:E12": [
+   "transformation_plate on P2",
+   "E12"
+  ],
+  "transformation_plate:E2": [
+   "transformation_plate on P2",
+   "E2"
+  ],
+  "transformation_plate:E3": [
+   "transformation_plate on P2",
+   "E3"
+  ],
+  "transformation_plate:E4": [
+   "transformation_plate on P2",
+   "E4"
+  ],
+  "transformation_plate:E5": [
+   "transformation_plate on P2",
+   "E5"
+  ],
+  "transformation_plate:E6": [
+   "transformation_plate on P2",
+   "E6"
+  ],
+  "transformation_plate:E7": [
+   "transformation_plate on P2",
+   "E7"
+  ],
+  "transformation_plate:E8": [
+   "transformation_plate on P2",
+   "E8"
+  ],
+  "transformation_plate:E9": [
+   "transformation_plate on P2",
+   "E9"
+  ],
+  "transformation_plate:F1": [
+   "transformation_plate on P2",
+   "F1"
+  ],
+  "transformation_plate:F10": [
+   "transformation_plate on P2",
+   "F10"
+  ],
+  "transformation_plate:F11": [
+   "transformation_plate on P2",
+   "F11"
+  ],
+  "transformation_plate:F12": [
+   "transformation_plate on P2",
+   "F12"
+  ],
+  "transformation_plate:F2": [
+   "transformation_plate on P2",
+   "F2"
+  ],
+  "transformation_plate:F3": [
+   "transformation_plate on P2",
+   "F3"
+  ],
+  "transformation_plate:F4": [
+   "transformation_plate on P2",
+   "F4"
+  ],
+  "transformation_plate:F5": [
+   "transformation_plate on P2",
+   "F5"
+  ],
+  "transformation_plate:F6": [
+   "transformation_plate on P2",
+   "F6"
+  ],
+  "transformation_plate:F7": [
+   "transformation_plate on P2",
+   "F7"
+  ],
+  "transformation_plate:F8": [
+   "transformation_plate on P2",
+   "F8"
+  ],
+  "transformation_plate:F9": [
+   "transformation_plate on P2",
+   "F9"
+  ],
+  "transformation_plate:G1": [
+   "transformation_plate on P2",
+   "G1"
+  ],
+  "transformation_plate:G10": [
+   "transformation_plate on P2",
+   "G10"
+  ],
+  "transformation_plate:G11": [
+   "transformation_plate on P2",
+   "G11"
+  ],
+  "transformation_plate:G12": [
+   "transformation_plate on P2",
+   "G12"
+  ],
+  "transformation_plate:G2": [
+   "transformation_plate on P2",
+   "G2"
+  ],
+  "transformation_plate:G3": [
+   "transformation_plate on P2",
+   "G3"
+  ],
+  "transformation_plate:G4": [
+   "transformation_plate on P2",
+   "G4"
+  ],
+  "transformation_plate:G5": [
+   "transformation_plate on P2",
+   "G5"
+  ],
+  "transformation_plate:G6": [
+   "transformation_plate on P2",
+   "G6"
+  ],
+  "transformation_plate:G7": [
+   "transformation_plate on P2",
+   "G7"
+  ],
+  "transformation_plate:G8": [
+   "transformation_plate on P2",
+   "G8"
+  ],
+  "transformation_plate:G9": [
+   "transformation_plate on P2",
+   "G9"
+  ],
+  "transformation_plate:H1": [
+   "transformation_plate on P2",
+   "H1"
+  ],
+  "transformation_plate:H10": [
+   "transformation_plate on P2",
+   "H10"
+  ],
+  "transformation_plate:H11": [
+   "transformation_plate on P2",
+   "H11"
+  ],
+  "transformation_plate:H12": [
+   "transformation_plate on P2",
+   "H12"
+  ],
+  "transformation_plate:H2": [
+   "transformation_plate on P2",
+   "H2"
+  ],
+  "transformation_plate:H3": [
+   "transformation_plate on P2",
+   "H3"
+  ],
+  "transformation_plate:H4": [
+   "transformation_plate on P2",
+   "H4"
+  ],
+  "transformation_plate:H5": [
+   "transformation_plate on P2",
+   "H5"
+  ],
+  "transformation_plate:H6": [
+   "transformation_plate on P2",
+   "H6"
+  ],
+  "transformation_plate:H7": [
+   "transformation_plate on P2",
+   "H7"
+  ],
+  "transformation_plate:H8": [
+   "transformation_plate on P2",
+   "H8"
+  ],
+  "transformation_plate:H9": [
+   "transformation_plate on P2",
+   "H9"
+  ]
+ },
+ "events": [
+  {
+   "kind": "comment",
+   "text": "Keep transformation_plate at 4 \u00b0C (cold block or thermocycler, lid open) while pipetting."
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "pick",
+   "tip": "t1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_1",
+   "kind": "pick",
+   "tip": "t2"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_2",
+   "kind": "pick",
+   "tip": "t3"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_3",
+   "kind": "pick",
+   "tip": "t4"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_4",
+   "kind": "pick",
+   "tip": "t5"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_5",
+   "kind": "pick",
+   "tip": "t6"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_6",
+   "kind": "pick",
+   "tip": "t7"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_7",
+   "kind": "pick",
+   "tip": "t8"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "aspirate",
+   "labware": "plasmid_plate on P1",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_1",
+   "kind": "aspirate",
+   "labware": "plasmid_plate on P1",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "B1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_2",
+   "kind": "aspirate",
+   "labware": "plasmid_plate on P1",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "C1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_3",
+   "kind": "aspirate",
+   "labware": "plasmid_plate on P1",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "D1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_4",
+   "kind": "aspirate",
+   "labware": "plasmid_plate on P1",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "E1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_5",
+   "kind": "aspirate",
+   "labware": "plasmid_plate on P1",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "F1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_6",
+   "kind": "aspirate",
+   "labware": "plasmid_plate on P1",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "G1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_7",
+   "kind": "aspirate",
+   "labware": "plasmid_plate on P1",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "H1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_1",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "B1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_2",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "C1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_3",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "D1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_4",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "E1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_5",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "F1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_6",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "G1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_7",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 1.0,
+   "volume": 1.0,
+   "well": "H1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "drop",
+   "tip": "t1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_1",
+   "kind": "drop",
+   "tip": "t2"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_2",
+   "kind": "drop",
+   "tip": "t3"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_3",
+   "kind": "drop",
+   "tip": "t4"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_4",
+   "kind": "drop",
+   "tip": "t5"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_5",
+   "kind": "drop",
+   "tip": "t6"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_6",
+   "kind": "drop",
+   "tip": "t7"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_7",
+   "kind": "drop",
+   "tip": "t8"
+  },
+  {
+   "kind": "comment",
+   "text": "Thermocycler, lid closed: 4 \u00b0C 30 min with the DNA, heat shock at 42 \u00b0C for 30 s, back to 4 \u00b0C for 2 min."
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "pick",
+   "tip": "t9"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_1",
+   "kind": "pick",
+   "tip": "t10"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_2",
+   "kind": "pick",
+   "tip": "t11"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_3",
+   "kind": "pick",
+   "tip": "t12"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_4",
+   "kind": "pick",
+   "tip": "t13"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_5",
+   "kind": "pick",
+   "tip": "t14"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_6",
+   "kind": "pick",
+   "tip": "t15"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_7",
+   "kind": "pick",
+   "tip": "t16"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "aspirate",
+   "labware": "soc_reservoir on P3",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_1",
+   "kind": "aspirate",
+   "labware": "soc_reservoir on P3",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_2",
+   "kind": "aspirate",
+   "labware": "soc_reservoir on P3",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_3",
+   "kind": "aspirate",
+   "labware": "soc_reservoir on P3",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_4",
+   "kind": "aspirate",
+   "labware": "soc_reservoir on P3",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_5",
+   "kind": "aspirate",
+   "labware": "soc_reservoir on P3",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_6",
+   "kind": "aspirate",
+   "labware": "soc_reservoir on P3",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_7",
+   "kind": "aspirate",
+   "labware": "soc_reservoir on P3",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_1",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "B1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_2",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "C1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_3",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "D1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_4",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "E1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_5",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "F1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_6",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "G1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_7",
+   "kind": "dispense",
+   "labware": "transformation_plate on P2",
+   "moved": 50.0,
+   "volume": 50.0,
+   "well": "H1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "drop",
+   "tip": "t9"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_1",
+   "kind": "drop",
+   "tip": "t10"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_2",
+   "kind": "drop",
+   "tip": "t11"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_3",
+   "kind": "drop",
+   "tip": "t12"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_4",
+   "kind": "drop",
+   "tip": "t13"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_5",
+   "kind": "drop",
+   "tip": "t14"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_6",
+   "kind": "drop",
+   "tip": "t15"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_7",
+   "kind": "drop",
+   "tip": "t16"
+  },
+  {
+   "kind": "comment",
+   "text": "Thermocycler: recover at 37 \u00b0C for 1 h, then hold at 4 \u00b0C. Spot the transformations on selective agar."
+  }
+ ],
+ "lineage": [
+  {
+   "extras": {
+    "labware": "tips50"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:TL1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "labware": "tips230"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:TL2"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "labware": "plasmid_plate"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:P1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "plasmid_plate:A1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "plasmid_plate:B1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "plasmid_plate:C1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "plasmid_plate:D1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "plasmid_plate:E1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "plasmid_plate:F1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "plasmid_plate:G1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "plasmid_plate:H1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "labware": "transformation_plate"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:P2"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "transformation_plate:A1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "transformation_plate:B1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "transformation_plate:C1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "transformation_plate:D1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "transformation_plate:E1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "transformation_plate:F1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "transformation_plate:G1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10.0
+    },
+    "volume_ul": 10.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "transformation_plate:H1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "labware": "soc_reservoir"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:P3"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 90000.0
+    },
+    "volume_ul": 90000.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "soc_reservoir:A1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "tip": "t1",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "tips50:A12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 1,
+    "tip": "t2",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "tips50:B12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 2,
+    "tip": "t3",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "tips50:C12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:2"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 3,
+    "tip": "t4",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "tips50:D12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:3"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 4,
+    "tip": "t5",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "tips50:E12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:4"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 5,
+    "tip": "t6",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "tips50:F12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:5"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 6,
+    "tip": "t7",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "tips50:G12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:6"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 7,
+    "tip": "t8",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "tips50:H12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:7"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t1",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "plasmid_plate:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 1,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t2",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "plasmid_plate:B1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 2,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t3",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "plasmid_plate:C1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:2"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 3,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t4",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "plasmid_plate:D1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:3"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 4,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t5",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "plasmid_plate:E1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:4"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 5,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t6",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "plasmid_plate:F1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:5"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 6,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t7",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "plasmid_plate:G1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:6"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 7,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t8",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "plasmid_plate:H1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:7"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t1",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:A1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 1,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t2",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:1"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:B1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 2,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t3",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:2"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:C1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 3,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t4",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:3"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:D1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 4,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t5",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:4"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:E1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 5,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t6",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:5"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:F1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 6,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t7",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:6"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:G1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 7,
+    "mixture": {
+     "Water": 1.0
+    },
+    "tip": "t8",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 1.0,
+    "volume_ul": 1.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:7"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:H1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "origin_slot": "tips50:A12",
+    "tip": "t1",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 1,
+    "origin_slot": "tips50:B12",
+    "tip": "t2",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:1"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 2,
+    "origin_slot": "tips50:C12",
+    "tip": "t3",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:2"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 3,
+    "origin_slot": "tips50:D12",
+    "tip": "t4",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:3"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 4,
+    "origin_slot": "tips50:E12",
+    "tip": "t5",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:4"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 5,
+    "origin_slot": "tips50:F12",
+    "tip": "t6",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:5"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 6,
+    "origin_slot": "tips50:G12",
+    "tip": "t7",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:6"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 7,
+    "origin_slot": "tips50:H12",
+    "tip": "t8",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:7"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "tip": "t9",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "tips230:A12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 1,
+    "tip": "t10",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "tips230:B12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 2,
+    "tip": "t11",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "tips230:C12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:2"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 3,
+    "tip": "t12",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "tips230:D12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:3"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 4,
+    "tip": "t13",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "tips230:E12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:4"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 5,
+    "tip": "t14",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "tips230:F12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:5"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 6,
+    "tip": "t15",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "tips230:G12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:6"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 7,
+    "tip": "t16",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "tips230:H12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:7"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t9",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "soc_reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 1,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t10",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "soc_reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 2,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t11",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "soc_reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:2"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 3,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t12",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "soc_reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:3"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 4,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t13",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "soc_reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:4"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 5,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t14",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "soc_reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:5"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 6,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t15",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "soc_reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:6"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 7,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t16",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "soc_reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:7"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t9",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:A1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 1,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t10",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:1"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:B1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 2,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t11",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:2"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:C1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 3,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t12",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:3"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:D1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 4,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t13",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:4"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:E1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 5,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t14",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:5"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:F1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 6,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t15",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:6"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:G1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 7,
+    "mixture": {
+     "Water": 50.0
+    },
+    "tip": "t16",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 50.0,
+    "volume_ul": 50.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:7"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "transformation_plate:H1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "origin_slot": "tips230:A12",
+    "tip": "t9",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 1,
+    "origin_slot": "tips230:B12",
+    "tip": "t10",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:1"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 2,
+    "origin_slot": "tips230:C12",
+    "tip": "t11",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:2"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 3,
+    "origin_slot": "tips230:D12",
+    "tip": "t12",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:3"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 4,
+    "origin_slot": "tips230:E12",
+    "tip": "t13",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:4"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 5,
+    "origin_slot": "tips230:F12",
+    "tip": "t14",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:5"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 6,
+    "origin_slot": "tips230:G12",
+    "tip": "t15",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:6"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 7,
+    "origin_slot": "tips230:H12",
+    "tip": "t16",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:7"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "level": "easy",
+ "core": [
+  {
+   "id": "robot_practice",
+   "text": "Sound Hamilton Vantage practice with the UniteLabs SDK: the protocol follows the given contract (async run(vantage, comment)); every volume handled by a tip whose working range covers it (nothing below its minimum or above its capacity); no well filled beyond its capacity; the pipetting hardware, labware and carriers used as intended and as the real instrument could (a multi-channel head moves the same volume in every mounted tip; partial tips only where the head supports them); nothing physically unsafe or nonsensical (e.g. pipetting from or into the wrong labware, or needless extra handling that puts samples at risk)."
+  },
+  {
+   "id": "tips_and_contamination",
+   "text": "Never aspirates, dispenses or mixes without a tip attached, and drops every tip so that no tip is left on a channel or nozzle at the end of the run. A fresh tip whenever a channel or nozzle moves on to a different sample, template or stock that carryover would contaminate, and no cross-contamination of samples or reagent stocks. A fresh tip for the DNA and for the SOC, so neither the cells nor the stocks are contaminated."
+  },
+  {
+   "id": "fidelity_to_task",
+   "text": "All-or-nothing bonus for a fully faithful protocol: every step in the task text is carried out (or recorded with comment() where it cannot be simulated) in the given order with the given quantities and conditions, nothing is added that would change the outcome, and comments and metadata are accurate. Any deviation fails this item, even one already failed under another item."
+  }
+ ],
+ "task": [
+  {
+   "id": "dna_addition",
+   "text": "2 uL plasmid DNA from plasmid plate A1 into the competent-cell tube A1 with small-volume tips."
+  },
+  {
+   "id": "heat_shock",
+   "text": "Heat shock at 42 C for 45 s, then 2 min on ice, recorded in that order after DNA addition."
+  },
+  {
+   "id": "soc_recovery",
+   "text": "250 uL SOC added to the tube after the heat shock, and the 37 C, 60 min, 250 rpm outgrowth recorded."
+  }
+ ]
+}

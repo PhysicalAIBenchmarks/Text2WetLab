@@ -1,0 +1,21 @@
+{
+ "containers": {
+  "colony_plate": {
+   "label": "colony_plate",
+   "kind": "plate_96"
+  },
+  "pcr_plate": {
+   "label": "pcr_plate",
+   "kind": "plate_96"
+  },
+  "master_mix_reservoir": {
+   "label": "master_mix_reservoir",
+   "kind": "reservoir",
+   "well": "A1"
+  },
+  "primer_plate": {
+   "label": "primer_plate",
+   "kind": "plate_96"
+  }
+ }
+}

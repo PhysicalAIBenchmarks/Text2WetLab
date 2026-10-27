@@ -1,0 +1,728 @@
+{
+ "comments": [
+  [
+   13,
+   "Heat shock cells_rack 42\u00b0C 45 s, then transfer immediately to ice 2 min"
+  ],
+  [
+   17,
+   "Incubate cells_rack 37\u00b0C 60 min at 250 rpm for outgrowth recovery"
+  ]
+ ],
+ "entities": {
+  "67547a06": [
+   "tubes_1_5ml_1 on P2",
+   "A1"
+  ],
+  "plasmid_plate:A1": [
+   "plasmid_plate on P1",
+   "A1"
+  ],
+  "plasmid_plate:A10": [
+   "plasmid_plate on P1",
+   "A10"
+  ],
+  "plasmid_plate:A11": [
+   "plasmid_plate on P1",
+   "A11"
+  ],
+  "plasmid_plate:A12": [
+   "plasmid_plate on P1",
+   "A12"
+  ],
+  "plasmid_plate:A2": [
+   "plasmid_plate on P1",
+   "A2"
+  ],
+  "plasmid_plate:A3": [
+   "plasmid_plate on P1",
+   "A3"
+  ],
+  "plasmid_plate:A4": [
+   "plasmid_plate on P1",
+   "A4"
+  ],
+  "plasmid_plate:A5": [
+   "plasmid_plate on P1",
+   "A5"
+  ],
+  "plasmid_plate:A6": [
+   "plasmid_plate on P1",
+   "A6"
+  ],
+  "plasmid_plate:A7": [
+   "plasmid_plate on P1",
+   "A7"
+  ],
+  "plasmid_plate:A8": [
+   "plasmid_plate on P1",
+   "A8"
+  ],
+  "plasmid_plate:A9": [
+   "plasmid_plate on P1",
+   "A9"
+  ],
+  "plasmid_plate:B1": [
+   "plasmid_plate on P1",
+   "B1"
+  ],
+  "plasmid_plate:B10": [
+   "plasmid_plate on P1",
+   "B10"
+  ],
+  "plasmid_plate:B11": [
+   "plasmid_plate on P1",
+   "B11"
+  ],
+  "plasmid_plate:B12": [
+   "plasmid_plate on P1",
+   "B12"
+  ],
+  "plasmid_plate:B2": [
+   "plasmid_plate on P1",
+   "B2"
+  ],
+  "plasmid_plate:B3": [
+   "plasmid_plate on P1",
+   "B3"
+  ],
+  "plasmid_plate:B4": [
+   "plasmid_plate on P1",
+   "B4"
+  ],
+  "plasmid_plate:B5": [
+   "plasmid_plate on P1",
+   "B5"
+  ],
+  "plasmid_plate:B6": [
+   "plasmid_plate on P1",
+   "B6"
+  ],
+  "plasmid_plate:B7": [
+   "plasmid_plate on P1",
+   "B7"
+  ],
+  "plasmid_plate:B8": [
+   "plasmid_plate on P1",
+   "B8"
+  ],
+  "plasmid_plate:B9": [
+   "plasmid_plate on P1",
+   "B9"
+  ],
+  "plasmid_plate:C1": [
+   "plasmid_plate on P1",
+   "C1"
+  ],
+  "plasmid_plate:C10": [
+   "plasmid_plate on P1",
+   "C10"
+  ],
+  "plasmid_plate:C11": [
+   "plasmid_plate on P1",
+   "C11"
+  ],
+  "plasmid_plate:C12": [
+   "plasmid_plate on P1",
+   "C12"
+  ],
+  "plasmid_plate:C2": [
+   "plasmid_plate on P1",
+   "C2"
+  ],
+  "plasmid_plate:C3": [
+   "plasmid_plate on P1",
+   "C3"
+  ],
+  "plasmid_plate:C4": [
+   "plasmid_plate on P1",
+   "C4"
+  ],
+  "plasmid_plate:C5": [
+   "plasmid_plate on P1",
+   "C5"
+  ],
+  "plasmid_plate:C6": [
+   "plasmid_plate on P1",
+   "C6"
+  ],
+  "plasmid_plate:C7": [
+   "plasmid_plate on P1",
+   "C7"
+  ],
+  "plasmid_plate:C8": [
+   "plasmid_plate on P1",
+   "C8"
+  ],
+  "plasmid_plate:C9": [
+   "plasmid_plate on P1",
+   "C9"
+  ],
+  "plasmid_plate:D1": [
+   "plasmid_plate on P1",
+   "D1"
+  ],
+  "plasmid_plate:D10": [
+   "plasmid_plate on P1",
+   "D10"
+  ],
+  "plasmid_plate:D11": [
+   "plasmid_plate on P1",
+   "D11"
+  ],
+  "plasmid_plate:D12": [
+   "plasmid_plate on P1",
+   "D12"
+  ],
+  "plasmid_plate:D2": [
+   "plasmid_plate on P1",
+   "D2"
+  ],
+  "plasmid_plate:D3": [
+   "plasmid_plate on P1",
+   "D3"
+  ],
+  "plasmid_plate:D4": [
+   "plasmid_plate on P1",
+   "D4"
+  ],
+  "plasmid_plate:D5": [
+   "plasmid_plate on P1",
+   "D5"
+  ],
+  "plasmid_plate:D6": [
+   "plasmid_plate on P1",
+   "D6"
+  ],
+  "plasmid_plate:D7": [
+   "plasmid_plate on P1",
+   "D7"
+  ],
+  "plasmid_plate:D8": [
+   "plasmid_plate on P1",
+   "D8"
+  ],
+  "plasmid_plate:D9": [
+   "plasmid_plate on P1",
+   "D9"
+  ],
+  "plasmid_plate:E1": [
+   "plasmid_plate on P1",
+   "E1"
+  ],
+  "plasmid_plate:E10": [
+   "plasmid_plate on P1",
+   "E10"
+  ],
+  "plasmid_plate:E11": [
+   "plasmid_plate on P1",
+   "E11"
+  ],
+  "plasmid_plate:E12": [
+   "plasmid_plate on P1",
+   "E12"
+  ],
+  "plasmid_plate:E2": [
+   "plasmid_plate on P1",
+   "E2"
+  ],
+  "plasmid_plate:E3": [
+   "plasmid_plate on P1",
+   "E3"
+  ],
+  "plasmid_plate:E4": [
+   "plasmid_plate on P1",
+   "E4"
+  ],
+  "plasmid_plate:E5": [
+   "plasmid_plate on P1",
+   "E5"
+  ],
+  "plasmid_plate:E6": [
+   "plasmid_plate on P1",
+   "E6"
+  ],
+  "plasmid_plate:E7": [
+   "plasmid_plate on P1",
+   "E7"
+  ],
+  "plasmid_plate:E8": [
+   "plasmid_plate on P1",
+   "E8"
+  ],
+  "plasmid_plate:E9": [
+   "plasmid_plate on P1",
+   "E9"
+  ],
+  "plasmid_plate:F1": [
+   "plasmid_plate on P1",
+   "F1"
+  ],
+  "plasmid_plate:F10": [
+   "plasmid_plate on P1",
+   "F10"
+  ],
+  "plasmid_plate:F11": [
+   "plasmid_plate on P1",
+   "F11"
+  ],
+  "plasmid_plate:F12": [
+   "plasmid_plate on P1",
+   "F12"
+  ],
+  "plasmid_plate:F2": [
+   "plasmid_plate on P1",
+   "F2"
+  ],
+  "plasmid_plate:F3": [
+   "plasmid_plate on P1",
+   "F3"
+  ],
+  "plasmid_plate:F4": [
+   "plasmid_plate on P1",
+   "F4"
+  ],
+  "plasmid_plate:F5": [
+   "plasmid_plate on P1",
+   "F5"
+  ],
+  "plasmid_plate:F6": [
+   "plasmid_plate on P1",
+   "F6"
+  ],
+  "plasmid_plate:F7": [
+   "plasmid_plate on P1",
+   "F7"
+  ],
+  "plasmid_plate:F8": [
+   "plasmid_plate on P1",
+   "F8"
+  ],
+  "plasmid_plate:F9": [
+   "plasmid_plate on P1",
+   "F9"
+  ],
+  "plasmid_plate:G1": [
+   "plasmid_plate on P1",
+   "G1"
+  ],
+  "plasmid_plate:G10": [
+   "plasmid_plate on P1",
+   "G10"
+  ],
+  "plasmid_plate:G11": [
+   "plasmid_plate on P1",
+   "G11"
+  ],
+  "plasmid_plate:G12": [
+   "plasmid_plate on P1",
+   "G12"
+  ],
+  "plasmid_plate:G2": [
+   "plasmid_plate on P1",
+   "G2"
+  ],
+  "plasmid_plate:G3": [
+   "plasmid_plate on P1",
+   "G3"
+  ],
+  "plasmid_plate:G4": [
+   "plasmid_plate on P1",
+   "G4"
+  ],
+  "plasmid_plate:G5": [
+   "plasmid_plate on P1",
+   "G5"
+  ],
+  "plasmid_plate:G6": [
+   "plasmid_plate on P1",
+   "G6"
+  ],
+  "plasmid_plate:G7": [
+   "plasmid_plate on P1",
+   "G7"
+  ],
+  "plasmid_plate:G8": [
+   "plasmid_plate on P1",
+   "G8"
+  ],
+  "plasmid_plate:G9": [
+   "plasmid_plate on P1",
+   "G9"
+  ],
+  "plasmid_plate:H1": [
+   "plasmid_plate on P1",
+   "H1"
+  ],
+  "plasmid_plate:H10": [
+   "plasmid_plate on P1",
+   "H10"
+  ],
+  "plasmid_plate:H11": [
+   "plasmid_plate on P1",
+   "H11"
+  ],
+  "plasmid_plate:H12": [
+   "plasmid_plate on P1",
+   "H12"
+  ],
+  "plasmid_plate:H2": [
+   "plasmid_plate on P1",
+   "H2"
+  ],
+  "plasmid_plate:H3": [
+   "plasmid_plate on P1",
+   "H3"
+  ],
+  "plasmid_plate:H4": [
+   "plasmid_plate on P1",
+   "H4"
+  ],
+  "plasmid_plate:H5": [
+   "plasmid_plate on P1",
+   "H5"
+  ],
+  "plasmid_plate:H6": [
+   "plasmid_plate on P1",
+   "H6"
+  ],
+  "plasmid_plate:H7": [
+   "plasmid_plate on P1",
+   "H7"
+  ],
+  "plasmid_plate:H8": [
+   "plasmid_plate on P1",
+   "H8"
+  ],
+  "plasmid_plate:H9": [
+   "plasmid_plate on P1",
+   "H9"
+  ],
+  "soc_reservoir:A1": [
+   "soc_reservoir on P3",
+   "A1"
+  ]
+ },
+ "events": [
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "pick",
+   "tip": "t1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "aspirate",
+   "labware": "plasmid_plate on P1",
+   "moved": 2.0,
+   "volume": 2.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "dispense",
+   "labware": "tubes_1_5ml_1 on P2",
+   "moved": 2.0,
+   "volume": 2.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "drop",
+   "tip": "t1"
+  },
+  {
+   "kind": "comment",
+   "text": "Heat shock cells_rack 42\u00b0C 45 s, then transfer immediately to ice 2 min"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "pick",
+   "tip": "t2"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "aspirate",
+   "labware": "soc_reservoir on P3",
+   "moved": 250.0,
+   "volume": 250.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "dispense",
+   "labware": "tubes_1_5ml_1 on P2",
+   "moved": 250.0,
+   "volume": 250.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "drop",
+   "tip": "t2"
+  },
+  {
+   "kind": "comment",
+   "text": "Incubate cells_rack 37\u00b0C 60 min at 250 rpm for outgrowth recovery"
+  }
+ ],
+ "lineage": [
+  {
+   "extras": {
+    "labware": "tips50"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:TL1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "labware": "tips1070"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:TL2"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "labware": "plasmid_plate"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:P1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 100.0
+    },
+    "volume_ul": 100.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "plasmid_plate:A1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "labware": "tubes_1_5ml_1"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:P2"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "labware": "67547a06"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "tubes_1_5ml_1:A1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 50.0
+    },
+    "volume_ul": 50.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "67547a06"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "labware": "soc_reservoir"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:P3"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 90000.0
+    },
+    "volume_ul": 90000.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "soc_reservoir:A1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "tip": "t1",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "tips50:H12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "mixture": {
+     "Water": 2.0
+    },
+    "tip": "t1",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 2.0,
+    "volume_ul": 2.0
+   },
+   "inputs": {
+    "entity_id": "plasmid_plate:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "mixture": {
+     "Water": 2.0
+    },
+    "tip": "t1",
+    "tip_type": "BiomekTip_50",
+    "volume_requested_ul": 2.0,
+    "volume_ul": 2.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "67547a06"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "origin_slot": "tips50:H12",
+    "tip": "t1",
+    "tip_type": "BiomekTip_50"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "tip": "t2",
+    "tip_type": "BiomekTip_1070"
+   },
+   "inputs": {
+    "entity_id": "tips1070:H12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "mixture": {
+     "Water": 250.0
+    },
+    "tip": "t2",
+    "tip_type": "BiomekTip_1070",
+    "volume_requested_ul": 250.0,
+    "volume_ul": 250.0
+   },
+   "inputs": {
+    "entity_id": "soc_reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "mixture": {
+     "Water": 250.0
+    },
+    "tip": "t2",
+    "tip_type": "BiomekTip_1070",
+    "volume_requested_ul": 250.0,
+    "volume_ul": 250.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "67547a06"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "origin_slot": "tips1070:H12",
+    "tip": "t2",
+    "tip_type": "BiomekTip_1070"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  }
+ ]
+}

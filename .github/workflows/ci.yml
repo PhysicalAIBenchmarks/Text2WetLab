@@ -34,6 +34,8 @@ jobs:
       # split grader, IR-derived task files are current (make_harbor --check), task-sources tables are current,
       # and Harbor itself accepts every task.toml.
       - run: uv run --with harbor==0.23.0 python -m pytest -q -rs
+      - name: UniteLabs backend tasks are current (backends/unitelabs/ul/make_tasks.py)
+        run: uv run python backends/unitelabs/ul/make_tasks.py --check
       - name: Dataset publish allowlist (no hidden files, no third-party refs)
         run: uv run python scripts/deploy_hf.py --dry-run | tail -1
 

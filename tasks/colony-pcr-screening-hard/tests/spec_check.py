@@ -22,6 +22,16 @@ blown out without an event in the log.
 
 IR containers are matched to run labware by kind. If that match is ambiguous the end-state check
 reports "not applicable" instead of guessing.
+
+Other backends (backends/<name>/) feed the same checker their own runs. The contract:
+  events     {"kind": "pick" | "drop" | "aspirate" | "dispense", "instrument", "labware", "well", "volume",
+             optional "channels"}; a pick may name the physical tip ("tip"), so a used tip put back and picked up
+             again keeps what it touched. Tip state is kept per instrument (a channel, a head), well volumes are shared.
+  labware    {run labware name: load name}, as run["labware"].
+  geometry   optional {run labware name: {"family": "plate" | "trough" | "tube" | "tube_rack" | ..., "wells": n,
+             "volumes": [uL, ...]}}: what the labware is, preferred over its name for kind and stock checks.
+  deck       a container with no "slot" is matched by role: exactly one labware carries its label, anywhere on the
+             deck, and it is of the container's kind. Containers with a slot keep the fixed OT-2 layout.
 """
 import argparse
 import json
@@ -73,9 +83,12 @@ def error_kind(err: str) -> str:
 RESERVOIR_WORDS = ("reservoir", "trough")
 
 
-def is_stock(labware: str, loadnames: dict | None = None) -> bool:
+def is_stock(labware: str, loadnames: dict | None = None, geometry: dict | None = None) -> bool:
     """A source with ample volume. With the simulator's load names (new traces) only reservoirs are stock and tubes
-    are tracked exactly; for old traces without them the display name is all there is and tube racks count as stock."""
+    are tracked exactly; for old traces without them the display name is all there is and tube racks count as stock.
+    A run's geometry, where it has one, decides first: only single-trough labware is stock."""
+    if geometry and labware in geometry:
+        return geometry[labware]["family"] == "trough"
     if loadnames and labware in loadnames:
         return any(w in loadnames[labware].lower() for w in RESERVOIR_WORDS)
     return any(w in labware.lower() for w in STOCK_WORDS)
@@ -91,71 +104,108 @@ class State:
     fed: dict = field(default_factory=dict)        # (labware, well) -> labware it received liquid from
 
 
-def wells_of(event, loadnames=None) -> list[str]:
+def wells_of(event, loadnames=None, geometry=None) -> list[str]:
     well = event["well"]
-    if event.get("channels") == 8 and not is_stock(event["labware"], loadnames) and well[0] == "A":
+    if event.get("channels") == 8 and not is_stock(event["labware"], loadnames, geometry) and well[0] == "A":
         return [r + well[1:] for r in ROWS]
     return [well]
 
 
-def replay(events: list[dict], initial: dict | None = None, ample: frozenset = frozenset(), loadnames: dict | None = None) -> State:
+TIP_KINDS = ("pick", "drop", "aspirate", "dispense")
+
+
+def _holder(events: list[dict]):
+    """Which tip an event belongs to: its instrument when every tip event names one (a STAR channel, an OT-2 pipette),
+    else one shared tip, as for traces recorded without instruments."""
+    if all(e.get("instrument") for e in events if e["kind"] in TIP_KINDS):
+        return lambda e: e["instrument"]
+    return lambda e: ""
+
+
+def replay(events: list[dict], initial: dict | None = None, ample: frozenset = frozenset(), loadnames: dict | None = None,
+           geometry: dict | None = None) -> State:
     """Apply atomic events in order. `initial` = {(labware, well): uL} for non-stock wells; `ample` = (labware, well)
-    pairs the IR declares as stocks with unlimited volume (aspirating from them is never an error and is not counted)."""
+    pairs the IR declares as stocks with unlimited volume (aspirating from them is never an error and is not counted).
+    Each instrument holds its own tip and volume; well volumes are shared."""
     st = State(wells=dict(initial or {}))
-    drawn = set()                                  # labware the current tip has aspirated from
+    holder, tips = _holder(events), {}             # instrument -> {"tip", "held", "drawn": labware aspirated from}
     for i, e in enumerate(events):
         kind = e["kind"]
+        if kind not in TIP_KINDS:
+            continue
+        t = tips.setdefault(holder(e), {"tip": False, "held": 0.0, "drawn": set()})
         if kind == "pick":
-            if st.tip:
+            if t["tip"]:
                 st.errors.append((i, "already_has_tip"))
-            st.tip, st.held, drawn = True, 0.0, set()
+            t.update(tip=True, held=0.0, drawn=set())
         elif kind == "drop":
-            st.tip, st.held, drawn = False, 0.0, set()
-        elif kind in ("aspirate", "dispense"):
+            t.update(tip=False, held=0.0, drawn=set())
+        else:
             vol = e["volume"]
-            if not st.tip:
+            if not t["tip"]:
                 st.errors.append((i, "NoTipError"))
                 continue
             if kind == "aspirate":
                 st.aspirations += 1
-                if not is_stock(e["labware"], loadnames):
-                    for w in wells_of(e, loadnames):
+                if not is_stock(e["labware"], loadnames, geometry):
+                    for w in wells_of(e, loadnames, geometry):
                         if (e["labware"], w) in ample:
                             continue
                         if st.wells.get((e["labware"], w), 0.0) < vol - 1e-9:
                             st.errors.append((i, "aspirate_from_empty"))
                             break
                         st.wells[(e["labware"], w)] -= vol
-                st.held += vol
-                drawn.add(e["labware"])
+                t["held"] += vol
+                t["drawn"].add(e["labware"])
             else:
-                if vol > st.held + 1e-9:
+                if vol > t["held"] + 1e-9:
                     st.errors.append((i, "overdispense"))
-                for w in wells_of(e, loadnames):
+                for w in wells_of(e, loadnames, geometry):
                     st.wells[(e["labware"], w)] = st.wells.get((e["labware"], w), 0.0) + vol
-                    st.fed.setdefault((e["labware"], w), set()).update(drawn - {e["labware"]})
-                st.held = max(st.held - vol, 0.0)
+                    st.fed.setdefault((e["labware"], w), set()).update(t["drawn"] - {e["labware"]})
+                t["held"] = max(t["held"] - vol, 0.0)
+    st.tip = any(t["tip"] for t in tips.values())  # tip_dropped_at_end: no instrument may still hold one
+    st.held = sum(t["held"] for t in tips.values())
     return st
 
 
-def cross_contamination(events: list[dict]) -> list:
-    """(event index, well) where one tip carries liquid between wells it should not. A tip may go back to wells it
-    dispensed into (mixing) and to the one well it started from (multi-dispense). Once it has mixed in a destination
-    (drawn from a well it dispensed into that was not one of its sources), it carries that well's contents: dispensing
-    into any other well, or drawing from any other well (the stock included), is contamination until a fresh tip.
-    Mixing in a source before drawing from it (resuspending a colony or beads) carries nothing the transfer is not
-    meant to move."""
-    bad, sources, own, carried = [], set(), set(), set()
+def cross_contamination(events: list[dict], waste: frozenset = frozenset()) -> list:
+    """(event index, well) where one tip carries liquid between wells it should not (see _tip_contamination), judged
+    per physical tip: a pick that names its tip ("tip") continues that tip's history, so a used tip put back and picked
+    up again still carries what it touched; a pick without one is a fresh tip. Dispensing into `waste` (run labware
+    names) is never contamination: waste receives whatever a tip carries."""
+    holder, current, groups = _holder(events), {}, {}
     for i, e in enumerate(events):
         if e["kind"] in ("pick", "drop"):
-            sources, own, carried = set(), set(), set()
-        elif e["kind"] == "dispense":
-            key = (e["labware"], e["well"])
+            current[holder(e)] = ("tip", e["tip"]) if e["kind"] == "pick" and e.get("tip") else ("event", i)
+        elif e["kind"] in ("aspirate", "dispense"):
+            groups.setdefault(current.get(holder(e), ("start", holder(e))), []).append(i)
+    bad = []
+    for idx in groups.values():
+        bad += [(idx[j], well) for j, well in _tip_contamination([events[i] for i in idx])]
+    return sorted((i, well) for i, well in bad if not (events[i]["kind"] == "dispense" and events[i]["labware"] in waste))
+
+
+def _tip_contamination(events: list[dict]) -> list:
+    """(index, well) where one tip's aspirates and dispenses carry liquid between wells they should not. A tip may go
+    back to wells it dispensed into (mixing) and to the one well it started from (multi-dispense). Once it has mixed in
+    a destination (drawn from a well it dispensed into that was not one of its sources), it carries that well's
+    contents: dispensing into any other well, or drawing from any other well (the stock included), is contamination
+    until a fresh tip. Mixing in a source before drawing from it (resuspending a colony or beads) carries nothing the
+    transfer is not meant to move. A tip whose only destination so far is one well, drawing from that well, holds only
+    that well's liquid (adding water to a well and then moving the eluate with the same tip): it starts over with that
+    well as its only source."""
+    bad, sources, own, carried = [], set(), set(), set()
+    for i, e in enumerate(events):
+        key = (e["labware"], e["well"])
+        if e["kind"] == "dispense":
             if carried - {key}:
                 bad.append((i, key[1]))
             own.add(key)
         elif e["kind"] == "aspirate":
-            key = (e["labware"], e["well"])
+            if own == {key} and carried <= {key}:   # moving the one well this tip filled
+                sources, own, carried = {key}, set(), set()
+                continue
             if (sources and key not in sources and key not in own) or carried - {key}:
                 bad.append((i, key[1]))
             if key in own and key not in sources:   # mixing in a destination
@@ -198,17 +248,57 @@ def labware_names(run: dict) -> dict:
     return out
 
 
+KIND_GEOMETRY = {   # IR container kind -> (families, wells or None for any, [low, high) uL a well of that kind holds)
+    "plate_96": (("plate",), 96, (0, 1000)),
+    "plate_96_deep": (("plate",), 96, (1000, 5000)),
+    "reservoir": (("trough",), 1, (0, float("inf"))),
+    "waste": (("trough",), 1, (0, float("inf"))),
+    "tube_1.5ml": (("tube", "tube_rack"), None, (1000, 2500)),
+    "tube_15ml": (("tube", "tube_rack"), None, (10000, 20000)),
+    "tube_50ml": (("tube", "tube_rack"), None, (40000, 60000)),
+}
+
+
+def kind_matches(kind: str, load_name: str, geometry: dict | None = None) -> bool:
+    """Whether a labware is of an IR container kind: by its geometry when the run records one, else by its name."""
+    if geometry and kind in KIND_GEOMETRY:
+        families, wells, (low, high) = KIND_GEOMETRY[kind]
+        return (geometry["family"] in families and (wells is None or geometry["wells"] == wells)
+                and any(low <= v < high for v in geometry["volumes"]))
+    name = load_name.lower()
+    if kind == "plate_96" and "deep" in name:
+        return False
+    return any(w in name for w in KIND_WORDS.get(kind, (kind,)))
+
+
 def _deck_mapping(proto, run, deck, add):
-    """With a deck (fixed layout, see eval/deck.py): container -> (run labware string, {IR well -> real well}).
-    A container is only mapped if the protocol loaded a labware under the deck's label AND that labware really is the
-    deck's load name, so a plate labelled as a reservoir (or the reverse) cannot stand in for it."""
+    """With a deck: container -> (run labware string, {IR well -> real well}).
+    Fixed layout (a container with a slot, see eval/deck.py): a container is only mapped if the protocol loaded a
+    labware under the deck's label AND that labware really is the deck's load name, so a plate labelled as a reservoir
+    (or the reverse) cannot stand in for it. By role (no slot): exactly one labware carries the label, anywhere on the
+    deck, and it is of the container's kind; a tube may be its own labware named after the tube instead of a rack's well."""
     loadnames = labware_names(run)
+    geometry = run.get("geometry") or {}
     used = {s.source for s in proto.steps if s.source} | {s.dest for s in proto.steps if s.dest}
     mapping = {}
     for cname, spec in deck["containers"].items():
         if cname not in used:
             continue
         hits = [n for n in loadnames if n.startswith(spec["label"] + " on ")]
+        if "slot" not in spec:
+            well = spec.get("well", "")
+            if spec["label"] != cname and well and not hits:
+                hits, well = [n for n in loadnames if n.startswith(cname + " on ")], "A1"
+            if len(hits) != 1:
+                add(f"deck_labware:{cname}", False, f"expected exactly one labware with identifier {spec['label']!r}"
+                    + (f" (or a tube {cname!r})" if spec["label"] != cname else "") + f", found {len(hits)}")
+            elif spec.get("load_name") and loadnames[hits[0]] != spec["load_name"]:
+                add(f"deck_labware:{cname}", False, f"{spec['label']!r} must be {spec['load_name']}, got {loadnames[hits[0]]}")
+            elif spec.get("kind") and not kind_matches(spec["kind"], loadnames[hits[0]], geometry.get(hits[0])):
+                add(f"deck_labware:{cname}", False, f"{spec['label']!r} must be {spec['kind']}, got {loadnames[hits[0]]}")
+            else:
+                mapping[cname] = (hits[0], well)
+            continue
         if len(hits) == 1 and hits[0] != f"{spec['label']} on {spec['slot']}":
             add(f"deck_labware:{cname}", False, f"{spec['label']!r} must be in slot {spec['slot']}, found {hits[0]!r}")
             continue
@@ -235,7 +325,7 @@ def check(proto: Protocol, run: dict, free_wells: frozenset = frozenset(), deck:
         add("simulator_ran", False, error_kind(run.get("error", "")))
         return {"passed": False, "checks": checks}
     add("simulator_ran", True)
-    events, loadnames = run["events"], labware_names(run) or None
+    events, loadnames, geometry = run["events"], labware_names(run) or None, run.get("geometry") or None
     kinds = {c.name: c.kind for c in proto.containers}
     states, _ = timeline(proto)
     if deck:
@@ -255,16 +345,16 @@ def check(proto: Protocol, run: dict, free_wells: frozenset = frozenset(), deck:
             rw = tube_well.get(cn) if w == "" and tube_well.get(cn) else w
             if v is None:
                 ample.add((lab, rw))          # volume null in the IR = a stock with ample volume
-            elif not is_stock(lab, loadnames):
+            elif not is_stock(lab, loadnames, geometry):
                 initial[(lab, rw)] = v
-    st = replay(events, initial, frozenset(ample), loadnames)
+    st = replay(events, initial, frozenset(ample), loadnames, geometry)
     codes = lambda *names: sorted({(i, c) for i, c in st.errors if c in names})
     add("tip_before_aspirate", not codes("NoTipError"), str(codes("NoTipError")[:3]))
     add("no_overdispense", not codes("overdispense"), str(codes("overdispense")[:3]))
     add("no_aspirate_from_empty_well", not codes("aspirate_from_empty"), str(codes("aspirate_from_empty")[:3]))
     add("tip_dropped_at_end", not st.tip)
     if deck:    # fresh tip whenever the source changes; only judged against a fixed deck, where wells are unambiguous
-        cc = cross_contamination(events)
+        cc = cross_contamination(events, frozenset(lab for c, lab in mapping.items() if kinds[c] == "waste"))
         add("no_cross_contamination", not cc, str(cc[:3]))
     final, na = states[-1], []
     for cname, lab in mapping.items():

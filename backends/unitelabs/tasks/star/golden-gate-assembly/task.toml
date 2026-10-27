@@ -1,0 +1,35 @@
+schema_version = "1.4"
+
+[task]
+name = "text2wetlab-ul/star.golden-gate-assembly"
+version = "0.1.0"
+description = "Golden Gate assembly of four four-fragment chromoprotein expression plasmids with AssemblyTron on a Hamilton Microlab STAR"
+authors = [{ name = "UniteLabs" }]
+keywords = ["star", "unitelabs-sdk", "lab-automation", "protocol-generation"]
+
+[metadata]
+level = "easy"
+steps = 33
+containers = 15
+source = "paper2protocol"
+deck = "specified"
+papers = [{ slug = "assemblytron", experiment = "exp2", relation = "derived" }]
+grading = "simulated-star gate + end-state checks + Sonnet 5.5 rubric judge (75% core: robot practice, tips/contamination, fidelity; 25% task-specific)"
+device = "star"
+feasible = true
+
+[agent]
+timeout_sec = 1800.0
+
+[verifier]
+timeout_sec = 1800
+env = { ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY:-}", OPENROUTER_API_KEY = "${OPENROUTER_API_KEY:-}", JUDGE_MODEL = "${JUDGE_MODEL:-}", SKIP_JUDGE = "${SKIP_JUDGE:-}" }
+
+[environment]
+network_mode = "allowlist"
+allowed_hosts = ["api.anthropic.com", "openrouter.ai", "registry.npmjs.org"]
+build_timeout_sec = 1200.0
+cpus = 4
+memory_mb = 8192
+storage_mb = 10240
+gpus = 0

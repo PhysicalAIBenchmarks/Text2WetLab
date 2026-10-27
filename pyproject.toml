@@ -34,3 +34,6 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["paper2protocol"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "backends/unitelabs/tests"]

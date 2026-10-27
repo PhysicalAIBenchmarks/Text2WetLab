@@ -1,0 +1,13 @@
+{
+ "containers": {
+  "reservoir": {
+   "label": "reservoir",
+   "kind": "reservoir",
+   "well": "A1"
+  },
+  "plate": {
+   "label": "plate",
+   "kind": "plate_96"
+  }
+ }
+}
