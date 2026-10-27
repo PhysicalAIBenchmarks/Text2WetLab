@@ -27,9 +27,11 @@ def _bravo(lh, labware, holder) -> str:
 
 
 def _biomek(lh, labware, holder) -> str:
-    """Labware sits directly on the deck; the named site whose occupant it is gives the position (P1, TL1, ...)."""
-    return next(name for name, site in lh.deck._sites.items()
-                if getattr(site.get(), "identifier", None) == labware.identifier)
+    """Labware sits directly on the deck; the deck knows the named position (P1, TL1, ...) of each labware."""
+    position = lh.deck.get_position_for_labware(labware)
+    if position is None:
+        raise RuntimeError(f"{labware.identifier!r} is not on a Biomek deck position")
+    return position
 
 
 @dataclasses.dataclass(frozen=True)
