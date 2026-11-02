@@ -345,6 +345,17 @@ harbor run -p tasks -i '*-hard' -a claude-code -m anthropic/claude-sonnet-5-5 -e
 harbor run -p tasks/opentrons-rna-extraction-hard -a claude-code -m anthropic/claude-opus-5-5 -k 3 -e modal -y   # pass@k
 ```
 
+**Without Docker or a key.** Two checks run on a laptop with only uv. The first is the oracle check CI runs: every
+reference solution through its own grader, judge off (`ecoli-heat-shock-transformation-hard` is skipped, as its paper
+is fetched when the image builds). The second validates every committed IR and compares the
+pipeline's `check.json` and `protocol.txt` with fresh output, byte for byte.
+
+```bash
+uv python install 3.10 && scripts/setup_ot_venv.sh "$(uv python find 3.10)"   # the Opentrons 7.5 simulator, in .venv-ot
+uv run --group dev pytest tests/test_oracles.py
+uv run python scripts/reproduce.py --skip simulate criteria render              # writes report.json
+```
+
 **With an OpenRouter key instead.** The judge uses `OPENROUTER_API_KEY` whenever `ANTHROPIC_API_KEY` is unset, and
 reaches the same Claude Sonnet 5.5 through OpenRouter's Anthropic-compatible API. Every verdict records which
 provider judged it. Claude Code, the agent, takes OpenRouter the same way (this is how §5 was run):
