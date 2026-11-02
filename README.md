@@ -348,7 +348,7 @@ harbor run -p tasks/opentrons-rna-extraction-hard -a claude-code -m anthropic/cl
 **Without Docker or a key.** Two checks run on a laptop with only uv. The first is the oracle check CI runs: every
 reference solution through its own grader, judge off (`ecoli-heat-shock-transformation-hard` is skipped, as its paper
 is fetched when the image builds). The second validates every committed IR and compares the
-pipeline's `check.json` and `protocol.txt` with fresh output, byte for byte.
+pipeline's `check.json` and `protocol.txt` with fresh output.
 
 ```bash
 uv python install 3.10 && scripts/setup_ot_venv.sh "$(uv python find 3.10)"   # the Opentrons 7.5 simulator, in .venv-ot
