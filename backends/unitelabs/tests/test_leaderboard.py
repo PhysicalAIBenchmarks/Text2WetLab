@@ -59,3 +59,15 @@ def test_deterministic_and_efficiency_columns(tmp_path):
     m = json.loads(out.read_text())["models"]["m @ star (judge claude-sonnet-5-5/anthropic/x3)"]
     assert m["mean"] == 0.45 and m["deterministic"] == 0.7
     assert m["time_vs_reference"] == 1.5
+
+
+def test_table_ends_with_a_legend(tmp_path):
+    """The ± in a task cell is the range of the trials' rewards, and the table says so."""
+    job = tmp_path / "job"
+    graded = {"feasible": True, "judge_config": JUDGE}
+    trial(job, "t1", "evo.ampure", graded | {"rewards": {"reward": 0.8}})
+    trial(job, "t2", "evo.ampure", graded | {"rewards": {"reward": 0.4}})
+    out = subprocess.run([sys.executable, str(ROOT / "ul/leaderboard.py"), str(job)], check=True,
+                         capture_output=True, text=True).stdout
+    assert "0.600 ±0.40" in out
+    assert out.index("± the range (max − min)") > out.index("0.600 ±0.40")

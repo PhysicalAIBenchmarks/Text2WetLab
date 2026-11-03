@@ -37,11 +37,20 @@ def test_reference_refusals_score_1(tmp_path, ref):
 
 @pytest.mark.parametrize("text", ["", "# Infeasible\n\nThis cannot be done.\n",
                                   "The Bravo deck has only 9 locations and this needs 10.",
-                                  "The SDK cannot pipette from tubes with the Bravo head."])
+                                  "The SDK cannot pipette from tubes with the Bravo head.",
+                                  "Height is not the limitation; the deck is full.",
+                                  "The tubes are not too tall. There are only 9 deck locations."])
 def test_refusal_without_the_reason_scores_0(tmp_path, text):
     record = grade(tmp_path, "bravo", "golden-gate-assembly", text)
     assert record["rewards"]["reward"] == 0.0
     assert record["error"].startswith("declared infeasible without naming")
+
+
+@pytest.mark.parametrize("text", ["There is not enough clearance above a 15 mL tube for the Bravo head.",
+                                  "The deck is not the problem. The 15 mL tubes are too tall for the head's Z travel."])
+def test_refusal_naming_the_reason_as_a_shortfall_scores_1(tmp_path, text):
+    record = grade(tmp_path, "bravo", "golden-gate-assembly", text)
+    assert record["rewards"]["reward"] == 1.0, record
 
 
 def test_refusing_a_feasible_task_scores_0(tmp_path):

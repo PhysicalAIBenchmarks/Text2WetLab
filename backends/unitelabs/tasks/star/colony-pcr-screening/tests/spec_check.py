@@ -194,16 +194,25 @@ def _tip_contamination(events: list[dict]) -> list:
     until a fresh tip. Mixing in a source before drawing from it (resuspending a colony or beads) carries nothing the
     transfer is not meant to move. A tip whose only destination so far is one well, drawing from that well, holds only
     that well's liquid (adding water to a well and then moving the eluate with the same tip): it starts over with that
-    well as its only source."""
-    bad, sources, own, carried = [], set(), set(), set()
+    well as its only source. Starting over does not forget the wells the tip drew from before: dispensing into one of
+    them later (the eluate back into the water stock) is contamination, and drawing from a former source never starts
+    the tip over, because that well now holds what the tip brought back.
+    Assumptions: only an aspirate wets the tip; a dispense never does, whatever its height, so a tip may dispense into
+    a well that holds liquid and stay clean. Wells are compared by identity, not by content: two containers of the
+    same liquid are two sources. Known false positives are in tests/test_spec_check_backends.py (xfail)."""
+    bad, sources, own, carried, former = [], set(), set(), set(), set()
     for i, e in enumerate(events):
         key = (e["labware"], e["well"])
         if e["kind"] == "dispense":
             if carried - {key}:
                 bad.append((i, key[1]))
+            elif key in former and key not in sources:   # the tip's current contents into an earlier source
+                bad.append((i, key[1]))
+                carried |= sources
             own.add(key)
         elif e["kind"] == "aspirate":
-            if own == {key} and carried <= {key}:   # moving the one well this tip filled
+            if own == {key} and carried <= {key} and key not in former:   # moving the one well this tip filled
+                former |= sources
                 sources, own, carried = {key}, set(), set()
                 continue
             if (sources and key not in sources and key not in own) or carried - {key}:

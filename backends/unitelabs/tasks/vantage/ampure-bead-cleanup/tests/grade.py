@@ -130,9 +130,19 @@ def grade_protocol(protocol: pathlib.Path, rewards: dict, record: dict) -> None:
         rewards[f"rubric_{key}"] = item_score
 
 
+# A negation in the same clause as the matched limitation ("height is not the limitation"), unless it states a shortfall
+# ("not enough clearance", "no room above the tube").
+NEGATED = re.compile(r"\b(not|no|never|neither|nor|isn't|aren't|rather than|instead of)\b"
+                     r"(?!\s+(\w+\s+)?(enough|sufficient|room|space)\b)", re.I)
+
+
 def names_limitation(text: str) -> bool:
-    """Whether INFEASIBLE.md names the hardware limitation that makes the task infeasible here (task.json "accept")."""
-    return any(re.search(pattern, text, re.I) for pattern in TASK.get("accept", []))
+    """Whether INFEASIBLE.md names the hardware limitation that makes the task infeasible here: one of task.json's
+    "accept" patterns matches in a clause (split at . ; : and line ends) that does not negate it. A keyword alone is
+    not enough: "Height is not the limitation; the deck is full" names the wrong reason."""
+    clauses = re.split(r"[.;:\n]", text)
+    return any(re.search(pattern, clause, re.I) and not NEGATED.search(clause)
+               for clause in clauses for pattern in TASK.get("accept", []))
 
 
 def grade(protocol: pathlib.Path = PROTOCOL) -> tuple[dict, dict]:

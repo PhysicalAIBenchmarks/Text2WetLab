@@ -103,6 +103,12 @@ def reference_seconds(jobs: list[pathlib.Path]) -> dict[tuple[str, str], float]:
     return out
 
 
+LEGEND = ("\nTask cells: mean reward over the trials of that pair ± the range (max − min) of those rewards, not a standard "
+          "deviation; – = no scored trial. mean (feasible): mean of the task means over the pairs the device can run; "
+          "infeasible recognized: the same over the pairs it cannot (1.0 = declared infeasible, naming the limitation). "
+          "Only the task columns compare one device with another; the means run over different task sets per device.")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("jobs", nargs="+", type=pathlib.Path)
@@ -176,6 +182,7 @@ def main() -> int:
         print(f"| {model} | {m['mean']} | {dash(m['deterministic'])} | {dash(m['infeasible_recognized'])} | "
               f"{dash(m['time_vs_reference'])} | "
               + " | ".join(cells) + f" | {m['trials']} | {m['outcomes']} | {m['cost_usd']} |")
+    print(LEGEND)
     if rejudge:
         print(f"\n{len(rejudge)} trial(s) left out because the judge failed; re-judge them:\n" + "\n".join(rejudge))
     if a.out:

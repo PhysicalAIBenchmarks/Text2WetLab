@@ -142,10 +142,34 @@ def test_back_to_the_stock_after_moving_a_sample_is_contamination():
     assert cross_contamination(events) == [(5, "A1")]
 
 
+def test_moving_a_sample_back_into_its_stock_is_contamination():
+    """Starting over on the one well a tip filled must not forget where the tip came from: the sample back into the
+    stock, the stock drawn again and put into a second well are all contamination (PR #69 review)."""
+    events = run_tip(("a", "stock on 1", "A1"), ("d", "pcr on 2", "A1"), ("a", "pcr on 2", "A1"),
+                     ("d", "stock on 1", "A1"), ("a", "stock on 1", "A1"), ("d", "pcr on 2", "B1"))
+    assert cross_contamination(events) == [(4, "A1"), (5, "A1"), (6, "B1")]
+
+
 def test_a_tip_that_filled_two_wells_carries_the_one_it_draws_from():
     events = run_tip(("a", "water on 1", "A1"), ("d", "samples on 2", "A1"), ("d", "samples on 2", "A2"),
                      ("a", "samples on 2", "A1"), ("d", "elution on 3", "A1"))
     assert cross_contamination(events) == [(5, "A1")]
+
+
+@pytest.mark.xfail(strict=True, reason="known false positive: the start-over needs exactly one filled well, but the "
+                   "tip only touched water and A1; the real contamination would be drawing from A2 afterwards")
+def test_eluting_the_first_of_two_wells_one_tip_filled_is_clean():
+    events = run_tip(("a", "water on 1", "A1"), ("d", "samples on 2", "A1"), ("d", "samples on 2", "A2"),
+                     ("a", "samples on 2", "A1"), ("d", "elution on 3", "A1"))
+    assert cross_contamination(events) == []
+
+
+@pytest.mark.xfail(strict=True, reason="known false positive: wells are compared by identity, not content, so a "
+                   "second reservoir of the same buffer counts as a second source")
+def test_two_reservoirs_of_the_same_buffer_are_one_source():
+    events = run_tip(("a", "buffer on 1", "A1"), ("d", "plate on 3", "A1"), ("a", "buffer on 2", "A1"),
+                     ("d", "plate on 3", "A2"))
+    assert cross_contamination(events) == []
 
 
 def test_dispensing_into_waste_is_never_contamination():

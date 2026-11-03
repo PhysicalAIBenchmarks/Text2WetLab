@@ -3,9 +3,12 @@
 Which models write working liquid-handling protocols with the UniteLabs liquid handling SDK, on which instruments?
 This backend runs the Text2WetLab benchmark (this repository) against the SDK's
 simulated liquid handlers (Hamilton STAR and Vantage, Agilent Bravo, Beckman Biomek, Tecan Freedom EVO) with the
-same tasks, the same verifier layers and the same agent harness ([Harbor](https://github.com/laude-institute/harbor) +
-Claude Code) as upstream, so scores compare like for like with its OT-2 leaderboard. The output is the table on the
-website: the models we recommend for use with UniteLabs, per device.
+same task briefs, the same verifier layers, the same judge and the same agent harness
+([Harbor](https://github.com/laude-institute/harbor) + Claude Code) as upstream, so a score on one task means the
+same thing here as on its OT-2 leaderboard. The task sets differ: nine of upstream's eleven tasks are ported, and a
+pair the device cannot run is scored as a refusal, apart from the mean (see "The idea" and "Scoring"). Compare
+devices and the OT-2 by task column, not by overall mean. The output is the table on the website: the models we
+recommend for use with UniteLabs, per device.
 
 **Reproducing the scores needs UniteLabs registry credentials**, as a closed model needs an API key: the code, tasks,
 references and grader are all here, but the SDK packages are not on PyPI. The Docker image contains the SDK wheel, so it
@@ -98,7 +101,10 @@ The leaderboard leads with two numbers per model and device: the judged mean (up
 deterministic mean (checks only, no LLM). A Claude judge scoring Claude models is the obvious objection to a vendor's
 model recommendation; the deterministic mean doesn't depend on it. It also reports infeasible pairs recognised,
 efficiency (estimated run time over the reference's, for trials that passed every check), cost and outcomes. Neither
-efficiency nor the deterministic mean is part of the reward.
+efficiency nor the deterministic mean is part of the reward. Each task cell is the mean reward over that pair's trials
+± the range (max − min) of those rewards, not a standard deviation; the table ends with this legend. The overall means
+run over different task sets per device (feasible pairs only, nine tasks at most), so they say how a model does on
+that device, not how one device compares with another: for that, read the task columns.
 
 Grading a reference or any protocol locally, without Docker:
 
@@ -193,8 +199,9 @@ Same six layers as the OT-2 benchmark (`../../README.md` §3), on the device:
    resemblance to it; kept unchanged for comparability, including on paper-only tasks.
 6. **Critical cap**: a failed critical check caps the reward at 0.3.
 
-Infeasible pairs (`make_tasks.FEASIBILITY`): an `/app/INFEASIBLE.md` that names the limitation scores 1.0; an empty
-one or one giving another reason scores 0; a protocol for a task the device cannot run scores 0 (still graded, for
+Infeasible pairs (`make_tasks.FEASIBILITY`): an `/app/INFEASIBLE.md` that names the limitation scores 1.0 (a pattern
+from the pair's `accept` list, in a clause that does not negate it: "height is not the limitation" does not count,
+"not enough clearance" does); an empty one or one giving another reason scores 0; a protocol for a task the device cannot run scores 0 (still graded, for
 the record); declaring a feasible task infeasible scores 0. The leaderboard reports infeasible pairs in their own
 column, apart from the protocol mean.
 
