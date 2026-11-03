@@ -1,0 +1,35 @@
+schema_version = "1.4"
+
+[task]
+name = "text2wetlab-ul/evo.golden-gate-assembly-hard"
+version = "0.1.0"
+description = "Golden Gate assembly of four chromoprotein plasmids with AssemblyTron on a Tecan Freedom EVO, with the steps and quantities worked out from the paper"
+authors = [{ name = "UniteLabs" }]
+keywords = ["evo", "unitelabs-sdk", "lab-automation", "protocol-generation"]
+
+[metadata]
+level = "hard"
+steps = 33
+containers = 15
+source = "paper2protocol"
+deck = "specified"
+papers = [{ slug = "assemblytron", experiment = "exp2", relation = "paper-only variant of golden-gate-assembly; base task: derived" }]
+grading = "simulated-evo gate + end-state checks + Sonnet 5.5 rubric judge (75% core: robot practice, tips/contamination, fidelity; 25% task-specific)"
+device = "evo"
+feasible = false
+
+[agent]
+timeout_sec = 1800.0
+
+[verifier]
+timeout_sec = 1800
+env = { ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY:-}", OPENROUTER_API_KEY = "${OPENROUTER_API_KEY:-}", JUDGE_MODEL = "${JUDGE_MODEL:-}", SKIP_JUDGE = "${SKIP_JUDGE:-}" }
+
+[environment]
+network_mode = "allowlist"
+allowed_hosts = ["api.anthropic.com", "openrouter.ai", "registry.npmjs.org"]
+build_timeout_sec = 1200.0
+cpus = 4
+memory_mb = 8192
+storage_mb = 10240
+gpus = 0

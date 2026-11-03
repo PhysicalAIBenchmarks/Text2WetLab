@@ -1,0 +1,17 @@
+{
+ "containers": {
+  "plasmid_plate": {
+   "label": "plasmid_plate",
+   "kind": "plate_96"
+  },
+  "transformation_plate": {
+   "label": "transformation_plate",
+   "kind": "plate_96"
+  },
+  "soc_reservoir": {
+   "label": "soc_reservoir",
+   "kind": "reservoir",
+   "well": "A1"
+  }
+ }
+}

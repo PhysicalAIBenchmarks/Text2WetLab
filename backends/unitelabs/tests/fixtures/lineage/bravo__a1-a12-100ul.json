@@ -1,0 +1,1656 @@
+{
+ "comments": [],
+ "entities": {
+  "plate:A1": [
+   "plate on 4",
+   "A1"
+  ],
+  "plate:A10": [
+   "plate on 4",
+   "A10"
+  ],
+  "plate:A11": [
+   "plate on 4",
+   "A11"
+  ],
+  "plate:A12": [
+   "plate on 4",
+   "A12"
+  ],
+  "plate:A2": [
+   "plate on 4",
+   "A2"
+  ],
+  "plate:A3": [
+   "plate on 4",
+   "A3"
+  ],
+  "plate:A4": [
+   "plate on 4",
+   "A4"
+  ],
+  "plate:A5": [
+   "plate on 4",
+   "A5"
+  ],
+  "plate:A6": [
+   "plate on 4",
+   "A6"
+  ],
+  "plate:A7": [
+   "plate on 4",
+   "A7"
+  ],
+  "plate:A8": [
+   "plate on 4",
+   "A8"
+  ],
+  "plate:A9": [
+   "plate on 4",
+   "A9"
+  ],
+  "plate:B1": [
+   "plate on 4",
+   "B1"
+  ],
+  "plate:B10": [
+   "plate on 4",
+   "B10"
+  ],
+  "plate:B11": [
+   "plate on 4",
+   "B11"
+  ],
+  "plate:B12": [
+   "plate on 4",
+   "B12"
+  ],
+  "plate:B2": [
+   "plate on 4",
+   "B2"
+  ],
+  "plate:B3": [
+   "plate on 4",
+   "B3"
+  ],
+  "plate:B4": [
+   "plate on 4",
+   "B4"
+  ],
+  "plate:B5": [
+   "plate on 4",
+   "B5"
+  ],
+  "plate:B6": [
+   "plate on 4",
+   "B6"
+  ],
+  "plate:B7": [
+   "plate on 4",
+   "B7"
+  ],
+  "plate:B8": [
+   "plate on 4",
+   "B8"
+  ],
+  "plate:B9": [
+   "plate on 4",
+   "B9"
+  ],
+  "plate:C1": [
+   "plate on 4",
+   "C1"
+  ],
+  "plate:C10": [
+   "plate on 4",
+   "C10"
+  ],
+  "plate:C11": [
+   "plate on 4",
+   "C11"
+  ],
+  "plate:C12": [
+   "plate on 4",
+   "C12"
+  ],
+  "plate:C2": [
+   "plate on 4",
+   "C2"
+  ],
+  "plate:C3": [
+   "plate on 4",
+   "C3"
+  ],
+  "plate:C4": [
+   "plate on 4",
+   "C4"
+  ],
+  "plate:C5": [
+   "plate on 4",
+   "C5"
+  ],
+  "plate:C6": [
+   "plate on 4",
+   "C6"
+  ],
+  "plate:C7": [
+   "plate on 4",
+   "C7"
+  ],
+  "plate:C8": [
+   "plate on 4",
+   "C8"
+  ],
+  "plate:C9": [
+   "plate on 4",
+   "C9"
+  ],
+  "plate:D1": [
+   "plate on 4",
+   "D1"
+  ],
+  "plate:D10": [
+   "plate on 4",
+   "D10"
+  ],
+  "plate:D11": [
+   "plate on 4",
+   "D11"
+  ],
+  "plate:D12": [
+   "plate on 4",
+   "D12"
+  ],
+  "plate:D2": [
+   "plate on 4",
+   "D2"
+  ],
+  "plate:D3": [
+   "plate on 4",
+   "D3"
+  ],
+  "plate:D4": [
+   "plate on 4",
+   "D4"
+  ],
+  "plate:D5": [
+   "plate on 4",
+   "D5"
+  ],
+  "plate:D6": [
+   "plate on 4",
+   "D6"
+  ],
+  "plate:D7": [
+   "plate on 4",
+   "D7"
+  ],
+  "plate:D8": [
+   "plate on 4",
+   "D8"
+  ],
+  "plate:D9": [
+   "plate on 4",
+   "D9"
+  ],
+  "plate:E1": [
+   "plate on 4",
+   "E1"
+  ],
+  "plate:E10": [
+   "plate on 4",
+   "E10"
+  ],
+  "plate:E11": [
+   "plate on 4",
+   "E11"
+  ],
+  "plate:E12": [
+   "plate on 4",
+   "E12"
+  ],
+  "plate:E2": [
+   "plate on 4",
+   "E2"
+  ],
+  "plate:E3": [
+   "plate on 4",
+   "E3"
+  ],
+  "plate:E4": [
+   "plate on 4",
+   "E4"
+  ],
+  "plate:E5": [
+   "plate on 4",
+   "E5"
+  ],
+  "plate:E6": [
+   "plate on 4",
+   "E6"
+  ],
+  "plate:E7": [
+   "plate on 4",
+   "E7"
+  ],
+  "plate:E8": [
+   "plate on 4",
+   "E8"
+  ],
+  "plate:E9": [
+   "plate on 4",
+   "E9"
+  ],
+  "plate:F1": [
+   "plate on 4",
+   "F1"
+  ],
+  "plate:F10": [
+   "plate on 4",
+   "F10"
+  ],
+  "plate:F11": [
+   "plate on 4",
+   "F11"
+  ],
+  "plate:F12": [
+   "plate on 4",
+   "F12"
+  ],
+  "plate:F2": [
+   "plate on 4",
+   "F2"
+  ],
+  "plate:F3": [
+   "plate on 4",
+   "F3"
+  ],
+  "plate:F4": [
+   "plate on 4",
+   "F4"
+  ],
+  "plate:F5": [
+   "plate on 4",
+   "F5"
+  ],
+  "plate:F6": [
+   "plate on 4",
+   "F6"
+  ],
+  "plate:F7": [
+   "plate on 4",
+   "F7"
+  ],
+  "plate:F8": [
+   "plate on 4",
+   "F8"
+  ],
+  "plate:F9": [
+   "plate on 4",
+   "F9"
+  ],
+  "plate:G1": [
+   "plate on 4",
+   "G1"
+  ],
+  "plate:G10": [
+   "plate on 4",
+   "G10"
+  ],
+  "plate:G11": [
+   "plate on 4",
+   "G11"
+  ],
+  "plate:G12": [
+   "plate on 4",
+   "G12"
+  ],
+  "plate:G2": [
+   "plate on 4",
+   "G2"
+  ],
+  "plate:G3": [
+   "plate on 4",
+   "G3"
+  ],
+  "plate:G4": [
+   "plate on 4",
+   "G4"
+  ],
+  "plate:G5": [
+   "plate on 4",
+   "G5"
+  ],
+  "plate:G6": [
+   "plate on 4",
+   "G6"
+  ],
+  "plate:G7": [
+   "plate on 4",
+   "G7"
+  ],
+  "plate:G8": [
+   "plate on 4",
+   "G8"
+  ],
+  "plate:G9": [
+   "plate on 4",
+   "G9"
+  ],
+  "plate:H1": [
+   "plate on 4",
+   "H1"
+  ],
+  "plate:H10": [
+   "plate on 4",
+   "H10"
+  ],
+  "plate:H11": [
+   "plate on 4",
+   "H11"
+  ],
+  "plate:H12": [
+   "plate on 4",
+   "H12"
+  ],
+  "plate:H2": [
+   "plate on 4",
+   "H2"
+  ],
+  "plate:H3": [
+   "plate on 4",
+   "H3"
+  ],
+  "plate:H4": [
+   "plate on 4",
+   "H4"
+  ],
+  "plate:H5": [
+   "plate on 4",
+   "H5"
+  ],
+  "plate:H6": [
+   "plate on 4",
+   "H6"
+  ],
+  "plate:H7": [
+   "plate on 4",
+   "H7"
+  ],
+  "plate:H8": [
+   "plate on 4",
+   "H8"
+  ],
+  "plate:H9": [
+   "plate on 4",
+   "H9"
+  ],
+  "reservoir:A1": [
+   "reservoir on 8",
+   "A1"
+  ]
+ },
+ "events": [
+  {
+   "channels": 1,
+   "instrument": "nozzle_7",
+   "kind": "pick",
+   "tip": "t1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_15",
+   "kind": "pick",
+   "tip": "t2"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_23",
+   "kind": "pick",
+   "tip": "t3"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_31",
+   "kind": "pick",
+   "tip": "t4"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_39",
+   "kind": "pick",
+   "tip": "t5"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_47",
+   "kind": "pick",
+   "tip": "t6"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_55",
+   "kind": "pick",
+   "tip": "t7"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_63",
+   "kind": "pick",
+   "tip": "t8"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_71",
+   "kind": "pick",
+   "tip": "t9"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_79",
+   "kind": "pick",
+   "tip": "t10"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_87",
+   "kind": "pick",
+   "tip": "t11"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_95",
+   "kind": "pick",
+   "tip": "t12"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_7",
+   "kind": "aspirate",
+   "labware": "reservoir on 8",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_15",
+   "kind": "aspirate",
+   "labware": "reservoir on 8",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_23",
+   "kind": "aspirate",
+   "labware": "reservoir on 8",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_31",
+   "kind": "aspirate",
+   "labware": "reservoir on 8",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_39",
+   "kind": "aspirate",
+   "labware": "reservoir on 8",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_47",
+   "kind": "aspirate",
+   "labware": "reservoir on 8",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_55",
+   "kind": "aspirate",
+   "labware": "reservoir on 8",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_63",
+   "kind": "aspirate",
+   "labware": "reservoir on 8",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_71",
+   "kind": "aspirate",
+   "labware": "reservoir on 8",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_79",
+   "kind": "aspirate",
+   "labware": "reservoir on 8",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_87",
+   "kind": "aspirate",
+   "labware": "reservoir on 8",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_95",
+   "kind": "aspirate",
+   "labware": "reservoir on 8",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_7",
+   "kind": "dispense",
+   "labware": "plate on 4",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_15",
+   "kind": "dispense",
+   "labware": "plate on 4",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A2"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_23",
+   "kind": "dispense",
+   "labware": "plate on 4",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A3"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_31",
+   "kind": "dispense",
+   "labware": "plate on 4",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A4"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_39",
+   "kind": "dispense",
+   "labware": "plate on 4",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A5"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_47",
+   "kind": "dispense",
+   "labware": "plate on 4",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A6"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_55",
+   "kind": "dispense",
+   "labware": "plate on 4",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A7"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_63",
+   "kind": "dispense",
+   "labware": "plate on 4",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A8"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_71",
+   "kind": "dispense",
+   "labware": "plate on 4",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A9"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_79",
+   "kind": "dispense",
+   "labware": "plate on 4",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A10"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_87",
+   "kind": "dispense",
+   "labware": "plate on 4",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A11"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_95",
+   "kind": "dispense",
+   "labware": "plate on 4",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A12"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_7",
+   "kind": "drop",
+   "tip": "t1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_15",
+   "kind": "drop",
+   "tip": "t2"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_23",
+   "kind": "drop",
+   "tip": "t3"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_31",
+   "kind": "drop",
+   "tip": "t4"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_39",
+   "kind": "drop",
+   "tip": "t5"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_47",
+   "kind": "drop",
+   "tip": "t6"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_55",
+   "kind": "drop",
+   "tip": "t7"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_63",
+   "kind": "drop",
+   "tip": "t8"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_71",
+   "kind": "drop",
+   "tip": "t9"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_79",
+   "kind": "drop",
+   "tip": "t10"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_87",
+   "kind": "drop",
+   "tip": "t11"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_95",
+   "kind": "drop",
+   "tip": "t12"
+  }
+ ],
+ "lineage": [
+  {
+   "extras": {
+    "labware": "tips250"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:7"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "labware": "reservoir"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:8"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10000.0
+    },
+    "volume_ul": 10000.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "labware": "plate"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:4"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 7,
+    "tip": "t1",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "tips250:A1"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:7"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 15,
+    "tip": "t2",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "tips250:A2"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:15"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 23,
+    "tip": "t3",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "tips250:A3"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:23"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 31,
+    "tip": "t4",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "tips250:A4"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:31"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 39,
+    "tip": "t5",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "tips250:A5"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:39"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 47,
+    "tip": "t6",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "tips250:A6"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:47"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 55,
+    "tip": "t7",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "tips250:A7"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:55"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 63,
+    "tip": "t8",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "tips250:A8"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:63"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 71,
+    "tip": "t9",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "tips250:A9"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:71"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 79,
+    "tip": "t10",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "tips250:A10"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:79"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 87,
+    "tip": "t11",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "tips250:A11"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:87"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 95,
+    "tip": "t12",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "tips250:A12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:95"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 7,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t1",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:7"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 15,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t2",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:15"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 23,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t3",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:23"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 31,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t4",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:31"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 39,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t5",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:39"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 47,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t6",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:47"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 55,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t7",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:55"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 63,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t8",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:63"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 71,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t9",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:71"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 79,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t10",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:79"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 87,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t11",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:87"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 95,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t12",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:95"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 7,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t1",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:7"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:A1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 15,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t2",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:15"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:A2"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 23,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t3",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:23"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:A3"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 31,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t4",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:31"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:A4"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 39,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t5",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:39"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:A5"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 47,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t6",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:47"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:A6"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 55,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t7",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:55"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:A7"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 63,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t8",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:63"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:A8"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 71,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t9",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:71"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:A9"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 79,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t10",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:79"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:A10"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 87,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t11",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:87"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:A11"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 95,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t12",
+    "tip_type": "AgilentTip_250",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:95"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:A12"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 7,
+    "origin_slot": "tips250:A1",
+    "tip": "t1",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:7"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 15,
+    "origin_slot": "tips250:A2",
+    "tip": "t2",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:15"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 23,
+    "origin_slot": "tips250:A3",
+    "tip": "t3",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:23"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 31,
+    "origin_slot": "tips250:A4",
+    "tip": "t4",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:31"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 39,
+    "origin_slot": "tips250:A5",
+    "tip": "t5",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:39"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 47,
+    "origin_slot": "tips250:A6",
+    "tip": "t6",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:47"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 55,
+    "origin_slot": "tips250:A7",
+    "tip": "t7",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:55"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 63,
+    "origin_slot": "tips250:A8",
+    "tip": "t8",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:63"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 71,
+    "origin_slot": "tips250:A9",
+    "tip": "t9",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:71"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 79,
+    "origin_slot": "tips250:A10",
+    "tip": "t10",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:79"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 87,
+    "origin_slot": "tips250:A11",
+    "tip": "t11",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:87"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 95,
+    "origin_slot": "tips250:A12",
+    "tip": "t12",
+    "tip_type": "AgilentTip_250"
+   },
+   "inputs": {
+    "entity_id": "channel:bravo-mock:pipette_head:95"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  }
+ ]
+}

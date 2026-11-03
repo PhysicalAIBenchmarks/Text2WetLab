@@ -1,0 +1,117 @@
+{
+  "title": "E. coli heat shock transformation with SOC recovery",
+  "containers": [
+    {
+      "name": "plasmid_plate",
+      "kind": "plate_96",
+      "description": "Source plate holding plasmid DNA stocks (one per well)",
+      "assumed": true
+    },
+    {
+      "name": "cells_rack",
+      "kind": "tube_1.5ml",
+      "description": "50 µL competent E. coli aliquots on ice, one tube per transformation",
+      "assumed": false
+    },
+    {
+      "name": "soc_reservoir",
+      "kind": "reservoir",
+      "description": "SOC medium pre-warmed to room temperature",
+      "assumed": true
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "plasmid_plate",
+      "wells": [
+        "A1"
+      ],
+      "reagent": "plasmid_DNA",
+      "volume_ul": null,
+      "assumed": false
+    },
+    {
+      "container": "cells_rack",
+      "wells": [],
+      "reagent": "competent_cells",
+      "volume_ul": 50,
+      "assumed": false
+    },
+    {
+      "container": "soc_reservoir",
+      "wells": [],
+      "reagent": "SOC_medium",
+      "volume_ul": null,
+      "assumed": true
+    }
+  ],
+  "steps": [
+    {
+      "kind": "transfer",
+      "source": "plasmid_plate",
+      "source_wells": [
+        "A1"
+      ],
+      "dest": "cells_rack",
+      "dest_wells": [],
+      "volume_ul": 2,
+      "reagent": "plasmid_DNA",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "add 2 µL plasmid DNA per tube",
+      "assumed": false,
+      "note": "Gently flick to mix after addition — no vortex; fresh tip per tube to avoid cross-contamination"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "cells_rack",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Heat shock cells_rack 42°C 45 s, then transfer immediately to ice 2 min",
+      "source_quote": "heat shock at 42°C for 45 seconds",
+      "assumed": false,
+      "note": "OT-2 cannot perform heat shock; robot pauses and operator moves tubes to water bath, then back to deck"
+    },
+    {
+      "kind": "transfer",
+      "source": "soc_reservoir",
+      "source_wells": [],
+      "dest": "cells_rack",
+      "dest_wells": [],
+      "volume_ul": 250,
+      "reagent": "SOC_medium",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "add 250 µL SOC medium to each tube",
+      "assumed": false,
+      "note": "Single multi-aspiration from reservoir; dispense slowly to avoid disturbing pellet"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "cells_rack",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Incubate cells_rack 37°C 60 min at 250 rpm for outgrowth recovery",
+      "source_quote": "",
+      "assumed": true,
+      "note": "Recovery duration assumed 60 min — standard practice; not stated in NL input"
+    }
+  ],
+  "assumptions": [
+    "plasmid_wells=column_1 — layout not stated; first column of plasmid_plate assumed",
+    "cells_rack_positions=A1:D3 — 12 tubes assumed; exact positions not given",
+    "no_mix_after_dna_addition — gently flick only; vortexing kills competent cells",
+    "soc_volume=250 µL — standard NEB heat shock protocol; not stated in NL",
+    "recovery_time=60 min at 37°C 250 rpm — standard; not stated in NL",
+    "fresh_tip_per_tube — assumed to prevent cross-contamination between constructs",
+    "The plasmid is in well A1 of the plasmid plate and goes into the single competent-cell tube."
+  ]
+}

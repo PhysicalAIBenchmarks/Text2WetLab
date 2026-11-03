@@ -1,0 +1,13 @@
+{
+ "device": "evo",
+ "device_name": "Tecan Freedom EVO",
+ "feasible": false,
+ "reason": "the MCA96 head moves the same volume in all 96 tips; it cannot fill two wells",
+ "accept": [
+  "\\bMCA ?96\\b",
+  "\\ball 96 (tips|channels|nozzles)",
+  "\\b96 tips\\b",
+  "\\bpartial[- ]tip",
+  "\\b(independent|individual) (channels|tips)"
+ ]
+}

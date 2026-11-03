@@ -1,0 +1,74 @@
+{
+ "containers": {
+  "water": {
+   "label": "tubes_50ml_1",
+   "kind": "tube_50ml",
+   "well": "A1"
+  },
+  "q5_buffer": {
+   "label": "tubes_1_5ml_1",
+   "kind": "tube_1.5ml",
+   "well": "A1"
+  },
+  "dntp": {
+   "label": "tubes_1_5ml_1",
+   "kind": "tube_1.5ml",
+   "well": "B1"
+  },
+  "q5_pol": {
+   "label": "tubes_1_5ml_1",
+   "kind": "tube_1.5ml",
+   "well": "C1"
+  },
+  "pcr_mm": {
+   "label": "tubes_1_5ml_1",
+   "kind": "tube_1.5ml",
+   "well": "D1"
+  },
+  "primer_plate": {
+   "label": "primer_plate",
+   "kind": "plate_96"
+  },
+  "template_plate": {
+   "label": "template_plate",
+   "kind": "plate_96"
+  },
+  "pcr_plate": {
+   "label": "pcr_plate",
+   "kind": "plate_96"
+  },
+  "rcutsmart": {
+   "label": "tubes_1_5ml_1",
+   "kind": "tube_1.5ml",
+   "well": "A2"
+  },
+  "dpni": {
+   "label": "tubes_1_5ml_1",
+   "kind": "tube_1.5ml",
+   "well": "B2"
+  },
+  "t4_buffer": {
+   "label": "tubes_1_5ml_1",
+   "kind": "tube_1.5ml",
+   "well": "C2"
+  },
+  "gg_enzyme": {
+   "label": "tubes_1_5ml_1",
+   "kind": "tube_1.5ml",
+   "well": "D2"
+  },
+  "assembly_plate": {
+   "label": "assembly_plate",
+   "kind": "plate_96"
+  },
+  "cells_plate": {
+   "label": "cells_plate",
+   "kind": "plate_96"
+  },
+  "lb_dextrose": {
+   "label": "tubes_15ml_1",
+   "kind": "tube_15ml",
+   "well": "A1"
+  }
+ }
+}

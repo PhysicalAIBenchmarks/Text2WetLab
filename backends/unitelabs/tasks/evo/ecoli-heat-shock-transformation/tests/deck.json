@@ -1,0 +1,18 @@
+{
+ "containers": {
+  "plasmid_plate": {
+   "label": "plasmid_plate",
+   "kind": "plate_96"
+  },
+  "cells_rack": {
+   "label": "tubes_1_5ml_1",
+   "kind": "tube_1.5ml",
+   "well": "A1"
+  },
+  "soc_reservoir": {
+   "label": "soc_reservoir",
+   "kind": "reservoir",
+   "well": "A1"
+  }
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "containers": {
+  "sample_plate": {
+   "label": "sample_plate",
+   "kind": "plate_96"
+  },
+  "beads_reservoir": {
+   "label": "beads_reservoir",
+   "kind": "reservoir",
+   "well": "A1"
+  },
+  "ethanol_reservoir": {
+   "label": "ethanol_reservoir",
+   "kind": "reservoir",
+   "well": "A1"
+  },
+  "water_reservoir": {
+   "label": "water_reservoir",
+   "kind": "reservoir",
+   "well": "A1"
+  },
+  "waste": {
+   "label": "waste",
+   "kind": "waste",
+   "well": "A1"
+  },
+  "elution_plate": {
+   "label": "elution_plate",
+   "kind": "plate_96"
+  }
+ }
+}

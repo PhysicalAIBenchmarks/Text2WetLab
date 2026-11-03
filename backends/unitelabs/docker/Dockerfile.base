@@ -1,0 +1,64 @@
+# Base image for every UniteLabs Text2WetLab task: the UniteLabs liquid handling SDK (installed from a wheel built
+# from a pinned checkout, its dependencies from the UniteLabs package index at the versions in the SDK's uv.lock), the
+# SDK documentation snapshot the agent may read, Claude Code as the benchmark agent, and the grader in its own venv.
+#
+# Built by docker/build_base.sh. Never pushed to a public registry: it contains UniteLabs source and docs.
+FROM python:3.13-slim-bookworm@sha256:a1165e272e578941b84abc79e4ab38a0305cd12803a5c4247979ac7655f4d641
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends bash ca-certificates curl git jq nodejs npm procps ripgrep \
+    && rm -rf /var/lib/apt/lists/*
+
+# Same agent pins as upstream's task images, so agent runs compare like for like.
+RUN npm install -g node@22.22.0 @anthropic-ai/claude-code@2.1.288 \
+    && node --version \
+    && claude --version
+
+ARG UL_INDEX=https://gitlab.com/api/v4/groups/1009252/-/packages/pypi/simple
+ARG SDK_WHEEL
+ARG LABWARE_SPEC
+ARG ULSDK_SPEC
+ARG PYDANTIC_VERSION
+COPY wheels/ /tmp/wheels/
+COPY constraints.txt /tmp/constraints.txt
+# The simulator's venv: the SDK and the mock the protocol runs on; unitelabs-sdk and unitelabs-labware from local wheels
+# or the index (ULSDK_SPEC, LABWARE_SPEC, see build_base.sh). The agent has a root shell next to it.
+RUN --mount=type=secret,id=netrc,target=/root/.netrc \
+    python -m venv /opt/ul \
+    && /opt/ul/bin/pip install --no-cache-dir --extra-index-url "$UL_INDEX" -c /tmp/constraints.txt \
+        "/tmp/wheels/${SDK_WHEEL}" "${LABWARE_SPEC}" "${ULSDK_SPEC}" \
+    && rm -rf /tmp/wheels \
+    && /opt/ul/bin/python -c "import unitelabs.liquid_handling as m; print('unitelabs-liquid-handling', m.__version__)" \
+    && /opt/ul/bin/python -c "from unitelabs.sdk import Audit; assert hasattr(Audit, 'capture')" \
+    && /opt/ul/bin/python -c "from unitelabs.labware import events; from unitelabs.sdk.automate import lineage; lineage.CONTRACT"
+
+# The grader's own venv (as upstream keeps /opt/grader apart from /opt/ot): the deterministic checks (pydantic) and the
+# judge (anthropic). Nothing the agent installs into /opt/ul reaches it; gate hashes both venvs before grading.
+RUN python -m venv /opt/grader \
+    && /opt/grader/bin/pip install --no-cache-dir "pydantic==${PYDANTIC_VERSION}" anthropic==1.12.1 \
+    && rm /tmp/constraints.txt
+
+# The documentation the agent works from (a snapshot of the docs repo's content/ at a pinned commit).
+COPY docs/ /docs/
+# The simulator entry point the agent calls, and the runner it wraps (the grader uses its own copies under /tests).
+COPY runner.py record.py lineage_events.py devices.py /opt/ul_t2wl/
+COPY simulate /usr/local/bin/simulate
+RUN chmod +x /usr/local/bin/simulate
+
+# What a score was measured against: SDK and docs commits, every installed package in both venvs, and the hashes of
+# the runner files baked in here (tasks/*/tests carry their own copies; these only serve `simulate`).
+ARG SDK_COMMIT
+ARG ULSDK_COMMIT
+ARG LABWARE_COMMIT
+ARG DOCS_COMMIT
+LABEL io.unitelabs.text2wetlab.sdk_commit="${SDK_COMMIT}" io.unitelabs.text2wetlab.ulsdk_commit="${ULSDK_COMMIT}" io.unitelabs.text2wetlab.labware_commit="${LABWARE_COMMIT}" io.unitelabs.text2wetlab.docs_commit="${DOCS_COMMIT}"
+RUN SDK_COMMIT="$SDK_COMMIT" ULSDK_COMMIT="$ULSDK_COMMIT" LABWARE_COMMIT="$LABWARE_COMMIT" DOCS_COMMIT="$DOCS_COMMIT" SDK_WHEEL="$SDK_WHEEL" /opt/grader/bin/python -c '\
+import hashlib, json, os, pathlib, subprocess; \
+freeze = lambda py: subprocess.run([py, "-m", "pip", "freeze"], capture_output=True, text=True, check=True).stdout.split(); \
+files = ["/opt/ul_t2wl/runner.py", "/opt/ul_t2wl/record.py", "/opt/ul_t2wl/lineage_events.py", "/opt/ul_t2wl/devices.py", "/usr/local/bin/simulate"]; \
+info = {"sdk_commit": os.environ["SDK_COMMIT"], "ulsdk_commit": os.environ["ULSDK_COMMIT"], "labware_commit": os.environ["LABWARE_COMMIT"], "docs_commit": os.environ["DOCS_COMMIT"], "sdk_wheel": os.environ["SDK_WHEEL"], \
+        "files": {f: hashlib.sha256(pathlib.Path(f).read_bytes()).hexdigest() for f in files}, \
+        "ul_packages": freeze("/opt/ul/bin/python"), "grader_packages": freeze("/opt/grader/bin/python")}; \
+pathlib.Path("/opt/ul_t2wl/image.json").write_text(json.dumps(info, indent=1) + "\n")'
+
+WORKDIR /app

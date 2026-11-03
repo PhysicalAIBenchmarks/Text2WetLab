@@ -1,0 +1,119 @@
+{
+  "title": "APEX Protocol 1: low-volume heat shock transformation on the OT-2 thermocycler module",
+  "containers": [
+    {
+      "name": "plasmid_plate",
+      "kind": "plate_96",
+      "description": "Plasmids pEX01-pEX08, one per well A1:H1",
+      "assumed": false
+    },
+    {
+      "name": "transformation_plate",
+      "kind": "plate_96",
+      "description": "Competent DH5alpha cells, 10 uL per well A1:H1, on the thermocycler module",
+      "assumed": false
+    },
+    {
+      "name": "soc_reservoir",
+      "kind": "reservoir",
+      "description": "SOC medium",
+      "assumed": false
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "plasmid_plate",
+      "wells": [
+        "A1:H1"
+      ],
+      "reagent": "plasmid_DNA",
+      "volume_ul": 10,
+      "assumed": false
+    },
+    {
+      "container": "transformation_plate",
+      "wells": [
+        "A1:H1"
+      ],
+      "reagent": "competent_cells",
+      "volume_ul": 10,
+      "assumed": false
+    },
+    {
+      "container": "soc_reservoir",
+      "wells": [],
+      "reagent": "SOC_medium",
+      "volume_ul": null,
+      "assumed": false
+    }
+  ],
+  "steps": [
+    {
+      "kind": "transfer",
+      "source": "plasmid_plate",
+      "source_wells": [
+        "A1:H1"
+      ],
+      "dest": "transformation_plate",
+      "dest_wells": [
+        "A1:H1"
+      ],
+      "volume_ul": 1,
+      "reagent": "plasmid_DNA",
+      "mix_cycles": null,
+      "action": "",
+      "assumed": false,
+      "source_quote": "Each transformation was carried out with 1 ul of DNA ... 10 ul of cells and 50 ul of SOC media ... Low Volume (LV) configuration (Figure 4 legend)",
+      "note": "Fresh tip per plasmid; block held at 4 C"
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "transformation_plate",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Thermocycler: 4 C 30 min, 42 C 30 s, back to 4 C",
+      "assumed": false,
+      "source_quote": "By default, DNA is incubated at 4 C for 30 minutes, heat shocked at 42 C for 30 seconds",
+      "note": "Simulated as thermocycler module commands"
+    },
+    {
+      "kind": "transfer",
+      "source": "soc_reservoir",
+      "source_wells": [],
+      "dest": "transformation_plate",
+      "dest_wells": [
+        "A1:H1"
+      ],
+      "volume_ul": 50,
+      "reagent": "SOC_medium",
+      "mix_cycles": null,
+      "action": "",
+      "assumed": false,
+      "source_quote": "50 ul of SOC media as per ... Low Volume (LV) configuration",
+      "note": ""
+    },
+    {
+      "kind": "manual",
+      "source": null,
+      "source_wells": [],
+      "dest": "transformation_plate",
+      "dest_wells": [],
+      "volume_ul": null,
+      "reagent": "",
+      "mix_cycles": null,
+      "action": "Thermocycler: recover at 37 C for 1 h",
+      "assumed": false,
+      "source_quote": "recovered with SOC medium at 37 C for 1 hour",
+      "note": ""
+    }
+  ],
+  "assumptions": [
+    "8 transformations (pEX01-pEX08, as in Figure 4) in column 1",
+    "Competent cells are pre-dispensed by the operator onto the pre-chilled block (APEX loads cells and DNA offline)",
+    "Post-shock return to 4 C is not stated in the text; the reference cools to 4 C for 2 min"
+  ]
+}

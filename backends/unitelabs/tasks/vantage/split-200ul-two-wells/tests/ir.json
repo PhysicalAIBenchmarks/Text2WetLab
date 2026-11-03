@@ -1,0 +1,49 @@
+{
+  "title": "Split 200 µL into two 100 µL wells",
+  "containers": [
+    {
+      "name": "reservoir",
+      "kind": "reservoir",
+      "description": "Reagent trough, pre-filled with source liquid",
+      "assumed": false
+    },
+    {
+      "name": "plate",
+      "kind": "plate_96",
+      "description": "96-well destination plate",
+      "assumed": true
+    }
+  ],
+  "initial_contents": [
+    {
+      "container": "reservoir",
+      "wells": [],
+      "reagent": "reagent",
+      "volume_ul": 10000,
+      "assumed": false
+    }
+  ],
+  "steps": [
+    {
+      "kind": "transfer",
+      "source": "reservoir",
+      "source_wells": [],
+      "dest": "plate",
+      "dest_wells": ["A1", "B1"],
+      "volume_ul": 100,
+      "reagent": "reagent",
+      "mix_cycles": null,
+      "action": "",
+      "source_quote": "Move 200 microlitres from the reservoir into two wells on the plate.",
+      "assumed": true,
+      "note": "100 µL per well (total 200 µL); wells A1/B1 assumed; single aspirate + two dispenses at robot layer"
+    }
+  ],
+  "assumptions": [
+    "per_well_volume=100 µL — total 200 µL split equally between two wells",
+    "wells=A1,B1 — first two rows of column 1",
+    "single_aspirate_for_both — aspirate 200 µL once, dispense 100 µL twice",
+    "plate is a standard 96-well plate (360 µL working capacity per well)",
+    "reservoir is pre-filled with ≥200 µL of reagent"
+  ]
+}

@@ -1,0 +1,646 @@
+{
+ "comments": [],
+ "entities": {
+  "plate:A1": [
+   "plate on P2",
+   "A1"
+  ],
+  "plate:A10": [
+   "plate on P2",
+   "A10"
+  ],
+  "plate:A11": [
+   "plate on P2",
+   "A11"
+  ],
+  "plate:A12": [
+   "plate on P2",
+   "A12"
+  ],
+  "plate:A2": [
+   "plate on P2",
+   "A2"
+  ],
+  "plate:A3": [
+   "plate on P2",
+   "A3"
+  ],
+  "plate:A4": [
+   "plate on P2",
+   "A4"
+  ],
+  "plate:A5": [
+   "plate on P2",
+   "A5"
+  ],
+  "plate:A6": [
+   "plate on P2",
+   "A6"
+  ],
+  "plate:A7": [
+   "plate on P2",
+   "A7"
+  ],
+  "plate:A8": [
+   "plate on P2",
+   "A8"
+  ],
+  "plate:A9": [
+   "plate on P2",
+   "A9"
+  ],
+  "plate:B1": [
+   "plate on P2",
+   "B1"
+  ],
+  "plate:B10": [
+   "plate on P2",
+   "B10"
+  ],
+  "plate:B11": [
+   "plate on P2",
+   "B11"
+  ],
+  "plate:B12": [
+   "plate on P2",
+   "B12"
+  ],
+  "plate:B2": [
+   "plate on P2",
+   "B2"
+  ],
+  "plate:B3": [
+   "plate on P2",
+   "B3"
+  ],
+  "plate:B4": [
+   "plate on P2",
+   "B4"
+  ],
+  "plate:B5": [
+   "plate on P2",
+   "B5"
+  ],
+  "plate:B6": [
+   "plate on P2",
+   "B6"
+  ],
+  "plate:B7": [
+   "plate on P2",
+   "B7"
+  ],
+  "plate:B8": [
+   "plate on P2",
+   "B8"
+  ],
+  "plate:B9": [
+   "plate on P2",
+   "B9"
+  ],
+  "plate:C1": [
+   "plate on P2",
+   "C1"
+  ],
+  "plate:C10": [
+   "plate on P2",
+   "C10"
+  ],
+  "plate:C11": [
+   "plate on P2",
+   "C11"
+  ],
+  "plate:C12": [
+   "plate on P2",
+   "C12"
+  ],
+  "plate:C2": [
+   "plate on P2",
+   "C2"
+  ],
+  "plate:C3": [
+   "plate on P2",
+   "C3"
+  ],
+  "plate:C4": [
+   "plate on P2",
+   "C4"
+  ],
+  "plate:C5": [
+   "plate on P2",
+   "C5"
+  ],
+  "plate:C6": [
+   "plate on P2",
+   "C6"
+  ],
+  "plate:C7": [
+   "plate on P2",
+   "C7"
+  ],
+  "plate:C8": [
+   "plate on P2",
+   "C8"
+  ],
+  "plate:C9": [
+   "plate on P2",
+   "C9"
+  ],
+  "plate:D1": [
+   "plate on P2",
+   "D1"
+  ],
+  "plate:D10": [
+   "plate on P2",
+   "D10"
+  ],
+  "plate:D11": [
+   "plate on P2",
+   "D11"
+  ],
+  "plate:D12": [
+   "plate on P2",
+   "D12"
+  ],
+  "plate:D2": [
+   "plate on P2",
+   "D2"
+  ],
+  "plate:D3": [
+   "plate on P2",
+   "D3"
+  ],
+  "plate:D4": [
+   "plate on P2",
+   "D4"
+  ],
+  "plate:D5": [
+   "plate on P2",
+   "D5"
+  ],
+  "plate:D6": [
+   "plate on P2",
+   "D6"
+  ],
+  "plate:D7": [
+   "plate on P2",
+   "D7"
+  ],
+  "plate:D8": [
+   "plate on P2",
+   "D8"
+  ],
+  "plate:D9": [
+   "plate on P2",
+   "D9"
+  ],
+  "plate:E1": [
+   "plate on P2",
+   "E1"
+  ],
+  "plate:E10": [
+   "plate on P2",
+   "E10"
+  ],
+  "plate:E11": [
+   "plate on P2",
+   "E11"
+  ],
+  "plate:E12": [
+   "plate on P2",
+   "E12"
+  ],
+  "plate:E2": [
+   "plate on P2",
+   "E2"
+  ],
+  "plate:E3": [
+   "plate on P2",
+   "E3"
+  ],
+  "plate:E4": [
+   "plate on P2",
+   "E4"
+  ],
+  "plate:E5": [
+   "plate on P2",
+   "E5"
+  ],
+  "plate:E6": [
+   "plate on P2",
+   "E6"
+  ],
+  "plate:E7": [
+   "plate on P2",
+   "E7"
+  ],
+  "plate:E8": [
+   "plate on P2",
+   "E8"
+  ],
+  "plate:E9": [
+   "plate on P2",
+   "E9"
+  ],
+  "plate:F1": [
+   "plate on P2",
+   "F1"
+  ],
+  "plate:F10": [
+   "plate on P2",
+   "F10"
+  ],
+  "plate:F11": [
+   "plate on P2",
+   "F11"
+  ],
+  "plate:F12": [
+   "plate on P2",
+   "F12"
+  ],
+  "plate:F2": [
+   "plate on P2",
+   "F2"
+  ],
+  "plate:F3": [
+   "plate on P2",
+   "F3"
+  ],
+  "plate:F4": [
+   "plate on P2",
+   "F4"
+  ],
+  "plate:F5": [
+   "plate on P2",
+   "F5"
+  ],
+  "plate:F6": [
+   "plate on P2",
+   "F6"
+  ],
+  "plate:F7": [
+   "plate on P2",
+   "F7"
+  ],
+  "plate:F8": [
+   "plate on P2",
+   "F8"
+  ],
+  "plate:F9": [
+   "plate on P2",
+   "F9"
+  ],
+  "plate:G1": [
+   "plate on P2",
+   "G1"
+  ],
+  "plate:G10": [
+   "plate on P2",
+   "G10"
+  ],
+  "plate:G11": [
+   "plate on P2",
+   "G11"
+  ],
+  "plate:G12": [
+   "plate on P2",
+   "G12"
+  ],
+  "plate:G2": [
+   "plate on P2",
+   "G2"
+  ],
+  "plate:G3": [
+   "plate on P2",
+   "G3"
+  ],
+  "plate:G4": [
+   "plate on P2",
+   "G4"
+  ],
+  "plate:G5": [
+   "plate on P2",
+   "G5"
+  ],
+  "plate:G6": [
+   "plate on P2",
+   "G6"
+  ],
+  "plate:G7": [
+   "plate on P2",
+   "G7"
+  ],
+  "plate:G8": [
+   "plate on P2",
+   "G8"
+  ],
+  "plate:G9": [
+   "plate on P2",
+   "G9"
+  ],
+  "plate:H1": [
+   "plate on P2",
+   "H1"
+  ],
+  "plate:H10": [
+   "plate on P2",
+   "H10"
+  ],
+  "plate:H11": [
+   "plate on P2",
+   "H11"
+  ],
+  "plate:H12": [
+   "plate on P2",
+   "H12"
+  ],
+  "plate:H2": [
+   "plate on P2",
+   "H2"
+  ],
+  "plate:H3": [
+   "plate on P2",
+   "H3"
+  ],
+  "plate:H4": [
+   "plate on P2",
+   "H4"
+  ],
+  "plate:H5": [
+   "plate on P2",
+   "H5"
+  ],
+  "plate:H6": [
+   "plate on P2",
+   "H6"
+  ],
+  "plate:H7": [
+   "plate on P2",
+   "H7"
+  ],
+  "plate:H8": [
+   "plate on P2",
+   "H8"
+  ],
+  "plate:H9": [
+   "plate on P2",
+   "H9"
+  ],
+  "reservoir:A1": [
+   "reservoir on P1",
+   "A1"
+  ]
+ },
+ "events": [
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "pick",
+   "tip": "t1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_1",
+   "kind": "pick",
+   "tip": "t2"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "aspirate",
+   "labware": "reservoir on P1",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_1",
+   "kind": "aspirate",
+   "labware": "reservoir on P1",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "dispense",
+   "labware": "plate on P2",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "A1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_1",
+   "kind": "dispense",
+   "labware": "plate on P2",
+   "moved": 100.0,
+   "volume": 100.0,
+   "well": "B1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_0",
+   "kind": "drop",
+   "tip": "t1"
+  },
+  {
+   "channels": 1,
+   "instrument": "nozzle_1",
+   "kind": "drop",
+   "tip": "t2"
+  }
+ ],
+ "lineage": [
+  {
+   "extras": {
+    "labware": "tips230"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:TL1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "labware": "reservoir"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:P1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "mixture": {
+     "Water": 10000.0
+    },
+    "volume_ul": 10000.0
+   },
+   "inputs": {},
+   "operation": "seed_container",
+   "outputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "labware": "plate"
+   },
+   "inputs": {},
+   "operation": "load_labware",
+   "outputs": {
+    "entity_id": "Deck:P2"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "tip": "t1",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "tips230:G12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 1,
+    "tip": "t2",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "tips230:H12"
+   },
+   "operation": "pick_up_tip",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t1",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 1,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t2",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "reservoir:A1"
+   },
+   "operation": "aspirate",
+   "outputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t1",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:A1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 1,
+    "mixture": {
+     "Water": 100.0
+    },
+    "tip": "t2",
+    "tip_type": "BiomekTip_230",
+    "volume_requested_ul": 100.0,
+    "volume_ul": 100.0
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:1"
+   },
+   "operation": "dispense",
+   "outputs": {
+    "entity_id": "plate:B1"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 0,
+    "origin_slot": "tips230:G12",
+    "tip": "t1",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:0"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  },
+  {
+   "extras": {
+    "channel": 1,
+    "origin_slot": "tips230:H12",
+    "tip": "t2",
+    "tip_type": "BiomekTip_230"
+   },
+   "inputs": {
+    "entity_id": "channel:biomek-mock:pipette_head:1"
+   },
+   "operation": "discard_tip",
+   "outputs": {
+    "entity_id": "waste"
+   },
+   "type": "lineage"
+  }
+ ]
+}
