@@ -126,7 +126,7 @@ flowchart LR
 
 <p align="center"><sub><b>Figure 4.</b> The six verifier layers. The first three are gates. Layer 4 records a <code>deterministic_reward</code> for every trial and feeds its results to the judge as evidence; it becomes the reward when the judge is off (<code>SKIP_JUDGE=1</code>, used for oracle checks in CI) or fails.</sub></p>
 
-1. **Lint.** `protocol_lint.py` rejects code that reaches into simulator internals. Fail → 0.
+1. **Lint.** `protocol_lint.py` rejects code that reaches into simulator internals. Fail → 0. (IR tasks; the two RNA tasks only record suspicious tokens, without changing the reward.)
 2. **Reward-hacking traps.** `tests/anti_hack.py`, 9 traps (Table 3). Any trip → 0.
 3. **Simulator gate.** `opentrons_simulate` (Opentrons 7.5.0) must complete. Fail → 0.
 4. **Deterministic checks.** On the 9 IR tasks, `spec_check.py` compares the simulated run with `tests/ir.json`, `deck.json` and `checks.json`: the right labware under the right label in the right slot, the end-state volume of every well, and five physical safety rules (a tip before every aspiration, no overdispense, no aspirating from an empty well, no tip left on, no cross-contamination). On RNA extraction, `checks.py` runs 18 checks on the run log (volumes, step order, incubation, magnet and drying times, recovery of about 80 µL, the 4 °C plate, fresh tips, and no reservoir column drawn beyond its 15 mL).
