@@ -62,7 +62,7 @@ harbor run -p tasks -a claude-code -m anthropic/claude-sonnet-5-5 -e daytona -n 
 # filters: -i/--include-task-name GLOB, -x/--exclude-task-name GLOB, -l/--n-tasks N
 ```
 
-Today `-p tasks` would find only one valid task (directories without `environment/` are skipped by `Task.is_valid_dir`, src; skipping behaviour not run).
+Every folder in `tasks/` has `environment/`, so `-p tasks` finds all 11 (folders without it are skipped by `Task.is_valid_dir`, src).
 
 (d) Dry-run, config echo, and reading results:
 
@@ -151,7 +151,7 @@ Mac shell:  export ANTHROPIC_API_KEY  (or harbor ... --env-file .env)
 | Cost estimate | No built-in dollar estimate found. Approach: run 1 trial with `max_budget_usd` set, read token usage from the trial `result.json`/agent logs, multiply by Anthropic list price, then scale by trials. Budget per trial is bounded by `max_budget_usd` + one judge call (up to 3 retries of a prompt containing paper + reference + protocol, 4000 max output tokens each) |
 | Verification-only reruns | `harbor job regrade` re-calls the judge: not free |
 
-The task README reports a 27-trial sweep over 9 models; its per-trial cost is not stated.
+The README reports the 2026-10-07 run (66 trials, 6 models) with agent cost per model (§4-5).
 
 ## 6. Pre-flight checklist
 
@@ -161,7 +161,7 @@ The task README reports a 27-trial sweep over 9 models; its per-trial cost is no
 4. `harbor run -p tasks/opentrons-rna-extraction -a oracle <env flags> --dry-run` passes preflight.
 5. Set a spend cap on the Anthropic console key/workspace in addition to `--ak max_budget_usd`.
 6. Start with `-n 1 -k 1 -r 0`, then oracle, then one model trial.
-7. Check the judge model id `claude-sonnet-5-5` is available to the key (grade.py hard-codes it; a bad id gives `judge_error=1` and reward 0, not a crash).
+7. Check the judge model id is available to the key (`JUDGE_MODEL`, default `claude-sonnet-5-5`; a bad id gives `judge_error=1` and the deterministic reward, not a crash).
 8. Confirm the sandbox gets deleted afterwards (provider dashboard).
 9. After the run, grep `jobs/` for the key prefix before sharing logs.
 
