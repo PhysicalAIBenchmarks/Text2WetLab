@@ -34,6 +34,7 @@ def test_no_licence_less_file_is_published(tmp_path):
 
 
 def test_gate_catches_a_renamed_copy(tmp_path):
-    original = next(ROOT / r["path"] for r in UNLICENSED if r["sha256"] and (ROOT / r["path"]).exists())
+    original = next((ROOT / r["path"] for r in UNLICENSED if r["sha256"] and (ROOT / r["path"]).exists()), None)
+    assert original, "no licence-less file with a recorded hash is on disk to copy"
     shutil.copy(original, tmp_path / "renamed.py")
     assert unlicensed_in(tmp_path, ["renamed.py"]) == ["renamed.py"]
