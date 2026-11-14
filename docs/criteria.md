@@ -4,6 +4,9 @@ What is judged, by which code, on which tasks, and how well it works. Everything
 `python scripts/criteria_matrix.py` regenerates the tables (needs the Opentrons 7.5.0 / Python 3.10 stack,
 see the README). Nothing here depends on an LLM except the one item marked as not run.
 
+Parts of this page predate the per-task Harbor graders: every task now has a reference solution and a hidden grader
+(`tasks/*/solution/`, `tasks/*/tests/`), and the LLM judge scores each rubric item 1 or 0 (README §3).
+
 ## The criteria sets
 
 | Set | Code | Judges | Applies to |
