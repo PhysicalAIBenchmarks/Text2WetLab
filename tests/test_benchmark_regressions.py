@@ -12,6 +12,7 @@ ROOT = pathlib.Path(__file__).parent.parent
 OT = pathlib.Path(os.environ.get("OT_VENV", ROOT / ".venv-ot")) / "bin/python"
 RNA = ["opentrons-rna-extraction", "opentrons-rna-extraction-hard"]
 RUN = ROOT / "results/runs/2026-10-07-openrouter"
+IR_TASK = ROOT / "tasks/a1-a12-100ul"
 
 
 def rna_checks(task: str):
@@ -101,6 +102,68 @@ def test_a_judge_that_errors_on_every_vote_is_a_judge_error(path):
                 raise TimeoutError("judge down")
     verdict, error = load(path).one_verdict(Broken(), "m", "prompt", {"a"})
     assert verdict is None and "judge down" in error
+
+
+def fixed_judge(score):
+    """A judge stub returning a fixed weighted score and no per-item rubric breakdown."""
+    return lambda *a, **k: {"score": score, "scores": {}}
+
+
+def test_ir_critical_cap_applies_only_with_a_judge_score_and_a_critical_failure(monkeypatch, tmp_path):
+    # the cap is only reached with a judge score, which CI never has (SKIP_JUDGE=1); stub the judge, simulator and
+    # checks so neither an API nor the simulator is touched
+    monkeypatch.setenv("TESTS_DIR", str(IR_TASK / "tests"))       # read at import time
+    monkeypatch.setenv("VERIFIER_OUT", str(tmp_path))
+    monkeypatch.setenv("OT_PYTHON", str(OT))     # else grade.py's setdefault leaks /opt/ot into the environment
+    monkeypatch.setenv("RUNLOG", str(IR_TASK / "tests/runlog.py"))
+    mod = load(IR_TASK / "tests/grade.py")
+    mod.violations = lambda code: []
+    mod.tripped = lambda code: []
+    mod.simulate = lambda *a, **k: {"ok": True, "events": [], "labware": {}}
+    protocol = tmp_path / "protocol.py"
+    protocol.write_text("metadata = {'apiLevel': '2.15'}\n\n\ndef run(protocol):\n    pass\n")
+
+    def reward_for(failing_check, score):
+        mod.check = lambda *a, **k: {"passed": False, "not_applicable": [],
+                                      "checks": [{"name": failing_check, "pass": False, "detail": ""}]}
+        mod.judge = fixed_judge(score)
+        rewards, _ = mod.grade(protocol)
+        return rewards
+
+    r = reward_for("end_state:plate", 0.75)   # end_state:* is critical on an "easy" task (judge_layer.is_critical)
+    assert r["critical_fail"] == 1.0 and r["judge_score"] == 0.75 and r["reward"] == 0.3
+    assert reward_for("end_state:plate", 0.2)["reward"] == 0.2   # below the cap: min() leaves it alone
+    r = reward_for("tip_dropped_at_end", 0.75)   # not deck_labware/end_state, not a SAFETY_CHECKS entry: not critical
+    assert r["critical_fail"] == 0.0 and r["reward"] == 0.75
+
+
+def test_rna_critical_cap_applies_only_with_a_judge_score_and_a_critical_failure(monkeypatch, tmp_path):
+    # the same invariant for the RNA grader, whose reward logic lives in main()
+    task = ROOT / "tasks/opentrons-rna-extraction"
+    app, out = tmp_path / "app", tmp_path / "out"
+    app.mkdir()
+    protocol = app / "protocol.py"
+    protocol.write_text("metadata = {'apiLevel': '2.15'}\n\n\ndef run(protocol):\n    pass\n")
+    monkeypatch.setenv("TESTS_DIR", str(task / "tests"))     # paths are read at import time
+    monkeypatch.setenv("DATA_DIR", str(task / "environment/data"))
+    monkeypatch.setenv("PROTOCOL_PATH", str(protocol))
+    monkeypatch.setenv("VERIFIER_OUT", str(out))
+    mod = load(task / "tests/grade.py")
+    mod.tripped = lambda code: []
+    mod.simulate = lambda: {"ok": True, "events": []}
+
+    def reward_for(failing_check, score):
+        mod.analyze = lambda events, level: {"checks_total": 1, "checks_passed": 0,
+                                              "checks": [{"name": failing_check, "pass": False}]}
+        mod.judge = fixed_judge(score)
+        mod.main()
+        return json.loads((out / "reward.json").read_text())
+
+    r = reward_for("step_order", 0.75)   # step_order is in CRITICAL_CHECKS
+    assert r["critical_fail"] == 1.0 and r["judge_score"] == 0.75 and r["reward"] == 0.3
+    assert reward_for("step_order", 0.2)["reward"] == 0.2   # below the cap: min() leaves it alone
+    r = reward_for("not_a_critical_check", 0.75)   # not in CRITICAL_CHECKS
+    assert r["critical_fail"] == 0.0 and r["reward"] == 0.75
 
 
 def test_colony_hard_rubric_leaves_the_primer_volume_to_the_agent():
